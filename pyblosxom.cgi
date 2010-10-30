@@ -11,7 +11,7 @@ import os, sys
 
 # Uncomment this line to add the directory your config.py file is in to the
 # python path:
-#sys.path.append("/home/dieter/workspaces/eclipse/dieterblog/")
+#sys.path.append("__DEPLOYDIR__")
 
 # You shouldn't have to adjust anything below this line.
 # --------------------------------------------------

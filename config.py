@@ -24,7 +24,7 @@ py = {}
 
 import os
 
-blogdir = "/home/dieter/workspaces/eclipse/dieterblog/"
+blogdir = "__DEPLOYDIR__"
 
 # Blog configuration
 # ==================

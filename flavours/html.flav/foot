@@ -1,5 +1,7 @@
-<p>
+<div id="footer-spacer"></div>
+</div>
+<div id='footer'>
   <a href="http://pyblosxom.bluesock.org/"><img src="http://pyblosxom.bluesock.org/images/pb_pyblosxom.gif" alt="Made with PyBlosxom" border="0" /></a>
-</p>
+</div>
 </body>
 </html>

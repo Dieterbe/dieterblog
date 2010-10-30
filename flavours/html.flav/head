@@ -9,6 +9,7 @@ body {
 	background-color: #fff;
 	margin: 0px;
 	padding: 0px;
+	font-family: verdana,helvetica,arial,sans-serif;
 }
 #top {
 	position: absolute;

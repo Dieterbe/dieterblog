@@ -28,18 +28,30 @@ h2 {
 h3 {
 	font-size: 1.2em;
 }
-h1 img {
-	padding: 0px;
-	margin:  0px;
-}
 #container {
 	min-height: 100%;
 	margin-bottom: -56px;
-	margin-left: 10px;
-	margin-right: 10px;
+}
+#contentpanel {
+	margin-left: 20px;
+	margin-right: 20px;
 }
 * html #container {
 	height: 100%;
+}
+#header {
+	background-color: #222;
+	padding-left: 20px;
+	height: 60px;
+}
+#header h1 a {
+	color: #ddd;
+	float: left;
+}
+#header img {
+	float: right;
+	margin: 0px;
+	margin-right: 8px;
 }
 #footer-spacer {
 	height: 56px;
@@ -49,6 +61,7 @@ h1 img {
 	margin: 0px;
 	height: 36px;
 	padding: 10px;
+	padding-left: 20px;
 }
 .postinfo {
 	font-style: italic;
@@ -78,8 +91,11 @@ img {
 <body>
 <div id="top"></div>
 <div id="container">
+<div id="header">
 <h1>
 	<a href="$(base_url)/">$(blog_title)</a>
-	<a href="$(base_url)/index.rss20"><img class='feed' src="http://www.cert.at/static/icons/rss.png"  title="Rss 2.0" alt="Rss 2.0"/></a>
-	<a href="$(base_url)/index.atom" ><img class='feed' src="http://www.cert.at/static/icons/atom.png" title="Atom 1.0" alt="Atom 1.0"/></a>
 </h1>
+<a href="$(base_url)/index.rss20"><img class='feed' src="http://www.cert.at/static/icons/rss.png"  title="Rss 2.0" alt="Rss 2.0"/></a>
+<a href="$(base_url)/index.atom" ><img class='feed' src="http://www.cert.at/static/icons/atom.png" title="Atom 1.0" alt="Atom 1.0"/></a>
+</div>
+<div id="contentpanel">

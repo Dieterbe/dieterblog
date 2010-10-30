@@ -1,0 +1,14 @@
+== DEPENDENCIES ==
+pyblosxom 1.5 (packaged as pyblosxom-new in AUR)
+python-flup
+
+== NOTES ==
+* change settings in config (like blog title) -> doesn't effect immediately? need to restart server?
+
+== TODO ==
+tags, comments, nice flavour
+urls for html and feeds where you can enable/disable tags, i.e.:
+	/*!irl for all topics minus things tagged irl
+feeds for comments
+show feed in html metadata
+Google Analytics

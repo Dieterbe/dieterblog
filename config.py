@@ -30,23 +30,23 @@ blogdir = "__DEPLOYDIR__"
 # ==================
 
 # What is the title of this blog?
-py["blog_title"] = "Another pyblosxom blog"
+py["blog_title"] = "Dieter_be's place on the web"
 
 # What is the description of this blog?
-py["blog_description"] = "blosxom with a touch of python"
+py["blog_description"] = "Web blog of Dieter Plaetinck (aka Dieter_be)"
 
 # Who are the author(s) of this blog?
-py["blog_author"] = "name"
+py["blog_author"] = "Dieter Plaetinck"
 
 # What is the email address through which readers of the blog may contact
 # the authors?
-py["blog_email"] = "email@example.com"
+py["blog_email"] = "dieter@plaetinck.be"
 
 # These are the rights you give to others in regards to the content
 # on your blog.  Generally, this is the copyright information.
 # This is used in the Atom feeds.  Leaving this blank or not filling
 # it in correctly could result in a feed that doesn't validate.
-py["blog_rights"] = "Copyright 2005 Joe Bobb"
+py["blog_rights"] = "Copyright 2007-2010 Dieter Plaetinck"
 
 # What is this blog's primary language (for outgoing RSS feed)?
 py["blog_language"] = "en"
@@ -79,7 +79,7 @@ py["depth"] = 0
 # How many entries should I show on the home page and category pages?
 # If you put 0 here, then I will show all pages.
 # Note: this doesn't affect date-based archive pages.
-py["num_entries"] = 5
+py["num_entries"] = 21
 
 # What is the default flavour you want to use when the user doesn't
 # specify a flavour in the request?
@@ -93,12 +93,13 @@ py["default_flavour"] = "html"
 # Where should PyBlosxom write logged messages to?
 # If set to "NONE" log messages are silently ignored.
 # Falls back to sys.stderr if the file can't be opened for writing.
-#py["log_file"] = os.path.join(blogdir, "logs", "pyblosxom.log")
+py["log_file"] = os.path.join(blogdir, "logs", "pyblosxom.log")
 
 # At what level should we log to log_file?
 # One of: "critical", "error", "warning", "info", "debug"
 # For production, "warning" or "error' is recommended.
 #py["log_level"] = "warning"
+py["log_level"] = "debug"
 
 # This lets you specify which channels should be logged.
 # If specified, only messages from the listed channels are logged.
@@ -137,7 +138,7 @@ py["plugin_dirs"] = [os.path.join(blogdir, "plugins")]
 # 
 # If you specify an empty list, then this will load no plugins.
 # ex: py["load_plugins"] = ["pycalendar", "pyfortune", "pyarchives"]
-py["load_plugins"] = []
+py["load_plugins"] = ["comments"]
 
 
 

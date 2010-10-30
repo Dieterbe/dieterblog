@@ -1,0 +1,8 @@
+Hi,
+when I change a setting such as the blog title in my config.py, the setting
+doesn't have effect right away.  It seems to only work when I restart the web
+server.  Note that I'm using lighttpd which talks over a socket to the
+fastcgi process fcgi.py (included in this repo).
+So this might be normal behavior.
+However, it would be convenient to be able to make changes like these without
+needing to restart the server.  Is there a way to force a reload or something?

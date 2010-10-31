@@ -1,0 +1,17 @@
+creator: Dieter Plaetinck <dieter@plaetinck.be>
+
+
+reporter: Dieter Plaetinck <dieter@plaetinck.be>
+
+
+severity: minor
+
+
+status: open
+
+
+summary: pyblosxom-cmd --config=somedir/config.py tries to load files from $cwd
+
+
+time: Sun, 31 Oct 2010 16:13:04 +0000
+

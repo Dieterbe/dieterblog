@@ -1,0 +1,31 @@
+When you run `pyblosxom-cmd --config=somedir/config.py` while you happen to be
+in a directory which contains a config.py, pyblosxom-cmd will load and use it.
+pyblosxom-cmd should never do this, and read only from where you tell it to.
+
+Demo:
+$ ls -alh /srv/http/dieterblog/config.py # perfectly fine config.py
+-rw-r--r-- 1 http http 6.8K Oct 31 17:11 /srv/http/dieterblog/config.py
+$ mkdir tmp && cd tmp
+$ touch config.py
+$ pyblosxom-cmd renderurl --config=/srv/http/dieterblog/config.py /
+pyblosxom-cmd version 1.5rc2 20100803
+Adding /srv/http/dieterblog/ to sys.path....
+Trying to import the config module....
+ERROR: Cannot find your config.py file.  Please execute pyblosxom-cmd in
+the directory with the config.py file in it or use the --config flag.
+See "pyblosxom-cmd --help" for more details.
+Traceback (most recent call last):
+  File "/usr/bin/pyblosxom-cmd", line 5, in <module>
+    pkg_resources.run_script('pyblosxom==1.5rc2', 'pyblosxom-cmd')
+  File "/usr/lib/python2.7/site-packages/pkg_resources.py", line 467, in run_script
+    self.require(requires)[0].run_script(script_name, ns)
+  File "/usr/lib/python2.7/site-packages/pkg_resources.py", line 1200, in run_script
+    execfile(script_filename, namespace, namespace)
+  File "/usr/lib/python2.7/site-packages/pyblosxom-1.5rc2-py2.7.egg/EGG-INFO/scripts/pyblosxom-cmd", line 25, in <module>
+    sys.exit(command_line_handler("pyblosxom-cmd", sys.argv))
+  File "/usr/lib/python2.7/site-packages/pyblosxom-1.5rc2-py2.7.egg/Pyblosxom/commandline.py", line 445, in command_line_handler
+    return f(command, argv)
+  File "/usr/lib/python2.7/site-packages/pyblosxom-1.5rc2-py2.7.egg/Pyblosxom/commandline.py", line 322, in render_url
+    base_url = p.get_request().config.get("base_url", "")
+AttributeError: 'NoneType' object has no attribute 'get_request'
+

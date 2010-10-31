@@ -12,9 +12,9 @@ then
 fi
 
 src=`dirname "$0"`
-if [ ! -f $src/blog.ini ]
+if [ ! -f $src/blog.tpl.ini ]
 then
-	echo "$src/blog.ini not found! Not deploying" >&2
+	echo "$src/blog.tpl.ini not found! Not deploying" >&2
 	exit 2
 fi
 
@@ -47,6 +47,18 @@ then
 	echo "Something failed" >&2
 	echo "Find exitcode: $find_exit" >&2
 	echo "Sed  exitcode: $sed_exit" >&2
+	exit 2
+fi
+
+echo "Correctly naming now-expanded config templates..."
+if ! mv $dst/config.tpl.py $dst/config.py
+then
+	echo "Could not mv $dst/config.tpl.py $dst/config.py"
+	exit 2
+fi
+if ! mv $dst/blog.tpl.ini $dst/blog.ini
+then
+	echo "Could not mv $dst/blog.tpl.ini $dst/blog.ini"
 	exit 2
 fi
 

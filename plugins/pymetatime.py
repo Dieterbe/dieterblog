@@ -1,14 +1,27 @@
 """
-Two metadata entries define the dates of blog entries.  mtime is ignored.  The first metadata entry is 'pubdate'.  The format is '#pubdate YYYY-MM-DD'.  All date related data for an entry is changed.  Entries are sorted by this date as well.  
+Two metadata entries define the dates of blog entries.  mtime is ignored.
+The first metadata entry is 'pubdate'.  The format is '#pubdate YYYY-MM-DD'.
+All date related data for an entry is changed.
+Entries are sorted by this date as well.
 
-An additional optional metadata entry 'pubtime', with a 24-hour format of '#pubtime HH:MM:SS' further defines the date/time used.  
+An additional optional metadata entry 'pubtime', with a 24-hour format of
+'#pubtime HH:MM:SS' further defines the date/time used.
 
-Two additional story template tags are defined, '$(displaydate)' and '$(displaytime)'.  These default to 'full_month_name DD, YYYY' and a 12-hour 'HH:MM AM/PM'.  These can be modified by using the configuration variables 'display_date' and 'display_time'.  These should be set to strings using the strftime tokens found here:
+Two additional story template tags are defined, '$(displaydate)' and
+'$(displaytime)'.  These default to 'full_month_name DD, YYYY' and a
+12-hour 'HH:MM AM/PM'.
+These can be modified by using the configuration variables 'display_date' and
+'display_time'.
+These should be set to strings using the strftime tokens found here:
 <http://docs.python.org/library/time.html#time.strftime>
 
-Lastly, there is a configuration option 'meta_date_sort'.  If it is set to 1, the entries will be sorted by date, most recent first.  Set to -1 will have the earliest entries first, and setting it to 0 will turn off meta date sorting (but still read dates from meta variables).
+Lastly, there is a configuration option 'meta_date_sort'.
+If it is set to 1, the entries will be sorted by date, most recent first.
+Set to -1 will have the earliest entries first, and setting it to 0 will turn
+off meta date sorting (but still read dates from meta variables).
 
-Since only the last occurance of repeated metadata entries is used, multiple 'pubdate' entries can be used to keep track of revisions if you wish.
+Since only the last occurance of repeated metadata entries is used, multiple
+'pubdate' entries can be used to keep track of revisions if you wish.
 
 
 
@@ -44,23 +57,23 @@ __description__ = 'Sorts entries by date in meta data'
 
 def cb_prepare(args):
     """Takes an entry and resets all date and time variables according to the 'pubdate' and 'pubtime' entries."""
-    
+
     request = args['request']
     config = request.get_configuration()
     displaydate = config.get("display_date", None)
     displaytime = config.get("display_time", None)
     data = request.get_data()
     entry_list = data["entry_list"]
-   
+
     if time.daylight:
         tz = time.tzname[1]
     else:
         tz = time.tzname[0]
-                
-    for e in entry_list:    
+
+    for e in entry_list:
         if not e.has_key("pubtime"):
             e["pubtime"] = "00:00:00"
-    
+
         if e.has_key("pubdate"):
             pubdate = time.strptime(e["pubdate"] + e["pubtime"],"%Y-%m-%d%H:%M:%S")
         else:
@@ -87,7 +100,7 @@ def cb_prepare(args):
             dtime = time.strftime(displaytime, pubdate)
         e["displaydate"] = ddate
         e["displaytime"] = dtime
-        
+
 def cb_sortlist(args):
     """Reads the 'pubdate' and optional 'pubtime' entry and sorts according to them.  If no value is found, the mtime is used.  This function also modifies the 'timetuple' for each entry for later use"""
 
@@ -95,10 +108,10 @@ def cb_sortlist(args):
     request = args['request']
     config = request.get_configuration()
     date_sort = config.get("meta_date_sort", True)
-    
+
     if not date_sort:
         return None
-        
+
     entrylist2 = []
     for e in entrylist:
         if not e.has_key("pubtime"):
@@ -115,9 +128,9 @@ def cb_sortlist(args):
         entrylist2.reverse()
 
     entrylist = [e[1] for e in entrylist2]
-    
+
     return entrylist
-    
+
 def verify_installation(request):
     config = request.get_configuration()
     flag = False

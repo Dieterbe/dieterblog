@@ -1,0 +1,16 @@
+Uzbl, monitoring, AIF talks
+# pubdate 2010-03-07
+# pubtime 12:06:18
+# tags real life,uzbl,arch
+<p>I recently did two talks, for which the videos are now online.</p>
+<ul>
+<li><a href="http://www.uzbl.org/news.php?id=25">Uzbl lightningtalk @ fosdem 2010</a></li>
+<li>Open Source Monitoring tools lightning talk @ <a href="http://www.kangaroot-showcase.be/">Kangaroot showcase</a> 2009.  This one is password protected.  If you were a participant, you should have received the pass</li>
+</ul>
+<p>If all goes well, I'll be at <a href="http://www.archlinux.ca/archcon2010/">ArchCon</a> this summer, where I'll be doing these talks:</p>
+<ul>
+<li><a href="http://www.archlinux.ca/archcon2010/?p=67">AIF: The Arch Installation Framework</a></li>
+<li><a href="http://www.archlinux.ca/archcon2010/?p=73">Uzbl – web interface tools which adhere to the unix philosophy</a>. Whereas in the fosdem talk I had to focus a lot of information into a short timeslot, here I'll elaborate a bit more</li>
+</ul>
+<p>We're not sure yet if those talks will get videotaped.<br />
+<!--break--></p>

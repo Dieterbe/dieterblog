@@ -1,0 +1,15 @@
+Snip: a dead-simple but quite powerful text expander and more
+# pubdate 2009-09-14
+# pubtime 20:22:00
+# tags foss
+<p>Inspired by <a href="http://bbs.archlinux.org/viewtopic.php?id=71938">Snippy</a> and <a href="http://lifehacker.com/351285/automate-repetitive-typing-with-snippits">snippits</a>, I wrote a simple tool called <a href="http://github.com/Dieterbe/snip">snip</a>.<br />
+It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.<br />
+<!--break--><br />
+It works like this: you bind a key (in your WM or with <a href="http://freshmeat.net/projects/xbindkeys/">xbindkeys</a>) to launch `snip` with the `load` or `save` argument.</p>
+<ul>
+<li>`load` will look in a folder in your $HOME for snips (small text files) and present them through <a href="http://tools.suckless.org/dmenu">dmenu</a>.  If your snip has the executable flag it will be executed, otherwise the literal contents of the file are taken.  <a href="http://www.semicomplete.com/projects/xdotool/">xdotool</a> is used to type the output (which gets entered where your cursor is).  </li>
+<li>`save` is just a convenience wrapper that uses <a href="http://freshmeat.net/projects/zenity">zenity</a> to quickly create new snips</li>
+</ul>
+<p>While comparable to snippits, I find it better because it presents the options with dmenu (you don't need to type the name on the beforehand manually), it uses the <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg basedir spec</a> and since it uses several great, tried &amp; proven existing utilities, it does its job in less then 50 lines of shellscript.</p>
+<p>I wrote some some <a href="http://github.com/Dieterbe/snip/tree/master/examples/snips/">example snips</a> which demonstrate entering static chunks of text, using xdotool for automating keypresses, aspell for automatic spell checking (and word replacing), inserting url's from your <a href="http://www.uzbl.org">uzbl</a> bookmarks/history, and some dynamic output based on current time, $USER and zenity input.<br />
+I'm sure a lot of people will come up with more cool things :)</p>

@@ -1,0 +1,23 @@
+Arch Linux release engineering
+# pubdate 2009-01-22
+# pubtime 23:11:01
+# tags arch
+<p>I don't think I've ever seen so much anxiety/impatience/hope/buzz for a new Arch Linux release. (this is because of 2.6.28 with ext4 support).<br />
+The last release was 6 months ago, which is not so good.. also the arch-installer project has been slacking for a while.  But the Arch devs have been very busy and many things going on.  You know how it goes...</p>
+<p>That's why some new people have stepped up to help out on a new release:<br />
+Today, we are on the verge of a 2009-01 release (though that has been said so many times lately ;-) and together with Aaron we have started a new project: <a href="http://www.archlinux.org/news/430/">the Arch Linux Release Engineering team</a>.<br />
+Members of this team are Aaron himself, Gerhard Brauer and me.</p>
+<p>Our goals:</p>
+<ul>
+<li>coordinated releases following the rhythm of kernel releases (that's a release every 2-3 months baby!).</li>
+<li>anticipate the availability of the kernel in the testing repo's instead of having to wait for it to go to core before building alpha/beta images</li>
+<li>migration to <a href="http://dieter.plaetinck.be/AIF_the_brand_new_Arch_Linux_Installation_Framework">AIF</a> as the new Arch installer (woot!)</li>
+<li>testing.  Leveraging the possibilities of AIF as an unattended installer, we should be able to script full installations and health checking of the resulting system.</li>
+<li>involving the community more? releasing "testing iso's" ? not sure about that. we'll see...</li>
+</ul>
+<p>We also have:</p>
+<ul>
+<li><a href="http://www.archlinux.org/mailman/listinfo/arch-releng">arch-releng mailing list</a></li>
+<li><a href="http://bugs.archlinux.org/index.php?project=6">Release Engineering bugtracker</a></i>
+</ul>
+<p>Oh yeah AIF is mirrored @ <a href="http://projects.archlinux.org/" title="http://projects.archlinux.org/">http://projects.archlinux.org/</a> and available packaged in the <a href="http://www.archlinux.org/packages/?q=aif">official repo's</a>!</p>

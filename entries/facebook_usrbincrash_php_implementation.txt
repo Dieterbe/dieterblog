@@ -1,0 +1,13 @@
+facebook usrbincrash php implementation
+# pubdate 2010-02-12
+# pubtime 23:25:46
+# tags php
+<p>Implementation for Facebook <a href="http://www.facebook.com/careers/puzzles.php?puzzle_id=2">usr bin crash</a> puzzle. (<a href="http://dieter.plaetinck.be/not_working_for_facebook">how/why</a>)</p>
+<p>I haven't touched the code for a few months, but better to put it online then to let it rot.<br />
+<a href="http://github.com/Dieterbe/facebookpuzzles/" title="http://github.com/Dieterbe/facebookpuzzles/">http://github.com/Dieterbe/facebookpuzzles/</a></p>
+<p>2 branches:</p>
+<ul>
+<li>master: basically what I submitted to FB, and what just works</li>
+<li>withpruning: an attempt for futher optimalisation (it only improves the runtime in some cases) but I didn't finish that version and there's a bug in it somewhere</li>
+</ul>
+<p>In the repo you'll also find various test input files supplied by the community on <a href="http://www.facebook.com/topic.php?uid=15325934266&amp;topic=5131&amp;post=30091">the forums</a> and a script to benchmark the implementation on all inputfiles.<!--break--></p>

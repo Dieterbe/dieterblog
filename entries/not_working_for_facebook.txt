@@ -1,0 +1,35 @@
+Not working for Facebook
+# pubdate 2010-02-12
+# pubtime 22:58:31
+# tags real life
+<p>In november last year, I was contacted by Facebook HR.<br />
+They found my background interesting and thought I might be a good<br />
+fit for an "application operations engineer" position in Palo Alto, California. (it is<br />
+basically the link between their infrastructure engineering and operations/support<br />
+teams).<!--break--><br />
+I did a few technical interviews over phone with other app ops and engineers<br />
+from CA (about the Linux kernel, lowlevel userspace, mysql, memcached, networking, programming,<br />
+scalability, etc) and solved one of their optimisation puzzles.<br />
+( I picked <a href="http://www.facebook.com/careers/puzzles.php?puzzle_id=2">usr bin crash</a>.  Actually I wanted to do something with <a<br />
+href="http://incubator.apache.org/thrift/">thrift</a> but <a<br />
+href="http://mail-archives.apache.org/mod_mbox/incubator-thrift-user/200911.mbox/%3C20091122202901.1f425b7f@plaetinck.be%3E">I<br />
+couldn't get it to compile</a>).  The technical interviews went well but then I had<br />
+another interview which was about handling support.  As I have no experience<br />
+in setting up support frameworks and procedures to hand off to separate<br />
+support teams, I was/am not good enough for this position.</p>
+<p>Then they suggested a role as site reliability engineer for the office in Dublin, which is more about<br />
+troubleshooting, monitoring and systems management/automation.<br />
+So I did some more interviews with SRE's and engineers from the London office and<br />
+from Palo Alto.  Similar subjects as before, but with more of an operations/support touch to it.<br />
+These also went well, except the last one, which was more about things less related to<br />
+high-performance/scalability such as nfs, pam and ldap.<br />
+I think I missed too many questions on the last interview.  I could come up<br />
+with some excuses such as me being tired (it was the evening before our <a<br />
+href="http://www.kangaroot-showcase.be/">Kangaroot showcase</a> event, and<br />
+the call being late - Facebook HR messed up a timezone conversion) but fact<br />
+of the matter is: I have little experience with such "office ;-)" stuff.</p>
+<p>So after 8 interviews over phone (each one about 40-60 minutes), spanning<br />
+about 2 months, they let me know they would not go forward with me.<br />
+That was late december, I asked for some feedback but haven't heard from<br />
+them since.</p>
+<p>Bottomline: it sounded quite nice but I'm pretty <a href="http://www.ted.com/talks/dan_gilbert_asks_why_are_we_happy.html">happy</a> with my current life in Belgium.</p>

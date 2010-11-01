@@ -1,0 +1,10 @@
+Mysql status variables caveats
+# pubdate 2009-06-06
+# pubtime 11:33:34
+# tags foss
+<p>While setting up Zenoss and reading <a href="http://dev.mysql.com/doc/refman/5.0/en/server-status-variables.html">Mysql documentation about status variables</a> I learned:</p>
+<ul>
+<li>All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  ("Command statistics:selects" graph in Zenoss)</li>
+<li>Com_select does not denote all incoming select commands.  If you have a hit on your query cache, com_select is <em>not</em> incremented.  So I thought we were doing less qps while in fact we were just getting more cache hits. Qcache_hits gets incremented on cache hits (but is not monitored by Zenoss)</li>
+</ul>
+<p><!--break--></p>

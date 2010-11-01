@@ -1,0 +1,65 @@
+The perfect GTK music player: can Exaile replace Amarok?
+# pubdate 2007-07-08
+# pubtime 12:50:50
+# tags linux,foss,music
+<p>I've always liked Amarok: it does everything I always wanted, <em> and more</em>.  It looks perfect in every way ...<br />
+But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.</p>
+<p>So, I've been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.<!--break--></p>
+<h3>Requirements</h3>
+<p>First a list of features I would like to see in my new music player.  Let's keep it real: I don't think there is <em>any</em> music player out there that does everything listed here, not even Amarok.  I can live with some missing features, as long as it has the most important ones.  The other features might be added later on anyway, and who knows, maybe I'll start contributing to a project if I really like it...</p>
+<p>In order of importance:</p>
+<ul>
+<li>Last.fm submitting</li>
+<li>Jack output</li>
+<li>Advanced management of songs/albums/artists and playlists with ratings (not just bookmarks)</li>
+<li>Last.fm stream listening</li>
+<li>Ipod support</li>
+<li>Radio streams</li>
+<li>Podcasts</li>
+<li>Artist/album/song information fetching from Wikipedia</li>
+<li>File system monitoring (Inotify) so that it detects the new songs when I add them to my file system</li>
+<li>Lyrics</li>
+<li>Volume normalization (either through <a href="http://replaygain.hydrogenaudio.org/">ReplayGain</a> or just automatically) (if this is not built-in I can always route through a compressor/limiter myself)</li>
+</ul>
+<p>Stuff that other people like, but I don't need/want/care about:</p>
+<ul>
+<li>On screen display (when a new song starts)</li>
+<li>Visualizations</li>
+<li>Musicbrainz(*)</li>
+<li>CD-ripping (not the task of a music player imho)</li>
+</ul>
+<p>(*): I absolutely love Musicbrainz and use it all the time but I don't think it is functionality to be put in a music player.  I use the Musicbrainz Picard tagger to organize my collection.  Putting all the needed functionality inside the media player would make it very bloated.  So in theory I actually wouldn't need any tag editing at all in my music player<br />
+(this could be a discussion in it's own merit: why don't we get rid of all tag editing functionality in all music players and use decent, separate utilities such as the Musicbrainz Picard tagger to tag your collection?)</p>
+<h3>Contenders</h3>
+<p>It struck me how many GTK music players there are out there, and especially how similar some of them are.</p>
+<ul>
+<li><a href="http://www.sacredchao.net/quodlibet/">Quod Libet</a>: written in python, pretty advanced (podcasts, shoutcasts, Last.fm submissions, reg-exp song searching)</li>
+<li><a href="http://www.musicpd.org">mpd</a>: although I like a daemon based approach (I sometimes don't have X open - pretty seldomly though - ) it (even combined with any of the graphical front ends) doesn't offer anything close to my requirements</li>
+<li><a href="http://banshee-project.org">Banshee</a>: built on Mono. Has podcasts, ipod support, smart playlists, and even inotify support but didn't even compile on Gentoo, so never mind...</li>
+<li><a href="http://www.listen-project.org/">Listen</a>: written in python, it looks pretty advanced: podcasts, shoutcasts, Last.fm, Wikipedia fetching, ... it can even create playlists for you based on your Last.fm account</li>
+<li><a href="http://live.gnome.org/Rhythmbox">Rhythmbox</a>: Gnomes music player inspired by Apple's iTunes.  featuring internet radio, ratings, lyrics, artwork, Last.fm, podcasts, cd-ripping, ipod writing (only partial !), plugins, file system monitoring (I think through polling, not through inotify).  According to some people it's pretty buggy and I can only agree: version 0.10 (latest)  crashed many times on me :(</li>
+<li><a href="http://www.exaile.org">Exaile</a> I kept the best one for the end ;-).  It's another one written in python, inspired by Amarok and hence has many similar features.  In addition to that you can also get guitar tabs with it. (why no drum tabs? ;-) ) According to somebody on trac it's <a href="http://exaile.org/trac/ticket/485">better then Listen</a>.
+</li>
+</ul>
+<h3>is Exaile a worthy alternative?</h3>
+<p>Description on the <a href="http://www.exaile.org/">Exaile website</a>:<br />
+<cite><br />
+Exaile is a music player aiming to be similar to KDE's Amarok, but for GTK+ and written in Python. It incorporates many of the cool things from Amarok (and other media players) like automatic fetching of album art, handling of large libraries, lyrics fetching, artist/album information via Wikipedia, Last.fm submission support, and optional iPod support via a plugin.<br />
+In addition, Exaile also includes a built-in SHOUTcast directory browser, tabbed playlists (so you can have more than one playlist open at a time), blacklisting of tracks (so they don't get scanned into your library), downloading of guitar tablature from fretplay.com, and submitting played tracks on your iPod to Last.fm<br />
+</cite><br />
+The description pretty much sums up all there is about Exaile.<br />
+However I want to add it also supports podcasts and streaming radio.<br />
+You can also rate all your tracks and it has some smart playlists (depending on ratings, newest, random, top tracks, ...)<br />
+It uses sqlite (no MySql support like Amarok, which is not a big miss)<br />
+The fact that it allows to have multiple playlists / radio's / ... open in tabs is a killer feature! (Amarok guys: implement this too!)<br />
+Another cool thing are the <a href="http://www.exaile.org/plugs">plugins</a> which add even more functionality, and it's very easy to install them from inside the program, enabling goes instantly (without the need of a restart)<br />
+Also, it can output via jack, because it uses the GStreamer framework.  It does however create a new jack instance for each song, so each time a song changes, it drops the current jack output and creates a new one.  I don't like this, because each time have to re-attach my routings, maybe there is some automated way to do this (with <a href="http://qjackctl.sourceforge.net/">qjackctl</a> or something?) but I haven't figured it out yet.  If anyone knows more about this, let me know!</p>
+<p>When last.fm submission fails (eg when your connection is down) it doesn't keep a queue to resend later like Amarok does, also it currently doesn't offer Last.fm radio streaming.<br />
+When searching through your collection the results aren't updated instantly: it takes a second or so (just like when using Amarok, so that's fine)<br />
+I don't think Exaile can automatically mount your Ipod for you.  But I don't think this is the task of the media player:  You can always use a deamon (or your DE) to do that (I use thunar-volman in Xfce for that).  The media player should however work well with the device, after it's mounted.  In Exaile the Ipod plugin works pretty well, when you mount your Ipod you can make it connect to it, show you the playlists and songs, and you can add songs and playlists just like in Amarok.  I couldn't, however, edit the playlist that was on the Ipod and creating and deleting a new playlist was a bit buggy (gui still showing old entry with some random ascii characters instead of not showing the playlist anymore)</p>
+<p>As a last negative point, it seems to not support inotify as of yet.  You can configure it to systematically re-scan your collection every specific interval which is okay, but doesn't come close to inotify (especially for huge collections)</p>
+<p>So, to conclude I would say Exaile is a worthy alternative for Amarok, which is a huge thing to say.  It doesn't offer everything Amarok does, but it does have most important features and even offers some - useful ones - that Amarok doesn't have.  And I never had it to crash or anything like that, it behaved well and stable.</p>
+<p>The project is however pretty young and it is being actively developed.  Which is a must because some features still need to be implemented (such as inotify support and Last.fm streaming)<br />
+But I see much activity on trac, especially in <a href="http://www.exaile.org/trac/tags/'last.fm'">the domain of Last.fm</a> where I can see that <a href="http://www.exaile.org/trac/ticket/299">support for Last.fm streams is scheduled for the next minor release (0.2.11)</a> so I'm not worrying and I'm using Exaile full time right now.</p>
+<p>I haven't deleted Amarok just yet, but I don't think that will take very long ;-) </p>
+<p>Don't take my word for it, but if I ever find the time for it,  I would even like to get intimate with the code base and do some contributions.</p>

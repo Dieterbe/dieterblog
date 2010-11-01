@@ -1,0 +1,28 @@
+Zenoss & Mysql monitoring
+# pubdate 2009-06-06
+# pubtime 10:35:40
+# tags foss
+<p>I've been playing with <a href="http://www.zenoss.com/">Zenoss</a> (2.4) for the first time.  Here are my thoughts:<!--break--></p>
+<ul>
+<li>One big package that installs itself in /usr/local and copies an initscript to /etc/init.d .  Contains a mysql instance, rrdtool, python and several more binaries. (all in all about 500MB installed).  Not the cleanest way to do things but definitely easy to install/deploy.  This is also where your data will end up</li>
+<li>Configuration is in a Zope-specific database (ZODB).  I prefer text files for this (easy to edit, easy to generate, version control etc). Mysql is used for the events, RRD files for measurement data.  Two fine choices there</li>
+<li>When you add a host, it does a lot of things automatically (monitoring various things through snmp and even ssh.  Even crontabs and their results are tracked).  I'm sure people will have various opinions about this</li>
+<li>It uses Adobe flash for interface...I mean, seriously</li>
+<li>It checks for updates itself.  Very useful if you don't like package managers</li>
+<li>Most stuff just works by default (eg basic snmp monitoring).  to monitor things like mysql/apache you just install a zenpack, restart zenoss, configure one or two settings and it should work.  No need to write the commands, variable replacements etc like in Nagios</li>
+<li>Nice overview page per host with its current state (it shows the host' properties and other information, not just servicecheck outputs like Nagios)</li>
+<li>I did have several issues about rrd files not being generated and such (even once where a manual 'python check_foo args' worked) for which I did not get human-friendly errors or in fact, no errors at all ( even in event log), but this is obviously the kind of stuff they will iron out.  Usually some other people have had the same issues and in IRC they are also quite helpful.</li>
+</ul>
+<p>I also tried the mysqlmonitor zenpack, which is quite nice.  You can find out what it can do at various places (<a href="http://www.zenoss.com/community/docs">extended monitoring guide</a>,  <a href="http://www.krisbuytaert.be/blog/monitoring-mysql">mysql monitoring shootout</a> etc), but here is what it does <strong>not</strong> monitor/graph:</p>
+<ul>
+<li>query cache (hits, inserts, lowmem_prunes, queries in cache,..)</li>
+<li>query durations / #slow queries</li>
+<li>returned rows /dataset sizes</li>
+<li>open tables</li>
+<li>replication stats</li>
+<li>thread states</li>
+<li>temp tables (tmp tables on disk!)</li>
+<li>com_* variables other then com_select/insert/update/delete. no com_alter/commit/flush/lock_tables etc
+</ul>
+<p>I don't see why you can't track such things, as afaik you can easily/cheaply get them all with a 'show global status'.  (though storing them all in rrd files will take quite some space).  Imho it would be very usefull it you had more control over what (not) to monitor, maybe through zPropperties or whatever.<br />
+Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>

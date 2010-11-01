@@ -1,0 +1,40 @@
+A script that pulls photos from facebook
+# pubdate 2009-08-18
+# pubtime 17:36:21
+# tags bash
+<p><a href="http://fbcmd.dtompkins.com/">Fbcmd</a> is pretty cool.<br />
+I quickly hacked this script together which pulls all photo albums from friends on facebook, so I have them available where I want.  (It should also pull your own albums, but I don't have any so I can't check that)<!--break--><br />
+Maybe there are better ways to do this.  I looked at <a href="http://nerd256.diggles.net/fbfs/">fbfs</a> but it looks a bit weird.  I have no idea what the corrupted images fuss is all about.</p>
+<p><code lang="bash"><br />
+#!/bin/bash</p>
+<p>dir=$HOME/fbphotos<br />
+cache=${XDG_CACHE_HOME:-$HOME/.cache}<br />
+[ -d $cache ] || mkdir $cache<br />
+[ -d $cache ] || exit 2<br />
+#fbcmd=`which fbcmd`<br />
+fbcmd='php /home/dieter/fbcmd/fbcmd.php'</p>
+<p>echo "Fetching info about friends and myself .."<br />
+$fbcmd FRIENDS -csv | tail -n '+2' > $cache/fb-users # ID NAME<br />
+$fbcmd WHOAMI  -csv >> $cache/fb-users</p>
+<p>while read line<br />
+do<br />
+        uid=`  cut -d ',' -f 1 <<< "$line"`<br />
+        uname=`cut -d ',' -f 2 <<< "$line"`<br />
+        echo "Fetching list of albums for user $uname ... "<br />
+        $fbcmd ALBUMS $uid -csv | tail -n '+2' > $cache/fb-$uid-albums #OWNER_NAME AID NAME SIZE<br />
+done < $cache/fb-users</p>
+<p>for i in $cache/fb-*-albums<br />
+do<br />
+        while read line<br />
+        do<br />
+                oname=`cut -d ',' -f 1 <<< "$line"`<br />
+                aid=`  cut -d ',' -f 2 <<< "$line"`<br />
+                aname=`cut -d ',' -f 3 <<< "$line"`<br />
+                asize=`cut -d ',' -f 4 <<< "$line"`<br />
+                echo "Fetching $oname album: $aname"<br />
+                $fbcmd APICS $aid $dir -psize=1 -af="$oname-$aname/[pid].jpg" -pic_skip_exists=1<br />
+        done < $i<br />
+done<br />
+</code></p>
+<p>Here's a picture from <a href="http://www.countingcows.be">Counting cows</a> I grabbed from <a href="http://lievendekeyser.net/">Lievens</a> album.<br />
+<img src="/files/countingcows2009.jpg" /></p>

@@ -1,0 +1,12 @@
+Handling a remote rename/move with Git
+# pubdate 2008-11-17
+# pubtime 11:29:36
+# tags foss
+<p>I recently had to rename a repo on my Github account.  Github has made this <a href="http://github.com/blog/128-let-there-be-renaming">very easy</a> but it's just one side of the issue.  Obviously you must also update any references to this remote in other clones, otherwise pushes, fetches etc won't work anymore.</p>
+<p>You can do this in two ways:</p>
+<ul>
+<li>open .git/config and modify the url for the remote manually</li>
+<li>git remote rm origin &amp;& git remote add origin git@github.com:$user/$project.git</li>
+</ul>
+<p>That's it! All will work fine again.<br />
+<!--break--></p>

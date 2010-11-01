@@ -10,15 +10,15 @@ Configuration
 =============
 
 1. copy readmore.py into your plugins directory
-2. enable it by adding ``readmore`` to the ``py['load_plugins']`` list 
+2. enable it by adding ``readmore`` to the ``py['load_plugins']`` list
    variable in your config.py file (probably located in a cgi-bin directory).
-3. alter the values of ``py['readmore_breakpoint']`` and 
+3. alter the values of ``py['readmore_breakpoint']`` and
    ``py['readmore_template']`` in your config.py file.
-4. edit an entry and add the value of ``py['readmore_breakpoint']`` to the 
-   text between paragraphs at a logical breakpoint.  I insert my breakpoint 
+4. edit an entry and add the value of ``py['readmore_breakpoint']`` to the
+   text between paragraphs at a logical breakpoint.  I insert my breakpoint
    after the first or second paragraph - or not at all if the entry is short.
 5. reload the blog in your browser and test away.
-             
+
 This breakpoint text and the assocated replacement text are configured in
 config.py with these two values (one a string, the other a string or list of
 two strings)::
@@ -33,7 +33,7 @@ two strings)::
 In this example (the default case) the breakpoint will be replaced with two
 empty lines and ``::READ MORE`` that is a link to the rest of the entry.  In
 this example, if you put more than one breakpoint in the second value of
-``py['readmore_template']`` the full entry will be returned, but with the 
+``py['readmore_template']`` the full entry will be returned, but with the
 text of the breakpoints replaced with that second string (by default a red
 ``::READ HERE``). This gives you some creative freedom with how you would
 like to format the output using the breakpoints.
@@ -45,11 +45,11 @@ These two values can be changed of course.  Here's a sample configuration::
     py['readmore_breakpoint'] = '<!--B R E A K-->' # again remove the spaces
     py['readmore_template'] = '<p class="readmore"><a href="%(url)s">more &raquo;</a></p>'
 
-It helps to use ``<!--`` and ``-->`` comment strings so if you ever decide 
-not to continue using the readmore plugin, the breakpoints won't be visible 
+It helps to use ``<!--`` and ``-->`` comment strings so if you ever decide
+not to continue using the readmore plugin, the breakpoints won't be visible
 to readers.
 
-In the ``py['readmore_template']`` variable (a string or a list of two 
+In the ``py['readmore_template']`` variable (a string or a list of two
 strings), you can use the following designators:
 
 * ``%(url)s``       - the full path to the story
@@ -105,7 +105,7 @@ from Pyblosxom import tools
 
 def cb_story(args):
     logger = tools.getLogger()
-    
+
     pagedelimiter = 'BREAK'
     continue_template = '<br /><br />::<a href="%(url)s">READ MORE</a>'
     continued_template = '<br /><br /><span style="color: red;">::READ HERE</span>'
@@ -124,7 +124,7 @@ def cb_story(args):
                          "string. It's type seems to be: %s" % \
                          type(readmore_breakpoint))
 
-    # find the delimiter in the body of the text                         
+    # find the delimiter in the body of the text
     match = re.search(pagedelimiter, entry['body'])
 
     if match:

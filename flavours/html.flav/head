@@ -88,6 +88,10 @@ img {
 	height: 14px;
 	width: 14px;
 }
+.break_read_marker {
+	color: #666;
+	font-style: italic;
+}
 </style>
 </head>
 <body>

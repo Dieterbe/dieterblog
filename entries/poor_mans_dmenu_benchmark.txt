@@ -17,7 +17,8 @@ do<br />
                 echo "`date +'%Y-%m-%d %H:%M:%S'` `date +%s`abcdefhijklmno`date +%s | md5sum`" >> ./dummy_history_file<br />
         done<br />
 done<br />
-</code><br />
+</code>
+<!--break--><br />
 measure speed:<br />
 <code lang="bash"><br />
 echo "Plain awk '{print \$3}':"<br />

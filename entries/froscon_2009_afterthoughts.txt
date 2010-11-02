@@ -17,4 +17,3 @@ Here is a picture of my "Arch releng partner" Gerhard (right) and I (left).  We'
 <p><a href="http://users.archlinux.de/~pierre/froscon/2009/2009-08-22_12-53-07.jpg"><img src="http://users.archlinux.de/~pierre/froscon/2009/thumbs/2009-08-22_12-53-07.jpg.jpg" /></a></p>
 <p><a href="http://users.archlinux.de/~pierre/froscon/2009/">Image gallery</a>
 </p>
-<p><!--break--></p>

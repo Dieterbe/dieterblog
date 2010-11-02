@@ -11,4 +11,3 @@ Fosdem 2009
 <li><a href="http://www.fosdem.org/2009/schedule/events/syslinux">syslinux</a>, <a href="http://fosdem.org/2009/schedule/events/upstart">upstart</a>, <a href="http://fosdem.org/2009/schedule/events/ext4">ext4</a> etc.</li>
 <li>Some <a href="http://www.fosdem.org/2009/schedule/devrooms/mysql">mysql</a> stuff and the <a href="http://www.fosdem.org/2009/schedule/events/pg_fs_io_db_perspective">filesystem i/o from a db perspective</a> talk.</li>
 </ul>
-<p><!--break--></p>

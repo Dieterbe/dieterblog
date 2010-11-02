@@ -15,5 +15,4 @@ Looking for a new job
 <li>My Linkedin profile: <a href="http://www.linkedin.com/in/dieterplaetinck">http://www.linkedin.com/in/dieterplaetinck</a></li>
 <li>My Curriculum Vitae. <a href="http://dieter.plaetinck.be/files/curriculumvitae-dieter-plaetinck-2008-11-24-EN.pdf">EN</a> / <a href="http://dieter.plaetinck.be/files/curriculumvitae-dieter-plaetinck-2008-11-24-NL.pdf">NL</a> </li>
 </ul>
-<p><!-- Interested parties can get reference contact information at my previous employer on request. --><br />
-<!--break--></p>
+<p><!-- Interested parties can get reference contact information at my previous employer on request. --></p>

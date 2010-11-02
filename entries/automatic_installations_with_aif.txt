@@ -12,4 +12,3 @@ Automatic installations with AIF
 <li>The 2009.02 release was a success.  I was suprised by the amount of <a href="http://www.google.be/search?q=Arch+Linux+2009.02+release">attention</a> it got (maybe because we were the first distro to ship a release that supports ext4).  I realised that all those delays to fix some (imho) details was probably the best move after all.</li>
 <li>I've been looking at <a href="http://nixos.org/">nixOS</a>, which is a very interesting project. The way I see it, they combine the "functional description" part (which is on many systems handled by puppet/cfengine/kickstart/aif/...) right into their OS core. That, and some other features.  It was a bit too unstable when I tried it though.</li>
 </ul>
-<p><!--break--></p>

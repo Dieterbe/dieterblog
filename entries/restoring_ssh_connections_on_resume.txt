@@ -17,4 +17,4 @@ sudo pm-hibernate &amp;& do-my-stuff.sh<br />
 </code><br />
 This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.<br />
 Ideal to kill old ssh processes, and setup tunnels and ssh connections again.<br />
-I'm probably gonna integrate this into my <a href="http://github.com/Dieterbe/microde">microDE</a><!--break--></p>
+I'm probably gonna integrate this into my <a href="http://github.com/Dieterbe/microde">microDE</a></p>

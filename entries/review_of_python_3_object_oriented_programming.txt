@@ -4,6 +4,7 @@ Review of "Python 3 Object Oriented Programming"
 # tags python
 <p><a href="http://archlinux.me/dusty/">Dusty Phillips</a>, Arch Linux shwag guy, Archcon co-organizer, (python) consultant and since recently <a href="http://dieter.plaetinck.be/back_from_canada_archcon">buddy of mine</a> wrote his first <a href="https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;utm_medium=bookrev&amp;utm_content=blog&amp;utm_campaign=mdb_004281">book: Python 3 Object Oriented Programming</a>.</p>
 <p>I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.<br />
+<!--break-->
 Mind you, my Python knowledge is very limited.  I have done some python programming, and I once read (most of) <a href="http://diveintopython.org/">Dive into python</a>, but over the years that experience has vanished from my memory.  Dusty's book has had many proofreads/reviews by python-aficionado's, now it gets a fresh perspective from an amateur, and for me this was a good opportunity to work on my python skills.</p>
 <p>To paraphrase the "who this book is for" paragraph, which is in the beginning of the book and in <a href="https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;utm_medium=bookrev&amp;utm_content=blog&amp;utm_campaign=mdb_004281">online advertisements</a> for the book:</p>
 <ul>

@@ -30,7 +30,7 @@ blogdir = "__DEPLOYDIR__"
 # ==================
 
 # What is the title of this blog?
-py["blog_title"] = "Dieter_be's place on the web"
+py["blog_title"] = "Dieter on the web"
 
 # What is the description of this blog?
 py["blog_description"] = "Web blog of Dieter Plaetinck (aka Dieter_be)"
@@ -79,7 +79,7 @@ py["depth"] = 0
 # How many entries should I show on the home page and category pages?
 # If you put 0 here, then I will show all pages.
 # Note: this doesn't affect date-based archive pages.
-py["num_entries"] = 21
+py["num_entries"] = 0 # TODO: i would like to limit this, but then i need "next page" links
 
 # What is the default flavour you want to use when the user doesn't
 # specify a flavour in the request?

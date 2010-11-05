@@ -3,6 +3,7 @@
 function usage () {
 	echo "Blog deployment script"
 	echo "\$1 : a directory where to deploy, like /srv/http/myblog"
+	echo "\$2 : a base url to configure (optional), eg: \"http://www.example.com/weblog\""
 }
 
 if [ "$1" = '-h' -o "$1" = '--help' ]
@@ -48,6 +49,15 @@ then
 	echo "Find exitcode: $find_exit" >&2
 	echo "Sed  exitcode: $sed_exit" >&2
 	exit 2
+fi
+
+if [ -n $2 ]
+then
+	if ! sed -i "s#.*base_url.*=.*__BASE_URL__.*#base_url = \"$2\"#" $dst/config.tpl.py
+	then
+		echo "Could not set base_url to $2 in $dst/config.tpl.py" >&2
+		exit 2
+	fi
 fi
 
 echo "Correctly naming now-expanded config templates..."

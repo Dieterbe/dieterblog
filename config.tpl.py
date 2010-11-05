@@ -146,7 +146,7 @@ py["load_plugins"] = []
 # ======================
 
 # What should this blog use as its base url?
-#py["base_url"] = "http://www.example.com/weblog"
+#py["base_url"] = "__BASE_URL__"
 
 # Default parser/preformatter. Defaults to plain (does nothing)
 #py["parser"] = "plain"

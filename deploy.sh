@@ -72,6 +72,13 @@ then
 	exit 2
 fi
 
+echo "Generating tags.."
+if ! pyblosxom-cmd buildtags --config=$dst/config.py
+then
+	echo "Could not pyblosxom-cmd buildtags --config=$dst/config.py" >&2
+	exit 2
+fi
+
 # TODO: not for every distro/use-case.  might want to make this configurable
 echo "Fixing ownerships of $dst.."
 if ! chown -R http.http $dst

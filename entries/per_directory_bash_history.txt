@@ -2,15 +2,14 @@ Per-directory bash history
 # pubdate 2008-01-30
 # pubtime 21:37:31
 # tags bash,productivity
-<p>I've been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.<br />
+<p>I've been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
 <!--break--><br />
 Quote from an <a href="http://www.debian-administration.org/articles/543#comment_17">anonymous reply on debian-administration.org</a></p>
-<p><cite><br />
+<p><cite>
 So I use the following bash function:<br />
 <code lang="bash"><br />
 #<br />
-# Usage: mycd<br />
-<path>
+# Usage: mycd $path
 #<br />
 #  Replacement for builtin 'cd', wh ich keeps a separate bash-history<br />
 #   for every directory.<br />
@@ -18,16 +17,16 @@ function mycd()<br />
 {<br />
    history -w # write current history  file<br />
    builtin cd "$@"  # do actual c d<br />
-   local HISTDIR="$HOME/.dir_bash_history$PWD" # use& nbsp;nested folders for history<br />
-   if  [ ! -d "$HISTDIR" ]&amp;n bsp;; then # create folder if neede d<br />
+   local HISTDIR="$HOME/.dir_bash_history$PWD" # use nested folders for history<br />
+   if  [ ! -d "$HISTDIR" ]; then # create folder if needed<br />
       mkdir -p "$HISTDIR"<br />
    fi<br />
-   export HISTFILE="$HISTDIR/bash_history.txt" # set& nbsp;new history file<br />
-   history -c  # clear memory<br />
+   export HISTFILE="$HISTDIR/bash_history.txt" # set new history file<br />
+   history -c # clear memory<br />
    history -r #read from current histfile<br />
 }<br />
-</code></p>
-<p>and then set it up with the following in my bashrc:<br />
+</code>
+<br/>and then set it up with the following in my bashrc:<br />
 <code lang="bash"><br />
 shopt -s histappend<br />
 alias cd="mycd"<br />

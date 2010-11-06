@@ -30,7 +30,6 @@ Usually you run such backup methods by popping in a livecd and running a script.
 <li>It becomes very hard to restore a select few files or directories, especially if you want to roll-back to different dates for different files/directories.</li>
 <li>It takes a lot of time to do the backups, especially if you want to backup very frequently (e.g. daily).  If a backup script makes it hard to backup daily, then there is something wrong.</li>
 </ul>
-</p>
 <p><b><h7>Filesystems</h7></b></p>
 <p>
 In this category fall the scripts/tools that do scp's, rsyncs or similar algorithms of the contents of an entire filesystem.<br />

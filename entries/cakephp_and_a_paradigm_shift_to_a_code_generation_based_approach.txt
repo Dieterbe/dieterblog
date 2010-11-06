@@ -34,7 +34,8 @@ The first rev is the original cakephp code, so you can look at the diffs if you 
 <li>always overwrite files.  Hey I use version control!  always bake unit tests, always bake all actions/views, except those for admin routing</li>
 <li>never ask me which db to connect to, never use scaffolding, don't use helpers, don't write $useDbConfig to models (it's loaded dynamically in app_model),</li>
 <li>agree with all associations except the hasOne's (I can build in exceptions/specific rules if I ever need them)</li>
-<li>validation rules are specified as sql comments.  I don't want to re-answer those questions each time I rebake.<br />
+<li>validation rules are specified as sql comments.  I don't want to re-answer those questions each time I rebake.</li>
+</ul>
 See this example sql file.  When baking a model, the code will first try to find a specific rule for the model, if not found, it will look for a global rule, and if still not found, ask the question interactively.<br />
 [code lang="sql"]<br />
 -- cake validate ALL id none<br />

@@ -1,6 +1,8 @@
 # vim: tabstop=4 shiftwidth=4 expandtab
 """
 Preformatter which uses pygments to highlight source code syntax
+In your entries, you can do <code>...</code> if you want things to get
+highligted.
 Depends on pygments, lxml, beautiful-soup
 """
 __author__ = 'Dieter Plaetinck <dieter@plaetinck.be>'

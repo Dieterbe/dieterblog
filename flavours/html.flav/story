@@ -6,6 +6,7 @@ $(body)
 <p class='postinfo'>
   posted on $dw, $da $mo $yr $(ti) -
   <a href="$(base_url)/$(urlencode(file_path)).$(flavour)">link</a> -
+  tags: $(tags) -
   path: <a href="$(base_url)/$(urlencode(absolute_path))" title="path">/$(absolute_path)</a>
 </p>
 </div>

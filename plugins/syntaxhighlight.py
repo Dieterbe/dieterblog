@@ -11,7 +11,6 @@ __url__ = "http://pyblosxom.sourceforge.net/"
 __description__ = "Preformatter which uses pygments to highlight source code syntax."
 PREFORMATTER_ID = 'syntaxhighlight'
 
-import re
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.lexers import get_lexer_by_name
@@ -62,7 +61,6 @@ def highlightcallback (code):
 def verify_installation(request):
     try:
         import lxml
-        import re
         import pygments
         import lxml.html.soupparser
     except Exception, e:

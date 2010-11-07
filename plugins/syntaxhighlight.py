@@ -48,6 +48,7 @@ def parse(text):
 
 def highlightcallback (code):
     # TODO: automatically pick lexer based on lang attribute or guess otherwise
+    # TODO: when the code contains > or & etc, those must be displayed correctly, not their entity references
     output = highlight(etree.tostring(code), get_lexer_by_name('python'), HtmlFormatter())
     # NOTE: emitting the styles like this doesn't feel right
     # if you have multiple entries with source code -> redundant style tags

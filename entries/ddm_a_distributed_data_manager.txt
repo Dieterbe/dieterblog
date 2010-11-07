@@ -42,21 +42,21 @@ Keep in mind though that everything can be overridden through .ddm files in data
 </ul>
 <p>To specify the dataset type, the easiest way is to add suffixes to your directories. eg video-selection.  This is not a must and can be specified in the .ddm file in the dataset directory. For the 'copy' dataset type you don't need to specify anything (it's default)<br />
 Unless overridden, ddm will construct the repo path as follows:  </p>
-<code lang="bash">
+<code lang="bash"><![CDATA[
 $TYPE_BASE/$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX
-</code><p>(if unclear, read on)</p>
+]]></code><p>(if unclear, read on)</p>
 <p>In the .ddm file in your dataset directory you can override defaults.</p>
 <h5>~/.ddm</h5>
 <p>This is how my file looks like.</p>
-<code>
+<code><![CDATA[
 ALLOWED_REPO_TYPES='svn vfs'
 DEFAULT_REPO_TYPE='vfs'
 
 SVN_BASE='https://server/svn/repos/'
 SVN_PREFIX='ddm-'
 VFS_BASE='/net/server/home/dieter/ddm-repo'
-</code><p>These are all the options you can specify:</p>
-<code>
+]]></code><p>These are all the options you can specify:</p>
+<code><![CDATA[
 SVN_BASE=''
 SVN_PREFIX=''
 SVN_SUFFIX=''
@@ -67,9 +67,9 @@ VFS_SUFFIX=''
 DEFAULT_REPO_TYPE='vfs'
 ALLOWED_REPO_TYPES='vfs'
 IGNORE_DATASET_REMOTE_SVN=0 #nag if the repo url figured out is not the same as the one in 'svn info'. you should leave this 0
-</code><h5>dataset/.ddm</h5>
+]]></code><h5>dataset/.ddm</h5>
 <p>For an example see below.  Possible options are these:</p>
-<code>
+<code><![CDATA[
 DATASET_LOCAL='' #path to dataset locally (including type suffix if any)
 DATASET_REMOTE='' #path to dataset remotely (or locally if network mount)
 DATASET_PATH='' #just the path (until parent directory of dataset)
@@ -91,8 +91,8 @@ postcommit
 preupdate
 doupdate
 postupdate
-</code><h4>Invocation</h4>
-<code>
+]]></code><h4>Invocation</h4>
+<code><![CDATA[
 dieter@dieter-mbp:~$ ddm -h
 usage: ddm options
 
@@ -106,18 +106,18 @@ OPTIONS:
    -O <repo-type>    Checkout using specific repo type (one of: svn vfs)
    -t <dataset-type> Specify dataset-type (selection,copy, ...) (only honoured for checkouts)
    -v                Verbose
-</code><h4>Examples</h4>
+]]></code><h4>Examples</h4>
 <h5>Update my video-selection.</h5>
 <p>The directory is ~/video-selection.  It contains episodes that I'm watching<br />
 The .ddm file looks like this</p>
-<code lang="bash">
+<code lang="bash"><![CDATA[
 doupdate()
 {
 	slidewindow mplayer 10 1
 }
-</code><p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
+]]></code><p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
 It will then delete all the ones I've already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)</p>
-<code>
+<code><![CDATA[
 dieter@dieter-mbp:~$ ddm -u -v -d video-selection/
 Included /home/dieter/video-selection/.ddm
 action update on dataset name video type selection
@@ -139,6 +139,6 @@ Copying new files... (10 items).
  * /home/dieter/video-selection/922 - The One With The Donor.avi... success
  * /home/dieter/video-selection/923 - 924 - The One In Barbados.avi... success
 finished
-</code><h4>Download</h4>
+]]></code><h4>Download</h4>
 <p>The code is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt">Gpl v3</a><br />
 You can dowload it <a href="http://dieter.plaetinck.be/files/ddm" onClick="javascript:urchinTracker ('/files/ddm');">here</a></p>

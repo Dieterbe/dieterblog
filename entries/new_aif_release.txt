@@ -23,10 +23,10 @@ there are now generic, transparent functions for asking dates,numbers,strings,ch
 </ul>
 </li>
 <li>support for commandline args<br />
-<code lang="bash">
+<code lang="bash"><![CDATA[
 /arch/aif -p interactive -d     # runs the interactive profile with debugging enabled
 /arch/aif -p interactive -i cli # runs the interactive profile in CLI mode.
-</code></li>
+]]></code></li>
 <li>updated howto for using AUR packages</li>
 <li>replaced all refs to previous name (fifa) to aif.</li>
 <li>enabled date/time setting</li>

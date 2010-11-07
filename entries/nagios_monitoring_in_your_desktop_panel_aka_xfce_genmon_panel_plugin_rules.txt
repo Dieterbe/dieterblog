@@ -16,7 +16,7 @@ Well, not exactly: apparently the on-click action is bound to the image you show
 <p>The cursor is not on the screenshot but I was obviously hoovering over the panel plugin to show the tooltip.<br />
 You can also see at the left the notes plugin and the mail checker plugin and at the right the volume control, trash applet, battery monitor, systray, clock and action button(s) panel plugins.</p>
 <p>And here is the source code of my bash script</p>
-<code lang="bash">
+<code lang="bash"><![CDATA[
 #!/bin/bash
 
 #
@@ -47,6 +47,6 @@ echo "<txt>$HOSTS_DOWN-$SERVICES_CRIT/$SERVICES_WARN</txt>"
 echo "<tool>Hosts: $HOSTS_DOWN down / $HOSTS_UNREACHABLE unreachable / $HOSTS_UP up / $HOSTS_PENDING pending
 Services: $SERVICES_CRIT crit / $SERVICES_WARN warn / $SERVICES_UNKNOWN unknown / $SERVICES_OK ok / $SERVICES_PENDING pending</tool>"
 echo "<click>firefox https://<yourhost>/nagios</click>"
-</code><p>At my company we use https, If you use http I don't know if the authentication method is the same. If not check the -d flag for curl.<br />
+]]></code><p>At my company we use https, If you use http I don't know if the authentication method is the same. If not check the -d flag for curl.<br />
 The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)</p>
 <p>PS: does anyone know a good Apple Keychain- like daemon that I can query from other scripts to receive passwords? Preferably GTK ones that do not pull in Gnome deps.  So I don't have to store passwords in cleartext... (and I need this anyway for other purposes :p)</p>

@@ -18,7 +18,8 @@ If something goes wrong (and only then!) it will show a popup with <a href="http
 <li>notify-send (package libnotify-bin on ubuntu)</li>
 </ul>
 <p>Here is the file, save it as gtdinbox.sh</p>
-<code lang="bash"><![CDATA[#!/bin/bash
+<code lang="bash"><![CDATA[
+#!/bin/bash
 
 # A very simple script to implement the Collecting part of GTD.
 # The only thing this script does is getting something out of head as quickly as possible, into a file you can trust

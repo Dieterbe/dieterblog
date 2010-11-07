@@ -6,7 +6,8 @@ Hacking into my router by brute-forcing http authentication
 Luckily I knew some possible usernames and some patterns that I could have used to construct my password, so I just had to try all the combinations... Too much work to do manually but easily done when scripted.</p>
 <p>Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)<!--break--></p>
 <p><strong>DISCLAIMER</strong>:  Don't use this code for anything illegal!  I'm not responsible for what you do with this!</p>
-<code lang="php"><![CDATA[$host = '';
+<code lang="php"><![CDATA[
+$host = '';
 $port = '';
 $url = '/';
 $users = array();

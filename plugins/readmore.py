@@ -57,6 +57,11 @@ strings), you can use the following designators:
 * ``%(flavour)s``   - the flavour selected now
 * ``%(file_path)s`` - path to the story (without extension)
 
+TODO: ability to show a different template when viewing the full article,
+depending on whether the user clicked on the 'READ MORE' link or came directly.
+In the former case you usually want to show a 'READ HERE' or something,
+whereas if the user came directly, he wants to read the full article and a
+'READ HERE' would only cause confusion
 
 Note from Will Guaraldi (October 25, 2005)
 ==========================================

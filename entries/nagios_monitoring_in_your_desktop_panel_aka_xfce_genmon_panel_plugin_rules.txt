@@ -16,33 +16,37 @@ Well, not exactly: apparently the on-click action is bound to the image you show
 <p>The cursor is not on the screenshot but I was obviously hoovering over the panel plugin to show the tooltip.<br />
 You can also see at the left the notes plugin and the mail checker plugin and at the right the volume control, trash applet, battery monitor, systray, clock and action button(s) panel plugins.</p>
 <p>And here is the source code of my bash script</p>
-<p><code lang="bash"><br />
-#!/bin/bash</p>
-<p>#<br />
-# Written by Dieter Plaetinck<br />
-# Licensed under the GPL V3<br />
-# See gnu.org/licenses/gpl-3.0.html<br />
-#<br />
-# works for Nagios 2.x No idea about 3.x </p>
-<p>URL=https://<yourhost>/nagios/cgi-bin/tac.cgi<br />
-USERNAME=username<br />
-PASSWORD=password</p>
-<p>PAGE=$(curl -s -k -u $USERNAME:$PASSWORD $URL)<br />
-HOSTS_DOWN=$(           echo -e "$PAGE" | grep "hoststatustypes=4' class='hostHeader'" | awk '{print $5}' | cut -c 20-)<br />
-HOSTS_UNREACHABLE=$(    echo -e "$PAGE" | grep "hoststatustypes=8' class='hostHeader'" | awk '{print $5}' | cut -c 20-)<br />
-HOSTS_UP=$(             echo -e "$PAGE" | grep "hoststatustypes=2' class='hostHeader'" | awk '{print $5}' | cut -c 20-)<br />
-HOSTS_PENDING=$(        echo -e "$PAGE" | grep "hoststatustypes=1' class='hostHeader'" | awk '{print $5}' | cut -c 20-)</p>
-<p>SERVICES_CRIT=$(        echo -e "$PAGE" | grep "servicestatustypes=16' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)<br />
-SERVICES_WARN=$(        echo -e "$PAGE" | grep "servicestatustypes=4' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)<br />
-SERVICES_UNKNOWN=$(     echo -e "$PAGE" | grep "servicestatustypes=8' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)<br />
-SERVICES_OK=$(          echo -e "$PAGE" | grep "servicestatustypes=2' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)<br />
-SERVICES_PENDING=$(     echo -e "$PAGE" | grep "servicestatustypes=1' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)<br />
-echo "<img>scripts/nagios.gif</img>"<br />
-echo "<txt>$HOSTS_DOWN-$SERVICES_CRIT/$SERVICES_WARN</txt>"<br />
-echo "<tool>Hosts: $HOSTS_DOWN down / $HOSTS_UNREACHABLE unreachable / $HOSTS_UP up / $HOSTS_PENDING pending<br />
-Services: $SERVICES_CRIT crit / $SERVICES_WARN warn / $SERVICES_UNKNOWN unknown / $SERVICES_OK ok / $SERVICES_PENDING pending</tool>"<br />
-echo "<click>firefox https://<yourhost>/nagios</click>"<br />
-</code><br />
-At my company we use https, If you use http I don't know if the authentication method is the same. If not check the -d flag for curl.<br />
+<code lang="bash">
+#!/bin/bash
+
+#
+# Written by Dieter Plaetinck
+# Licensed under the GPL V3
+# See gnu.org/licenses/gpl-3.0.html
+#
+# works for Nagios 2.x No idea about 3.x 
+
+
+URL=https://<yourhost>/nagios/cgi-bin/tac.cgi
+USERNAME=username
+PASSWORD=password
+
+PAGE=$(curl -s -k -u $USERNAME:$PASSWORD $URL)
+HOSTS_DOWN=$(           echo -e "$PAGE" | grep "hoststatustypes=4' class='hostHeader'" | awk '{print $5}' | cut -c 20-)
+HOSTS_UNREACHABLE=$(    echo -e "$PAGE" | grep "hoststatustypes=8' class='hostHeader'" | awk '{print $5}' | cut -c 20-)
+HOSTS_UP=$(             echo -e "$PAGE" | grep "hoststatustypes=2' class='hostHeader'" | awk '{print $5}' | cut -c 20-)
+HOSTS_PENDING=$(        echo -e "$PAGE" | grep "hoststatustypes=1' class='hostHeader'" | awk '{print $5}' | cut -c 20-)
+
+SERVICES_CRIT=$(        echo -e "$PAGE" | grep "servicestatustypes=16' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
+SERVICES_WARN=$(        echo -e "$PAGE" | grep "servicestatustypes=4' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
+SERVICES_UNKNOWN=$(     echo -e "$PAGE" | grep "servicestatustypes=8' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
+SERVICES_OK=$(          echo -e "$PAGE" | grep "servicestatustypes=2' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
+SERVICES_PENDING=$(     echo -e "$PAGE" | grep "servicestatustypes=1' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
+echo "<img>scripts/nagios.gif</img>"
+echo "<txt>$HOSTS_DOWN-$SERVICES_CRIT/$SERVICES_WARN</txt>"
+echo "<tool>Hosts: $HOSTS_DOWN down / $HOSTS_UNREACHABLE unreachable / $HOSTS_UP up / $HOSTS_PENDING pending
+Services: $SERVICES_CRIT crit / $SERVICES_WARN warn / $SERVICES_UNKNOWN unknown / $SERVICES_OK ok / $SERVICES_PENDING pending</tool>"
+echo "<click>firefox https://<yourhost>/nagios</click>"
+</code><p>At my company we use https, If you use http I don't know if the authentication method is the same. If not check the -d flag for curl.<br />
 The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)</p>
 <p>PS: does anyone know a good Apple Keychain- like daemon that I can query from other scripts to receive passwords? Preferably GTK ones that do not pull in Gnome deps.  So I don't have to store passwords in cleartext... (and I need this anyway for other purposes :p)</p>

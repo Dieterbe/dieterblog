@@ -41,105 +41,104 @@ Keep in mind though that everything can be overridden through .ddm files in data
 <li>the directory name of your dataset (read on) (optional)</li>
 </ul>
 <p>To specify the dataset type, the easiest way is to add suffixes to your directories. eg video-selection.  This is not a must and can be specified in the .ddm file in the dataset directory. For the 'copy' dataset type you don't need to specify anything (it's default)<br />
-Unless overridden, ddm will construct the repo path as follows:<br />
-<code lang="bash"><br />
-$TYPE_BASE/$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX<br />
-</code><br />
-(if unclear, read on)</p>
+Unless overridden, ddm will construct the repo path as follows:  </p>
+<code lang="bash">
+$TYPE_BASE/$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX
+</code><p>(if unclear, read on)</p>
 <p>In the .ddm file in your dataset directory you can override defaults.</p>
 <h5>~/.ddm</h5>
-<p>This is how my file looks like.<br />
-<code><br />
-ALLOWED_REPO_TYPES='svn vfs'<br />
-DEFAULT_REPO_TYPE='vfs'</p>
-<p>SVN_BASE='https://server/svn/repos/'<br />
-SVN_PREFIX='ddm-'<br />
-VFS_BASE='/net/server/home/dieter/ddm-repo'<br />
-</code><br />
-These are all the options you can specify:<br />
-<code><br />
-SVN_BASE=''<br />
-SVN_PREFIX=''<br />
-SVN_SUFFIX=''<br />
-VFS_BASE=''<br />
-VFS_PREFIX=''<br />
-VFS_SUFFIX=''</p>
-<p>DEFAULT_REPO_TYPE='vfs'<br />
-ALLOWED_REPO_TYPES='vfs'<br />
-IGNORE_DATASET_REMOTE_SVN=0 #nag if the repo url figured out is not the same as the one in 'svn info'. you should leave this 0<br />
-</code></p>
-<h5>dataset/.ddm</h5>
-<p>For an example see below.  Possible options are these:<br />
-<code><br />
-DATASET_LOCAL='' #path to dataset locally (including type suffix if any)<br />
-DATASET_REMOTE='' #path to dataset remotely (or locally if network mount)<br />
-DATASET_PATH='' #just the path (until parent directory of dataset)<br />
-DATASET_DIR_NAME='' #like $DATASET_LOCAL but no path<br />
-DATASET_DIR_NAME_REL  # identifier to dataset, taken against pwd ( could be '.','..', nothing at all, dirname, full path, ..)<br />
-DATASET_NAME='' #like $DATASET_DIR_NAME but no type suffix<br />
-DATASET_TYPE=''<br />
-REPO_TYPE=''</p>
-<p>#you can override the following callbacks (example see below)<br />
-precheckout<br />
-docheckout<br />
-postcheckout</p>
-<p>precommit<br />
-docommit<br />
-postcommit</p>
-<p>preupdate<br />
-doupdate<br />
-postupdate<br />
-</code></p>
-<h4>Invocation</h4>
-<p><code><br />
-dieter@dieter-mbp:~$ ddm -h<br />
-usage: ddm options</p>
-<p>OPTIONS:<br />
-   -d                Dataset (name of directory)<br />
-   -h                Show this message<br />
-   -m                Message (used for commits in svn, ignored otherwise)<br />
-   -u                Update<br />
-   -c                Commit<br />
-   -o                Checkout (default repo type)<br />
-   -O <repo-type>    Checkout using specific repo type (one of: svn vfs)<br />
-   -t <dataset-type> Specify dataset-type (selection,copy, ...) (only honoured for checkouts)<br />
-   -v                Verbose<br />
-</code></p>
-<h4>Examples</h4>
+<p>This is how my file looks like.</p>
+<code>
+ALLOWED_REPO_TYPES='svn vfs'
+DEFAULT_REPO_TYPE='vfs'
+
+SVN_BASE='https://server/svn/repos/'
+SVN_PREFIX='ddm-'
+VFS_BASE='/net/server/home/dieter/ddm-repo'
+</code><p>These are all the options you can specify:</p>
+<code>
+SVN_BASE=''
+SVN_PREFIX=''
+SVN_SUFFIX=''
+VFS_BASE=''  
+VFS_PREFIX=''
+VFS_SUFFIX=''
+
+DEFAULT_REPO_TYPE='vfs'
+ALLOWED_REPO_TYPES='vfs'
+IGNORE_DATASET_REMOTE_SVN=0 #nag if the repo url figured out is not the same as the one in 'svn info'. you should leave this 0
+</code><h5>dataset/.ddm</h5>
+<p>For an example see below.  Possible options are these:</p>
+<code>
+DATASET_LOCAL='' #path to dataset locally (including type suffix if any)
+DATASET_REMOTE='' #path to dataset remotely (or locally if network mount)
+DATASET_PATH='' #just the path (until parent directory of dataset)
+DATASET_DIR_NAME='' #like $DATASET_LOCAL but no path 
+DATASET_DIR_NAME_REL  # identifier to dataset, taken against pwd ( could be '.','..', nothing at all, dirname, full path, ..)
+DATASET_NAME='' #like $DATASET_DIR_NAME but no type suffix
+DATASET_TYPE=''
+REPO_TYPE=''
+
+#you can override the following callbacks (example see below)
+precheckout
+docheckout
+postcheckout
+
+precommit
+docommit
+postcommit
+
+preupdate
+doupdate
+postupdate
+</code><h4>Invocation</h4>
+<code>
+dieter@dieter-mbp:~$ ddm -h
+usage: ddm options
+
+OPTIONS:
+   -d                Dataset (name of directory)
+   -h                Show this message
+   -m                Message (used for commits in svn, ignored otherwise)
+   -u                Update
+   -c                Commit
+   -o                Checkout (default repo type)
+   -O <repo-type>    Checkout using specific repo type (one of: svn vfs)
+   -t <dataset-type> Specify dataset-type (selection,copy, ...) (only honoured for checkouts)
+   -v                Verbose
+</code><h4>Examples</h4>
 <h5>Update my video-selection.</h5>
 <p>The directory is ~/video-selection.  It contains episodes that I'm watching<br />
-The .ddm file looks like this<br />
-<code lang="bash"><br />
-doupdate()<br />
-{<br />
-	slidewindow mplayer 10 1<br />
-}<br />
-</code><br />
-This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
-It will then delete all the ones I've already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)<br />
-<code><br />
-dieter@dieter-mbp:~$ ddm -u -v -d video-selection/<br />
-Included /home/dieter/video-selection/.ddm<br />
-action update on dataset name video type selection<br />
-Deleting old files... (3 items).<br />
- * /home/dieter/video-selection/910 - The One With Christmas In Tulsa.avi... success<br />
- * /home/dieter/video-selection/911 - The One Where Rachel Goes Back To Work.avi... success<br />
- * /home/dieter/video-selection/912 - The One With Phoebes Rats.avi... success<br />
-Keeping these files... (1 items).<br />
- * /home/dieter/video-selection/913 - The One Where Monica Sings.avi<br />
-Copying new files... (10 items).<br />
- * /home/dieter/video-selection/914 - The One With The Blind Dates.avi... success<br />
- * /home/dieter/video-selection/915 - The One With the Mugging.avi... success<br />
- * /home/dieter/video-selection/916 - The One With The Boob Job.avi... success<br />
- * /home/dieter/video-selection/917 - The One With The Memorial Service.avi... success<br />
- * /home/dieter/video-selection/918 - The One With The Lottery.avi... success<br />
- * /home/dieter/video-selection/919 - The One With Rachels Dream.avi... success<br />
- * /home/dieter/video-selection/920 - The One With The Soap Opera Party.avi... success<br />
- * /home/dieter/video-selection/921 - The One With The Fertility Test.avi... success<br />
- * /home/dieter/video-selection/922 - The One With The Donor.avi... success<br />
- * /home/dieter/video-selection/923 - 924 - The One In Barbados.avi... success<br />
-finished<br />
-</code></p>
-<h4>Download</h4>
+The .ddm file looks like this</p>
+<code lang="bash">
+doupdate()
+{
+	slidewindow mplayer 10 1
+}
+</code><p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
+It will then delete all the ones I've already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)</p>
+<code>
+dieter@dieter-mbp:~$ ddm -u -v -d video-selection/
+Included /home/dieter/video-selection/.ddm
+action update on dataset name video type selection
+Deleting old files... (3 items).
+ * /home/dieter/video-selection/910 - The One With Christmas In Tulsa.avi... success
+ * /home/dieter/video-selection/911 - The One Where Rachel Goes Back To Work.avi... success
+ * /home/dieter/video-selection/912 - The One With Phoebes Rats.avi... success
+Keeping these files... (1 items).
+ * /home/dieter/video-selection/913 - The One Where Monica Sings.avi
+Copying new files... (10 items).
+ * /home/dieter/video-selection/914 - The One With The Blind Dates.avi... success
+ * /home/dieter/video-selection/915 - The One With the Mugging.avi... success
+ * /home/dieter/video-selection/916 - The One With The Boob Job.avi... success
+ * /home/dieter/video-selection/917 - The One With The Memorial Service.avi... success
+ * /home/dieter/video-selection/918 - The One With The Lottery.avi... success
+ * /home/dieter/video-selection/919 - The One With Rachels Dream.avi... success
+ * /home/dieter/video-selection/920 - The One With The Soap Opera Party.avi... success
+ * /home/dieter/video-selection/921 - The One With The Fertility Test.avi... success
+ * /home/dieter/video-selection/922 - The One With The Donor.avi... success
+ * /home/dieter/video-selection/923 - 924 - The One In Barbados.avi... success
+finished
+</code><h4>Download</h4>
 <p>The code is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt">Gpl v3</a><br />
 You can dowload it <a href="http://dieter.plaetinck.be/files/ddm" onClick="javascript:urchinTracker ('/files/ddm');">here</a></p>

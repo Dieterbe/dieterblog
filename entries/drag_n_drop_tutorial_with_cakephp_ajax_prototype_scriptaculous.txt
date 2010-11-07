@@ -16,7 +16,7 @@ I've left out the basics such as sql, models and controller business logic, and 
 <p>The view-code can be combined in different elements but for simplicity let's assume there is only 1 view file.<br />
 Keep in mind that each object where you want to assign some functionality to (such as draggable, droppable) must have a unique DOM id.  It doesn't matter if it's a div or span or p or whatever, as long as it has a unique id.</p>
 <p>The view looks like this:</p>
-<code lang="php">
+<code lang="php"><![CDATA[
 <?php foreach($articles as $article): ?>
 <div id="<?php echo $article['Article']['id']; ?>">
    <?php echo $article['Article']['description']; ?>
@@ -46,9 +46,9 @@ Keep in mind that each object where you want to assign some functionality to (su
    The update thing makes sure that the entire output of the requestAction call is displayed inside the <div id="cart"></div>.
    So that means that the page will update the part of the page which is specified (dom id 'cart') when the output from the requestAction call is received
 */
-</code><p>
+]]></code><p>
 The controller would have functions like this:</p>
-<code lang="php">
+<code lang="php"><![CDATA[
 <?php
 
 // this function can be used to show initial contents of the cart.
@@ -74,9 +74,9 @@ function addarticle(){
 function removearticle(){
 }
 ?>
-</code><p>
+]]></code><p>
 The view controller/cart.ctp could look something like this:</p>
-<code lang="php">
+<code lang="php"><![CDATA[
 <ul>
 <?php foreach($articles as $artikel):?>
 <li><?php echo $article['Article']['id']; ?></li>
@@ -84,7 +84,7 @@ The view controller/cart.ctp could look something like this:</p>
 </ul>
 
 <?php if(!$articles) echo "No articles in the cart!"; ?>
-</code><p>
+]]></code><p>
 There you have it.  All explanations are inside the sources, I hope it's clear enough.  If not, just ask :-)</p>
 <h3>Common misconceptions</h3>
 <p>From reading many (outdated?) articles about Ajax in cake I noted a lot of information that was not correct.  Here they are:</p>

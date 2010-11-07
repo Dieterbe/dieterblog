@@ -7,7 +7,7 @@ Per-directory bash history
 Quote from an <a href="http://www.debian-administration.org/articles/543#comment_17">anonymous reply on debian-administration.org</a></p>
 <p><cite><br />
 So I use the following bash function:</p>
-<code lang="bash">
+<code lang="bash"><![CDATA[
 #
 # Usage: mycd <path>
 #
@@ -25,13 +25,13 @@ function mycd()
    history -c  # clear memory
    history -r #read from current histfile
 }
-</code><p>
+]]></code><p>
 and then set it up with the following in my bashrc:</p>
-<code lang="bash">
+<code lang="bash"><![CDATA[
 shopt -s histappend
 alias cd="mycd"
 export HISTFILE="$HOME/.dir_bash_history$PWD/bash_history.txt"
-</code><p></cite></p>
+]]></code><p></cite></p>
 <p>Great stuff.  It would be nice to be able to use both the global and the directory-specific history by combining with an extra modifier key .<br />
 ( eg arrowup/pageup/c^r for global and alt+arrowup/alt+pageup/alt+c^r for the directory-specific one )</p>
 <p>If I ever come up with / find something to do this I'll let you know...</p>

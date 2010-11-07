@@ -11,12 +11,12 @@ It turned out ssh-add has support for such scenarios and offers the $SSH_ASKPASS
 <p>When the $SSH_ASKPASS variable is not set, ssh-add will try to execute /usr/bin/ssh-askpass by default.  I figured this out by typing this in a console:<br />
 ssh-add *mykey* < /dev/null<br />
 This revealed that there are already some utilities specifically for this purpose!  Let's see...:</p>
-<code>
+<code><![CDATA[
 dieter@dieter-mbp:~$ aptitude search askpass
 p   gtk-led-askpass                                                - GTK+ password dialog suitable for use with ssh-add                      
 p   ssh-askpass                                                    - under X, asks user for a passphrase for ssh-add                         
 p   ssh-askpass-fullscreen                                         - Under Gnome2, asks user for a passphrase for ssh-add                    
 p   ssh-askpass-gnome                                              - interactive X program to prompt users for a passphrase for ssh-add  
-</code><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p>
+]]></code><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p>
 <p>After installing this you can just put your ssh-add line in the settings panel called "autostarted Applications" from Xfce and for your next session it will show a nice gtk popup to ask for your password and it works like a charm :)<br />
 However, since i use multiple keys, i used to use the globbing operator (*) but this doesnt work anymore with this method.  I guess that makes sense as the globbing operator is probably a bash built-in...</p>

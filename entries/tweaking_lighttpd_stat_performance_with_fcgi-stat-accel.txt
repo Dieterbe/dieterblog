@@ -9,7 +9,7 @@ Tweaking Lighttpd stat() performance with fcgi-stat-accel
 <p>Now, for <a href="http://www.netlog.com">Netlog</a> we needed to add some http headers ( Cache-Control: max-age, ETag, Expires and Last-Modified ) so we patched up the code a bit to do that, and a bit of other stuff.</p>
 <p>Ofcourse this is documented on <a href="http://trac.lighttpd.net/trac/wiki/FcgiStatAccelWithMoreHttpHeaders">the FcgiStatAccelWithMoreHttpHeaders page on the Lighty wiki</a></p>
 <p>Have fun !</p>
-<code lang="c">
+<code lang="c"><![CDATA[
 /*
   Originally written by Fobax.
   Edited by darix to support controlling thread count at runtime. 
@@ -163,4 +163,4 @@ int main(void){
         free(id);  
         return 0;  
 }
-</code>
+]]></code>

@@ -6,9 +6,9 @@ AIF automatic lvm/dm_crypt installations and test suite
 <p>Amongst the slew of fixes and improvements there are also some cool new things I'm working on.<br />
 First of all, I worked more on the automatic installations.  Now you can easily install an LVM based Arch system on top of dm_crypt for example.<br />
 You type this command:</p>
-<code lang="bash">
+<code lang="bash"><![CDATA[
 aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda
-</code><p>And <strong>bam</strong> you have a complete working system with LVM, dm_crypt etc all set up.  You just need to change your keymap, hostname, network config and such (or, configure that on the beforehand in the config file for AIF)</p>
+]]></code><p>And <strong>bam</strong> you have a complete working system with LVM, dm_crypt etc all set up.  You just need to change your keymap, hostname, network config and such (or, configure that on the beforehand in the config file for AIF)</p>
 <p>Another thing I started working on is a very simple test suite.<br />
 Basically, when launching a test, the following steps are invoked</p>
 <ul>

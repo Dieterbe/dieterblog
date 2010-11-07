@@ -28,7 +28,7 @@ Mind you, my Python knowledge is very limited.  I have done some python programm
 Other then that, sometimes an example or explanation was not entirely clear to me.  This didn't happen often, but there were moments where I thought 95% of what you need to know is explained, but the other 5% you have to google up yourself.<br />
 It is quite convenient however, to have the author of a book available in your jabber client.<br />
 So FWIW here are the things I asked him about and which responses I got, with some comments added by me afterwards.</p>
-<code>
+<code><![CDATA[
 <Dieterbe> hmm you mention that methods *need* a self param, but why is this?
            can't python automatically make a variable self available in the scope of the function, when calling it?
 <Dusty>    no, they are always explicit
@@ -72,7 +72,7 @@ So FWIW here are the things I asked him about and which responses I got, with so
 <Dieterbe> especially because you use static class methods a few times throughout the book
 <Dusty>    I had a long section on them and ended up removing it because the chapter was too long and one of my reviewers suggested that they aren't very good form in Python.
 <Dieterbe> hmm. i see
-</code><p>
+]]></code><p>
 The writing is pretty informal, and here and there you'll find a subtle reference or joke.  But of course that's not what you buy this book for.</p>
 <h3>Conclusion</h3>
 <p>I would say the "who this book is for" part is a bit too optimistic.  You won't learn Python (3) from scratch by only using this book.  It's not a book restricted to mere OO subjects (in python), but neither does it cover all basics of the Python language.</p>

@@ -12,8 +12,7 @@ __description__ = "Preformatter which uses pygments to highlight source code syn
 PREFORMATTER_ID = 'syntaxhighlight'
 
 from pygments import highlight
-from pygments.lexers import PythonLexer
-from pygments.lexers import get_lexer_by_name
+from pygments.lexers import PythonLexer, get_lexer_by_name, guess_lexer
 from pygments.formatters import HtmlFormatter
 from lxml import etree
 from lxml.html.soupparser import fromstring
@@ -47,9 +46,12 @@ def parse(text):
     return result
 
 def highlightcallback (code):
-    # TODO: automatically pick lexer based on lang attribute or guess otherwise
     # TODO: when the code contains > or & etc, those must be displayed correctly, not their entity references
-    output = highlight(etree.tostring(code), get_lexer_by_name('python'), HtmlFormatter())
+    try:
+        lexer = get_lexer_by_name(code.attrib['lang'])
+    except Exception, e:
+        lexer = guess_lexer(etree.tostring(code))
+    output = highlight(etree.tostring(code), lexer, HtmlFormatter())
     # NOTE: emitting the styles like this doesn't feel right
     # if you have multiple entries with source code -> redundant style tags
     # plus, all this style info doesn't really belong in the html

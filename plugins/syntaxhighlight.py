@@ -1,8 +1,9 @@
 # vim: tabstop=4 shiftwidth=4 expandtab
 """
 Preformatter which uses pygments to highlight source code syntax
-In your entries, you can do <code>...</code> if you want things to get
-highligted.
+In your entries, you can highlight code as follows:
+<code><![CDATA[.....]]></code> # automatic lexer guessing
+<code lang="bash"><![CDATA[.....]]></code> # use specific lxml lexer
 Depends on pygments, lxml, beautiful-soup
 """
 __author__ = 'Dieter Plaetinck <dieter@plaetinck.be>'

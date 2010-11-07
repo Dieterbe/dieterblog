@@ -53,7 +53,7 @@ fi
 
 if [ -n $2 ]
 then
-	if ! sed -i "s#.*base_url.*=.*__BASE_URL__.*#base_url = \"$2\"#" $dst/config.tpl.py
+	if ! sed -i "s#.*base_url.*=.*__BASE_URL__.*#py[\"base_url\"] = \"$2\"#" $dst/config.tpl.py
 	then
 		echo "Could not set base_url to $2 in $dst/config.tpl.py" >&2
 		exit 2

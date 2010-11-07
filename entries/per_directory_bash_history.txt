@@ -6,34 +6,32 @@ Per-directory bash history
 <!--break--><br />
 Quote from an <a href="http://www.debian-administration.org/articles/543#comment_17">anonymous reply on debian-administration.org</a></p>
 <p><cite><br />
-So I use the following bash function:<br />
-<code lang="bash"><br />
-#<br />
-# Usage: mycd<br />
-<path>
-#<br />
-#  Replacement for builtin 'cd', wh ich keeps a separate bash-history<br />
-#   for every directory.<br />
-function mycd()<br />
-{<br />
-   history -w # write current history  file<br />
-   builtin cd "$@"  # do actual c d<br />
-   local HISTDIR="$HOME/.dir_bash_history$PWD" # use& nbsp;nested folders for history<br />
-   if  [ ! -d "$HISTDIR" ]&amp;n bsp;; then # create folder if neede d<br />
-      mkdir -p "$HISTDIR"<br />
-   fi<br />
-   export HISTFILE="$HISTDIR/bash_history.txt" # set& nbsp;new history file<br />
-   history -c  # clear memory<br />
-   history -r #read from current histfile<br />
-}<br />
-</code></p>
-<p>and then set it up with the following in my bashrc:<br />
-<code lang="bash"><br />
-shopt -s histappend<br />
-alias cd="mycd"<br />
-export HISTFILE="$HOME/.dir_bash_history$PWD/bash_history.txt"<br />
-</code><br />
-</cite></p>
+So I use the following bash function:</p>
+<code lang="bash">
+#
+# Usage: mycd <path>
+#
+#  Replacement for builtin 'cd', wh ich keeps a separate bash-history
+#   for every directory.
+function mycd()
+{
+   history -w # write current history  file
+   builtin cd "$@"  # do actual c d
+   local HISTDIR="$HOME/.dir_bash_history$PWD" # use& nbsp;nested folders for history
+   if  [ ! -d "$HISTDIR" ]&n bsp;; then # create folder if neede d
+      mkdir -p "$HISTDIR"
+   fi
+   export HISTFILE="$HISTDIR/bash_history.txt" # set& nbsp;new history file
+   history -c  # clear memory
+   history -r #read from current histfile
+}
+</code><p>
+and then set it up with the following in my bashrc:</p>
+<code lang="bash">
+shopt -s histappend
+alias cd="mycd"
+export HISTFILE="$HOME/.dir_bash_history$PWD/bash_history.txt"
+</code><p></cite></p>
 <p>Great stuff.  It would be nice to be able to use both the global and the directory-specific history by combining with an extra modifier key .<br />
 ( eg arrowup/pageup/c^r for global and alt+arrowup/alt+pageup/alt+c^r for the directory-specific one )</p>
 <p>If I ever come up with / find something to do this I'll let you know...</p>

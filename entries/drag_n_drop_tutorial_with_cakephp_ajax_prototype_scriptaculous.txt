@@ -14,73 +14,77 @@ Scriptaculous &amp; Protoype libraries.  See <a href="http://manual.cakephp.org/
 I've left out the basics such as sql, models and controller business logic, and focused on the Ajax specifics.</p>
 <p>The view-code can be combined in different elements but for simplicity let's assume there is only 1 view file.<br />
 Keep in mind that each object where you want to assign some functionality to (such as draggable, droppable) must have a unique DOM id.  It doesn't matter if it's a div or span or p or whatever, as long as it has a unique id.</p>
-<p>The view looks like this:<br />
-<code lang="php"><br />
-<?php foreach($articles as $article): ?></p>
-<div id="<?php echo $article['Article']['id']; ?>"><br />
+<p>The view looks like this:</p>
+<code lang="php">
+<?php foreach($articles as $article): ?>
+<div id="<?php echo $article['Article']['id']; ?>">
    <?php echo $article['Article']['description']; ?>
 </div>
-<p><?php echo $ajax->drag($article['Article']['id'],array('revert'=>true)); ?><br />
-/*<br />
-   the revert thing will make the draggable return to it's original position.  Set this to false and the object will stay where you put it.<br />
-   This does not have anything to do with a function call being made btw, that's the job for the draggables<br />
-*/<br />
-<?php endforeach; ?></p>
+<?php echo $ajax->drag($article['Article']['id'],array('revert'=>true)); ?>
+/*
+   the revert thing will make the draggable return to it's original position.  Set this to false and the object will stay where you put it.
+   This does not have anything to do with a function call being made btw, that's the job for the draggables
+*/
+<?php endforeach; ?>
+
+
 <div id="cart">
-   <?php echo $this->requestAction('/controller/showcart'); ?> // this call is not necessary.  You can use it to fill the
-<div> with some content to start with
+   <?php echo $this->requestAction('/controller/showcart'); ?> // this call is not necessary.  You can use it to fill the <div> with some content to start with
 </div>
+
 <div id="thrashbin">
 </div>
-<p><?php<br />
-   echo $ajax->dropRemote('cart',null,array('url' => '/controller/addarticle/','with'=>'{draggedid:element.id}','update'=>'cart'));<br />
-   echo $ajax->dropRemote('thrashbin',null,array('url' => '/controller/removearticle/','with'=>'{draggedid:element.id}','update'=>'cart'));<br />
-?><br />
-/*<br />
-   these two calls make objects with DOM id's 'cart' and 'thrashbin' droppable.  When an object is dropped into them, the actions defined by 'url' are called.<br />
-   The 'with'=>'{draggedid:element.id} passes the id of the dropped element to the function that is called (on the background, no page refresh or anything like that!).<br />
-   The update thing makes sure that the entire output of the requestAction call is displayed inside the<br />
-<div id="cart"></div>
-<p>.<br />
-   So that means that the page will update the part of the page which is specified (dom id 'cart') when the output from the requestAction call is received<br />
-*/<br />
-</code></p>
-<p>The controller would have functions like this:</p>
-<p><code lang="php"><br />
-<?php</p>
-<p>// this function can be used to show initial contents of the cart.<br />
-function showcart(){<br />
-    $this->set('articles',false); /* no articles bought yet */<br />
-    $this->render('cart');<br />
-    // (read on to find out more about this view)<br />
-}</p>
-<p>function addarticle(){<br />
-/*<br />
-   The DOM id of the element that has been dragged into here can be found in $this->params['form']['draggedid'].<br />
-   You can use that id to do something like $this->Article->findById() to add the article to the session.<br />
-   At the end of this function the entire contents of the <strong>view</strong> file will be returned (and rendered inside the
-<div> with DOM id 'cart'.)<br />
-   The layout won't be rendered, only the view, since this is an Ajax call (the difference is autodetected by Cakes RequestHandler)<br />
-   You could do something like this:<br />
-*/<br />
-   $this->set('articles', $all_bought_articles_from_the_session);<br />
-   $this->render('cart');<br />
-}</p>
-<p>// this function is similar to the one above but instead removes one article from the session and renders the same view ;-)<br />
-function removearticle(){<br />
-}<br />
-?><br />
-</code></p>
-<p>The view controller/cart.ctp could look something like this:</p>
-<p><code lang="php"></p>
+
+<?php
+   echo $ajax->dropRemote('cart',null,array('url' => '/controller/addarticle/','with'=>'{draggedid:element.id}','update'=>'cart'));
+   echo $ajax->dropRemote('thrashbin',null,array('url' => '/controller/removearticle/','with'=>'{draggedid:element.id}','update'=>'cart'));
+?>
+/*
+   these two calls make objects with DOM id's 'cart' and 'thrashbin' droppable.  When an object is dropped into them, the actions defined by 'url' are called.
+   The 'with'=>'{draggedid:element.id} passes the id of the dropped element to the function that is called (on the background, no page refresh or anything like that!).
+   The update thing makes sure that the entire output of the requestAction call is displayed inside the <div id="cart"></div>.
+   So that means that the page will update the part of the page which is specified (dom id 'cart') when the output from the requestAction call is received
+*/
+</code><p>
+The controller would have functions like this:</p>
+<code lang="php">
+<?php
+
+// this function can be used to show initial contents of the cart.
+function showcart(){
+    $this->set('articles',false); /* no articles bought yet */
+    $this->render('cart');
+    // (read on to find out more about this view)
+}
+
+function addarticle(){
+/*
+   The DOM id of the element that has been dragged into here can be found in $this->params['form']['draggedid'].
+   You can use that id to do something like $this->Article->findById() to add the article to the session.
+   At the end of this function the entire contents of the <strong>view</strong> file will be returned (and rendered inside the <div> with DOM id 'cart'.)
+   The layout won't be rendered, only the view, since this is an Ajax call (the difference is autodetected by Cakes RequestHandler) 
+   You could do something like this:
+*/
+   $this->set('articles', $all_bought_articles_from_the_session);
+   $this->render('cart');
+}
+
+// this function is similar to the one above but instead removes one article from the session and renders the same view ;-)
+function removearticle(){
+}
+?>
+</code><p>
+The view controller/cart.ctp could look something like this:</p>
+<code lang="php">
 <ul>
-<?php foreach($articles as $artikel):?></p>
+<?php foreach($articles as $artikel):?>
 <li><?php echo $article['Article']['id']; ?></li>
-<p><?php endforeach; ?>
+<?php endforeach; ?>
 </ul>
-<p><?php if(!$articles) echo "No articles in the cart!"; ?><br />
-</code></p>
-<p>There you have it.  All explanations are inside the sources, I hope it's clear enough.  If not, just ask :-)</p>
+
+<?php if(!$articles) echo "No articles in the cart!"; ?>
+</code><p>
+There you have it.  All explanations are inside the sources, I hope it's clear enough.  If not, just ask :-)</p>
 <h3>Common misconceptions</h3>
 <p>From reading many (outdated?) articles about Ajax in cake I noted a lot of information that was not correct.  Here they are:</p>
 <ul>

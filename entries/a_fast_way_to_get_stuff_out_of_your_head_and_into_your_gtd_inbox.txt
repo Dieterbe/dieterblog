@@ -18,31 +18,36 @@ If something goes wrong (and only then!) it will show a popup with <a href="http
 <li>notify-send (package libnotify-bin on ubuntu)</li>
 </ul>
 <p>Here is the file, save it as gtdinbox.sh</p>
-<p><code lang="bash">#!/bin/bash</p>
-<p># A very simple script to implement the Collecting part of GTD.<br />
-# The only thing this script does is getting something out of head as quickly as possible, into a file you can trust<br />
-# See <a href="http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox" title="http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox">http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_...</a></p>
-<p>program=`basename $0 .sh`<br />
-datadir=${XDG_DATA_HOME:-$HOME/.local/share}/$program<br />
-inboxfile=$datadir/inbox.txt</p>
-<p>die_error ()<br />
-{<br />
-        echo "$1" >&amp;2<br />
-        notify-send 'Gtd Inbox' "$1" -i gtk-dialog-info -t 5000 -u critical<br />
-        exit ${2:-2}<br />
-}</p>
-<p>if [ ! -d $datadir ]<br />
-then<br />
-        mkdir -p $datadir 2> /dev/null &amp;& chmod 700 $datadir 2> /dev/null || die_error "Could not create/chmod $datadir" 1<br />
-fi</p>
-<p>if input=`zenity --entry --title "GTD Inbox" --text "Enter text for gtd inbox"` &amp;& [ -n "$input" ]<br />
-then<br />
-        echo "$input" >> $inboxfile &amp;& {<br />
-                echo "Entered $input into $inboxfile"<br />
-                exit 0<br />
-        }<br />
-        die_error "Something failed while entering $input into $inboxfile" 3<br />
-else<br />
-        echo "Cancelled input into $inboxfile"<br />
-fi<br />
-</code></p>
+<code lang="bash">#!/bin/bash
+
+# A very simple script to implement the Collecting part of GTD.
+# The only thing this script does is getting something out of head as quickly as possible, into a file you can trust
+# See <a href="http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox" title="http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox">http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_...</a>
+
+program=`basename $0 .sh`
+datadir=${XDG_DATA_HOME:-$HOME/.local/share}/$program
+inboxfile=$datadir/inbox.txt
+
+die_error ()
+{
+        echo "$1" >&2
+        notify-send 'Gtd Inbox' "$1" -i gtk-dialog-info -t 5000 -u critical
+        exit ${2:-2}
+}
+
+if [ ! -d $datadir ]
+then
+        mkdir -p $datadir 2> /dev/null && chmod 700 $datadir 2> /dev/null || die_error "Could not create/chmod $datadir" 1
+fi
+
+if input=`zenity --entry --title "GTD Inbox" --text "Enter text for gtd inbox"` && [ -n "$input" ]
+then
+        echo "$input" >> $inboxfile && {
+                echo "Entered $input into $inboxfile"
+                exit 0
+        }
+        die_error "Something failed while entering $input into $inboxfile" 3
+else
+        echo "Cancelled input into $inboxfile"
+fi
+</code>

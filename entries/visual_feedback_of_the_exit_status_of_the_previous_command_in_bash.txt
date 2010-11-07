@@ -3,18 +3,21 @@ Visual feedback of the exit status of the previous command in bash
 # pubtime 21:56:50
 # tags bash
 <p>Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing 'echo $?', ' &amp;& echo ok', '|| echo failed' etc on the command line.<!--break--></p>
-<p><code lang="bash"><br />
-if [ $(tput colors) -gt 0 ] ; then<br />
-    RED=$(tput setaf 1)<br />
-    GREEN=$(tput setaf 2)<br />
-    RST=$(tput op)<br />
-fi</p>
-<p>bash_prompt_command() {<br />
-        last_exit=$?<br />
-        exit_to_color=$RED<br />
-        [ $last_exit == 0 ] &amp;& exit_to_color=$GREEN<br />
-}</p>
-<p>export PROMPT_COMMAND=bash_prompt_command</p>
-<p>PS1="\u@\h \[\$exit_to_color\]\W\[$RST\] \$"<br />
-</code></p>
-<p>( Inspired by <a href="http://bbs.archlinux.org/viewtopic.php?pid=367626#p367626">this post</a> )</p>
+<code lang="bash">
+if [ $(tput colors) -gt 0 ] ; then
+    RED=$(tput setaf 1)
+    GREEN=$(tput setaf 2)
+    RST=$(tput op)
+fi
+
+bash_prompt_command() {
+        last_exit=$?
+        exit_to_color=$RED
+        [ $last_exit == 0 ] && exit_to_color=$GREEN
+}
+
+export PROMPT_COMMAND=bash_prompt_command
+
+PS1="\u@\h \[\$exit_to_color\]\W\[$RST\] \$"
+</code><p>
+( Inspired by <a href="http://bbs.archlinux.org/viewtopic.php?pid=367626#p367626">this post</a> )</p>

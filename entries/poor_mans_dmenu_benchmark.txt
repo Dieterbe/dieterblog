@@ -3,37 +3,38 @@ Poor mans dmenu benchmark
 # pubtime 11:25:26
 # tags foss
 <p>I wanted to know how responsive <a href="http://tools.suckless.org/dmenu">dmenu</a> and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).</p>
-<p>generate file:<br />
-<code lang="bash"><br />
-#!/bin/bash<br />
-echo "Creating dummy file of 50MB in size (625000 entries of 80chars)"<br />
-echo "Note: this takes about an hour and a half"<br />
-entries_per_iteration=1000<br />
-for i in `seq 1 625`<br />
-do<br />
-        echo "Iteration $i of 625 ( $entries_per_iteration each )"<br />
-        for j in `seq 1 $entries_per_iteration`<br />
-        do<br />
-                echo "`date +'%Y-%m-%d %H:%M:%S'` `date +%s`abcdefhijklmno`date +%s | md5sum`" >> ./dummy_history_file<br />
-        done<br />
-done<br />
-</code><br />
-measure speed:<br />
-<code lang="bash"><br />
-echo "Plain awk '{print \$3}':"<br />
-time awk '{print $3}' dummy_history_file >/dev/null</p>
-<p>echo "awk + sort"<br />
-time awk '{print $3}' dummy_history_file | sort >/dev/null<br />
-echo "awk + sort + uniq"<br />
-time awk '{print $3}' dummy_history_file | sort | uniq >/dev/null</p>
-<p>echo "Plain dmenu:"<br />
-dmenu < dummy_history_file<br />
-echo "awked into dmenu:"<br />
-awk '{print $3}' dummy_history_file | dmenu<br />
-echo "awk + sort + uniq into dmenu:"<br />
-awk '{print $3}' dummy_history_file | sort | uniq | dmenu<br />
-</code></p>
-<p>Results.<br />
+<p>generate file:</p>
+<code lang="bash">
+#!/bin/bash
+echo "Creating dummy file of 50MB in size (625000 entries of 80chars)"
+echo "Note: this takes about an hour and a half"
+entries_per_iteration=1000
+for i in `seq 1 625`
+do
+        echo "Iteration $i of 625 ( $entries_per_iteration each )"
+        for j in `seq 1 $entries_per_iteration`
+        do
+                echo "`date +'%Y-%m-%d %H:%M:%S'` `date +%s`abcdefhijklmno`date +%s | md5sum`" >> ./dummy_history_file
+        done
+done
+</code><p>measure speed:</p>
+<code lang="bash">
+echo "Plain awk '{print \$3}':"
+time awk '{print $3}' dummy_history_file >/dev/null
+
+echo "awk + sort"
+time awk '{print $3}' dummy_history_file | sort >/dev/null
+echo "awk + sort + uniq"
+time awk '{print $3}' dummy_history_file | sort | uniq >/dev/null
+
+echo "Plain dmenu:"
+dmenu < dummy_history_file
+echo "awked into dmenu:"
+awk '{print $3}' dummy_history_file | dmenu
+echo "awk + sort + uniq into dmenu:"
+awk '{print $3}' dummy_history_file | sort | uniq | dmenu
+</code><p>
+Results.<br />
 I ran the test twice about an half hour after generating the file, so in the first run, the first awk call may have been affected by a no longer complete Linux block cache.<br />
 (I also edited the output format a bit)<br />
 Run 1:</p>

@@ -7,125 +7,158 @@ Tweaking Lighttpd stat() performance with fcgi-stat-accel
 <p>Now, for <a href="http://www.netlog.com">Netlog</a> we needed to add some http headers ( Cache-Control: max-age, ETag, Expires and Last-Modified ) so we patched up the code a bit to do that, and a bit of other stuff.</p>
 <p>Ofcourse this is documented on <a href="http://trac.lighttpd.net/trac/wiki/FcgiStatAccelWithMoreHttpHeaders">the FcgiStatAccelWithMoreHttpHeaders page on the Lighty wiki</a></p>
 <p>Have fun !</p>
-<p><code lang="c"><br />
-/*<br />
-  Originally written by Fobax.<br />
-  Edited by darix to support controlling thread count at runtime.<br />
-  Edited by poison and Dieter_be to support some http headers derived from the files.</p>
-<p>  Please do not remove any of the above.</p>
-<p>  compile with: </p>
-<p>  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel</p>
-<p>  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.</p>
-<p>  The default value, if spawned from lighttpd, is 20.<br />
-*/</p>
-<p>#include "fcgi_config.h"</p>
-<p>#include<br />
-<pthread.h>
-#include <sys/types.h><br />
-#include <unistd.h><br />
-#include "fcgiapp.h"<br />
-#include <string.h><br />
-#include <sys/types.h><br />
-#include <sys/stat.h> </p>
-<p>#include <stdlib.h><br />
-#include <stdio.h> </p>
-<p>#include "etag.h"<br />
-#include "buffer.h"</p>
-<p>#define THREAD_COUNT 20</p>
-<p>#define FORBIDDEN(stream) \<br />
-        FCGX_FPrintF(stream, "Status: 403 Forbidden\r\nContent-Type: text/html\r\n\r\n<br />
-<h1>403 Forbidden</h1>
-<p>\n");<br />
-#define NOTFOUND(stream, filename) \<br />
-        FCGX_FPrintF(stream, "Status: 404 Not Found\r\nContent-Type: text/html\r\n\r\n<br />
-<h1>404 Not Found</h1>
-<p>\r\n%s", filename);<br />
-#define SENDFILE(stream, filename, headers) \<br />
-        FCGX_FPrintF(stream, "%sX-LIGHTTPD-send-file: %s\r\n\r\n", headers, filename);</p>
-<p>#define EXPIRATION_TIME (int) 60*60*24*30</p>
-<p>int genheaders (char* mybuffer, size_t bufferlen, const char* file)<br />
-{<br />
-        char timebuf[32]; //possibly unsafe<br />
-        char lastmodbuf[32]; //possibly unsafe<br />
-        char etag[128]; //possibly unsafe<br />
-        struct stat statbuf;<br />
-        time_t exp;<br />
-        time_t lastmod;<br />
-        buffer *etag_raw;<br />
-        buffer *etag_ok ;</p>
-<p>        //create buffers for Etag<br />
-        etag_raw = buffer_init();<br />
-        etag_ok = buffer_init();</p>
-<p>        // Stat the file<br />
-        if (stat (file, &amp;statbuf) != 0)<br />
-        {<br />
-                return -1;<br />
-        }</p>
-<p>        // Clear the buffer<br />
-        memset (mybuffer, 0, bufferlen);</p>
-<p>        // Get the local time<br />
-        exp = time (NULL) + EXPIRATION_TIME;<br />
-        lastmod = statbuf.st_mtime;</p>
-<p>        strftime (timebuf, (sizeof (timebuf) / sizeof (char)) - 1, "%a, %d %b %Y %H:%M:%S GMT", gmtime (&amp;(exp)));<br />
-        strftime (lastmodbuf, (sizeof (lastmodbuf) / sizeof (char)) - 1, "%a, %d %b %Y %H:%M:%S GMT", gmtime (&amp;(lastmod)));</p>
-<p>        etag_create(etag_raw, &amp;statbuf, ETAG_USE_SIZE);<br />
-        etag_mutate(etag_ok, etag_raw);</p>
-<p>        buffer_free(etag_raw);</p>
-<p>        snprintf (mybuffer, bufferlen, "Cache-Control: max-age=%d\r\nETag: \%s\r\nExpires: %s\r\nLast-Modified: %s\r\n", EXPIRATION_TIME, etag_ok->ptr, timebuf , lastmodbuf);</p>
-<p>        buffer_free(etag_ok);</p>
-<p>        return 0;<br />
-}</p>
-<p>static void *doit(void *a){<br />
-        FCGX_Request request;<br />
-        int rc;<br />
-        char *filename;<br />
-        char extraheaders[192];<br />
-        int r;</p>
-<p>        FCGX_InitRequest(&amp;request, 0, FCGI_FAIL_ACCEPT_ON_INTR);</p>
-<p>        while(1){<br />
-                //Some platforms require accept() serialization, some don't. The documentation claims it to be thread safe<br />
-//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;<br />
-//              pthread_mutex_lock(&amp;accept_mutex);<br />
-                rc = FCGX_Accept_r(&amp;request);<br />
-//              pthread_mutex_unlock(&amp;accept_mutex);</p>
-<p>                if(rc < 0)<br />
-                        break;</p>
-<p>        //get the filename<br />
-                if((filename = FCGX_GetParam("SCRIPT_FILENAME", request.envp)) == NULL){<br />
-                        FORBIDDEN(request.out);<br />
-        //don't try to open directories<br />
-                }else if(filename[strlen(filename)-1] == '/'){<br />
-                        FORBIDDEN(request.out);<br />
-        //open the file<br />
-                }else if((r = genheaders (extraheaders, 191, filename)) != 0){<br />
-                        NOTFOUND(request.out, filename);<br />
-        //no error, serve it<br />
-                }else{<br />
-                        SENDFILE(request.out, filename, extraheaders);<br />
-                }</p>
-<p>                FCGX_Finish_r(&amp;request);<br />
-        }<br />
-        return NULL;<br />
-}</p>
-<p>int main(void){<br />
-        int i,j,thread_count;<br />
-        pthread_t* id;<br />
-        char* env_val;</p>
-<p>        FCGX_Init();</p>
-<p>        thread_count = THREAD_COUNT;<br />
-        env_val = getenv("PHP_FCGI_CHILDREN");<br />
-        if (env_val != NULL) {<br />
-                j = atoi(env_val);<br />
-                if (j != 0) {<br />
-                        thread_count = j;<br />
-                };<br />
-        };</p>
-<p>        id = malloc(sizeof(*id) * thread_count);</p>
-<p>        for (i = 0; i < thread_count; i++) {<br />
-                pthread_create(&amp;id[i], NULL, doit, NULL);<br />
-        }</p>
-<p>        doit(NULL);<br />
-        free(id);<br />
-        return 0;<br />
-}<br />
-</code></p>
+<code lang="c">
+/*
+  Originally written by Fobax.
+  Edited by darix to support controlling thread count at runtime. 
+  Edited by poison and Dieter_be to support some http headers derived from the files.
+
+  Please do not remove any of the above.
+  
+  compile with: 
+
+  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel
+
+  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.
+
+  The default value, if spawned from lighttpd, is 20.
+*/
+
+#include "fcgi_config.h"
+
+#include <pthread.h>
+#include <sys/types.h>
+#include <unistd.h>   
+#include "fcgiapp.h"  
+#include <string.h>   
+#include <sys/types.h>
+#include <sys/stat.h> 
+
+#include <stdlib.h>
+#include <stdio.h> 
+
+#include "etag.h"
+#include "buffer.h"
+
+
+#define THREAD_COUNT 20
+
+
+#define FORBIDDEN(stream) \
+        FCGX_FPrintF(stream, "Status: 403 Forbidden\r\nContent-Type: text/html\r\n\r\n<h1>403 Forbidden</h1>\n");
+#define NOTFOUND(stream, filename) \
+        FCGX_FPrintF(stream, "Status: 404 Not Found\r\nContent-Type: text/html\r\n\r\n<h1>404 Not Found</h1>\r\n%s", filename);
+#define SENDFILE(stream, filename, headers) \
+        FCGX_FPrintF(stream, "%sX-LIGHTTPD-send-file: %s\r\n\r\n", headers, filename);
+
+#define EXPIRATION_TIME (int) 60*60*24*30
+
+
+int genheaders (char* mybuffer, size_t bufferlen, const char* file)
+{
+        char timebuf[32]; //possibly unsafe   
+        char lastmodbuf[32]; //possibly unsafe
+        char etag[128]; //possibly unsafe
+        struct stat statbuf;
+        time_t exp;
+        time_t lastmod;  
+        buffer *etag_raw;
+        buffer *etag_ok ;
+ 
+        //create buffers for Etag
+        etag_raw = buffer_init();
+        etag_ok = buffer_init();
+                
+        // Stat the file
+        if (stat (file, &statbuf) != 0)
+        {
+                return -1;
+        }
+
+        // Clear the buffer
+        memset (mybuffer, 0, bufferlen);
+
+        // Get the local time
+        exp = time (NULL) + EXPIRATION_TIME;
+        lastmod = statbuf.st_mtime;
+
+        strftime (timebuf, (sizeof (timebuf) / sizeof (char)) - 1, "%a, %d %b %Y %H:%M:%S GMT", gmtime (&(exp)));
+        strftime (lastmodbuf, (sizeof (lastmodbuf) / sizeof (char)) - 1, "%a, %d %b %Y %H:%M:%S GMT", gmtime (&(lastmod)));
+
+        etag_create(etag_raw, &statbuf, ETAG_USE_SIZE);
+        etag_mutate(etag_ok, etag_raw);
+
+        buffer_free(etag_raw);
+
+        snprintf (mybuffer, bufferlen, "Cache-Control: max-age=%d\r\nETag: \%s\r\nExpires: %s\r\nLast-Modified: %s\r\n", EXPIRATION_TIME, etag_ok->ptr, timebuf , lastmodbuf);
+
+        buffer_free(etag_ok);
+
+        return 0;
+}
+ 
+static void *doit(void *a){
+        FCGX_Request request;
+        int rc;
+        char *filename;
+        char extraheaders[192];
+        int r;
+
+        FCGX_InitRequest(&request, 0, FCGI_FAIL_ACCEPT_ON_INTR);
+
+        while(1){
+                //Some platforms require accept() serialization, some don't. The documentation claims it to be thread safe
+//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;
+//              pthread_mutex_lock(&accept_mutex);
+                rc = FCGX_Accept_r(&request);
+//              pthread_mutex_unlock(&accept_mutex);
+
+                if(rc < 0)
+                        break;
+
+        //get the filename
+                if((filename = FCGX_GetParam("SCRIPT_FILENAME", request.envp)) == NULL){
+                        FORBIDDEN(request.out);
+        //don't try to open directories
+                }else if(filename[strlen(filename)-1] == '/'){
+                        FORBIDDEN(request.out);
+        //open the file
+                }else if((r = genheaders (extraheaders, 191, filename)) != 0){
+                        NOTFOUND(request.out, filename);
+        //no error, serve it
+                }else{
+                        SENDFILE(request.out, filename, extraheaders);
+                }
+
+                FCGX_Finish_r(&request);
+        }
+        return NULL;
+}
+
+int main(void){
+        int i,j,thread_count;
+        pthread_t* id;
+        char* env_val;
+
+        FCGX_Init();
+
+        thread_count = THREAD_COUNT;
+        env_val = getenv("PHP_FCGI_CHILDREN");
+        if (env_val != NULL) {
+                j = atoi(env_val);
+                if (j != 0) {
+                        thread_count = j;
+                };
+        };
+
+        id = malloc(sizeof(*id) * thread_count);
+
+        for (i = 0; i < thread_count; i++) {
+                pthread_create(&id[i], NULL, doit, NULL);
+        }
+
+        doit(NULL);
+        free(id);  
+        return 0;  
+}
+</code>

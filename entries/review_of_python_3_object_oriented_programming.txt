@@ -27,45 +27,52 @@ Mind you, my Python knowledge is very limited.  I have done some python programm
 Other then that, sometimes an example or explanation was not entirely clear to me.  This didn't happen often, but there were moments where I thought 95% of what you need to know is explained, but the other 5% you have to google up yourself.<br />
 It is quite convenient however, to have the author of a book available in your jabber client.<br />
 So FWIW here are the things I asked him about and which responses I got, with some comments added by me afterwards.</p>
-<p><code><br />
-<Dieterbe> hmm you mention that methods *need* a self param, but why is this?<br />
-           can't python automatically make a variable self available in the scope of the function, when calling it?<br />
-<Dusty>    no, they are always explicit<br />
-<Dieterbe> but why?<br />
-<Dusty>    it's part of the python philosophy, I guess. "explicit is better than implicit" is in the zen of python poem.<br />
-           Basically, if you are accessing a variable in any namespace, that variable has to be have been made explicitly available in that<br />
-           namespace. The one exception is the from X import * syntax, which 98% of python programmers avoid exactly because of the namespace issues.<br />
-<Dieterbe> right</p>
-<p># good to know.  Too bad this isn't really mentioned anywhere.</p>
-<p><Dieterbe> i don't quite get why - in your notebook example of chap 2 - you iterate over the list to find the correct note based on its id.<br />
-           can't you just get the element based on it's index in the list? (ie keep the node id in sync with the index in the list)<br />
-<Dusty>    I don't have the code in front of me, but I suspect that it's because if a note is deleted, that id should not be recycled and applied to another note.<br />
-<Dieterbe> but still, since you keep the last used id, and keep increasing it, you won't recycle id's.<br />
-<Dusty>    yeah, but the index in the list will change<br />
-<Dusty>    when you delete #4<br />
-<Dieterbe> oh<br />
-<Dusty>    the object with ID 5 becomes the object at #4<br />
-<Dieterbe> thanks buddy<br />
-<Dusty>    no problem. :)</p>
-<p># again, makes perfect sense.  But if you don't know the ins and outs of the datatypes, you're on your own.</p>
-<p><Dieterbe> i had a question about your example for the decorator pattern.<br />
-           you use a socket and then you have 2 decorators that implement a send function which do some stuff (logging and what not)<br />
-           but also the actual sending on the socket<br />
-<Dieterbe> and you mention you can have multiple decorators on the same object.  but since each decorator also does the sending on the socket,<br />
-           doesn't that mean the sending happens multiple times?<br />
-<Dusty>    no, because the first decorator is decorating the second decorator<br />
-<Dusty>    which is decorating the socket<br />
-<Dieterbe> ah yes you're right. and although you did not specify it like this in the explanation text, it should be clear from the code.</p>
-<p># If I would have looked better at the code I would have figured it out.<br />
-# I just assumed something had to be wrong, I'm too used to the way 'behaviors' are implemented in CakePHP.</p>
-<p><Dieterbe> one last remark i have about the book: i couldn't find an explanation of static variables/properties.<br />
-           i did see a very short mention of static methods in the case study at the end of chap 3, i would have expected to have that info a bit more<br />
-           prominent, in it's own subsection or something<br />
-<Dieterbe> especially because you use static class methods a few times throughout the book<br />
-<Dusty>    I had a long section on them and ended up removing it because the chapter was too long and one of my reviewers suggested that they aren't very good form in Python.<br />
-<Dieterbe> hmm. i see<br />
-</code></p>
-<p>The writing is pretty informal, and here and there you'll find a subtle reference or joke.  But of course that's not what you buy this book for.</p>
+<code>
+<Dieterbe> hmm you mention that methods *need* a self param, but why is this?
+           can't python automatically make a variable self available in the scope of the function, when calling it?
+<Dusty>    no, they are always explicit
+<Dieterbe> but why?
+<Dusty>    it's part of the python philosophy, I guess. "explicit is better than implicit" is in the zen of python poem.
+           Basically, if you are accessing a variable in any namespace, that variable has to be have been made explicitly available in that 
+           namespace. The one exception is the from X import * syntax, which 98% of python programmers avoid exactly because of the namespace issues.
+<Dieterbe> right
+
+# good to know.  Too bad this isn't really mentioned anywhere.
+
+
+<Dieterbe> i don't quite get why - in your notebook example of chap 2 - you iterate over the list to find the correct note based on its id.
+           can't you just get the element based on it's index in the list? (ie keep the node id in sync with the index in the list)
+<Dusty>    I don't have the code in front of me, but I suspect that it's because if a note is deleted, that id should not be recycled and applied to another note.
+<Dieterbe> but still, since you keep the last used id, and keep increasing it, you won't recycle id's.
+<Dusty>    yeah, but the index in the list will change
+<Dusty>    when you delete #4
+<Dieterbe> oh
+<Dusty>    the object with ID 5 becomes the object at #4
+<Dieterbe> thanks buddy
+<Dusty>    no problem. :)
+
+# again, makes perfect sense.  But if you don't know the ins and outs of the datatypes, you're on your own.
+
+<Dieterbe> i had a question about your example for the decorator pattern.
+           you use a socket and then you have 2 decorators that implement a send function which do some stuff (logging and what not)
+           but also the actual sending on the socket
+<Dieterbe> and you mention you can have multiple decorators on the same object.  but since each decorator also does the sending on the socket,
+           doesn't that mean the sending happens multiple times?
+<Dusty>    no, because the first decorator is decorating the second decorator
+<Dusty>    which is decorating the socket
+<Dieterbe> ah yes you're right. and although you did not specify it like this in the explanation text, it should be clear from the code.
+
+# If I would have looked better at the code I would have figured it out.
+# I just assumed something had to be wrong, I'm too used to the way 'behaviors' are implemented in CakePHP.
+
+<Dieterbe> one last remark i have about the book: i couldn't find an explanation of static variables/properties.
+           i did see a very short mention of static methods in the case study at the end of chap 3, i would have expected to have that info a bit more 
+           prominent, in it's own subsection or something
+<Dieterbe> especially because you use static class methods a few times throughout the book
+<Dusty>    I had a long section on them and ended up removing it because the chapter was too long and one of my reviewers suggested that they aren't very good form in Python.
+<Dieterbe> hmm. i see
+</code><p>
+The writing is pretty informal, and here and there you'll find a subtle reference or joke.  But of course that's not what you buy this book for.</p>
 <h3>Conclusion</h3>
 <p>I would say the "who this book is for" part is a bit too optimistic.  You won't learn Python (3) from scratch by only using this book.  It's not a book restricted to mere OO subjects (in python), but neither does it cover all basics of the Python language.</p>
 <p>So if you are a python newbie, I would probably recommend you 'Dive into python'.  It's free, covers the basics, but doesn't contain so many real life examples.</p>

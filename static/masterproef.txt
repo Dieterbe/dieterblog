@@ -1,0 +1,16 @@
+Masterproef
+# pubdate 2007-04-17
+# pubtime 16:01:07
+# tags thesis,real life
+<p>Op deze pagina verschijnen enkele gegevens, documenten en toevoegingen in het algemeen in het kader van mijn masterproef.  (ook wel bekend als eindwerk of thesis).</p>
+<ul>
+<li>Titel (nl):  Geautomatiseerde webwinkel en orderverwerking</li>
+<li>Title (en):  Automated webstore and order processing</li>
+<li>School:  <a href="http://www.kahosl.be/">Katholieke Hogeschool Sint - Lieven</a></li>
+<li><a href="http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_abstract(nl-en).odt">Abstract</a> (nl + en)</li>
+<li><a href="http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_poster(en).pdf">Poster</a> (en)</li>
+<li><a href="http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_paper(en).pdf">Paper</a> (en, 5 blz)</li>
+<li><a href="http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_scriptie(nl).pdf">Scriptie</a> (nl, 79 blz)</li>
+<li><a href="http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_presentatie_proefverdediging(nl).pdf">Presentatie proefverdediging</a> (niet de <em>echte</em> verdediging) (nl, 23 slides)</li>
+<li><a href="http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_presentatie_verdediging(nl).pdf">Presentatie verdediging</a> (nl, 25 slides)</li>
+</ul>

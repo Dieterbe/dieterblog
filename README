@@ -8,16 +8,23 @@ Branch: description:
 * tmp-generation: to commit output from drupal-to-pyblosxom into (except unpublished stuff, which goes in private)
 
 == DEPENDENCIES ==
-pyblosxom 1.5 (packaged as pyblosxom-new in AUR)
+pyblosxom 1.5 (packaged as pyblosxom-new or pyblosxom-git in AUR)
 python-flup
 
 == NOTES ==
-* change settings in config (like blog title) -> doesn't effect immediately? need to restart server?
+* change settings in config (like blog title) -> doesn't effect immediately, need to restart server
+  (deploy script takes care of it)
 
 == TODO ==
-tags, comments, nice flavour
-urls for html and feeds where you can enable/disable tags, i.e.:
-	/*!irl for all topics minus things tagged irl
-feeds for comments
-show feed in html metadata
-Google Analytics
+* prevent other users of commenting as $my_nickname, "$myfirstname $mylastname", using *.$mydomain url or email
+* is it possible to use comment titles? only show if non-empty/different from entry title?
+* threading comments? like, reply to specific comment?
+* do validation on comment submit form (show what is mandatory, if not good enough, show error and ask to correct)
+  don't silently drop submission, but re-show
+* implement magicwords.py
+* allow in comments: ul, ol, li
+* urls for html and feeds where you can enable/disable tags, i.e.:
+  /*!irl for all topics minus things tagged irl
+* feeds for comments
+* show feed in html metadata, also when viewing only specific tag
+* Google Analytics

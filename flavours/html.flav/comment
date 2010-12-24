@@ -1,0 +1,4 @@
+<div class="blosxomComment">
+<p class="prefixedcomment">$cmt_description</p>
+<p class="postinfo">Posted by $cmt_optionally_linked_author on $cmt_pubDate</p>
+</div>

@@ -30,7 +30,7 @@ then
 fi
 
 echo "Deploying to $dst..."
-cmd='rsync -au --delete'
+cmd='rsync -au --delete --exclude=/entries/comments/*'
 if ! $cmd $src/ $dst/
 then
 	echo "Could not $cmd $src/ $dst/"

@@ -23,7 +23,7 @@ If something goes wrong (and only then!) it will show a popup with <a href="http
 
 # A very simple script to implement the Collecting part of GTD.
 # The only thing this script does is getting something out of head as quickly as possible, into a file you can trust
-# See <a href="http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox" title="http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox">http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_...</a>
+# See http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox
 
 program=`basename $0 .sh`
 datadir=${XDG_DATA_HOME:-$HOME/.local/share}/$program

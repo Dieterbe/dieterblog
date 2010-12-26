@@ -4,6 +4,7 @@ function usage () {
 	echo "Blog deployment script"
 	echo "\$1 : a directory where to deploy, like /srv/http/myblog"
 	echo "\$2 : a base url to configure (optional), eg: \"http://www.example.com/weblog\""
+	echo "\$3 : 1 to also update comments"
 }
 
 if [ "$1" = '-h' -o "$1" = '--help' ]
@@ -29,8 +30,15 @@ then
 	exit 2
 fi
 
-echo "Deploying to $dst..."
-cmd='rsync -au --delete --exclude=/entries/comments/*'
+echo -n "Deploying to $dst..."
+if [ "$3" != 1 ]
+then
+	cmd='rsync -au --delete --exclude=/entries/comments/*'
+	echo "leaving comments intact."
+else
+	cmd='rsync -au --delete'
+	echo "updating comments as well"
+fi
 if ! $cmd $src/ $dst/
 then
 	echo "Could not $cmd $src/ $dst/"

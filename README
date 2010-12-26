@@ -18,6 +18,8 @@ python-flup
 
 == TODO ==
 * prevent other users of commenting as $my_nickname, "$myfirstname $mylastname", using *.$mydomain url or email
+* automatically render url when comments do have Dieter_be as author
+* comments allow <code>syntax hilighting</code> http://localhost/emulating_two-dimensional_%28or_even_multi-dimensional%29_arrays_in_bash.html
 * is it possible to use comment titles? only show if non-empty/different from entry title?
 * threading comments? like, reply to specific comment?
 * do validation on comment submit form (show what is mandatory, if not good enough, show error and ask to correct)

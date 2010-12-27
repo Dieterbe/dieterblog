@@ -68,5 +68,5 @@ def verify_installation(request):
         import lxml.html.soupparser
     except Exception, e:
         print "Missing dependencies: %s" % str(e)
-        return 1
-    return 0
+        return 0
+    return 1

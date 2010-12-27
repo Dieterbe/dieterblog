@@ -16,7 +16,7 @@ I've left out the basics such as sql, models and controller business logic, and 
 <p>The view-code can be combined in different elements but for simplicity let's assume there is only 1 view file.<br />
 Keep in mind that each object where you want to assign some functionality to (such as draggable, droppable) must have a unique DOM id.  It doesn't matter if it's a div or span or p or whatever, as long as it has a unique id.</p>
 <p>The view looks like this:</p>
-<code lang="php"><![CDATA[
+<code lang="html+php"><![CDATA[
 <?php foreach($articles as $article): ?>
 <div id="<?php echo $article['Article']['id']; ?>">
    <?php echo $article['Article']['description']; ?>
@@ -48,7 +48,7 @@ Keep in mind that each object where you want to assign some functionality to (su
 */
 ]]></code><p>
 The controller would have functions like this:</p>
-<code lang="php"><![CDATA[
+<code lang="html+php"><![CDATA[
 <?php
 
 // this function can be used to show initial contents of the cart.
@@ -76,7 +76,7 @@ function removearticle(){
 ?>
 ]]></code><p>
 The view controller/cart.ctp could look something like this:</p>
-<code lang="php"><![CDATA[
+<code lang="html+php"><![CDATA[
 <ul>
 <?php foreach($articles as $artikel):?>
 <li><?php echo $article['Article']['id']; ?></li>

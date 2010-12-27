@@ -41,6 +41,8 @@ required):
    comment_nofollow - set this to 1 to add rel="nofollow" attributes to
                  links in the description -- these attributes are embedded
                  in the stored representation.
+   comment_mark - a three-element tuple: field to check, value to check
+                  against, and class to give the comment ($cmt_extra_class)
 
 Comments are stored one or more per file in a parallel hierarchy to the
 datadir hierarchy. The filename of the comment is the filename of the blog
@@ -245,7 +247,7 @@ def verify_installation(request):
                 print "Missing comment SMTP property: '%s'" % i
                 retval = 0
     
-    optional_keys = ['comment_dir', 'comment_ext', 'comment_draft_ext']
+    optional_keys = ['comment_dir', 'comment_ext', 'comment_draft_ext', 'comment_mark']
     for i in optional_keys:
         if not i in config:
             print "missing optional property: '%s'" % i
@@ -1011,6 +1013,10 @@ def cb_story_end(args):
             for comment in entry['comments']:
                 comment_entry = dict(comment_entry_base)
                 comment_entry.update(comment)
+                if 'comment_mark' in config:
+                    mark = config['comment_mark']
+                    if comment.get('cmt_' +mark[0]) == mark[1]:
+                        comment_entry['cmt_extra_class'] = mark[2]
                 output.append(renderer.render_template(comment_entry, 'comment'))
         if (('preview' in form
              and 'comment-preview' in renderer.flavour)):

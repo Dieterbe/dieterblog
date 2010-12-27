@@ -95,6 +95,9 @@ img {
 .blosxomComment {
 	margin-top: 20px;
 }
+.blosxomOwnerComment {
+	background-color: #FFFFDD;
+}
 .prefixedcomment {
 	border-left: 5px solid #eee;
 	padding-left: 3px;

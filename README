@@ -24,7 +24,7 @@ python-flup
 * threading comments? like, reply to specific comment?
 * do validation on comment submit form (show what is mandatory, if not good enough, show error and ask to correct)
   don't silently drop submission, but re-show. validate email and url
-* implement magicwords.py
+* pymetatime: if time in future: don't show
 * allow in comments: ul, ol, li
 * urls for html and feeds where you can enable/disable tags, i.e.:
   /*!irl for all topics minus things tagged irl

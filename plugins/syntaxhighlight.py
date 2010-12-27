@@ -1,9 +1,25 @@
 # vim: tabstop=4 shiftwidth=4 expandtab
 """
 Preformatter which uses pygments to highlight source code syntax
-In your entries, you can highlight code as follows:
-<code><![CDATA[.....]]></code> # automatic lexer guessing
-<code lang="bash"><![CDATA[.....]]></code> # use specific lxml lexer
+In your entries, you can highlight code by wrapping it in 'code' tags.
+You can specify a language by using making the 'lang' attribute a lexer
+shortname. See http://pygments.org/docs/lexers/
+Otherwise, the most appropriate lexer will be guessed.
+
+Examples:
+* Within CDATA tags, you can literally put the source code (recommended)
+
+<code><![CDATA[
+your_source_code(<somevariable>); /* here */
+echo ("<html><tag foo='bar'>");
+]]></code>
+
+* Otherwise, you need to replace html entities by their references
+  (use this when you have (short) source code, without html entities)
+
+<code lang="html">&lt;html&gt;</code>
+
+
 Depends on pygments, lxml, beautiful-soup
 """
 __author__ = 'Dieter Plaetinck <dieter@plaetinck.be>'

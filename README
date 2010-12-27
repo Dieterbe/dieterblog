@@ -17,6 +17,7 @@ python-flup
   (deploy script takes care of it)
 
 == TODO ==
+* when magicword.py rejects comment, it appears as if it stored a new comment with contents 'comment rejected'
 * prevent other users of commenting as $my_nickname, "$myfirstname $mylastname", using *.$mydomain url or email
 * automatically render url when comments do have Dieter_be as author
 * comments allow <code>syntax hilighting</code> http://localhost/emulating_two-dimensional_%28or_even_multi-dimensional%29_arrays_in_bash.html

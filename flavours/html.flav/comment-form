@@ -25,6 +25,9 @@ URL:<br />
 <b>Comment</b>:<br />
 <textarea cols="50" name="body" id="comment-body" rows="12">$cmt_description</textarea><br />
 <br />
+<b>$mw_question</b><br />
+<input maxlenth="32" name="magicword" size="50" type="text" /><br />
+<br/>
 This comment form is pretty crude.  Make sure mandatory fields are entered correctly.
 <br/>
 <input value="Preview" name="preview" type="submit" id="preview" />

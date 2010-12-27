@@ -31,3 +31,4 @@ python-flup
 * feeds for comments
 * show feed in html metadata, also when viewing only specific tag
 * Google Analytics
+* fix display of \$ for e.g. http://localhost/visual_feedback_of_the_exit_status_of_the_previous_command_in_bash.html

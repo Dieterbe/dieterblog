@@ -17,7 +17,6 @@ from pygments.lexers import PythonLexer, get_lexer_by_name, guess_lexer
 from pygments.formatters import HtmlFormatter
 from lxml import etree
 from lxml.html.soupparser import fromstring
-import re
 
 def cb_start(args):
     request = args["request"]
@@ -48,15 +47,11 @@ def parse(text):
     return result
 
 def highlightcallback (code):
-    # TODO: when the code contains > or & etc, those must be displayed correctly, not their entity references
     try:
         lexer = get_lexer_by_name(code.attrib['lang'])
     except Exception, e:
         lexer = guess_lexer(etree.tostring(code))
-    output = etree.tostring(code)
-    # remove the actual <code> </code> tags, there is probably a nicer way to do this.
-    output = re.sub('^<code[^>]*>', '', output)
-    output = re.sub('</code[^>]*>$', '', output)
+    output = code.text_content() # same as `etree.tostring(code, method='text')` afaict
     output = highlight(output, lexer, HtmlFormatter())
     # NOTE: emitting the styles like this doesn't feel right
     # if you have multiple entries with source code -> redundant style tags
@@ -71,7 +66,6 @@ def verify_installation(request):
         import lxml
         import pygments
         import lxml.html.soupparser
-        import re
     except Exception, e:
         print "Missing dependencies: %s" % str(e)
         return 1

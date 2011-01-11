@@ -138,7 +138,7 @@ py["plugin_dirs"] = [os.path.join(blogdir, "plugins")]
 # 
 # If you specify an empty list, then this will load no plugins.
 # ex: py["load_plugins"] = ["pycalendar", "pyfortune", "pyarchives"]
-py["load_plugins"] = ["comments", "pymetatime", "readmore", "tags", "syntaxhighlight", "magicword", 'nopose']
+py["load_plugins"] = ["comments", "pymetatime", "readmore", "tags", "syntaxhighlight", "magicword", 'nopose', 'guid']
 
 py['readmore_breakpoint'] = '<!--break-->'
 py['readmore_template'] = ['<br/><br/>::<a href="%(url)s">Read more</a>',

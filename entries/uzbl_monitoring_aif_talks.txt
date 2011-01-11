@@ -2,6 +2,7 @@ Uzbl, monitoring, AIF talks
 # pubdate 2010-03-07
 # pubtime 12:06:18
 # tags real life,uzbl,arch
+# guid 84 at http://dieter.plaetinck.be
 <p>I recently did two talks, for which the videos are now online.</p>
 <ul>
 <li><a href="http://www.uzbl.org/news.php?id=25">Uzbl lightningtalk @ fosdem 2010</a></li>

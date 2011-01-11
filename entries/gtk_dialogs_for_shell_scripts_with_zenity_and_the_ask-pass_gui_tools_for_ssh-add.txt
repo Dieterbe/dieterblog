@@ -2,6 +2,7 @@ gtk dialogs for (shell)scripts with zenity and the ask-pass gui tools for ssh-ad
 # pubdate 2007-11-25
 # pubtime 18:45:41
 # tags foss,bash
+# guid 33 at http://dieter.plaetinck.be
 <p>Phew! where to start?  Probably at <a href ="http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively">this blogpost</a>.  It's about making it very easy to work with external encrypted volumes. I'm not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity. <!--break--> It's an LGPL-licensed program written in C by some guys from Gnome and Sun. You can call it from any script and present a user with a gtk widget such as a password-dialog, filechooser, calendar, ... It has <a href="http://www.linuxmanpages.com/man1/zenity.1.php">many possibilities</a>.<br />
 This is great if you want to run scripts on the terminal or even without a terminal (scripts automatically started by your desktop environment) and need user input.</p>
 <p>This immediately made me think of using this together with ssh-add, because i was getting a bit tired to open a console and add my key by typing the ssh-add command for every X session. (For the record: ssh-add without any arguments is enough for most users: it looks for keys with default names, but i have multiple keys with some speial names so...)<br />

@@ -2,6 +2,7 @@ Off to Toronto July 14-28, Archcon
 # pubdate 2010-07-04
 # pubtime 11:34:08
 # tags real life,arch
+# guid 86 at http://dieter.plaetinck.be
 <p>As mentioned <a href="http://dieter.plaetinck.be/uzbl_monitoring_aif_talks">earlier</a>, I'll be at <a href="http://www.archlinux.ca/archcon2010/">Archcon in Toronto</a> in a few weeks.<br />
 It's a very small conference, and the first of its kind.  At the <a href="http://dieter.plaetinck.be/froscon_2009_afterthoughts">last FrOSCon</a> we have been playing with the idea to hold an informal Arch conference in Europe, but those were just ideas.  Dusty and Ricardo beat us with an actual implementation.<br />
 This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.<!--break--></p>

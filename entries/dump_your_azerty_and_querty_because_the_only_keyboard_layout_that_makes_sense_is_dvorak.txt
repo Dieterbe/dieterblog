@@ -2,6 +2,7 @@ Dump your azerty and querty because the only keyboard layout that makes sense is
 # pubdate 2008-06-15
 # pubtime 21:20:00
 # tags productivity
+# guid 40 at http://dieter.plaetinck.be
 <p>For a while now I am typing using solely the Dvorak keyboard layout.  I roughly estimate it has been 4 or 5 months now - with the first month being a pain in the ass because i had to relearn typing pretty much from scratch - but now my typing speed is starting to exceed what it used to be in querty, and I still have much headroom to improve.</p>
 <p>For those who have no clue what I'm talking about: think for 30 seconds which characters you type the most and which the least (eg: which characters occur the most/least in the language you type?).</p>
 <p>Ok you got them?  Now look at your keyboard and spot where these characters are.  Now consider where your fingers are most of the time (if you've never learned to type: the 'base position' for your fingers is on the middle row).  Notice anything strange?<!--break--></p>

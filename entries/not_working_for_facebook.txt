@@ -2,6 +2,7 @@ Not working for Facebook
 # pubdate 2010-02-12
 # pubtime 22:58:31
 # tags real life
+# guid 82 at http://dieter.plaetinck.be
 <p>In november last year, I was contacted by Facebook HR.<br />
 They found my background interesting and thought I might be a good<br />
 fit for an "application operations engineer" position in Palo Alto, California. (it is<br />

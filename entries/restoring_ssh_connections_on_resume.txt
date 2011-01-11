@@ -2,6 +2,7 @@ Restoring ssh connections on resume
 # pubdate 2010-06-16
 # pubtime 18:11:50
 # tags foss,linux
+# guid 85 at http://dieter.plaetinck.be
 <p>I use <a href="http://wiki.archlinux.org/index.php/Pm-utils">pm-utils</a> for hibernation support.<br />
 It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.<br />
 If you want to run stuff as a regular user you could do something like</p>

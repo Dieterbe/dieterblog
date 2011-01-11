@@ -2,5 +2,6 @@ Wishlist
 # pubdate 2009-09-04
 # pubtime 16:22:03
 # tags real life
+# guid 73 at http://dieter.plaetinck.be
 <p>I'm starting to keep track of some things I want.  I've picked Amazon because they have many items in their database.<br />
 <a href="http://www.amazon.com/gp/registry/wishlist/2K78V4LHLYBD">wishlist</a></p>

@@ -2,6 +2,7 @@ Thesis finished
 # pubdate 2007-05-24
 # pubtime 16:55:34
 # tags real life,thesis
+# guid 13 at http://dieter.plaetinck.be
 <p>Yesterday, after a night of searching and fixing spelling errors, things that could be better explained and other small details,<br />
 I got my thesis printed and delivered the six books to my school.<br />
 <!--break--><br />

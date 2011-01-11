@@ -2,6 +2,7 @@ About the maemo summit 2009 and the nokia n900
 # pubdate 2009-10-12
 # pubtime 21:20:39
 # tags real life,n900,maemo
+# guid 77 at http://dieter.plaetinck.be
 <p>So I'm back from the 3-day <a href="http://wiki.maemo.org/Maemo_Summit_2009">maemo summit</a> in Amsterdam.  It was very nice.  Very well organized, and Nokia definitely invested enough in catering, fancy-suited people and such to please all 400 of us.  I met several interesting people, both from the community, as well as Nokia guys.<br />
 The talks were diverse, but interesting (duh?).  I will especially remember the kickoff with its fancy visual effects and loud music that set the mood straight for the entire weekend.<br />
 The best moment was, of course, when it was announced that <strong>every summit participant would receive a n900.  Uncontrolled hapiness all around. </strong><br />

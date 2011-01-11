@@ -2,6 +2,7 @@ Arch Linux interview and Uzbl article
 # pubdate 2010-01-11
 # pubtime 21:30:50
 # tags arch,uzbl
+# guid 80 at http://dieter.plaetinck.be
 <ul>
 <li><a href="http://www.osnews.com/story/22692/Arch_Linux_Team">Arch Linux team interview @ OSNews</a></li>
 <li><a href="http://lwn.net/Articles/341245/">Uzbl @ LWN.net</a></li>

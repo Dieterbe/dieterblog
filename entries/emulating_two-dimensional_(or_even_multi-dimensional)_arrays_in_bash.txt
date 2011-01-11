@@ -2,6 +2,7 @@ Emulating two-dimensional (or even multi-dimensional) arrays in bash
 # pubdate 2007-08-26
 # pubtime 12:49:42
 # tags bash
+# guid 30 at http://dieter.plaetinck.be
 <p>Ever needed to use arrays of two or more dimensions but got stuck on Bash limited array support which provides only 1 dimension?</p>
 <p>There is a trick that let's you dynamically create variable names.  Using this, you can emulate additional dimensions.<br />
 <!--break--></p>

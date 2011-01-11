@@ -2,6 +2,7 @@ Arch Linux 2009.08 & Froscon 2009
 # pubdate 2009-08-10
 # pubtime 12:36:48
 # tags real life,foss,arch
+# guid 70 at http://dieter.plaetinck.be
 <p>So, the Arch Linux <a href="http://bbs.archlinux.org/viewtopic.php?id=77680">2009.08 release</a> is now behind us, nicely on schedule.<br />
 I hope people will like <a href="http://github.com/Dieterbe/aif/">AIF</a> because it was a lot of work and we didn't receive much feedback.  I personally like it to apply my <a href="http://dieter.plaetinck.be/rethinking_the_backup_paradigm_a_higher-level_approach">fancy backup restoration</a> approach.<br />
 But I'm sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With <a href="http://dieter.plaetinck.be/uzbl_a_browser_that_adheres_to_the_unix_philosophy">uzbl</a> I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)</p>

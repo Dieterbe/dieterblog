@@ -2,6 +2,7 @@ Fosdem 2007 review
 # pubdate 2007-03-15
 # pubtime 21:02:41
 # tags real life,php,linux,information age,foss,dauth,bash,web2.0
+# guid 6 at http://dieter.plaetinck.be
 <p>Every year, during a special weekend in February, the <a href="http://www.ulb.ac.be/">University Libre of Brussels</a> suddenly becomes a little more geeky.<br />
 It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
 <a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>

@@ -2,6 +2,7 @@ AIF automatic lvm/dm_crypt installations and test suite
 # pubdate 2009-07-22
 # pubtime 22:36:30
 # tags arch
+# guid 69 at http://dieter.plaetinck.be
 <p>We're working hard on a new <a href="http://www.archlinux.org">Arch</a> release. (should be done by <a href="http://froscon.org/">froscon</a>)</p>
 <p>Amongst the slew of fixes and improvements there are also some cool new things I'm working on.<br />
 First of all, I worked more on the automatic installations.  Now you can easily install an LVM based Arch system on top of dm_crypt for example.<br />

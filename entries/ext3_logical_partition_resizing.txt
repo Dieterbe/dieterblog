@@ -2,6 +2,7 @@ ext3 logical partition resizing
 # pubdate 2009-11-01
 # pubtime 10:17:26
 # tags linux
+# guid 78 at http://dieter.plaetinck.be
 <p>You probably know you can resize primary partitions by deleting them and recreating them, keeping the starting block the same but using a higher block as ending point.  You can then increase the filesystem.<br />
 But what about logical partitions?  A while back I had to resize an ext3 logical partition which ended at the end of the last logical partition.  I learned some usefull stuff but I only made some quick scratch notes and I don't remember all details so:<br />
 <strong>Do not expect a nice tutorial here, it's more of a commented dump of my scratch notes and some vague memories.<br />

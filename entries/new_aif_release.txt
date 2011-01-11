@@ -2,6 +2,7 @@ new AIF release
 # pubdate 2008-12-17
 # pubtime 09:50:11
 # tags foss,arch
+# guid 58 at http://dieter.plaetinck.be
 <p>My holidays present for Arch devs and users: AIF alpha-0.6 !</p>
 <p>* Changes since alpha 0.5:<!--break--></p>
 <ul>

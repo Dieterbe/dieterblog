@@ -2,6 +2,7 @@ Mysql status variables caveats
 # pubdate 2009-06-06
 # pubtime 11:33:34
 # tags foss
+# guid 67 at http://dieter.plaetinck.be
 <p>While setting up Zenoss and reading <a href="http://dev.mysql.com/doc/refman/5.0/en/server-status-variables.html">Mysql documentation about status variables</a> I learned:</p>
 <ul>
 <li>All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  ("Command statistics:selects" graph in Zenoss)</li>

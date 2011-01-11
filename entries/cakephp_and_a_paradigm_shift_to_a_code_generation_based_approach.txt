@@ -2,6 +2,7 @@ CakePHP and a paradigm shift to a code generation based approach?
 # pubdate 2009-01-19
 # pubtime 22:16:52
 # tags foss,cakephp
+# guid 60 at http://dieter.plaetinck.be
 <p>At my <a href="http://dieter.plaetinck.be/jobhunt_over">new job</a>, I'm writing a quite full-featured web application.<br />
 I've choosen to use CakePHP.<br />
 Why? Well, it may be 2 years since I last used it, but I've followed the project and it's planet, and it seems to have matured and gained even more monumentum.<br />

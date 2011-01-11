@@ -2,6 +2,7 @@ DDM v0.4 released
 # pubdate 2008-09-23
 # pubtime 16:21:27
 # tags foss,bash
+# guid 49 at http://dieter.plaetinck.be
 <p>DDM v0.4 has been released.<br />
 Since the last release many, many things have been changed/fixed/added.<br />
 <!--break--><br />

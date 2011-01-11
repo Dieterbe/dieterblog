@@ -2,6 +2,7 @@ Rsyncbench, an rsync benchmarking tool
 # pubdate 2010-10-15
 # pubtime 09:38:12
 # tags foss
+# guid 92 at http://dieter.plaetinck.be
 <p>Background info:<br />
 I'm currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn't need much disk space,<br />
 but in the meantime it might be a good idea to look for online backup solutions (oops did I say "online"? I meant "cloud"), like on the (V)PS itself, or maybe as a separate solution.<br />

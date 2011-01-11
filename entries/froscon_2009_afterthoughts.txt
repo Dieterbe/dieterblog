@@ -2,6 +2,7 @@ Froscon 2009 afterthoughts
 # pubdate 2009-08-28
 # pubtime 19:00:02
 # tags real life,uzbl,arch
+# guid 72 at http://dieter.plaetinck.be
 <p><a href="http://froscon.org/">Froscon</a> was great.</p>
 <ul>
 <li>It was smaller then I thought, I especially assumed more activity in the devrooms (I'm too used to <a href="http://fosdem.org/">fosdem</a> which is much bigger), but hey nice conference anyway.</li>

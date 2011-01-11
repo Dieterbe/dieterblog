@@ -2,6 +2,7 @@ Tweaking Lighttpd stat() performance with fcgi-stat-accel
 # pubdate 2008-03-03
 # pubtime 21:12:42
 # tags foss,netlog
+# guid 38 at http://dieter.plaetinck.be
 <p>If you serve lots of (small) files with Lighttpd you might notice you're not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn't have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
 <!--break--><br/>
 (in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p>

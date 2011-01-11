@@ -2,6 +2,7 @@ Hello world!
 # pubdate 2007-03-04
 # pubtime 14:45:36
 # tags cakephp,dauth,drupal,foss,linux,php,web2.0
+# guid 1 at http://dieter.plaetinck.be
 <p>Finally, my own website...<br />
 I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous <a href="http://www.cakephp.org">CakePHP</a> framework along with an authentication system i wrote, <a href="http://bakery.cakephp.org/articles/view/147">dAuth</a>.<br />
 However, due to my lack of time I decided to use the excellent <a href="http://www.drupal.org">drupal</a> platform, of which I'm quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)<br />

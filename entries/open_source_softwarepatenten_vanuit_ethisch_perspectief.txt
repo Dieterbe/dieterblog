@@ -2,6 +2,7 @@ Open source en softwarepatenten vanuit een ethisch perspectief
 # pubdate 2007-05-29
 # pubtime 00:53:08
 # tags linux,information age,foss
+# guid 14 at http://dieter.plaetinck.be
 <p>Voor school moest ik een ethisch verslag schrijven.<br />
 Hier moesten 3 elementen in voorkomen:</p>
 <ul>

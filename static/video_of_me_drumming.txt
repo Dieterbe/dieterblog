@@ -2,6 +2,7 @@ Video of me drumming
 # pubdate 2007-11-04
 # pubtime 18:28:17
 # tags real life,drums
+# guid 32 at http://dieter.plaetinck.be
 <p>I recorded a little drumvideo while practicing.<br />
 It's just some improvisation... Find the mistakes! ;-)</p>
 <p>Recorded with 2 shure SM57's, an M-audio mobilepre USB and the iSight cam in my macbook pro.</p>

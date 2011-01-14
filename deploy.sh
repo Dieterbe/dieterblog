@@ -33,10 +33,10 @@ fi
 echo -n "Deploying to $dst..."
 if [ "$3" != 1 ]
 then
-	cmd='rsync -au --delete --exclude=/entries/comments/*'
+	cmd='rsync -avu --delete --exclude=/entries/comments/**'
 	echo "leaving comments intact."
 else
-	cmd='rsync -au --delete'
+	cmd='rsync -avu --delete'
 	echo "updating comments as well"
 fi
 if ! $cmd $src/ $dst/

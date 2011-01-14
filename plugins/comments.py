@@ -1017,7 +1017,14 @@ def cb_story_end(args):
                     mark = config['comment_mark']
                     if comment.get('cmt_' +mark[0]) == mark[1]:
                         comment_entry['cmt_extra_class'] = mark[2]
-                output.append(renderer.render_template(comment_entry, 'comment'))
+                commentout = renderer.render_template(comment_entry, 'comment')
+                # sort-of-hack: check if syntaxhighlight plugin is loaded,
+                # if yes, enable syntax hilighting in comments
+                if 'syntaxhighlight' in config['load_plugins']:
+                    if 'code' in commentout:
+                        import syntaxhighlight
+                        commentout = syntaxhighlight.parse (commentout)
+                output.append(commentout)
         if (('preview' in form
              and 'comment-preview' in renderer.flavour)):
             com = build_preview_comment(form, entry, config)

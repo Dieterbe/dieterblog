@@ -1,9 +1,10 @@
 <item>
-  <title>$(escape(title))</title>
-  <guid isPermaLink="false">$(guid)</guid>
-  <link>$(base_url)/$(file_path_urlencoded).html</link>
-  <description><![CDATA[
+   <title>$(escape(title))</title>
+   <guid isPermaLink="false">$(guid)</guid>
+   <link>$(base_url)/$(urlencode(file_path)).$(default_flavour)</link>
+   <description><![CDATA[
 $(body)
 ]]></description>
+   <category domain="$(base_url)">$(path)</category>
+   <pubDate>$(rfc822date)</pubDate>
 </item>
-

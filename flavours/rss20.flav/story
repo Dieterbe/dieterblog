@@ -1,6 +1,6 @@
 <item>
    <title>$(escape(title))</title>
-   <guid isPermaLink="false">$(file_path)</guid>
+   <guid isPermaLink="false">$(guid)</guid>
    <link>$(base_url)/$(urlencode(file_path)).$(default_flavour)</link>
    <description><![CDATA[
 $(body)

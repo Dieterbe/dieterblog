@@ -1,5 +1,5 @@
 <item>
-  <title>$(title_escaped)</title>
+  <title>$(escape(title))</title>
   <guid isPermaLink="false">$(guid)</guid>
   <link>$(base_url)/$(file_path_urlencoded).html</link>
   <description><![CDATA[

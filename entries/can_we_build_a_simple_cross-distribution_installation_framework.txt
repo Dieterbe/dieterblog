@@ -1,0 +1,12 @@
+Can we build a simple, cross-distribution installation framework?
+# pubdate 2011-02-06
+# pubtime 23:46:18
+# tags real life,fosdem,arch
+Today at <a href="http://www.fosdem.org/2011/">Fosdem 2011</a> I did my talk <a href="http://fosdem.org/2011/schedule/event/distro_crossinstall">Can we build a simple, cross-distribution installation framework?</a>
+Basically, using the <a href="http://www.archlinux.org/">Arch</a> Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check
+if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.
+There was some interest, so we'll see what happens.
+<ul>
+<li><a href="http://dieter.plaetinck.be/files/lif.pdf">slides</a></li>
+<li><a href="http://www.youtube.com/watch?v=83xBdlbGHdI">video</a></li>
+</ul>

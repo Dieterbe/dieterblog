@@ -20,29 +20,52 @@ changes. Thanks!
 This module supports the following config parameters (they are not
 required):
 
-   comment_dir - the directory we're going to store all our comments in.
-                 this defaults to datadir + "comments".
-   comment_ext - the file extension used to denote a comment file.
-                 this defaults to "cmt".
-   comment_draft_ext - the file extension used for new comments that have
-                       not been manually approved by you.  this defaults
-                       to comment_ext (i.e. there is no draft stage)
+   comment_dir
 
-   comment_smtp_server - the smtp server to send comments notifications
-                         through.
-   comment_mta_cmd - alternatively, a command line to invoke your MTA (e.g.
-                     sendmail) to send comment notifications through.
-   comment_smtp_from - the email address comment notifications will be from. If
-                       you're using SMTP, this should be an email address
-                       accepted by your SMTP server. If you omit this, the
-                       from address will be the e-mail address as input in
-                       the comment form.
-   comment_smtp_to - the email address to send comment notifications to.
-   comment_nofollow - set this to 1 to add rel="nofollow" attributes to
-                 links in the description -- these attributes are embedded
-                 in the stored representation.
-   comment_mark - a three-element tuple: field to check, value to check
-                  against, and class to give the comment ($cmt_extra_class)
+      the directory we're going to store all our comments in.  this
+      defaults to datadir + "comments".
+
+   comment_ext
+
+      the file extension used to denote a comment file.  this defaults
+      to "cmt".
+
+   comment_draft_ext
+
+      the file extension used for new comments that have not been
+      manually approved by you.  this defaults to comment_ext
+      (i.e. there is no draft stage)
+
+   comment_smtp_server
+
+      the smtp server to send comments notifications through.
+
+   comment_mta_cmd
+
+      alternatively, a command line to invoke your MTA (e.g.
+      sendmail) to send comment notifications through.
+
+   comment_smtp_from
+
+      the email address comment notifications will be from. If you're
+      using SMTP, this should be an email address accepted by your
+      SMTP server. If you omit this, the from address will be the
+      e-mail address as input in the comment form.
+
+   comment_smtp_to
+
+      the email address to send comment notifications to.
+
+   comment_nofollow
+
+      set this to 1 to add rel="nofollow" attributes to links in the
+      description -- these attributes are embedded in the stored
+      representation.
+
+   comment_disable_after_x_days
+
+      set this to a positive integer and users won't be able to leave
+      comments on entries older than x days.
 
 Comments are stored one or more per file in a parallel hierarchy to the
 datadir hierarchy. The filename of the comment is the filename of the blog
@@ -144,8 +167,8 @@ actually run the code in comments.js.)
 NOFOLLOW SUPPORT
 ================
 
-This plugin implements Google's nofollow support for links in the body of the 
-comment. If you display the link of the comment poster in your HTML template 
+This plugin implements Google's nofollow support for links in the body of the
+comment. If you display the link of the comment poster in your HTML template
 then you must add the rel="nofollow" attribute to your template as well
 
 
@@ -155,12 +178,12 @@ NOTE TO DEVELOPERS WHO ARE WRITING PLUGINS THAT CREATE COMMENTS
 Each entry has to have the following properties in order to work with
 comments:
 
- 1. absolute_path - the category of the entry.  
+ 1. absolute_path - the category of the entry.
     ex. "dev/pyblosxom" or ""
  2. fn - the filename of the entry without the file extension and without
-    the directory.  
+    the directory.
     ex. "staticrendering"
- 3. file_path - the absolute_path plus the fn.  
+ 3. file_path - the absolute_path plus the fn.
     ex. "dev/pyblosxom/staticrendering"
 
 Also, if you don't want comments for an entry, add "nocomments" = 1
@@ -176,7 +199,7 @@ the comments plugin.
 
 Additionally, there is a chapter in the PyBlosxom manual that
 covers installing and configuring the comments plugin.  The manual
-is on the PyBlosxom web-site: http://pyblosxom.sourceforge.net/
+is on the PyBlosxom web-site: http://pyblosxom.bluesock.org/
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -200,11 +223,21 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 __author__ = "Ted Leung"
 __version__ = "$Id$"
-__url__ = "http://pyblosxom.sourceforge.net/"
+__url__ = "http://pyblosxom.bluesock.org/"
 __description__ = "Allows for comments on each blog entry."
 
-import cgi, glob, os.path, re, time, cPickle, os, codecs, sys, popen2, \
-  traceback, types
+import cgi
+import glob
+import re
+import time
+import cPickle
+import os
+import codecs
+import sys
+import subprocess
+import traceback
+import types
+
 from email.MIMEText import MIMEText
 from xml.sax.saxutils import escape
 from Pyblosxom import tools
@@ -224,7 +257,7 @@ def cb_start(args):
         config['comment_draft_ext'] = config['comment_ext']
     if not 'comment_nofollow' in config:
         config['comment_nofollow'] = 0
-    
+
 def verify_installation(request):
     config = request.get_configuration()
 
@@ -236,7 +269,10 @@ def verify_installation(request):
         retval = 0
 
     smtp_keys_defined = []
-    smtp_keys=['comment_smtp_server', 'comment_smtp_from', 'comment_smtp_to']
+    smtp_keys=[
+        'comment_smtp_server', 
+        'comment_smtp_from', 
+        'comment_smtp_to']
     for k in smtp_keys:
         if k in config:
             smtp_keys_defined.append(k)
@@ -246,11 +282,21 @@ def verify_installation(request):
             if i not in smtp_keys_defined:
                 print "Missing comment SMTP property: '%s'" % i
                 retval = 0
-    
-    optional_keys = ['comment_dir', 'comment_ext', 'comment_draft_ext', 'comment_mark']
+
+    optional_keys = [
+        'comment_dir', 
+        'comment_ext', 
+        'comment_draft_ext',
+        'comment_nofollow',
+        'comment_disable_after_x_days']
     for i in optional_keys:
         if not i in config:
             print "missing optional property: '%s'" % i
+
+    if 'comment_disable_after_x_days' in config:
+        if ((not isinstance(config['comment_disable_after_x_days'], int) or
+             config['comment_disable_after_x_days'] <= 0)):
+            print "comment_disable_after_x_days has a non-positive integer value."
 
     return retval
 
@@ -264,8 +310,8 @@ def createhtmlmail(html, headers):
     import MimeWriter
     import mimetools
     import cStringIO
-    
-    out = cStringIO.StringIO() # output buffer for our message 
+
+    out = cStringIO.StringIO() # output buffer for our message
     htmlin = cStringIO.StringIO(html)
 
     text = re.sub('<.*?>', '', html)
@@ -301,7 +347,7 @@ def read_comments(entry, config):
     """
     @param: a file entry
     @type: dict
-    
+
     @returns: a list of comment dicts
     """
     filelist = glob.glob(cmt_expr(entry, config))
@@ -311,18 +357,18 @@ def read_comments(entry, config):
     comments = [(cmt['cmt_time'], cmt) for cmt in comments]
     comments.sort()
     return [c[1] for c in comments]
-    
+
 def cmt_expr(entry, config):
     """
     Return a string containing the regular expression for comment entries
-    
+
     @param: a file entry
     @type: dict
     @returns: a string with the directory path for the comment
-    
+
     @param: configuratioin dictionary
     @type: dict
-    
+
     @returns: a string containing the regular expression for comment entries
     """
     cmt_dir = os.path.join(config['comment_dir'], entry['absolute_path'])
@@ -332,13 +378,13 @@ def cmt_expr(entry, config):
 def read_file(filename, config):
     """
     Read comment(s) from filename
-    
+
     @param filename: filename containing comment(s)
     @type filename: string
 
     @param config: the pyblosxom configuration settings
     @type config: dictionary
-    
+
     @returns: a list of comment dicts
     """
     from xml.sax import make_parser, SAXException
@@ -359,14 +405,14 @@ def read_file(filename, config):
             self._data += content
 
     cmts = []
-    
+
     try:
         parser = make_parser()
         parser.setFeature(feature_namespaces, 0)
         handler = cmt_handler(cmts)
         parser.setContentHandler(handler)
         parser.parse(filename)
-        
+
     # FIXME - bare except here--bad!
     except:
         logger = tools.get_logger()
@@ -396,13 +442,13 @@ def read_file(filename, config):
 def write_comment(request, config, data, comment, encoding):
     """
     Write a comment
-    
+
     @param config: dict containing pyblosxom config info
     @type  config: dict
-    
+
     @param data: dict containing entry info
     @type  data: dict
-    
+
     @param comment: dict containing comment info
     @type  comment: dict
 
@@ -436,10 +482,10 @@ def write_comment(request, config, data, comment, encoding):
         logger = tools.get_logger()
         logger.error("couldn't open comment file '%s' for writing" % cfn)
         return "Internal error: Your comment could not be saved."
- 
+
     cfile.write(filedata)
     cfile.close()
- 
+
     # write latest pickle
     latest = None
     latest_filename = os.path.join(config['comment_dir'], LATEST_PICKLE_FILE)
@@ -533,7 +579,7 @@ def send_email(config, entry, comment, comment_dir, comment_filename):
         message.append("Entry URL: %s" % curl)
         message.append("Comment location: %s" % comment_filename)
         message.append("\n\n%s" % description)
- 
+
         if 'comment_mta_cmd' in config:
             # set the message headers
             message.insert(0, "")
@@ -548,13 +594,15 @@ def send_email(config, entry, comment, comment_dir, comment_filename):
                     '-s',
                     '"comment on %s"' % curl,
                     config['comment_smtp_to']]
-            # FIXME - switch to subprocess when we can require python 2.4
-            process = popen2.Popen3(argv, capturestderr=True)
-            process.tochild.write(body)
-            process.tochild.close()
+
+            process = subprocess.Popen(
+                argv, stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process.stdin.write(body)
+            process.stdin.close()
             process.wait()
-            stdout = process.fromchild.read()
-            stderr = process.childerr.read()
+            stdout = process.stdout.read()
+            stderr = process.stderr.read()
             tools.get_logger().debug('Ran MTA command: ' + ' '.join(argv))
             tools.get_logger().debug('Received stdout: ' + stdout)
             tools.get_logger().debug('Received stderr: ' + stderr)
@@ -574,13 +622,31 @@ def send_email(config, entry, comment, comment_dir, comment_filename):
 
             # send the message via smtp
             server.sendmail(from_addr=email,
-                            to_addrs=config['comment_smtp_to'], 
+                            to_addrs=config['comment_smtp_to'],
                             msg=mimemsg.as_string())
             server.quit()
 
     except Exception, e:
         tools.get_logger().error("error sending email: %s" %
                                 traceback.format_exception(*sys.exc_info()))
+
+def check_comments_disabled(config, entry):
+    disabled_after_x_days = config.get("comment_disable_after_x_days", 0)
+    if not isinstance(disabled_after_x_days, int):
+        # FIXME - log an error?
+        return False
+
+    if disabled_after_x_days <= 0:
+        # FIXME - log an error?
+        return False
+
+    if not entry.has_key('mtime'):
+        return False
+
+    entry_age = (time.time() - entry['mtime']) / (60 * 60 * 24)
+    if entry_age > disabled_after_x_days:
+        return True
+    return False
 
 def clean_author(s):
     """
@@ -622,7 +688,7 @@ def sanitize(body):
     body=re.sub('\r\n?','\n', body)
 
     # naked urls become hypertext links
-    body=re.sub('(^|[\\s.:;?\\-\\]<])' + 
+    body=re.sub('(^|[\\s.:;?\\-\\]<])' +
                 '(http://[-\\w;/?:@&=+$.!~*\'()%,#]+[\\w/])' +
                 '(?=$|[\\s.:;?\\-\\[\\]>])',
                 '\\1<a href="\\2">\\2</a>',body)
@@ -630,9 +696,9 @@ def sanitize(body):
     # html characters used in text become escaped
     body = escape(body)
 
-    # passthru <a href>, <em>, <i>, <b>, <blockquote>, <br/>, <p>, 
+    # passthru <a href>, <em>, <i>, <b>, <blockquote>, <br/>, <p>,
     # <abbr>, <acronym>, <big>, <cite>, <code>, <dfn>, <kbd>, <pre>, <small>
-    # <strong>, <sub>, <sup>, <tt>, <var>
+    # <strong>, <sub>, <sup>, <tt>, <var>, <ul>, <ol>, <li>
     body = re.sub('&lt;a href="([^"]*)"&gt;([^&]*)&lt;/a&gt;',
                  '<a href="\\1">\\2</a>', body)
     body = re.sub('&lt;a href=\'([^\']*)\'&gt;([^&]*)&lt;/a&gt;',
@@ -640,9 +706,9 @@ def sanitize(body):
     body = re.sub('&lt;em&gt;([^&]*)&lt;/em&gt;', '<em>\\1</em>', body)
     body = re.sub('&lt;i&gt;([^&]*)&lt;/i&gt;', '<i>\\1</i>', body)
     body = re.sub('&lt;b&gt;([^&]*)&lt;/b&gt;', '<b>\\1</b>', body)
-    body = re.sub('&lt;blockquote&gt;([^&]*)&lt;/blockquote&gt;', 
+    body = re.sub('&lt;blockquote&gt;([^&]*)&lt;/blockquote&gt;',
                 '<blockquote>\\1</blockquote>', body)
-    body = re.sub('&lt;br\s*/?&gt;\n?','\n',body)
+    body = re.sub('&lt;br\s*/?&gt;\n?', '\n', body)
 
     body = re.sub('&lt;abbr&gt;([^&]*)&lt;/abbr&gt;', '<abbr>\\1</abbr>', body)
     body = re.sub('&lt;acronym&gt;([^&]*)&lt;/acronym&gt;', '<acronym>\\1</acronym>', body)
@@ -659,7 +725,15 @@ def sanitize(body):
     body = re.sub('&lt;tt&gt;([^&]*)&lt;/tt&gt;', '<tt>\\1</tt>', body)
     body = re.sub('&lt;var&gt;([^&]*)&lt;/var&gt;', '<var>\\1</var>', body)
 
-    body = re.sub('&lt;/?p&gt;','\n\n',body).strip()
+    # handle lists
+    body = re.sub('&lt;ul&gt;\s*', '<ul>', body)
+    body = re.sub('&lt;/ul&gt;\s*', '</ul>', body)
+    body = re.sub('&lt;ol&gt;\s*', '<ol>', body)
+    body = re.sub('&lt;/ol&gt;\s*', '</ol>', body)
+    body = re.sub('&lt;li&gt;([^&]*)&lt;/li&gt;\s*', '<li>\\1</li>', body)
+    body = re.sub('&lt;li&gt;', '<li>', body)
+
+    body = re.sub('&lt;/?p&gt;', '\n\n', body).strip()
 
     # wiki like support: _em_, *b*, [url title]
     body = re.sub(r'\b_(\w.*?)_\b', r'<em>\1</em>', body)
@@ -684,15 +758,14 @@ def sanitize(body):
 
     # white space
     chunk = re.split('\n\n+', ''.join(chunk))
-#    if len(chunk)>1: body='<p>' + '</p>\r<p>'.join(chunk) + '</p>\r'
-    body = re.sub('\n','<br />\n', body)
-    body = re.compile('<p>(<ul>.*?</ul>)\r</p>?',re.M).sub(r'\1',body)
-    body = re.compile('<p>(<blockquote>.*?</blockquote>)</p>?',re.M).sub(r'\1',body)
+    body = re.sub('\n', '<br />\n', body)
+    body = re.compile('<p>(<ul>.*?</ul>)\r</p>?', re.M).sub(r'\1', body)
+    body = re.compile('<p>(<blockquote>.*?</blockquote>)</p>?', re.M).sub(r'\1', body)
     body = re.sub('\r', '\n', body)
     body = re.sub('  +', '&nbsp; ', body)
 
-    return body        
-        
+    return body
+
 def dont_follow(mo):
     return '<a rel="nofollow" ' + mo.group(1) + '>'
 
@@ -707,7 +780,7 @@ def add_dont_follow(s, config):
 def cb_prepare(args):
     """
     Handle comment related HTTP POST's.
-    
+
     @param request: pyblosxom request object
     @type request: a Pyblosxom request object
     """
@@ -719,7 +792,7 @@ def cb_prepare(args):
 
     # first we check to see if we're going to print out comments
     # the default is not to show comments
-    data['display_comment_default'] = 0        
+    data['display_comment_default'] = False
 
     # check to see if they have "showcomments=yes" in the querystring
     qstr = pyhttp.get('QUERY_STRING', None)
@@ -727,19 +800,31 @@ def cb_prepare(args):
         parsed_qs = cgi.parse_qs(qstr)
         if 'showcomments' in parsed_qs:
             if parsed_qs['showcomments'][0] == 'yes':
-                data['display_comment_default'] = 1
+                data['display_comment_default'] = True
 
     # check to see if the bl_type is "file"
     if "bl_type" in data and data["bl_type"] == "file":
         data["bl_type_file"] = "yes"
-        data['display_comment_default'] = 1
- 
+        data['display_comment_default'] = True
+
     # second, we check to see if they're posting a comment and we
     # need to write the comment to disk.
     posting = (('ajax' in form and form['ajax'].value == 'post') or
                not "preview" in form)
     if (("title" in form and "author" in form
          and "body" in form and posting)):
+
+        entry = data.get("entry_list", [])
+        if len(entry) == 0:
+            data["rejected"] = True
+            data["comment_message"] = "No such entry exists."
+            return
+        entry = entry[0]
+
+        if check_comments_disabled(config, entry):
+            data["rejected"] = True
+            data["comment_message"] = "Comments for that entry are disabled."
+            return
 
         encoding = config.get('blog_encoding', 'utf-8')
         decode_form(form, encoding)
@@ -755,7 +840,7 @@ def cb_prepare(args):
         title = sanitize(title)
 
         # it doesn't make sense to add nofollow to link here, but we should
-        # escape it. If you don't like the link escaping, I'm not attached 
+        # escape it. If you don't like the link escaping, I'm not attached
         # to it.
         cmt_time = time.time()
         w3cdate = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(cmt_time))
@@ -931,13 +1016,13 @@ def cb_story(args):
     request = args["request"]
     data = request.get_data()
     config = request.get_configuration()
-    if 'absolute_path' in entry and not entry.has_key("nocomments"):
+    if entry.has_key('absolute_path') and not entry.has_key("nocomments"):
         entry['comments'] = read_comments(entry, config)
         entry['num_comments'] = len(entry['comments'])
-        if (len(renderer.getContent()) == 1
-            and 'comment-story' in renderer.flavour
-            and data['display_comment_default'] == 1):
-            template = renderer.flavour.get('comment-story','')
+        if ((len(renderer.get_content()) == 1
+             and 'comment-story' in renderer.flavour
+             and data['display_comment_default'])):
+            template = renderer.flavour.get('comment-story', '')
             args['template'] = args['template'] + template
 
     return template
@@ -1001,11 +1086,11 @@ def cb_story_end(args):
     data = request.get_data()
     form = request.get_http()['form']
     config = request.get_configuration()
-    if (('absolute_path' in entry
+    if ((entry.has_key('absolute_path')
          and len(renderer.get_content()) == 1
          and 'comment-story' in renderer.flavour
          and not entry.has_key('nocomments')
-         and data['display_comment_default'] == 1)):
+         and data['display_comment_default'])):
         output = []
         if entry['comments']:
             comment_entry_base = dict(entry)
@@ -1013,18 +1098,7 @@ def cb_story_end(args):
             for comment in entry['comments']:
                 comment_entry = dict(comment_entry_base)
                 comment_entry.update(comment)
-                if 'comment_mark' in config:
-                    mark = config['comment_mark']
-                    if comment.get('cmt_' +mark[0]) == mark[1]:
-                        comment_entry['cmt_extra_class'] = mark[2]
-                commentout = renderer.render_template(comment_entry, 'comment')
-                # sort-of-hack: check if syntaxhighlight plugin is loaded,
-                # if yes, enable syntax hilighting in comments
-                if 'syntaxhighlight' in config['load_plugins']:
-                    if 'code' in commentout:
-                        import syntaxhighlight
-                        commentout = syntaxhighlight.parse (commentout)
-                output.append(commentout)
+                output.append(renderer.render_template(comment_entry, 'comment'))
         if (('preview' in form
              and 'comment-preview' in renderer.flavour)):
             com = build_preview_comment(form, entry, config)
@@ -1035,7 +1109,8 @@ def cb_story_end(args):
             rejected['cmt_description'] = msg
             rejected['cmt_description_escaped'] = escape(msg)
             output.append(renderer.render_template(rejected, 'comment'))
-        output.append(renderer.render_template(entry, 'comment-form'))
+        if not check_comments_disabled(config, entry):
+            output.append(renderer.render_template(entry, 'comment-form'))
         args['template'] = template + "".join(output)
 
     return template

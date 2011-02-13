@@ -87,7 +87,9 @@ def cb_prepare(args):
         e["dw"] = time.strftime("%A", pubdate)
         e["date"] = e["dw"][:3] + time.strftime(", %d %b %Y", pubdate)
         e["fulltime"] = time.strftime("%Y%m%d%H%M%S", pubdate)
-        e["rfc822date"] = e["dw"][:3] + time.strftime(", %d %b %Y %H:%M ", pubdate) + tz
+        _mtime = time.mktime(pubdate)
+        gmtimetuple = time.gmtime(_mtime)
+        e['rfc822date'] = time.strftime('%a, %d %b %Y %H:%M GMT', gmtimetuple)
         e["mtime"] = time.mktime(pubdate)
         if not displaydate:
             m = time.strftime("%B", pubdate)

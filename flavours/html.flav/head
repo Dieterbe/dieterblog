@@ -111,7 +111,7 @@ img {
 <h1>
 	<a href="$(base_url)/">$(blog_title)</a>
 </h1>
-<a href="$(base_url)/index.rss"><img class='feed' src="http://www.cert.at/static/icons/rss.png"  title="Rss 2.0" alt="Rss 2.0"/></a>
-<a href="$(base_url)/index.atom" ><img class='feed' src="http://www.cert.at/static/icons/atom.png" title="Atom 1.0" alt="Atom 1.0"/></a>
+<a href="$(base_url)/index.rss"><img class='feed' src="$(base_url)/files/rss.png"  title="Rss 2.0" alt="Rss 2.0"/></a>
+<a href="$(base_url)/index.atom" ><img class='feed' src="$(base_url)/files/atom.png" title="Atom 1.0" alt="Atom 1.0"/></a>
 </div>
 <div id="contentpanel">

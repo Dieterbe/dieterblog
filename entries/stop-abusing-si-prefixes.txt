@@ -1,0 +1,6 @@
+Let's make the world a better place.  Let's stop the abuse of SI prefixes
+# pubdate 2011-03-07
+# pubtime 10:01:35
+This has been on my mind for a while.  But now I actually took some time to launch a little project to do something about it.
+<br/>1024 just ain't 1000. <a href="http://stopabusingsiprefixes.org/">stop abusing SI prefixes!</a>
+</p>

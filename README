@@ -9,7 +9,7 @@ Branch: description:
 * tmp-generation: to commit output from drupal-to-pyblosxom into (except unpublished stuff, which goes in private)
 
 == DEPENDENCIES ==
-pyblosxom 1.5 (packaged as pyblosxom-new or pyblosxom-git in AUR)
+pyblosxom 1.5
 python-flup
 
 == NOTES ==

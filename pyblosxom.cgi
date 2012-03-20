@@ -4,17 +4,19 @@
 # of gzip compressed content on Windows and OS/2
 #!/path/to/python -u
 
-# Uncomment this if something goes wrong (for debugging)
-#import cgitb; cgitb.enable()
-
 import os, sys
 
 # Uncomment this line to add the directory your config.py file is in to the
 # python path:
 #sys.path.append("__DEPLOYDIR__")
 
-# You shouldn't have to adjust anything below this line.
-# --------------------------------------------------
+
+
+# -------------------------------------------------------
+# You shouldn't have to adjust anything below this point.
+# -------------------------------------------------------
+
+
 
 # this allows for a config.py override
 script = os.environ.get('SCRIPT_FILENAME', None)

@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
-# =============================================================
-# This is the config file for PyBlosxom.  You should go through 
-# the file and fill in values for the various properties.  This 
+# =================================================================
+# This is the config file for Pyblosxom.  You should go through 
+# this file and fill in values for the various properties.  This 
 # affects the behavior of your blog.
 #
-# The PyBlosxom documentation has additional information on 
-# configuration variables.
-# =============================================================
+# This is a Python code file and as such must be written in
+# Python.
+#
+# There are configuration properties that are not detailed in
+# this file.  These are the properties that are most often used.
+# To see a full list of configuration properties as well as
+# additional documentation, see the Pyblosxom documentation on
+# the web-site for your version of Pyblosxom.
+# =================================================================
 
 # Don't touch this next line.
 py = {}
@@ -15,12 +21,13 @@ py = {}
 # Codebase configuration
 # ======================
 
-# If you did not install PyBlosxom as a library (i.e. python setup.py install)
-# then uncomment this next line and point it to your PyBlosxom installation
+# If you did not install Pyblosxom as a library (i.e. python setup.py install)
+# then uncomment this next line and point it to your Pyblosxom installation
 # directory.
-# Note, this should be the directory that holds the "Pyblosxom" 
-# directory (note the case--uppercase P lowercase b!).
-#py["codebase"] = "/usr/lib/python2.6/site-packages"
+# 
+# Note, this should be the parent directory of the "Pyblosxom" directory
+# (note the case--uppercase P lowercase b!).
+#py["codebase"] = "/usr/lib/python2.7/site-packages"
 
 import os
 
@@ -56,7 +63,8 @@ py["blog_encoding"] = "utf-8"
 
 # What is the locale for this blog?  This is used when formatting dates
 # and other locale-sensitive things.  Make sure the locale is valid for
-# your system.  See the PyBlosxom documentation for details.
+# your system.  See the configuration chapter in the Pyblosxom documentation
+# for details.
 #py["locale"] = "en_US.iso-8859-1"
 
 # Where are this blog's entries kept?
@@ -90,7 +98,7 @@ py["default_flavour"] = "html"
 # Logging configuration
 # =====================
 
-# Where should PyBlosxom write logged messages to?
+# Where should Pyblosxom write logged messages to?
 # If set to "NONE" log messages are silently ignored.
 # Falls back to sys.stderr if the file can't be opened for writing.
 #py["log_file"] = os.path.join(blogdir, "logs", "pyblosxom.log")
@@ -121,14 +129,14 @@ py["default_flavour"] = "html"
 #                               "/var/lib/pyblosxom/plugins"]
 py["plugin_dirs"] = [os.path.join(blogdir, "plugins")]
 
-# There are two ways for PyBlosxom to load plugins:
+# There are two ways for Pyblosxom to load plugins:
 # 
-# The first is the default way where PyBlosxom loads all plugins it
+# The first is the default way where Pyblosxom loads all plugins it
 # finds in the directories specified by "plugins_dir" in alphanumeric
 # order by filename.
 # 
 # The second is by specifying a "load_plugins" key here.  Specifying
-# "load_plugins" will cause PyBlosxom to load only the plugins you name 
+# "load_plugins" will cause Pyblosxom to load only the plugins you name 
 # and in in the order you name them.
 # 
 # The "load_plugins" key is a list of strings where each string is
@@ -153,20 +161,6 @@ py["load_plugins"] = []
 
 
 
-# Caching configuration
-# =====================
-
-# Using Caching? Caching speeds up rendering the page that is going to be
-# shown. Even if you are not using pyblosxom special features, caching can
-# improve rendering speed of certain flavours that can show a large number of
-# files at one time. Choose a cache mechanism you'd like, see the
-# Pyblosxom/cache/ directory, and read the source on how to enable caching with
-# the particular cache driver, you need to set two variables:
-#py["cacheDriver"] = "xxxx"
-#py["cacheConfig"] = ""
-
-
-
 # Static rendering
 # ================
 
@@ -187,10 +181,10 @@ py["load_plugins"] = []
 # ex: py["static_urls"] = ["/booklist.rss", "/booklist.html"]
 #py["static_urls"] = ["/path/to/url1", "/path/to/url2"]
 
-# Whether (1) or not (0) you want to create date indexes using month
-# names?  (ex. /2004/Apr/01)  Defaults to 1 (yes).
-#py["static_monthnames"] = 1
+# Whether (True) or not (False) you want to create date indexes using month
+# names?  (ex. /2004/Apr/01)  Defaults to True.
+#py["static_monthnames"] = True
 
-# Whether (1) or not (0) you want to create date indexes using month
-# numbers?  (ex. /2004/04/01)  Defaults to 0 (no).
-#py["static_monthnumbers"] = 0
+# Whether (True) or not (False) you want to create date indexes using month
+# numbers?  (ex. /2004/04/01)  Defaults to False.
+#py["static_monthnumbers"] = False

@@ -1,0 +1,93 @@
+Anthracite, an event database to enrich monitoring dashboards and to allow visual and numerical analysis of events that have a business impact 
+# pubdate 2012-11-12
+# pubtime 08:49:56
+# tags devops
+<h4>Introduction</h4>
+<p>Graphite can show events such as <a href="http://codeascraft.etsy.com/2010/12/08/track-every-release/">code deploys</a> and
+<a href="https://github.com/joemiller/puppet-graphite_event">puppet changes</a> as vertical markers on your graph.
+With the advent of new graphite dashboards and interfaces where we can have popups and annotations to show metadata for each event (by means of client-side rendering),
+it's time we have a database to track all events along with categorisation and text descriptions (which can include rich text and hyperlinks).
+Graphite is meant for time series (metrics over time), Anthracite aims to be the companion for annotated events.<br>
+More precisely, <strong>Anthracite aims to be a database of "relevant events"</strong> (see further down), <strong>for the purpose of enriching monitoring dashboards,
+as well as allowing visual and numerical analysis of events that have a business impact</strong> (for the latter, see "<i>Thoughts on incident nomenclature, severity levels and incident analysis</i>" below)<br>
+It has a TCP receiver, a database (sqlite3), a http interface to deliver event data in many formats and a simple web frontend for humans.</p>
+
+<p>design goals:</p>
+
+<ul>
+    <li>do one thing and do it well.  aim for integration.</li>
+    <li>take inspiration from graphite:
+        <ul>
+        <li>simple TCP protocol</li>
+        <li>automatically create new event types as they are used</li>
+        <li>run on port 2005 by default (carbon is 2003,2004)</li>
+        <li>deliver events in various formats (html, raw, json, sqlite,...)</li>
+        <li>stay out of the way</li>
+        </ul>
+    </li>
+    <li>super easy to install and run: install dependencies, clone repo. <i>the app is ready to run</i></li>
+</ul>
+
+I have a working prototype on <a href="https://github.com/Dieterbe/anthracite">github.com/Dieterbe/anthracite</a>
+
+<h4>About "relevant events"</h4>
+<p>I recommend you submit any event that <strong>has</strong> or <strong>might have</strong> a <strong>relevant</strong> effect on:</p>
+
+<ul>
+    <li>your application behavior</li>
+    <li>monitoring itself (for example you fixed a bug in metrics reporting. it shouldn't look like the app behavior changed)</li>
+    <li>the business (press coverage, viral videos, etc), because this also affects your app usage and metrics.</li>
+</ul>
+
+<h4>Formats and conventions</h4>
+<p>The TCP receiver listens for lines in this format:</p>
+
+<code><![CDATA[
+<unix_timestamp> <type> <description>
+]]></code>
+
+<p>There are no restrictions for type and description, other than that they must be non-empty strings.
+<br/>I do have some suggestions which I'll demonstrate through fictive examples;
+<br/>but note that there's room for improvement, see the section below)</p>
+
+<code><![CDATA[
+# a deploy_* type for each project
+ts deploy_vimeo.com "deploy e8e5e4 initiated by Nicolas -- github.com/Vimeo/main/compare/foobar..e8e5e4"
+ts puppet "all nodes of class web_cluster_1: modified apache.conf; restart service apache"
+ts incident_sev2_start "mysql2 crashed, site degraded"
+ts incident_sev2_resolved "replaced db server"
+ts incident "hurricane Sandy, systems unaffected but power outages among users, expect lower site usage"
+# in those exceptional cases of manual production changes, try to not forget adding your event
+ts manual_dieter "i have to try this firewall thing on the LB"
+ts backup "backup from database slave vimeomysql22"
+]]></code>
+
+<h4>Thoughts on incident nomenclature, severity levels and incident analysis</h4>
+Because there are so many unique and often subtle pieces of information pertaining to each individual incident, it's often hard to map an incident to
+a simple severity level or keyword.
+When displaying events as popups on graphs I think no severity levels are needed, the graphs and event descriptions are much more clear than any
+severity level could convey.<br>
+However, I do think these levels are very useful for reporting and numerical analysis.<br>
+On slide 53 of <a href="http://www.slideshare.net/jallspaw/ops-metametrics-the-currency-you-pay-for-change">the metametrics slidedeck</a> Allspaw
+mentions severity levels, which can be paraphrased in terms of service degradation for the end user:
+1 (full), 2 (major), 3 (minor), 4 (no).<br>
+I would like to extend this notion into the opposite spectrum, and have similar levels on the positivie scale,
+so that they represent positive incidents (like viral videos, press mentions, ...) as opposed to problematic ones (outages).
+<br/>For incident analysis we need a rich nomenclature and schema:
+<b>incidents can (presumably) have a positive or negative impact, can be self-induced or not, and can be categorized with severity levels</b>;
+<b>they can also be planned for (maintenance, release announcements) or not</b>.  While we're at it,
+how about events to mark point in time where the cause was detected, as well as resolved, so we can calculate TTD and TTR (see Allspaw slidedeck)?
+<br/>Since basically any event can have a positive or negative impact, an option is to leave out the type 'incident' and give a severity field for every
+event type.
+<br/>I'm thinking of a good nomenclature and a schema to express all this.
+(btw, notice how in common ops literature the word incident is usually associated with outages and bad things;
+while actually an incident can just as well be a positive event) as well as UI features to support this analysis.
+
+<h4>I need your help</h4>
+The tcp receiver works, the backend works, i have a crude (but functional) web app, and a simple http api to retrieve the events in all kinds of formats.
+Next up are:
+<ul>
+<li>monitoring dashboard for graphite that gathers events from anthracite, can show metadata, and can mark a timeframe between start and stop events</li>
+<li>plugings for puppet, chef to automatically submit their relevant events</li>
+<li>a better web UI and actually provide features to do statistics on events and analysis such as TTD, TTR, with colors for severity levels etc</li>
+</ul>

@@ -1,0 +1,28 @@
+Client-side rendered graphite charts for all
+# pubdate 2012-11-14
+# pubtime 08:49:56
+# tags devops,monitoring
+<p>
+Client-side rendering of charts as opposed to using graphite's server side generated png's
+allows various interactivity features, such as:
+<ul>
+<li>interactive realtime zooming and panning of the graph, timeline sliders</li>
+<li>realtime switching between various rendering modes (lines, stacked, etc)</li>
+<li>toggling certain targets on/off, reordering them, highlighting their plot when hoovering over the legend, etc</li>
+<li>basic data manipulation, such as smoothing to see how averages compare (akin to movingAverage, but now interactive)
+<li>popups detailing the exact metrics when hoovering over the chart's datapoints</li>
+<li>popups for annotated events. (a good use for <a href="/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact.html">anthracite</a>).
+</ul>
+<br/>Those are all features of charting libraries such as <a href="http://www.flotcharts.org/">flot</a> and <a href="http://code.shutterstock.com/rickshaw/">rickshaw</a>,
+the only remaining work is creating a library that unleashes the power of such a framework, integrates it with the graphite
+api datasource, and makes it available over a simple but powerful api.
+<br/>
+<br/>That's what I'm trying to achieve with <a href="https://github.com/Dieterbe/graphitejs">github.com/Dieterbe/graphitejs</a>.
+<br/>It's based on rickshaw.
+<br/>It gives you a JavaScript api to which you specify your graphite targets and some options and it'll give you your graph with extra interactivity sauce.
+Note that graphite has a good and rich api, one that is widely known and understood, that's why I decided to keep it exposed and not abstract any more than needed.
+</p>
+<p>There are many graphite dashboards with a different focus, but as far as
+plotting graphs, what they need is usually very similar: a plot to draw multiple
+graphite targets, a legend, an x-axis, 1 or 2 y-axis, lines or stacked bands, so
+I think there's a lot of value in having many dashboard projects share the same code for the actual charts, and I hope we can work together on this.

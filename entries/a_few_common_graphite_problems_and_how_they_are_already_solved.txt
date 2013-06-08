@@ -41,7 +41,7 @@ so that different dashboards can benefit from a common, shared codebase, because
 <p>
 screenshot:
 <br/>
-<a href="/files/timeserieswidget-rickshaw-stacked.png"><img height="300" src="/files/timeserieswidget-rickshaw-stacked.png" title="yes I'm aware of the irony of a static screenshot of an interactive widget :)"></img></a>
+<a href="/files/timeserieswidget-rickshaw-stacked.png"><img height="300" src="/files/blog/github/vimeo/timeserieswidget/timeserieswidget-rickshaw-stacked.png" title="yes I'm aware of the irony of a static screenshot of an interactive widget :)"></img></a>
 </p>
 
 <h4>events lack text annotations, they are simplistic and badly supported</h4>
@@ -55,8 +55,8 @@ Graphite is a great system for time series metrics.  Not for events.  metrics an
 <p>
 screenshots:
 <br/>
-<a href="https://raw.github.com/Dieterbe/anthracite/master/screenshots/screenshot-table.png"><img height="300" src="https://raw.github.com/Dieterbe/anthracite/master/screenshots/screenshot-table.png"></img></a>
-<a href="https://raw.github.com/vimeo/timeserieswidget/master/screenshots/flot-annotated-event.png"><img height="300" src="https://raw.github.com/vimeo/timeserieswidget/master/screenshots/flot-annotated-event.png"></img></a>
+<a href="https://raw.github.com/Dieterbe/anthracite/master/screenshots/screenshot-table.png"><img height="300" src="/files/blog/github/Dieterbe/anthracite/screenshot-table.png"></img></a>
+<a href="https://raw.github.com/vimeo/timeserieswidget/master/screenshots/flot-annotated-event.png"><img height="300" src="/files/blog/github/vimeo/timeserieswidget/flot-annotated-event.png"></img></a>
 </p>
 
 <h4>cumbersome to compose graphs</h4>
@@ -86,8 +86,8 @@ separate graphs (controllable in query)</li>
 This also gives you a lot of inspiration to modify or extend your query</li>
 </ul>
 <p>
-<a href="https://raw.github.com/vimeo/graph-explorer/master/screenshot.png">
-<img src="https://raw.github.com/vimeo/graph-explorer/master/screenshot.png" width="619" height="396"/>
+<a href="/files/blog/github/vimeo/graph-explorer/screenshot.png">
+<img src="/files/blog/github/vimeo/graph-explorer/screenshot.png" width="619" height="396"/>
 </a>
 </p>
 

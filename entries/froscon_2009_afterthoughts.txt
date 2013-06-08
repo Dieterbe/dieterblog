@@ -13,8 +13,8 @@ Froscon 2009 afterthoughts
 </ul>
 <p>
 Here is a picture of my "Arch releng partner" Gerhard (right) and I (left).  We've done a lot of work together and it was great to talk face to face for once.  Here we're showing (proudly) an Arch Linux Froscon disc (which is a slightly modified version of the <a href="http://www.archlinux.org/news/459/">2009.08 core images</a>):</p>
-<p><a href="http://users.archlinux.de/~pierre/froscon/2009/2009-08-22_11-18-57.jpg"><img src="http://users.archlinux.de/~pierre/froscon/2009/thumbs/2009-08-22_11-18-57.jpg.jpg" /></a></p>
+<p><a href="/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg"><img src="/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg" /></a></p>
 <p>Team photo:</p>
-<p><a href="http://users.archlinux.de/~pierre/froscon/2009/2009-08-22_12-53-07.jpg"><img src="http://users.archlinux.de/~pierre/froscon/2009/thumbs/2009-08-22_12-53-07.jpg.jpg" /></a></p>
+<p><a href="/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg"><img src="/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg" /></a></p>
 <p><a href="http://users.archlinux.de/~pierre/froscon/2009/">Image gallery</a>
 </p>

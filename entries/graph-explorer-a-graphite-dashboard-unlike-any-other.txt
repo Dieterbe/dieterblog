@@ -19,7 +19,7 @@ but also by their rate of change and where appropriate, as a percentage of a max
 <br/>It should show me all events, colorcoded by type, with text description, and interactive so that it can use hyperlinks.
 <br/>And most of all, the code should be as simple as possible and it should be easy to get running.
 </p>
-<a href="https://github.com/vimeo/graph-explorer"><img width="50%" height="50%" src="https://raw.github.com/vimeo/graph-explorer/master/screenshot.png"/></a>
+<a href="https://github.com/vimeo/graph-explorer"><img width="50%" height="50%" src="/files/blog/github/vimeo/graph-explorer/screenshot.png"/></a>
 <p>
 Dashboards which show specific predefined KPI's (this covers most graphite dashboards) are clearly unsuitable for this use case.
 Template-based "metric exploration" dashboards like cacti and ganglia are in my experience way too limited.

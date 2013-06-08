@@ -4,7 +4,7 @@ I'm not going to Fosdem 2008
 # tags foss,netlog,real life
 # guid 37 at http://dieter.plaetinck.be
 <p>I wish I could put this on my webpage :</p>
-<p><a href="http://www.fosdem.org"><img src="http://www.fosdem.org/promo/going-to" alt="I’m going to FOSDEM, the Free and Open Source Software Developers’ European Meeting" /></a><br />
+<p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2008.jpg" alt="I’m going to FOSDEM, the Free and Open Source Software Developers’ European Meeting" /></a><br />
 <!--break--><br />
 Fosdem looks interesting again : talks about iogrind , scons , cakephp , virtualbox , openAFS , ...<br />
 No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms would have interested me too ( mostly gtk/glib for the latter )</p>

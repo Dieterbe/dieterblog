@@ -36,13 +36,13 @@ there are now generic, transparent functions for asking dates,numbers,strings,ch
 </ul>
 <p>* Screenshots<br />
 - AIF manual filesystems, here showing a setup with /dev/sda3 containing a dm_crypt, containing /, and /dev/sda3 containing an LVM setup with 1 LV for /home<br />
-<img src="http://users.edpnet.be/dieter/aif/aif-alpha_0.6-disks-overview-dia.png" /></p>
+<img src="/files/aif/aif-alpha_0.6-disks-overview-dia.png" /></p>
 <p>- Processing the filesystems.  The installer automatically reorders everything<br />
-<img src="http://users.edpnet.be/dieter/aif/aif-alpha_0.6-disks-processing-dia.png" /></p>
+<img src="/files/aif/aif-alpha_0.6-disks-processing-dia.png" /></p>
 <p>- Rolling back a "/ and /home on top of LVM on top of dm_crypt" setup<br />
-<img src="http://users.edpnet.be/dieter/aif/aif-alpha_0.6-disks-rollback-dia.png" /></p>
+<img src="/files/aif/aif-alpha_0.6-disks-rollback-dia.png" /></p>
 <p>- a CLI shot where the partitions/filesystems of the autoprepare just have been processed<br />
-<img src="http://users.edpnet.be/dieter/aif/aif-alpha_0.6-autoprepare_processed-cli.png" /></p>
+<img src="/files/aif/aif-alpha_0.6-autoprepare_processed-cli.png" /></p>
 <p>* Usability<br />
 I tested the installer personally in virtualbox in different scenarios (ftp &amp; cdrom based, autoprepare, manually with normal disk layout,/ on lvm, dm_crypt,.. ), and all produced working installations.<br />
 Although I often need to fix bugs after testing a specific scenario,  I don't re-test all scenarios each time.  YMMV<br />

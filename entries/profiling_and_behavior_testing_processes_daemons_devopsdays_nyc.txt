@@ -36,7 +36,7 @@ hire me -but being shy about it...- it was quite awkward)
 <br/>&rarr; <a href="http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498">raw uncut video</a>.  Go to 'New York, January 18th, 2013' from 02:36:25 to 02:41:15
 
 <h3>More random thoughts about Devopsdays NYC</h3>
-<center><a href="http://devopsdays.org/events/2012-newyork/"><img src="http://devopsdays.org/events/2012-newyork/workers.png" width="300px" height="300px"/></a></center>
+<center><a href="http://devopsdays.org/events/2012-newyork/"><img src="/files/blog/devopsdays/workers.png" width="300px" height="300px"/></a></center>
 <ul>
 <li>I'm getting tired of people on stage making a big revelation out of adding an index to a database column.
 This happens too often at web-ops/devops conferences,  it's embarrassing.

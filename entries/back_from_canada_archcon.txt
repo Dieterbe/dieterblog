@@ -49,7 +49,7 @@ My slides:<br />
 <ul>
 <li>Cities with streets and subways in a grid layout are awesome.  Soo much easier to navigate.</li>
 <li>Red lights with countdown timers (in seconds) are awesome.  Although I'm told some places in Europe have them too.</li>
-<li>Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. <img src="http://www.toronto.ca/toronto_images/images/high_park_004_500.jpg"/></li>
+<li>Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. <img src="/files/blog/toronto.ca/high_park_004_500.jpg"/></li>
 <li>Montreal was like a European city: more history, old buildings, more crime, but of course a grid layout.  Some nice views though (ie. from Mont Royal).</li>
 <li>The youth hostels I went too were great: never got to meet so many interesting people in such a short timespan.</li>
 <li>CN tower: I procrastinated visiting until the last day, and when I finally wanted to go in the wheather was perfect, but there was a 2 hour queue, so I skipped it. Anyway there are <a href="http://en.wikipedia.org/wiki/CN_Tower">plenty of pictures online</a>.</li>

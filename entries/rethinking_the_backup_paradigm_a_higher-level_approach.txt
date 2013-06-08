@@ -66,9 +66,9 @@ This gives 2 benefits:</p>
 I use 2 tools to help me with this</p>
 <ul>
 <li><a href="http://subversion.tigris.org/">svn</a></li>
-<li><a href="http://dieter.plaetinck.be/DDM_a_distributed_data_manager">ddm</a></li>
+<li><a href="/DDM_a_distributed_data_manager">ddm</a></li>
 </ul>
-<p><i>(If you don't know what <a href="http://dieter.plaetinck.be/DDM_a_distributed_data_manager">ddm</a> is , have a look at the page so you get the basic concepts, especially the types of datasets)</i></p>
+<p><i>(If you don't know what <a href="/DDM_a_distributed_data_manager">ddm</a> is , have a look at the page so you get the basic concepts, especially the types of datasets)</i></p>
 <p>Generally speaking, I have the following repositories on my home-server:</p>
 <ul>
 <li>svn: one for each of my bigger projects</li>

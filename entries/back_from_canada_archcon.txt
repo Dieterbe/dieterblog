@@ -12,7 +12,7 @@ next year we should do it again because Arch (conferences) rock(s), and because 
 Either way, next year both Judd (founder) and Aaron (current overlord) should be there. (this year they both had lame excuses like family reunions and "almost getting married".  Congrats btw, Aaron!)</p>
 <p>It was an absolute pleasure to meet some more of my fellow devs, and users.<br />
 Here is a pic from the group (unfortunately, a few are missing)<!--break--><br />
-<img src="http://dieter.plaetinck.be/files/group.jpg"/><br />
+<img src="/files/group.jpg"/><br />
 People in bold are Arch (ex-) devs</p>
 <ol>
 <li>Richard (sokuban) from Toronto (linguistics student)</li>
@@ -42,8 +42,8 @@ My pc was behaving weirdly, but luckily I could use Dan's.</p>
 <p><a href="http://archlinux.ca/archcon2010/images/">Archcon pictures</a><br />
 <a href="http://archlinux.ca/archcon2010/videos/">Archcon videos</a><br />
 My slides:<br />
-<a href="http://dieter.plaetinck.be/files/aif-archcon2010.pdf">AIF (day 1)</a><br />
-<a href="http://dieter.plaetinck.be/files/uzbl-archcon2010.pdf">Uzbl (day 2)</a></p>
+<a href="/files/aif-archcon2010.pdf">AIF (day 1)</a><br />
+<a href="/files/uzbl-archcon2010.pdf">Uzbl (day 2)</a></p>
 <h3>Other days</h3>
 <p>Some thoughts and notes of what I did and saw around Toronto/Montreal..</p>
 <ul>
@@ -55,10 +55,10 @@ My slides:<br />
 <li>CN tower: I procrastinated visiting until the last day, and when I finally wanted to go in the wheather was perfect, but there was a 2 hour queue, so I skipped it. Anyway there are <a href="http://en.wikipedia.org/wiki/CN_Tower">plenty of pictures online</a>.</li>
 <li>Niagara falls were beautiful.  Maid of the myst tour was worth it.  I made pictures but <a href="http://en.wikipedia.org/wiki/File:Niagara_falls_panorama.jpg">those online</a> are better.</li>
 <li>I met Kan Johar (founder of <a href="http://plurk.com">plurk.com</a>, amongst others), good times.</li>
-<li>Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.<br> <img src="http://dieter.plaetinck.be/files/poutine.jpg"/></li>
+<li>Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.<br> <img src="/files/poutine.jpg"/></li>
 <li>Dusty and I have been to the <a href="http://linuxcaffe.ca/">Linux Caffe.</a>  The owner is a great guy, he's considering switching to Arch, and he wrote his whole point of sales, accounting and bookkeeping software using shell scripts, perltk and stuff.  He's into suckless.org stuff.   His version 2.0 will probably be based on Xmonad.<br />
-<img src="http://dieter.plaetinck.be/files/linuxcaffe-pos1.jpg"/><br />
-<img src="http://dieter.plaetinck.be/files/linuxcaffe-pos2.jpg"/>
+<img src="/files/linuxcaffe-pos1.jpg"/><br />
+<img src="/files/linuxcaffe-pos2.jpg"/>
 </li>
 <p>Dusty and me, somewhere on our way to the Niagara falls.<br />
-<img src="http://dieter.plaetinck.be/files/dustyandme.jpg"></p>
+<img src="/files/dustyandme.jpg"></p>

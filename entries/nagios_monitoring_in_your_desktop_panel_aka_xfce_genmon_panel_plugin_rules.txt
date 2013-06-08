@@ -13,7 +13,7 @@ So at first I wanted to write my own panel plugin that would let me allow seeing
 Well, not exactly: apparently the on-click action is bound to the image you show.  I would rather show no image at all and just show text with an on-click action bound to it, but this seems not possible so I had to use an icon.  This made my panel a bit larger (as text is shown beneath the icon, you can't configure it to place it next to it) Also it would be neat if I could work with colors: red for hosts who are down, green for those who are up etc.  Some details I could achieve if I would make my hands dirty, but for now I don't have time to enhance the Genmon plugin or to write my own, so I just live with it ;-)</p>
 <p>Anyways, enough talk.</p>
 <p>Here is a screenshot:</p>
-<p><img src="http://dieter.plaetinck.be/files/xfce_genmon_nagios_script.png"/></p>
+<p><img src="/files/xfce_genmon_nagios_script.png"/></p>
 <p>The cursor is not on the screenshot but I was obviously hoovering over the panel plugin to show the tooltip.<br />
 You can also see at the left the notes plugin and the mail checker plugin and at the right the volume control, trash applet, battery monitor, systray, clock and action button(s) panel plugins.</p>
 <p>And here is the source code of my bash script</p>

@@ -12,7 +12,7 @@ Members of this team are Aaron himself, Gerhard Brauer and me.</p>
 <ul>
 <li>coordinated releases following the rhythm of kernel releases (that's a release every 2-3 months baby!).</li>
 <li>anticipate the availability of the kernel in the testing repo's instead of having to wait for it to go to core before building alpha/beta images</li>
-<li>migration to <a href="http://dieter.plaetinck.be/AIF_the_brand_new_Arch_Linux_Installation_Framework">AIF</a> as the new Arch installer (woot!)</li>
+<li>migration to <a href="/AIF_the_brand_new_Arch_Linux_Installation_Framework">AIF</a> as the new Arch installer (woot!)</li>
 <li>testing.  Leveraging the possibilities of AIF as an unattended installer, we should be able to script full installations and health checking of the resulting system.</li>
 <li>involving the community more? releasing "testing iso's" ? not sure about that. we'll see...</li>
 </ul>

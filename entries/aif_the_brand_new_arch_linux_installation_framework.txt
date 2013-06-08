@@ -4,7 +4,7 @@ AIF: the brand new Arch Linux Installation Framework
 # tags linux,foss,arch
 # guid 56 at http://dieter.plaetinck.be
 <p>Recently I started thinking about writing my own automatic installer that would set up my system exactly the way I want.<br />
-(See <a href="http://dieter.plaetinck.be/rethinking_the_backup_paradigm_a_higher-level_approach" title="http://dieter.plaetinck.be/rethinking_the_backup_paradigm_a_higher-level_approach">http://dieter.plaetinck.be/rethinking_the_backup_paradigm_a_higher-level...</a>)</p>
+(See <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a>)</p>
 <p>I looked at the official Arch install scripts to see if I could reuse parts of their code, but unfortunately the code was just one big chunk of bash code with the main program and "flow control" (you must first do this step, then that), UI-code (dialogs etc) and backend logic (create filesystems, ...) all mangled up and mixed very closely together.<br />
 Functionality-wise the installer works fine, but I guess the code behind it is the result of years of adding features and quick fixes without refactoring, making it impossible to reuse any of the code.</p>
 <p>So I started to write <a href="http://github.com/Dieterbe/aif/">AIF: the Arch Linux Installation Framework</a><!--break--> (actually it had another name until recently), with these 3 goals in mind:</p>

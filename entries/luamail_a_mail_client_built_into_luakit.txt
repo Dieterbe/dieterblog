@@ -2,7 +2,7 @@ Luamail: a mail client built into luakit
 # pubdate 2011-10-02
 # pubtime 09:28:45
 # tags mail,lua,luakit
-<p>Similarly to how back in 2009 there was no browser that works in a way I find sane, and I started solving that with <a href="http://dieter.plaetinck.be/uzbl_a_browser_that_adheres_to_the_unix_philosophy">uzbl</a>,
+<p>Similarly to how back in 2009 there was no browser that works in a way I find sane, and I started solving that with <a href="/uzbl_a_browser_that_adheres_to_the_unix_philosophy">uzbl</a>,
 now I'm fed up with the lack of an email client that works in a way I find sane.  Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic <a href="http://luakit.org">luakit</a> browser,
 which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API's.
 Now I want to build the "luakit of email clients".  Let me explain what's that all about...</p>
@@ -16,7 +16,7 @@ Basically the story is pretty much the same as it was with uzbl.  There are no m
 <li>extensive customisation options</li>
 <li>plain text configuration and data files, a binary format only where appropriate (like a search index or a database)</li>
 <li>rendering HTML mails and rich content (images, embedded videos, flash, HTML5) properly.
-(I receive fancy newsletters from companies and rich content such as news messages from rss feeds by means of <a href="http://dieter.plaetinck.be/an_rss2email_fork_that_sucks_less">rss2email-xdg</a>)</li>
+(I receive fancy newsletters from companies and rich content such as news messages from rss feeds by means of <a href="/an_rss2email_fork_that_sucks_less">rss2email-xdg</a>)</li>
 <li>great link following, and for external files: integration with download software, proxies, etc). I.e. "what luakit has"</li>
 <li>support Unicode and attachments (mime) properly</li>
 <li>play nice with window managers (window title, urgency hint, ..), support many key bindings and use UI widgets that are not a pain (i.e. no ncurses, be an X client)</li>

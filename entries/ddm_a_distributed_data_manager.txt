@@ -142,4 +142,4 @@ Copying new files... (10 items).
 finished
 ]]></code><h4>Download</h4>
 <p>The code is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt">Gpl v3</a><br />
-You can dowload it <a href="http://dieter.plaetinck.be/files/ddm" onClick="javascript:urchinTracker ('/files/ddm');">here</a></p>
+You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/files/ddm');">here</a></p>

@@ -5,7 +5,7 @@ Profiling and behavior testing of processes and daemons, and Devopsdays NYC
 
 <h3>Profiling a process run</h3>
 <a href="https://github.com/Dieterbe/profile-process">
-<img style="float:left;margin:0 5px 0 0;" src="http://dieter.plaetinck.be/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/>
+<img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/>
 </a>
 I wanted the ability to run a given process and get
 <br/>a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.
@@ -17,7 +17,7 @@ I wanted the ability to run a given process and get
 
 <h3>black-box behavior testing processes/daemons</h3>
 <a href="https://github.com/vimeo/simple-black-box">
-<img style="float:left;margin:0 5px 0 0;" src="http://dieter.plaetinck.be/files/presentation-simple-black-box/images/screenshot-no-pause.png" width="150px" height="100px"/>
+<img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/screenshot-no-pause.png" width="150px" height="100px"/>
 </a>
 I wrote <a href="https://github.com/vimeo/simple-black-box">simple-black-box</a> to do this.
 <br/>It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, ...)
@@ -32,7 +32,7 @@ multiple processes interacting and acting upon received messages; or to compare 
 I did a quick <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">5min talk</a>, despite some display/timing issues it was well received.
 (in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to
 hire me -but being shy about it...- it was quite awkward)
-<br/>&rarr; <a href="http://dieter.plaetinck.be/files/presentation-simple-black-box/slideshow.html">slides</a>
+<br/>&rarr; <a href="/files/presentation-simple-black-box/slideshow.html">slides</a>
 <br/>&rarr; <a href="http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498">raw uncut video</a>.  Go to 'New York, January 18th, 2013' from 02:36:25 to 02:41:15
 
 <h3>More random thoughts about Devopsdays NYC</h3>

@@ -19,5 +19,5 @@ Basically, when launching a test, the following steps are invoked</p>
 </ul>
 <p>The verification script will check things like availability (and size) of LVM volumes, amount of swap space, keyboard layout, network and so on.<br />
 Here's a picture of a rough first version:</p>
-<p><img src="http://dieter.plaetinck.be/files/aif-test-suite-wip.png" /></p>
+<p><img src="/files/aif-test-suite-wip.png" /></p>
 <p>Stay tuned!</p>

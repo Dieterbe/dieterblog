@@ -65,7 +65,7 @@ but there were a bunch of interesting insights about state of the art technology
 Random thoughts about some sponsors: 
 <ul>
 <li>Librato is quite cool.
-It's basically how my open source tool <a href="https://github.com/Dieterbe/graph-explorer">graph-explorer</a> would look like after
+It's basically how my open source tool <a href="https://github.com/vimeo/graph-explorer">graph-explorer</a> would look like after
 finishing a bunch of TODO's, combining it with graphite, polishing it all up, and offering it as a hosted solution.
 I find it interesting if this is a successful business with only such a limited scope</li>
 <li>

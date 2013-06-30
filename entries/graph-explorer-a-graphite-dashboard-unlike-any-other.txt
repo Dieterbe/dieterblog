@@ -19,12 +19,12 @@ but also by their rate of change and where appropriate, as a percentage of a max
 <br/>It should show me all events, colorcoded by type, with text description, and interactive so that it can use hyperlinks.
 <br/>And most of all, the code should be as simple as possible and it should be easy to get running.
 </p>
-<a href="https://github.com/Dieterbe/graph-explorer"><img width="50%" height="50%" src="https://raw.github.com/Dieterbe/graph-explorer/master/screenshot.png"/></a>
+<a href="https://github.com/vimeo/graph-explorer"><img width="50%" height="50%" src="https://raw.github.com/vimeo/graph-explorer/master/screenshot.png"/></a>
 <p>
 Dashboards which show specific predefined KPI's (this covers most graphite dashboards) are clearly unsuitable for this use case.
 Template-based "metric exploration" dashboards like cacti and ganglia are in my experience way too limited.
 Graph composing dashboards (like the stock graphite one, or graphiti) require much manual work to get the graph you want.
-I couldn't find anything even close to what I wanted, so I started <a href="https://github.com/Dieterbe/graph-explorer">Graph-Explorer</a>.
+I couldn't find anything even close to what I wanted, so I started <a href="https://github.com/vimeo/graph-explorer">Graph-Explorer</a>.
 </p>
 <p>
 The approach I'm taking is using plugins which add metadata to metrics (tags for server, service, mountpoint, interface name, ...),
@@ -38,4 +38,4 @@ fast canvas-based graphs and annotated events from <a href="/anthracite-event-da
  the manual interactions mentioned earlier are supported or at least on the roadmap.
 </p>
 
-<a href="https://github.com/Dieterbe/graph-explorer">Graph Explorer</a> is not yet where I want it, but it's already a very useful tool at Vimeo.
+<a href="https://github.com/vimeo/graph-explorer">Graph Explorer</a> is not yet where I want it, but it's already a very useful tool at Vimeo.

@@ -14,7 +14,7 @@ looking at a metric name, it's often hard to know
 <li><pre>what</pre>
 <i>what is being measured?: bytes, queries, timeouts, jobs, etc</i></li>
 <li><pre>target_type</pre>
-<i>must be one of the existing <a href="https://github.com/Dieterbe/graph-explorer#enhanced-metrics">clearly defined target_types</a> (count, rate, counter, gauge)
+<i>must be one of the existing <a href="https://github.com/vimeo/graph-explorer#enhanced-metrics">clearly defined target_types</a> (count, rate, counter, gauge)
 <br/>These match statsd metric types (i.e. rate is per second, count is per flushInterval)</i></li>
 </ul>
 In <a href="#graph_explorer">Graph-Explorer</a> these tags are mandatory, so that it can show the unit along with the prefix (i.e. <i>'Gb/s'</i>) on the axis.  
@@ -56,7 +56,7 @@ Graphite is a great system for time series metrics.  Not for events.  metrics an
 screenshots:
 <br/>
 <a href="https://raw.github.com/Dieterbe/anthracite/master/screenshots/screenshot-table.png"><img height="300" src="https://raw.github.com/Dieterbe/anthracite/master/screenshots/screenshot-table.png"></img></a>
-<a href="https://raw.github.com/Dieterbe/timeserieswidget/master/screenshots/flot-annotated-event.png"><img height="300" src="https://raw.github.com/Dieterbe/timeserieswidget/master/screenshots/flot-annotated-event.png"></img></a>
+<a href="https://raw.github.com/vimeo/timeserieswidget/master/screenshots/flot-annotated-event.png"><img height="300" src="https://raw.github.com/vimeo/timeserieswidget/master/screenshots/flot-annotated-event.png"></img></a>
 </p>
 
 <h4>cumbersome to compose graphs</h4>
@@ -86,13 +86,13 @@ separate graphs (controllable in query)</li>
 This also gives you a lot of inspiration to modify or extend your query</li>
 </ul>
 <p>
-<a href="https://raw.github.com/Dieterbe/graph-explorer/master/screenshot.png">
-<img src="https://raw.github.com/Dieterbe/graph-explorer/master/screenshot.png" width="619" height="396"/>
+<a href="https://raw.github.com/vimeo/graph-explorer/master/screenshot.png">
+<img src="https://raw.github.com/vimeo/graph-explorer/master/screenshot.png" width="619" height="396"/>
 </a>
 </p>
 
 <h4>limited options to request a specific time range</h4>
-<a href="https://github.com/Dieterbe/graph-explorer#query-parsing-and-execution">GE's query language</a> supports freeform `from` and `to` clauses.
+<a href="https://github.com/vimeo/graph-explorer#query-parsing-and-execution">GE's query language</a> supports freeform `from` and `to` clauses.
 
 <h3>Referenced projects</h3>
 <ul>
@@ -102,17 +102,17 @@ This also gives you a lot of inspiration to modify or extend your query</li>
 event/change logging/management with a bunch of ingestion scripts and outage reports
 </li>
 <li>
-<a href="https://github.com/Dieterbe/timeserieswidget" id="timeserieswidget">timeserieswidget</a>:
+<a href="https://github.com/vimeo/timeserieswidget" id="timeserieswidget">timeserieswidget</a>:
 <br/>
 jquery plugin to easily get highly interactive graphite graphs onto html pages (dashboards)
 </li>
 <li>
-<a href="https://github.com/Dieterbe/graph-explorer/tree/master/structured_metrics" id="structured_metrics">structured_metrics</a>:
+<a href="https://github.com/vimeo/graph-explorer/tree/master/structured_metrics" id="structured_metrics">structured_metrics</a>:
 <br/>
 python library to convert graphite metrics tree into a tag space with clearly defined units and target types, and arbitrary metadata.
 </li>
 <li>
-<a href="https://github.com/Dieterbe/graph-explorer" id="graph_explorer">graph-explorer</a>:
+<a href="https://github.com/vimeo/graph-explorer" id="graph_explorer">graph-explorer</a>:
 <br/>
 dashboard that provides a query language so you can easily compose graphs on the fly to satisfy varying information needs.
 </li>

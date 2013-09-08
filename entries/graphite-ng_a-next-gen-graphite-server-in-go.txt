@@ -22,17 +22,22 @@ There's a few reasons why I decided to start a new project from scratch:
 <li>With graphite, it's a whole ordeal to get all components properly installed.  Deploying in production environments is annoying and even more so
 when you just want a graphite setup on your personal netbook.</li>
 <li>the graphite development process slows contributors down a lot.  A group of 3rd/4th generation maintainers jointly manages the project, but it's hard to get big changes through,
-because they don't feel authoritative enough to judge those changes and the predecessors have disappeared or are too busy with other things.  And also ...</li>
+because they (understandably) don't feel authoritative enough to judge those changes and the predecessors have disappeared or are too busy with other things.  And also ...</li>
 <li>there's a high focus on backwards compatibility, which can be a good thing, but it's hard to get rid of old design mistakes,
 especially when fixing unclear (but arguably broken) early design decisions (or oversights) lead to different outputs</li>
 <li>Graphite suffers feature creep: it has an events system, a PNG renderer, an elaborate composer web UI, etc.
 There's a lot of internal code dependencies holding you back from focusing on a specific problem</li>
+<li>Carbon (the metrics daemon) has a pretty hard performance and scalability ceiling.
+<a href="https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md">Peter's article explains this well</a>; I think we'll need some form of
+rewrite.   Peter suggests some solutions but they are basically workarounds for Python's shortcomings.  I'm also thinking of using <a href="http://pypy.org/">pypy</a>.
+But last time I checked pypy just wasn't there yet.</li>
 <li>I want to become a good Go programmer</li>
 </ul>
 
-<i>Note: the Graphite project is still great</i>, the people managing do what they can, but it's fairly natural for a code base that large and complicated
-to end up in this situation.<i>I'm not at all claiming graphite-ng is, or ever will be better</i> but I need a fresh start to try some ideas, and using Go means 
-you can compile the whole thing down into a single executable file, and its concurrency features and performance look promising.
+<i>Note: the Graphite project is still great</i>, the people managing do good work, but it's fairly natural for a code base that large and complicated
+to end up in this situation.<i>I'm not at all claiming graphite-ng is, or ever will be better</i> but I need a fresh start to try some disruptive ideas,
+using Go means having a runtime very suited for concurrency and parallelism, you can compile the whole thing down into a single executable file,
+and its performance looks promising.  Leaving out the non-essentials (see below) allows for an elegant and surprisingly small, hackable code base.
 </p>
 
 <p>

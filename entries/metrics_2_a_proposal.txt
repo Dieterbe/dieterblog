@@ -21,7 +21,7 @@ I think our metrics format is restrictive and we do our self a disservice using 
 <li>they impose needless limitations (no dots allowed, strict ordering)</li>
 <li>aggregators have no way to systematically and consistently express the operation they performed</li>
 <li>we can't include additional information because that would create a new metric ID</li>
-<li>we run into scale/display/correctness problems because rollups (storage as well as rendering)
+<li>we run into scale/display/correctness problems because storage rollups, rendering consolidation,
 as well as aggregation api functions need to be aware of how the metric
 is to be aggregated, and this information is often lacking or incorrect.</li>
 <li>there's no consistency into what information goes where or how it's called (which field is the one that has the hostname?)</li>
@@ -32,7 +32,10 @@ is to be aggregated, and this information is often lacking or incorrect.</li>
 <p>
 Over the past year, I've been working a lot on a graphite dashboard (<a href="http://vimeo.github.io/graph-explorer/">Graph-Explorer</a>).
 It's fairly unique in the sense that it leverages what I call "structured metrics" to facilitate a powerful way to
-build graphs dynamically.  (see also <a href="http://dieter.plaetinck.be/a_few_common_graphite_problems_and_how_they_are_already_solved.html">"a few common graphite problems and how they are already solved"</a>).
+build graphs dynamically.  (see also
+<a href="http://dieter.plaetinck.be/a_few_common_graphite_problems_and_how_they_are_already_solved.html">
+"a few common graphite problems and how they are already solved"</a> and the
+<a href="http://vimeo.github.io/graph-explorer/">Graph-Explorer homepage</a>).
 I implemented two solutions. (
 <a href="https://github.com/vimeo/graph-explorer/tree/master/structured_metrics">structured_metrics</a>,
 <a href="https://github.com/vimeo/carbon-tagger">carbon-tagger</a>) for creating, transporting and using these metrics
@@ -48,47 +51,45 @@ the ideas of structured_metrics and carbon_tagger (but less annoying) and OpenTS
 to identify and use metrics and organize tags around them.
 </p>
 <p>
-First, terminology sync:
-<ul>
-<li>metric: metric identifier, metric name. not the actual timeseries data</li>
-<li>node: a word/string between dots, part of the metric name</li>
-</li>
-</ul>
-
 The proposed ingestion (carbon etc) protocol looks like this:
 <code><![CDATA[
 <intrinsic_tags>  <extrinsic_tags> <value> <timestamp>
 ]]></code>
 <ul>
-<li>there is no more metric "name" where nodes have to be in a certain order.  Rather, a metric is identified by its intrinsic tags:
+<li>
+intrinsic_tags and extrinsic_tags are space-separated strings, those strings can be a regular value, or a key=value pair and they describe one
+dimension (aspect) of the metric.
+    <ul>
+    <li>an <b>intrinsic</b> tag contributes to the identity of the metric. If this section changes, we get a new metric</li>
+    <li>an <b>extrinsic</b> tag provides additional information about the metric.  changes in this set doesn't change the metric identity</li>
+    </ul>
+    Internally, the metric ID is nothing more than the string of intrinsic tags you provided (similar to Graphite style).
+    When defining a new metric, write down the intrinsic tags/nodes (like you would do with Graphite except you can use <b>any order</b>), and then keep 'em in that order
+    (to keep the same ID).  <b>The ordering does not affect your ability to work with the metrics in any way</b>.
+    The backend indexes the tags and you'll usually rely on those to work with the metrics, and rarely with the ID itself.
+</li>
+<li>
+A metric in its basic form (without extrinsic tags) would look like:
 <code><![CDATA[
 graphite: stats.gauges.db15.mysql.bytes_received
 opentsdb: mysql.bytes_received host=db15
 proposal: service=mysql server=db15 direction=in unit=B
 ]]></code>
 </li>
-<li>intrinsic_tags and extrinsic_tags are space-separated strings, those strings can be a regular value, or a key=value pair and they describe one 
-dimension (aspect) of the metric.  Separating aspects into tags gives you a lot of power later on.
-key=val tags are most useful, because it allows 'group by $key' , 'avg by $key' etc queries, and because you can use them for filtering,
+<li>
+key=val tags are most useful: the key is a name of the aspect, which allows you to express "I want to see my metrics averaged/summed/.. by this
+aspect, in different graphs based on another aspect, etc"
+(<a href="https://github.com/vimeo/graph-explorer/wiki/GEQL#special-statements">e.g. GEQL statements</a>),
+and because you can use them for filtering,
 so I highly recommend to take some time to come up with a good key for every tag.
 However sometimes it can be hard to come up with a concise, but descriptive key for a tag, hence they are not mandatory.
-For regular words without a key, the backend assigns dummy keys ('n1', 'n2', etc) to facilitate 'group by $key' and such queries without thinking about it.
+For regular words without a key, the backend will assign dummy keys ('n1', 'n2', etc) to facilitate those features without hassle.
 Note the two spaces between intrinsic and extrinsic.
 With extrinsic tags the example could look like:
 <code>
 service=mysql server=db15 direction=in unit=B  src=diamond processed_by_statsd env=prod
 </code>
 to mean that this metric came from diamond, went through statsd, and that the machine is currently in the prod environment
-</li>
-<li>
-    <ul>
-    <li>an <b>intrinsic</b> tag contributes to the identity of the metric. If the set of intrinsic tags changes we're talking about a different metric</li>
-    <li>an <b>extrinsic</b> tag provides additional information about the metric.  changes in this set doesn't change the metric identity</li>
-    </ul>
-    Internally, the metric ID is nothing more than the string of intrinsic tags you provided.
-</li>
-<li>
-you don't have to worry about the order of tags. it's irrelevant.  The idea that a specific order is better, is an illusion.
 </li>
 <li>Tags can contain any character except whitespace and null.
 Specifically: dots (great for metrics that contain an ip, histogram bin, a percentile, etc) and slashes (unit can be 'B/s' too)
@@ -105,7 +106,6 @@ and extends it with units commonly used in IT.</li>
 <h3>Further thoughts/comparisons</h3>
 <h4>General</h4>
 <ul>
-
 <li>
 The concept of extrinsic tags is something I haven't seen before, but I think it makes a lot of sense because we often want to pass extra information
 but we couldn't because it would create a new metric.  It also makes the metrics more self-describing.</li>

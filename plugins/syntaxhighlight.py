@@ -23,19 +23,22 @@ echo ("<html><tag foo='bar'>");
 Depends on pygments, lxml, beautiful-soup
 """
 __author__ = 'Dieter Plaetinck <dieter@plaetinck.be>'
-__version__ = "0.1"
+__version__ = "0.2"
 __url__ = "http://pyblosxom.sourceforge.net/"
-__description__ = "Preformatter which uses pygments to highlight source code syntax."
+__description__ = "Preformatter which uses pygments to highlight source code syntax from html content."
 PREFORMATTER_ID = 'syntaxhighlight'
 
 from pygments import highlight
-from pygments.lexers import PythonLexer, get_lexer_by_name, guess_lexer
+from pygments.lexers import get_lexer_by_name, guess_lexer
 from pygments.formatters import HtmlFormatter
 from lxml import etree
 from lxml.html.soupparser import fromstring
+import lxml
+
 
 def cb_start(args):
     request = args["request"]
+
 
 def cb_preformat(args):
     """
@@ -47,6 +50,7 @@ def cb_preformat(args):
     if args['parser'] == PREFORMATTER_ID:
         return parse(''.join(args['story']))
 
+
 def parse(text):
     """
     Find code and highlight it
@@ -57,25 +61,39 @@ def parse(text):
     tree = fromstring(text)
     code = tree.xpath('//code')
     for el in code:
-        highlightcallback (el)
+        highlightcallback(el)
 
-    result = etree.tostring(tree)
+    # lxml insists of wrapping with <html>..</html> tags, we don't want html tags
+    # in the middle of our page.  the simplest fix is just changing them to div,
+    # which are harmless.
+    tree.tag = 'div'
+
+    # not just etree.tostring because html needs explicit separate close tags
+    result = lxml.html.tostring(tree)
     return result
 
-def highlightcallback (code):
+
+def highlightcallback(code):
     try:
         lexer = get_lexer_by_name(code.attrib['lang'])
-    except Exception, e:
+    except Exception:
         lexer = guess_lexer(etree.tostring(code))
-    output = code.text_content() # same as `etree.tostring(code, method='text')` afaict
+    output = code.text_content()  # same as `etree.tostring(code, method='text')` afaict
     output = highlight(output, lexer, HtmlFormatter())
     # NOTE: emitting the styles like this doesn't feel right
     # if you have multiple entries with source code -> redundant style tags
     # plus, all this style info doesn't really belong in the html
     output = '<style>' + HtmlFormatter().get_style_defs('.highlight') + '</style>' + output
+    # newElement has html tags around the actual content!
     newElement = fromstring(output)
+    # lxml insists of wrapping with <html>..</html> tags, so page source would look like:
+    # <code><html><style...
+    # the easiest fix is just changing the html to div, we get rid of the html tag mid-document
+    # and having a wrapping div tag is harmless.
+    newElement.tag = 'div'
     code.clear()
     code.append(newElement)
+
 
 def verify_installation(request):
     try:

@@ -1,0 +1,30 @@
+Introduction talk to metrics 2.0 and Graph-Explorer
+# pubdate 2014-02-23
+# pubtime 16:20:32
+# tags metrics,monitoring,devops
+
+This week I had the opportunity to present <a href="http://dieter.plaetinck.be/metrics_2_a_proposal.html">metrics 2.0</a> and
+<a href="http://vimeo.github.io/graph-explorer/">Graph-Explorer</a> at the
+<a href="http://www.meetup.com/Full-Stack-Engineering-Meetup/">Full-stack engineering meetup</a>.
+<br/>
+I could easily talk for hours about this stuff but the talk had to be about 20 minutes so I paraphrased it to be only
+about the basic concepts and ideas and some practical use cases and features.  I think it serves as a pretty good introduction
+and a showcase of the most commonly used features (graph composition, aggregations and unit conversion), and some new stuff such as alerting and dashboards.
+
+<p>
+The talk also briefly covers native metrics 2.0 through your metrics pipeline using <a href="https://github.com/vimeo/statsdaemon">statsdaemon</a> and <a href="https://github.com/vimeo/carbon-tagger">carbon-tagger</a>.  I'm psyched that by formatting metrics at the source a little better and having an aggregation daemon that expresses the performed operations by updating the metric tags, all the foundations are in place for some truly next-gen UI's and applications (one of them already being implemented: graph-explorer can pretty much generate all graphs I need by just phrasing an information need as a proper query)
+</p>
+<p>
+The <a href="http://vimeo.com/87194301">video</a> and <a href="https://www.slideshare.net/Dieterbe/metrics2-0graphexplorer20140218" title="Metrics 2.0 &amp; Graph-Explorer" target="_blank">slides</a> are available and also embedded below.
+</p>
+
+<iframe src="//player.vimeo.com/video/87194301?title=0&amp;byline=0&amp;portrait=0&amp;color=33a352"
+width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="http://www.slideshare.net/slideshow/embed_code/31440297" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+<p>
+I would love to do another talk that allows me to dive into more of the underlying ideas, the benefits of metrics2.0 for things like metric storage systems, graph renderers, anomaly detection, dashboards, etc.
+<br/>
+<br/>
+Hope you like it!
+</p>

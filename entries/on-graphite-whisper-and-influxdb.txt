@@ -1,6 +1,6 @@
 On Graphite, Whisper and InfluxDB
 # pubdate 2014-05-18
-# pubtime 16:20:32
+# pubtime 13:22:32
 # tags metrics,monitoring,devops
 
 
@@ -73,8 +73,10 @@ So here's how my setup currently works:
 
 <ul>
 <li>
-<a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> is a carbon relay in Go.  You could use it as a high performance alternative to the python carbon relay, except it doesn't support consistent hashing, but in my view CH should be part of a strategy of a highly available storage system (see requirements above), using CH in the relay still results in a poor storage system, so there's no need for it.  Anyway, it's a pretty nifty program and I just use it in front of our traditional graphite system, and have it stream - in realtime - a subset of our metrics into InfluxDB.
-This way I basically have our unaltered Graphite system, and in parallel to it, InfluxDB, containing a subset of the same data.
+<a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> is a carbon relay in Go.  
+It's a pretty nifty program to partition and manage carbon metrics streams.  I use it in front of our traditional graphite system, and have it stream - in realtime - a copy of a subset of our metrics into InfluxDB.  This way I basically have our unaltered Graphite system, and in parallel to it, InfluxDB, containing a subset of the same data.
+<br/>With a bit more work it will be a high performance alternative to the python carbon relay, allowing you to manage your streams on the fly.
+It doesn't support consistent hashing, because CH should be part of a strategy of a highly available storage system (see requirements above), using CH in the relay still results in a poor storage system, so there's no need for it.
 </li>
 <li>I contributed the code to InfluxDB to make it listen on the carbon protocol.  So basically, for the purpose of ingestion, InfluxDB can look and act just like a graphite server.  Anything that can write to graphite, can now write to InfluxDB.  (assuming the plain-text protocol, it doesn't support the pickle protocol, which I think is a thing to avoid anyway because almost nothing supports it and you can't debug what's going on)</li>
 <li><a href="https://github.com/brutasse/graphite-api">graphite-api</a> is a fork/clone of graphite-web, stripped of needless dependencies, stripped of the composer.  It's conceived for many of the same reasons behind <a href="http://dieter.plaetinck.be/graphite-ng_a-next-gen-graphite-server-in-go.html">graphite-ng</a> (graphite technical debt, slow development pace, etc) though it doesn't go to such extreme lengths and for now focuses on being a robust alternative for the graphite server, api-compatible, trivial to install and with a faster pace of development.

@@ -29,6 +29,8 @@ Common recommendations are to <a href="http://bitprophet.org/blog/2013/03/07/gra
 In particular, <a href="http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d">running Ceres instead of whisper</a>, is only a slight improvement, that suffers from most of the same problems.  I don't see any good reason to keep working on Ceres, other than perhaps that it's a fun exercise.   This probably explains the slow pace of development.
 <br/>However, many mistakenly believe Ceres is "the future".
 <br/><a href="http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage">Switching to LevelDB</a> seems much more sensible but IMHO still doesn't cut it as a general purpose, scalable solution.
+
+<h4>The ideal backend</h4>
 I believe we can build a backend for graphite that
 <ul>
 <li>can easily scale from a few metrics on my laptop in power-save mode to millions of metrics on a highly loaded cluster</li>

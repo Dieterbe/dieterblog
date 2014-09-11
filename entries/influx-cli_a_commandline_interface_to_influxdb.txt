@@ -1,7 +1,7 @@
 Influx-cli: a commandline interface to Influxdb.
 # pubdate 2014-09-08
 # pubtime 08:36:36
-# tags monitoring, golang
+# tags monitoring,golang
 
 <p>
 Time for another side project:

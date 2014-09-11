@@ -1,0 +1,8 @@
+<h4>Comment preview (not submitted yet)</h4>
+<div class="blosxomComment">
+<!-- $cmt_title -->
+<a name="$cmt_time"></a>
+<div class="blosxomComment">
+<div class="prefixedcomment">$cmt_description</div>
+<p class="postinfo">Posted by $cmt_optionally_linked_author on $cmt_pubDate</p>
+</div>

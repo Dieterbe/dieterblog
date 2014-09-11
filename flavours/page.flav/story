@@ -1,0 +1,10 @@
+<div class="blosxomStory">
+<div class="prefixedBody">
+$(body)
+</div>
+<p class='postinfo'>
+  &nbsp; &nbsp; &nbsp; &nbsp; $dw, $da $mo $yr $(ti) -
+  tags: $(tags) -
+  <a href="$(base_url)/$(urlencode(file_path)).$(flavour)#comments">$num_comments comments</a>
+</p>
+</div>

@@ -1,7 +1,7 @@
 Bye CakePHP, bye dAuth... Hello Drupal!
 # pubdate 2007-07-19
 # pubtime 00:34:51
-# tags php,drupal,dauth,cakephp
+# tags php,drupal,cakephp
 # guid 19 at http://dieter.plaetinck.be
 <p>I'm afraid the time has come to say goodbye to CakePHP, and to the projects I've been working on for it.<br />
 I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don't like but that's not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.<br />

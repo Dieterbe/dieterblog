@@ -11,6 +11,7 @@ Graphite is meant for time series (metrics over time), Anthracite aims to be the
 More precisely, <strong>Anthracite aims to be a database of "relevant events"</strong> (see further down), <strong>for the purpose of enriching monitoring dashboards,
 as well as allowing visual and numerical analysis of events that have a business impact</strong> (for the latter, see "<i>Thoughts on incident nomenclature, severity levels and incident analysis</i>" below)<br>
 It has a TCP receiver, a database (sqlite3), a http interface to deliver event data in many formats and a simple web frontend for humans.</p>
+<!--break-->
 
 <p>design goals:</p>
 

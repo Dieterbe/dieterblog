@@ -16,6 +16,7 @@ OpenTSDB's metrics are shorter, because they move some of the dimensions (server
 <b>I think we can do better...</b>
 <br/>
 I think our metrics format is restrictive and we do our self a disservice using it:
+<!--break-->
 <ul>
 <li>the metrics are not fully self-describing (they need additional information to become useful for interpretation, e.g. a unit, and information about what they mean)</li>
 <li>they impose needless limitations (no dots allowed, strict ordering)</li>

@@ -6,6 +6,7 @@ Introduction talk to metrics 2.0 and Graph-Explorer
 This week I had the opportunity to present <a href="http://dieter.plaetinck.be/metrics_2_a_proposal.html">metrics 2.0</a> and
 <a href="http://vimeo.github.io/graph-explorer/">Graph-Explorer</a> at the
 <a href="http://www.meetup.com/Full-Stack-Engineering-Meetup/">Full-stack engineering meetup</a>.
+<!--break-->
 <br/>
 I could easily talk for hours about this stuff but the talk had to be about 20 minutes so I paraphrased it to be only
 about the basic concepts and ideas and some practical use cases and features.  I think it serves as a pretty good introduction

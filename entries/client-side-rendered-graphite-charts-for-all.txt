@@ -2,9 +2,9 @@ Client-side rendered graphite charts for all
 # pubdate 2012-11-14
 # pubtime 08:49:56
 # tags devops,monitoring
-<p>
 Client-side rendering of charts as opposed to using graphite's server side generated png's
 allows various interactivity features, such as:
+<!--break-->
 <ul>
 <li>interactive realtime zooming and panning of the graph, timeline sliders</li>
 <li>realtime switching between various rendering modes (lines, stacked, etc)</li>
@@ -13,7 +13,7 @@ allows various interactivity features, such as:
 <li>popups detailing the exact metrics when hoovering over the chart's datapoints</li>
 <li>popups for annotated events. (a good use for <a href="/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact.html">anthracite</a>).
 </ul>
-<br/>Those are all features of charting libraries such as <a href="http://www.flotcharts.org/">flot</a> and <a href="http://code.shutterstock.com/rickshaw/">rickshaw</a>,
+<p>Those are all features of charting libraries such as <a href="http://www.flotcharts.org/">flot</a> and <a href="http://code.shutterstock.com/rickshaw/">rickshaw</a>,
 the only remaining work is creating a library that unleashes the power of such a framework, integrates it with the graphite
 api datasource, and makes it available over a simple but powerful api.
 <br/>

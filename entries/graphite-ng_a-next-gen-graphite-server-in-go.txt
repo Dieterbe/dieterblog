@@ -15,6 +15,7 @@ The focus of my work so far is the API web server, which is a functioning protot
 I.e. it lets you retrieve your timeseries, processed by function pipelines which are setup on the fly based on a spec in your http/rest arguments.
 Currently it only fetches metrics from text files but I'm working on decent metrics storage as well.
 </p>
+<!--break-->
 
 <p>
 There's a few reasons why I decided to start a new project from scratch:

@@ -27,6 +27,7 @@ I wrote <a href="https://github.com/vimeo/simple-black-box">simple-black-box</a>
 <br/>It also can use <a href="http://logstash.net/">logstash</a> to give a centralized "distributed stack trace" when you need to debug a failure after
 multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.
 <br/>You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.
+<!--break-->
 
 <h3>Simple-black-box talk @ Devopsdays NYC</h3>
 I did a quick <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">5min talk</a>, despite some display/timing issues it was well received.

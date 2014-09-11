@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # =================================================================
-# This is the config file for Pyblosxom.  You should go through 
-# this file and fill in values for the various properties.  This 
+# This is the config file for Pyblosxom.  You should go through
+# this file and fill in values for the various properties.  This
 # affects the behavior of your blog.
 #
 # This is a Python code file and as such must be written in
@@ -24,7 +24,7 @@ py = {}
 # If you did not install Pyblosxom as a library (i.e. python setup.py install)
 # then uncomment this next line and point it to your Pyblosxom installation
 # directory.
-# 
+#
 # Note, this should be the parent directory of the "Pyblosxom" directory
 # (note the case--uppercase P lowercase b!).
 #py["codebase"] = "/usr/lib/python2.7/site-packages"
@@ -53,7 +53,7 @@ py["blog_email"] = "dieter@plaetinck.be"
 # on your blog.  Generally, this is the copyright information.
 # This is used in the Atom feeds.  Leaving this blank or not filling
 # it in correctly could result in a feed that doesn't validate.
-py["blog_rights"] = "Copyright 2007-2010 Dieter Plaetinck"
+py["blog_rights"] = "Copyright 2007-2015 Dieter Plaetinck"
 
 # What is this blog's primary language (for outgoing RSS feed)?
 py["blog_language"] = "en"
@@ -113,7 +113,7 @@ py["log_level"] = "debug"
 # If specified, only messages from the listed channels are logged.
 # Each plugin logs to it's own channel, therefor channelname == pluginname.
 # Application level messages are logged to a channel named "root".
-# If you use log_filter and ommit the "root" channel here, app level messages 
+# If you use log_filter and ommit the "root" channel here, app level messages
 # are not logged! log_filter is mainly interesting to debug a specific plugin.
 #py["log_filter"] = ["root", "plugin1", "plugin2"]
 
@@ -131,22 +131,22 @@ py["log_level"] = "debug"
 py["plugin_dirs"] = [os.path.join(blogdir, "plugins")]
 
 # There are two ways for Pyblosxom to load plugins:
-# 
+#
 # The first is the default way where Pyblosxom loads all plugins it
 # finds in the directories specified by "plugins_dir" in alphanumeric
 # order by filename.
-# 
+#
 # The second is by specifying a "load_plugins" key here.  Specifying
-# "load_plugins" will cause Pyblosxom to load only the plugins you name 
+# "load_plugins" will cause Pyblosxom to load only the plugins you name
 # and in in the order you name them.
-# 
+#
 # The "load_plugins" key is a list of strings where each string is
 # the name of a plugin module (i.e. the filename without the .py at
 # the end).
-# 
+#
 # If you specify an empty list, then this will load no plugins.
 # ex: py["load_plugins"] = ["pycalendar", "pyfortune", "pyarchives"]
-py["load_plugins"] = ["comments", "pymetatime", "readmore", "tags", "syntaxhighlight", "magicword", 'nopose', 'guid', 'pages']
+py["load_plugins"] = ["Pyblosxom.plugins.comments", "pymetatime", "readmore", "Pyblosxom.plugins.tags", "syntaxhighlight", "Pyblosxom.plugins.magicword", 'nopose', 'guid', 'Pyblosxom.plugins.pages']
 
 py['readmore_breakpoint'] = '<!--break-->'
 py['readmore_template'] = ['<br/><br/>::<a href="%(url)s">Read more</a>',
@@ -178,7 +178,7 @@ py["parser"] = "syntaxhighlight"
 # Doing static rendering?  Static rendering essentially "compiles" your
 # blog into a series of static html pages.  For more details, see the
 # documentation.
-# 
+#
 # What directory do you want your static html pages to go into?
 #py["static_dir"] = "/path/to/static/dir"
 

@@ -151,8 +151,9 @@ py["plugin_dirs"] = [os.path.join(blogdir, "plugins")]
 py["load_plugins"] = ["Pyblosxom.plugins.comments", "pymetatime", "readmore", "Pyblosxom.plugins.tags", "syntaxhighlight", "Pyblosxom.plugins.magicword", 'nopose', 'guid', 'Pyblosxom.plugins.pages']
 
 py['readmore_breakpoint'] = '<!--break-->'
-py['readmore_template'] = ['<br/><br/>::<a href="%(url)s">Read more</a>',
-                           '<br/><br/><span class="break_read_marker">::Read from here</span>']
+py['readmore_template'] = ['<br/><a href="%(url)s">read more</a>',
+                          # '<br/><br/><span class="break_read_marker">::Read from here</span>']  <-- too ugly.
+                          '']
 
 py['mw_question'] = "What is the first name of the guy blogging here?"
 py['mw_answer'] = "dieter"

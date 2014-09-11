@@ -171,6 +171,7 @@ py['pagesdir'] = 'pages'
 #py["base_url"] = "__BASE_URL__"
 
 # Default parser/preformatter. Defaults to plain (does nothing)
+py["parser"] = "plain"
 py["parser"] = "syntaxhighlight"
 
 

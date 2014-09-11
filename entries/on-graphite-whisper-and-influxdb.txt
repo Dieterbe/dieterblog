@@ -14,7 +14,7 @@ Graphite is a neat timeseries metrics storage system that comes with a powerful 
 </li>
 <li>Using the rollups feature (different data resolutions based on age) causes a lot of extra IO.</li>
 <li>The format is also simply not optimized for writes.  Carbon, the storage agent that sits in front of whisper has a feature to batch up writes to files to make them more sequential but this doesn't seem to help much.</li>
-<li>Worse, due to various <a href="https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md#what-problems-have-we-had">implementation details</a> the carbon agent is surprisingly inefficient and cpu-bound.  People often run into cpu limitations before they hit the io bottleneck.  Once the writeback queue hits a certain size, carbon will blow up.</li>
+<li>Worse, due to various <a href="https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md#what-problems-have-we-had">implementation details</a> the carbon agent is surprisingly inefficient and even cpu-bound.  People often run into cpu limitations before they hit the io bottleneck.  Once the writeback queue hits a certain size, carbon will blow up.</li>
 </ul>
 Common recommendations are to <a href="http://bitprophet.org/blog/2013/03/07/graphite/">run multiple carbon agents</a> and
 <a href="http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5">running graphite on SSD drives</a>.
@@ -44,7 +44,7 @@ I believe we can build a backend for graphite that
 </ul>
 
 While we're at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.
-<br/>And getting rid of the metric name restrictions such as inability to use dots or slashes.
+<br/>And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.
 
 <h4>InfluxDB</h4>
 

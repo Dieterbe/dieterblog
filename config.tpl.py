@@ -161,7 +161,7 @@ py['np_author'] = "dieter_be|dieter@be|dieterbe|dieter.*plaetinck"
 py['np_email'] = "dieter@plaetinck.be"
 py['np_url'] = "dieter.plaetinck.be|plaetinck.be"
 py['comment_mark'] = ('author', 'Dieter_be', 'blosxomOwnerComment')
-py['pagesdir'] = 'static'
+py['pagesdir'] = 'pages'
 
 # ======================
 # Optional Configuration

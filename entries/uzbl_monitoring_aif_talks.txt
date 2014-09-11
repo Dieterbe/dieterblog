@@ -1,7 +1,7 @@
 Uzbl, monitoring, AIF talks
 # pubdate 2010-03-07
 # pubtime 12:06:18
-# tags life,uzbl,arch
+# tags life,uzbl,arch,monitoring,conf
 # guid 84 at http://dieter.plaetinck.be
 <p>I recently did two talks, for which the videos are now online.</p>
 <ul>

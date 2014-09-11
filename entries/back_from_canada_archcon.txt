@@ -1,7 +1,7 @@
 Back from Canada, Archcon
 # pubdate 2010-07-31
 # pubtime 23:10:36
-# tags life,arch
+# tags life,arch,conf
 # guid 87 at http://dieter.plaetinck.be
 <p>I'm back from Canada/Archcon, and it was great. I've been in Toronto for 11 days, and visited Montreal for 3 days.</p>
 <h3>Archcon</h3>

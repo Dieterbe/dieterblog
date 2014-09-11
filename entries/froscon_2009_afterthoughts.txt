@@ -1,7 +1,7 @@
 Froscon 2009 afterthoughts
 # pubdate 2009-08-28
 # pubtime 19:00:02
-# tags life,uzbl,arch
+# tags life,uzbl,arch,conf
 # guid 72 at http://dieter.plaetinck.be
 <!--break-->
 <p><a href="http://froscon.org/">Froscon</a> was great.</p>

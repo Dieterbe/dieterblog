@@ -1,0 +1,89 @@
+
+<h2>Talks</h2>
+<table>
+<tbody>
+<tr>
+    <td>May 5, 2014</td>
+    <td>Metrics 2.0</td>
+    <td>Monitorama</td>
+    <td>Portland, Oregon</td>
+    <td>
+        <a href="http://metrics20.org/media/">slides, video</a>,
+        <a href="http://dietertest.plaetinck.be/monitorama-pdx-metrics20.html">blogpost</a>
+    </td>
+</tr>
+<tr>
+    <td>Apr 3, 2014</td>
+    <td>Metrics stack 2.0</td>
+    <td>nycdevops meetup</td>
+    <td>NYC</td>
+    <td><a href="http://metrics20.org/media/">slides</a></td>
+</tr>
+<tr>
+    <td>Feb 18, 2014</td>
+    <td>Metrics 2.0 & Graph-Explorer</td>
+    <td>FullStack engineering meetup</td>
+    <td>NYC</td>
+    <td><a href="http://metrics20.org/media/">slides, video</a></td>
+</tr>
+<tr>
+    <td>Jan 18, 2013</td>
+    <td>Simple Black Box</td>
+    <td>Devopsdays</td>
+    <td>NYC</td>
+    <td>
+        <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">devopsdays page</a>, 
+        <a href="/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc.html">blog</a>,
+        <a href="https://twitter.com/Dieter_be/status/293377294679027713">slides</a></td>
+</tr>
+<tr>
+    <td>Feb 6, 2011</td>
+    <td>Can we build a simple, cross-distribution installation framework?</td>
+    <td>Fosdem</td>
+    <td>Brussels, Belgium</td>
+    <td>
+        <a href="https://archive.fosdem.org/2011/schedule/event/distro_crossinstall">fosdem page</a>, 
+        <a href="/can_we_build_a_simple_cross-distribution_installation_framework.html">blog, slides, video</a>
+    </td>
+</tr>
+<tr>
+    <td>Jul 23, 2010</td>
+    <td>Uzbl - web interface tools which adhere to the unix philosophy</td>
+    <td>Archcon</td>
+    <td>Toronto, Canada</td>
+    <td><a href="http://dieter.plaetinck.be/back_from_canada_archcon.html">archcon blogpost, slides, video</a></td>
+</tr>
+<tr>
+    <td>Jul 22, 2010</td>
+    <td>AIF: The Arch Installation Framework</td>
+    <td>Archcon</td>
+    <td>Toronto, Canada</td>
+    <td><a href="http://dieter.plaetinck.be/back_from_canada_archcon.html">archcon blogpost, slides, video</a></td>
+</tr>
+<tr>
+    <td>Feb 6, 2010</td>
+    <td>Uzbl lightning talk</td>
+    <td>Fosdem</td>
+    <td>Brussels, Belgium</td>
+    <td>
+        <a href="https://archive.fosdem.org/2010/schedule/events/uzbl">fosdem page</a>,
+        <a href="http://dieter.plaetinck.be/uzbl_monitoring_aif_talks.html">blog post</a>
+    </td>
+</tr>
+<tr>
+    <td>???, 2009</td>
+    <td>Overview of monitoring software</td>
+    <td>Kangaroot showcase</td>
+    <td>Vilvoorde, Belgium</td>
+    <td><a href="http://dieter.plaetinck.be/uzbl_monitoring_aif_talks.html">blog post</a>. video/slides unavailable</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Other fun public performances</h2>
+<ul>
+<li><a href="/vimeo_holiday_special_and_other_great_videos.html">Vimeo holiday special 2013</a></li>
+<li><a href="https://vimeo.com/59629623">trailer</a> and <a href="https://vimeo.com/59740798">full version</a> of a live metal show with me on drums.  Summer of 2012</li>
+<li><a href="https://vimeo.com/89865779">another metal music video</a></li>
+<li><a href="http://www.osnews.com/story/22692/Arch_Linux_Team">Arch Linux team interview</a>. Jan 11, 2010</li>
+</ul>

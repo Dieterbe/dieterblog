@@ -17,6 +17,8 @@
 # Don't touch this next line.
 py = {}
 
+py['cacheDriver'] = 'entrypickle'
+py['cacheConfig'] = '/tmp/blog/'  # beware of systemd privatetmp
 
 # Codebase configuration
 # ======================

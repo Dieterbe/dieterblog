@@ -1,7 +1,7 @@
 On Graphite, Whisper and InfluxDB
 # pubdate 2014-05-18
 # pubtime 13:22:32
-# tags devops,monitoring,golang
+# tags devops,monitoring,golang,perf
 
 
 <h4>Graphite, and the storage Achilles heel</h4>

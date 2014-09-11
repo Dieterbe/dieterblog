@@ -1,7 +1,7 @@
 Rsyncbench, an rsync benchmarking tool
 # pubdate 2010-10-15
 # pubtime 09:38:12
-# tags foss
+# tags foss,perf
 # guid 92 at http://dieter.plaetinck.be
 <p>Background info:<br />
 I'm currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn't need much disk space,<br />

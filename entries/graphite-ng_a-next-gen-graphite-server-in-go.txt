@@ -1,7 +1,7 @@
 Graphite-ng: A next-gen graphite server in Go.
 # pubdate 2013-09-07
 # pubtime 20:54:20
-# tags devops,monitoring,golang
+# tags devops,monitoring,golang,perf
 
 <p>
 I've been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It's a <i>great</i> tool for timeseries metrics.

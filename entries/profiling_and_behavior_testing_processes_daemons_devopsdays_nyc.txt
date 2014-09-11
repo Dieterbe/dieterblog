@@ -1,7 +1,7 @@
 Profiling and behavior testing of processes and daemons, and Devopsdays NYC
 # pubdate 2013-01-21
 # pubtime 15:25:14
-# tags devops,monitoring
+# tags devops,monitoring,perf
 
 <h3>Profiling a process run</h3>
 <a href="https://github.com/Dieterbe/profile-process">

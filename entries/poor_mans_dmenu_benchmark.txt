@@ -1,7 +1,7 @@
 Poor mans dmenu benchmark
 # pubdate 2009-04-25
 # pubtime 11:25:26
-# tags foss
+# tags foss,perf
 # guid 64 at http://dieter.plaetinck.be
 <p>I wanted to know how responsive <a href="http://tools.suckless.org/dmenu">dmenu</a> and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).</p>
 <!--break-->

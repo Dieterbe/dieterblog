@@ -1,15 +1,29 @@
-timeseries monitoring: decoupling short peak detection from metric storage interval
+timeseries monitoring: decoupling short peak detection from metric submission/storage interval
 
-If you're in IT operations, you're probably familiar with looking at graphs and the realisation your plot is abstracting the fine-grained details by averaging out (usually over a minutely or 5-minutely interval).
-In some use cases you may be missing out on a lot of important information, especially when you're trying to troubleshoot issues caused by acute short peaks (up or down), for example when diagnosing application problems caused by packet loss caused by switch port buffer overflows, in turn caused by (in this example) short bursts of traffic. (which show up as peaks on your graph)
-The fact is that many metrics (not just network traffic) are an average, irrespective of the sample interval size, because you're comparing a value (counter) before and after the end of the interval. (I haven't seen any other way for neither network equipment or Linux interfaces)
-Some people <a href="http://boundary.com/blog/2013/02/25/why-one-second-data/">collect (and store, display) per-second data and call it a day</a> but I believe there are better ways to managing this by anticipating needs of your insights into peak duration
-(<b>what's the minimum duration of a peak for it to become a problem?</b> a second? 10 seconds? 0.1 second?)
-and decoupling this duration from the datapoint submission/storage/display interval, there's really no need for these to be the same.
+If you're in IT operations, you're probably familiar with looking at graphs and
+the realisation your plot is abstracting the fine-grained details by averaging out
+(usually in minutely or 5-minutely steps).
+In some use cases you may be missing out on a lot of important information,
+especially when you're trying to troubleshoot issues caused by acute short peaks (up or down),
+for example when diagnosing application problems caused by packet loss caused by switch port buffer overflows,
+in turn caused by (in this example) short bursts of traffic. (which show up as peaks on your graph).
+The fact is that many metrics (not just network traffic) are an average,
+irrespective of the sample interval size, because you're comparing a value (counter)
+before and after the end of the interval. (I haven't seen any other way for neither network equipment or Linux interfaces)
+<a href="http://boundary.com/blog/2013/02/25/why-one-second-data/">collecting (and storing, displaying) per-second data</a> is a start 
+but
+* enforcing 1-second sampling intervals irrespective of which type of metric is not always appropriate
+* storing (and dealing with) per-second data is not always feasible
+
+ I believe there are better ways to managing this by anticipating needs of your insights into peak duration
+and decoupling this duration from the datapoint submission/storage/display interval (there's really no need for these to be the same)
+at the expense of some time-accuracy).
 This way, I believe a monitoring system can maintain a healthier balance between needed resources vs usefullness.
 
 It would work something like this (again, for the example of bursty network traffic):
-say, you identified bursts that take a second or more can be problematic for your application, and you decided minutely datapoints suffice
+* answer "what's the minimum duration of a peak for it to become a problem?" let's say a second. (though it could just as well be 0.1 or 10 seconds)
+* 
+d you decided minutely datapoints suffice
 (you have to make the tradeoff of resource usage/cost against real-timeness and time-accuracy).  your monitoring agent reads the interface counter every second, and maintains per-second traffic averages for every second interval since the last flush.
 At every flush (minutely) it publishes the highest value seen, the lowest, and the average value seen (the latter can also be obtained in the traditional way, by checking the counter against the value of the last flush).  This way you only need to submit/store/render minutely data and still get an elevated insight into the peaks you're looking for, at the tradeoff of time accuracy, which is usually not a problem because you can tell consequences from causes without having to compare the order in which graphs start to show interesting signs.
 
@@ -25,3 +39,8 @@ metric, sampling interval, rollup method(s) (max/min/avg/...), submission interv
 
 we can make this a bit easier to manage by agreeing on a metric naming system (i.e. traffic.max traffic.min traffic.avg) and just specifying the intervals, and applying the rules automatically on all matching metrics.
 With that, this approach becomes a seamless companion to graphite's aggregation method (which does rollups for already persisted metrics moving from short term high-resolution to a longer term lower-resolution).  Indeed, it only seems natural to extend this concept of "maintain anticipated high-resolution insights when making the metrics cheaper" from the storage system to the agent.
+
+note: if we can make graphite apply the rollup functions if it receives >1 metrics per time interval, we can mimic this behavior with existing agents (and statsd)
+by bumping their flushInterval
+
+this model is way too simple. better would be to collect data every second, and then collect upper, upper_95, mean, etc.

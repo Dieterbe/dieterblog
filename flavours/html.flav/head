@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>$(blog_title) : $(pi_bl)</title>
@@ -22,13 +23,6 @@ h1, p {
 h1, h2, h3 {
 	color: #444;
 }
-h2 {
-	text-align: right;
-	font-size: 0.8em;
-}
-h3 {
-	font-size: 1.2em;
-}
 #container {
 	min-height: 100%;
 	margin-bottom: -56px;
@@ -46,7 +40,7 @@ h3 {
 	padding-left: 20px;
 	height: 60px;
 }
-#header h1 a {
+#header h1 span {
 	color: #ddd;
 	float: left;
 }
@@ -77,9 +71,15 @@ a {
 a:visited {
 	color: #666;
 }
+
+#header a {
+    color: #999;
+}
+
 .prefixedbody {
-	border-left: 10px solid #eee;
+	border-left: 20px solid white;
 	padding-left: 5px;
+    margin-bottom: 30px;
 }
 img {
 	border: none;
@@ -102,6 +102,15 @@ img {
 	border-left: 5px solid #eee;
 	padding-left: 3px;
 }
+.biggestTag { font-size: 16pt; }
+.bigTag { font-size: 14pt }
+.mediumTag { font-size: 12pt }
+.smallTag { font-size: 10pt }
+.smallestTag { font-size: 8pt }
+.tagCloud {
+width: 300px;
+margin: 20px;
+}
 </style>
 <script type="text/javascript">
 
@@ -122,9 +131,32 @@ img {
 <div id="container">
 <div id="header">
 <h1>
-	<a href="$(base_url)/">$(blog_title)</a>
+<span>
+	$(blog_title)
+</span>
 </h1>
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="$(base_url)/">blog</a>
+&nbsp;
+&nbsp;
+<a href="/talks">talks</a>
+&nbsp;
+&nbsp;
+<a href="/about">about</a>
+&nbsp;
+&nbsp;
+<a href="http://twitter.com/Dieter_be">tweets</a>
+&nbsp;
+&nbsp;
+<a href="http://github.com/Dieterbe">github</a>
+
+
 <a href="$(base_url)/index.rss"><img class='feed' src="$(base_url)/files/rss.png"  title="Rss 2.0" alt="Rss 2.0"/></a>
 <a href="$(base_url)/index.atom" ><img class='feed' src="$(base_url)/files/atom.png" title="Atom 1.0" alt="Atom 1.0"/></a>
+</div>
+<div class="tagCloud">
+$(tagcloud)
 </div>
 <div id="contentpanel">

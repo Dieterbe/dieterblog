@@ -1,7 +1,7 @@
 Histograms in statsd, and graphing them over time with graphite.
 # pubdate 2012-11-07
 # pubtime 18:45:11
-# tags tech
+# tags devops,monitoring
 <p>
 I submitted a pull request to statsd which adds <a href="https://github.com/etsy/statsd/pull/162">histogram support</a>.
 <img style="float:left;margin:0 5px 0 0;" src="/files/Black_cherry_tree_histogram.svg.png" alt="Example histogram, from Wikipedia"/>

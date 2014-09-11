@@ -1,7 +1,7 @@
 Fosdem 2010
 # pubdate 2010-01-24
 # pubtime 17:10:16
-# tags real life,foss,uzbl,arch
+# tags life,foss,uzbl,arch
 # guid 81 at http://dieter.plaetinck.be
 <p>I'll be at fosdem - 10th edition - again this year.<br />
 <a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2010.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a></p>

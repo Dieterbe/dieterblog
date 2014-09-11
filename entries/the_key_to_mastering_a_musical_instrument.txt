@@ -1,6 +1,6 @@
 The key to mastering a musical instrument ...
 # pubdate 2008-01-19
 # pubtime 23:36:06
-# tags drums,music,real life
+# tags music,life
 # guid 35 at http://dieter.plaetinck.be
 <p>The key to mastering a musical instrument is learning an other.</p>

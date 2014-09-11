@@ -1,7 +1,7 @@
 Graph-Explorer: A graphite dashboard unlike any other
 # pubdate 2013-01-09
 # pubtime 09:25:36
-# tags devops,monitoring,graphite
+# tags devops,monitoring
 
 The above sounds like a marketing phrase and I'm just as skeptical of them as you, but I feel it's in place. Not because GE is necessarily better, but it's certainly <i>different</i>.
 <!--break-->

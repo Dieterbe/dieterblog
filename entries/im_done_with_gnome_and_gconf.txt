@@ -1,7 +1,7 @@
 I'm done with Gnome/Gconf
 # pubdate 2008-09-29
 # pubtime 22:01:41
-# tags foss
+# tags foss,linux
 # guid 50 at http://dieter.plaetinck.be
 <p>I'm managing my ~ in svn but using gnome &amp; gconf makes this rather hard.<br />
 They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).<br />

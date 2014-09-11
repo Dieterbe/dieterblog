@@ -1,7 +1,7 @@
 Afgestudeerd - graduated
 # pubdate 2007-07-04
 # pubtime 15:23:01
-# tags real life,thesis
+# tags life,thesis
 # guid 23 at http://dieter.plaetinck.be
 <p>Foreign visitors: yeay I graduated today \o/</p>
 <p>Dutchies: joepie, afgestudeerd...<br />

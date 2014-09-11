@@ -1,7 +1,7 @@
 Windows sucks
 # pubdate 2008-05-01
 # pubtime 14:22:17
-# tags real life
+# tags life
 # guid 42 at http://dieter.plaetinck.be
 <p>I had to fix a problem at <a href="http://www.plaetinck.be">my dad's company</a>...<br />
 "The network was broken."</p>

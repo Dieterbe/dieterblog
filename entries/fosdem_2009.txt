@@ -1,7 +1,7 @@
 Fosdem 2009
 # pubdate 2009-02-05
 # pubtime 21:20:15
-# tags real life,foss
+# tags life,foss
 # guid 62 at http://dieter.plaetinck.be
 <p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2009.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a></p>
 <p>I'm particulary interested in:</p>

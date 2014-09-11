@@ -1,7 +1,7 @@
 Opening files automatically on mainstream Linux desktops
 # pubdate 2009-09-22
 # pubtime 19:43:17
-# tags foss
+# tags foss,linux
 # guid 75 at http://dieter.plaetinck.be
 <p>Xfce/Gnu/Linux works amazingly well on my moms workstation, with one exception: opening files automatically with the correct program.</p>
 <p>The two biggest culprits are:</p>

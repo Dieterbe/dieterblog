@@ -1,7 +1,7 @@
 I survived LCL 31-3-2008
 # pubdate 2008-04-19
 # pubtime 12:10:11
-# tags real life,netlog
+# tags life,netlog
 # guid 41 at http://dieter.plaetinck.be
 <p>On 31-3-2008 <a href="http://www.lcl.be">LCL</a>, one of the most used datacenters in Belgium - and the only one with a 0% downtime record in Belgium - had major power issues with their datacenter in Diegem, bringing lots of Belgian parties offline.  (more specifics <a href="http://www.google.be/search?q=lcl+diegem+power+failure">on the net</a>).</p>
 <p>If you're one of the sysadmins of a website with 35M members and 150M hits per day this means you're in for an exciting night ...<!--break--></p>

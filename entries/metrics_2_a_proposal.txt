@@ -1,7 +1,7 @@
 Metrics 2.0: a proposal
 # pubdate 2013-09-14
 # pubtime 11:29:32
-# tags devops,monitoring,graphite
+# tags devops,monitoring
 
 <p>
 <ul>

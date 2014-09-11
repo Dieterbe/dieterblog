@@ -1,7 +1,7 @@
 DDM : a Distributed Data Manager
 # pubdate 2008-03-29
 # pubtime 20:28:16
-# tags real life,foss,bash
+# tags life,foss,bash
 # guid 39 at http://dieter.plaetinck.be
 <p><b>UPDATE: this information is outdated.  See <a href="http://github.com/Dieterbe/ddm/tree/master" title="http://github.com/Dieterbe/ddm/tree/master">http://github.com/Dieterbe/ddm/tree/master</a> for latest information.</b></p>
 <h3>Introduction</h3>

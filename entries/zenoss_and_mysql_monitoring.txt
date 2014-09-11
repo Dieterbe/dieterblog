@@ -1,7 +1,7 @@
 Zenoss & Mysql monitoring
 # pubdate 2009-06-06
 # pubtime 10:35:40
-# tags foss
+# tags foss,monitoring
 # guid 66 at http://dieter.plaetinck.be
 <p>I've been playing with <a href="http://www.zenoss.com/">Zenoss</a> (2.4) for the first time.  Here are my thoughts:<!--break--></p>
 <ul>

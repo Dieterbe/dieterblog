@@ -1,6 +1,7 @@
 Simple command to retrieve stuff from RAM after closing/crashing an application
 # pubdate 2007-09-15
 # pubtime 15:32:24
+# tags linux
 # guid 31 at http://dieter.plaetinck.be
 <p>After an app is closed or crashed, the data is still in your RAM and you can very easily get it back by grepping /proc/kcore.<br />
 thanks Martin for this tip!<br />

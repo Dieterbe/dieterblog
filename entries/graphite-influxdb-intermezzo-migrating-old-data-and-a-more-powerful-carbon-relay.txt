@@ -2,6 +2,7 @@ Graphite &amp; Influxdb intermezzo: migrating old data and a more powerful carbo
 # pubdate 2014-09-20
 # pubtime 15:18:32
 # tags devops,monitoring,golang
+<!--break-->
 
 <h4>Migrating data from whisper into InfluxDB</h4>
 

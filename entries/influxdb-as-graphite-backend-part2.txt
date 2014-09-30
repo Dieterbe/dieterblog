@@ -13,6 +13,7 @@ Furthermore, I introduced some tooling: <a href="https://github.com/graphite-ng/
 <li>In the <a href="graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html">Graphite &amp; Influxdb intermezzo</a> I shared a script to import whisper data into InfluxDB and noted some write performance issues I was seeing, but the better part of the article described the various improvements done to <a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a>, which is becoming an increasingly versatile and useful tool.</li>
 <li>In <a href="/using-influxdb-as-graphite-backend-part2.html">part 2</a>, which you are reading now, I'm going to describe recent progress, share more info about my setup, testing results, state of affairs, and ideas for future work</li>
 </ul>
+<!--break-->
 
 <h4>Progress made</h4>
 <ul>

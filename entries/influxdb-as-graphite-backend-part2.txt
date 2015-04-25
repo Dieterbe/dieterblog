@@ -3,6 +3,10 @@ InfluxDB as a graphite backend, part 2
 # pubtime 07:56:01
 # tags devops,monitoring,golang
 
+<br>
+<br/>Updated oct 1, 2014 with a new <i>Disk space efficiency</i> section which fixes some mistakes and adds more clarity.
+<br/>
+
 <p>
 The <i>Graphite + InfluxDB</i> series continues.
 <ul>
@@ -84,10 +88,22 @@ I could have stopped here, but the validation above was not very scientific.  I 
 <h4>Future benchmarks</h4>
 The simple benchmark above was very simple to execute, as it only requires influx-cli and whisper-fetch (so you can easily check for yourself), but clearly there is a need to test more realistic scenarios with concurrent reads, and doing some write benchmarks would be nice too.
 <br/>We should also look into cpu and memory usage.  I have had the luxury of being able to completely ignore memory usage, but others seem to notice excessive InfluxDB memory usage.
-<br/>I would also like to see storage efficiency tests.  Last time I checked, using LevelDB I was pretty close to 24B per record (which makes sense because time, seq_no and value are all 64bit values, and each record has those 3 fields).  (this was with snappy enabled, so it didn't seem to give much benefit).
-With whisper, I have files where the file size in Bytes divided by total records comes down to 114, for others 31.  I haven't looked much into it but it looks like at least InfluxDB is more storage efficient. Also, whisper explicitly encodes None values of course, with InfluxDB those are implied (and require no space)
-<br/>
 <br/>conclusion: many tests and benchmarks should happen, but I don't really have time to conduct them.  Hopefully other people in the community will take this on.
+
+<h4>Disk space efficiency</h4>
+Last time I checked, using LevelDB I was pretty close to 24B per record (which makes sense because time, seq_no and value are all 64bit values, and each record has those 3 fields).  (this was with snappy compression enabled, so it didn't seem to give much benefit).
+<br/>Whisper seems to consume 12 Bytes per record - a 32bit timestamp and a 64bit float value - making it considerably more storage efficient than InfluxDB/levelDB for now.
+<br/>Some notes on this though:
+<ul>
+<li>whisper explicitly encodes None values, with InfluxDB those are implied (and require no space).  We have some clusters of metrics that have very sparse data, so whisper gives us a lot of overhead here, but this is different for everyone.  (note: Ceres should also be better at handling sparse data)</li>
+<li>Whisper and Influxdb both explictly encode the timestamp for every record.  Influxdb uses 64bit so you can do very high resolution (up to microseconds), whisper is limited to per-second data.  Ceres AFAIK doesn't explicitly encode the timestamp at every record, which should also give it a space advantage.</li>
+<li>I've been using a data format in InfluxDB where every record is timestamp-sequence_number-value.  It currently works best overall, and so that's how the graphite ingestion plugin stores it and the graphite-influxdb plugin queries for it.  But it exacerbates the overhead of the timestamp and sequence number.
+<br/>We could technically use a row format where we use more variables as part of the record, storing them as columns instead of separate series, which would improve this dynamic (but currently comes with a big tradeoff in performance characteristics - see the <a href="https://github.com/influxdb/influxdb/issues/582">column indexes</a> ticket).
+<br/>Another thing is that we could technically come up with a storage format for InfluxDB that is optimized for even-spaced metrics, it wouldn't need sequence numbers, and timestamps could be implicit instead of explicit, saving a lot of space.  We could even go further and introduce types (int, etc) for values which would consume even less space.
+</ul>
+<br/>
+It would be great if somebody with more Ceres experience could chip in here, as - in the context of space efficiency - it looks like a neat little format.
+Also, I'm probably not making proper use of the compression features that InfluxDB's storage engines support.  This also requires some more looking into.
 
 
 <h4>State of affairs and what's coming</h4>
@@ -111,7 +127,7 @@ With whisper, I have files where the file size in Bytes divided by total records
 <li>Can we do anything else to make InfluxDB (+graphite) faster? Yes!
 <ul>
 <li>Long term, of course, InfluxDB should have powerful enough processing functions and query syntax, so that we don't even need a graphite layer anymore.</li>
-<li>A storage engine optimized for fixed intervals would probably help, we could have the timestamps implicit instead of explicit.  And maybe making the sequence number field optional.  Each of these fields currently consumes 1/3 of the record... The sequence number field is not only useless in the Graphite use case, I've also rarely seen people make use of this in other use cases.  Not storing the values as 64bit floats would help too.  Finally we could have InfluxDB have fill in None values without it doing "group by" (timeframe consolidation)</li>
+<li>A storage engine optimized for fixed intervals would probably help, timestamps and sequence numbers currently consume 2/3 of the record... and there's no reason to explicitly store either one in this use case.  I've even rarely seen people make use of the sequence number in any other InfluxDB use case.  See all the remarks in the <i>Disk space efficiency</i> section above.  Finally we could have InfluxDB have fill in None values without it doing "group by" (timeframe consolidation), which would shave off runtime overhead.</li>
 <li>Then of course, there are projects to replace graphite-web/graphite-api with a Go codebase: <a href="https://github.com/graphite-ng/graphite-ng">graphite-ng</a> and <a href="https://github.com/dgryski/carbonapi">carbonapi</a>.  the latter is more production ready, but depends on some custom tooling and io using protobufs.  But it performs an order of magnitude better than the python api server!  I haven't touched graphite-ng in a while, but hopefully at some point I can take it up again</li>
 </ul>
 <li>Another thing to keep in mind when switching to graphite-api + InfluxDB: you loose the graphite composer.  I have a few people relying on this, so I can either patch it to talk to graphite-api (meh), separate it out (meh) or replace it with a nicer dashboard like tessera, grafana or descartes.  (or Graph-Explorer, but it can be a bit too much of a paradigm shift).</li>

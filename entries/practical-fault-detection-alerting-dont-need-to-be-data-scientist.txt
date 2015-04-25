@@ -4,7 +4,9 @@ Practical fault detection &amp; alerting.  You don't need to be a data scientist
 # tags devops,monitoring
 
 <br/>
-This post covers some common notions around better operational insights and alerting via fault and anomaly detection, debunks some of the myths that ask for over-complicated solutions, and provides some practical pointers that any programmer or sysadmin can implement without becoming a data scientist.
+As we try to retain visibility into our increasingly complicated applications and infrastructure, we're building out more advanced monitoring systems.
+Specifically, a lot of work is being done on alerting via fault and anomaly detection.
+This post covers some common notions around these new approaches, debunks some of the myths that ask for over-complicated solutions, and provides some practical pointers that any programmer or sysadmin can implement that don't require becoming a data scientist.
 <!--break-->
 <br/>
 <br/>
@@ -55,8 +57,8 @@ I'm <b>suggesting we don't need to make it that fancy</b> and we can do much bet
 <li>using minimal work of classifying metrics via metric meta-data or rules that parse metric id's, we can automatically infer knowledge of how the series is supposed to behave (e.g. assume that disk_mb_used looks like sawtooth, frontend_requests_per_s daily seasonal, etc) and apply fitting processing accordingly.
 <br/>Any sysadmin or programmer can do this, it's a bit of work but should make a hands-off automatic system such as Kale more accurate.
 <br/>Of course, adopting <a href="http://metrics20.org/">metrics 2.0</a> will help with this as well. Another problem with machine learning is they would have to infer how metrics relate against each other, whereas with metric metadata this can easily be inferred (e.g.: what are the metrics for different machines in the same cluster, etc)</li>
-<li>hooking into service/configuration management: you probably already have a service, tool, or file that knows how your infrastructure looks like and which services run where.  We know where user-facing apps run, where crontabs run, where we store log files, where and when we run cleanup jobs.  We know in what ratios traffic is balanced across which nodes, and so on.  So alerting systems can leverage this information to apply better suited fault detection rules.  And you don't need a large machine learning infrastructure for it. (as an aside: I have a lot more ideas on cloud-monitoring integration)</li>
-<li>More scientists are working on algorithms that find cause and affect when different series exhibit anomalies, so they can send more useful alerts.  But again here, a simple model of the infrastructure gives you service dependencies in a much easier way.</li>
+<li>hooking into service/configuration management: you probably already have a service, tool, or file that knows how your infrastructure looks like and which services run where.  We know where user-facing apps run, where crontabs run, where we store log files, where and when we run cleanup jobs.  We know in what ratios traffic is balanced across which nodes, and so on.  Alerting systems can leverage this information to apply better suited fault detection rules.  And you don't need a large machine learning infrastructure for it. (as an aside: I have a lot more ideas on cloud-monitoring integration)</li>
+<li>Many scientists are working on algorithms that find cause and effect when different series exhibit anomalies, so they can send more useful alerts.  But again here, a simple model of the infrastructure gives you service dependencies in a much easier way.</li>
 <li>hook into your event tracking. If you have something like <a href="https://github.com/Dieterbe/anthracite/">anthracite</a> that lists upcoming press releases, then your monitoring system knows not to alert if suddenly traffic is a bit higher.  In fact, you might want to alert if your announcement did not create a sudden increase in traffic.  If you have a large scale infrastructure, you might go as far as tagging upcoming maintenance windows with metadata so the monitoring knows which services or hosts will be affected (and which shouldn't).
 </ul>
 <br/>

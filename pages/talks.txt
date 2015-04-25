@@ -3,6 +3,15 @@
 <table>
 <tbody>
 <tr>
+    <td>Nov 12, 2014</td>
+    <td>Rethinking Metrics: Metrics 2.0</td>
+    <td>LISA 2014</td>
+    <td>Seattle, Washington</td>
+    <td>
+        <a href="https://www.usenix.org/conference/lisa14/conference-program/presentation/plaetinck">slides, audio, video</a>
+    </td>
+</tr>
+<tr>
     <td>May 5, 2014</td>
     <td>Metrics 2.0</td>
     <td>Monitorama</td>

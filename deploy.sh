@@ -81,6 +81,8 @@ then
 fi
 
 echo "Generating tags.."
+pwd
+echo pyblosxom-cmd buildtags --config=$dst/config.py
 if ! pyblosxom-cmd buildtags --config=$dst/config.py
 then
 	echo "Could not pyblosxom-cmd buildtags --config=$dst/config.py" >&2

@@ -55,7 +55,7 @@ a misleading name but <a href="https://github.com/etsy/statsd/issues/98">we're w
 
 
 <h4>First version</h4>
-<code><![CDATA[
+<code lang="javascript"><![CDATA[
 http://localhost:9000/render/?height=300&
 width=740&from=-24h&title=Render time histogram&
 vtitle=relative frequency in %&yMax=100&
@@ -85,7 +85,7 @@ So, let's see what <i>can</i> be done right now.
 <h4>Leaving out the smallest class</h4>
 This adaption is basically the same as before, but leaves out the smallest class (which took most space), this way
 the other bands are a bit more visible but the effect isn't as clear as we want.
-<code><![CDATA[
+<code lang="javascript"><![CDATA[
 http://localhost:9000/render/?height=300&
 width=740&from=-24h&title=Render time histogram&
 vtitle=relative frequency in %, leaving out first class&
@@ -104,7 +104,7 @@ lineMode=slope&areaMode=stacked&drawNullAsZero=false&hideLegend=false
 <h4>Per-band scaling</h4>
 Finally, the bigger the values represented by each class the more we inflate the band,
 so the more problematic cases become more visible, despite having a lower frequency.
-<code><![CDATA[
+<code lang="javascript"><![CDATA[
 http://localhost:9000/render/?height=300&
 width=740&from=-24h&title=Render time histogram&
 vtitle=rel. freq with scale adjustment per band&

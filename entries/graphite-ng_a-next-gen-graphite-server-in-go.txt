@@ -8,7 +8,7 @@ I've been a <a href="https://github.com/graphite-project/">graphite</a> contribu
 Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:
 it's somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in <a href="http://golang.org">Golang</a>.
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p>
-<code><![CDATA[
+<code lang="javascript"><![CDATA[
 /render/?target=sum(scale(stats.web2,5.12),derivative(stats.web2))
 ]]></code>
 <p>
@@ -58,5 +58,5 @@ There's a ton of dashboards out there (<a href="http://vimeo.github.io/graph-exp
 
 For more information, see <a href="https://github.com/graphite-ng/graphite-ng">the Graphite-ng homepage</a>.
 <br/>
-<br/>PS: props to <a href="http://felixge.de/">Felix Geisendörfer</a> who suggested a graphite clone in Go first,
+<br/>PS: props to <a href="http://felixge.de/">Felix Geisendorfer</a> who suggested a graphite clone in Go first,
 it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!

@@ -61,4 +61,4 @@ So the master branch (package aif-git) always contains the latest, stable code.<
 <p>Use "/arch/aif -p interactive -d" (the interactive procedure is the port of /arch/setup)</p>
 <p>Have fun,<br />
 Dieter</p>
-<p>PS: Thomas Bächler (arch dev) has let me know he wants AIF hosted at <a href="http://projects.archlinux.org/" title="http://projects.archlinux.org/">http://projects.archlinux.org/</a> and he will provide me access to their server so I can push to it. Sweet!!</p>
+<p>PS: Thomas Baechler (arch dev) has let me know he wants AIF hosted at <a href="http://projects.archlinux.org/" title="http://projects.archlinux.org/">http://projects.archlinux.org/</a> and he will provide me access to their server so I can push to it. Sweet!!</p>

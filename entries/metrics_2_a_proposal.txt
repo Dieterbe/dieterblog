@@ -53,9 +53,9 @@ to identify and use metrics and organize tags around them.
 </p>
 <p>
 The proposed ingestion (carbon etc) protocol looks like this:
-<code><![CDATA[
+<pre><![CDATA[
 <intrinsic_tags>  <extrinsic_tags> <value> <timestamp>
-]]></code>
+]]></pre>
 <ul>
 <li>
 intrinsic_tags and extrinsic_tags are space-separated strings, those strings can be a regular value, or a key=value pair and they describe one
@@ -71,11 +71,11 @@ dimension (aspect) of the metric.
 </li>
 <li>
 A metric in its basic form (without extrinsic tags) would look like:
-<code><![CDATA[
+<pre><![CDATA[
 graphite: stats.gauges.db15.mysql.bytes_received
 opentsdb: mysql.bytes_received host=db15
 proposal: service=mysql server=db15 direction=in unit=B
-]]></code>
+]]></pre>
 </li>
 <li>
 key=val tags are most useful: the key is a name of the aspect, which allows you to express "I want to see my metrics averaged/summed/.. by this
@@ -87,9 +87,9 @@ However sometimes it can be hard to come up with a concise, but descriptive key 
 For regular words without a key, the backend will assign dummy keys ('n1', 'n2', etc) to facilitate those features without hassle.
 Note the two spaces between intrinsic and extrinsic.
 With extrinsic tags the example could look like:
-<code>
+<pre>
 service=mysql server=db15 direction=in unit=B  src=diamond processed_by_statsd env=prod
-</code>
+</pre>
 to mean that this metric came from diamond, went through statsd, and that the machine is currently in the prod environment
 </li>
 <li>Tags can contain any character except whitespace and null.

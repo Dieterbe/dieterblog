@@ -16,16 +16,16 @@ So here they are, my favorite tricks, key combo's and some bonus stuff:</p>
 <li>HISTIGNORE : with this variable you have control over which things are being saved in your history.  <a href="http://www.talug.org/events/20030709/cmdline_history.html">Here</a> is a nice explication.  Especially the space trick is very useful imho.</li>
 <li>CD_PATH : <a href="http://www.caliban.org/bash/">Here</a> is a great explanation ;-)</li>
 <li>readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :<br />
-<code><![CDATA[
+<pre><![CDATA[
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
-]]></code><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
+]]></pre><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
 You can use the up/down arrows too, their codes are "\e[A" and "\e[B"
 </li>
 <li>for more "natural" history saving behavior (when having several terminals open): put this in .bash_profile: <br/><br />
-<code><![CDATA[PROMPT_COMMAND='history -a']]></code><p> (write each command separately in a new entry, instead of all at shell exit).<br />
+<pre><![CDATA[PROMPT_COMMAND='history -a']]></pre><p> (write each command separately in a new entry, instead of all at shell exit).<br />
 And type </p>
-<code><![CDATA[shopt -s histappend]]></code><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
+<pre><![CDATA[shopt -s histappend]]></pre><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
 </ul>
 <h3>Shortcuts/keycombos</h3>
 <ul>

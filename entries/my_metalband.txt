@@ -2,7 +2,6 @@ My metal band
 # pubdate 2011-05-14
 # pubtime 14:58:12
 # tags life,music
-<div>
 <img width="18%" src="/files/pdp3.jpg" style="float: left; margin-right: 28px">
 <p>Since the audience of this blog is largely technical, I don't post much about other topics, but I feel it's time for a short summary about one of my "real life projects".
 <br/>In the spring of 2009 I joined a progressive death metal band.  I've been drumming since I was 17, but during the last 2 years I've been practising and rehearsing like never before.[1]
@@ -24,5 +23,3 @@ More info about the band:
 </ul>
 [1] Hence the need I had to find <a href="/handing_off_uzbl_to_a_new_project_leader.html">a new maintainer for Uzbl</a>)
 </p>
-
-</div>

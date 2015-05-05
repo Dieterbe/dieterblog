@@ -33,7 +33,7 @@ But the idea is you can simply use one shared channel for all requests, and one 
 As long as the requesters write a request to the requests channel and then read a response from the other channel, and the coordinator first reads a request and then writes the response, no further synchronization is needed.  Here's a demo program:
 </p>
 
-<code><![CDATA[
+<code lang="go"><![CDATA[
 package main
 
 // demo the fact that we can just use one shared req and one resp channel.

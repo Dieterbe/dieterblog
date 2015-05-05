@@ -79,4 +79,4 @@ The writing is pretty informal, and here and there you'll find a subtle referenc
 <p>I would say the "who this book is for" part is a bit too optimistic.  You won't learn Python (3) from scratch by only using this book.  It's not a book restricted to mere OO subjects (in python), but neither does it cover all basics of the Python language.</p>
 <p>So if you are a python newbie, I would probably recommend you 'Dive into python'.  It's free, covers the basics, but doesn't contain so many real life examples.</p>
 <p>If you want to know more about OO in python, design patterns, some real life examples and techniques, or advice from a pro, then I definitely recommend this book.</p>
-<p>Free chapter: <a href="https://www.packtpub.com/sites/default/files/1261-chapter-7-Python%20object-oriented-shortcuts.pdf">Chapter No. 7 – Python Object-oriented Shortcuts</a></p>
+<p>Free chapter: <a href="https://www.packtpub.com/sites/default/files/1261-chapter-7-Python%20object-oriented-shortcuts.pdf">Chapter No. 7 : Python Object-oriented Shortcuts</a></p>

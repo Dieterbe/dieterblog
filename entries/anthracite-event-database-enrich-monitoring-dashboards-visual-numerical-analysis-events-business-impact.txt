@@ -43,15 +43,15 @@ I have a working prototype on <a href="https://github.com/Dieterbe/anthracite">g
 <h4>Formats and conventions</h4>
 <p>The TCP receiver listens for lines in this format:</p>
 
-<code><![CDATA[
+<pre><![CDATA[
 <unix_timestamp> <type> <description>
-]]></code>
+]]></pre>
 
 <p>There are no restrictions for type and description, other than that they must be non-empty strings.
 <br/>I do have some suggestions which I'll demonstrate through fictive examples;
 <br/>but note that there's room for improvement, see the section below)</p>
 
-<code><![CDATA[
+<pre><![CDATA[
 # a deploy_* type for each project
 ts deploy_vimeo.com "deploy e8e5e4 initiated by Nicolas -- github.com/Vimeo/main/compare/foobar..e8e5e4"
 ts puppet "all nodes of class web_cluster_1: modified apache.conf; restart service apache"
@@ -61,7 +61,7 @@ ts incident "hurricane Sandy, systems unaffected but power outages among users, 
 # in those exceptional cases of manual production changes, try to not forget adding your event
 ts manual_dieter "i have to try this firewall thing on the LB"
 ts backup "backup from database slave vimeomysql22"
-]]></code>
+]]></pre>
 
 <h4>Thoughts on incident nomenclature, severity levels and incident analysis</h4>
 Because there are so many unique and often subtle pieces of information pertaining to each individual incident, it's often hard to map an incident to

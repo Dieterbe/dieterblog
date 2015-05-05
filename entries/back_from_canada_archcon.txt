@@ -20,7 +20,7 @@ People in bold are Arch (ex-) devs</p>
 <li>Alex (alexmat) from Tokyo, Japan (very into NILFS, submitted already some patches)</li>
 <li>Sander (GogglesGuy) (Dutch guy living in the states now)</li>
 <li>Eric from Seattle, WA</li>
-<li>Gregory (gelendir) from Québec city, Canada (aka dude wearing the kilt and fivefingers and funny accent)</li>
+<li>Gregory (gelendir) from Quebec city, Canada (aka dude wearing the kilt and fivefingers and funny accent)</li>
 <li><b>Kevin (kpiche)</b> from Ottawa (does perl stuff iirc)</li>
 <li><b>Loui (louipc)</b> from Toronto, Canada (AUR guy, git lover.  metalfan.  Shook John Petrucci's hand)</li>
 <li>Tim from Annapolis (uses Arch for servers at work with some fancy mass-install scripts)</li>

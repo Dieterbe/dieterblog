@@ -9,8 +9,9 @@ import glob
 import re
 import pathlib
 import html
+import sys
 
-def fixheader(lines):
+def fixheader(lines, draft=False):
     date = ""
     time = ""
     guid = ""
@@ -47,8 +48,10 @@ def fixheader(lines):
         "title = \"%s\"" % title,
         "date = \"%sT%s-04:00\"" % (date, time),
         "tags = [%s]" % ', '.join(['"%s"' % i for i in tags]),
-        "+++"
     ]
+    if draft:
+        newheader.append("draft = true")
+    newheader.append("+++")
 
     lines = newheader + lines[i+1:]
     return lines
@@ -66,12 +69,9 @@ def fixhighlight(lines):
         out.append(line.replace('</code>', '{{< /highlight >}}'))
     return out
   
-
-
-entries = glob.glob('entries/*')
-for entry in entries:
+def process_entry(entry):
     base = entry[8:]
-    draft = False  # we actually ignore this cause i don't have drafts like this
+    draft = False 
     if base[-4:] == ".txt":
         new = hugo + "/content/post/" +base[:-4] + ".md"
     elif ".txt" in base:  # .txt.draft, .txt.unpub, etc
@@ -85,14 +85,13 @@ for entry in entries:
     print(base, "---->", new)
     f = open(entry, "r")
     lines = f.readlines()
-    lines = fixhighlight(fixreadmore(fixheader(lines)))
+    lines = fixhighlight(fixreadmore(fixheader(lines, draft)))
     f.close()
     f = open(new, "w")
     f.write("\n".join(lines))
     f.close()
 
-pages = glob.glob('pages/*')
-for page in pages:
+def process_page(page):
     base = page[6:]
     # for my case we can assume .txt extension
     new = hugo + "/content/" +base[:-4] + ".md"
@@ -105,9 +104,23 @@ for page in pages:
     f.write("\n".join(lines))
     f.close()
 
+if len(sys.argv) > 1:
+    for i in sys.argv[1:]:
+        if i.startswith('entries/'):
+            process_entry(i)
+        elif i.startswith('pages/'):
+            process_page(i)
+        else:
+            print("Don't know how to process", i)
+else:
 
+    entries = glob.glob('entries/*')
+    for entry in entries:
+        process_entry(entry)
 
-
+    pages = glob.glob('pages/*')
+    for page in pages:
+        process_page(page)
 
 
         

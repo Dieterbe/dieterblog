@@ -296,166 +296,6 @@ although i think the ratio of medians (median_now/median_then) should work just 
     </item>
     
     <item>
-      <title>Focusing on open source monitoring.  Joining raintank.</title>
-      <link>http://localhost:1313/post/joining-raintank/</link>
-      <pubDate>Sun, 26 Apr 2015 09:08:02 -0400</pubDate>
-      
-      <guid>http://localhost:1313/post/joining-raintank/</guid>
-      <description>&lt;p&gt;
-
-It&#39;s never been as hard saying goodbye to the people and the work environment as it is now.
-
-&lt;br/&gt;
-
-Vimeo was created by dedicated film creators and enthousiasts, just over 10 years ago, and today it still shows.
-
-From the quirky, playful office culture, &lt;a href=&#34;https://vimeo.com/staff&#34;&gt;the staff created shortfilms&lt;/a&gt;,
-
-to the &lt;a href=&#34;https://vimeo.com/categories&#34;&gt;tremendous curation effort&lt;/a&gt; and &lt;a href=&#34;https://vimeo.com/channels/staffpicks/videos&#34;&gt;staff picks&lt;/a&gt; including &lt;a href=&#34;http://websta.me/p/797128421285501516_12986477&#34;&gt;monthly staff screenings&lt;/a&gt; where we get to see the best of the best videos on the internet each month,
-
-to the dedication towards building the best platform and community on the web to enjoy videos and the uncomprimising commitment to supporting movie creators and working in their best interest.
-
-&lt;br/&gt;Engineering wise, there has been plenty of opportunity to make an impact and learn.
-
-&lt;br/&gt;Nonetheless, I have to leave and I&#39;ll explain why.  First I want to mention a few more things.
-
-&lt;/p&gt;
-
-&lt;p&gt;
-
-In Belgium I used to hitchhike to/from work so that each day brought me opportunities to have a chat with a diverse, fantastic assortment of people.  I still fondly remember some of those memories. (and it was also usually faster than taking the bus!)
-
-&lt;br/&gt;Here in NYC this isn&#39;t really feasible, so I tried the next best thing.  A mission to have lunch with every single person in the company, starting with those I don&#39;t typically interact with.  I didn&#39;t quite make it that far, but I still managed to have lunch with 95 people, get to know them a bit, find some gems of personalities and anectdotes, and have conversations on a tremendous variety of subjects.  It was fun and I hope to be able to keep doing such social experiments in my new environment.
-
-
-
-&lt;/p&gt;
-
-&lt;p&gt;
-
-Vimeo is also part of my life in an unusually personal way.  When I came to New York (my first ever visit to the US) in 2011 to interview, I also met a pretty fantastic woman in a random bar in Williamsburg. We ended up traveling together in Europe, I decided to move the US and we moved in together.  I&#39;ve had the pleasure of being submerged in both American and Greek culture for the last few years, but the best part is that today we are engaged and I feel like the luckiest guy in the world.  While I try to keep work and personal life separate, Vimeo has made an undeniable ever lasting impact on my life that I&#39;m very grateful for.
-
-&lt;/p&gt;
-
-&lt;p&gt;
-
-At Vimeo I found an area where a bunch of my interests converge: operational best practices, high performance systems, number crunching, statistics and open source software.  Specifically, timeseries metrics processing in the context of monitoring.  While I have enjoyed my opportunity &lt;a href=&#34;http://localhost:1313/tag/monitoring/&#34;&gt;to make contributions in this space&lt;/a&gt; to help our teams and other companies who end up using my tools, I want to move out of the cost center of the company, I want to be in the department that creates the value.  If I want to focus on open source monitoring, I should align my incentives with those of my employer.  Both for my and their sake.
-
-The time has come for me to join a company that is all about making open source monitoring better.
-
-&lt;/p&gt;
-
-&lt;h2&gt;Hello Raintank!&lt;/h2&gt;
-
-&lt;p&gt;Over the past two years or so I&amp;rsquo;ve talked to many people in the industry about monitoring, many of them trying to bring me into their team.&lt;/p&gt;
-
-&lt;p&gt;I would always find good reasons not to switch jobs but as we transitioned from 2014 into 2015, the starts seemingly aligned for me.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s why I&amp;rsquo;m very excited to join the &lt;a href=&#34;http://www.raintank.io/&#34;&gt;Raintank&lt;/a&gt; crew:&lt;/p&gt;
-
-&lt;ul&gt;
-
-&lt;li&gt;I&#39;m a strong believer in open source.  I believe fundamental infrastructure tooling should be modifyable.  It&#39;s partially a philosophical argument, but also what I believe will separate long lasting business from short term successes. 
-
-&lt;br/&gt;SaaS is great, but not if it locks you in via technical debt.  In this day and age, I think you should lock in your customers by providing a great experience, not by having them build technical debt as they integrate into your stack.
-
-&lt;br/&gt;That said, integrating with open source also incurs technical debt, and some closed source service providers are so good that the debt is worth it.  But I don&#39;t believe this lasts long term, especially given the required pricing models.  I think you can entice customers more by lowering the debt they build up (i.e. use standardized protocols, tooling and making it easy for them to leave) as they adopt your service.  I was really interested in datadog for example.  I liked the team, I liked the product they are/were building and I saw they would become successfull, but it&#39;s not the kind of business I want to build towards long term.
-
-&lt;br/&gt;Raintank is committed to open source and I think came up with a good business model that combines the benefits of SaaS with that of open source.  At least it&#39;s a bet I want to take.  Because it&#39;s open source, we can also make a bigger impact&lt;/li&gt;
-
-&lt;li&gt;Something I value a lot in coworkers, besides &#34;technical&#34; abilities is emotional intelligence.  Part of me thinks it&#39;s a vastly underestimated quality in general, although perhaps I just happen to find it more important than average.  Either way, the new team seems solid on both fronts.  I&#39;m mostly impressed by the founder/CEO Raj Dutt who has shown a very personal and graceful approach.  Looking forward to work with him.
-
-&lt;li&gt;I (and my fiancee) want to see the world. The common conception that significant travel can&#39;t be combined with hard, or even normal amounts of work seems so backwards to me.  Today more than ever, we have globalisation, we are developing a sharing economy (airbnb, lyft, ...).  There&#39;s no reason we can&#39;t do great work while enjoying our personal time to the fullest.  Working remotely, and/or with remote colleagues requires more discipline but I simply only want to work with disciplined people.  Working on a fixed schedule, in a fixed location seems needlessly arcane, constrained and inefficient.  I get a lot more done working remote and I&#39;m happy that Raintank not only agrees with the idea, but actually encourages travel.  This year we&#39;ll spend some time with our families in Belgium and Cyprus and take the opportunity to travel around the US and live in different places, all I will make sure I don&#39;t compromise my, or the teams productivity&lt;/li&gt;
-
-&lt;li&gt;I&#39;ve always wanted to be in a company from the start and experience the &#34;true&#34; start up feel.  I have a lot of opinions on organisation, culture, and product and so I&#39;m glad to have the opportunity to make that kind of impact as well&lt;/li&gt;
-
-
-
-&lt;/ul&gt;
-
-&lt;!--
-
-nyc skin issues
-
-alternative funding? crowd etc
-
-
-
-
-
-https://vimeo.com/blog/post:702
-
-grown as backend engineer, carbon-relay-ng most fun
-
-
-
-
-
-my various projects
-
-contributor to graphite, influxdb, bosun, diamond, statsd, graphite-api,
-
-https://github.com/brutasse/graphite-api
-
-https://github.com/Dieterbe/timeserieswidget
-
-https://github.com/Dieterbe/profile-process
-
-http://vimeo.github.io/graph-explorer/
-
-https://github.com/vimeo/graphite-influxdb
-
-https://github.com/vimeo/carbon-tagger
-
-https://github.com/vimeo/statsdaemon
-
-https://github.com/vimeo/graphite-api-influxdb-docker
-
-https://github.com/vimeo/whisper-to-influxdb
-
-https://github.com/vimeo/smoketcp
-
-https://github.com/vimeo/timeserieswidget
-
-https://github.com/vimeo/simple-black-box
-
-https://groups.google.com/forum/#!forum/it-telemetry
-
-
-
-https://github.com/python-diamond
-
-https://github.com/bosun-monitor
-
-
-
-https://github.com/Dieterbe/anthracite
-
-https://github.com/Dieterbe/influx-cli
-
-
-
-https://github.com/graphite-ng/graphite-ng
-
-https://github.com/graphite-ng/carbon-relay-ng
-
-http://metrics20.org/
-
-humbled by big players who saw my work and invited me to work with them
-
-basically 2 big camps.
-
-
-
-
-
-it seems like every week a monitoring startup launches somewhere.  There is, and will be, more and more competition.  It&#39;s almost ludicrous to start or join a new one.
-
---&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Practical fault detection &amp; alerting.  You don&#39;t need to be a data scientist</title>
       <link>http://localhost:1313/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/</link>
       <pubDate>Thu, 29 Jan 2015 09:08:02 -0400</pubDate>
@@ -2083,6 +1923,82 @@ Hope you like it!
 &lt;p&gt;&lt;br/&gt;What used to be a pain in the butt for me is now a pretty pleasant experience.&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;Does this workflow make sense to you? Is this useful to you? Why (not) ?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Vimeo holiday special &amp; other great videos</title>
+      <link>http://localhost:1313/post/vimeo_holiday_special_and_other_great_videos/</link>
+      <pubDate>Sun, 22 Dec 2013 12:46:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/vimeo_holiday_special_and_other_great_videos/</guid>
+      <description>&lt;p&gt;We (the &lt;a href=&#34;http://vimeo.com/staff&#34;&gt;Vimeo Staff&lt;/a&gt;) just &lt;a href=&#34;https://vimeo.com/blog/post:602&#34;&gt;released&lt;/a&gt; the &lt;a href=&#34;http://vimeo.com/82236972&#34;&gt;2013 Vimeo Holiday Special&lt;/a&gt;, embedded below.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;(and I have a line in it! &amp;ldquo;Who&amp;rsquo;s behind this?&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;
+
+&lt;iframe src=&#34;//player.vimeo.com/video/82236972?title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=33a352&#34; width=&#34;500&#34; height=&#34;211&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+
+
+
+&lt;br&gt;&lt;br&gt;Here&#39;s &lt;a href=&#34;https://vimeo.com/55646323&#34;&gt;last year&#39;s Holiday video&lt;/a&gt; which is just as cool.
+
+&lt;/p&gt;
+
+&lt;p&gt;
+
+Not a lot of people know this but we actually produce a bunch of our own videos.
+
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+Some of my favorites include &lt;a href=&#34;https://vimeo.com/3718294&#34;&gt;Auto-tuning&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/5425957&#34;&gt;Idea&lt;/a&gt;, &lt;a href=&#34;https://vimeo.com/53026635&#34;&gt;Vimeo goes bowling&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/46701971&#34;&gt;Vimeo production reel 2012&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/35514005&#34;&gt;Open your eyes to the new vimeo&lt;/a&gt; and
+
+&lt;a href=&#34;https://vimeo.com/7100569&#34;&gt;Brad!&lt;/a&gt;.
+
+&lt;/p&gt;
+
+&lt;p&gt;
+
+While I&#39;m at it...
+
+Over the last 2 years I&#39;ve discovered many great videos from our diverse user base through staff screenings and by just browsing around.
+
+I&#39;ve narrowed it down to this list of all-time favorites:
+
+&lt;br&gt;
+
+&lt;a href=&#34;https://vimeo.com/59956490&#34;&gt;To this day&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/43005056&#34;&gt;The Art of Making, Alma Flamenca&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/79010983&#34;&gt;Record Breaker&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/56433514&#34;&gt;Malaria&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/43800150&#34;&gt;Portal: Terminal velocity (must-see for all half-life/portal fans)&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/24456787&#34;&gt;The arctic light&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/36100188&#34;&gt;iPhone 4s // Thailand&lt;/a&gt;,
+
+&lt;a href=&#34;https://vimeo.com/42619545&#34;&gt;Ending Overfishing&lt;/a&gt;.
+
+&lt;br/&gt;
+
+I hope you have some time to check out this amazing content! (protip: watch later button &amp; couch mode / smart tv vimeo app)
+
+&lt;/p&gt;
 </description>
     </item>
     

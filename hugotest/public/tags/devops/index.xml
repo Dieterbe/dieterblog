@@ -296,166 +296,6 @@ although i think the ratio of medians (median_now/median_then) should work just 
     </item>
     
     <item>
-      <title>Focusing on open source monitoring.  Joining raintank.</title>
-      <link>http://localhost:1313/post/joining-raintank/</link>
-      <pubDate>Sun, 26 Apr 2015 09:08:02 -0400</pubDate>
-      
-      <guid>http://localhost:1313/post/joining-raintank/</guid>
-      <description>&lt;p&gt;
-
-It&#39;s never been as hard saying goodbye to the people and the work environment as it is now.
-
-&lt;br/&gt;
-
-Vimeo was created by dedicated film creators and enthousiasts, just over 10 years ago, and today it still shows.
-
-From the quirky, playful office culture, &lt;a href=&#34;https://vimeo.com/staff&#34;&gt;the staff created shortfilms&lt;/a&gt;,
-
-to the &lt;a href=&#34;https://vimeo.com/categories&#34;&gt;tremendous curation effort&lt;/a&gt; and &lt;a href=&#34;https://vimeo.com/channels/staffpicks/videos&#34;&gt;staff picks&lt;/a&gt; including &lt;a href=&#34;http://websta.me/p/797128421285501516_12986477&#34;&gt;monthly staff screenings&lt;/a&gt; where we get to see the best of the best videos on the internet each month,
-
-to the dedication towards building the best platform and community on the web to enjoy videos and the uncomprimising commitment to supporting movie creators and working in their best interest.
-
-&lt;br/&gt;Engineering wise, there has been plenty of opportunity to make an impact and learn.
-
-&lt;br/&gt;Nonetheless, I have to leave and I&#39;ll explain why.  First I want to mention a few more things.
-
-&lt;/p&gt;
-
-&lt;p&gt;
-
-In Belgium I used to hitchhike to/from work so that each day brought me opportunities to have a chat with a diverse, fantastic assortment of people.  I still fondly remember some of those memories. (and it was also usually faster than taking the bus!)
-
-&lt;br/&gt;Here in NYC this isn&#39;t really feasible, so I tried the next best thing.  A mission to have lunch with every single person in the company, starting with those I don&#39;t typically interact with.  I didn&#39;t quite make it that far, but I still managed to have lunch with 95 people, get to know them a bit, find some gems of personalities and anectdotes, and have conversations on a tremendous variety of subjects.  It was fun and I hope to be able to keep doing such social experiments in my new environment.
-
-
-
-&lt;/p&gt;
-
-&lt;p&gt;
-
-Vimeo is also part of my life in an unusually personal way.  When I came to New York (my first ever visit to the US) in 2011 to interview, I also met a pretty fantastic woman in a random bar in Williamsburg. We ended up traveling together in Europe, I decided to move the US and we moved in together.  I&#39;ve had the pleasure of being submerged in both American and Greek culture for the last few years, but the best part is that today we are engaged and I feel like the luckiest guy in the world.  While I try to keep work and personal life separate, Vimeo has made an undeniable ever lasting impact on my life that I&#39;m very grateful for.
-
-&lt;/p&gt;
-
-&lt;p&gt;
-
-At Vimeo I found an area where a bunch of my interests converge: operational best practices, high performance systems, number crunching, statistics and open source software.  Specifically, timeseries metrics processing in the context of monitoring.  While I have enjoyed my opportunity &lt;a href=&#34;http://localhost:1313/tag/monitoring/&#34;&gt;to make contributions in this space&lt;/a&gt; to help our teams and other companies who end up using my tools, I want to move out of the cost center of the company, I want to be in the department that creates the value.  If I want to focus on open source monitoring, I should align my incentives with those of my employer.  Both for my and their sake.
-
-The time has come for me to join a company that is all about making open source monitoring better.
-
-&lt;/p&gt;
-
-&lt;h2&gt;Hello Raintank!&lt;/h2&gt;
-
-&lt;p&gt;Over the past two years or so I&amp;rsquo;ve talked to many people in the industry about monitoring, many of them trying to bring me into their team.&lt;/p&gt;
-
-&lt;p&gt;I would always find good reasons not to switch jobs but as we transitioned from 2014 into 2015, the starts seemingly aligned for me.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s why I&amp;rsquo;m very excited to join the &lt;a href=&#34;http://www.raintank.io/&#34;&gt;Raintank&lt;/a&gt; crew:&lt;/p&gt;
-
-&lt;ul&gt;
-
-&lt;li&gt;I&#39;m a strong believer in open source.  I believe fundamental infrastructure tooling should be modifyable.  It&#39;s partially a philosophical argument, but also what I believe will separate long lasting business from short term successes. 
-
-&lt;br/&gt;SaaS is great, but not if it locks you in via technical debt.  In this day and age, I think you should lock in your customers by providing a great experience, not by having them build technical debt as they integrate into your stack.
-
-&lt;br/&gt;That said, integrating with open source also incurs technical debt, and some closed source service providers are so good that the debt is worth it.  But I don&#39;t believe this lasts long term, especially given the required pricing models.  I think you can entice customers more by lowering the debt they build up (i.e. use standardized protocols, tooling and making it easy for them to leave) as they adopt your service.  I was really interested in datadog for example.  I liked the team, I liked the product they are/were building and I saw they would become successfull, but it&#39;s not the kind of business I want to build towards long term.
-
-&lt;br/&gt;Raintank is committed to open source and I think came up with a good business model that combines the benefits of SaaS with that of open source.  At least it&#39;s a bet I want to take.  Because it&#39;s open source, we can also make a bigger impact&lt;/li&gt;
-
-&lt;li&gt;Something I value a lot in coworkers, besides &#34;technical&#34; abilities is emotional intelligence.  Part of me thinks it&#39;s a vastly underestimated quality in general, although perhaps I just happen to find it more important than average.  Either way, the new team seems solid on both fronts.  I&#39;m mostly impressed by the founder/CEO Raj Dutt who has shown a very personal and graceful approach.  Looking forward to work with him.
-
-&lt;li&gt;I (and my fiancee) want to see the world. The common conception that significant travel can&#39;t be combined with hard, or even normal amounts of work seems so backwards to me.  Today more than ever, we have globalisation, we are developing a sharing economy (airbnb, lyft, ...).  There&#39;s no reason we can&#39;t do great work while enjoying our personal time to the fullest.  Working remotely, and/or with remote colleagues requires more discipline but I simply only want to work with disciplined people.  Working on a fixed schedule, in a fixed location seems needlessly arcane, constrained and inefficient.  I get a lot more done working remote and I&#39;m happy that Raintank not only agrees with the idea, but actually encourages travel.  This year we&#39;ll spend some time with our families in Belgium and Cyprus and take the opportunity to travel around the US and live in different places, all I will make sure I don&#39;t compromise my, or the teams productivity&lt;/li&gt;
-
-&lt;li&gt;I&#39;ve always wanted to be in a company from the start and experience the &#34;true&#34; start up feel.  I have a lot of opinions on organisation, culture, and product and so I&#39;m glad to have the opportunity to make that kind of impact as well&lt;/li&gt;
-
-
-
-&lt;/ul&gt;
-
-&lt;!--
-
-nyc skin issues
-
-alternative funding? crowd etc
-
-
-
-
-
-https://vimeo.com/blog/post:702
-
-grown as backend engineer, carbon-relay-ng most fun
-
-
-
-
-
-my various projects
-
-contributor to graphite, influxdb, bosun, diamond, statsd, graphite-api,
-
-https://github.com/brutasse/graphite-api
-
-https://github.com/Dieterbe/timeserieswidget
-
-https://github.com/Dieterbe/profile-process
-
-http://vimeo.github.io/graph-explorer/
-
-https://github.com/vimeo/graphite-influxdb
-
-https://github.com/vimeo/carbon-tagger
-
-https://github.com/vimeo/statsdaemon
-
-https://github.com/vimeo/graphite-api-influxdb-docker
-
-https://github.com/vimeo/whisper-to-influxdb
-
-https://github.com/vimeo/smoketcp
-
-https://github.com/vimeo/timeserieswidget
-
-https://github.com/vimeo/simple-black-box
-
-https://groups.google.com/forum/#!forum/it-telemetry
-
-
-
-https://github.com/python-diamond
-
-https://github.com/bosun-monitor
-
-
-
-https://github.com/Dieterbe/anthracite
-
-https://github.com/Dieterbe/influx-cli
-
-
-
-https://github.com/graphite-ng/graphite-ng
-
-https://github.com/graphite-ng/carbon-relay-ng
-
-http://metrics20.org/
-
-humbled by big players who saw my work and invited me to work with them
-
-basically 2 big camps.
-
-
-
-
-
-it seems like every week a monitoring startup launches somewhere.  There is, and will be, more and more competition.  It&#39;s almost ludicrous to start or join a new one.
-
---&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Practical fault detection &amp; alerting.  You don&#39;t need to be a data scientist</title>
       <link>http://localhost:1313/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/</link>
       <pubDate>Thu, 29 Jan 2015 09:08:02 -0400</pubDate>
@@ -2237,6 +2077,160 @@ Anthracite, an event/change management database&lt;/a&gt; to track what has a bu
 &lt;/ul&gt;
 
 &lt;p&gt;FWIW, I&amp;rsquo;m attending &lt;a href=&#34;http://monitorama.com&#34;&gt;Monitorama&lt;/a&gt; next weekend in Boston.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Profiling and behavior testing of processes and daemons, and Devopsdays NYC</title>
+      <link>http://localhost:1313/post/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/</link>
+      <pubDate>Mon, 21 Jan 2013 15:25:14 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/Dieterbe/profile-process&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/presentation-simple-black-box/images/profile_io.png&#34; width=&#34;100px&#34; height=&#34;100px&#34;/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted the ability to run a given process and get&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;Couldn&amp;rsquo;t find a tool for it, so I wrote &lt;a href=&#34;https://github.com/Dieterbe/profile-process&#34;&gt;profile-process&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;which does exactly that in &amp;lt;100 lines of python.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h3&gt;black-box behavior testing processes/daemons&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/vimeo/simple-black-box&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/presentation-simple-black-box/images/screenshot-no-pause.png&#34; width=&#34;150px&#34; height=&#34;100px&#34;/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wrote &lt;a href=&#34;https://github.com/vimeo/simple-black-box&#34;&gt;simple-black-box&lt;/a&gt; to do this.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, &amp;hellip;)&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;file existence/checksums in the VFS/swift clusters, etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;Each test-case is a scenario.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;It also can use &lt;a href=&#34;http://logstash.net/&#34;&gt;logstash&lt;/a&gt; to give a centralized &amp;ldquo;distributed stack trace&amp;rdquo; when you need to debug a failure after&lt;/p&gt;
+
+&lt;p&gt;multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.&lt;/p&gt;
+
+&lt;h3&gt;Simple-black-box talk @ Devopsdays NYC&lt;/h3&gt;
+
+&lt;p&gt;I did a quick &lt;a href=&#34;http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/&#34;&gt;5min talk&lt;/a&gt;, despite some display/timing issues it was well received.&lt;/p&gt;
+
+&lt;p&gt;(in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to&lt;/p&gt;
+
+&lt;p&gt;hire me -but being shy about it&amp;hellip;- it was quite awkward)&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&amp;rarr; &lt;a href=&#34;http://localhost:1313/files/presentation-simple-black-box/slideshow.html&#34;&gt;slides&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&amp;rarr; &lt;a href=&#34;http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498&#34;&gt;raw uncut video&lt;/a&gt;.  Go to &amp;lsquo;New York, January 18th, 2013&amp;rsquo; from 02:36:25 to 02:41:15&lt;/p&gt;
+
+&lt;h3&gt;More random thoughts about Devopsdays NYC&lt;/h3&gt;
+
+&lt;p&gt;&lt;center&gt;&lt;a href=&#34;http://devopsdays.org/events/2012-newyork/&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/devopsdays/workers.png&#34; width=&#34;300px&#34; height=&#34;300px&#34;/&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt;I&#39;m getting tired of people on stage making a big revelation out of adding an index to a database column.
+
+This happens too often at web-ops/devops conferences,  it&#39;s embarrassing.
+
+But at least it&#39;s not like the &#34;how we made our site 1000x faster&#34;-style Velocity talks that should have been named &#34;caching and query optimization for newbies&#34;
+
+&lt;/li&gt;
+
+&lt;li&gt;Paperless post confirms again they got their act together and keeps us up to date with their great work.
+
+&lt;a href=&#34;http://dev.paperlesspost.com/&#34;&gt;Follow them.&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;
+
+&lt;a href=&#34;http://devopsdays.org/events/2012-newyork/proposals/KnightsOftheProvisioningRoundTable/&#34;&gt;Knights of the Provisioning Round Table - Bare Metal Provisioning&lt;/a&gt;
+
+was mostly (to my surprise) 4 individuals presenting their solution instead of a real round-table, but (to my surprise again) they were not as similar/repetitive as I expected
+
+and the pros/cons of all solutions were compared more in depth than I dared to hope.
+
+I &lt;a href=&#34;http://localhost:1313/dell_crowbar_openstack_swift.html&#34;&gt;covered dell crowbar before&lt;/a&gt; and like it, though I wonder when this thing is actually gonna be reliable.
+
+&lt;/li&gt;
+
+&lt;li&gt;Dave Zwieback and John Willis gave hilarious talks&lt;/li&gt;
+
+&lt;li&gt;Tried to start an open space discussion around &lt;b&gt;collaboration patterns and anti-patterns&lt;/b&gt;, which I think is a very interesting subject,
+
+  because &lt;b&gt;how individuals in a team collaborate is crucial to success&lt;/b&gt;, but yet very little is written about it (that I could find).
+
+  I would hope we can distill the years of aggregate experience of people into concise patterns and anti-patterns and document how (not) well they work
+
+  for development styles (such as agile/scrum), team size, company structure/hierarchy, roadmap/technical debt pressure, etc.  And especially in light
+
+  of any of these things changing, because I&#39;ve found &lt;b&gt;people can be very change-resistive&lt;/b&gt;.
+
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://devopsdays.org/events/2012-newyork/proposals/DevopsAtObamaForAmerica/&#34;&gt;DevOps At Obama for America &amp; The Democratic National Committee&lt;/a&gt;
+
+was good, I thought it would be a rehash of what was said at &lt;a href=&#34;http://codeforward_newyorkcity.eventbrite.com/&#34;&gt;Coding Forward New York City: Meet the Developers Behind the Obama Campaign&lt;/a&gt;
+
+but there were a bunch of interesting insights about state of the art technology in here (mostly Amazon stuff)&lt;/li&gt;
+
+&lt;li&gt;A bunch of talks where the same could have been said in half the time, or less&lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;p&gt;Random thoughts about some sponsors:&lt;/p&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt;Librato is quite cool.
+
+It&#39;s basically how my open source tool &lt;a href=&#34;https://github.com/vimeo/graph-explorer&#34;&gt;graph-explorer&lt;/a&gt; would look like after
+
+finishing a bunch of TODO&#39;s, combining it with graphite, polishing it all up, and offering it as a hosted solution.
+
+I find it interesting if this is a successful business with only such a limited scope&lt;/li&gt;
+
+&lt;li&gt;
+
+Even cooler is &lt;a href=&#34;http://www.datadoghq.com/&#34;&gt;datadog&lt;/a&gt;.  It goes beyond just metrics and doesn&#39;t just provide hosted graphing,
+
+it provides a solution for a philosophy that aims for a centralized insight of all your operational data,
+
+related collaboration and prioritized alerts that are to the point.  They get a lot of things right, the open source world has some catching up to do&lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;p&gt;Interesting that both use Cassandra and free-form tags for flexibility, validating the approach I&amp;rsquo;m taking with graph-explorer.  Now Graphite&lt;/p&gt;
+
+&lt;p&gt;could use a distributed metrics storage backend over which one can do map-reduce style jobs to gather intelligence from metrics archives&lt;/p&gt;
+
+&lt;p&gt;(maybe based on Cassandra too?), but that&amp;rsquo;s another story.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Anyway, living in NYC with its vibrant ecosystem of devops people and companies organizing plenty of meet-ups and talks on their own&lt;/p&gt;
+
+&lt;p&gt;makes it less pressing to have an event like Devopsdays, though it was certainly a good event, thanks to the sponsors and the volunteers.&lt;/p&gt;
 </description>
     </item>
     

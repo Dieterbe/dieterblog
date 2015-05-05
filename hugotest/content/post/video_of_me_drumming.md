@@ -1,0 +1,14 @@
++++
+title = "Video of me drumming"
+date = "2007-11-04T18:28:17-04:00"
+tags = ["real life", "drums"]
++++
+It's just some improvisation... Find the mistakes! ;-)</p>
+
+<p>Recorded with 2 shure SM57's, an M-audio mobilepre USB and the iSight cam in my macbook pro.</p>
+
+<p>The mic setup had to be close enough to sound direct and focused without too much reverb, and still far enough to allow all instruments too come through.   After some experimenting I decided to place the mics behind the kit, next to me ( one each side), just below the height of the hips.  I think I have found a pretty good compromise.</p>
+
+<p>The video is hosted on <a href="http://youtube.com/watch?v=qJLEnnFDDyU">youtube</a> and on <a href="http://nl.netlog.com/go/videos/videoid=554832">netlog</a></p>
+
+<p> No effects have been applied (except for the fade-out at the end)</p>

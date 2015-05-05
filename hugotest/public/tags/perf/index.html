@@ -1,0 +1,2436 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<header class="archive-header">
+				<h1 class="archive-title">Content tagged "Perf"</h1>
+			</header>
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/on-graphite-whisper-and-influxdb/">On Graphite, Whisper and InfluxDB</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/on-graphite-whisper-and-influxdb/" rel="bookmark">
+					<time class="entry-date" datetime="2014-05-18 13:22:32 -0400 EDT">
+						May 18, 2014
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.</p>
+
+<p><br/>For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).</p>
+
+<ul>
+
+<li>It can't keep all file descriptors in memory so there's a lot of overhead in constantly opening, seeking, and closing files, especially since usually one write comes in for all metrics at the same time.
+
+</li>
+
+<li>Using the rollups feature (different data resolutions based on age) causes a lot of extra IO.</li>
+
+<li>The format is also simply not optimized for writes.  Carbon, the storage agent that sits in front of whisper has a feature to batch up writes to files to make them more sequential but this doesn't seem to help much.</li>
+
+<li>Worse, due to various <a href="https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md#what-problems-have-we-had">implementation details</a> the carbon agent is surprisingly inefficient and even cpu-bound.  People often run into cpu limitations before they hit the io bottleneck.  Once the writeback queue hits a certain size, carbon will blow up.</li>
+
+</ul>
+
+<p>Common recommendations are to <a href="http://bitprophet.org/blog/2013/03/07/graphite/">run multiple carbon agents</a> and</p>
+
+<p><a href="http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5">running graphite on SSD drives</a>.</p>
+
+<p><br/>If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though <a href="https://github.com/jssjr/carbonate/">carbonate</a> makes this easier.  This is a path I simply don&rsquo;t want to go down.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>
+
+<i>These might be reasonable solutions based on the circumstances (often based on short-term local gains), but I believe as a community we should solve the problem at its root, so that everyone can reap the long term benefits.
+
+</i>
+
+</p>
+
+<p><br/></p>
+
+<p>In particular, <a href="http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d">running Ceres instead of whisper</a>, is only a slight improvement, that suffers from most of the same problems.  I don&rsquo;t see any good reason to keep working on Ceres, other than perhaps that it&rsquo;s a fun exercise.   This probably explains the slow pace of development.</p>
+
+<p><br/>However, many mistakenly believe Ceres is &ldquo;the future&rdquo;.</p>
+
+<p><br/><a href="http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage">Switching to LevelDB</a> seems much more sensible but IMHO still doesn&rsquo;t cut it as a general purpose, scalable solution.</p>
+
+<h4>The ideal backend</h4>
+
+<p>I believe we can build a backend for graphite that</p>
+
+<ul>
+
+<li>can easily scale from a few metrics on my laptop in power-save mode to millions of metrics on a highly loaded cluster</li>
+
+<li>supports nodes joining and leaving at runtime and automatically balancing the load across them</li>
+
+<li>assures high availability and heals itself in case of disk or node failures</li>
+
+<li>is simple to deploy.  think: just run an executable that knows which directories it can use for storage, elasticsearch-style automatic clustering, etc.</li>
+
+<li>has the right read/write optimizations.  I've never seen a graphite system that is not write-focused, so something like <a href="http://en.wikipedia.org/wiki/Log-structured_merge-tree">LSM trees</a> seems to make a lot of sense.</li>
+
+<li>can leverage cpu resources (e.g. for compression)</li>
+
+<li>provides a more natural model for phasing out data.  Optional, runtime-changeable rollups.  And an age limit (possibly, but not necessarily round robin)
+
+</ul>
+
+<p>While we&rsquo;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.</p>
+
+<p><br/>And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.</p>
+
+<h4>InfluxDB</h4>
+
+<p>There&rsquo;s a lot of databases that you could hook up to graphite.</p>
+
+<p>riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.</p>
+
+<p>Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.</p>
+
+<p>I&rsquo;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.</p>
+
+<p>In particular, installing it is a breeze (no dependencies), it&rsquo;s specifically built for timeseries (not based on a general purpose database),</p>
+
+<p>which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.</p>
+
+<p>And they&rsquo;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&rsquo;m pretty confident that these guys can pull off something big.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>Technically, InfluxDB is a &ldquo;timeseries, metrics, and analytics&rdquo; databases with use cases well beyond graphite and even technical operations.</p>
+
+<p>Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.</p>
+
+<h4>Graphite + InfluxDB</h4>
+
+<p>InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use <a href="http://grafana.org/">Grafana</a>), which means at some point you could completely swap graphite for InfluxDB.</p>
+
+<p>However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.</p>
+
+<p>So here&rsquo;s how my setup currently works:</p>
+
+<ul>
+
+<li>
+
+<a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> is a carbon relay in Go.  
+
+It's a pretty nifty program to partition and manage carbon metrics streams.  I use it in front of our traditional graphite system, and have it stream - in realtime - a copy of a subset of our metrics into InfluxDB.  This way I basically have our unaltered Graphite system, and in parallel to it, InfluxDB, containing a subset of the same data.
+
+<br/>With a bit more work it will be a high performance alternative to the python carbon relay, allowing you to manage your streams on the fly.
+
+It doesn't support consistent hashing, because CH should be part of a strategy of a highly available storage system (see requirements above), using CH in the relay still results in a poor storage system, so there's no need for it.
+
+</li>
+
+<li>I contributed the code to InfluxDB to make it listen on the carbon protocol.  So basically, for the purpose of ingestion, InfluxDB can look and act just like a graphite server.  Anything that can write to graphite, can now write to InfluxDB.  (assuming the plain-text protocol, it doesn't support the pickle protocol, which I think is a thing to avoid anyway because almost nothing supports it and you can't debug what's going on)</li>
+
+<li><a href="https://github.com/brutasse/graphite-api">graphite-api</a> is a fork/clone of graphite-web, stripped of needless dependencies, stripped of the composer.  It's conceived for many of the same reasons behind <a href="http://dieter.plaetinck.be/graphite-ng_a-next-gen-graphite-server-in-go.html">graphite-ng</a> (graphite technical debt, slow development pace, etc) though it doesn't go to such extreme lengths and for now focuses on being a robust alternative for the graphite server, api-compatible, trivial to install and with a faster pace of development.
+
+</li>
+
+<li>
+
+That's where <a href="https://github.com/vimeo/graphite-influxdb">graphite-influxdb</a> comes in.  It hooks InfluxDB into graphite-api, so that you can query the graphite api, but using data in InfluxDB.
+
+It should also work with the regular graphite, though I've never tried.  (I have no incentive to bother with that, because I don't use the composer.  And I think it makes more sense to move the composer into a separate project anyway).
+
+</li>
+
+</ul>
+
+<p>With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.</p>
+
+<p>Later i might do more extensive benchmarking and acceptance testing.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &ldquo;backup&rdquo;.</p>
+
+<p>We&rsquo;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&rsquo;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)</p>
+
+<p><br/></p>
+
+<p><br/>To be continued..</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/golang/index.html" rel="tag">golang</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/graphite-ng_a-next-gen-graphite-server-in-go/">Graphite-ng: A next-gen graphite server in Go.</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/graphite-ng_a-next-gen-graphite-server-in-go/" rel="bookmark">
+					<time class="entry-date" datetime="2013-09-07 20:54:20 -0400 EDT">
+						September 7, 2013
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I&rsquo;ve been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It&rsquo;s a <i>great</i> tool for timeseries metrics.</p>
+
+<p>Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:</p>
+
+<p>it&rsquo;s somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in <a href="http://golang.org">Golang</a>.</p>
+
+<p>The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p></p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+<span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+<p>
+
+I.e. it lets you retrieve your timeseries, processed by function pipelines which are setup on the fly based on a spec in your http/rest arguments.
+
+Currently it only fetches metrics from text files but I'm working on decent metrics storage as well.
+
+</p>
+
+<p>
+
+There's a few reasons why I decided to start a new project from scratch:
+
+<ul>
+
+<li>With graphite, it's a whole ordeal to get all components properly installed.  Deploying in production environments is annoying and even more so
+
+when you just want a graphite setup on your personal netbook.</li>
+
+<li>the graphite development process slows contributors down a lot.  A group of 3rd/4th generation maintainers jointly manages the project, but it's hard to get big changes through,
+
+because they (understandably) don't feel authoritative enough to judge those changes and the predecessors have disappeared or are too busy with other things.  And also ...</li>
+
+<li>there's a high focus on backwards compatibility, which can be a good thing, but it's hard to get rid of old design mistakes,
+
+especially when fixing unclear (but arguably broken) early design decisions (or oversights) lead to different outputs</li>
+
+<li>Graphite suffers feature creep: it has an events system, a PNG renderer, an elaborate composer web UI, etc.
+
+There's a lot of internal code dependencies holding you back from focusing on a specific problem</li>
+
+<li>Carbon (the metrics daemon) has a pretty hard performance and scalability ceiling.
+
+<a href="https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md">Peter's article explains this well</a>; I think we'll need some form of
+
+rewrite.   Peter suggests some solutions but they are basically workarounds for Python's shortcomings.  I'm also thinking of using <a href="http://pypy.org/">pypy</a>.
+
+But last time I checked pypy just wasn't there yet.</li>
+
+<li>I want to become a good Go programmer</li>
+
+</ul>
+
+
+
+<i>Note: the Graphite project is still great</i>, the people managing do good work, but it's fairly natural for a code base that large and complicated
+
+to end up in this situation.<i>I'm not at all claiming graphite-ng is, or ever will be better</i> but I need a fresh start to try some disruptive ideas,
+
+using Go means having a runtime very suited for concurrency and parallelism, you can compile the whole thing down into a single executable file,
+
+and its performance looks promising.  Leaving out the non-essentials (see below) allows for an elegant and surprisingly small, hackable code base.
+
+</p>
+
+<p>
+
+The API server I developed sets up a processing pipeline as directed by your query: every processing function runs in a goroutine
+
+for concurrency and the metrics flow through using Go channels.  It literally compiles a program and executes it.  You can add your own functions
+
+to collect, process, and return metrics by writing simple plugins.
+
+<br/>As for timeseries storage, for now it uses simple text files,
+
+but I'm experimenting and thinking what would be the best metric store(s) that works on small scale
+
+(personal netbook install) to large scale ("I have millions of metrics that need to be distributed across nodes,
+
+the system should be HA and self-healing in failure scenarios, easily maintainable, and highly performant") and is still easy to deploy, configure and run.
+
+Candidates are <a href="https://github.com/kisielk/whisper-go">whisper-go</a>, <a href="https://code.google.com/p/kairosdb/">kairosdb</a>,
+
+my own <a href="https://github.com/graphite-ng/graphite-ng/tree/master/carbon-es">elasticsearch experiment</a> etc.
+
+<br/>I won't implement rendering images, because I think client-side rendering using something like <a href="https://github.com/vimeo/timeserieswidget">timeserieswidget</a>
+
+is superior.  I can also leave out events because <a href="https://github.com/Dieterbe/anthracite/">anthracite</a> already does that.
+
+There's a ton of dashboards out there (<a href="http://vimeo.github.io/graph-explorer/">graph-explorer</a>, <a href="https://github.com/obfuscurity/descartes">descartes</a>, <a href="http://graphite.readthedocs.org/en/1.0/tools.html">etc</a>) so that can be left out as well.
+
+</p>
+
+<p>For more information, see <a href="https://github.com/graphite-ng/graphite-ng">the Graphite-ng homepage</a>.</p>
+
+<p><br/></p>
+
+<p><br/>PS: props to <a href="http://felixge.de/">Felix Geisendorfer</a> who suggested a graphite clone in Go first,</p>
+
+<p>it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/golang/index.html" rel="tag">golang</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/">Profiling and behavior testing of processes and daemons, and Devopsdays NYC</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/" rel="bookmark">
+					<time class="entry-date" datetime="2013-01-21 15:25:14 -0400 -0400">
+						January 21, 2013
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p><a href="https://github.com/Dieterbe/profile-process"></p>
+
+<p><img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/></p>
+
+<p></a></p>
+
+<p>I wanted the ability to run a given process and get</p>
+
+<p><br/>a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.</p>
+
+<p><br/>Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.</p>
+
+<p><br/>Couldn&rsquo;t find a tool for it, so I wrote <a href="https://github.com/Dieterbe/profile-process">profile-process</a></p>
+
+<p><br/>which does exactly that in &lt;100 lines of python.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<h3>black-box behavior testing processes/daemons</h3>
+
+<p><a href="https://github.com/vimeo/simple-black-box"></p>
+
+<p><img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/screenshot-no-pause.png" width="150px" height="100px"/></p>
+
+<p></a></p>
+
+<p>I wrote <a href="https://github.com/vimeo/simple-black-box">simple-black-box</a> to do this.</p>
+
+<p><br/>It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, &hellip;)</p>
+
+<p><br/>and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,</p>
+
+<p><br/>file existence/checksums in the VFS/swift clusters, etc.</p>
+
+<p><br/>Each test-case is a scenario.</p>
+
+<p><br/>It also can use <a href="http://logstash.net/">logstash</a> to give a centralized &ldquo;distributed stack trace&rdquo; when you need to debug a failure after</p>
+
+<p>multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.</p>
+
+<p><br/>You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.</p>
+
+<h3>Simple-black-box talk @ Devopsdays NYC</h3>
+
+<p>I did a quick <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">5min talk</a>, despite some display/timing issues it was well received.</p>
+
+<p>(in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to</p>
+
+<p>hire me -but being shy about it&hellip;- it was quite awkward)</p>
+
+<p><br/>&rarr; <a href="/files/presentation-simple-black-box/slideshow.html">slides</a></p>
+
+<p><br/>&rarr; <a href="http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498">raw uncut video</a>.  Go to &lsquo;New York, January 18th, 2013&rsquo; from 02:36:25 to 02:41:15</p>
+
+<h3>More random thoughts about Devopsdays NYC</h3>
+
+<p><center><a href="http://devopsdays.org/events/2012-newyork/"><img src="/files/blog/devopsdays/workers.png" width="300px" height="300px"/></a></center></p>
+
+<ul>
+
+<li>I'm getting tired of people on stage making a big revelation out of adding an index to a database column.
+
+This happens too often at web-ops/devops conferences,  it's embarrassing.
+
+But at least it's not like the "how we made our site 1000x faster"-style Velocity talks that should have been named "caching and query optimization for newbies"
+
+</li>
+
+<li>Paperless post confirms again they got their act together and keeps us up to date with their great work.
+
+<a href="http://dev.paperlesspost.com/">Follow them.</a></li>
+
+<li>
+
+<a href="http://devopsdays.org/events/2012-newyork/proposals/KnightsOftheProvisioningRoundTable/">Knights of the Provisioning Round Table - Bare Metal Provisioning</a>
+
+was mostly (to my surprise) 4 individuals presenting their solution instead of a real round-table, but (to my surprise again) they were not as similar/repetitive as I expected
+
+and the pros/cons of all solutions were compared more in depth than I dared to hope.
+
+I <a href="/dell_crowbar_openstack_swift.html">covered dell crowbar before</a> and like it, though I wonder when this thing is actually gonna be reliable.
+
+</li>
+
+<li>Dave Zwieback and John Willis gave hilarious talks</li>
+
+<li>Tried to start an open space discussion around <b>collaboration patterns and anti-patterns</b>, which I think is a very interesting subject,
+
+  because <b>how individuals in a team collaborate is crucial to success</b>, but yet very little is written about it (that I could find).
+
+  I would hope we can distill the years of aggregate experience of people into concise patterns and anti-patterns and document how (not) well they work
+
+  for development styles (such as agile/scrum), team size, company structure/hierarchy, roadmap/technical debt pressure, etc.  And especially in light
+
+  of any of these things changing, because I've found <b>people can be very change-resistive</b>.
+
+</li>
+
+<li><a href="http://devopsdays.org/events/2012-newyork/proposals/DevopsAtObamaForAmerica/">DevOps At Obama for America & The Democratic National Committee</a>
+
+was good, I thought it would be a rehash of what was said at <a href="http://codeforward_newyorkcity.eventbrite.com/">Coding Forward New York City: Meet the Developers Behind the Obama Campaign</a>
+
+but there were a bunch of interesting insights about state of the art technology in here (mostly Amazon stuff)</li>
+
+<li>A bunch of talks where the same could have been said in half the time, or less</li>
+
+</ul>
+
+<p>Random thoughts about some sponsors:</p>
+
+<ul>
+
+<li>Librato is quite cool.
+
+It's basically how my open source tool <a href="https://github.com/vimeo/graph-explorer">graph-explorer</a> would look like after
+
+finishing a bunch of TODO's, combining it with graphite, polishing it all up, and offering it as a hosted solution.
+
+I find it interesting if this is a successful business with only such a limited scope</li>
+
+<li>
+
+Even cooler is <a href="http://www.datadoghq.com/">datadog</a>.  It goes beyond just metrics and doesn't just provide hosted graphing,
+
+it provides a solution for a philosophy that aims for a centralized insight of all your operational data,
+
+related collaboration and prioritized alerts that are to the point.  They get a lot of things right, the open source world has some catching up to do</li>
+
+</ul>
+
+<p>Interesting that both use Cassandra and free-form tags for flexibility, validating the approach I&rsquo;m taking with graph-explorer.  Now Graphite</p>
+
+<p>could use a distributed metrics storage backend over which one can do map-reduce style jobs to gather intelligence from metrics archives</p>
+
+<p>(maybe based on Cassandra too?), but that&rsquo;s another story.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>Anyway, living in NYC with its vibrant ecosystem of devops people and companies organizing plenty of meet-ups and talks on their own</p>
+
+<p>makes it less pressing to have an event like Devopsdays, though it was certainly a good event, thanks to the sponsors and the volunteers.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/histogram-statsd-graphing-over-time-with-graphite/">Histograms in statsd, and graphing them over time with graphite.</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/histogram-statsd-graphing-over-time-with-graphite/" rel="bookmark">
+					<time class="entry-date" datetime="2012-11-07 18:45:11 -0400 -0400">
+						November 7, 2012
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I submitted a pull request to statsd which adds <a href="https://github.com/etsy/statsd/pull/162">histogram support</a>.</p>
+
+<p><img style="float:left;margin:0 5px 0 0;" src="/files/Black_cherry_tree_histogram.svg.png" alt="Example histogram, from Wikipedia"/></p>
+
+<p><br/>(refresher: a histogram is [a visualization of] a frequency distribution of data,</p>
+
+<p>paraphrasing your data by keeping frequencies for entire classes (ranges of data).</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Histogram">histograms - Wikipedia</a>)</p>
+
+<p><br/>It&rsquo;s commonly documented how to plot single histograms, that is a 2D diagram consisting of rectangles whose</p>
+
+<ul>
+
+<li>area is proportional to the frequency of a variable</li>
+
+<li>whose width is equal to the class interval</li>
+
+</ul>
+
+<p>Class intervals go on x-axis, frequencies on y-axis.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>Note: histogram class intervals are supposed to have the same width.</p>
+
+<p><br/>My implementation allows arbitrary class intervals with potentially different widths,</p>
+
+<p>as well as an upper boundary of infinite.</p>
+
+<p></p></p>
+
+<h4>Plotting histograms.. over time</h4>
+
+<p>
+
+We want to plot histograms over time, and not just for a few select points in time (in which case you can just make several histograms),
+
+but a contiguous range of time, preferably through graphite's 2D graphs cause graphite is neat and common enough.
+
+<br/>Time goes on x-axis, that's pretty much a given.  So I'm trying to explore ways to visualize both class intervals as well as frequencies on the y-axis.
+
+</p>
+
+<p>The example I'll use are page rendering timings, condensed into classes with upper boundaries of 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 50 and infinite seconds</p>
+
+<p><p></p>
+
+<p>Tips and notes:</p>
+
+<ul>
+
+<li>
+
+the histogram implementation stores absolute frequencies, but it's easy to get relative frequencies in percent, like so:
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+target<span style="color: #666666">=</span>scale(divideSeries(stats.timers.<span style="color: #666666">&lt;</span>your_metric<span style="color: #666666">&gt;</span>.bin_<span style="color: #666666">*</span>,stats.timers.render_time.count),<span style="color: #666666">100</span>)
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+
+
+</li>
+
+<li>I'll be using relative frequencies here because it normalizes the scale of the y-axis</li>
+
+<li>In this use case each class has a notion of desirability (<i>low render time good, high render time bad</i>),
+
+<br/>I think it makes sense to use color to represent this.  This extends to a lot of operational metrics which one would be using histograms for.
+
+<br/>(unlike non-software histograms that represent demographics or tree heights, where classes usually have nothing to do with desirability or quality).
+
+<br/>As it turns out, it's fairly easy to programmatically compute colors between green and red in order to have mathematically correct "steps" of color.
+
+<br/>However, <a href="http://stackoverflow.com/questions/340209/generate-colors-between-red-and-green-for-a-power-meter">Looks like HSV values are more suited
+
+than RGB</a> but <a href="https://github.com/graphite-project/graphite-web/issues/93">
+
+graphite doesn't support HSV (yet)</a> (although one could convert HSV to RGB).
+
+Also <a href="http://vis4.net/blog/posts/goodbye-redgreen-scales/">it looks like
+
+green-purple would be a better choice for people with color blindness</a>.  I haven't gone too far in this topic.
+
+</li>
+
+<li>Since I choose to go with color gradients, it means I better use stacked graphs, otherwise it would be too hard to distinguish which graph is what</li>
+
+<li>None of this is restricted to timing data.  The metric type under which histograms are (and should be) implemented is called "timing", which is
+
+a misleading name but <a href="https://github.com/etsy/statsd/issues/98">we're working on renaming it</a>.</li>
+
+</ul>
+
+<h4>First version</h4>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+
+width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
+
+vtitle<span style="color: #666666">=</span>relative frequency <span style="color: #008000; font-weight: bold">in</span> <span style="color: #666666">%&amp;</span>yMax<span style="color: #666666">=100&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_01,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;2FFF00&#39;</span>),<span style="color: #BA2121">&#39;0.01&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;64DD0E&#39;</span>),<span style="color: #BA2121">&#39;0.05&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;9CDD0E&#39;</span>),<span style="color: #BA2121">&#39;0.1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;DDCC0E&#39;</span>),<span style="color: #BA2121">&#39;0.5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;DDB70E&#39;</span>),<span style="color: #BA2121">&#39;1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF6200&#39;</span>),<span style="color: #BA2121">&#39;5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF3C00&#39;</span>),<span style="color: #BA2121">&#39;10&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF1E00&#39;</span>),<span style="color: #BA2121">&#39;50&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
+
+lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+<p><img src="/files/rendertime-histogram.png" width="740" height="300" alt="rendertime histogram" /></p>
+
+<p><br/>Turns out we mainly see the vast majority that performs well, simply because with this way of rendering,</p>
+
+<p>the higher the frequency of a class, the more prominent.  Bad values are hard to see because there&rsquo;s not many of them,</p>
+
+<p>despite being more interesting.</p>
+
+<p>A thought I had at this point was to make all &ldquo;class bands&rdquo; equally wide and use a green-to-red gradient to denote the frequency values,</p>
+
+<p>or even just keep the current color assignments but rely on something like opacity to express frequencies. Alas, none of this is currently</p>
+
+<p>possible with graphite, as far as I can tell.  Though I would like to explore this further.  Especially because I think it wouldn&rsquo;t be hard to implement</p>
+
+<p>in graphite.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>So, let&rsquo;s see what <i>can</i> be done right now.</p>
+
+<h4>Leaving out the smallest class</h4>
+
+<p>This adaption is basically the same as before, but leaves out the smallest class (which took most space), this way</p>
+
+<p>the other bands are a bit more visible but the effect isn&rsquo;t as clear as we want.</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+
+width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
+
+vtitle<span style="color: #666666">=</span>relative frequency <span style="color: #008000; font-weight: bold">in</span> <span style="color: #666666">%</span>, leaving out first <span style="color: #008000; font-weight: bold">class</span><span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;64DD0E&#39;</span>),<span style="color: #BA2121">&#39;0.05&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;9CDD0E&#39;</span>),<span style="color: #BA2121">&#39;0.1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;DDCC0E&#39;</span>),<span style="color: #BA2121">&#39;0.5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;DDB70E&#39;</span>),<span style="color: #BA2121">&#39;1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF6200&#39;</span>),<span style="color: #BA2121">&#39;5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF3C00&#39;</span>),<span style="color: #BA2121">&#39;10&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF1E00&#39;</span>),<span style="color: #BA2121">&#39;50&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
+
+lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+<p><img src="/files/rendertime-histogram-leaving-out-first-class.png" width="740" height="300" alt="rendertime histogram leaving out first class" /></p>
+
+<h4>Per-band scaling</h4>
+
+<p>Finally, the bigger the values represented by each class the more we inflate the band,</p>
+
+<p>so the more problematic cases become more visible, despite having a lower frequency.</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+
+width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
+
+vtitle<span style="color: #666666">=</span>rel. freq <span style="color: #008000; font-weight: bold">with</span> scale adjustment per band<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_01,stats.timers.render_time.count),<span style="color: #666666">0.01</span>),<span style="color: #BA2121">&#39;2FFF00&#39;</span>),<span style="color: #BA2121">&#39;0.01&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color: #666666">0.04</span>),<span style="color: #BA2121">&#39;64DD0E&#39;</span>),<span style="color: #BA2121">&#39;0.05&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color: #666666">0.05</span>),<span style="color: #BA2121">&#39;9CDD0E&#39;</span>),<span style="color: #BA2121">&#39;0.1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color: #666666">0.4</span>),<span style="color: #BA2121">&#39;DDCC0E&#39;</span>),<span style="color: #BA2121">&#39;0.5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color: #666666">0.5</span>),<span style="color: #BA2121">&#39;DDB70E&#39;</span>),<span style="color: #BA2121">&#39;1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color: #666666">4</span>),<span style="color: #BA2121">&#39;FF6200&#39;</span>),<span style="color: #BA2121">&#39;5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color: #666666">5</span>),<span style="color: #BA2121">&#39;FF3C00&#39;</span>),<span style="color: #BA2121">&#39;10&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color: #666666">40</span>),<span style="color: #BA2121">&#39;FF1E00&#39;</span>),<span style="color: #BA2121">&#39;50&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">60</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
+
+lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+<p><img src="/files/rendertime-histogram-higher-focus-for-higher-class-interval.png" width="740" height="300" alt="rendertime histogram with higher focus for higher class interval" /></p>
+
+<p><br/>I started off by scaling each band by the width of the class interval.  This is actually more arbitrary than it may seem.</p>
+
+<p><br/>The point is that now it&rsquo;s easier to spot acute as well as long-standing problems, but note you can&rsquo;t really read statistics from this graph because of the per-band scaling.</p>
+
+<p><br/>Note also that outliers contribute to the outer band(s) and are given as much focus as non-outliers in the same bands.</p>
+
+<p>In a system over which you have no complete control (i.e. if you were graphing histograms of time until first byte or page loaded at client,</p>
+
+<p>where you rely on the internet as a transport) it makes sense to give less attention to outliers and focus on optimizing for as many users as possible,</p>
+
+<p>I think it there&rsquo;s no reliable way to subtract outliers from the upper bands and you should also graph averages and percentiles and understand what each</p>
+
+<p>graph does.</p>
+
+<p>But anyway here I want to include outliers, because they represent latencies we can fix.</p>
+
+<h4>Final notes</h4>
+
+<p>While the tools we have are by no means perfect, I&rsquo;m seeing gradual improvement in the monitoring space.  This work is only a small piece</p>
+
+<p>of the puzzle. The rendering of histograms can be improved but at this point I think they are good enough to be usable. The real challenge is</p>
+
+<p>putting in place automated trending, anomaly detection and alerting.  If we can figure that out, there&rsquo;s less need to be looking at graphs in the first place.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/">Poor mans pickle implementations benchmark</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/" rel="bookmark">
+					<time class="entry-date" datetime="2011-06-16 22:32:12 -0400 EDT">
+						June 16, 2011
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p><a href="http://nlp.fi.muni.cz/projekty/gensim/">Gensim</a> is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.</p>
+
+<p>But anyway we're having some issues in it with cPickle (it <a href="https://github.com/piskvorky/gensim/issues/31">breaks when saving large matrices</a>, it <a href="https://github.com/piskvorky/gensim/issues/30">breaks with some objects</a>).
+
+For now I worked around it by using <a href="http://jsonpickle.github.com/">jsonpickle</a> but I wonder how viable this alternative really is.</p>
+
+<p>To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - <a href="https://github.com/Dieterbe/picklebench">picklebench</a> - to compare pickle, cPickle and jsonpickle.
+
+The script fills a dictionary which gets bigger and bigger, and for certain sizes of dictionary it is saved to, and loaded from disk again.  We measure some metrics of each step.
+
+We continue until memory is exhausted.</p>
+
+<p>limitations of this benchmark:</p>
+
+<ul>
+
+<li>effects of writing a new file, or overwriting existing file, and however the filesystem deals with that (efficiency, allocation of sectors on disk, etc) are ignored</li>
+
+<li>no explicit flushing or warming of Linux block cache, ignoring writeback caches. (but that should be okay: every write is treated the same way, and reads always benefit from warm block cache)</li>
+
+<li>I could ignore disk i/o by only doing serializing in memory, but that wouldn't be very realistic either, and speed is lower than sequential read/write speeds of my hard disk anyway</li>
+
+<li>other running processes are ignored. (but my pc was pretty much idle otherwise)</li>
+
+<li>all metrics are crude</li>
+
+<li>all single runs</li>
+
+<li>no garbage collection is being run. volatility of datastructures is completely ignored.  Assumes that measuring the RSS difference provides useful information.</li>
+
+<li>Other than the obvious cPickle, I did not bother to look up if optimized implementations for some things exist (like json decoders)</li>
+
+</ul>
+
+<p>You can easily <a href="https://github.com/Dieterbe/picklebench/blob/master/runall.sh">run the program</a> yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.</p>
+
+<pre>
+
+Testing JsonPickle
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.05 MB. Speed 6.56 MB/s. RSS taken 0.23 MB. (4.34 MB per MB in file)
+
+Loaded in 0.01s. Speed 9.30 MB/s. RSS taken 0.04 MB.  (0.71 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.03s. file size 0.21 MB. Speed 6.93 MB/s. RSS taken 0.45 MB. (2.16 MB per MB in file)
+
+Loaded in 0.02s. Speed 9.54 MB/s. RSS taken 0.47 MB.  (2.23 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.13s. file size 0.85 MB. Speed 6.80 MB/s. RSS taken 0.86 MB. (1.00 MB per MB in file)
+
+Loaded in 0.09s. Speed 9.55 MB/s. RSS taken 0.88 MB.  (1.04 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.50s. file size 3.44 MB. Speed 6.87 MB/s. RSS taken 4.02 MB. (1.17 MB per MB in file)
+
+Loaded in 0.36s. Speed 9.44 MB/s. RSS taken 2.52 MB.  (0.73 MB per MB in file)
+
+== 256000 ==
+
+Stored in 2.10s. file size 13.97 MB. Speed 6.64 MB/s. RSS taken 17.24 MB. (1.23 MB per MB in file)
+
+Loaded in 1.53s. Speed 9.15 MB/s. RSS taken 8.49 MB.  (0.61 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 8.60s. file size 56.23 MB. Speed 6.54 MB/s. RSS taken 61.64 MB. (1.10 MB per MB in file)
+
+Loaded in 6.27s. Speed 8.97 MB/s. RSS taken 95.99 MB.  (1.71 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 38.80s. file size 228.26 MB. Speed 5.88 MB/s. RSS taken 181.83 MB. (0.80 MB per MB in file)
+
+Loaded in 25.17s. Speed 9.07 MB/s. RSS taken 170.84 MB.  (0.75 MB per MB in file)
+
+== 16384000 ==
+
+Testing cPickle
+
+Protocol 0
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.01 MB. Speed 0.83 MB/s. RSS taken 0.05 MB. (5.95 MB per MB in file)
+
+Loaded in 0.00s. Speed 9.02 MB/s. RSS taken 0.05 MB.  (5.04 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.00s. file size 0.04 MB. Speed 8.69 MB/s. RSS taken 0.10 MB. (2.52 MB per MB in file)
+
+Loaded in 0.00s. Speed 15.43 MB/s. RSS taken 0.13 MB.  (3.26 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.01s. file size 0.17 MB. Speed 11.06 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
+
+Loaded in 0.01s. Speed 16.82 MB/s. RSS taken 0.10 MB.  (0.60 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.06s. file size 0.69 MB. Speed 12.43 MB/s. RSS taken 0.12 MB. (0.17 MB per MB in file)
+
+Loaded in 0.04s. Speed 17.25 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
+
+== 256000 ==
+
+Stored in 0.22s. file size 2.96 MB. Speed 13.65 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
+
+Loaded in 0.17s. Speed 17.49 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 0.88s. file size 12.20 MB. Speed 13.93 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
+
+Loaded in 0.69s. Speed 17.72 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 3.52s. file size 52.14 MB. Speed 14.80 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+
+Loaded in 2.84s. Speed 18.37 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 12.68s. file size 218.27 MB. Speed 17.22 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 11.59s. Speed 18.82 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
+
+Testing cPickle
+
+Protocol 1
+
+== 1000 ==
+
+Stored in 0.00s. file size 0.00 MB. Speed 9.65 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
+
+Loaded in 0.00s. Speed 9.31 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.00s. file size 0.02 MB. Speed 10.95 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+
+Loaded in 0.00s. Speed 11.15 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.02s. file size 0.08 MB. Speed 5.26 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+
+Loaded in 0.01s. Speed 11.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.03s. file size 0.32 MB. Speed 12.60 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
+
+Loaded in 0.03s. Speed 11.48 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
+
+== 256000 ==
+
+Stored in 0.10s. file size 1.66 MB. Speed 17.00 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
+
+Loaded in 0.11s. Speed 14.50 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 0.40s. file size 7.04 MB. Speed 17.76 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+
+Loaded in 0.45s. Speed 15.54 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 1.59s. file size 28.55 MB. Speed 17.95 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+
+Loaded in 1.88s. Speed 15.20 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 6.23s. file size 114.59 MB. Speed 18.40 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 7.18s. Speed 15.96 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
+
+Testing cPickle
+
+Protocol 2
+
+== 1000 ==
+
+Stored in 0.00s. file size 0.00 MB. Speed 9.54 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
+
+Loaded in 0.00s. Speed 8.92 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.00s. file size 0.02 MB. Speed 13.25 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+
+Loaded in 0.00s. Speed 11.39 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.01s. file size 0.08 MB. Speed 13.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+
+Loaded in 0.01s. Speed 10.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.02s. file size 0.32 MB. Speed 13.99 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
+
+Loaded in 0.03s. Speed 11.45 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
+
+== 256000 ==
+
+Stored in 0.10s. file size 1.66 MB. Speed 16.81 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
+
+Loaded in 0.12s. Speed 14.31 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 0.37s. file size 7.04 MB. Speed 19.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+
+Loaded in 0.45s. Speed 15.55 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 1.58s. file size 28.55 MB. Speed 18.09 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+
+Loaded in 1.83s. Speed 15.61 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 6.02s. file size 114.59 MB. Speed 19.04 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 7.32s. Speed 15.65 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
+
+Testing pickle
+
+Protocol 0
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.01 MB. Speed 1.17 MB/s. RSS taken 0.03 MB. (3.21 MB per MB in file)
+
+Loaded in 0.04s. Speed 0.20 MB/s. RSS taken 0.06 MB.  (6.41 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.02s. file size 0.04 MB. Speed 1.91 MB/s. RSS taken 0.09 MB. (2.42 MB per MB in file)
+
+Loaded in 0.02s. Speed 2.12 MB/s. RSS taken 0.12 MB.  (3.15 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.08s. file size 0.17 MB. Speed 2.00 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
+
+Loaded in 0.07s. Speed 2.27 MB/s. RSS taken 0.09 MB.  (0.55 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.33s. file size 0.69 MB. Speed 2.08 MB/s. RSS taken 0.12 MB. (0.18 MB per MB in file)
+
+Loaded in 0.29s. Speed 2.40 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
+
+== 256000 ==
+
+Stored in 1.34s. file size 2.96 MB. Speed 2.21 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
+
+Loaded in 1.17s. Speed 2.53 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 5.33s. file size 12.20 MB. Speed 2.29 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
+
+Loaded in 4.73s. Speed 2.58 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 21.23s. file size 52.14 MB. Speed 2.46 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+
+Loaded in 18.63s. Speed 2.80 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 85.09s. file size 218.27 MB. Speed 2.57 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 74.60s. Speed 2.93 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
+
+Testing pickle
+
+Protocol 1
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.00 MB. Speed 0.80 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
+
+Loaded in 0.00s. Speed 1.56 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.02s. file size 0.02 MB. Speed 0.84 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+
+Loaded in 0.01s. Speed 1.65 MB/s. RSS taken 0.13 MB.  (6.61 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+
+Loaded in 0.05s. Speed 1.68 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.32 MB per MB in file)
+
+Loaded in 0.19s. Speed 1.67 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
+
+== 256000 ==
+
+Stored in 1.49s. file size 1.66 MB. Speed 1.11 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
+
+Loaded in 0.75s. Speed 2.21 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 6.11s. file size 7.04 MB. Speed 1.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+
+Loaded in 2.99s. Speed 2.35 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 24.40s. file size 28.55 MB. Speed 1.17 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
+
+Loaded in 11.97s. Speed 2.39 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 97.62s. file size 114.59 MB. Speed 1.17 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 48.04s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
+
+Testing pickle
+
+Protocol 2
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.00 MB. Speed 0.78 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
+
+Loaded in 0.00s. Speed 1.57 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.02s. file size 0.02 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+
+Loaded in 0.01s. Speed 1.52 MB/s. RSS taken 0.13 MB.  (6.60 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+
+Loaded in 0.05s. Speed 1.66 MB/s. RSS taken 0.09 MB.  (1.18 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.31 MB per MB in file)
+
+Loaded in 0.19s. Speed 1.65 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
+
+== 256000 ==
+
+Stored in 1.52s. file size 1.66 MB. Speed 1.09 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
+
+Loaded in 0.76s. Speed 2.18 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 6.19s. file size 7.04 MB. Speed 1.14 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+
+Loaded in 3.01s. Speed 2.34 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 24.60s. file size 28.55 MB. Speed 1.16 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
+
+Loaded in 12.06s. Speed 2.37 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 98.38s. file size 114.59 MB. Speed 1.16 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
+
+</pre>
+
+<p>Paraphrased:</p>
+
+<ul>
+
+<li>JsonPickle needs more RSS then pickle/cPickle, and runs out of memory sooner. all pickle/cPickle runs need the same RSS</li>
+
+<li>Protocol 1/2 need the same amount of diskspace, protocol 0 needs about the double, JsonPickle about 8 times more</li>
+
+<li>Protocol 1/2 are as fast, protocol 0 is slower. cPickle is speed king.  Jsonpickle is slow</li>
+
+</ul>
+
+<p>Conclusion:</p>
+
+<ul>
+
+<li>Use cPickle or pickle, unless they are broken for your use case(s)</li>
+
+<li>Consider persisting only your data in appropriate formats (textfile, database, ...). Often you don't really need to persist entire <i>objects</i>.  In the case of Gensim, we can also work with numpy's dataformat.</li>
+
+<li>If you like json, or want a very simple workaround for cPickle/pickle brokenness, and you cannot use a more appropriate format (see above) consider jsonpickle</li>
+
+</ul>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/python/index.html" rel="tag">python</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/rsyncbench_an_rsync_benchmarking_tool/">Rsyncbench, an rsync benchmarking tool</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/rsyncbench_an_rsync_benchmarking_tool/" rel="bookmark">
+					<time class="entry-date" datetime="2010-10-15 09:38:12 -0400 EDT">
+						October 15, 2010
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I&rsquo;m currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn&rsquo;t need much disk space,<br /></p>
+
+<p>but in the meantime it might be a good idea to look for online backup solutions (oops did I say &ldquo;online&rdquo;? I meant &ldquo;cloud&rdquo;), like on the (V)PS itself, or maybe as a separate solution.<br /></p>
+
+<p>But I&rsquo;ve got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)<br /></p>
+
+<p>At this point the biggest contenders are <a href="http://linode.com/">Linode</a> (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), <a href="http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/">Rackspace backup</a> gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there&rsquo;s <a href="http://www.hetzner.de/">Hetzner</a>, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)</p></p>
+
+<p>Another issue, given the limited capacity of Belgian internet connections, I needed to figure out how much bandwith rsync really needs, so I can calculate if the duration of a backup run including syncing the full vdi file is still reasonable.</p>
+
+<p>I couldn't find an rsync benchmarking tool, so I wrote my own.</p>
+
+<p>Features:</p>
+
+<ul>
+
+<li>simple</li>
+
+<li>non invasive: you specify the target and destination hosts (just localhost is fine too), and file locations</li>
+
+<li>measures time spent, bytes sent (measured with tcpdump), and data sent (rsync's statistics which takes compression into account)</li>
+
+<li>supports plugins</li>
+
+<li>generates png graphs using Gnuplot</li>
+
+<li>two current plugins: one using files of various sizes, both randomly generated (/dev/urandom) and easily compressable (/dev/zero), does some use cases like initial sync, second sync (no-op), and syncing with a data block appended and prepended.  The other plugin collects vdi files from rsnapshot directories and measures the rsyncing from each image to the next</li>
+
+</ul>
+
+<p><br />
+
+Non-features:</p>
+
+<ul>
+
+<li>no plugins yet for other use cases then my own (no file removal, renaming, working with multiple files, working with small files, ...)</li>
+
+<li>doesn't test a lot of different file sizes and such</li>
+
+<li>not as finished as my other projects (no Makefile, graphs are rough.  but I have no time to go dive further in the gnuplot stuff)
+
+<li>the benchmarking process takes a long time, due to a lot of juggling with big files. some steps can be optimized</li>
+
+</ul>
+
+<p>Here is an example graph:<br />
+
+<img src="/files/rsyncbench_random_images_sent.png"/><br />
+
+The first entry on the x-asis is on 1MiB, even though it seems like 0MiB because of the scale.<br />
+
+Notice how rsync is pretty efficient when it has nothing to do (no-op), and the sizes of transmitted data correspond exactly to what has changed (even if you prepend data in the beginning and all data "moves to the back", rsync notices this)<br />
+
+The compressed numbers (reported by rsync) are very close to the real numbers measured with tcpdump.  Which makes sense, random data is not easy to compress.  OTOH, if i take the graph of the case where I sync images which are built from /dev/zero, the story similar so either rsyncs compression sucks (which I find hard to believe), or the guy on #rsync who told me those numbers are about the compressed data was wrong (maybe) or I just messed up something (likely)</p>
+
+<p>So, I hope this is useful to someone, and maybe others can clone the project and improve it further.  I found it weird that I couldn't find an rsync benchmarking tool, because rsync's algorithm is non-obvious and it can be really interesting to understand all its characteristics in various use cases.</p>
+
+<p>Project page: <a href="http://github.com/Dieterbe/rsyncbench">rsyncbench on Github</a></p>
+
+<p>Oh and about my backups? Rsyncing the different vdi files takes upto a few hundreds of MB's, not an ideal solution given the upload speeds in Belgium.<br />
+
+I'll figure out something else.  Like backing up from inside windows (maybe using the rackspace service), or mounting the vdi and rsyncing the data from there.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/facebook_usrbincrash_php_implementation/">facebook usrbincrash php implementation</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/facebook_usrbincrash_php_implementation/" rel="bookmark">
+					<time class="entry-date" datetime="2010-02-12 23:25:46 -0400 -0400">
+						February 12, 2010
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I haven't touched the code for a few months, but better to put it online then to let it rot.<br />
+
+<a href="http://github.com/Dieterbe/facebookpuzzles/" title="http://github.com/Dieterbe/facebookpuzzles/">http://github.com/Dieterbe/facebookpuzzles/</a></p>
+
+<p>2 branches:</p>
+
+<ul>
+
+<li>master: basically what I submitted to FB, and what just works</li>
+
+<li>withpruning: an attempt for futher optimalisation (it only improves the runtime in some cases) but I didn't finish that version and there's a bug in it somewhere</li>
+
+</ul>
+
+<p>In the repo you'll also find various test input files supplied by the community on <a href="http://www.facebook.com/topic.php?uid=15325934266&amp;topic=5131&amp;post=30091">the forums</a> and a script to benchmark the implementation on all inputfiles.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/mysql_status_variables_caveats/">Mysql status variables caveats</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/mysql_status_variables_caveats/" rel="bookmark">
+					<time class="entry-date" datetime="2009-06-06 11:33:34 -0400 EDT">
+						June 6, 2009
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<ul>
+
+<li>All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  ("Command statistics:selects" graph in Zenoss)</li>
+
+<li>Com_select does not denote all incoming select commands.  If you have a hit on your query cache, com_select is <em>not</em> incremented.  So I thought we were doing less qps while in fact we were just getting more cache hits. Qcache_hits gets incremented on cache hits (but is not monitored by Zenoss)</li>
+
+</ul>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+                <a href="http://localhost:1313//tags/mysql/index.html" rel="tag">mysql</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/poor_mans_dmenu_benchmark/">Poor mans dmenu benchmark</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/poor_mans_dmenu_benchmark/" rel="bookmark">
+					<time class="entry-date" datetime="2009-04-25 11:25:26 -0400 EDT">
+						April 25, 2009
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>generate file:</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+<span style="color: #408080; font-style: italic">#!/bin/bash</span>
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Creating dummy file of 50MB in size (625000 entries of 80chars)&quot;</span>
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Note: this takes about an hour and a half&quot;</span>
+
+<span style="color: #19177C">entries_per_iteration</span><span style="color: #666666">=</span>1000
+
+<span style="color: #008000; font-weight: bold">for</span> i in <span style="color: #BA2121">`</span>seq <span style="color: #666666">1</span> 625<span style="color: #BA2121">`</span>
+
+<span style="color: #008000; font-weight: bold">do</span>
+
+        <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Iteration </span><span style="color: #19177C">$i</span><span style="color: #BA2121"> of 625 ( </span><span style="color: #19177C">$entries_per_iteration</span><span style="color: #BA2121"> each )&quot;</span>
+
+        <span style="color: #008000; font-weight: bold">for</span> j in <span style="color: #BA2121">`</span>seq <span style="color: #666666">1</span> <span style="color: #19177C">$entries_per_iteration</span><span style="color: #BA2121">`</span>
+
+        <span style="color: #008000; font-weight: bold">do</span>
+
+                <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;`date +&#39;%Y-%m-%d %H:%M:%S&#39;` `date +%s`abcdefhijklmno`date +%s | md5sum`&quot;</span> &gt;&gt; ./dummy_history_file
+
+        <span style="color: #008000; font-weight: bold">done</span>
+
+<span style="color: #008000; font-weight: bold">done</span>
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<p>measure speed:</p></p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Plain awk &#39;{print \$3}&#39;:&quot;</span>
+
+<span style="color: #008000">time </span>awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file &gt;/dev/null
+
+
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;awk + sort&quot;</span>
+
+<span style="color: #008000">time </span>awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file | sort &gt;/dev/null
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;awk + sort + uniq&quot;</span>
+
+<span style="color: #008000">time </span>awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file | sort | uniq &gt;/dev/null
+
+
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Plain dmenu:&quot;</span>
+
+dmenu &lt; dummy_history_file
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;awked into dmenu:&quot;</span>
+
+awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file | dmenu
+
+<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;awk + sort + uniq into dmenu:&quot;</span>
+
+awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file | sort | uniq | dmenu
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<p></p>
+
+<p>Results.<br /></p>
+
+<p>I ran the test twice about an half hour after generating the file, so in the first run, the first awk call may have been affected by a no longer complete Linux block cache.<br /></p>
+
+<p>(I also edited the output format a bit)<br /></p>
+
+<p>Run 1:</p></p>
+
+<p><pre></p>
+
+<p>Plain awk &lsquo;{print $3}&rsquo;:</p>
+
+<p>real    0m1.253s</p>
+
+<p>user    0m0.907s</p>
+
+<p>sys 0m0.143s</p>
+
+<p>awk + sort:</p>
+
+<p>real    0m3.696s</p>
+
+<p>user    0m1.887s</p>
+
+<p>sys 0m0.520s</p>
+
+<p>awk + sort + uniq:</p>
+
+<p>real    0m15.768s</p>
+
+<p>user    0m12.233s</p>
+
+<p>sys 0m0.820s</p>
+
+<p>Plain dmenu:</p>
+
+<p>awked into dmenu:</p>
+
+<p>awk + sort + uniq into dmenu:</p>
+
+<p></pre><p>Run 2</p></p>
+
+<p><pre></p>
+
+<p>Plain awk &lsquo;{print $3}&rsquo;:</p>
+
+<p>real    0m1.223s</p>
+
+<p>user    0m0.923s</p>
+
+<p>sys 0m0.107s</p>
+
+<p>awk + sort:</p>
+
+<p>real    0m2.799s</p>
+
+<p>user    0m1.910s</p>
+
+<p>sys 0m0.553s</p>
+
+<p>awk + sort + uniq:</p>
+
+<p>real    0m16.387s</p>
+
+<p>user    0m12.019s</p>
+
+<p>sys 0m0.787s</p>
+
+<p>Plain dmenu:</p>
+
+<p>awked into dmenu:</p>
+
+<p>awk + sort + uniq into dmenu:</p>
+
+<p></pre><p>Not too bad.  It&rsquo;s especially uniq who seems to cause a lot of slowdown.  (in this dummy test file, are entries are unique. If there were lots of dupes, the results would probably be different, but I suspect that uniq always needs some time to do its work, dupes or not).  The real bottleneck seems to be raw cpu power.  Not storage bandwidth at all since Linux caches it.  If uncached, I estimate the sequential read would take 1.5 seconds or so. (about 30MB/s on common hard disks)</p></p>
+
+<p>Once the stuff gets piped into dmenu, there is a little lag but it's reasonably responsive imho.<br />
+
+Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other apps running, not a very professional benchmark but you get the idea :)</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/">Tweaking Lighttpd stat() performance with fcgi-stat-accel</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/" rel="bookmark">
+					<time class="entry-date" datetime="2008-03-03 21:12:42 -0400 -0400">
+						March 3, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p><br/></p>
+
+<p>(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p></p>
+
+<p>This is explained on the <a href="http://trac.lighttpd.net/trac/wiki/HowtoSpeedUpStatWithFastcgi"> HowtoSpeedUpStatWithFastcgi</a> page on the <a href="http://trac.lighttpd.net/trac/"> Lighty wiki</a>.</p>
+
+<p>Now, for <a href="http://www.netlog.com">Netlog</a> we needed to add some http headers ( Cache-Control: max-age, ETag, Expires and Last-Modified ) so we patched up the code a bit to do that, and a bit of other stuff.</p>
+
+<p>Ofcourse this is documented on <a href="http://trac.lighttpd.net/trac/wiki/FcgiStatAccelWithMoreHttpHeaders">the FcgiStatAccelWithMoreHttpHeaders page on the Lighty wiki</a></p>
+
+<p>Have fun !</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+<span style="color: #408080; font-style: italic">/*</span>
+
+<span style="color: #408080; font-style: italic">  Originally written by Fobax.</span>
+
+<span style="color: #408080; font-style: italic">  Edited by darix to support controlling thread count at runtime. </span>
+
+<span style="color: #408080; font-style: italic">  Edited by poison and Dieter_be to support some http headers derived from the files.</span>
+
+
+
+<span style="color: #408080; font-style: italic">  Please do not remove any of the above.</span>
+
+<span style="color: #408080; font-style: italic">  </span>
+
+<span style="color: #408080; font-style: italic">  compile with: </span>
+
+
+
+<span style="color: #408080; font-style: italic">  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel</span>
+
+
+
+<span style="color: #408080; font-style: italic">  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.</span>
+
+
+
+<span style="color: #408080; font-style: italic">  The default value, if spawned from lighttpd, is 20.</span>
+
+<span style="color: #408080; font-style: italic">*/</span>
+
+
+
+<span style="color: #BC7A00">#include &quot;fcgi_config.h&quot;</span>
+
+
+
+<span style="color: #BC7A00">#include &lt;pthread.h&gt;</span>
+
+<span style="color: #BC7A00">#include &lt;sys/types.h&gt;</span>
+
+<span style="color: #BC7A00">#include &lt;unistd.h&gt;   </span>
+
+<span style="color: #BC7A00">#include &quot;fcgiapp.h&quot;  </span>
+
+<span style="color: #BC7A00">#include &lt;string.h&gt;   </span>
+
+<span style="color: #BC7A00">#include &lt;sys/types.h&gt;</span>
+
+<span style="color: #BC7A00">#include &lt;sys/stat.h&gt; </span>
+
+
+
+<span style="color: #BC7A00">#include &lt;stdlib.h&gt;</span>
+
+<span style="color: #BC7A00">#include &lt;stdio.h&gt; </span>
+
+
+
+<span style="color: #BC7A00">#include &quot;etag.h&quot;</span>
+
+<span style="color: #BC7A00">#include &quot;buffer.h&quot;</span>
+
+
+
+
+
+<span style="color: #BC7A00">#define THREAD_COUNT 20</span>
+
+
+
+
+
+<span style="color: #BC7A00">#define FORBIDDEN(stream) \</span>
+
+        FCGX_FPrintF(stream, <span style="color: #BA2121">&quot;Status: 403 Forbidden</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Content-Type: text/html</span><span style="color: #BB6622; font-weight: bold">\r\n\r\n</span><span style="color: #BA2121">&lt;h1&gt;403 Forbidden&lt;/h1&gt;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);
+
+<span style="color: #BC7A00">#define NOTFOUND(stream, filename) \</span>
+
+        FCGX_FPrintF(stream, <span style="color: #BA2121">&quot;Status: 404 Not Found</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Content-Type: text/html</span><span style="color: #BB6622; font-weight: bold">\r\n\r\n</span><span style="color: #BA2121">&lt;h1&gt;404 Not Found&lt;/h1&gt;</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">%s&quot;</span>, filename);
+
+<span style="color: #BC7A00">#define SENDFILE(stream, filename, headers) \</span>
+
+        FCGX_FPrintF(stream, <span style="color: #BA2121">&quot;%sX-LIGHTTPD-send-file: %s</span><span style="color: #BB6622; font-weight: bold">\r\n\r\n</span><span style="color: #BA2121">&quot;</span>, headers, filename);
+
+
+
+<span style="color: #BC7A00">#define EXPIRATION_TIME (int) 60*60*24*30</span>
+
+
+
+
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">genheaders</span> (<span style="color: #B00040">char</span><span style="color: #666666">*</span> mybuffer, <span style="color: #B00040">size_t</span> bufferlen, <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">char</span><span style="color: #666666">*</span> file)
+
+{
+
+        <span style="color: #B00040">char</span> timebuf[<span style="color: #666666">32</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe   </span>
+
+        <span style="color: #B00040">char</span> lastmodbuf[<span style="color: #666666">32</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe</span>
+
+        <span style="color: #B00040">char</span> etag[<span style="color: #666666">128</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe</span>
+
+        <span style="color: #008000; font-weight: bold">struct</span> stat statbuf;
+
+        <span style="color: #B00040">time_t</span> exp;
+
+        <span style="color: #B00040">time_t</span> lastmod;  
+
+        buffer <span style="color: #666666">*</span>etag_raw;
+
+        buffer <span style="color: #666666">*</span>etag_ok ;
+
+ 
+
+        <span style="color: #408080; font-style: italic">//create buffers for Etag</span>
+
+        etag_raw <span style="color: #666666">=</span> buffer_init();
+
+        etag_ok <span style="color: #666666">=</span> buffer_init();
+
+                
+
+        <span style="color: #408080; font-style: italic">// Stat the file</span>
+
+        <span style="color: #008000; font-weight: bold">if</span> (stat (file, <span style="color: #666666">&amp;</span>statbuf) <span style="color: #666666">!=</span> <span style="color: #666666">0</span>)
+
+        {
+
+                <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-1</span>;
+
+        }
+
+
+
+        <span style="color: #408080; font-style: italic">// Clear the buffer</span>
+
+        memset (mybuffer, <span style="color: #666666">0</span>, bufferlen);
+
+
+
+        <span style="color: #408080; font-style: italic">// Get the local time</span>
+
+        exp <span style="color: #666666">=</span> time (<span style="color: #008000">NULL</span>) <span style="color: #666666">+</span> EXPIRATION_TIME;
+
+        lastmod <span style="color: #666666">=</span> statbuf.st_mtime;
+
+
+
+        strftime (timebuf, (<span style="color: #008000; font-weight: bold">sizeof</span> (timebuf) <span style="color: #666666">/</span> <span style="color: #008000; font-weight: bold">sizeof</span> (<span style="color: #B00040">char</span>)) <span style="color: #666666">-</span> <span style="color: #666666">1</span>, <span style="color: #BA2121">&quot;%a, %d %b %Y %H:%M:%S GMT&quot;</span>, gmtime (<span style="color: #666666">&amp;</span>(exp)));
+
+        strftime (lastmodbuf, (<span style="color: #008000; font-weight: bold">sizeof</span> (lastmodbuf) <span style="color: #666666">/</span> <span style="color: #008000; font-weight: bold">sizeof</span> (<span style="color: #B00040">char</span>)) <span style="color: #666666">-</span> <span style="color: #666666">1</span>, <span style="color: #BA2121">&quot;%a, %d %b %Y %H:%M:%S GMT&quot;</span>, gmtime (<span style="color: #666666">&amp;</span>(lastmod)));
+
+
+
+        etag_create(etag_raw, <span style="color: #666666">&amp;</span>statbuf, ETAG_USE_SIZE);
+
+        etag_mutate(etag_ok, etag_raw);
+
+
+
+        buffer_free(etag_raw);
+
+
+
+        snprintf (mybuffer, bufferlen, <span style="color: #BA2121">&quot;Cache-Control: max-age=%d</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">ETag: \%s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Expires: %s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Last-Modified: %s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">&quot;</span>, EXPIRATION_TIME, etag_ok<span style="color: #666666">-&gt;</span>ptr, timebuf , lastmodbuf);
+
+
+
+        buffer_free(etag_ok);
+
+
+
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+
+}
+
+ 
+
+<span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #666666">*</span><span style="color: #0000FF">doit</span>(<span style="color: #B00040">void</span> <span style="color: #666666">*</span>a){
+
+        FCGX_Request request;
+
+        <span style="color: #B00040">int</span> rc;
+
+        <span style="color: #B00040">char</span> <span style="color: #666666">*</span>filename;
+
+        <span style="color: #B00040">char</span> extraheaders[<span style="color: #666666">192</span>];
+
+        <span style="color: #B00040">int</span> r;
+
+
+
+        FCGX_InitRequest(<span style="color: #666666">&amp;</span>request, <span style="color: #666666">0</span>, FCGI_FAIL_ACCEPT_ON_INTR);
+
+
+
+        <span style="color: #008000; font-weight: bold">while</span>(<span style="color: #666666">1</span>){
+
+                <span style="color: #408080; font-style: italic">//Some platforms require accept() serialization, some don&#39;t. The documentation claims it to be thread safe</span>
+
+<span style="color: #408080; font-style: italic">//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;</span>
+
+<span style="color: #408080; font-style: italic">//              pthread_mutex_lock(&amp;accept_mutex);</span>
+
+                rc <span style="color: #666666">=</span> FCGX_Accept_r(<span style="color: #666666">&amp;</span>request);
+
+<span style="color: #408080; font-style: italic">//              pthread_mutex_unlock(&amp;accept_mutex);</span>
+
+
+
+                <span style="color: #008000; font-weight: bold">if</span>(rc <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>)
+
+                        <span style="color: #008000; font-weight: bold">break</span>;
+
+
+
+        <span style="color: #408080; font-style: italic">//get the filename</span>
+
+                <span style="color: #008000; font-weight: bold">if</span>((filename <span style="color: #666666">=</span> FCGX_GetParam(<span style="color: #BA2121">&quot;SCRIPT_FILENAME&quot;</span>, request.envp)) <span style="color: #666666">==</span> <span style="color: #008000">NULL</span>){
+
+                        FORBIDDEN(request.out);
+
+        <span style="color: #408080; font-style: italic">//don&#39;t try to open directories</span>
+
+                }<span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span>(filename[strlen(filename)<span style="color: #666666">-1</span>] <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;/&#39;</span>){
+
+                        FORBIDDEN(request.out);
+
+        <span style="color: #408080; font-style: italic">//open the file</span>
+
+                }<span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span>((r <span style="color: #666666">=</span> genheaders (extraheaders, <span style="color: #666666">191</span>, filename)) <span style="color: #666666">!=</span> <span style="color: #666666">0</span>){
+
+                        NOTFOUND(request.out, filename);
+
+        <span style="color: #408080; font-style: italic">//no error, serve it</span>
+
+                }<span style="color: #008000; font-weight: bold">else</span>{
+
+                        SENDFILE(request.out, filename, extraheaders);
+
+                }
+
+
+
+                FCGX_Finish_r(<span style="color: #666666">&amp;</span>request);
+
+        }
+
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">NULL</span>;
+
+}
+
+
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">void</span>){
+
+        <span style="color: #B00040">int</span> i,j,thread_count;
+
+        <span style="color: #B00040">pthread_t</span><span style="color: #666666">*</span> id;
+
+        <span style="color: #B00040">char</span><span style="color: #666666">*</span> env_val;
+
+
+
+        FCGX_Init();
+
+
+
+        thread_count <span style="color: #666666">=</span> THREAD_COUNT;
+
+        env_val <span style="color: #666666">=</span> getenv(<span style="color: #BA2121">&quot;PHP_FCGI_CHILDREN&quot;</span>);
+
+        <span style="color: #008000; font-weight: bold">if</span> (env_val <span style="color: #666666">!=</span> <span style="color: #008000">NULL</span>) {
+
+                j <span style="color: #666666">=</span> atoi(env_val);
+
+                <span style="color: #008000; font-weight: bold">if</span> (j <span style="color: #666666">!=</span> <span style="color: #666666">0</span>) {
+
+                        thread_count <span style="color: #666666">=</span> j;
+
+                };
+
+        };
+
+
+
+        id <span style="color: #666666">=</span> malloc(<span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #666666">*</span>id) <span style="color: #666666">*</span> thread_count);
+
+
+
+        <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> thread_count; i<span style="color: #666666">++</span>) {
+
+                pthread_create(<span style="color: #666666">&amp;</span>id[i], <span style="color: #008000">NULL</span>, doit, <span style="color: #008000">NULL</span>);
+
+        }
+
+
+
+        doit(<span style="color: #008000">NULL</span>);
+
+        free(id);  
+
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;  
+
+}
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/netlog/index.html" rel="tag">netlog</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+		
+		</div>
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

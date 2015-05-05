@@ -1,0 +1,16 @@
++++
+title = "You can't make bits harder to copy"
+date = "2007-06-02T13:06:40-04:00"
+tags = ["information age"]
++++
+<p>He made some great points about where the (music) industry gets/does it wrong and about some fundamental flaws in our law systems (especially with regards to copyright).  All of which are of course results of the challenges imposed by the "information age".<!--more--> (which I also introduced in <a href="/open_source_softwarepatenten_vanuit_ethisch_perspectief">my paper about open source and software patents (dutch)</a>)</p>
+
+<p>I never really looked into the technical side of DRM but Cory made it very clear:<br />
+
+DRM systems such as AACS are just "giving the cyphertext, the cypher and the key to the attacker and relying on him to not combining those except under circumstances as you dictate" which is of course - from a technical/cryptographic point of view - plain nonsense.  It just doesn't work and can't be made to work (although some companies like to make believe their clients without technical backgrounds that it is possible).<br />
+
+Hence his quote <em>"you can't make bits harder to copy"</em>.<br />
+
+Our friend Wesley (aka profoX) also <a href="http://wesley.debianbox.be/2007/01/14/hd-dvd-aacs-gekraakt/">pointed out this fundamental problem earlier.</a></p>
+
+<p>Go check it out! I found it a bit hard to follow at times but you can pick up interesting stuff from it, and it encourages further thinking.  If I had seen this video earlier I would haved mentioned/discussed some of his points in my <a href="/open_source_softwarepatenten_vanuit_ethisch_perspectief">paper (dutch)</a>.</p>

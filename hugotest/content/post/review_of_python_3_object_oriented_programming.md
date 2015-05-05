@@ -1,0 +1,156 @@
++++
+title = "Review of \"Python 3 Object Oriented Programming\""
+date = "2010-08-23T19:01:09-04:00"
+tags = ["python"]
++++
+<p>I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.<br />
+
+<!--more-->
+
+Mind you, my Python knowledge is very limited.  I have done some python programming, and I once read (most of) <a href="http://diveintopython.org/">Dive into python</a>, but over the years that experience has vanished from my memory.  Dusty's book has had many proofreads/reviews by python-aficionado's, now it gets a fresh perspective from an amateur, and for me this was a good opportunity to work on my python skills.</p>
+
+<p>To paraphrase the "who this book is for" paragraph, which is in the beginning of the book and in <a href="https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;utm_medium=bookrev&amp;utm_content=blog&amp;utm_campaign=mdb_004281">online advertisements</a> for the book:</p>
+
+<ul>
+
+<li>people new to OO programming and people with basic python skills who want to improve their python OO.</li>
+
+<li>OO programmers experienced in other languages who want to get into python.</li>
+
+<li>python 2 programmers interested in learning python 3, although this is not the target audience.</li>
+
+</ul>
+
+<p>Good, that includes me (category 2)</p>
+
+<p>Pro's:</p>
+
+<ul>
+
+<li>seems very accurate</li>
+
+<li>OO focused.   But not in a college/university-ish way.  Real experience, nuanced, real examples and exercises.  Tells you when *not* to use OO.  Teaches you the difference between object orientation, OO programming and OO design, and makes you understand that in the end everything are just means to end, and thanks to the versatility of Python, teaches you various tricks to implement certain designs in less then obvious ways.</li>
+
+<li>Chapters about design patterns (there sure are many of them), testing, libraries, and some other topics not directly related to OO.</li>
+
+</ul>
+
+<p>Con's:</p>
+
+<ul>
+
+<li>Not an introduction to Python.  Assumes some basic knowledge about Python. (like data structures and loops). There is a chapter about (some of the) datatypes later on in the book but it focuses more on their OO nature, and to get to know the basics, you're referred to <a href="http://docs.python.org/py3k/tutorial/">the official python tutorial</a>.
+
+<li>Does not cover *everything*.</li>
+
+</ul>
+
+<p>I should clarify my last point.  Here and there I found some information to be lacking.  Especially  static class methods (they are only mentioned very briefly in a case study somewhere) and static properties/variables.<br />
+
+Other then that, sometimes an example or explanation was not entirely clear to me.  This didn't happen often, but there were moments where I thought 95% of what you need to know is explained, but the other 5% you have to google up yourself.<br />
+
+It is quite convenient however, to have the author of a book available in your jabber client.<br />
+
+So FWIW here are the things I asked him about and which responses I got, with some comments added by me afterwards.</p>
+
+<pre><![CDATA[
+
+<Dieterbe> hmm you mention that methods *need* a self param, but why is this?
+
+           can't python automatically make a variable self available in the scope of the function, when calling it?
+
+<Dusty>    no, they are always explicit
+
+<Dieterbe> but why?
+
+<Dusty>    it's part of the python philosophy, I guess. "explicit is better than implicit" is in the zen of python poem.
+
+           Basically, if you are accessing a variable in any namespace, that variable has to be have been made explicitly available in that 
+
+           namespace. The one exception is the from X import * syntax, which 98% of python programmers avoid exactly because of the namespace issues.
+
+<Dieterbe> right
+
+
+
+# good to know.  Too bad this isn't really mentioned anywhere.
+
+
+
+
+
+<Dieterbe> i don't quite get why - in your notebook example of chap 2 - you iterate over the list to find the correct note based on its id.
+
+           can't you just get the element based on it's index in the list? (ie keep the node id in sync with the index in the list)
+
+<Dusty>    I don't have the code in front of me, but I suspect that it's because if a note is deleted, that id should not be recycled and applied to another note.
+
+<Dieterbe> but still, since you keep the last used id, and keep increasing it, you won't recycle id's.
+
+<Dusty>    yeah, but the index in the list will change
+
+<Dusty>    when you delete #4
+
+<Dieterbe> oh
+
+<Dusty>    the object with ID 5 becomes the object at #4
+
+<Dieterbe> thanks buddy
+
+<Dusty>    no problem. :)
+
+
+
+# again, makes perfect sense.  But if you don't know the ins and outs of the datatypes, you're on your own.
+
+
+
+<Dieterbe> i had a question about your example for the decorator pattern.
+
+           you use a socket and then you have 2 decorators that implement a send function which do some stuff (logging and what not)
+
+           but also the actual sending on the socket
+
+<Dieterbe> and you mention you can have multiple decorators on the same object.  but since each decorator also does the sending on the socket,
+
+           doesn't that mean the sending happens multiple times?
+
+<Dusty>    no, because the first decorator is decorating the second decorator
+
+<Dusty>    which is decorating the socket
+
+<Dieterbe> ah yes you're right. and although you did not specify it like this in the explanation text, it should be clear from the code.
+
+
+
+# If I would have looked better at the code I would have figured it out.
+
+# I just assumed something had to be wrong, I'm too used to the way 'behaviors' are implemented in CakePHP.
+
+
+
+<Dieterbe> one last remark i have about the book: i couldn't find an explanation of static variables/properties.
+
+           i did see a very short mention of static methods in the case study at the end of chap 3, i would have expected to have that info a bit more 
+
+           prominent, in it's own subsection or something
+
+<Dieterbe> especially because you use static class methods a few times throughout the book
+
+<Dusty>    I had a long section on them and ended up removing it because the chapter was too long and one of my reviewers suggested that they aren't very good form in Python.
+
+<Dieterbe> hmm. i see
+
+]]></pre><p>
+
+The writing is pretty informal, and here and there you'll find a subtle reference or joke.  But of course that's not what you buy this book for.</p>
+
+<h3>Conclusion</h3>
+
+<p>I would say the "who this book is for" part is a bit too optimistic.  You won't learn Python (3) from scratch by only using this book.  It's not a book restricted to mere OO subjects (in python), but neither does it cover all basics of the Python language.</p>
+
+<p>So if you are a python newbie, I would probably recommend you 'Dive into python'.  It's free, covers the basics, but doesn't contain so many real life examples.</p>
+
+<p>If you want to know more about OO in python, design patterns, some real life examples and techniques, or advice from a pro, then I definitely recommend this book.</p>
+
+<p>Free chapter: <a href="https://www.packtpub.com/sites/default/files/1261-chapter-7-Python%20object-oriented-shortcuts.pdf">Chapter No. 7 : Python Object-oriented Shortcuts</a></p>

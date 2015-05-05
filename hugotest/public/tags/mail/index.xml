@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mail on Dieter Plaetinck&#39;s blog</title>
+    <link>http://localhost:1313/tags/mail/</link>
+    <description>Recent content in Mail on Dieter Plaetinck&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 02 Oct 2011 09:28:45 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/mail/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Luamail: a mail client built into luakit</title>
+      <link>http://localhost:1313/post/luamail_a_mail_client_built_into_luakit/</link>
+      <pubDate>Sun, 02 Oct 2011 09:28:45 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/luamail_a_mail_client_built_into_luakit/</guid>
+      <description>&lt;p&gt;now I&amp;rsquo;m fed up with the lack of an email client that works in a way I find sane.  Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic &lt;a href=&#34;http://luakit.org&#34;&gt;luakit&lt;/a&gt; browser,&lt;/p&gt;
+
+&lt;p&gt;which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API&amp;rsquo;s.&lt;/p&gt;
+
+&lt;p&gt;Now I want to build the &amp;ldquo;luakit of email clients&amp;rdquo;.  Let me explain what&amp;rsquo;s that all about&amp;hellip;&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically the story is pretty much the same as it was with uzbl.  There are no mail clients which offer a high level of customization and interfacing possibilities.  There are some mail clients aimed at &amp;ldquo;power users&amp;rdquo; and &amp;ldquo;lightweight mail clients&amp;rdquo; like mutt/alpine/nmh etc but those are also restricted in extensibility and often crippled in terms of features.  Currently I&amp;rsquo;m using Claws-mail, which is the least sucky client I found, but it&amp;rsquo;s also nowhere near what I want.&lt;/p&gt;
+
+&lt;h3&gt;So, what do I want in a mail client?&lt;/h3&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt;fast and non-bloaty (of course my definition of bloat might differ from yours, for me it&#39;s a combination of run-time performance and source code elegancy)&lt;/li&gt;
+
+&lt;li&gt;minimal but efficient UI. keyboard controlled. modal interface optional but enabled by default&lt;/li&gt;
+
+&lt;li&gt;extensive customisation options&lt;/li&gt;
+
+&lt;li&gt;plain text configuration and data files, a binary format only where appropriate (like a search index or a database)&lt;/li&gt;
+
+&lt;li&gt;rendering HTML mails and rich content (images, embedded videos, flash, HTML5) properly.
+
+(I receive fancy newsletters from companies and rich content such as news messages from rss feeds by means of &lt;a href=&#34;http://localhost:1313/an_rss2email_fork_that_sucks_less&#34;&gt;rss2email-xdg&lt;/a&gt;)&lt;/li&gt;
+
+&lt;li&gt;great link following, and for external files: integration with download software, proxies, etc). I.e. &#34;what luakit has&#34;&lt;/li&gt;
+
+&lt;li&gt;support Unicode and attachments (mime) properly&lt;/li&gt;
+
+&lt;li&gt;play nice with window managers (window title, urgency hint, ..), support many key bindings and use UI widgets that are not a pain (i.e. no ncurses, be an X client)&lt;/li&gt;
+
+&lt;li&gt;provide a unified interface to email sending/receiving/searching&lt;/li&gt;
+
+&lt;li&gt;keep my homedir clean. Use xdg basedir spec (i.e. cache mail and search indices in $XDG_CACHE_DIR)&lt;/li&gt;
+
+&lt;li&gt;key binds to show/hide quoted text, focus unquoted text when viewing mail by default.&lt;/li&gt;
+
+&lt;li&gt;play nice with mailing lists (track all mailing lists I&#39;m on, allow me to unsubscribe with a shortcut)&lt;/li&gt;
+
+&lt;li&gt;filtering and mail (or displaying thereof) altering: for some specific mailing lists, prepend the subject with the name of the mailing list (i.e. lists that use the List-Id header and do not rewrite subjects)&lt;/li&gt;
+
+&lt;li&gt;high level of control over the actual message that gets sent out.  I.e. allow me to change and modify all headers&lt;/li&gt;
+
+&lt;li&gt;when sending a message fails, keep it in a retry-buffer.  give me an interface to that buffer (I.e. a list of all mails which could not be sent, why not, when they&#39;ll be retried, shortcuts to retry immediately, etc)&lt;/li&gt;
+
+&lt;li&gt;allow me to define &lt;a href=&#34;http://en.wikipedia.org/wiki/Sieve_%28mail_filtering_language%29&#34;&gt;sieve&lt;/a&gt; rules in my mail client configuration, and automatically update server side when needed.&lt;/li&gt;
+
+&lt;li&gt;allow me, as a user to change anything in a fine-grained way.  Some examples:
+
+&lt;ul&gt;
+
+    &lt;li&gt;Differentiate properly between received mails that are &#34;definitely optional for me&#34;, and &#34;aimed to me&#34;.  I.e. mark all mails from a mailing list low-priority, unless a &#39;To&#39;/&#39;Cc&#39;/&#39;Bcc&#39; field contains any of the addresses I use to send from &lt;i&gt;or&lt;/i&gt; when the mail is a reply to a mail I sent earlier (check Message-ID and mail subject)
+
+    &lt;li&gt;Use a tag-based interface towards gmail.  Gmail uses tags instead of folders, which it cannot really expose properly over IMAP (it must &#34;duplicate&#34; the same message in multiple folders when speaking IMAP).  I want to modify my client so that for gmail accounts, it also uses tags instead of folders&lt;/li&gt;
+
+    &lt;li&gt;Use different key bindings dependent on account in use or any property such as sender of a mail message.  Example: when deleting a message, delete straight away when it has a certain spamassasin score or is an rss2email message, move to Trash otherwise.  When the message is from anyone I know (in my contact list), ask me to confirm and offer moving to an archive folder instead.&lt;/li&gt;
+
+    &lt;li&gt;When I get a mail from nagios with a critical alert, show an inotify error message containing the right information (parse the nagios mail first), and set urgent flag.  Do the same when my boss sent me a mail containing the phrase &#39;urgent&#39;, unless the &#39;To&#39; field contains more than 20 addresses.  Give me a key bind that sends a mail containing &#34;I&#39;m on it!&#34; and switch to my browser workspace and open all my monitoring pages in my browser.  Don&#39;t disturb me for any other e-mail&lt;/li&gt;
+
+    &lt;li&gt;Use bottom posting by default, but when I&#39;m replying to mailing list foo or person bar, use top-posting instead.&lt;/li&gt;
+
+    &lt;li&gt;Display mails by default threaded by subject and date. But for my news feeds messages (which arrive on the same account!), group by sender.  maybe even categorize senders so that I can quickly delete all humorous messages from various senders/feeds if I have no time or feel guilty about slacking off&lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+
+&lt;h3&gt;Implementation&lt;/h3&gt;
+
+&lt;p&gt;My first idea was to build a standalone mail client by reusing the luakit C-based host program and all bindings it exposes&lt;/p&gt;
+
+&lt;p&gt;(webkitGtk widget with bindings, gtk bindings, lots of lua code for menu&amp;rsquo;s, keyboard control, downloading external files, proxy code, etc. very useful stuff); which would mean we supply a set of different config files for the luakit host program, along with some more lua libraries and/or bindings to C software.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;But instead we choose to neatly integrate the mail client in luakit itself, which makes it easier to develop and keep up with luakit (the diff is minimal instead of extensive), and it&amp;rsquo;s probably more&lt;/p&gt;
+
+&lt;p&gt;convenient for the user.  So we just forked the luakit project and try to do our stuff in a separate branch, adding the mail client bits in between the existing browser bits.&lt;/p&gt;
+
+&lt;p&gt;The good news is, so many needed things already exist, so building the client shouldn&amp;rsquo;t be that much work.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been researching our options (and still am), this is how the list of things we&amp;rsquo;ll rely on looks like so far:&lt;/p&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt;HTML/rich content: webkitGtk widget provided by luakit&lt;/li&gt;
+
+&lt;li&gt;key bindings, proxy, external files downloader, link follower, ...: luakit&#39;s lua code&lt;/li&gt;
+
+&lt;li&gt;IMAP library:  &lt;a href=&#34;https://gitorious.org/luaimap&#34;&gt;luaimap&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;SMTP: &lt;a href=&#34;http://msmtp.sourceforge.net/&#34;&gt;msmtp&lt;/a&gt; (could not find any suitable lua SMTP library with proper TLS/SSL support)&lt;/li&gt;
+
+&lt;li&gt;maildir/mh/other local formats: TBD&lt;/li&gt;
+
+&lt;li&gt;message parsing: TBD. we might end up writing bindings to existing C libraries, as we couldn&#39;t find a good lua library yet, and it&#39;s hard to write one&lt;/li&gt;
+
+&lt;li&gt;search: TBD&lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/mason-larobina&#34;&gt;Mason (luakit maintainer)&lt;/a&gt; liked the idea from the start; &lt;a href=&#34;http://sahd.lamafam.org/&#34;&gt;Gerry (luaimap maintainer)&lt;/a&gt; also liked the idea and joined the project right away :)&lt;/p&gt;
+
+&lt;h3&gt;Why not uzbl-style?&lt;/h3&gt;
+
+&lt;p&gt;Gerry asked: &amp;ldquo;why not structure the mail client like uzbl is (fast c core with shell and python around it)?&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;The main lesson I learned from doing uzbl is: the very ideology-based approach of &amp;ldquo;one program for each thing&amp;rdquo; is nice in theory, but can become a hassle in practice.  The means of IPC are limited: passing command line arguments, setting environment variables, or creating your own little protocol that needs to be parsed.  Advanced constructs like loops and branches complicate things more, and when passing stuff through various processes like we did, it can be tricky to figure out how to quote your strings so that they are expanded at the right stage.  It&amp;rsquo;s also hard to jump between various pieces of code; the separation between processes start to feel like real barriers.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;Luakit provides lua API&amp;rsquo;s, which means all extensions should be primarily written in lua (which is a burden if you don&amp;rsquo;t feel like learning a new language), you can still exec any other script or program if you want to from lua however, but the API&amp;rsquo;s are very fine grained, and pretty much everything is exposed,so there&amp;rsquo;s lots of things you can do, but in a way that feels more robust and reliable.  And things work faster too.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;I&amp;rsquo;m not that experienced yet with luakit to grasp all its downsides, but it feels more reliable.  And maybe subconsciously, the fact that luakit feels as nice as uzbl without me needing to do anything (Mason did all the hard work of writing lua bindings and writing all lua code), whereas uzbl involved lots of hard work for me, maybe that twists my perception a bit.  But not too much, I think.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;The same upsides and downsides go for writing a mail client; so luakit-style seems more appropriate to me. Especially since so many libraries and components already exist, and just need to stitched together.&lt;/p&gt;
+
+&lt;h3&gt;Show me the code already!!&lt;/h3&gt;
+
+&lt;p&gt;We actually have a very rough, but working prototype.  Ready for you to try out.  See the &lt;a href=&#34;http://lists.luakit.org/archive/luakit-dev/2011-September/000206.html&#34;&gt;luakit-dev post&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt;&lt;a href=&#34;https://github.com/lama7/luakit/tree/luamail&#34;&gt;Gerry&#39;s luamail branch of luakit&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe/luakit/tree/luamail&#34;&gt;My luamail branch of luakit&lt;/a&gt;&lt;/li&gt;
+
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

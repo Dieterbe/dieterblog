@@ -1,0 +1,18 @@
++++
+title = "PhpDeliciousClient, a php cli client to administer del.icio.us accounts"
+date = "2007-07-01T16:52:51-04:00"
+tags = ["web2.0", "php", "foss", "bash"]
++++
+I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).</p>
+
+<p>You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated:  It gets filled with way too many tags.  Among those tags several of them mean the same (fun, funny, humor, ...) or include the other (humor, jokes, ...)  You can group them in bundles but even then you need to add all the tags to a post if you want it to appear in the results for that tag.  Not very convenient. Also, if you have your del.icio.us bookmarks available in Firefox, you'd have a menu with several hundreds of entries (one for each tag), each menu containing usually just a few (or worse: just one) entry.</p>
+
+<p>When I got in this situation I tried to fix it, but it was a hell of a task to do this on the Delicious webpage itself, and I although I found some other tools they were far to basic, outdated, dependent on other stuff or just not meant for this kind of task, so I decided to write my own.</p>
+
+<p>The result is a php command line program called <a href="/php_delicious_client">PhpDeliciousClient</a> (as you can see, I added it to the menu on the left too), which uses the <a href="http://www.ejeliot.com/pages/php-delicious">PhpDelicious</a> library to access the Del.icio.us api.</p>
+
+<p>The primary focus of the program is to help you to bring your tags in balance, in an as efficient way as possible.  Other stuff, which can be done just fine on the delicious page (editing single posts, changing your password, ...) is not implemented.  </p>
+
+<p>It's a bit hacky, I don't give any guarantees but I can tell I used it to edit <a href="http://del.icio.us/Dieter_be">my own Del.icio.us page</a>, going from about 400 tags to about 80 without any problems.</p>
+
+<p>That said, head over to <a href="/php_delicious_client">the PhpDeliciousClient project page</a> for some more information, and to download it ;-)</p>

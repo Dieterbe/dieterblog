@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>gtk dialogs for (shell)scripts with zenity and the ask-pass gui tools for ssh-add &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add/">gtk dialogs for (shell)scripts with zenity and the ask-pass gui tools for ssh-add</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add/" rel="bookmark">
+					<time class="entry-date" datetime="2007-11-25 18:45:41 -0400 -0400">
+						November 25, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>This is great if you want to run scripts on the terminal or even without a terminal (scripts automatically started by your desktop environment) and need user input.</p></p>
+
+<p>This immediately made me think of using this together with ssh-add, because i was getting a bit tired to open a console and add my key by typing the ssh-add command for every X session. (For the record: ssh-add without any arguments is enough for most users: it looks for keys with default names, but i have multiple keys with some speial names so...)<br />
+
+(I can easily retrieve the right command by typing ssh-add*arrowup* but still it's cumbersome.. see <a href="/my_favorite_bash_tricks">this page for the bash-trick</a>)</p>
+
+<p>Of course I realized I was probably not the only one with this idea so I googled a bit and looked in the <a href="http://www.hmug.org/man/1/ssh-add.php">ssh-add manpage</a>, and I found out some cool stuff!<br />
+
+It turned out ssh-add has support for such scenarios and offers the $SSH_ASKPASS environment variable for this.  Since the system I'm currently using on my laptop (which i converted from Arch to xubuntu 7.10 but that's another story :-)) doesn't have this variable set by default I could of course set it myself, but it can be even easier then this...</p>
+
+<p>When the $SSH_ASKPASS variable is not set, ssh-add will try to execute /usr/bin/ssh-askpass by default.  I figured this out by typing this in a console:<br />
+
+ssh-add *mykey* < /dev/null<br />
+
+This revealed that there are already some utilities specifically for this purpose!  Let's see...:</p>
+
+<p><pre>&lt;![CDATA[</p>
+
+<p>dieter@dieter-mbp:~$ aptitude search askpass</p>
+
+<p>p   gtk-led-askpass                                                - GTK+ password dialog suitable for use with ssh-add</p>
+
+<p>p   ssh-askpass                                                    - under X, asks user for a passphrase for ssh-add</p>
+
+<p>p   ssh-askpass-fullscreen                                         - Under Gnome2, asks user for a passphrase for ssh-add</p>
+
+<p>p   ssh-askpass-gnome                                              - interactive X program to prompt users for a passphrase for ssh-add</p>
+
+<p>]]&gt;</pre><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p></p>
+
+<p>After installing this you can just put your ssh-add line in the settings panel called "autostarted Applications" from Xfce and for your next session it will show a nice gtk popup to ask for your password and it works like a charm :)<br />
+
+However, since i use multiple keys, i used to use the globbing operator (*) but this doesnt work anymore with this method.  I guess that makes sense as the globbing operator is probably a bash built-in...</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

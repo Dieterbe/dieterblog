@@ -1,0 +1,228 @@
++++
+title = "Rethinking the backup paradigm: a higher-level approach"
+date = "2008-07-21T20:21:51-04:00"
+tags = ["linux"]
++++
+<h3>The "classic" approaches</h3>
+
+<p>There are many backup scripts/programs out there, each with their own - sometimes subtly and sometimes radically - different approach.<br />
+
+One thing that all solutions have in common is that they choose one or more layers of the system stack to operate on.<br />
+
+What I mean with this "system stack" is that a working to-be-backed-up system can be represented in 'layers' that form a stack, in this case specifically as far as the data on it is concerned.<br />
+
+For a Linux system it looks a bit like this:</p>
+
+<ol>
+
+<li>storage hardware</li>
+
+<li>block device</li>
+
+<li>(LVM/dm-crypt)</li>
+
+<li>filesystem</li>
+
+<li>VFS</li>
+
+<li>user/OS based concepts and patterns (home directories, dotfiles, document/workspace/music directories, ...)</li>
+
+</ol>
+
+<p>Most tools I've seen operate on layers 2, 4 (with optionally a little lvm help) and 5.</p>
+
+<p><b><h7>Block device</h7></b></p>
+
+<p>
+
+Everyone knows dd.  It is the de-facto tool for block device backups. (usually combined with scp, gzip et all).<br />
+
+There are also fancier tools out there that work similarly but can make differential backups.<br />
+
+I would also like to mention <a href="http://www.partimage.org">partimage</a> here.  This tool makes dumps of partitions (block devices) but it only copies used blocks, and therefore it needs to have knowledge of the filesystem stored on the partition.<br />
+
+Usually you run such backup methods by popping in a livecd and running a script.</p>
+
+<p>This solution is good for when your entire hard disk has died: after restoring you have everything back: from the mbr (boot loader &amp; partition layout), dm-crypt/lvm setups, specific filesystem tweaks - although most users don't care about this - (reserved space settings, block size etc), to your entire system (installed packages, config files, home directories, ...) and all your personal data and settings.</p>
+
+<p>But even with differential backups there are a few issues:</p>
+
+<ul>
+
+<li>you store lots of stuff that you actually don't need or could store more efficiently when operating on a higher layer (e.g. the raw bits and bytes of all installed binary programs vs a list of installed packages that could have been reinstalled with a clever script).</li>
+
+<li>It becomes very hard to restore a select few files or directories, especially if you want to roll-back to different dates for different files/directories.</li>
+
+<li>It takes a lot of time to do the backups, especially if you want to backup very frequently (e.g. daily).  If a backup script makes it hard to backup daily, then there is something wrong.</li>
+
+</ul>
+
+<p><b><h7>Filesystems</h7></b></p>
+
+<p>
+
+In this category fall the scripts/tools that do scp's, rsyncs or similar algorithms of the contents of an entire filesystem.<br />
+
+You would usually execute this on a per-filesystem basis from either your live working environment or a liveCD.  The former is easier, the latter is safer against an inconsistent state of your filesystem.  You could do it live and use lvm snapshotting but even then you could have made a snapshot right when an application is in the middle of writing something...</p>
+
+<p>The cool part of these sort of tools (and the one in the upcoming paragraph) compared to the previous type is that is more easy to expose the contents of your filesystem from 'inside the backup' (because it is usually just a directory with a copy of all your files), so it becomes more easy to restore specific files and directories if you would want that, although it is still not suited for roll-backs of specific files/directories to specific versions.<br />
+
+Also, there is no strict control over what gets backed and what not.  If - for example - you decide to do a clean install of your distro (a restore of the same version or a fresh install of new version) then you probably want to copy your backed up home into the new one.  Actually merging is a better term here because you want to keep some of your personal settings, but:</p>
+
+<ul>
+
+<li>you also don't want to break stuff or miss new features (especially if that's how the new version of the distro works) by using old configs for newer packages.</li>
+
+<li>there is usually some clutter in these files that you don't need anyway (temporary data such as caches, and volatile data such as what media players and IM clients like to write away).</li>
+
+</ul>
+
+<p>In this case ploughing through the pile of dotfiles and directories can be cumbersome.  (As far as upgrading is concerned it's not like Linux distributions help the user in this when following the 'upgrade wizard', so this manual ploughing and copying must be done anyway at some point.)<br />
+
+There is a freedesktop standard - <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">the XDG basedir specification</a> - that improves the situation (the organisation part, not the upgrade part) but many projects don't have adopted it yet.  On the other hand you could keep a big rules list for rsync to control what goes in the backup and what not, but the list will get out of hand if you want to tightly control this.</p>
+
+<p>More bad news is that from this layer and upwards you do not backup your MBR and filesystem settings (and whatever is in between: lvm, dm-crypt, ...).  So restoring a full system is a bit harder.  You could still do it of course by backing up the mbr separately and/or use scripts to parse fdisk/tune2fs but it gets complicated to reconstruct a dm-crypt/lvm setup.<br />
+
+<!-- mondorescue.org operates on block device layer i think, they also talk about filesystems but they call ntfs a partition .. kan volledig systeem restoren, of het ook een filesystem kan exposen weet ik niet -->
+
+</p>
+
+<p><b><h7>VFS</h7></b></p>
+
+<p>
+
+These scripts are the ones that basically iterate over your entire VFS, check some ignore options and copy all the rest.  It's a very subtle difference with the previous category.  Especially because they are usually configured to only backup the filesystems stored on harddisks and ignore the 'virtual' stuff, so in practice the result is the same.<br />
+
+That's also why the advantages and disadvantages are basically the same.</p>
+
+<p>The <a href="http://blinkeye.ch/mediawiki/index.php/GNU/Linux_System_Backup_Script_(stage4)">mkstage4.sh script</a> is a well-known example in the Gentoo/Arch community.
+
+</p>
+
+<h3>Going one step further...</h3>
+
+<p>Now... The way I see it, we should not focus on the goal of "making a backup of the entire system" because the result will be a mix of lots of different types of data all mangled together, not efficiently stored and not easily restorable in ways that make most sense for the specific types of data.  Also, all the "classic" approaches need to make compromises. (see advantages/disadvantages of aforementioned techniques). I'm thinking especially of the many different restore scenarios that a good backup strategy must be able to handle.</p>
+
+<p>That's why we should work on the 6th layer: <i>the user/OS based concepts and patterns</i>.<br />
+
+We should look at each type of data to find out what it really means to us, what we want to do with it, how to work with it and how we can store it in a way that makes most sense for each specific type of data.<br />
+
+This gives 2 benefits:</p>
+
+<ul>
+
+<li>You can maximize the usefulness of your 'stuff': you can start doing things with your data that you couldn't do before: I'm thinking of versioning, making branches of stuff for specific hosts/users/... , having up-to-date subsets/copies of specific media, and so on.</li>
+
+<li>As a <i>side-effect</i> you can also more easily create the redundancy you need to save yourself from disasters, with an easy way to restore the specific data you need.</li>
+
+</ul>
+
+<p><b><h7>Getting the most out of your data</h7></b></p>
+
+<p>
+
+I use 2 tools to help me with this</p>
+
+<ul>
+
+<li><a href="http://subversion.tigris.org/">svn</a></li>
+
+<li><a href="/DDM_a_distributed_data_manager">ddm</a></li>
+
+</ul>
+
+<p><i>(If you don't know what <a href="/DDM_a_distributed_data_manager">ddm</a> is , have a look at the page so you get the basic concepts, especially the types of datasets)</i></p>
+
+<p>Generally speaking, I have the following repositories on my home-server:</p>
+
+<ul>
+
+<li>svn: one for each of my bigger projects</li>
+
+<li>svn: one for my collection of scripts and tools</li>
+
+<li>svn: one for my home directories (common stuff in trunk, branches for different hosts with symlinks to common stuff where needed, svn externals to link to other repositories where needed, most ~/.* added directly)</li>
+
+<li>svn: system-wide configuration for all my hosts: /etc, installed package lists, ... (i should put partition table/lvm/dm-crypt/filesystem settings in here too ...)</li>
+
+<li>ddm: one for each type of media (audio, video, photo, documents, ...)</li>
+
+</ul>
+
+<p>To get the most out of these tools, a tightly organized, well-controlled home directory (system) is a must.<br />
+
+This is something I actually plan to blog about in the near future.</p>
+
+<p>Suffice it to say for now that half of the stuff that matters to me is in svn and can/should be reviewed &amp; committed daily.<br />
+
+The other half is stored in ddm repositories, for which I usually have a selection/copy dataset and a buffer.  I just need to flush the buffers regularly and keep my ddm config in svn and I'm safe.</p>
+
+<p>As far as <i>data</i> is concerned, I can do everything I need with svn and ddm.  The former for configs and most of my textfiles, the latter for media and other bigger binary files.  (I store all important ~/.* in svn except .mozilla stuff: these directories are big and messy and go into ddm for now)
+
+</p>
+
+<p><b><h7>Handling the remaining stuff</h7></b></p>
+
+<p>
+
+But of course, data is not the only thing of importance on your system.  Some things are not just files or directories on the system but other properties that must be backed up.  We must be able to reconstruct them, so we need to be able to 'capture' and save their essence.  I'm thinking of the bootloader, the partition table layout, the lvm/dm-crypt setup and filesystem settings (which filesystem on which partition, which block size, reserved space, ...)  Note that this is one the issues that also the filesystem/VFS backup methods suffer from.</p>
+
+<p>For now I don't back this up myself, but I should.  I think the best way to do it is to write scripts that parse output of tools such as fdisk, lvdisplay, tune2fs, ... and store the results in svn.  Restoring this? .. read on!
+
+</p>
+
+<p><b><h7>Putting it all together..</h7></b></p>
+
+<p>
+
+Okay, so now we have some ideas how to organize our <i>data</i> to maximize their usefulness and we can perfectly restore it the way we want thanks to ddm and svn.  But there are 2 issues remaining:</p>
+
+<ul>
+
+<li>How do we (easily) restore <i>properties</i> such as the partition table, dm-crypt setup, specific filesystem settings?</li>
+
+<li>How do we put everything back together to get a working system in the event we need a <i>full system restore</i>?</li>
+
+</ul>
+
+<p>To solve this problem, we need several things:</p>
+
+<ul>
+
+<li>overview meta data for your each entire system. A file that describes how your system looks like, which svn repositories must be checked out where, and what kind of ddm datasets you want for your ddm repositories and where. This file must be easily updateable.</li>
+
+<li>A tool that can reconstruct your entire system according to the just described meta data.</li>
+
+<li>A tool that can setup the lowest layers of your system (partition table, bootloader, dm-crypt/lvm setup, filesystems) just the way <i>you</i> want it.</li>
+
+</ul>
+
+<p>This is all stuff that I haven't implemented myself yet and I'm still thinking about.  For the first item we could work a text files and a few scripts, or not entirely re-invent the wheel and (ab)use svn for this.  Let / be the working copy, svn:ignore most of the system and use svn:externals to reconstruct your working copy needs (basically /home and /etc) , and put the ddm dataset directories in place (without the files that ddm manages of course), then it's just a matter of 'ddm up' in the ddm datasets and we're done.  If anyone has ideas for this let me know :)</p>
+
+<p>For the other stuff we could use scripts that do a complete automatic installation with some scripts.<br />
+
+From work, I have some experience with <a href="http://www.informatik.uni-koeln.de/fai/">fai</a>, but I'm not sure it can do all the stuff we discussed.  But there are certainly lots more similar tools that should be able to do the job.<br />
+
+This may seem overkill for single, unique systems but imho it is the only good way to enjoy all the advantages previously described while also being able to completely construct a fully working and perfectly setup system.  It would definitely be advantageous to be able to use the same tools when doing a 'clean system upgrade' also!</p>
+
+<p>So the end result of my backup strategy: my laptop, home workstation and home fileserver all use ddm and svn to manage everything of importance.  I just need to do so some svn commits and ddm buffer flushes.  To be really sure I then just have to make backups of the ddm and svn repositories on the fileserver and I'm done.<br />
+
+There are some small issues remaining, stuff that needs to be thought of, but this is stuff that can be fixed, unlike the classic methods who are limited by design.
+
+</p>
+
+<p>Any questions or remarks?  Let me know!</p>
+
+<p><!--<br />
+
+* off-site stuff zoals website hosted on hosting accounts : code => eigen svn systeem, database moet je backups van hebben, kan met scripts bvb voor elk offsite ding doe script<br />
+
+* full disk restore is wel nice maar heb je da echt nodig als install van vers os zo vlot kan?<br />
+
+* vgl src code - binaries<br />
+
+* key data zoals mysql db?  ook 'gewoon backuppen' naast ddm en svn<br />
+
+* Mind you that all of this is from the standpoint of a desktop user.  But for other systems - like servers - i believe in a similar approach<br />
+
+--></p>

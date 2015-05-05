@@ -1,0 +1,172 @@
++++
+title = "What the open source community can learn from Devops"
+date = "2010-09-03T22:26:22-04:00"
+tags = ["foss", "devops"]
++++
+<p>For the sake of getting a point across, I'll simplify some things.</p>
+
+<h3>First, a crash course on Devops...</h3>
+
+<p><!--more--><br />
+
+A commonly used organisatorial idiom used in tech companies is that of developers and operations.</p>
+
+<p>Developers:</p>
+
+<ul>
+
+<li>develop a product</li>
+
+<li>improve their product based on feedback from production usage</li>
+
+</ul>
+
+<p>Operations:</p>
+
+<ul>
+
+<li>put the product in production, making it available for users/customers</li>
+
+<li>give feedback to devs</li>
+
+</ul>
+
+<p>Experience shows this model often falls short.  'Dev' and 'Ops' being too artificially separated from each other, resulting in improper communication, clashing procedures and tools,<br />
+
+resulting in devs disliking ops ("we need to push this out to users, ops are holding us back"), and the other way around ("again new code that will cause trouble, and we will have to figure it out")<br />
+
+It doesn't take a genius to see this is pretty ineffective.  There's a better way: integrating and reconciling dev and ops, so that all involved know the hard parts of each others' jobs, and in fact letting each other do the others' job.  (developers being responsible for their own checkouts, ops working on the code, etc).  Most of all it's about culture over processes.  About being smart and nice human beings.<br />
+
+The exact methods are still being experimented with and preached about, and has recently gotten the name "Devops".<br />
+
+There is a really good <a href="http://www.jedi.be/blog/2010/02/12/what-is-this-devops-thing-anyway/">Devops explanation</a> online, with more details.  Read it.</p>
+
+<p>Often enough we're talking about teams working for the same company, usually under the same roof, so it isn't too terribly hard to implement these ideas.</p>
+
+<h3>Now, let's look at the open source community</h3>
+
+<p>Open source developers ("upstream"):</p>
+
+<ul>
+
+<li>develop stuff</li>
+
+<li>improve their stuff based on feedback from end users</li>
+
+</ul>
+
+<p>Distributions ("downstream"):</p>
+
+<ul>
+
+<li>package stuff and make it available to end users</li>
+
+<li>get bugreports, which often get forwarded to upstream</li>
+
+</ul>
+
+<p>Looks familiar?</p>
+
+<h4>The problems are similar too...</h4>
+
+<p>Like above, the problems stem from both parties not working together enough, and doing things on their own.</p>
+
+<p>Some upstreams:</p>
+
+<ul>
+
+<li>like to use "weird" (home grown) build systems</li>
+
+<li>violate FHS</li>
+
+<li>use home grown packaging systems. Languages and applications with plugins like to do this</li>
+
+<li>mix bugfixes, security patches and feature additions in the same code branch (often there is not enough manpower to maintain them in separation, and the need for it is dependent on how/when downstreams ship it anyway)</li>
+
+<li>run into the chicken/egg problem:  they need to release software to have it shipped and tested, but it should only be released after being properly tested.  ("Release early, release often" alleviates this, but it's not always that easy)
+
+</ul>
+
+<p>..making it hard for downstreams.<br />
+
+Even for each other: unannounced/frequent API changes come to mind.</p>
+
+<p>Dowstreams, often:</p>
+
+<ul>
+
+<li>Lack discipline and/or tools to properly report back to upstream.  Users don't like te report the same issue on two bugtrackers</li>
+
+<li>Have to make hard choices.  Not shipping software at all or patching beyond recognition, often enough without knowing how the software really works or is implemented.</li>
+
+<li>Don't contribute patches back to upstream.  Posting them on some obscure albeit "public" mailing list or code archive isn't the most effective either.  Patches that are sent back often don't get merged, making it hard for other downstreams to find them. (and hence, they work on their own patches)</li>
+
+</ul>
+
+<p>Nothing pleases an upstream more then complaints from end users running into problems that only happen witch patches applied by the distributor (patches that are deemed necessary to make the app work properly in the distro.  The irony..)</p>
+
+<p>Some distributions focus on shipping "only stable software", causing them to be obsolete by definition. (Time to production often extends in the order of years), and are forced to apply so many patches that they are essentially forking their upstreams.  Add poor feedback loops to the list and the situation is about as ineffecient as it can get.<br />
+
+Other distributions limit their role to giving you the real open source software experience in it's current state, and that state is not always pretty.</p>
+
+<h4>but they are much harder to solve</h4>
+
+<ul>
+
+<li>Upstream and downstream are separated much more, resulting in very little communication between both parties.  So the incompatibilities manifest themselves even harder.</li>
+
+<li>Among distributions, there are very different visions on and implementations of tools and processes.  Pretty much each distro has a vision which separates it from the others.<br />
+
+Among upstreams, there are as well some different ideas on how things should be done.  Luckily enough upstream developers agree on some things.  But there are some "clusters" doing things their - often radically different - way (freedesktop.org and suckless.org come to mind)<br />
+
+The amount of incompatibilities is pretty much the carthesian product of the amount of distributions with the amount of "different visions" among upstreams</li>
+
+<li>Despite their differences, some upstreams and downstreams actually do have some common ground, but as they don't involve each other in tools nor processes, they hardly benefit from each other</li>
+
+</ul>
+
+<p>So, in contrast to popular belief, <b>open source is not a magical wonderland where everyone works nicely together.</b></p>
+
+<p>Tech companies are usually on their way if they understand and can introduce agile and devops, but I think in the open source ecosystem it's much harder to bring unity.</p>
+
+<p>Luckily, some smart people are already working on bridging the gap between up- and downstream, and between each other.<br />
+
+some examples:</p>
+
+<ul>
+
+<li><a href="http://www.transifex.net/">transifex.net</a> provides a common translation infrastructure and service</li>
+
+<li><a href="https://launchpad.net/">launchpad.net</a> provides code hosting and cross-project issue tracking (from what I heard, tickets reported for downstreams can easily be linked to the relevant upstream project.  But I never tried it)</li>
+
+<p><!-- kde distro mailing list -->
+
+</ul>
+
+<p>I also think about Fosdem's cross-distro miniconf and the freedesktop.org project, which encourage closer cooperation between different downstreams and desktop projects, respectively.</p>
+
+<p>So, how can we solve this?  How can we maximize the end-user experience with more efficient communication and tools?<br />
+
+Some ideas I have:</p>
+
+<ul>
+
+<li>upstreams should definitely abandon cvs and svn.  And avoid using no version control.  Use a version control system that makes forking and contributing more easy, like git.  Downstreams can then fork all the repos and apply the patches in a separate branch.  It will improve cooperation between up- and downstream</li>
+
+<li>upstreams: try to be compatible with how your downstreams and end-users want to use your software.  Accept patches that add configure flags to enable/disable support for the xdg basedir spec, for example.  You don't need to put them in your master branch.</li>
+
+<li>Provide the source for each release so that it can easily be fetched and checksummed</li>
+
+<li>upstreams should definitely avoid coming up with their own "package management" or "self upgrade" solutions.  Let downstream do their job and make your software compatible with existing packaging solutions</li>
+
+<li>use common build systems.  Provide makefiles with an install and uninstall target.  Don't violate FHS.  Make sure your Makefile and software easily allows using a different prefix.  I even do this for repo's that contain 1 or 2 shell scripts. (<a href="http://github.com/Dieterbe/libui-sh/blob/master/Makefile">example</a>)
+
+<li>Ideally, we would have something like git, but for issue tracking.  Everyone could still host their own issue tracker, but integration between up- and downstream could become much more efficient</li>
+
+<li>talk to each other, brainstorm.  we can make everyone's life easier</li>
+
+</ul>
+
+<p>I don't think we should try to go much beyond some common infrastructure/tools and some best practices.  People will always have different opinions on how things should be done.  And that's a good thing, it's the very definiton of the open source community: scratch your own itch.</p>
+
+<p>What do you think?</p>

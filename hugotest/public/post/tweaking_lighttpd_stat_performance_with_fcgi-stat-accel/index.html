@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Tweaking Lighttpd stat() performance with fcgi-stat-accel &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/">Tweaking Lighttpd stat() performance with fcgi-stat-accel</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/" rel="bookmark">
+					<time class="entry-date" datetime="2008-03-03 21:12:42 -0400 -0400">
+						March 3, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p><br/></p>
+
+<p>(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p></p>
+
+<p>This is explained on the <a href="http://trac.lighttpd.net/trac/wiki/HowtoSpeedUpStatWithFastcgi"> HowtoSpeedUpStatWithFastcgi</a> page on the <a href="http://trac.lighttpd.net/trac/"> Lighty wiki</a>.</p>
+
+<p>Now, for <a href="http://www.netlog.com">Netlog</a> we needed to add some http headers ( Cache-Control: max-age, ETag, Expires and Last-Modified ) so we patched up the code a bit to do that, and a bit of other stuff.</p>
+
+<p>Ofcourse this is documented on <a href="http://trac.lighttpd.net/trac/wiki/FcgiStatAccelWithMoreHttpHeaders">the FcgiStatAccelWithMoreHttpHeaders page on the Lighty wiki</a></p>
+
+<p>Have fun !</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+<span style="color: #408080; font-style: italic">/*</span>
+
+<span style="color: #408080; font-style: italic">  Originally written by Fobax.</span>
+
+<span style="color: #408080; font-style: italic">  Edited by darix to support controlling thread count at runtime. </span>
+
+<span style="color: #408080; font-style: italic">  Edited by poison and Dieter_be to support some http headers derived from the files.</span>
+
+
+
+<span style="color: #408080; font-style: italic">  Please do not remove any of the above.</span>
+
+<span style="color: #408080; font-style: italic">  </span>
+
+<span style="color: #408080; font-style: italic">  compile with: </span>
+
+
+
+<span style="color: #408080; font-style: italic">  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel</span>
+
+
+
+<span style="color: #408080; font-style: italic">  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.</span>
+
+
+
+<span style="color: #408080; font-style: italic">  The default value, if spawned from lighttpd, is 20.</span>
+
+<span style="color: #408080; font-style: italic">*/</span>
+
+
+
+<span style="color: #BC7A00">#include &quot;fcgi_config.h&quot;</span>
+
+
+
+<span style="color: #BC7A00">#include &lt;pthread.h&gt;</span>
+
+<span style="color: #BC7A00">#include &lt;sys/types.h&gt;</span>
+
+<span style="color: #BC7A00">#include &lt;unistd.h&gt;   </span>
+
+<span style="color: #BC7A00">#include &quot;fcgiapp.h&quot;  </span>
+
+<span style="color: #BC7A00">#include &lt;string.h&gt;   </span>
+
+<span style="color: #BC7A00">#include &lt;sys/types.h&gt;</span>
+
+<span style="color: #BC7A00">#include &lt;sys/stat.h&gt; </span>
+
+
+
+<span style="color: #BC7A00">#include &lt;stdlib.h&gt;</span>
+
+<span style="color: #BC7A00">#include &lt;stdio.h&gt; </span>
+
+
+
+<span style="color: #BC7A00">#include &quot;etag.h&quot;</span>
+
+<span style="color: #BC7A00">#include &quot;buffer.h&quot;</span>
+
+
+
+
+
+<span style="color: #BC7A00">#define THREAD_COUNT 20</span>
+
+
+
+
+
+<span style="color: #BC7A00">#define FORBIDDEN(stream) \</span>
+
+        FCGX_FPrintF(stream, <span style="color: #BA2121">&quot;Status: 403 Forbidden</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Content-Type: text/html</span><span style="color: #BB6622; font-weight: bold">\r\n\r\n</span><span style="color: #BA2121">&lt;h1&gt;403 Forbidden&lt;/h1&gt;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>);
+
+<span style="color: #BC7A00">#define NOTFOUND(stream, filename) \</span>
+
+        FCGX_FPrintF(stream, <span style="color: #BA2121">&quot;Status: 404 Not Found</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Content-Type: text/html</span><span style="color: #BB6622; font-weight: bold">\r\n\r\n</span><span style="color: #BA2121">&lt;h1&gt;404 Not Found&lt;/h1&gt;</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">%s&quot;</span>, filename);
+
+<span style="color: #BC7A00">#define SENDFILE(stream, filename, headers) \</span>
+
+        FCGX_FPrintF(stream, <span style="color: #BA2121">&quot;%sX-LIGHTTPD-send-file: %s</span><span style="color: #BB6622; font-weight: bold">\r\n\r\n</span><span style="color: #BA2121">&quot;</span>, headers, filename);
+
+
+
+<span style="color: #BC7A00">#define EXPIRATION_TIME (int) 60*60*24*30</span>
+
+
+
+
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">genheaders</span> (<span style="color: #B00040">char</span><span style="color: #666666">*</span> mybuffer, <span style="color: #B00040">size_t</span> bufferlen, <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">char</span><span style="color: #666666">*</span> file)
+
+{
+
+        <span style="color: #B00040">char</span> timebuf[<span style="color: #666666">32</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe   </span>
+
+        <span style="color: #B00040">char</span> lastmodbuf[<span style="color: #666666">32</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe</span>
+
+        <span style="color: #B00040">char</span> etag[<span style="color: #666666">128</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe</span>
+
+        <span style="color: #008000; font-weight: bold">struct</span> stat statbuf;
+
+        <span style="color: #B00040">time_t</span> exp;
+
+        <span style="color: #B00040">time_t</span> lastmod;  
+
+        buffer <span style="color: #666666">*</span>etag_raw;
+
+        buffer <span style="color: #666666">*</span>etag_ok ;
+
+ 
+
+        <span style="color: #408080; font-style: italic">//create buffers for Etag</span>
+
+        etag_raw <span style="color: #666666">=</span> buffer_init();
+
+        etag_ok <span style="color: #666666">=</span> buffer_init();
+
+                
+
+        <span style="color: #408080; font-style: italic">// Stat the file</span>
+
+        <span style="color: #008000; font-weight: bold">if</span> (stat (file, <span style="color: #666666">&amp;</span>statbuf) <span style="color: #666666">!=</span> <span style="color: #666666">0</span>)
+
+        {
+
+                <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-1</span>;
+
+        }
+
+
+
+        <span style="color: #408080; font-style: italic">// Clear the buffer</span>
+
+        memset (mybuffer, <span style="color: #666666">0</span>, bufferlen);
+
+
+
+        <span style="color: #408080; font-style: italic">// Get the local time</span>
+
+        exp <span style="color: #666666">=</span> time (<span style="color: #008000">NULL</span>) <span style="color: #666666">+</span> EXPIRATION_TIME;
+
+        lastmod <span style="color: #666666">=</span> statbuf.st_mtime;
+
+
+
+        strftime (timebuf, (<span style="color: #008000; font-weight: bold">sizeof</span> (timebuf) <span style="color: #666666">/</span> <span style="color: #008000; font-weight: bold">sizeof</span> (<span style="color: #B00040">char</span>)) <span style="color: #666666">-</span> <span style="color: #666666">1</span>, <span style="color: #BA2121">&quot;%a, %d %b %Y %H:%M:%S GMT&quot;</span>, gmtime (<span style="color: #666666">&amp;</span>(exp)));
+
+        strftime (lastmodbuf, (<span style="color: #008000; font-weight: bold">sizeof</span> (lastmodbuf) <span style="color: #666666">/</span> <span style="color: #008000; font-weight: bold">sizeof</span> (<span style="color: #B00040">char</span>)) <span style="color: #666666">-</span> <span style="color: #666666">1</span>, <span style="color: #BA2121">&quot;%a, %d %b %Y %H:%M:%S GMT&quot;</span>, gmtime (<span style="color: #666666">&amp;</span>(lastmod)));
+
+
+
+        etag_create(etag_raw, <span style="color: #666666">&amp;</span>statbuf, ETAG_USE_SIZE);
+
+        etag_mutate(etag_ok, etag_raw);
+
+
+
+        buffer_free(etag_raw);
+
+
+
+        snprintf (mybuffer, bufferlen, <span style="color: #BA2121">&quot;Cache-Control: max-age=%d</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">ETag: \%s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Expires: %s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Last-Modified: %s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">&quot;</span>, EXPIRATION_TIME, etag_ok<span style="color: #666666">-&gt;</span>ptr, timebuf , lastmodbuf);
+
+
+
+        buffer_free(etag_ok);
+
+
+
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+
+}
+
+ 
+
+<span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #666666">*</span><span style="color: #0000FF">doit</span>(<span style="color: #B00040">void</span> <span style="color: #666666">*</span>a){
+
+        FCGX_Request request;
+
+        <span style="color: #B00040">int</span> rc;
+
+        <span style="color: #B00040">char</span> <span style="color: #666666">*</span>filename;
+
+        <span style="color: #B00040">char</span> extraheaders[<span style="color: #666666">192</span>];
+
+        <span style="color: #B00040">int</span> r;
+
+
+
+        FCGX_InitRequest(<span style="color: #666666">&amp;</span>request, <span style="color: #666666">0</span>, FCGI_FAIL_ACCEPT_ON_INTR);
+
+
+
+        <span style="color: #008000; font-weight: bold">while</span>(<span style="color: #666666">1</span>){
+
+                <span style="color: #408080; font-style: italic">//Some platforms require accept() serialization, some don&#39;t. The documentation claims it to be thread safe</span>
+
+<span style="color: #408080; font-style: italic">//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;</span>
+
+<span style="color: #408080; font-style: italic">//              pthread_mutex_lock(&amp;accept_mutex);</span>
+
+                rc <span style="color: #666666">=</span> FCGX_Accept_r(<span style="color: #666666">&amp;</span>request);
+
+<span style="color: #408080; font-style: italic">//              pthread_mutex_unlock(&amp;accept_mutex);</span>
+
+
+
+                <span style="color: #008000; font-weight: bold">if</span>(rc <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>)
+
+                        <span style="color: #008000; font-weight: bold">break</span>;
+
+
+
+        <span style="color: #408080; font-style: italic">//get the filename</span>
+
+                <span style="color: #008000; font-weight: bold">if</span>((filename <span style="color: #666666">=</span> FCGX_GetParam(<span style="color: #BA2121">&quot;SCRIPT_FILENAME&quot;</span>, request.envp)) <span style="color: #666666">==</span> <span style="color: #008000">NULL</span>){
+
+                        FORBIDDEN(request.out);
+
+        <span style="color: #408080; font-style: italic">//don&#39;t try to open directories</span>
+
+                }<span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span>(filename[strlen(filename)<span style="color: #666666">-1</span>] <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;/&#39;</span>){
+
+                        FORBIDDEN(request.out);
+
+        <span style="color: #408080; font-style: italic">//open the file</span>
+
+                }<span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span>((r <span style="color: #666666">=</span> genheaders (extraheaders, <span style="color: #666666">191</span>, filename)) <span style="color: #666666">!=</span> <span style="color: #666666">0</span>){
+
+                        NOTFOUND(request.out, filename);
+
+        <span style="color: #408080; font-style: italic">//no error, serve it</span>
+
+                }<span style="color: #008000; font-weight: bold">else</span>{
+
+                        SENDFILE(request.out, filename, extraheaders);
+
+                }
+
+
+
+                FCGX_Finish_r(<span style="color: #666666">&amp;</span>request);
+
+        }
+
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">NULL</span>;
+
+}
+
+
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">void</span>){
+
+        <span style="color: #B00040">int</span> i,j,thread_count;
+
+        <span style="color: #B00040">pthread_t</span><span style="color: #666666">*</span> id;
+
+        <span style="color: #B00040">char</span><span style="color: #666666">*</span> env_val;
+
+
+
+        FCGX_Init();
+
+
+
+        thread_count <span style="color: #666666">=</span> THREAD_COUNT;
+
+        env_val <span style="color: #666666">=</span> getenv(<span style="color: #BA2121">&quot;PHP_FCGI_CHILDREN&quot;</span>);
+
+        <span style="color: #008000; font-weight: bold">if</span> (env_val <span style="color: #666666">!=</span> <span style="color: #008000">NULL</span>) {
+
+                j <span style="color: #666666">=</span> atoi(env_val);
+
+                <span style="color: #008000; font-weight: bold">if</span> (j <span style="color: #666666">!=</span> <span style="color: #666666">0</span>) {
+
+                        thread_count <span style="color: #666666">=</span> j;
+
+                };
+
+        };
+
+
+
+        id <span style="color: #666666">=</span> malloc(<span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #666666">*</span>id) <span style="color: #666666">*</span> thread_count);
+
+
+
+        <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> thread_count; i<span style="color: #666666">++</span>) {
+
+                pthread_create(<span style="color: #666666">&amp;</span>id[i], <span style="color: #008000">NULL</span>, doit, <span style="color: #008000">NULL</span>);
+
+        }
+
+
+
+        doit(<span style="color: #008000">NULL</span>);
+
+        free(id);  
+
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;  
+
+}
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/netlog/index.html" rel="tag">netlog</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Graphite-ng: A next-gen graphite server in Go. &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/graphite-ng_a-next-gen-graphite-server-in-go/">Graphite-ng: A next-gen graphite server in Go.</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/graphite-ng_a-next-gen-graphite-server-in-go/" rel="bookmark">
+					<time class="entry-date" datetime="2013-09-07 20:54:20 -0400 EDT">
+						September 7, 2013
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I&rsquo;ve been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It&rsquo;s a <i>great</i> tool for timeseries metrics.</p>
+
+<p>Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:</p>
+
+<p>it&rsquo;s somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in <a href="http://golang.org">Golang</a>.</p>
+
+<p>The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p></p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+<span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+<p>
+
+I.e. it lets you retrieve your timeseries, processed by function pipelines which are setup on the fly based on a spec in your http/rest arguments.
+
+Currently it only fetches metrics from text files but I'm working on decent metrics storage as well.
+
+</p>
+
+<p>
+
+There's a few reasons why I decided to start a new project from scratch:
+
+<ul>
+
+<li>With graphite, it's a whole ordeal to get all components properly installed.  Deploying in production environments is annoying and even more so
+
+when you just want a graphite setup on your personal netbook.</li>
+
+<li>the graphite development process slows contributors down a lot.  A group of 3rd/4th generation maintainers jointly manages the project, but it's hard to get big changes through,
+
+because they (understandably) don't feel authoritative enough to judge those changes and the predecessors have disappeared or are too busy with other things.  And also ...</li>
+
+<li>there's a high focus on backwards compatibility, which can be a good thing, but it's hard to get rid of old design mistakes,
+
+especially when fixing unclear (but arguably broken) early design decisions (or oversights) lead to different outputs</li>
+
+<li>Graphite suffers feature creep: it has an events system, a PNG renderer, an elaborate composer web UI, etc.
+
+There's a lot of internal code dependencies holding you back from focusing on a specific problem</li>
+
+<li>Carbon (the metrics daemon) has a pretty hard performance and scalability ceiling.
+
+<a href="https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md">Peter's article explains this well</a>; I think we'll need some form of
+
+rewrite.   Peter suggests some solutions but they are basically workarounds for Python's shortcomings.  I'm also thinking of using <a href="http://pypy.org/">pypy</a>.
+
+But last time I checked pypy just wasn't there yet.</li>
+
+<li>I want to become a good Go programmer</li>
+
+</ul>
+
+
+
+<i>Note: the Graphite project is still great</i>, the people managing do good work, but it's fairly natural for a code base that large and complicated
+
+to end up in this situation.<i>I'm not at all claiming graphite-ng is, or ever will be better</i> but I need a fresh start to try some disruptive ideas,
+
+using Go means having a runtime very suited for concurrency and parallelism, you can compile the whole thing down into a single executable file,
+
+and its performance looks promising.  Leaving out the non-essentials (see below) allows for an elegant and surprisingly small, hackable code base.
+
+</p>
+
+<p>
+
+The API server I developed sets up a processing pipeline as directed by your query: every processing function runs in a goroutine
+
+for concurrency and the metrics flow through using Go channels.  It literally compiles a program and executes it.  You can add your own functions
+
+to collect, process, and return metrics by writing simple plugins.
+
+<br/>As for timeseries storage, for now it uses simple text files,
+
+but I'm experimenting and thinking what would be the best metric store(s) that works on small scale
+
+(personal netbook install) to large scale ("I have millions of metrics that need to be distributed across nodes,
+
+the system should be HA and self-healing in failure scenarios, easily maintainable, and highly performant") and is still easy to deploy, configure and run.
+
+Candidates are <a href="https://github.com/kisielk/whisper-go">whisper-go</a>, <a href="https://code.google.com/p/kairosdb/">kairosdb</a>,
+
+my own <a href="https://github.com/graphite-ng/graphite-ng/tree/master/carbon-es">elasticsearch experiment</a> etc.
+
+<br/>I won't implement rendering images, because I think client-side rendering using something like <a href="https://github.com/vimeo/timeserieswidget">timeserieswidget</a>
+
+is superior.  I can also leave out events because <a href="https://github.com/Dieterbe/anthracite/">anthracite</a> already does that.
+
+There's a ton of dashboards out there (<a href="http://vimeo.github.io/graph-explorer/">graph-explorer</a>, <a href="https://github.com/obfuscurity/descartes">descartes</a>, <a href="http://graphite.readthedocs.org/en/1.0/tools.html">etc</a>) so that can be left out as well.
+
+</p>
+
+<p>For more information, see <a href="https://github.com/graphite-ng/graphite-ng">the Graphite-ng homepage</a>.</p>
+
+<p><br/></p>
+
+<p><br/>PS: props to <a href="http://felixge.de/">Felix Geisendorfer</a> who suggested a graphite clone in Go first,</p>
+
+<p>it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/golang/index.html" rel="tag">golang</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

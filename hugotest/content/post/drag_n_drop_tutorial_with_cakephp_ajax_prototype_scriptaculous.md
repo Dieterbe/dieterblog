@@ -1,0 +1,192 @@
++++
+title = "Drag 'n drop tutorial with the CakePHP 1.2 Ajax helper, Prototype framework and Scriptaculous library"
+date = "2007-05-29T21:25:13-04:00"
+tags = ["php", "cakephp"]
++++
+<p>During the development of my <a href="/masterproef">thesis</a> I wanted to create a drag 'n drop interface.  But I never did anything like that, I never used CakePHP's Ajax helper and neither made I ever use of more advanced functionalities of Scriptaculous/Prototype.  Hell I even never touched Ajax before this! </p>
+
+<p>Although there are some basic CakePHP/Ajax tutorials out there, I still had a hard time because some knowledge about Ajax (in CakePHP) was assumed in all of those.  After a lot of googling I even found a tutorial called <a href="http://www.dustinweber.com/blog/_archives/2007/4/4/2859177.html">CakePHP: Sortable AJAX Drag &amp; Drops - The Basics</a>  <br/>"Perfect!" I thought, until after staring at the article for a long while and I started to notice nowhere in the article "$ajax->drag", "$ajax->drop" or "$ajax->dropRemote" is used.  (those are calls on the CakePHP Ajax helper to enhance objects to become draggable, or to become a dropbox where draggables can be dropped into).  So the only more or less suited tutorial about drag 'n drop was actually about sorting and didn't use the drag/drop function calls at all.  Even though it contains very useful information.</p>
+
+<p>Long story short:  I finally got it working (thanks to Krazylegz and kristofer and possibly others too, it has been a while so I may forget someone ;-), and learned a lot in the process.  I will share what I learned with you guys so that hopefully it's a bit easier for you then what I had to go through.</p>
+
+<!--more-->
+
+<h3>Prerequisites</h3>
+
+<p>CakePHP.  I used 1.2 but I think this will work on 1.1 too (because the Ajax helper is in there for a long time.  it's even fully documented in the 1.1 manual)<br />
+
+Scriptaculous &amp; Protoype libraries.  See <a href="http://manual.cakephp.org/chapter/helpers">the cake manual</a> on how to install these.  Don't close this page after installing the libs, because it also explains the possibilities of the Ajax helper and is a reference that you <em>will</em> need!  The <a href="http://api.cakephp.org/1.2/class_ajax_helper.html">api reference</a> reveals even more possibilities, but the former page should do.</p>
+
+<h3>Let's get started!</h3>
+
+<p>Instead of showing a really simple example, I'll give a skeleton example based on a webstore-scenario.  You can have multiple articles (draggables) and 2 droppables: a cart and a thrashbin.  Dropping an article in the cart adds the article to your order (which I usually keep in the session) and updates the view accordingly, dragging it from the cart into the thrashbin removes it from the session and updates the view too.<br />
+
+I've left out the basics such as sql, models and controller business logic, and focused on the Ajax specifics.</p>
+
+<p>The view-code can be combined in different elements but for simplicity let's assume there is only 1 view file.<br />
+
+Keep in mind that each object where you want to assign some functionality to (such as draggable, droppable) must have a unique DOM id.  It doesn't matter if it's a div or span or p or whatever, as long as it has a unique id.</p>
+
+<p>The view looks like this:</p>
+
+{{< highlight "html+php" "style=default" >}}<![CDATA[
+
+<?php foreach($articles as $article): ?>
+
+<div id="<?php echo $article['Article']['id']; ?>">
+
+   <?php echo $article['Article']['description']; ?>
+
+</div>
+
+<?php echo $ajax->drag($article['Article']['id'],array('revert'=>true)); ?>
+
+/*
+
+   the revert thing will make the draggable return to it's original position.  Set this to false and the object will stay where you put it.
+
+   This does not have anything to do with a function call being made btw, that's the job for the draggables
+
+*/
+
+<?php endforeach; ?>
+
+
+
+
+
+<div id="cart">
+
+   <?php echo $this->requestAction('/controller/showcart'); ?> // this call is not necessary.  You can use it to fill the <div> with some content to start with
+
+</div>
+
+
+
+<div id="thrashbin">
+
+</div>
+
+
+
+<?php
+
+   echo $ajax->dropRemote('cart',null,array('url' => '/controller/addarticle/','with'=>'{draggedid:element.id}','update'=>'cart'));
+
+   echo $ajax->dropRemote('thrashbin',null,array('url' => '/controller/removearticle/','with'=>'{draggedid:element.id}','update'=>'cart'));
+
+?>
+
+/*
+
+   these two calls make objects with DOM id's 'cart' and 'thrashbin' droppable.  When an object is dropped into them, the actions defined by 'url' are called.
+
+   The 'with'=>'{draggedid:element.id} passes the id of the dropped element to the function that is called (on the background, no page refresh or anything like that!).
+
+   The update thing makes sure that the entire output of the requestAction call is displayed inside the <div id="cart"></div>.
+
+   So that means that the page will update the part of the page which is specified (dom id 'cart') when the output from the requestAction call is received
+
+*/
+
+]]>{{< /highlight >}}<p>
+
+The controller would have functions like this:</p>
+
+{{< highlight "html+php" "style=default" >}}<![CDATA[
+
+<?php
+
+
+
+// this function can be used to show initial contents of the cart.
+
+function showcart(){
+
+    $this->set('articles',false); /* no articles bought yet */
+
+    $this->render('cart');
+
+    // (read on to find out more about this view)
+
+}
+
+
+
+function addarticle(){
+
+/*
+
+   The DOM id of the element that has been dragged into here can be found in $this->params['form']['draggedid'].
+
+   You can use that id to do something like $this->Article->findById() to add the article to the session.
+
+   At the end of this function the entire contents of the <strong>view</strong> file will be returned (and rendered inside the <div> with DOM id 'cart'.)
+
+   The layout won't be rendered, only the view, since this is an Ajax call (the difference is autodetected by Cakes RequestHandler) 
+
+   You could do something like this:
+
+*/
+
+   $this->set('articles', $all_bought_articles_from_the_session);
+
+   $this->render('cart');
+
+}
+
+
+
+// this function is similar to the one above but instead removes one article from the session and renders the same view ;-)
+
+function removearticle(){
+
+}
+
+?>
+
+]]>{{< /highlight >}}<p>
+
+The view controller/cart.ctp could look something like this:</p>
+
+{{< highlight "html+php" "style=default" >}}<![CDATA[
+
+<ul>
+
+<?php foreach($articles as $artikel):?>
+
+<li><?php echo $article['Article']['id']; ?></li>
+
+<?php endforeach; ?>
+
+</ul>
+
+
+
+<?php if(!$articles) echo "No articles in the cart!"; ?>
+
+]]>{{< /highlight >}}<p>
+
+There you have it.  All explanations are inside the sources, I hope it's clear enough.  If not, just ask :-)</p>
+
+<h3>Common misconceptions</h3>
+
+<p>From reading many (outdated?) articles about Ajax in cake I noted a lot of information that was not correct.  Here they are:</p>
+
+<ul>
+
+<li>It is <em>not</em> necessary to explicity pass the 'ajax' layout as an argument to the render call.  Eg you don't need to do this:  $this->render('cart', 'ajax');  You can do $this->render('cart'); (or even no explicit render call at all, if the view file is the same as the action name of your controller) Cakes RequestHandler automatically detects when it's dealing with an ajax call, and in that case won't render the layout, only the view.</li>
+
+<li>It is <em>not</em> necessary to declare the UTF-8 character encoding in your layout or view</li>
+
+<li>You <em>don't</em> need $this->autoRender =false; in the controller.  Unless maybe you absolutely don't want to render anything.</li>
+
+</ul>
+
+<h3>The end</h3>
+
+<p>There you have it.  I hope everything is clear.  If not, ask on !</p>
+
+<p>For those who don't have it already, I really recommend <a href="http://www.getfirebug.com/">The firebug firefox extension</a>.  Not only is it a great aid when designing, it's also perfectly suited for debugging Ajax calls.  It can show you exactly what happens when you drag an item in a droppable, what request is being made, what is being returned, etc.<br />
+
+This is explained in this movie:<a href="http://www.youtube.com/watch?v=W4jXAaEMp2M">Introduction to Debugging AJAX Application with Firebug</a></p>

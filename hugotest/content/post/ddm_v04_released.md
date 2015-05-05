@@ -1,0 +1,76 @@
++++
+title = "DDM v0.4 released"
+date = "2008-09-23T16:21:27-04:00"
+tags = ["foss", "bash"]
++++
+Since the last release many, many things have been changed/fixed/added.<br />
+
+<!--more--><br />
+
+Here is the Changelog:</p>
+
+<pre>
+
+4.0 (23-9-2008)
+
+ * new dataset types (dataset types are now: blob, buffer, cache, copy, direct, extension, selection)
+
+ * new (default) actions (default actions are now: backup, checkout, commit, flush, restore, update)
+
+ * actions and callbacks are addable/customizable/disableable etc
+
+ * some actions for certain dataset types are now implemented that weren't before (see manual)
+
+ * better choosen commandline switches. especially needed for specifying (custom) actions.
+
+ * ddm follows XDG basedir spec now (<a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html" title="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html</a>).
+
+   This affects the location of ddmrc and plugins (read on)
+
+ * datasets can have arbitrary names now. (so it's also fully compatible with the XDG usedir spec now <a href="http://freedesktop.org/wiki/Software/xdg-user-dirs" title="http://freedesktop.org/wiki/Software/xdg-user-dirs">http://freedesktop.org/wiki/Software/xdg-user-dirs</a> )
+
+   In some cases you do need to make up for this by specifying one or two vars in the .ddm file. See manual.
+
+ * possibility to create plugins.
+
+ * 2 plugins come by default now:
+
+   - slidewindow (old function pluginized now)
+
+   - get_exaile (supposed to populate selection with favorite/most-played/... music according to the exaile
+
+   music player database). this plugin is still *work in progress*
+
+ * slidewindow is more flexible now (configurable subpaths, regex grepstring, ...) *api has changed*
+
+ * pretend mode
+
+ * validators for actions, repositories and datasets
+
+ * new, better and more generic wrappers for rsync, svn, rm, cd, mkdir and 'keep'
+
+ * refactored exit codes
+
+ * better validation, error handling, help information
+
+ * better documentation (MANUAL, examples, ...) comes with sources now + can be seen online @ <a href="http://github.com/Dieterbe/ddm" title="http://github.com/Dieterbe/ddm">http://github.com/Dieterbe/ddm</a>)
+
+ * lots of changes and fixes big and small
+
+</pre><p>
+
+The <a href="http://github.com/Dieterbe/ddm">ddm project on github</a> has now 2 branches:</p>
+
+<ul>
+
+<li><a href="http://github.com/Dieterbe/ddm/tree/master" title="http://github.com/Dieterbe/ddm/tree/master">http://github.com/Dieterbe/ddm/tree/master</a> (bleeding edge development will happen here)</li>
+
+<li><a href="http://github.com/Dieterbe/ddm/tree/v0.4" title="http://github.com/Dieterbe/ddm/tree/v0.4">http://github.com/Dieterbe/ddm/tree/v0.4</a> (0.4 'stable' patches will be pushed here)</li>
+
+</ul>
+
+<p>It now also comes with a <a href="http://github.com/Dieterbe/ddm/tree/v0.4/MANUAL">Manual</a> and some <a href="http://github.com/Dieterbe/ddm/tree/v0.4/Examples.textile">examples</a>.</p>
+
+<p>Have fun...</p>
+
+<p>Oh and btw: It's probably not bug free (especially the slidewindow code)</p>

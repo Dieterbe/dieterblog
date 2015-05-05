@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Rsyncbench, an rsync benchmarking tool &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/rsyncbench_an_rsync_benchmarking_tool/">Rsyncbench, an rsync benchmarking tool</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/rsyncbench_an_rsync_benchmarking_tool/" rel="bookmark">
+					<time class="entry-date" datetime="2010-10-15 09:38:12 -0400 EDT">
+						October 15, 2010
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I&rsquo;m currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn&rsquo;t need much disk space,<br /></p>
+
+<p>but in the meantime it might be a good idea to look for online backup solutions (oops did I say &ldquo;online&rdquo;? I meant &ldquo;cloud&rdquo;), like on the (V)PS itself, or maybe as a separate solution.<br /></p>
+
+<p>But I&rsquo;ve got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)<br /></p>
+
+<p>At this point the biggest contenders are <a href="http://linode.com/">Linode</a> (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), <a href="http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/">Rackspace backup</a> gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there&rsquo;s <a href="http://www.hetzner.de/">Hetzner</a>, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)</p></p>
+
+<p>Another issue, given the limited capacity of Belgian internet connections, I needed to figure out how much bandwith rsync really needs, so I can calculate if the duration of a backup run including syncing the full vdi file is still reasonable.</p>
+
+<p>I couldn't find an rsync benchmarking tool, so I wrote my own.</p>
+
+<p>Features:</p>
+
+<ul>
+
+<li>simple</li>
+
+<li>non invasive: you specify the target and destination hosts (just localhost is fine too), and file locations</li>
+
+<li>measures time spent, bytes sent (measured with tcpdump), and data sent (rsync's statistics which takes compression into account)</li>
+
+<li>supports plugins</li>
+
+<li>generates png graphs using Gnuplot</li>
+
+<li>two current plugins: one using files of various sizes, both randomly generated (/dev/urandom) and easily compressable (/dev/zero), does some use cases like initial sync, second sync (no-op), and syncing with a data block appended and prepended.  The other plugin collects vdi files from rsnapshot directories and measures the rsyncing from each image to the next</li>
+
+</ul>
+
+<p><br />
+
+Non-features:</p>
+
+<ul>
+
+<li>no plugins yet for other use cases then my own (no file removal, renaming, working with multiple files, working with small files, ...)</li>
+
+<li>doesn't test a lot of different file sizes and such</li>
+
+<li>not as finished as my other projects (no Makefile, graphs are rough.  but I have no time to go dive further in the gnuplot stuff)
+
+<li>the benchmarking process takes a long time, due to a lot of juggling with big files. some steps can be optimized</li>
+
+</ul>
+
+<p>Here is an example graph:<br />
+
+<img src="/files/rsyncbench_random_images_sent.png"/><br />
+
+The first entry on the x-asis is on 1MiB, even though it seems like 0MiB because of the scale.<br />
+
+Notice how rsync is pretty efficient when it has nothing to do (no-op), and the sizes of transmitted data correspond exactly to what has changed (even if you prepend data in the beginning and all data "moves to the back", rsync notices this)<br />
+
+The compressed numbers (reported by rsync) are very close to the real numbers measured with tcpdump.  Which makes sense, random data is not easy to compress.  OTOH, if i take the graph of the case where I sync images which are built from /dev/zero, the story similar so either rsyncs compression sucks (which I find hard to believe), or the guy on #rsync who told me those numbers are about the compressed data was wrong (maybe) or I just messed up something (likely)</p>
+
+<p>So, I hope this is useful to someone, and maybe others can clone the project and improve it further.  I found it weird that I couldn't find an rsync benchmarking tool, because rsync's algorithm is non-obvious and it can be really interesting to understand all its characteristics in various use cases.</p>
+
+<p>Project page: <a href="http://github.com/Dieterbe/rsyncbench">rsyncbench on Github</a></p>
+
+<p>Oh and about my backups? Rsyncing the different vdi files takes upto a few hundreds of MB's, not an ideal solution given the upload speeds in Belgium.<br />
+
+I'll figure out something else.  Like backing up from inside windows (maybe using the rackspace service), or mounting the vdi and rsyncing the data from there.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

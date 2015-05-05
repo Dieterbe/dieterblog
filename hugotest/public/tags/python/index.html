@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<header class="archive-header">
+				<h1 class="archive-title">Content tagged "Python"</h1>
+			</header>
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/">Poor mans pickle implementations benchmark</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/" rel="bookmark">
+					<time class="entry-date" datetime="2011-06-16 22:32:12 -0400 EDT">
+						June 16, 2011
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p><a href="http://nlp.fi.muni.cz/projekty/gensim/">Gensim</a> is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.</p>
+
+<p>But anyway we're having some issues in it with cPickle (it <a href="https://github.com/piskvorky/gensim/issues/31">breaks when saving large matrices</a>, it <a href="https://github.com/piskvorky/gensim/issues/30">breaks with some objects</a>).
+
+For now I worked around it by using <a href="http://jsonpickle.github.com/">jsonpickle</a> but I wonder how viable this alternative really is.</p>
+
+<p>To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - <a href="https://github.com/Dieterbe/picklebench">picklebench</a> - to compare pickle, cPickle and jsonpickle.
+
+The script fills a dictionary which gets bigger and bigger, and for certain sizes of dictionary it is saved to, and loaded from disk again.  We measure some metrics of each step.
+
+We continue until memory is exhausted.</p>
+
+<p>limitations of this benchmark:</p>
+
+<ul>
+
+<li>effects of writing a new file, or overwriting existing file, and however the filesystem deals with that (efficiency, allocation of sectors on disk, etc) are ignored</li>
+
+<li>no explicit flushing or warming of Linux block cache, ignoring writeback caches. (but that should be okay: every write is treated the same way, and reads always benefit from warm block cache)</li>
+
+<li>I could ignore disk i/o by only doing serializing in memory, but that wouldn't be very realistic either, and speed is lower than sequential read/write speeds of my hard disk anyway</li>
+
+<li>other running processes are ignored. (but my pc was pretty much idle otherwise)</li>
+
+<li>all metrics are crude</li>
+
+<li>all single runs</li>
+
+<li>no garbage collection is being run. volatility of datastructures is completely ignored.  Assumes that measuring the RSS difference provides useful information.</li>
+
+<li>Other than the obvious cPickle, I did not bother to look up if optimized implementations for some things exist (like json decoders)</li>
+
+</ul>
+
+<p>You can easily <a href="https://github.com/Dieterbe/picklebench/blob/master/runall.sh">run the program</a> yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.</p>
+
+<pre>
+
+Testing JsonPickle
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.05 MB. Speed 6.56 MB/s. RSS taken 0.23 MB. (4.34 MB per MB in file)
+
+Loaded in 0.01s. Speed 9.30 MB/s. RSS taken 0.04 MB.  (0.71 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.03s. file size 0.21 MB. Speed 6.93 MB/s. RSS taken 0.45 MB. (2.16 MB per MB in file)
+
+Loaded in 0.02s. Speed 9.54 MB/s. RSS taken 0.47 MB.  (2.23 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.13s. file size 0.85 MB. Speed 6.80 MB/s. RSS taken 0.86 MB. (1.00 MB per MB in file)
+
+Loaded in 0.09s. Speed 9.55 MB/s. RSS taken 0.88 MB.  (1.04 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.50s. file size 3.44 MB. Speed 6.87 MB/s. RSS taken 4.02 MB. (1.17 MB per MB in file)
+
+Loaded in 0.36s. Speed 9.44 MB/s. RSS taken 2.52 MB.  (0.73 MB per MB in file)
+
+== 256000 ==
+
+Stored in 2.10s. file size 13.97 MB. Speed 6.64 MB/s. RSS taken 17.24 MB. (1.23 MB per MB in file)
+
+Loaded in 1.53s. Speed 9.15 MB/s. RSS taken 8.49 MB.  (0.61 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 8.60s. file size 56.23 MB. Speed 6.54 MB/s. RSS taken 61.64 MB. (1.10 MB per MB in file)
+
+Loaded in 6.27s. Speed 8.97 MB/s. RSS taken 95.99 MB.  (1.71 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 38.80s. file size 228.26 MB. Speed 5.88 MB/s. RSS taken 181.83 MB. (0.80 MB per MB in file)
+
+Loaded in 25.17s. Speed 9.07 MB/s. RSS taken 170.84 MB.  (0.75 MB per MB in file)
+
+== 16384000 ==
+
+Testing cPickle
+
+Protocol 0
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.01 MB. Speed 0.83 MB/s. RSS taken 0.05 MB. (5.95 MB per MB in file)
+
+Loaded in 0.00s. Speed 9.02 MB/s. RSS taken 0.05 MB.  (5.04 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.00s. file size 0.04 MB. Speed 8.69 MB/s. RSS taken 0.10 MB. (2.52 MB per MB in file)
+
+Loaded in 0.00s. Speed 15.43 MB/s. RSS taken 0.13 MB.  (3.26 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.01s. file size 0.17 MB. Speed 11.06 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
+
+Loaded in 0.01s. Speed 16.82 MB/s. RSS taken 0.10 MB.  (0.60 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.06s. file size 0.69 MB. Speed 12.43 MB/s. RSS taken 0.12 MB. (0.17 MB per MB in file)
+
+Loaded in 0.04s. Speed 17.25 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
+
+== 256000 ==
+
+Stored in 0.22s. file size 2.96 MB. Speed 13.65 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
+
+Loaded in 0.17s. Speed 17.49 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 0.88s. file size 12.20 MB. Speed 13.93 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
+
+Loaded in 0.69s. Speed 17.72 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 3.52s. file size 52.14 MB. Speed 14.80 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+
+Loaded in 2.84s. Speed 18.37 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 12.68s. file size 218.27 MB. Speed 17.22 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 11.59s. Speed 18.82 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
+
+Testing cPickle
+
+Protocol 1
+
+== 1000 ==
+
+Stored in 0.00s. file size 0.00 MB. Speed 9.65 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
+
+Loaded in 0.00s. Speed 9.31 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.00s. file size 0.02 MB. Speed 10.95 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+
+Loaded in 0.00s. Speed 11.15 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.02s. file size 0.08 MB. Speed 5.26 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+
+Loaded in 0.01s. Speed 11.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.03s. file size 0.32 MB. Speed 12.60 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
+
+Loaded in 0.03s. Speed 11.48 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
+
+== 256000 ==
+
+Stored in 0.10s. file size 1.66 MB. Speed 17.00 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
+
+Loaded in 0.11s. Speed 14.50 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 0.40s. file size 7.04 MB. Speed 17.76 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+
+Loaded in 0.45s. Speed 15.54 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 1.59s. file size 28.55 MB. Speed 17.95 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+
+Loaded in 1.88s. Speed 15.20 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 6.23s. file size 114.59 MB. Speed 18.40 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 7.18s. Speed 15.96 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
+
+Testing cPickle
+
+Protocol 2
+
+== 1000 ==
+
+Stored in 0.00s. file size 0.00 MB. Speed 9.54 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
+
+Loaded in 0.00s. Speed 8.92 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.00s. file size 0.02 MB. Speed 13.25 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+
+Loaded in 0.00s. Speed 11.39 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.01s. file size 0.08 MB. Speed 13.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+
+Loaded in 0.01s. Speed 10.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.02s. file size 0.32 MB. Speed 13.99 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
+
+Loaded in 0.03s. Speed 11.45 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
+
+== 256000 ==
+
+Stored in 0.10s. file size 1.66 MB. Speed 16.81 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
+
+Loaded in 0.12s. Speed 14.31 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 0.37s. file size 7.04 MB. Speed 19.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+
+Loaded in 0.45s. Speed 15.55 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 1.58s. file size 28.55 MB. Speed 18.09 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+
+Loaded in 1.83s. Speed 15.61 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 6.02s. file size 114.59 MB. Speed 19.04 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 7.32s. Speed 15.65 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
+
+Testing pickle
+
+Protocol 0
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.01 MB. Speed 1.17 MB/s. RSS taken 0.03 MB. (3.21 MB per MB in file)
+
+Loaded in 0.04s. Speed 0.20 MB/s. RSS taken 0.06 MB.  (6.41 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.02s. file size 0.04 MB. Speed 1.91 MB/s. RSS taken 0.09 MB. (2.42 MB per MB in file)
+
+Loaded in 0.02s. Speed 2.12 MB/s. RSS taken 0.12 MB.  (3.15 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.08s. file size 0.17 MB. Speed 2.00 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
+
+Loaded in 0.07s. Speed 2.27 MB/s. RSS taken 0.09 MB.  (0.55 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.33s. file size 0.69 MB. Speed 2.08 MB/s. RSS taken 0.12 MB. (0.18 MB per MB in file)
+
+Loaded in 0.29s. Speed 2.40 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
+
+== 256000 ==
+
+Stored in 1.34s. file size 2.96 MB. Speed 2.21 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
+
+Loaded in 1.17s. Speed 2.53 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 5.33s. file size 12.20 MB. Speed 2.29 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
+
+Loaded in 4.73s. Speed 2.58 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 21.23s. file size 52.14 MB. Speed 2.46 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+
+Loaded in 18.63s. Speed 2.80 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 85.09s. file size 218.27 MB. Speed 2.57 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 74.60s. Speed 2.93 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
+
+Testing pickle
+
+Protocol 1
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.00 MB. Speed 0.80 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
+
+Loaded in 0.00s. Speed 1.56 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.02s. file size 0.02 MB. Speed 0.84 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+
+Loaded in 0.01s. Speed 1.65 MB/s. RSS taken 0.13 MB.  (6.61 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+
+Loaded in 0.05s. Speed 1.68 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.32 MB per MB in file)
+
+Loaded in 0.19s. Speed 1.67 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
+
+== 256000 ==
+
+Stored in 1.49s. file size 1.66 MB. Speed 1.11 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
+
+Loaded in 0.75s. Speed 2.21 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 6.11s. file size 7.04 MB. Speed 1.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+
+Loaded in 2.99s. Speed 2.35 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 24.40s. file size 28.55 MB. Speed 1.17 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
+
+Loaded in 11.97s. Speed 2.39 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 97.62s. file size 114.59 MB. Speed 1.17 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 48.04s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
+
+Testing pickle
+
+Protocol 2
+
+== 1000 ==
+
+Stored in 0.01s. file size 0.00 MB. Speed 0.78 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
+
+Loaded in 0.00s. Speed 1.57 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
+
+== 4000 ==
+
+Stored in 0.02s. file size 0.02 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+
+Loaded in 0.01s. Speed 1.52 MB/s. RSS taken 0.13 MB.  (6.60 MB per MB in file)
+
+== 16000 ==
+
+Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+
+Loaded in 0.05s. Speed 1.66 MB/s. RSS taken 0.09 MB.  (1.18 MB per MB in file)
+
+== 64000 ==
+
+Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.31 MB per MB in file)
+
+Loaded in 0.19s. Speed 1.65 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
+
+== 256000 ==
+
+Stored in 1.52s. file size 1.66 MB. Speed 1.09 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
+
+Loaded in 0.76s. Speed 2.18 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
+
+== 1024000 ==
+
+Stored in 6.19s. file size 7.04 MB. Speed 1.14 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+
+Loaded in 3.01s. Speed 2.34 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
+
+== 4096000 ==
+
+Stored in 24.60s. file size 28.55 MB. Speed 1.16 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
+
+Loaded in 12.06s. Speed 2.37 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
+
+== 16384000 ==
+
+Stored in 98.38s. file size 114.59 MB. Speed 1.16 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+
+Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
+
+</pre>
+
+<p>Paraphrased:</p>
+
+<ul>
+
+<li>JsonPickle needs more RSS then pickle/cPickle, and runs out of memory sooner. all pickle/cPickle runs need the same RSS</li>
+
+<li>Protocol 1/2 need the same amount of diskspace, protocol 0 needs about the double, JsonPickle about 8 times more</li>
+
+<li>Protocol 1/2 are as fast, protocol 0 is slower. cPickle is speed king.  Jsonpickle is slow</li>
+
+</ul>
+
+<p>Conclusion:</p>
+
+<ul>
+
+<li>Use cPickle or pickle, unless they are broken for your use case(s)</li>
+
+<li>Consider persisting only your data in appropriate formats (textfile, database, ...). Often you don't really need to persist entire <i>objects</i>.  In the case of Gensim, we can also work with numpy's dataformat.</li>
+
+<li>If you like json, or want a very simple workaround for cPickle/pickle brokenness, and you cannot use a more appropriate format (see above) consider jsonpickle</li>
+
+</ul>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/python/index.html" rel="tag">python</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/">Dvcs-autosync: An open source dropbox clone... well.. almost</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/" rel="bookmark">
+					<time class="entry-date" datetime="2011-03-26 21:48:56 -0400 EDT">
+						March 26, 2011
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.</p>
+
+<p><br/>In short:</p>
+
+<ul>
+
+<li>simple python tool (600 sloc), works with your dvcs of choice (mainly tested/used with git)</li>
+
+<li>watches for inotify events, performs commits on changes (coalesces some changes together)</li>
+
+<li>synchronizes with other clones (remotes), uses xmpp for push notifications</li>
+
+<li>let's you know what's going on through libnotify popups or whatever</li>
+
+<li><a href="http://mayrhofer.eu.org/dvcs-autosync">home page: http://mayrhofer.eu.org/dvcs-autosync</a></li>
+
+<li><a href="http://gitorious.org/dvcs-autosync/dvcs-autosync">dvcs-autosync gitorious repo</a></li>
+
+<li><a href="http://lists.madduck.net/pipermail/vcs-home/2011-March/000314.html">initial announcement on vcs-home</a></li>
+
+</ul>
+
+<p>Use cases:</p>
+
+<ul>
+
+<li>you have one or more trees you want to maintain under a VCS (because you want vcs advantages like history and whatnot) but it's not worth to spend time comitting manually</li>
+
+<li>you want to backup some files transparently</li>
+
+<li>you want to share / work with others easily</li>
+
+<li>you like the idea of dropbox, but not the closed-source-ness or the vendor dependence</li>
+
+<li>you work mainly with relatively small files (or.. read on)</li>
+
+</ul>
+
+<p>Thoughts:</p>
+
+<ul>
+
+<li>very simple to get started</li>
+
+<li>simpler (and imho saner) code and implementation in comparison to <a href="http://sparkleshare.org/">sparkleshare</a></li>
+
+<li>bound to the limitations of the dvcs. In case of git: no support for ownership, xattrs, and less suited for bigger files (although <a href="http://git-annex.branchable.com/">git-annex</a> might help?)</li>
+
+<li>You cannot store a git repo inside a git repo, I think (i.e. I don't think you can keep a -potentially dirty- git clone in dvcs-autosync)</li>
+
+<li>For a real, filesystem-level dropbox-alike <a href="http://www.coda.cs.cmu.edu/">coda</a> might be a better option, though I'm not sure how useful that project is right now</li>
+
+</ul>
+
+<p>If it sounds like something you need, try it out.  And contributions welcome.</p>
+
+<p><br/>Next up to the todolist: more clever heuristic for event coalescing, setting up bugtracker.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/python/index.html" rel="tag">python</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/migrating_blogs_from_drupal_to_pyblosxom/">Migrating blogs from Drupal to Pyblosxom</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/migrating_blogs_from_drupal_to_pyblosxom/" rel="bookmark">
+					<time class="entry-date" datetime="2010-12-19 19:54:07 -0400 -0400">
+						December 19, 2010
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.<br /></p>
+
+<p>The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn&rsquo;t just rely on an external service like disqus, but stores comments as plaintext files as well.<br /></p>
+
+<p>Some features seem a bit overengineered (like, multiple possible locations to store themes (known as &ldquo;flavours&rdquo;) and templates; I&rsquo;m a fan of convention over configuration and keeping things simple), but discussing this with the maintainer revealed this is because pyblosxom is meant as a reimplementation of the original perl-based bloxsom project.  Over time features could be simplified and/or redesigned.<br /></p>
+
+<p>So I plan to migrate this blog from drupal to pyblosxom.<br /></p>
+
+<p>To do this, I&rsquo;m building the tool <a href="https://github.com/Dieterbe/drupal-to-pyblosxom">drupal-to-pyblosxom</a>.<br /></p>
+
+<p>The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&rsquo;m about halfway, if there&rsquo;s anyone out there with a similar use case, help is welcome ;)</p></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/python/index.html" rel="tag">python</a>
+            
+                <a href="http://localhost:1313//tags/drupal/index.html" rel="tag">drupal</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/an_rss2email_fork_that_sucks_less/">An rss2email fork that sucks less</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/an_rss2email_fork_that_sucks_less/" rel="bookmark">
+					<time class="entry-date" datetime="2010-09-25 20:33:08 -0400 EDT">
+						September 25, 2010
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>However, there are some things I didn&rsquo;t like about it so I made a <a href="http://github.com/Dieterbe/rss2email/">github repo</a> where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.<br /></p>
+
+<p>Also, this was a nice opportunity for me to improve my python skills :)</p></p>
+
+<p>Here is how it compares:<br />
+
+<br />
+
+(most of the changes are only in the xdg branch, which is the one I use and test)</p>
+
+<table>
+
+<tr>
+
+<th>criterion</th>
+
+<th>official version</th>
+
+<th>my fork</th>
+
+</tr>
+
+<tr>
+
+<td>code hosting/release process</td>
+
+<td>"release" = tarball containing updated code corresponding to various fixes, and snapshots of other projects (dependencies).  no version control, not even separate patches.  no bug tracker.</td>
+
+<td>git. upstream tracking branch, master branch (basic "good stuff" patches), XDG topic branch (my favorite).  Does not include code from other projects, rather list dependencies.  Github issue tracker</td>
+
+</tr>
+
+<tr>
+
+<td>code style</td>
+
+<td>dirty (extraneous whitespace, ^M characters, incorrect permissions, loads of bogus [whitespace] changes, ..).  The python code itself seems nice though</td>
+
+<td>clean</td>
+
+</tr>
+
+<tr>
+
+<td>file storage &amp; config</td>
+
+<td>all in ~/.rss2email, list of feeds, email address and feeds state go into pickle file. commands like 'r2e add', 'r2e delete', 'r2e list' to manage feeds. feed ids change when feeds get deleted.  'r2e email' to manage email adress.</td>
+
+<td>adherence to xdg basedir spec. list of feeds goes into plaintext file, so does email address.  state in separate pickle file.  removed all the [now pointless] commands.</td>
+
+</tr>
+
+<tr>
+
+<td>Temporary disabling of feeds</td>
+
+<td>no (if you remove a feed, you loose the state info)</td>
+
+<td>yes.  comment it out or remove it.  state info won't be lost</td>
+
+</tr>
+
+<tr>
+
+<td>installation/runtime</td>
+
+<td>no Makefile.  no reliance on $PATH, locking code in python.  Distros are applying patches and/or using custom wrapper scripts</td>
+
+<td>smarter wrapperscript that prevents multiple runs, so removed locking code from python.  Has Makefile.  Easy to package</td>
+
+</tr>
+
+<tr>
+
+<td>logging/debugging</td>
+
+<td>useful info messages hidden by default, "verbose mode" and error messages using print calls all over the place</td>
+
+<td>useful messages on stdout.  additional (info/warn/error/..) logging and debuglogging use python module (xdg compliant)</td>
+
+</tr>
+
+<tr>
+
+<td>web ui</td>
+
+<td>yes</td>
+
+<td>no (I don't need it)</td>
+
+</tr>
+
+<tr>
+
+<td>windows support</td>
+
+<td>yes</td>
+
+<td>no (unless somebody ports xdg to windows and updates the wrapper script)</td>
+
+</tr>
+
+</table>
+
+<p>Other then that, there are also some smaller fixes in various places.</p>
+
+<p>I'm using my version "in production" and it works great for me so far.<br />
+
+I have contacted the author and told her about my changes, but no response yet.<br />
+
+For now, you can treat this as an alternative version that stands on it's own.  I made an Arch <a href="http://aur.archlinux.org/packages.php?ID=41136">rss2email-xdg-git</a> package in the AUR.</p>
+
+<p>Oh, and I'm liking python :)  Pretty nice and powerful language.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/python/index.html" rel="tag">python</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/review_of_python_3_object_oriented_programming/">Review of &#34;Python 3 Object Oriented Programming&#34;</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/review_of_python_3_object_oriented_programming/" rel="bookmark">
+					<time class="entry-date" datetime="2010-08-23 19:01:09 -0400 EDT">
+						August 23, 2010
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		
+
+<p>I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.<br />
+
+
+
+Mind you, my Python knowledge is very limited.  I have done some python programming, and I once read (most of) <a href="http://diveintopython.org/">Dive into python</a>, but over the years that experience has vanished from my memory.  Dusty's book has had many proofreads/reviews by python-aficionado's, now it gets a fresh perspective from an amateur, and for me this was a good opportunity to work on my python skills.</p>
+
+<p>To paraphrase the "who this book is for" paragraph, which is in the beginning of the book and in <a href="https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;utm_medium=bookrev&amp;utm_content=blog&amp;utm_campaign=mdb_004281">online advertisements</a> for the book:</p>
+
+<ul>
+
+<li>people new to OO programming and people with basic python skills who want to improve their python OO.</li>
+
+<li>OO programmers experienced in other languages who want to get into python.</li>
+
+<li>python 2 programmers interested in learning python 3, although this is not the target audience.</li>
+
+</ul>
+
+<p>Good, that includes me (category 2)</p>
+
+<p>Pro's:</p>
+
+<ul>
+
+<li>seems very accurate</li>
+
+<li>OO focused.   But not in a college/university-ish way.  Real experience, nuanced, real examples and exercises.  Tells you when *not* to use OO.  Teaches you the difference between object orientation, OO programming and OO design, and makes you understand that in the end everything are just means to end, and thanks to the versatility of Python, teaches you various tricks to implement certain designs in less then obvious ways.</li>
+
+<li>Chapters about design patterns (there sure are many of them), testing, libraries, and some other topics not directly related to OO.</li>
+
+</ul>
+
+<p>Con's:</p>
+
+<ul>
+
+<li>Not an introduction to Python.  Assumes some basic knowledge about Python. (like data structures and loops). There is a chapter about (some of the) datatypes later on in the book but it focuses more on their OO nature, and to get to know the basics, you're referred to <a href="http://docs.python.org/py3k/tutorial/">the official python tutorial</a>.
+
+<li>Does not cover *everything*.</li>
+
+</ul>
+
+<p>I should clarify my last point.  Here and there I found some information to be lacking.  Especially  static class methods (they are only mentioned very briefly in a case study somewhere) and static properties/variables.<br />
+
+Other then that, sometimes an example or explanation was not entirely clear to me.  This didn't happen often, but there were moments where I thought 95% of what you need to know is explained, but the other 5% you have to google up yourself.<br />
+
+It is quite convenient however, to have the author of a book available in your jabber client.<br />
+
+So FWIW here are the things I asked him about and which responses I got, with some comments added by me afterwards.</p>
+
+<p><pre>&lt;![CDATA[</p>
+
+<p><Dieterbe> hmm you mention that methods <em>need</em> a self param, but why is this?</p>
+
+<pre><code>       can't python automatically make a variable self available in the scope of the function, when calling it?
+</code></pre>
+
+<p><Dusty>    no, they are always explicit</p>
+
+<p><Dieterbe> but why?</p>
+
+<p><Dusty>    it&rsquo;s part of the python philosophy, I guess. &ldquo;explicit is better than implicit&rdquo; is in the zen of python poem.</p>
+
+<pre><code>       Basically, if you are accessing a variable in any namespace, that variable has to be have been made explicitly available in that 
+
+       namespace. The one exception is the from X import * syntax, which 98% of python programmers avoid exactly because of the namespace issues.
+</code></pre>
+
+<p><Dieterbe> right</p>
+
+<h1 id="good-to-know-too-bad-this-isn-t-really-mentioned-anywhere:37a013f17aef3425193c174bed26d75b">good to know.  Too bad this isn&rsquo;t really mentioned anywhere.</h1>
+
+<p><Dieterbe> i don&rsquo;t quite get why - in your notebook example of chap 2 - you iterate over the list to find the correct note based on its id.</p>
+
+<pre><code>       can't you just get the element based on it's index in the list? (ie keep the node id in sync with the index in the list)
+</code></pre>
+
+<p><Dusty>    I don&rsquo;t have the code in front of me, but I suspect that it&rsquo;s because if a note is deleted, that id should not be recycled and applied to another note.</p>
+
+<p><Dieterbe> but still, since you keep the last used id, and keep increasing it, you won&rsquo;t recycle id&rsquo;s.</p>
+
+<p><Dusty>    yeah, but the index in the list will change</p>
+
+<p><Dusty>    when you delete #4</p>
+
+<p><Dieterbe> oh</p>
+
+<p><Dusty>    the object with ID 5 becomes the object at #4</p>
+
+<p><Dieterbe> thanks buddy</p>
+
+<p><Dusty>    no problem. :)</p>
+
+<h1 id="again-makes-perfect-sense-but-if-you-don-t-know-the-ins-and-outs-of-the-datatypes-you-re-on-your-own:37a013f17aef3425193c174bed26d75b">again, makes perfect sense.  But if you don&rsquo;t know the ins and outs of the datatypes, you&rsquo;re on your own.</h1>
+
+<p><Dieterbe> i had a question about your example for the decorator pattern.</p>
+
+<pre><code>       you use a socket and then you have 2 decorators that implement a send function which do some stuff (logging and what not)
+
+       but also the actual sending on the socket
+</code></pre>
+
+<p><Dieterbe> and you mention you can have multiple decorators on the same object.  but since each decorator also does the sending on the socket,</p>
+
+<pre><code>       doesn't that mean the sending happens multiple times?
+</code></pre>
+
+<p><Dusty>    no, because the first decorator is decorating the second decorator</p>
+
+<p><Dusty>    which is decorating the socket</p>
+
+<p><Dieterbe> ah yes you&rsquo;re right. and although you did not specify it like this in the explanation text, it should be clear from the code.</p>
+
+<h1 id="if-i-would-have-looked-better-at-the-code-i-would-have-figured-it-out:37a013f17aef3425193c174bed26d75b">If I would have looked better at the code I would have figured it out.</h1>
+
+<h1 id="i-just-assumed-something-had-to-be-wrong-i-m-too-used-to-the-way-behaviors-are-implemented-in-cakephp:37a013f17aef3425193c174bed26d75b">I just assumed something had to be wrong, I&rsquo;m too used to the way &lsquo;behaviors&rsquo; are implemented in CakePHP.</h1>
+
+<p><Dieterbe> one last remark i have about the book: i couldn&rsquo;t find an explanation of static variables/properties.</p>
+
+<pre><code>       i did see a very short mention of static methods in the case study at the end of chap 3, i would have expected to have that info a bit more 
+
+       prominent, in it's own subsection or something
+</code></pre>
+
+<p><Dieterbe> especially because you use static class methods a few times throughout the book</p>
+
+<p><Dusty>    I had a long section on them and ended up removing it because the chapter was too long and one of my reviewers suggested that they aren&rsquo;t very good form in Python.</p>
+
+<p><Dieterbe> hmm. i see</p>
+
+<p>]]&gt;</pre><p></p>
+
+<p>The writing is pretty informal, and here and there you&rsquo;ll find a subtle reference or joke.  But of course that&rsquo;s not what you buy this book for.</p></p>
+
+<h3>Conclusion</h3>
+
+<p>I would say the "who this book is for" part is a bit too optimistic.  You won't learn Python (3) from scratch by only using this book.  It's not a book restricted to mere OO subjects (in python), but neither does it cover all basics of the Python language.</p>
+
+<p>So if you are a python newbie, I would probably recommend you 'Dive into python'.  It's free, covers the basics, but doesn't contain so many real life examples.</p>
+
+<p>If you want to know more about OO in python, design patterns, some real life examples and techniques, or advice from a pro, then I definitely recommend this book.</p>
+
+<p>Free chapter: <a href="https://www.packtpub.com/sites/default/files/1261-chapter-7-Python%20object-oriented-shortcuts.pdf">Chapter No. 7 : Python Object-oriented Shortcuts</a></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/python/index.html" rel="tag">python</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+		
+		</div>
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

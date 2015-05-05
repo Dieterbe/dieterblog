@@ -1,0 +1,34 @@
++++
+title = "Froscon 2009 afterthoughts"
+date = "2009-08-28T19:00:02-04:00"
+tags = ["life", "uzbl", "arch", "conf"]
++++
+<p><a href="http://froscon.org/">Froscon</a> was great.</p>
+
+<ul>
+
+<li>It was smaller then I thought, I especially assumed more activity in the devrooms (I'm too used to <a href="http://fosdem.org/">fosdem</a> which is much bigger), but hey nice conference anyway.</li>
+
+<li>It was great to meet (some of) my Arch Linux colleagues.  Mostly the guys from Germany showed up, and Roman who is from Ukraine.</li>
+
+<li>We all got an Arch t-shirt/polo of which we could pick the color ourselves.  Woohoo.  Thanks donators.</li>
+
+<li>A few people also told me they had tried / were using <a href="http://www.uzbl.org">uzbl</a> (my browser project) so that was really cool.</li>
+
+<li>I had an interesting chat with <a href="http://www.informatik.uni-koeln.de/ls_juenger/people/lange/">Thomas Lange</a>, the author of <a href="http://www.informatik.uni-koeln.de/fai/">FAI</a> (a tool to automatically mass-install systems, mostly Debian).  I've used it in the past, liked it and was somewhat inspired by it when building <a href="/AIF_the_brand_new_Arch_Linux_Installation_Framework">AIF</a>. (but some design goals are different).</li>
+
+</ul>
+
+<p>
+
+Here is a picture of my "Arch releng partner" Gerhard (right) and I (left).  We've done a lot of work together and it was great to talk face to face for once.  Here we're showing (proudly) an Arch Linux Froscon disc (which is a slightly modified version of the <a href="http://www.archlinux.org/news/459/">2009.08 core images</a>):</p>
+
+<p><a href="/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg"><img src="/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg" /></a></p>
+
+<p>Team photo:</p>
+
+<p><a href="/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg"><img src="/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg" /></a></p>
+
+<p><a href="http://users.archlinux.de/~pierre/froscon/2009/">Image gallery</a>
+
+</p>

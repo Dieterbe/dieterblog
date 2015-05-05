@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title> &middot; Dieter blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/socket-debugging/"></a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/socket-debugging/" rel="bookmark">
+					<time class="entry-date" datetime="0001-01-01 00:00:00 &#43;0000 UTC">
+						January 1, 0001
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		a process with pid 1383 is stuck, so you strace, and it shows you it's stuck at something like:
+`
+strace -p 1383
+poll([{fd=3, events=POLLIN}], 1, -1
+
+`
+what's fd3 ?
+[root@nyvimeostatsdev1 1383]# ls -l /proc/1383/fd
+total 0
+lrwx------ 1 root root 64 Jul 31 11:18 0 -> /dev/pts/1
+lrwx------ 1 root root 64 Jul 31 11:18 1 -> /dev/pts/1
+lrwx------ 1 root root 64 Jul 31 11:18 2 -> /dev/pts/1
+lrwx------ 1 root root 64 Jul 31 11:18 3 -> socket:[13930035]
+
+now, what's socket 13930035 ?
+
+
+[root@nyvimeostatsdev1 1383]# lsof -n -p 1383
+COMMAND  PID USER   FD   TYPE             DEVICE SIZE/OFF     NODE NAME
+stop    1383 root  cwd    DIR              253,2     4096   490565 /var/spool/abrt
+stop    1383 root  rtd    DIR              253,1     4096        2 /
+stop    1383 root  txt    REG              253,1   134624   262197 /sbin/initctl
+stop    1383 root  mem    REG              253,1 99158704   311866 /usr/lib/locale/locale-archive
+stop    1383 root  mem    REG              253,1  1908792    90188 /lib64/libc-2.12.so
+stop    1383 root  mem    REG              253,1    93224    90375 /lib64/libgcc_s-4.4.6-20110824.so.1
+stop    1383 root  mem    REG              253,1    47064    90538 /lib64/librt-2.12.so
+stop    1383 root  mem    REG              253,1   141576    90381 /lib64/libpthread-2.12.so
+stop    1383 root  mem    REG              253,1   268200    90392 /lib64/libdbus-1.so.3.4.0
+stop    1383 root  mem    REG              253,1    39896    90344 /lib64/libnih-dbus.so.1.0.0
+stop    1383 root  mem    REG              253,1   101920    90346 /lib64/libnih.so.1.0.0
+stop    1383 root  mem    REG              253,1   156872    90187 /lib64/ld-2.12.so
+stop    1383 root    0u   CHR              136,1      0t0        4 /dev/pts/1
+stop    1383 root    1u   CHR              136,1      0t0        4 /dev/pts/1
+stop    1383 root    2u   CHR              136,1      0t0        4 /dev/pts/1
+stop    1383 root    3u  unix 0xffff880008dc70c0      0t0 13930035 socket
+
+
+
+so `lsof -n -p 1383` shows more info like type (tcp, unix, ..) and state (established or listening)
+but for unix sockets, it doesn't show the filename of the socketfile.
+for tcp sockets, it shows you everything you need
+still you might want to know where lsof gets the info from, so you can find out more if you need to. you can easily do that with
+`strace -eopen lsof -n -p 1383`
+strace shows that lsof opens files in /proc, more specifically /proc/net/tcp and /proc/net/unix
+
+in the latter you'll find a line for each unix socket, some of them have a last field containing the filename of the socket, but not all.
+in my case:
+ffff880008dc79c0: 00000003 00000000 00000000 0001 03 13930036 @/com/ubuntu/upstart
+ffff880008dc70c0: 00000003 00000000 00000000 0001 03 13930035
+
+next step, how can i get more info? what do these fields mean? maybe i can relate this line to another?
+Interestingly, no information in the Documentation in the kernel source,
+but man 5 proc has it.
+
+ and
+
+original idea from https://github.com/kwilczynski at https://gist.github.com/2204843
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+		<aside id="recent-posts-3" class="widget widget_recent_entries">
+
+	
+</aside>
+
+		<aside id="categories-3" class="widget widget_categories">
+
+	<h1 class="widget-title">Tag cloud</h1>
+
+    
+     
+    
+    <a href="http://localhost:1313/tags/arch">arch</a>
+    19
+    <br/>
+    
+    <a href="http://localhost:1313/tags/bash">bash</a>
+    14
+    <br/>
+    
+    <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+    7
+    <br/>
+    
+    <a href="http://localhost:1313/tags/conf">conf</a>
+    9
+    <br/>
+    
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    
+    <a href="http://localhost:1313/tags/drupal">drupal</a>
+    5
+    <br/>
+    
+    <a href="http://localhost:1313/tags/foss">foss</a>
+    43
+    <br/>
+    
+    <a href="http://localhost:1313/tags/git">git</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    
+    <a href="http://localhost:1313/tags/information-age">information-age</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/life">life</a>
+    33
+    <br/>
+    
+    <a href="http://localhost:1313/tags/linux">linux</a>
+    20
+    <br/>
+    
+    <a href="http://localhost:1313/tags/lua">lua</a>
+    1
+    <br/>
+    
+    <a href="http://localhost:1313/tags/mail">mail</a>
+    1
+    <br/>
+    
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    
+    <a href="http://localhost:1313/tags/music">music</a>
+    5
+    <br/>
+    
+    <a href="http://localhost:1313/tags/mysql">mysql</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/n900">n900</a>
+    2
+    <br/>
+    
+    <a href="http://localhost:1313/tags/netlog">netlog</a>
+    6
+    <br/>
+    
+    <a href="http://localhost:1313/tags/openstack">openstack</a>
+    1
+    <br/>
+    
+    <a href="http://localhost:1313/tags/perf">perf</a>
+    10
+    <br/>
+    
+    <a href="http://localhost:1313/tags/photos">photos</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/php">php</a>
+    9
+    <br/>
+    
+    <a href="http://localhost:1313/tags/productivity">productivity</a>
+    6
+    <br/>
+    
+    <a href="http://localhost:1313/tags/python">python</a>
+    5
+    <br/>
+    
+    <a href="http://localhost:1313/tags/thesis">thesis</a>
+    2
+    <br/>
+    
+    <a href="http://localhost:1313/tags/travel">travel</a>
+    2
+    <br/>
+    
+    <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+    6
+    <br/>
+    
+    <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+    8
+    <br/>
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>On Graphite, Whisper and InfluxDB &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/on-graphite-whisper-and-influxdb/">On Graphite, Whisper and InfluxDB</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/on-graphite-whisper-and-influxdb/" rel="bookmark">
+					<time class="entry-date" datetime="2014-05-18 13:22:32 -0400 EDT">
+						May 18, 2014
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.</p>
+
+<p><br/>For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).</p>
+
+<ul>
+
+<li>It can't keep all file descriptors in memory so there's a lot of overhead in constantly opening, seeking, and closing files, especially since usually one write comes in for all metrics at the same time.
+
+</li>
+
+<li>Using the rollups feature (different data resolutions based on age) causes a lot of extra IO.</li>
+
+<li>The format is also simply not optimized for writes.  Carbon, the storage agent that sits in front of whisper has a feature to batch up writes to files to make them more sequential but this doesn't seem to help much.</li>
+
+<li>Worse, due to various <a href="https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md#what-problems-have-we-had">implementation details</a> the carbon agent is surprisingly inefficient and even cpu-bound.  People often run into cpu limitations before they hit the io bottleneck.  Once the writeback queue hits a certain size, carbon will blow up.</li>
+
+</ul>
+
+<p>Common recommendations are to <a href="http://bitprophet.org/blog/2013/03/07/graphite/">run multiple carbon agents</a> and</p>
+
+<p><a href="http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5">running graphite on SSD drives</a>.</p>
+
+<p><br/>If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though <a href="https://github.com/jssjr/carbonate/">carbonate</a> makes this easier.  This is a path I simply don&rsquo;t want to go down.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>
+
+<i>These might be reasonable solutions based on the circumstances (often based on short-term local gains), but I believe as a community we should solve the problem at its root, so that everyone can reap the long term benefits.
+
+</i>
+
+</p>
+
+<p><br/></p>
+
+<p>In particular, <a href="http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d">running Ceres instead of whisper</a>, is only a slight improvement, that suffers from most of the same problems.  I don&rsquo;t see any good reason to keep working on Ceres, other than perhaps that it&rsquo;s a fun exercise.   This probably explains the slow pace of development.</p>
+
+<p><br/>However, many mistakenly believe Ceres is &ldquo;the future&rdquo;.</p>
+
+<p><br/><a href="http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage">Switching to LevelDB</a> seems much more sensible but IMHO still doesn&rsquo;t cut it as a general purpose, scalable solution.</p>
+
+<h4>The ideal backend</h4>
+
+<p>I believe we can build a backend for graphite that</p>
+
+<ul>
+
+<li>can easily scale from a few metrics on my laptop in power-save mode to millions of metrics on a highly loaded cluster</li>
+
+<li>supports nodes joining and leaving at runtime and automatically balancing the load across them</li>
+
+<li>assures high availability and heals itself in case of disk or node failures</li>
+
+<li>is simple to deploy.  think: just run an executable that knows which directories it can use for storage, elasticsearch-style automatic clustering, etc.</li>
+
+<li>has the right read/write optimizations.  I've never seen a graphite system that is not write-focused, so something like <a href="http://en.wikipedia.org/wiki/Log-structured_merge-tree">LSM trees</a> seems to make a lot of sense.</li>
+
+<li>can leverage cpu resources (e.g. for compression)</li>
+
+<li>provides a more natural model for phasing out data.  Optional, runtime-changeable rollups.  And an age limit (possibly, but not necessarily round robin)
+
+</ul>
+
+<p>While we&rsquo;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.</p>
+
+<p><br/>And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.</p>
+
+<h4>InfluxDB</h4>
+
+<p>There&rsquo;s a lot of databases that you could hook up to graphite.</p>
+
+<p>riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.</p>
+
+<p>Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.</p>
+
+<p>I&rsquo;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.</p>
+
+<p>In particular, installing it is a breeze (no dependencies), it&rsquo;s specifically built for timeseries (not based on a general purpose database),</p>
+
+<p>which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.</p>
+
+<p>And they&rsquo;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&rsquo;m pretty confident that these guys can pull off something big.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>Technically, InfluxDB is a &ldquo;timeseries, metrics, and analytics&rdquo; databases with use cases well beyond graphite and even technical operations.</p>
+
+<p>Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.</p>
+
+<h4>Graphite + InfluxDB</h4>
+
+<p>InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use <a href="http://grafana.org/">Grafana</a>), which means at some point you could completely swap graphite for InfluxDB.</p>
+
+<p>However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.</p>
+
+<p>So here&rsquo;s how my setup currently works:</p>
+
+<ul>
+
+<li>
+
+<a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> is a carbon relay in Go.  
+
+It's a pretty nifty program to partition and manage carbon metrics streams.  I use it in front of our traditional graphite system, and have it stream - in realtime - a copy of a subset of our metrics into InfluxDB.  This way I basically have our unaltered Graphite system, and in parallel to it, InfluxDB, containing a subset of the same data.
+
+<br/>With a bit more work it will be a high performance alternative to the python carbon relay, allowing you to manage your streams on the fly.
+
+It doesn't support consistent hashing, because CH should be part of a strategy of a highly available storage system (see requirements above), using CH in the relay still results in a poor storage system, so there's no need for it.
+
+</li>
+
+<li>I contributed the code to InfluxDB to make it listen on the carbon protocol.  So basically, for the purpose of ingestion, InfluxDB can look and act just like a graphite server.  Anything that can write to graphite, can now write to InfluxDB.  (assuming the plain-text protocol, it doesn't support the pickle protocol, which I think is a thing to avoid anyway because almost nothing supports it and you can't debug what's going on)</li>
+
+<li><a href="https://github.com/brutasse/graphite-api">graphite-api</a> is a fork/clone of graphite-web, stripped of needless dependencies, stripped of the composer.  It's conceived for many of the same reasons behind <a href="http://dieter.plaetinck.be/graphite-ng_a-next-gen-graphite-server-in-go.html">graphite-ng</a> (graphite technical debt, slow development pace, etc) though it doesn't go to such extreme lengths and for now focuses on being a robust alternative for the graphite server, api-compatible, trivial to install and with a faster pace of development.
+
+</li>
+
+<li>
+
+That's where <a href="https://github.com/vimeo/graphite-influxdb">graphite-influxdb</a> comes in.  It hooks InfluxDB into graphite-api, so that you can query the graphite api, but using data in InfluxDB.
+
+It should also work with the regular graphite, though I've never tried.  (I have no incentive to bother with that, because I don't use the composer.  And I think it makes more sense to move the composer into a separate project anyway).
+
+</li>
+
+</ul>
+
+<p>With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.</p>
+
+<p>Later i might do more extensive benchmarking and acceptance testing.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &ldquo;backup&rdquo;.</p>
+
+<p>We&rsquo;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&rsquo;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)</p>
+
+<p><br/></p>
+
+<p><br/>To be continued..</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/golang/index.html" rel="tag">golang</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

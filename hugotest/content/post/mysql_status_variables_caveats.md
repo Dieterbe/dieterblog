@@ -1,0 +1,12 @@
++++
+title = "Mysql status variables caveats"
+date = "2009-06-06T11:33:34-04:00"
+tags = ["foss", "monitoring", "perf", "mysql"]
++++
+<ul>
+
+<li>All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  ("Command statistics:selects" graph in Zenoss)</li>
+
+<li>Com_select does not denote all incoming select commands.  If you have a hit on your query cache, com_select is <em>not</em> incremented.  So I thought we were doing less qps while in fact we were just getting more cache hits. Qcache_hits gets incremented on cache hits (but is not monitored by Zenoss)</li>
+
+</ul>

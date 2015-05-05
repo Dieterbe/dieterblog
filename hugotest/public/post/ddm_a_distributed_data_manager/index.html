@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>DDM : a Distributed Data Manager &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/ddm_a_distributed_data_manager/">DDM : a Distributed Data Manager</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/ddm_a_distributed_data_manager/" rel="bookmark">
+					<time class="entry-date" datetime="2008-03-29 20:28:16 -0400 EDT">
+						March 29, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<h3>Introduction</h3>
+
+<p>If you have multiple sets of data (e.g.: music, images, documents, movies, ...) and you use these on more then one system ( e.g. a laptop and a file server) then you probably also have some 'rules' on how you use these on your systems.  For example after capturing new images you maybe put them on your laptop first but you like to sync them to your file server frequently.  On the other hand you also want all your high-res images (stored on the server) available for editing on the laptop, and to make it more complicated you might have the same images in a smaller format on your server (for gallery programs etc.) and want these (or a select few albums of them) available on the road. </p>
+
+<p>The more different types of data you have and the more you have specific work flows the harder it becomes to keep your data as up to date as possible and consistent on your boxes.  You could manually rsync/(s)cp your data but you end up in having a mess (at least that's how it turned out on my boxes). Putting everything under version control is great for text files and such, but it's not an option for bigger (binary) files.</p>
+
+<p>I wanted to keep all my stuff neatly organised in my home directories and I want to create good work flows with as minimum hassle as possible, so I decided to write DDM: the Distributed Data Manager.</p>
+
+<h3>Disclaimer</h3>
+
+<p>The code is far from finished.  Some features are still missing and there will be bugs in it.  I'm even still thinking about the concepts themselves.   Don't blame me if ddm deletes the wrong files or causes your computer to blow up.</p>
+
+<h3>Concepts</h3>
+
+<p>DDM is a bash script that manages your data, distributed over multiple (*nix) systems.  You tell it how you want to work with your data and ddm will do the copying, deleting, syncing, committing, updating, ... for you.<br />
+
+It uses simple things like cp, rsync and svn for this.<br />
+
+Configuration is done through simple text files that will be sourced.</p>
+
+<p>Ddm works with repositories: these are data stores on your server which should never be edited by hand.  A repository can be a svn repository or something as simple as a directory shared over the network ( through NFS, SMB, ... )</p>
+
+<p>I highly recommend <a href="http://wiki.autofs.net/">autoFS</a> as auto mounter.  It is very easy, yet powerful and flexible.</p>
+
+<h4>Vocabulary</h4>
+
+<ul>
+
+<li>repotype: the type of your repo.  currently this is either 'svn' (subversion) or 'vfs' ( any position in your VFS, the underlying technology is up to you. although autofs+nfs will be most useful)</li>
+
+<li>dataset name: The name of your dataset. e.g. 'movies'</li>
+
+<li>dataset type (see below)</li>
+
+<li>action: commit, update, checkout</li>
+
+</ul>
+
+<h4>Dataset types</h4>
+
+<ul>
+
+<li>selection: a copy of a subset of the data in the repo (e.g. your favourite movies of all your movies)</li>
+
+<li>buffer: temporary storage to be flushed to the repo regularly (e.g. new images or stuff you just downloaded)</li>
+
+<li>copy: (default): a copy of all content in the repo (an svn working copy or a directory using rsync)</li>
+
+<li>extension: contains unique content that you don't want on your server (e.g. temporary files)</li>
+
+<li>direct: a (symlink to a) local mount point for a remote location. useful for big collections</li>
+
+</ul>
+
+<p>So basically you tell ddm to perform an action on a dataset of a specific type.<br />
+
+Note that some actions wouldn't make sense for some dataset types ( e.g. commit on a selection or extension) and thus don't need to be implemented, while others perform really basic operations (an update of a vfs copy is just an rsync) or just wrap around something else (notably the svn actions just wrap around the svn tool)<br />
+
+Keep in mind though that everything can be overridden through .ddm files in dataset directories.</p>
+
+<h4>Configuration</h4>
+
+<p>Ddm is configured through:</p>
+
+<ul>
+
+<li>a .ddm file in your home directory. (needed)</li>
+
+<li>a .ddm file in your dataset directories (optional)</li>
+
+<li>the directory name of your dataset (read on) (optional)</li>
+
+</ul>
+
+<p>To specify the dataset type, the easiest way is to add suffixes to your directories. eg video-selection.  This is not a must and can be specified in the .ddm file in the dataset directory. For the 'copy' dataset type you don't need to specify anything (it's default)<br />
+
+Unless overridden, ddm will construct the repo path as follows:  </p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+<span style="color: #19177C">$TYPE_BASE</span>/<span style="color: #19177C">$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX</span>
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<p>(if unclear, read on)</p></p>
+
+<p>In the .ddm file in your dataset directory you can override defaults.</p>
+
+<h5>~/.ddm</h5>
+
+<p>This is how my file looks like.</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+<span style="color: #19177C">ALLOWED_REPO_TYPES</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;svn vfs&#39;</span>
+
+<span style="color: #19177C">DEFAULT_REPO_TYPE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;vfs&#39;</span>
+
+
+
+<span style="color: #19177C">SVN_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;https://server/svn/repos/&#39;</span>
+
+<span style="color: #19177C">SVN_PREFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;ddm-&#39;</span>
+
+<span style="color: #19177C">VFS_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;/net/server/home/dieter/ddm-repo&#39;</span>
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<p>These are all the options you can specify:</p></p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+<span style="color: #19177C">SVN_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+
+<span style="color: #19177C">SVN_PREFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+
+<span style="color: #19177C">SVN_SUFFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+
+<span style="color: #19177C">VFS_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>  
+
+<span style="color: #19177C">VFS_PREFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+
+<span style="color: #19177C">VFS_SUFFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+
+
+
+<span style="color: #19177C">DEFAULT_REPO_TYPE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;vfs&#39;</span>
+
+<span style="color: #19177C">ALLOWED_REPO_TYPES</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;vfs&#39;</span>
+
+<span style="color: #19177C">IGNORE_DATASET_REMOTE_SVN</span><span style="color: #666666">=0</span> <span style="color: #408080; font-style: italic">#nag if the repo url figured out is not the same as the one in &#39;svn info&#39;. you should leave this 0</span>
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<h5>dataset/.ddm</h5></p>
+
+<p>For an example see below.  Possible options are these:</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+<span style="color: #19177C">DATASET_LOCAL</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#path to dataset locally (including type suffix if any)</span>
+
+<span style="color: #19177C">DATASET_REMOTE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#path to dataset remotely (or locally if network mount)</span>
+
+<span style="color: #19177C">DATASET_PATH</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#just the path (until parent directory of dataset)</span>
+
+<span style="color: #19177C">DATASET_DIR_NAME</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#like $DATASET_LOCAL but no path </span>
+
+DATASET_DIR_NAME_REL  <span style="color: #408080; font-style: italic"># identifier to dataset, taken against pwd ( could be &#39;.&#39;,&#39;..&#39;, nothing at all, dirname, full path, ..)</span>
+
+<span style="color: #19177C">DATASET_NAME</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#like $DATASET_DIR_NAME but no type suffix</span>
+
+<span style="color: #19177C">DATASET_TYPE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+
+<span style="color: #19177C">REPO_TYPE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+
+
+
+<span style="color: #408080; font-style: italic">#you can override the following callbacks (example see below)</span>
+
+precheckout
+
+docheckout
+
+postcheckout
+
+
+
+precommit
+
+docommit
+
+postcommit
+
+
+
+preupdate
+
+doupdate
+
+postupdate
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<h4>Invocation</h4></p>
+
+<p><pre>&lt;![CDATA[</p>
+
+<p>dieter@dieter-mbp:~$ ddm -h</p>
+
+<p>usage: ddm options</p>
+
+<p>OPTIONS:</p>
+
+<p>-d                Dataset (name of directory)</p>
+
+<p>-h                Show this message</p>
+
+<p>-m                Message (used for commits in svn, ignored otherwise)</p>
+
+<p>-u                Update</p>
+
+<p>-c                Commit</p>
+
+<p>-o                Checkout (default repo type)</p>
+
+<p>-O <repo-type>    Checkout using specific repo type (one of: svn vfs)</p>
+
+<p>-t <dataset-type> Specify dataset-type (selection,copy, &hellip;) (only honoured for checkouts)</p>
+
+<p>-v                Verbose</p>
+
+<p>]]&gt;</pre><h4>Examples</h4></p>
+
+<h5>Update my video-selection.</h5>
+
+<p>The directory is ~/video-selection.  It contains episodes that I'm watching<br />
+
+The .ddm file looks like this</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+doupdate<span style="color: #666666">()</span>
+
+<span style="color: #666666">{</span>
+
+	slidewindow mplayer <span style="color: #666666">10</span> 1
+
+<span style="color: #666666">}</span>
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using &ldquo;mplayer video-selection/<em>somefile</em>).<br /></p>
+
+<p>It will then delete all the ones I&rsquo;ve already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)</p></p>
+
+<p><pre>&lt;![CDATA[</p>
+
+<p>dieter@dieter-mbp:~$ ddm -u -v -d video-selection/</p>
+
+<p>Included /home/dieter/video-selection/.ddm</p>
+
+<p>action update on dataset name video type selection</p>
+
+<p>Deleting old files&hellip; (3 items).</p>
+
+<ul>
+<li><p>/home/dieter/video-selection/910 - The One With Christmas In Tulsa.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/911 - The One Where Rachel Goes Back To Work.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/912 - The One With Phoebes Rats.avi&hellip; success</p></li>
+</ul>
+
+<p>Keeping these files&hellip; (1 items).</p>
+
+<ul>
+<li>/home/dieter/video-selection/913 - The One Where Monica Sings.avi</li>
+</ul>
+
+<p>Copying new files&hellip; (10 items).</p>
+
+<ul>
+<li><p>/home/dieter/video-selection/914 - The One With The Blind Dates.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/915 - The One With the Mugging.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/916 - The One With The Boob Job.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/917 - The One With The Memorial Service.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/918 - The One With The Lottery.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/919 - The One With Rachels Dream.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/920 - The One With The Soap Opera Party.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/921 - The One With The Fertility Test.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/922 - The One With The Donor.avi&hellip; success</p></li>
+
+<li><p>/home/dieter/video-selection/923 - 924 - The One In Barbados.avi&hellip; success</p></li>
+</ul>
+
+<p>finished</p>
+
+<p>]]&gt;</pre><h4>Download</h4></p>
+
+<p>The code is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt">Gpl v3</a><br />
+
+You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/files/ddm');">here</a></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

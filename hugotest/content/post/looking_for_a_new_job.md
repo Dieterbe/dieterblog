@@ -1,0 +1,30 @@
++++
+title = "Looking for a new job"
+date = "2008-11-24T20:30:51-04:00"
+tags = ["life", "linux"]
++++
+<p>My new ideal (slightly utopic) job would be:</p>
+
+<ul>
+
+<li>Conceptual engineering while still being close to the technical side as well, most notably system engineering and development.</li>
+
+<li>Innovative: go where no one has gone before.
+
+<li>Integrated in the open-source world.  (Bonus points for companies where open source is key in their business model)</li>
+
+<p><!-- Either nearby (East Flanders, preferably the Ghent area), or far enough/international to not have travelling/i move /... -->
+
+</ul>
+
+<p>To get a detailed overview of my interests and skills, I refer to:</p>
+
+<ul>
+
+<li>My Linkedin profile: <a href="http://www.linkedin.com/in/dieterplaetinck">http://www.linkedin.com/in/dieterplaetinck</a></li>
+
+<li>My Curriculum Vitae. <a href="/files/curriculumvitae-dieter-plaetinck-2008-11-24-EN.pdf">EN</a> / <a href="/files/curriculumvitae-dieter-plaetinck-2008-11-24-NL.pdf">NL</a> </li>
+
+</ul>
+
+<p><!-- Interested parties can get reference contact information at my previous employer on request. --></p>

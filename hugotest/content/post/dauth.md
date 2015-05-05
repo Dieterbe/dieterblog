@@ -1,0 +1,14 @@
++++
+title = "dAuth"
+date = "2007-07-02T13:19:14-04:00"
+tags = ["php", "foss", "dauth", "cakephp"]
++++
+<p>It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc.</p>
+
+<p><a href="http://bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3" onClick="javascript:urchinTracker('bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3');">Read all about it</a></p>
+
+<p>You can download the files separately on the before mentioned page or get the <a href="http://letthemcodecake.com/learning-cakephp/dauth-v03-tarball/" onClick="javascript:urchinTracker('letthemcodecake.com/learning-cakephp/dauth-v03-tarball/');">tarball</a> that somebody was kind enough to create.<br />
+
+(damn I'm lazy today)</p>
+
+<p>I don't maintain this any more!</p>

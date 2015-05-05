@@ -1,0 +1,72 @@
++++
+title = "RRDtool: updating RRA settings and keeping your collected data"
+date = "2009-12-09T15:05:14-04:00"
+tags = ["devops", "monitoring"]
++++
+<!--more-->
+
+Especially when using <a href="community.zenoss.org">zenoss</a> (the monitoring solution I mostly work with at <a href="http://www.kangaroot.net/">Kangaroot</a>), which uses very conservative RRD settings by default (i.e. 5-minute intervals for only the first 50 hours).  Zenoss provides a way for you to change the way RRD's are created, but not to apply those settings to already existing RRD files, which I found out *after* I started monitoring everything ;)</p>
+
+<p><a href="http://oss.oetiker.ch/rrdtool/doc/rrdresize.en.html">rrdresize</a> can help: it (just) adds or removes locations for rows.<br />
+
+In my case it was not good enough because zenoss uses a variety of resolutions (step sizes), and so if you add rows to all of them rrdtool - when graphing - will often pick a higher resolution RRA that just had rows added (and hence contain unknown values), even though you have the values, albeit at a lower resolution.</p>
+
+<p>So you need a way to update all rows in the RRA's.<br />
+
+I <a href="http://stackoverflow.com/questions/802902/export-import-rrdtool-database-with-differents-rra/1867163#1867163">found</a> a <a href="http://code.google.com/p/pmptools/source/browse/trunk/rrd/rrdmove">perl tool</a> that does just that.  (I think, I didn't study all details).  So, you install that in your /home/zenoss for instance and then you run the following script, which creates new rrd files with the new settings and uses the perl script to copy all data into it.</p>
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+#!/bin/sh
+
+# invoke me like this:
+
+# find /usr/local/zenoss/zenoss/perf/ -name '*.rrd' -exec ./newrrd.sh {} \; >> newrrd-logfile
+
+
+
+file=$1
+
+backupdir=/home/zenoss/rrds-backup
+
+newdir=/home/zenoss/rrds-new
+
+[ -d "$backupdir" ] || mkdir -p "$backupdir" || exit 2
+
+[ -d "$newdir"    ] || mkdir -p "$newdir" || exit 2
+
+[ -f "$file"      ] || exit 3
+
+
+
+echo "Processing $file .."
+
+base="`basename "$file"`"
+
+[ ! -f "$backupdir/$base" ] || mv "$backupdir/$base" "$backupdir/$base".old || exit 4
+
+cp "$file" "$backupdir/$base"
+
+cd "$newdir" && rrdtool create "$base" \
+
+--step '300' \
+
+--start '1230768000' \
+
+'DS:ds0:GAUGE:900:U:U' \
+
+'RRA:AVERAGE:0.5:1:122640' \
+
+'RRA:AVERAGE:0.5:6:55536' \
+
+'RRA:MAX:0.5:6:55536'
+
+/home/zenoss/rrdremove.pl "$backupdir/$base" "$base" | grep -v 2009 # hide some output
+
+cp "$base" "$file" || exit 5
+
+echo "Done"
+
+]]>{{< /highlight >}}<p>
+
+Oh and btw, <a href="http://www.famzah.net/rrdwizard/index.php">rrdwizard</a> is a cool webapp when you're feeling too lazy/have forgotten how to write rrdtool commands</p>

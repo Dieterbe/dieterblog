@@ -1,0 +1,44 @@
++++
+title = "I survived LCL 31-3-2008"
+date = "2008-04-19T12:10:11-04:00"
+tags = ["life", "netlog"]
++++
+<p>If you're one of the sysadmins of a website with 35M members and 150M hits per day this means you're in for an exciting night ...<!--more--></p>
+
+<p>Long story short: LCL couldn't bring the power back up fast enough so we rented our own generator.  After rushing to Brussels we ( The Netlog ITS-team) could sit in the offices upstairs.  But after a while they had to close it down but we could stay in a room nearby (without furniture).   After that we went to Steven's appartment in Machelen.  We worked about 30 hours in a row, getting our sites back up and running (mostly fixing corrupted databases).  Our friends from the devteam also did some great achievements the next day, by using the redundancy of denormalized database layouts they could restore nearly all missing content that had vanished because of table repairs.</p>
+
+<p>Here is some footage:</p>
+
+<h3>Netlog homepage</h3>
+
+<p><img src='/files/blog/netlog/23296980.jpg'><br />
+
+<a href="/files/blog/flickr/2378844832_7163d9b28b_o.png">hi-res version</a></p>
+
+<h3>At LCL</h3>
+
+<p><img src='/files/blog/netlog/22103670_10474680_23396287.jpg'><br />
+
+Toon &amp; Nicolas</p>
+
+<p><img src='/files/blog/netlog/22103670_3331347_23396512.jpg'><br />
+
+Kenny</p>
+
+<p><img src='/files/blog/netlog/22103670_7040556_23396414.jpg'><br />
+
+Steven - Jakob - Lorenz</p>
+
+<p><img src='/files/blog/netlog/22103670_15039122_24732436.jpg'><br />
+
+Jakob - Steven - me - Kenny</p>
+
+<h3>At Steven's appartment</h3>
+
+<p>No pics made here, just a silly video ;)</p>
+
+<p><object width="425" height="355"><br />
+
+<param name="movie" value="http://www.youtube.com/v/pnsCiypcBPk&amp;hl=en"></param>
+
+<param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/pnsCiypcBPk&amp;hl=en" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed></object></p>

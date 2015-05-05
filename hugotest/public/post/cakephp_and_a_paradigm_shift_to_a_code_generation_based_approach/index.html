@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>CakePHP and a paradigm shift to a code generation based approach? &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/cakephp_and_a_paradigm_shift_to_a_code_generation_based_approach/">CakePHP and a paradigm shift to a code generation based approach?</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/cakephp_and_a_paradigm_shift_to_a_code_generation_based_approach/" rel="bookmark">
+					<time class="entry-date" datetime="2009-01-19 22:16:52 -0400 -0400">
+						January 19, 2009
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I&rsquo;ve choosen to use CakePHP.<br /></p>
+
+<p>Why? Well, it may be 2 years since I last used it, but I&rsquo;ve followed the project and it&rsquo;s planet, and it seems to have matured and gained even more monumentum.<br /></p>
+
+<p>I want to use something that is widely used so there is plenty of stuff available for it, it&rsquo;s RAD, it&rsquo;s flexible and powerful.<br /></p>
+
+<p>I noticed things such as CLI support and documentation have improved tremendously too.</p></p>
+
+<p>However, I find that still, the recommended (or at least "most commonly used") practices are not as efficient as they could be, and that emphasis is placed on the wrong aspects.<br />
+
+See, even though the <a href="http://book.cakephp.org/view/113/Code-Generation-with-Bake">bake</a> tool has come a long way since I last used it, it's still used to "generate some standard models/controllers/views" and the developer can take it from there [further editing the resulting files himself].<br />
+
+Finetuning generated code by editing the templates (in fact, only views have templates; the php code of models and controllers is hardcoded in the scripts that generate them), is still an obscure practice...<br />
+
+Also, there are very few commandline switches (Right now you can choose your app dir, whether you want to bake a model,controller or view, and it's name.)<br />
+
+All other things (validation rules, associatons, index/view/edit/add actions/views, which components, overwrite yes/no etc) are all handled interactively.<br />
+
+There are also some smaller enoyances such as when you specify one option like the name of the model, it assumes you don't want interactivity and produces a model containing nothing more then the class definition and the membervariable $name, which is usually worthless.<br />
+
+One thing that is pretty neat though, If you update $this->recursive in a model, the baked views will contain stuff for the associated things.  But so much more could be done...<br />
+
+</p>
+
+<p>Ideallistically speaking, the bake tool (and it libraries) should imho become much more advanced:</p>
+
+<ul>
+
+<li>templates for views, models and controllers.</li>
+
+<li>choice of multiple (groups of) templates which you can choose with a commandline argument. (eg I typically have some different kinds of M/V/C's for a certain model, but there are many similarities and they can often even be categorised into groups.)</li>
+
+<li>the ability to control all aspects of the bake process through commandline switches (or config files).  Both the things that are asked now but also $recursive level, behaviors you want to use for models, etc.</li>
+
+<li>proper cmdline arg parsing (getline or something)</li>
+
+</ul>
+
+<p>We could then do a paradigm shift to actually treat your models, views and controllers as uncritical "output" code which can be deterministically regenerated (and hence doesn't need to be versionned), while the templates and the scripts to call bake become your "source", and your key asset to building the application you're working on.</p>
+
+<p>If I had the time (or would use cake for personal projects) I would happily work on such refactorings in a clean way.<br />
+
+For now though,  I've hacked/workarounded/patched the cake code in such a way that it behaves the way I want, while spending as little time on it as possible.<br />
+
+For those interested, the patched code is online at <a href="http://github.com/Dieterbe/cake/tree/master" title="http://github.com/Dieterbe/cake/tree/master">http://github.com/Dieterbe/cake/tree/master</a><br />
+
+The first rev is the original cakephp code, so you can look at the diffs if you want.</p>
+
+<p>Changes until now ( <a href="http://github.com/Dieterbe/cake/commit/9ceb6234164ebc750c8b697a825834ca36097ce7" title="http://github.com/Dieterbe/cake/commit/9ceb6234164ebc750c8b697a825834ca36097ce7">http://github.com/Dieterbe/cake/commit/9ceb6234164ebc750c8b697a825834ca3...</a> ):</p>
+
+<ul>
+
+<li>Do not clear my terminal. (why is that needed anyway :/)</li>
+
+<li>Some echo's that tell me which shells are loaded, tasks executed etc (to understand more how it all works)</li>
+
+<li>always overwrite files.  Hey I use version control!  always bake unit tests, always bake all actions/views, except those for admin routing</li>
+
+<li>never ask me which db to connect to, never use scaffolding, don't use helpers, don't write $useDbConfig to models (it's loaded dynamically in app_model),</li>
+
+<li>agree with all associations except the hasOne's (I can build in exceptions/specific rules if I ever need them)</li>
+
+<li>validation rules are specified as sql comments.  I don't want to re-answer those questions each time I rebake.</li>
+
+</ul>
+
+<p>See this example sql file.  When baking a model, the code will first try to find a specific rule for the model, if not found, it will look for a global rule, and if still not found, ask the question interactively.<br /></p>
+
+<p>[code lang=&ldquo;sql&rdquo;]<br /></p>
+
+<p>&ndash; cake validate ALL id none<br /></p>
+
+<p>&ndash; cake validate ALL created none<br /></p>
+
+<p>&ndash; cake validate ALL modified none<br /></p>
+
+<p>(&hellip;)<br /></p>
+
+<p>CREATE TABLE foos (<br /></p>
+
+<pre><code>id serial NOT NULL,&lt;br /&gt;
+
+name character varying(255) NOT NULL, --cake validate apc alphanumeric&lt;br /&gt;
+
+type character varying(255) NOT NULL, --cake validate apc notempty&lt;br /&gt;
+
+room_id integer NOT NULL, --cake validate apc numeric&lt;br /&gt;
+
+created timestamp without time zone,&lt;br /&gt;
+
+modified timestamp without time zone&lt;br /&gt;
+</code></pre>
+
+<p>);<br /></p>
+
+<p>[/code]</p>
+
+<p></ul></p>
+
+<p>Here is the bash code which I currently use to bake all my models without any interactivity:</p>
+
+<p>[code lang="bash"]<br />
+
+for i in `cake bake model <<< 'q' | awk '/^[[:digit:]]/ {print $2}'` #get a list of all models<br />
+
+do<br />
+
+        if [ $i != Aro ] &amp;& [ $i != Aco ] &amp;& [ $i != ArosAco ]<br />
+
+        then<br />
+
+                echo ">>> doing $i...."<br />
+
+                cake bake model $i<br />
+
+        fi<br />
+
+done<br />
+
+[/code]</p>
+
+<p>I may post later again about this stuff if I have something useful to say.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

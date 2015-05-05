@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Histograms in statsd, and graphing them over time with graphite. &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/histogram-statsd-graphing-over-time-with-graphite/">Histograms in statsd, and graphing them over time with graphite.</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/histogram-statsd-graphing-over-time-with-graphite/" rel="bookmark">
+					<time class="entry-date" datetime="2012-11-07 18:45:11 -0400 -0400">
+						November 7, 2012
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I submitted a pull request to statsd which adds <a href="https://github.com/etsy/statsd/pull/162">histogram support</a>.</p>
+
+<p><img style="float:left;margin:0 5px 0 0;" src="/files/Black_cherry_tree_histogram.svg.png" alt="Example histogram, from Wikipedia"/></p>
+
+<p><br/>(refresher: a histogram is [a visualization of] a frequency distribution of data,</p>
+
+<p>paraphrasing your data by keeping frequencies for entire classes (ranges of data).</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Histogram">histograms - Wikipedia</a>)</p>
+
+<p><br/>It&rsquo;s commonly documented how to plot single histograms, that is a 2D diagram consisting of rectangles whose</p>
+
+<ul>
+
+<li>area is proportional to the frequency of a variable</li>
+
+<li>whose width is equal to the class interval</li>
+
+</ul>
+
+<p>Class intervals go on x-axis, frequencies on y-axis.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>Note: histogram class intervals are supposed to have the same width.</p>
+
+<p><br/>My implementation allows arbitrary class intervals with potentially different widths,</p>
+
+<p>as well as an upper boundary of infinite.</p>
+
+<p></p></p>
+
+<h4>Plotting histograms.. over time</h4>
+
+<p>
+
+We want to plot histograms over time, and not just for a few select points in time (in which case you can just make several histograms),
+
+but a contiguous range of time, preferably through graphite's 2D graphs cause graphite is neat and common enough.
+
+<br/>Time goes on x-axis, that's pretty much a given.  So I'm trying to explore ways to visualize both class intervals as well as frequencies on the y-axis.
+
+</p>
+
+<p>The example I'll use are page rendering timings, condensed into classes with upper boundaries of 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 50 and infinite seconds</p>
+
+<p><p></p>
+
+<p>Tips and notes:</p>
+
+<ul>
+
+<li>
+
+the histogram implementation stores absolute frequencies, but it's easy to get relative frequencies in percent, like so:
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+target<span style="color: #666666">=</span>scale(divideSeries(stats.timers.<span style="color: #666666">&lt;</span>your_metric<span style="color: #666666">&gt;</span>.bin_<span style="color: #666666">*</span>,stats.timers.render_time.count),<span style="color: #666666">100</span>)
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+
+
+</li>
+
+<li>I'll be using relative frequencies here because it normalizes the scale of the y-axis</li>
+
+<li>In this use case each class has a notion of desirability (<i>low render time good, high render time bad</i>),
+
+<br/>I think it makes sense to use color to represent this.  This extends to a lot of operational metrics which one would be using histograms for.
+
+<br/>(unlike non-software histograms that represent demographics or tree heights, where classes usually have nothing to do with desirability or quality).
+
+<br/>As it turns out, it's fairly easy to programmatically compute colors between green and red in order to have mathematically correct "steps" of color.
+
+<br/>However, <a href="http://stackoverflow.com/questions/340209/generate-colors-between-red-and-green-for-a-power-meter">Looks like HSV values are more suited
+
+than RGB</a> but <a href="https://github.com/graphite-project/graphite-web/issues/93">
+
+graphite doesn't support HSV (yet)</a> (although one could convert HSV to RGB).
+
+Also <a href="http://vis4.net/blog/posts/goodbye-redgreen-scales/">it looks like
+
+green-purple would be a better choice for people with color blindness</a>.  I haven't gone too far in this topic.
+
+</li>
+
+<li>Since I choose to go with color gradients, it means I better use stacked graphs, otherwise it would be too hard to distinguish which graph is what</li>
+
+<li>None of this is restricted to timing data.  The metric type under which histograms are (and should be) implemented is called "timing", which is
+
+a misleading name but <a href="https://github.com/etsy/statsd/issues/98">we're working on renaming it</a>.</li>
+
+</ul>
+
+<h4>First version</h4>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+
+width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
+
+vtitle<span style="color: #666666">=</span>relative frequency <span style="color: #008000; font-weight: bold">in</span> <span style="color: #666666">%&amp;</span>yMax<span style="color: #666666">=100&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_01,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;2FFF00&#39;</span>),<span style="color: #BA2121">&#39;0.01&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;64DD0E&#39;</span>),<span style="color: #BA2121">&#39;0.05&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;9CDD0E&#39;</span>),<span style="color: #BA2121">&#39;0.1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;DDCC0E&#39;</span>),<span style="color: #BA2121">&#39;0.5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;DDB70E&#39;</span>),<span style="color: #BA2121">&#39;1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF6200&#39;</span>),<span style="color: #BA2121">&#39;5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF3C00&#39;</span>),<span style="color: #BA2121">&#39;10&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF1E00&#39;</span>),<span style="color: #BA2121">&#39;50&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
+
+lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+<p><img src="/files/rendertime-histogram.png" width="740" height="300" alt="rendertime histogram" /></p>
+
+<p><br/>Turns out we mainly see the vast majority that performs well, simply because with this way of rendering,</p>
+
+<p>the higher the frequency of a class, the more prominent.  Bad values are hard to see because there&rsquo;s not many of them,</p>
+
+<p>despite being more interesting.</p>
+
+<p>A thought I had at this point was to make all &ldquo;class bands&rdquo; equally wide and use a green-to-red gradient to denote the frequency values,</p>
+
+<p>or even just keep the current color assignments but rely on something like opacity to express frequencies. Alas, none of this is currently</p>
+
+<p>possible with graphite, as far as I can tell.  Though I would like to explore this further.  Especially because I think it wouldn&rsquo;t be hard to implement</p>
+
+<p>in graphite.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>So, let&rsquo;s see what <i>can</i> be done right now.</p>
+
+<h4>Leaving out the smallest class</h4>
+
+<p>This adaption is basically the same as before, but leaves out the smallest class (which took most space), this way</p>
+
+<p>the other bands are a bit more visible but the effect isn&rsquo;t as clear as we want.</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+
+width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
+
+vtitle<span style="color: #666666">=</span>relative frequency <span style="color: #008000; font-weight: bold">in</span> <span style="color: #666666">%</span>, leaving out first <span style="color: #008000; font-weight: bold">class</span><span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;64DD0E&#39;</span>),<span style="color: #BA2121">&#39;0.05&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;9CDD0E&#39;</span>),<span style="color: #BA2121">&#39;0.1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;DDCC0E&#39;</span>),<span style="color: #BA2121">&#39;0.5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;DDB70E&#39;</span>),<span style="color: #BA2121">&#39;1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF6200&#39;</span>),<span style="color: #BA2121">&#39;5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF3C00&#39;</span>),<span style="color: #BA2121">&#39;10&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF1E00&#39;</span>),<span style="color: #BA2121">&#39;50&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
+
+lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+<p><img src="/files/rendertime-histogram-leaving-out-first-class.png" width="740" height="300" alt="rendertime histogram leaving out first class" /></p>
+
+<h4>Per-band scaling</h4>
+
+<p>Finally, the bigger the values represented by each class the more we inflate the band,</p>
+
+<p>so the more problematic cases become more visible, despite having a lower frequency.</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+
+http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+
+width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
+
+vtitle<span style="color: #666666">=</span>rel. freq <span style="color: #008000; font-weight: bold">with</span> scale adjustment per band<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_01,stats.timers.render_time.count),<span style="color: #666666">0.01</span>),<span style="color: #BA2121">&#39;2FFF00&#39;</span>),<span style="color: #BA2121">&#39;0.01&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color: #666666">0.04</span>),<span style="color: #BA2121">&#39;64DD0E&#39;</span>),<span style="color: #BA2121">&#39;0.05&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color: #666666">0.05</span>),<span style="color: #BA2121">&#39;9CDD0E&#39;</span>),<span style="color: #BA2121">&#39;0.1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color: #666666">0.4</span>),<span style="color: #BA2121">&#39;DDCC0E&#39;</span>),<span style="color: #BA2121">&#39;0.5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color: #666666">0.5</span>),<span style="color: #BA2121">&#39;DDB70E&#39;</span>),<span style="color: #BA2121">&#39;1&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color: #666666">4</span>),<span style="color: #BA2121">&#39;FF6200&#39;</span>),<span style="color: #BA2121">&#39;5&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color: #666666">5</span>),<span style="color: #BA2121">&#39;FF3C00&#39;</span>),<span style="color: #BA2121">&#39;10&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color: #666666">40</span>),<span style="color: #BA2121">&#39;FF1E00&#39;</span>),<span style="color: #BA2121">&#39;50&#39;</span>)<span style="color: #666666">&amp;</span>
+
+target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">60</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
+
+lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
+
+]]<span style="color: #666666">&gt;</span>
+</pre></div>
+</p>
+
+<p><img src="/files/rendertime-histogram-higher-focus-for-higher-class-interval.png" width="740" height="300" alt="rendertime histogram with higher focus for higher class interval" /></p>
+
+<p><br/>I started off by scaling each band by the width of the class interval.  This is actually more arbitrary than it may seem.</p>
+
+<p><br/>The point is that now it&rsquo;s easier to spot acute as well as long-standing problems, but note you can&rsquo;t really read statistics from this graph because of the per-band scaling.</p>
+
+<p><br/>Note also that outliers contribute to the outer band(s) and are given as much focus as non-outliers in the same bands.</p>
+
+<p>In a system over which you have no complete control (i.e. if you were graphing histograms of time until first byte or page loaded at client,</p>
+
+<p>where you rely on the internet as a transport) it makes sense to give less attention to outliers and focus on optimizing for as many users as possible,</p>
+
+<p>I think it there&rsquo;s no reliable way to subtract outliers from the upper bands and you should also graph averages and percentiles and understand what each</p>
+
+<p>graph does.</p>
+
+<p>But anyway here I want to include outliers, because they represent latencies we can fix.</p>
+
+<h4>Final notes</h4>
+
+<p>While the tools we have are by no means perfect, I&rsquo;m seeing gradual improvement in the monitoring space.  This work is only a small piece</p>
+
+<p>of the puzzle. The rendering of histograms can be improved but at this point I think they are good enough to be usable. The real challenge is</p>
+
+<p>putting in place automated trending, anomaly detection and alerting.  If we can figure that out, there&rsquo;s less need to be looking at graphs in the first place.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title> &middot; Dieter blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/minimal-go-docker-image-from-scratch/"></a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/minimal-go-docker-image-from-scratch/" rel="bookmark">
+					<time class="entry-date" datetime="0001-01-01 00:00:00 &#43;0000 UTC">
+						January 1, 0001
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		Building minimal go docker images from scratch.
+# pubdate 2014-12-06
+# pubtime 16:01:02
+# tags devops,monitoring
+
+Today I wanted to build the simplest docker container I ever built:
+it would contain just 1 statically compiled binary (<a href="https://github.com/vimeo/carbon-tagger">carbon-tagger</a>) and a config file for it.  Nothing more should be needed, no base os, no libraries, no runtime, nothing.
+So I wanted to use the scratch image (which contains nothing) as starting point, as opposed to something like the <a href="https://registry.hub.docker.com/_/golang/">official go docker images</a> which are built on top of a Debian base system (and are about 470MB)
+I ran into some hurdles, mostly with how Go compiles its binaries, and I want to share them here.
+
+
+<h3>Warming up</h3>
+
+My first version of the Dockerfile just instructed to add the executable and run it:
+
+<pre>
+FROM scratch
+ADD carbon-tagger /
+CMD /carbon-tagger
+</pre>
+It resulted in:
+<pre>
+Unable to locate /bin/sh
+lxc-start: The container failed to start
+</pre>
+
+This was puzzling because I didn't invoke a shell anywhere, but it turned out, as <a href="http://docs.docker.com/reference/builder/#cmd">the docs say</a>, CMD instructions, the way you typically see them, are passed into a shell for parsing, interpretation and execution, 
+The fix is expressing them as an array in the Dockerfile (see docs) so docker can call exec with your given command and args.
+
+<h3>Go's static builds break when there's no dynamic libraries</h3>
+
+Now, the real, more interesting problem. Running the newly built container:
+
+<pre>
+$ docker run 68c98870608e
+no such file or directory2014/12/23 18:29:07 Error response from daemon: Cannot start container c7a125b88e6271d04e40a112162b3c3825a51dd6009805ff745564ffcf1a3425: no such file or directory
+$
+</pre>
+
+After googling a bit I found some guidance in <a href="http://blog.xebia.com/2014/07/04/create-the-smallest-possible-docker-container/">this blog article/</a> where they explain by default Go doesn't truly compile all libraries in statically, it's still a dynamically linked executable, that needs some system libraries (even when all the Go dependencies and even the runtime are compiled in).
+When people talk about Go's static compilation, they actually refer to the building in of go code, but still depend on sys libs
+In the blog post, they recommend using `CGO_ENABLED=0 go get -a` to do a fully static build.
+I tried this, but unfortunately still resulted in a dynamic build for me.
+To be more precise, the resulting binary depends on these libraries:
+```
+$ ldd carbon-tagger
+    linux-vdso.so.1 (0x00007fff5ed90000)
+    libpthread.so.0 => /usr/lib/libpthread.so.0 (0x00007fad7400d000)
+    libc.so.6 => /usr/lib/libc.so.6 (0x00007fad73c6a000)
+    /lib64/ld-linux-x86-64.so.2 (0x00007fad74229000)
+```
+According to some people in the go irc channel this is because one of the libraries the program depends on probably needs the dynamic libraries somehow. "net" was a suggested culprit, but I also see pthread in there, which sounds like the runtime itself?
+
+I wasn't sure what to do with the first one.  It doesn't exist on my laptop and that didn't cause any issues, so I just ignored it and that worked out fine.
+The other ones are found. As is common for dynamic libs they are as symlinks to base files.
+```
+ls -alh /usr/lib/libpthread.so.0 /usr/lib/libc.so.6 /lib64/ld-linux-x86-64.so.2
+lrwxrwxrwx 1 root root 10 Nov 24 20:10 /lib64/ld-linux-x86-64.so.2 -> ld-2.20.so
+lrwxrwxrwx 1 root root 12 Nov 24 20:10 /usr/lib/libc.so.6 -> libc-2.20.so
+lrwxrwxrwx 1 root root 18 Nov 24 20:10 /usr/lib/libpthread.so.0 -> libpthread-2.20.so
+```
+so i copied the needed files to my local build dir.
+(note: I copied the files explicitly named with ldd (the symlinks) as well as the libraries they point to.  You can probably get away with just copying the libraries themselves and naming them based on the ldd output)
+
+So the resulting directory structure looks like so:
+
+<pre>
+$ ls -alhR usr/lib
+usr/lib:
+total 2.1M
+drwxr-xr-x 2 dieter dieter 4.0K Dec 23 14:41 .
+drwxr-xr-x 3 dieter dieter 4.0K Dec 23 14:29 ..
+-rwxr-xr-x 1 dieter dieter 1.9M Nov 24 20:10 libc-2.20.so
+lrwxrwxrwx 1 dieter dieter   12 Nov 24 20:10 libc.so.6 -> libc-2.20.so
+-rwxr-xr-x 1 dieter dieter 136K Nov 24 20:10 libpthread-2.20.so
+lrwxrwxrwx 1 dieter dieter   18 Nov 24 20:10 libpthread.so.0 -> libpthread-2.20.so
+$ ls -alhR lib64
+lib64:
+total 172K
+drwxr-xr-x 2 dieter dieter 4.0K Dec 23 14:36 .
+drwxr-xr-x 5 dieter dieter 4.0K Dec 23 14:40 ..
+-rwxr-xr-x 1 dieter dieter 161K Nov 24 20:10 ld-2.20.so
+lrwxrwxrwx 1 dieter dieter   10 Nov 24 20:10 ld-linux-x86-64.so.2 -> ld-2.20.so
+<pre>
+
+And the final Dockerfile now copies the libs to the right place (also, adding here a config file for carbon-tagger)
+<pre>
+FROM scratch
+ADD carbon-tagger /carbon-tagger
+ADD carbon-tagger.conf /
+ADD usr /usr
+ADD lib64 /lib64
+CMD ["./carbon-tagger"]
+~                       
+</pre>
+
+Running this works fine!
+In terms of space usage:
+<pre>
+$ ls -alh $GOPATH/bin/carbon-tagger
+-rwxr-xr-x 1 dieter dieter 4.8M Dec 23 17:22 /home/dieter/go/bin/carbon-tagger
+$ docker images
+REPOSITORY                               TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+<none>                                   <none>              34678dbe2f85        2 minutes ago       9.393 MB
+</pre>
+(this was with `-ldflags '-s'` to remove debug symbols from the binary.  Otherwise it took about 2MB more)
+
+Next step .. writing a script that parses ldd 
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+		<aside id="recent-posts-3" class="widget widget_recent_entries">
+
+	
+</aside>
+
+		<aside id="categories-3" class="widget widget_categories">
+
+	<h1 class="widget-title">Tag cloud</h1>
+
+    
+     
+    
+    <a href="http://localhost:1313/tags/arch">arch</a>
+    19
+    <br/>
+    
+    <a href="http://localhost:1313/tags/bash">bash</a>
+    14
+    <br/>
+    
+    <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+    7
+    <br/>
+    
+    <a href="http://localhost:1313/tags/conf">conf</a>
+    9
+    <br/>
+    
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    
+    <a href="http://localhost:1313/tags/drupal">drupal</a>
+    5
+    <br/>
+    
+    <a href="http://localhost:1313/tags/foss">foss</a>
+    43
+    <br/>
+    
+    <a href="http://localhost:1313/tags/git">git</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    
+    <a href="http://localhost:1313/tags/information-age">information-age</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/life">life</a>
+    33
+    <br/>
+    
+    <a href="http://localhost:1313/tags/linux">linux</a>
+    20
+    <br/>
+    
+    <a href="http://localhost:1313/tags/lua">lua</a>
+    1
+    <br/>
+    
+    <a href="http://localhost:1313/tags/mail">mail</a>
+    1
+    <br/>
+    
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    
+    <a href="http://localhost:1313/tags/music">music</a>
+    5
+    <br/>
+    
+    <a href="http://localhost:1313/tags/mysql">mysql</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/n900">n900</a>
+    2
+    <br/>
+    
+    <a href="http://localhost:1313/tags/netlog">netlog</a>
+    6
+    <br/>
+    
+    <a href="http://localhost:1313/tags/openstack">openstack</a>
+    1
+    <br/>
+    
+    <a href="http://localhost:1313/tags/perf">perf</a>
+    10
+    <br/>
+    
+    <a href="http://localhost:1313/tags/photos">photos</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/php">php</a>
+    9
+    <br/>
+    
+    <a href="http://localhost:1313/tags/productivity">productivity</a>
+    6
+    <br/>
+    
+    <a href="http://localhost:1313/tags/python">python</a>
+    5
+    <br/>
+    
+    <a href="http://localhost:1313/tags/thesis">thesis</a>
+    2
+    <br/>
+    
+    <a href="http://localhost:1313/tags/travel">travel</a>
+    2
+    <br/>
+    
+    <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+    6
+    <br/>
+    
+    <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+    3
+    <br/>
+    
+    <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+    8
+    <br/>
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

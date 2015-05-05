@@ -1,0 +1,16 @@
++++
+title = "I'm not going to Fosdem 2008"
+date = "2008-02-12T20:37:50-04:00"
+tags = ["foss", "netlog", "life", "conf"]
++++
+<p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2008.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a><br />
+
+<!--more--><br />
+
+Fosdem looks interesting again : talks about iogrind , scons , cakephp , virtualbox , openAFS , ...<br />
+
+No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms would have interested me too ( mostly gtk/glib for the latter )</p>
+
+<p>Oh and about the reason I'm not going?  The <a href="http://corporate.netlog.com">company</a> is taking us to <a href="http://www.valdisole.it/">Val di Sole</a> where we will ski, snowboard and apres-ski for 4 days !  w00t ! This kicks even more ass then Fosdem :P</p>
+
+<p>PS : I'm considering going to <a href="http://lac.linuxaudio.org/">LAC 2008</a></p>

@@ -1,0 +1,16 @@
++++
+title = "Building a search engine"
+date = "2011-01-22T19:15:29-04:00"
+tags = ["life"]
++++
+I was looking to get back to the challenging world of high-performance and large-scale (web) applications, but I also wanted something more conceptual and researchy, rather then the highly hands-on dev- and ops work I've been doing for a few years now.
+
+<br/>The <a href="https://projects.ibbt.be/bom-vl/">Bom-vl</a> project is pretty broad: it aims to make the Flemish cultural heritage media more useable by properly digitizing, archiving and making public the (currently mostly analog) archives from providers such as TV stations.</p>
+
+<img src="/files/blog/ibbt/ilabt2.jpg">
+
+<p>Currently, I believe there's some >100TB of media in our cluster (mostly from VRT, afaik), along with associated textual descriptions/metadata, with more to follow.  The application is currently for a selected audience but the goal is to make it public in the near future.
+
+I'm part of the search engine team, we aim to provide users with the most relevant hits for their queries, by using existing technology (think Lucene, hadoop, etc) or devising our own where needed.
+
+As I'm charged with a similarity search problem ("other videos which might also interest you"), I'm studying information retrieval topics such as index and algorithm design and various vector models. Starting next week, I'll probably start implementing and testing some approaches.</p>

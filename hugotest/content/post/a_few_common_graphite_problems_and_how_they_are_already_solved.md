@@ -1,0 +1,284 @@
++++
+title = "A few common graphite problems and how they are already solved."
+date = "2013-04-04T08:54:20-04:00"
+tags = ["devops", "monitoring"]
++++
+<h4>metrics often seem to lack details, such as units and metric types</h4>
+
+looking at a metric name, it's often hard to know
+
+<ul>
+
+<li>the unit a metric is measured in (bits, queries per second, jiffies, etc)</li>
+
+<li>the "type" (a rate, an ever increasing counter, gauge, etc)</li>
+
+<li>the scale/prefix (absolute, relative, percentage, mega, milli, etc)</li>
+
+</ul>
+
+<a href="#structured_metrics">structured_metrics</a> solves this by adding these tags to graphite metrics:
+
+<ul>
+
+<li><pre>what</pre>
+
+<i>what is being measured?: bytes, queries, timeouts, jobs, etc</i></li>
+
+<li><pre>target_type</pre>
+
+<i>must be one of the existing <a href="https://github.com/vimeo/graph-explorer#enhanced-metrics">clearly defined target_types</a> (count, rate, counter, gauge)
+
+<br/>These match statsd metric types (i.e. rate is per second, count is per flushInterval)</i></li>
+
+</ul>
+
+In <a href="#graph_explorer">Graph-Explorer</a> these tags are mandatory, so that it can show the unit along with the prefix (i.e. <i>'Gb/s'</i>) on the axis.  
+
+<br/>
+
+This will also allow you to request graphs in a different unit and the dashboard will know how to convert (say, Mbps to GB/day)
+
+
+
+<h4>tree navigation/querying is cumbersome, metrics search is broken.  How do I organize the tree anyway?</h4>
+
+the tree is a simplistic model. There is simply too much dimensionality that can't be expressed in a flat tree.
+
+There's no way you can organize it so that will it satisfy all later needs.
+
+A tag space like <a href="#structured_metrics">structured_metrics</a> makes it <b>obsolete</b>.
+
+with <a href="#graph_explorer">Graph-Explorer</a> you can do (full-text) search on metric name, by any of their tags, and/or by added metadata.
+
+So practically you can filter by things like server, service, unit (e.g. anything expressed in bits/bytes per second,
+
+or anything denoting errors).  All this irrespective of the source of a metric or the "location in the tree".
+
+
+
+<h4>no interactivity with graphs</h4>
+
+<a href="#timeserieswidget">timeserieswidget</a> allows you to easily add interactive graphite graph objects to html pages.
+
+You get modern features like togglable/reorderable metrics, realtime switching between lines/stacked,
+
+information popups on hoover, highlighting, smoothing, and (WIP) realtime zooming.
+
+It has a canvas (<a href="http://www.flotcharts.org/">flot</a>) and svg (<a href="http://code.shutterstock.com/rickshaw/">rickshaw/d3</a>) backend.
+
+So it basically provides a simpler api to use these libraries specifically with graphite.
+
+<br/>There's a bunch of different graphite dashboards with different takes on graph composition/configuration and workflow, but the actual rendering of graphs
+
+usually comes down to plotting some graphite targets with a legend.  timeserieswidget aims to be a drop-in plugin that brings all modern features
+
+so that different dashboards can benefit from a common, shared codebase, because <b>static PNGs are a thing from the past</b>
+
+<p>
+
+screenshot:
+
+<br/>
+
+<a href="/files/timeserieswidget-rickshaw-stacked.png"><img height="300" src="/files/blog/github/vimeo/timeserieswidget/timeserieswidget-rickshaw-stacked.png" title="yes I'm aware of the irony of a static screenshot of an interactive widget :)"></img></a>
+
+</p>
+
+
+
+<h4>events lack text annotations, they are simplistic and badly supported</h4>
+
+Graphite is a great system for time series metrics.  Not for events.  metrics and events are very different things across the board.  drawAsInFinite() is a bit of a hack.
+
+<ul>
+
+<li><a href="#anthracite">anthracite</a> is designed specifically to manage events.
+
+<br/>It brings extra features such as different submission scripts, outage annotations, various ways to see events and reports with uptime/MTTR/etc metrics.</li>
+
+<li><a href="#timeserieswidget">timeserieswidget</a> displays your events on graphs along with their metadata (which can be just some text or even html code).
+
+<br/>this is where client side rendering <i>shines</i></li>
+
+</ul>
+
+<p>
+
+screenshots:
+
+<br/>
+
+<a href="https://raw.github.com/Dieterbe/anthracite/master/screenshots/screenshot-table.png"><img height="300" src="/files/blog/github/Dieterbe/anthracite/screenshot-table.png"></img></a>
+
+<a href="https://raw.github.com/vimeo/timeserieswidget/master/screenshots/flot-annotated-event.png"><img height="300" src="/files/blog/github/vimeo/timeserieswidget/flot-annotated-event.png"></img></a>
+
+</p>
+
+
+
+<h4>cumbersome to compose graphs</h4>
+
+There's basically two approaches:
+
+<ul>
+
+<li>interactive composing: with the graphite composer, you navigate through the tree and apply functions.
+
+This is painfull, dashboards like <a href="https://github.com/obfuscurity/descartes">descartes</a> and
+
+<a href="https://github.com/paperlesspost/graphiti">graphiti</a> can make this easier</li>
+
+<li>use a dashboard that uses predefined templates (<a href="https://github.com/ripienaar/gdash">gdash</a> and others)
+
+They often impose a strict navigation path to reach pages which may or may not give you the information you need (usually less or way more)</li>
+
+</ul>
+
+With both approaches, you usually end up with an ever growing pile of graphs that you created and then keep for reference.
+
+<br/>This becomes unwieldy but is useful for various use cases and needs.
+
+<br/>However, <i>neither approach is convenient for changing information needs</i>.
+
+<br/>Especially when troubleshooting, one day you might want to compare the rate of increase of open file handles on a set of specific servers to the traffic
+
+on given network switches, the next day it's something completely different.
+
+<br/>With <a href="#graph_explorer">Graph-Explorer</a>:
+
+<ul>
+
+<li>GE gives you a query interface on top of <a href="#structure_metrics">structured_metric</a>'s tag space.  this enables a bunch of things (see above)</li>
+
+<li>you can yield arbitrary targets for each metric, to look at the same thing from a different angle (i.e. as a rate with `derivative()` or as a daily summary),
+
+and you can of course filter by angle</li>
+
+<li><b>You can group metrics into graphs by arbitrary tags</b> (e.g. you can see bytes used of all filesystems on a graph per server, or <i>compare servers on a graph per filesystem</i>).
+
+<b>This feature always results in the "wow that's really cool" every time I show it</b></li>
+
+<li>GE includes 'what' and 'target_type' in the group_by tags by default so basically, if things are in a different unit (B/s vs B vs b etc) it'll put them in
+
+separate graphs (controllable in query)</li>
+
+<li>GE automatically generates the graph title and vertical title (always showing the 'what' and the unit), and shows all metrics' extra tags.
+
+This also gives you a lot of inspiration to modify or extend your query</li>
+
+</ul>
+
+<p>
+
+<a href="/files/blog/github/vimeo/graph-explorer/screenshot.png">
+
+<img src="/files/blog/github/vimeo/graph-explorer/screenshot.png" width="619" height="396"/>
+
+</a>
+
+</p>
+
+
+
+<h4>limited options to request a specific time range</h4>
+
+<a href="https://github.com/vimeo/graph-explorer#query-parsing-and-execution">GE's query language</a> supports freeform `from` and `to` clauses.
+
+
+
+<h3>Referenced projects</h3>
+
+<ul>
+
+<li>
+
+<a href="https://github.com/Dieterbe/anthracite" id="anthracite">anthracite</a>:
+
+<br/>
+
+event/change logging/management with a bunch of ingestion scripts and outage reports
+
+</li>
+
+<li>
+
+<a href="https://github.com/vimeo/timeserieswidget" id="timeserieswidget">timeserieswidget</a>:
+
+<br/>
+
+jquery plugin to easily get highly interactive graphite graphs onto html pages (dashboards)
+
+</li>
+
+<li>
+
+<a href="https://github.com/vimeo/graph-explorer/tree/master/structured_metrics" id="structured_metrics">structured_metrics</a>:
+
+<br/>
+
+python library to convert graphite metrics tree into a tag space with clearly defined units and target types, and arbitrary metadata.
+
+</li>
+
+<li>
+
+<a href="https://github.com/vimeo/graph-explorer" id="graph_explorer">graph-explorer</a>:
+
+<br/>
+
+dashboard that provides a query language so you can easily compose graphs on the fly to satisfy varying information needs.
+
+</li>
+
+</ul>
+
+All tools are designed for integration with other tools and each other.
+
+Timeserieswidget gets data from anthracite, graphite and elasticsearch.
+
+Graph-Explorer uses structured_metrics and timeserieswidget.
+
+
+
+<h3>Future work</h3>
+
+There's a whole lot going on in the monitoring space, but I'd like to highlight a few things I personally want to work more on:
+
+<ul>
+
+<li>
+
+I spoke with Michael Leinartas at Monitorama (and there's also a <a href="https://answers.launchpad.net/graphite/+question/223956">launchpad thread</a>).
+
+We agreed that native tags in graphite are the way forward.  This will address some of the pain points
+
+I'm already fixing with structured_metrics but in a more native way.
+
+I envision submitting metrics would move from:
+
+<pre>
+
+stats.serverdb123.mysql.queries.selects 895 1234567890
+
+</pre>
+
+to something more along these lines:
+
+<pre>
+
+host=serverdb123 service=mysql type=select what=queries target_type=rate 895 1234567890
+
+host=serverdb123 service=mysql type=select unit=Queries/s 895 1234567890
+
+h=serverdb123 s=mysql t=select queries r 895 1234567890
+
+</pre>
+
+</li>
+
+<li>switch Anthracite backend to ElasticSearch for native integration with logstash data (and allow you to use kibana)</li>
+
+</ul>
+
+

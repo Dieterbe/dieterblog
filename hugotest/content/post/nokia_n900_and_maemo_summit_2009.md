@@ -1,0 +1,16 @@
++++
+title = "nokia n900 & maemo summit 2009"
+date = "2009-10-02T17:40:14-04:00"
+tags = ["life", "n900"]
++++
+So, something like a netbook, but really portable, and that can also do telephony stuff.<br />
+
+Nokia's recently announced <a href="http://maemo.nokia.com/n900/">n900</a> seems to be very close to what I'm looking for.<br />
+
+It could have been a tad bigger (to make typing easier) but other then that it looks perfect: powerful, high resolution display, Linux with a "usual" userspace (unlike Android) to give me all freedom I'm looking for, keyboard, plenty of space and many goodies such as wifi, a-gps, fm receiver/transmitter, IR, bluetooth, digital camera, tv-out and so on.</p>
+
+<p>This device has ignited my interest in Maemo and all things related so I'll be in Amsterdam on October 9-10-11, at the <a href="http://wiki.maemo.org/Maemo_Summit_2009">Maemo summit 2009</a>.  I was lucky enough to score a place in the <a href="http://www.ibishotel.com/gb/hotel-1556-ibis-amsterdam-centre/index.shtml">ibis hotel Amsterdam</a>, as Nokia has reserved more rooms then they could fill with invited speakers and own personnel ;-)<br />
+
+I'm hoping it will be possible to buy a device at the conference.  The timing would be perfect.  Nokia seems to be a really cool company and so far, they haven't disappointed yet...</p>
+
+<p>Somewhat related: a <a href="http://wiki.maemo.org/Mer">Mer (maemo alternative)</a> <a href="http://gitorious.org/~lbt">developer</a> told me he was very interested in making <a href="http://www.uzbl.org/">uzbl</a> available on Mer, so he did just that. I'm curious myself how usable uzbl will be on the n900. Only one way to find out :)</p>

@@ -1,0 +1,114 @@
++++
+title = "Graphite & Influxdb intermezzo: migrating old data and a more powerful carbon relay"
+date = "2014-09-20T15:18:32-04:00"
+tags = ["devops", "monitoring", "golang"]
++++
+
+
+<h4>Migrating data from whisper into InfluxDB</h4>
+
+
+
+<i>"How do i migrate whisper data to influxdb"</i> is a question that comes up regularly, and I've always replied it should be easy to write a tool
+
+to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:
+
+
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+#!/bin/bash
+
+# whisper dir without trailing slash.
+
+wsp_dir=/opt/graphite/storage/whisper
+
+start=$(date -d 'sep 17 6am' +%s)
+
+end=$(date -d 'sep 17 12pm' +%s)
+
+db=graphite
+
+pipe_path=$(mktemp -u)
+
+mkfifo $pipe_path
+
+function influx_updater() {
+
+    influx-cli -db $db -async < $pipe_path
+
+}
+
+influx_updater &
+
+while read wsp; do
+
+  series=$(basename ${wsp//\//.} .wsp)
+
+  echo "updating $series ..."
+
+  whisper-fetch.py --from=$start --until=$end $wsp_dir/$wsp.wsp | grep -v 'None$' | awk '{print "insert into \"'$series'\" values ("$1"000,1,"$2")"}' > $pipe_path
+
+done < <(find $wsp_dir -name '*.wsp' | sed -e "s#$wsp_dir/##" -e "s/.wsp$//")
+
+]]>{{< /highlight >}}<p>
+
+
+
+
+
+It relies on the recently introduced asynchronous inserts feature of <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a> - which commits inserts in batches to improve the speed - and the whisper-fetch tool.
+
+<br/>
+
+You could probably also write a Go program using the unofficial <a href="https://github.com/kisielk/whisper-go">whisper-go</a> bindings and the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb Go client library</a>.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.
+
+<br/>Maybe it's a bug in my code, I didn't test this much, because I didn't need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.
+
+
+
+<h4>A more powerful carbon-relay-ng</h4>
+
+<a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> received a bunch of love and has been a great help in my graphite+influxdb experiments.
+
+<p>
+
+<a href="/files/carbon-relay-web-ui.png"><img width="441" src="/files/carbon-relay-web-ui.png" /></a>
+
+</p>
+
+Here's what changed:
+
+<ul>
+
+<li>First I made it so that you can adjust routes at runtime while data is flowing through, via a telnet interface.</li>
+
+<li>Then <a href="https://github.com/pauloconnor">Paul O'Connor</a> built an embedded web interface to manage your routes in an easier and prettier way (pictured above)</li>
+
+<li>The relay now also emits performance metrics via statsd (I want to make this better by using <a href="https://github.com/rcrowley/go-metrics">go-metrics</a> which will hopefully get <a href="https://github.com/rcrowley/go-metrics/issues/68">expvar support</a> at some point - any takers?).</li>
+
+<li>Last but not least, I borrowed <a href="https://github.com/graphite-ng/carbon-relay-ng/tree/master/nsqd">the diskqueue</a> code from <a href="http://nsq.io/">NSQ</a> so now we can also spool to disk to bridge downtime of endpoints and re-fill them when they come back up</li>
+
+</ul>
+
+Beside our metrics storage, I also plan to put our anomaly detection (currently playing with <a href="http://hekad.readthedocs.org/en/v0.7.1/">heka</a> and <a href="http://codeascraft.com/2013/06/11/introducing-kale/">kale</a>) and <a href="https://github.com/vimeo/carbon-tagger">carbon-tagger</a> behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.
+
+<br/>
+
+<br/>
+
+I used to think of carbon-relay-ng as the python carbon-relay but on steroids,
+
+now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,
+
+<br/>or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.
+
+<br/>I'd like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular <a href="http://raftconsensus.github.io/">raft</a> consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.
+
+(note: InfluxDB <a href="https://github.com/influxdb/influxdb/pull/859">might introduce such a component</a>, so I'm also a bit waiting to see what they come up with)
+
+<br/>
+
+<br/>
+
+Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in <a href="http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html">On Graphite, Whisper and InfluxDB</a>.  That said, both should be fairly easy to implement in carbon-relay-ng, and I'm willing to assist those who want to contribute it.

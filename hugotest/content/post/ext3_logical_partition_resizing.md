@@ -1,0 +1,208 @@
++++
+title = "ext3 logical partition resizing"
+date = "2009-11-01T10:17:26-04:00"
+tags = ["linux"]
++++
+But what about logical partitions?  A while back I had to resize an ext3 logical partition which ended at the end of the last logical partition.  I learned some usefull stuff but I only made some quick scratch notes and I don't remember all details so:<br />
+
+<strong>Do not expect a nice tutorial here, it's more of a commented dump of my scratch notes and some vague memories.<br />
+
+The information in this post is not 100% accurate</strong><br />
+
+I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.<br />
+
+<!--more--></p>
+
+<p>I did find various places where they said parted could "handle all partition and filesystem resizing at once".<br />
+
+<a href="http://www.jumpingbean.co.za/blogs/mark/parted_resize_ext3_partition">this post</a> was quite useful, but he was more lucky then me I guess.<br />
+
+In the parted documentation I couldn't find any restriction other then that xattrs don't work.<br />
+
+But it does not support the dir_index and resize_inode features (<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=406680">bug ticket</a>)<br />
+
+You should be able to use tune2fs to remove these options, do the resize and then put them back.  But tune2fs can't put them back and I even had problems removing resize_inode (see below)<br />
+
+Also, I falsely assumed parted would resize the extended partition when you tell it to resize the logical partition.</p>
+
+<p>see here what i did, along with comments and remarks:<br />
+
+[code]<br />
+
+# what features are enabled?<br />
+
+linux-staging:~# tune2fs -l | grep -i feature<br />
+
+Filesystem features:      resize_inode dir_index filetype sparse_super large_file [has_journal]</p>
+
+<p># remove resize_inode feature<br />
+
+linux-staging:~# tune2fs -O ^resize_inode /dev/hda9<br />
+
+tune2fs 1.40-WIP (14-Nov-2006)<br />
+
+Invalid filesystem option set: ^resize_inode # HUH ?</p>
+
+<p># okay then, lets try debugfs<br />
+
+linux-staging:~# debugfs -w -R "feature -dir_index -resize_inode" /dev/hda9<br />
+
+debugfs 1.40-WIP (14-Nov-2006)<br />
+
+Filesystem features: has_journal filetype sparse_super large_file</p>
+
+<p># lets do an e2fsck.  It gave errors but maybe that's normal (?)<br />
+
+# I wonder whether debugfs just unsets the option flags or actually updates the filesystem to not use these features at all (in the latter case, e2fsck should be clean)<br />
+
+linux-staging:~# e2fsck -f /dev/hda9<br />
+
+e2fsck 1.40-WIP (14-Nov-2006)<br />
+
+Filesystem does not have resize_inode enabled, but s_reserved_gdt_blocks<br />
+
+is 176; should be zero.  Fix<y>? yes</p>
+
+<p>Resize_inode not enabled, but the resize inode is non-zero.  Clear<y>? yes</p>
+
+<p>Pass 1: Checking inodes, blocks, and sizes<br />
+
+Inode 58 has INDEX_FL flag set on filesystem without htree support.<br />
+
+Clear HTree index<y>? yes</p>
+
+<p>Pass 2: Checking directory structure<br />
+
+Pass 3: Checking directory connectivity<br />
+
+Pass 4: Checking reference counts<br />
+
+Pass 5: Checking group summary information<br />
+
+Block bitmap differences:  -(5--180) -689 -(32773--32948) -(98309--98484) -(163845--164020) -(229381--229556) -(294917--295092)<br />
+
+-(819205--819380) -(884741--884916) -(1605637--1605812) -(2654213--2654388) -(4096005--4096180) -(7962629--7962804) -(11239429--11239604)<br />
+
+Fix<y>?<br />
+
+Free blocks count wrong for group #0 (0, counted=177).<br />
+
+Fix<y>? yes</p>
+
+<p># lets doublecheck the enabled features<br />
+
+linux-staging:~# tune2fs -l /dev/hda9 | grep -i feature<br />
+
+Filesystem features:      has_journal filetype sparse_super # Hey ? where did 'large_file' go?</p>
+
+<p># do the resize of the logical partition in parted</p>
+
+<p># enable features<br />
+
+tune2fs -O dir_index /dev/hda9<br />
+
+debugfs -w -R "feature large_file resize_inode" /dev/hda9</p>
+
+<p># now all should be good, right? lets do an e2fsck<br />
+
+linux-staging:~# e2fsck -f /dev/hda9<br />
+
+e2fsck 1.40-WIP (14-Nov-2006)<br />
+
+Resize inode not valid.  Recreate<y>? yes</p>
+
+<p>Pass 1: Checking inodes, blocks, and sizes<br />
+
+Pass 2: Checking directory structure<br />
+
+Pass 3: Checking directory connectivity<br />
+
+Pass 3A: Optimizing directories<br />
+
+Pass 4: Checking reference counts<br />
+
+Pass 5: Checking group summary information<br />
+
+Block bitmap differences:  +689<br />
+
+Fix<y>? yes</p>
+
+<p>/dev/hda9: ***** FILE SYSTEM WAS MODIFIED *****<br />
+
+/dev/hda9: 132012/7038048 files (6.2% non-contiguous), 12076862/14368126 blocks</p>
+
+<p># I also got <strong>a lot</strong> of these errors:<br />
+
+Assertion (block < EXT2_SUPER_BLOCKS_COUNT(fs->sb)) at ../../../../libparted/fs/ext2/ext2.h:226 in function ext2_is_data_block() failed.</p>
+
+<p># now here are some more scratch notes. I forgot exactly why and what I did, so I'm just putting them here for reference.</p>
+
+<p>#in fdisk, delete logical, recreate, reboot and do online resize with resize2fs<br />
+
+linux-staging:~# resize2fs /dev/hda9<br />
+
+resize2fs 1.40-WIP (14-Nov-2006)<br />
+
+Filesystem at /dev/hda9 is mounted on /home; on-line resizing required<br />
+
+old desc_blocks = 4, new_desc_blocks = 5<br />
+
+Performing an on-line resize of /dev/hda9 to 19872397 (4k) blocks.<br />
+
+resize2fs: Invalid argument While trying to add group #512</p>
+
+<p>linux-staging:~#  resize2fs /dev/hda9<br />
+
+resize2fs 1.40-WIP (14-Nov-2006)<br />
+
+Please run 'e2fsck -f /dev/hda9' first.</p>
+
+<p>linux-staging:~# e2fsck -f /dev/hda9<br />
+
+e2fsck 1.40-WIP (14-Nov-2006)<br />
+
+Superblock last mount time is in the future.  Fix<y>? yes</p>
+
+<p>Pass 1: Checking inodes, blocks, and sizes<br />
+
+Pass 2: Checking directory structure<br />
+
+Filesystem contains large files, but lacks LARGE_FILE flag in superblock.<br />
+
+Fix<y>? yes</p>
+
+<p>Pass 3: Checking directory connectivity<br />
+
+Pass 4: Checking reference counts<br />
+
+Pass 5: Checking group summary information</p>
+
+<p>/dev/hda9: ***** FILE SYSTEM WAS MODIFIED *****<br />
+
+/dev/hda9: 132012/8208384 files (6.2% non-contiguous), 12113624/16777216 blocks<br />
+
+linux-staging:~# resize2fs /dev/hda9<br />
+
+resize2fs 1.40-WIP (14-Nov-2006)<br />
+
+Resizing the filesystem on /dev/hda9 to 19872397 (4k) blocks.<br />
+
+The filesystem on /dev/hda9 is now 19872397 blocks long.</p>
+
+<p>linux-staging:~# mount /dev/hda9</p>
+
+<p>#  suprisingly, all data looked still intact.<br />
+
+[/code]</p>
+
+<p>After this experience I actually created a VM to do some testing and figured out this is the better way (no fsck errors, and goes much faster):</p>
+
+<ul>
+
+<li>use parted only to increase the extended partition</li>
+
+<li>drop and recreate logical partition with fdisk</li>
+
+<li>resize2fs the logical partition</li>
+
+</ul>

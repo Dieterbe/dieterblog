@@ -1,0 +1,38 @@
++++
+title = "AIF automatic lvm/dm_crypt installations and test suite"
+date = "2009-07-22T22:36:30-04:00"
+tags = ["arch"]
++++
+<p>Amongst the slew of fixes and improvements there are also some cool new things I'm working on.<br />
+
+First of all, I worked more on the automatic installations.  Now you can easily install an LVM based Arch system on top of dm_crypt for example.<br />
+
+You type this command:</p>
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda
+
+]]>{{< /highlight >}}<p>And <strong>bam</strong> you have a complete working system with LVM, dm_crypt etc all set up.  You just need to change your keymap, hostname, network config and such (or, configure that on the beforehand in the config file for AIF)</p>
+
+<p>Another thing I started working on is a very simple test suite.<br />
+
+Basically, when launching a test, the following steps are invoked</p>
+
+<ul>
+
+<li>installation of an arch system with aif's automatic procedure using a certain config file</li>
+
+<li>installation of a verification script onto the target system and configuration of the target to run the script on boot (DAEMONS variable in /etc/rc.conf)</li>
+
+<li> if aif ended succesfully: automatic reboot.. and tada!</li>
+
+</ul>
+
+<p>The verification script will check things like availability (and size) of LVM volumes, amount of swap space, keyboard layout, network and so on.<br />
+
+Here's a picture of a rough first version:</p>
+
+<p><img src="/files/aif-test-suite-wip.png" /></p>
+
+<p>Stay tuned!</p>

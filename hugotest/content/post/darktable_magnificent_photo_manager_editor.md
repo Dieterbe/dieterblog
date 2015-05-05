@@ -1,0 +1,116 @@
++++
+title = "Darktable: a magnificent photo manager and editor"
+date = "2014-08-12T08:36:36-04:00"
+tags = ["photos"]
++++
+
+
+<!--more-->
+
+<br/>
+
+<br/>
+
+
+
+<p>
+
+When I wrote <a href="/pixie.html">pixie</a>, I was aware of <a href="http://darktable.org/">darktable</a>.
+
+It looked like a neat application with potential to be pretty much what I was looking for, although it
+
+also looked complicated, mainly due to terminology like "darkroom" and "lighttable", which was a bit off-putting to me
+
+and made me feel like the application was meant for photo professionals and probably wouldn't work well with
+
+the ideals of a techie with some purist views on how to manage files and keep my filesystems clean.
+
+</p> 
+
+<p> 
+
+Basically I didn't want to give the application a proper chance and then rationalized the decision after I made it.
+
+I'm sure psychologists have a term for this behavior.  I try to be aware of these cases and not to fall in the trap,
+
+but this time I was very aware of it and still proceeded, but I think I had a reasonable excuse.
+
+I wanted an app that behaves exactly how I like, I wanted to play with angularjs, it seemed like a fun learning exercise to implement a full-stack program backed by a Go api server and an angularjs interface, with some keybind features and vim-like navigation sprinkled on top.
+
+</p>
+
+<p>
+
+Pixie ended up working, but I got fed up with some angularjs issues, slow js performance and a list of to-do's i would need to address before i
+
+would consider pixie feature complete, so only as of a few days ago I started giving darktable the chance it had deserved from the beginning.
+
+<br/>
+
+As it turns out, darktable is actually a fantastic application, and despite some imperfections, the difference is clear enough for me to abandon pixie.</p>
+
+<center>
+
+<a href="/files/darktable-lighttable.png">
+
+<img src="/files/darktable-lighttable.png" width="30%"/>
+
+</a>
+
+</center>
+
+<p>
+
+Here's why I like it:
+
+<ol>
+
+<li>
+
+It stays true to my ideals:  It doesn't modify your files at all, this is a must for easily synchronizing photo archives with each other and with devices.
+
+You can tag, assign metadata, create edits, etc. and re-size on export.  It stores metadata in a simple sqlite database, and also in xmp files which it puts along with the original files, but luckily you can easily ignore those while syncing.  (I have yet to verify whether you can adjust dates or set GPS info without modifying the actual files, but I had no solution for that either)
+
+</li>
+
+<li>basically, it's just well thought out and works well.  the terminology thing is a non-issue.  Just realize that lighttable means the set of pictures in your collection you want to work with, darkroom is the editor where you edit the image, and film roll is a directory with imported images.   Everything else is intuitive</li>
+
+<li>It has decent tag editing features, and a powerful mechanism to build a selection of images using a variety of criteria using exif data, tags, GPS info, labels, etc. You can make duplicates of an image and make different edits, and treat them as images of their own</li>
+
+<li>It has <a href="http://www.darktable.org/usermanual/ch06s03.html.php">pretty extensive key binding options</a>, and even provides a <a href="http://darktable.org/redmine/projects/darktable/wiki/LuaUsage">lua api</a> so you can hook in your own plugins.  People are working on a bunch of <a href="http://darktable.org/redmine/projects/darktable/wiki/LuaScripts">scripts</a> already.</li>
+
+<li>It's fast. Navigating a 33k file archive, adjusting thumbnail sizes on the fly, iterating fast, works well</li>
+
+<li>It has good support for non-destructive editing.  It has a variety of editing possibilities, as if it was commercial software</li>
+
+<li>It has <a href="http://www.darktable.org/usermanual/index.html.php">complete documentation</a>, a <a href="http://www.darktable.org/category/blog/">great blog</a> with plenty of <a href="http://www.darktable.org/tag/tutorial/">tutorial articles</a>, and <a href="https://www.youtube.com/playlist?list=PLmvlUro_Up1NBX7VK8UUuyWo1B468zEA0">tutorial videos</a></li>
+
+</ol>
+
+</p>
+
+<center>
+
+<a href="/files/darktable-darkroom.png">
+
+<img src="/files/darktable-darkroom.png" width="30%"/>
+
+</a>
+
+</center>
+
+<p>
+
+I did notice some bugs (including a few crashes), but there's always a few developers and community members active, on IRC and the bug tracker, so it's pretty active project and I'm confident/hopeful my issues will be resolved soon.
+
+<!--
+
+Finally I'd love to declare all my exports in a config file (collect files with these tags, export re-sized versions to directory X, etc) rather then this being manual, explicit actions. -->
+
+<br/>I also have a few more ideas for features that would make it closer to my ideals, but as it stands, darktable is already a great application and I'm happy I can deprecate pixie at this point.
+
+I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a> that automatically does all tag assignments in darktable based on the pixie information in tmsu, to make the transition friction free.
+
+</p>
+
+

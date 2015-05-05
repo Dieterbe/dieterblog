@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>A few common graphite problems and how they are already solved. &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/a_few_common_graphite_problems_and_how_they_are_already_solved/">A few common graphite problems and how they are already solved.</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/a_few_common_graphite_problems_and_how_they_are_already_solved/" rel="bookmark">
+					<time class="entry-date" datetime="2013-04-04 08:54:20 -0400 EDT">
+						April 4, 2013
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<h4>metrics often seem to lack details, such as units and metric types</h4>
+
+<p>looking at a metric name, it&rsquo;s often hard to know</p>
+
+<ul>
+
+<li>the unit a metric is measured in (bits, queries per second, jiffies, etc)</li>
+
+<li>the "type" (a rate, an ever increasing counter, gauge, etc)</li>
+
+<li>the scale/prefix (absolute, relative, percentage, mega, milli, etc)</li>
+
+</ul>
+
+<p><a href="#structured_metrics">structured_metrics</a> solves this by adding these tags to graphite metrics:</p>
+
+<ul>
+
+<li><pre>what</pre>
+
+<i>what is being measured?: bytes, queries, timeouts, jobs, etc</i></li>
+
+<li><pre>target_type</pre>
+
+<i>must be one of the existing <a href="https://github.com/vimeo/graph-explorer#enhanced-metrics">clearly defined target_types</a> (count, rate, counter, gauge)
+
+<br/>These match statsd metric types (i.e. rate is per second, count is per flushInterval)</i></li>
+
+</ul>
+
+<p>In <a href="#graph_explorer">Graph-Explorer</a> these tags are mandatory, so that it can show the unit along with the prefix (i.e. <i>&lsquo;Gb/s&rsquo;</i>) on the axis.</p>
+
+<p><br/></p>
+
+<p>This will also allow you to request graphs in a different unit and the dashboard will know how to convert (say, Mbps to GB/day)</p>
+
+<h4>tree navigation/querying is cumbersome, metrics search is broken.  How do I organize the tree anyway?</h4>
+
+<p>the tree is a simplistic model. There is simply too much dimensionality that can&rsquo;t be expressed in a flat tree.</p>
+
+<p>There&rsquo;s no way you can organize it so that will it satisfy all later needs.</p>
+
+<p>A tag space like <a href="#structured_metrics">structured_metrics</a> makes it <b>obsolete</b>.</p>
+
+<p>with <a href="#graph_explorer">Graph-Explorer</a> you can do (full-text) search on metric name, by any of their tags, and/or by added metadata.</p>
+
+<p>So practically you can filter by things like server, service, unit (e.g. anything expressed in bits/bytes per second,</p>
+
+<p>or anything denoting errors).  All this irrespective of the source of a metric or the &ldquo;location in the tree&rdquo;.</p>
+
+<h4>no interactivity with graphs</h4>
+
+<p><a href="#timeserieswidget">timeserieswidget</a> allows you to easily add interactive graphite graph objects to html pages.</p>
+
+<p>You get modern features like togglable/reorderable metrics, realtime switching between lines/stacked,</p>
+
+<p>information popups on hoover, highlighting, smoothing, and (WIP) realtime zooming.</p>
+
+<p>It has a canvas (<a href="http://www.flotcharts.org/">flot</a>) and svg (<a href="http://code.shutterstock.com/rickshaw/">rickshaw/d3</a>) backend.</p>
+
+<p>So it basically provides a simpler api to use these libraries specifically with graphite.</p>
+
+<p><br/>There&rsquo;s a bunch of different graphite dashboards with different takes on graph composition/configuration and workflow, but the actual rendering of graphs</p>
+
+<p>usually comes down to plotting some graphite targets with a legend.  timeserieswidget aims to be a drop-in plugin that brings all modern features</p>
+
+<p>so that different dashboards can benefit from a common, shared codebase, because <b>static PNGs are a thing from the past</b></p>
+
+<p>
+
+screenshot:
+
+<br/>
+
+<a href="/files/timeserieswidget-rickshaw-stacked.png"><img height="300" src="/files/blog/github/vimeo/timeserieswidget/timeserieswidget-rickshaw-stacked.png" title="yes I'm aware of the irony of a static screenshot of an interactive widget :)"></img></a>
+
+</p>
+
+<h4>events lack text annotations, they are simplistic and badly supported</h4>
+
+<p>Graphite is a great system for time series metrics.  Not for events.  metrics and events are very different things across the board.  drawAsInFinite() is a bit of a hack.</p>
+
+<ul>
+
+<li><a href="#anthracite">anthracite</a> is designed specifically to manage events.
+
+<br/>It brings extra features such as different submission scripts, outage annotations, various ways to see events and reports with uptime/MTTR/etc metrics.</li>
+
+<li><a href="#timeserieswidget">timeserieswidget</a> displays your events on graphs along with their metadata (which can be just some text or even html code).
+
+<br/>this is where client side rendering <i>shines</i></li>
+
+</ul>
+
+<p>
+
+screenshots:
+
+<br/>
+
+<a href="https://raw.github.com/Dieterbe/anthracite/master/screenshots/screenshot-table.png"><img height="300" src="/files/blog/github/Dieterbe/anthracite/screenshot-table.png"></img></a>
+
+<a href="https://raw.github.com/vimeo/timeserieswidget/master/screenshots/flot-annotated-event.png"><img height="300" src="/files/blog/github/vimeo/timeserieswidget/flot-annotated-event.png"></img></a>
+
+</p>
+
+<h4>cumbersome to compose graphs</h4>
+
+<p>There&rsquo;s basically two approaches:</p>
+
+<ul>
+
+<li>interactive composing: with the graphite composer, you navigate through the tree and apply functions.
+
+This is painfull, dashboards like <a href="https://github.com/obfuscurity/descartes">descartes</a> and
+
+<a href="https://github.com/paperlesspost/graphiti">graphiti</a> can make this easier</li>
+
+<li>use a dashboard that uses predefined templates (<a href="https://github.com/ripienaar/gdash">gdash</a> and others)
+
+They often impose a strict navigation path to reach pages which may or may not give you the information you need (usually less or way more)</li>
+
+</ul>
+
+<p>With both approaches, you usually end up with an ever growing pile of graphs that you created and then keep for reference.</p>
+
+<p><br/>This becomes unwieldy but is useful for various use cases and needs.</p>
+
+<p><br/>However, <i>neither approach is convenient for changing information needs</i>.</p>
+
+<p><br/>Especially when troubleshooting, one day you might want to compare the rate of increase of open file handles on a set of specific servers to the traffic</p>
+
+<p>on given network switches, the next day it&rsquo;s something completely different.</p>
+
+<p><br/>With <a href="#graph_explorer">Graph-Explorer</a>:</p>
+
+<ul>
+
+<li>GE gives you a query interface on top of <a href="#structure_metrics">structured_metric</a>'s tag space.  this enables a bunch of things (see above)</li>
+
+<li>you can yield arbitrary targets for each metric, to look at the same thing from a different angle (i.e. as a rate with `derivative()` or as a daily summary),
+
+and you can of course filter by angle</li>
+
+<li><b>You can group metrics into graphs by arbitrary tags</b> (e.g. you can see bytes used of all filesystems on a graph per server, or <i>compare servers on a graph per filesystem</i>).
+
+<b>This feature always results in the "wow that's really cool" every time I show it</b></li>
+
+<li>GE includes 'what' and 'target_type' in the group_by tags by default so basically, if things are in a different unit (B/s vs B vs b etc) it'll put them in
+
+separate graphs (controllable in query)</li>
+
+<li>GE automatically generates the graph title and vertical title (always showing the 'what' and the unit), and shows all metrics' extra tags.
+
+This also gives you a lot of inspiration to modify or extend your query</li>
+
+</ul>
+
+<p>
+
+<a href="/files/blog/github/vimeo/graph-explorer/screenshot.png">
+
+<img src="/files/blog/github/vimeo/graph-explorer/screenshot.png" width="619" height="396"/>
+
+</a>
+
+</p>
+
+<h4>limited options to request a specific time range</h4>
+
+<p><a href="https://github.com/vimeo/graph-explorer#query-parsing-and-execution">GE&rsquo;s query language</a> supports freeform <code>from</code> and <code>to</code> clauses.</p>
+
+<h3>Referenced projects</h3>
+
+<ul>
+
+<li>
+
+<a href="https://github.com/Dieterbe/anthracite" id="anthracite">anthracite</a>:
+
+<br/>
+
+event/change logging/management with a bunch of ingestion scripts and outage reports
+
+</li>
+
+<li>
+
+<a href="https://github.com/vimeo/timeserieswidget" id="timeserieswidget">timeserieswidget</a>:
+
+<br/>
+
+jquery plugin to easily get highly interactive graphite graphs onto html pages (dashboards)
+
+</li>
+
+<li>
+
+<a href="https://github.com/vimeo/graph-explorer/tree/master/structured_metrics" id="structured_metrics">structured_metrics</a>:
+
+<br/>
+
+python library to convert graphite metrics tree into a tag space with clearly defined units and target types, and arbitrary metadata.
+
+</li>
+
+<li>
+
+<a href="https://github.com/vimeo/graph-explorer" id="graph_explorer">graph-explorer</a>:
+
+<br/>
+
+dashboard that provides a query language so you can easily compose graphs on the fly to satisfy varying information needs.
+
+</li>
+
+</ul>
+
+<p>All tools are designed for integration with other tools and each other.</p>
+
+<p>Timeserieswidget gets data from anthracite, graphite and elasticsearch.</p>
+
+<p>Graph-Explorer uses structured_metrics and timeserieswidget.</p>
+
+<h3>Future work</h3>
+
+<p>There&rsquo;s a whole lot going on in the monitoring space, but I&rsquo;d like to highlight a few things I personally want to work more on:</p>
+
+<ul>
+
+<li>
+
+I spoke with Michael Leinartas at Monitorama (and there's also a <a href="https://answers.launchpad.net/graphite/+question/223956">launchpad thread</a>).
+
+We agreed that native tags in graphite are the way forward.  This will address some of the pain points
+
+I'm already fixing with structured_metrics but in a more native way.
+
+I envision submitting metrics would move from:
+
+<pre>
+
+stats.serverdb123.mysql.queries.selects 895 1234567890
+
+</pre>
+
+to something more along these lines:
+
+<pre>
+
+host=serverdb123 service=mysql type=select what=queries target_type=rate 895 1234567890
+
+host=serverdb123 service=mysql type=select unit=Queries/s 895 1234567890
+
+h=serverdb123 s=mysql t=select queries r 895 1234567890
+
+</pre>
+
+</li>
+
+<li>switch Anthracite backend to ElasticSearch for native integration with logstash data (and allow you to use kibana)</li>
+
+</ul>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

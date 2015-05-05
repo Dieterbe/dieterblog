@@ -1,0 +1,120 @@
++++
+title = "new AIF release"
+date = "2008-12-17T09:50:11-04:00"
+tags = ["foss", "arch"]
++++
+<p>* Changes since alpha 0.5:<!--more--></p>
+
+<ul>
+
+<li>fully reworked disk subsystem:
+
+<ul>
+
+<li>support for lvm and dm_crypt</li>
+
+<li>Autoprepare looks exactly the same (ui-wise) but with much cleaner code</li>
+
+<li>Manual mode UI is entirely reworked and has a general editor (see screens)</li>
+
+<li>Unified, more flexible/reusable backend code for partitioning, making filesystems and mounting them.  Uses structured file formats for defining partitions and filesystems</li>
+
+<li>Rollback functionality: when something failed while processing, or user changes his mind afterwards, you can do a rollback (things like umount, lvremove etc are done automatically in the correct order) and start over/retry</li>
+
+</ul>
+
+</li>
+
+<li>fully decoupled UI (dia/cli):
+
+<ul>
+
+<li>
+
+there are now generic, transparent functions for asking dates,numbers,strings,checklist,.. etc with an implementation in both ncurses (dialog) and cli.</li>
+
+<li>all code now uses these functions, making the codebase much cleaner. (look at the code for autoprepare for instance)</li>
+
+<li>with a simple command line flag you can toggle between running the program in cli or dialog mode.</li>
+
+</ul>
+
+</li>
+
+<li>support for commandline args<br />
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+/arch/aif -p interactive -d     # runs the interactive profile with debugging enabled
+
+/arch/aif -p interactive -i cli # runs the interactive profile in CLI mode.
+
+]]>{{< /highlight >}}</li>
+
+<li>updated howto for using AUR packages</li>
+
+<li>replaced all refs to previous name (fifa) to aif.</li>
+
+<li>enabled date/time setting</li>
+
+<li>a massive amount of bugfixes</li>
+
+<li>a lot of code cleanups</li>
+
+</ul>
+
+<p>* Screenshots<br />
+
+- AIF manual filesystems, here showing a setup with /dev/sda3 containing a dm_crypt, containing /, and /dev/sda3 containing an LVM setup with 1 LV for /home<br />
+
+<img src="/files/aif/aif-alpha_0.6-disks-overview-dia.png" /></p>
+
+<p>- Processing the filesystems.  The installer automatically reorders everything<br />
+
+<img src="/files/aif/aif-alpha_0.6-disks-processing-dia.png" /></p>
+
+<p>- Rolling back a "/ and /home on top of LVM on top of dm_crypt" setup<br />
+
+<img src="/files/aif/aif-alpha_0.6-disks-rollback-dia.png" /></p>
+
+<p>- a CLI shot where the partitions/filesystems of the autoprepare just have been processed<br />
+
+<img src="/files/aif/aif-alpha_0.6-autoprepare_processed-cli.png" /></p>
+
+<p>* Usability<br />
+
+I tested the installer personally in virtualbox in different scenarios (ftp &amp; cdrom based, autoprepare, manually with normal disk layout,/ on lvm, dm_crypt,.. ), and all produced working installations.<br />
+
+Although I often need to fix bugs after testing a specific scenario,  I don't re-test all scenarios each time.  YMMV<br />
+
+Note that the installer doesn't automatically add the lvm2/encrypt modules to mkinitcpio yet, and doesn't add the right string for lvm/dm_crypt in grubs menu.lst yet.</p>
+
+<p>There are some known issues (which are not critical, just avoid them or live with them).  Here are the biggest ones (for more, see TODO)</p>
+
+<ul>
+
+<li>keyboard and timezone settings from installer don't go into target systems config</li>
+
+<li>long selections (eg packages) are very cumbersome to do in CLI mode.</li>
+
+</ul>
+
+<p>* How?<br />
+
+<a href="http://github.com/Dieterbe/aif/tree/master/HOWTO" title="http://github.com/Dieterbe/aif/tree/master/HOWTO">http://github.com/Dieterbe/aif/tree/master/HOWTO</a></p>
+
+<p>Use package aif-git from AUR.<br />
+
+Even though I tag releases in git, I don't build packages for them.<br />
+
+I now use the master branch as "stable" branch where I pull in code from the experimental branch after it has been tested.<br />
+
+So the master branch (package aif-git) always contains the latest, stable code.</p>
+
+<p>Use "/arch/aif -p interactive -d" (the interactive procedure is the port of /arch/setup)</p>
+
+<p>Have fun,<br />
+
+Dieter</p>
+
+<p>PS: Thomas Baechler (arch dev) has let me know he wants AIF hosted at <a href="http://projects.archlinux.org/" title="http://projects.archlinux.org/">http://projects.archlinux.org/</a> and he will provide me access to their server so I can push to it. Sweet!!</p>

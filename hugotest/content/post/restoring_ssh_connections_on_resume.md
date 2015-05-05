@@ -1,0 +1,30 @@
++++
+title = "Restoring ssh connections on resume"
+date = "2010-06-16T18:11:50-04:00"
+tags = ["foss", "linux"]
++++
+It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.<br />
+
+If you want to run stuff as a regular user you could do something like</p>
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+su $user -c <command>
+
+]]>{{< /highlight >}}<p>..but these commands have no access to your user environment.<br />
+
+In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don't want to reenter your ssh key passwords everytime you resume.<br />
+
+(In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)</p>
+
+<p>The solution is very simple. Use this:</p>
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+sudo pm-hibernate && do-my-stuff.sh
+
+]]>{{< /highlight >}}<p>This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.<br />
+
+Ideal to kill old ssh processes, and setup tunnels and ssh connections again.<br />
+
+I'm probably gonna integrate this into my <a href="http://github.com/Dieterbe/microde">microDE</a></p>

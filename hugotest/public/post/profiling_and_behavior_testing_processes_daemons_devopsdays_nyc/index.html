@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Profiling and behavior testing of processes and daemons, and Devopsdays NYC &middot; Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/">Profiling and behavior testing of processes and daemons, and Devopsdays NYC</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/" rel="bookmark">
+					<time class="entry-date" datetime="2013-01-21 15:25:14 -0400 -0400">
+						January 21, 2013
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p><a href="https://github.com/Dieterbe/profile-process"></p>
+
+<p><img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/></p>
+
+<p></a></p>
+
+<p>I wanted the ability to run a given process and get</p>
+
+<p><br/>a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.</p>
+
+<p><br/>Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.</p>
+
+<p><br/>Couldn&rsquo;t find a tool for it, so I wrote <a href="https://github.com/Dieterbe/profile-process">profile-process</a></p>
+
+<p><br/>which does exactly that in &lt;100 lines of python.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<h3>black-box behavior testing processes/daemons</h3>
+
+<p><a href="https://github.com/vimeo/simple-black-box"></p>
+
+<p><img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/screenshot-no-pause.png" width="150px" height="100px"/></p>
+
+<p></a></p>
+
+<p>I wrote <a href="https://github.com/vimeo/simple-black-box">simple-black-box</a> to do this.</p>
+
+<p><br/>It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, &hellip;)</p>
+
+<p><br/>and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,</p>
+
+<p><br/>file existence/checksums in the VFS/swift clusters, etc.</p>
+
+<p><br/>Each test-case is a scenario.</p>
+
+<p><br/>It also can use <a href="http://logstash.net/">logstash</a> to give a centralized &ldquo;distributed stack trace&rdquo; when you need to debug a failure after</p>
+
+<p>multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.</p>
+
+<p><br/>You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.</p>
+
+<h3>Simple-black-box talk @ Devopsdays NYC</h3>
+
+<p>I did a quick <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">5min talk</a>, despite some display/timing issues it was well received.</p>
+
+<p>(in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to</p>
+
+<p>hire me -but being shy about it&hellip;- it was quite awkward)</p>
+
+<p><br/>&rarr; <a href="/files/presentation-simple-black-box/slideshow.html">slides</a></p>
+
+<p><br/>&rarr; <a href="http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498">raw uncut video</a>.  Go to &lsquo;New York, January 18th, 2013&rsquo; from 02:36:25 to 02:41:15</p>
+
+<h3>More random thoughts about Devopsdays NYC</h3>
+
+<p><center><a href="http://devopsdays.org/events/2012-newyork/"><img src="/files/blog/devopsdays/workers.png" width="300px" height="300px"/></a></center></p>
+
+<ul>
+
+<li>I'm getting tired of people on stage making a big revelation out of adding an index to a database column.
+
+This happens too often at web-ops/devops conferences,  it's embarrassing.
+
+But at least it's not like the "how we made our site 1000x faster"-style Velocity talks that should have been named "caching and query optimization for newbies"
+
+</li>
+
+<li>Paperless post confirms again they got their act together and keeps us up to date with their great work.
+
+<a href="http://dev.paperlesspost.com/">Follow them.</a></li>
+
+<li>
+
+<a href="http://devopsdays.org/events/2012-newyork/proposals/KnightsOftheProvisioningRoundTable/">Knights of the Provisioning Round Table - Bare Metal Provisioning</a>
+
+was mostly (to my surprise) 4 individuals presenting their solution instead of a real round-table, but (to my surprise again) they were not as similar/repetitive as I expected
+
+and the pros/cons of all solutions were compared more in depth than I dared to hope.
+
+I <a href="/dell_crowbar_openstack_swift.html">covered dell crowbar before</a> and like it, though I wonder when this thing is actually gonna be reliable.
+
+</li>
+
+<li>Dave Zwieback and John Willis gave hilarious talks</li>
+
+<li>Tried to start an open space discussion around <b>collaboration patterns and anti-patterns</b>, which I think is a very interesting subject,
+
+  because <b>how individuals in a team collaborate is crucial to success</b>, but yet very little is written about it (that I could find).
+
+  I would hope we can distill the years of aggregate experience of people into concise patterns and anti-patterns and document how (not) well they work
+
+  for development styles (such as agile/scrum), team size, company structure/hierarchy, roadmap/technical debt pressure, etc.  And especially in light
+
+  of any of these things changing, because I've found <b>people can be very change-resistive</b>.
+
+</li>
+
+<li><a href="http://devopsdays.org/events/2012-newyork/proposals/DevopsAtObamaForAmerica/">DevOps At Obama for America & The Democratic National Committee</a>
+
+was good, I thought it would be a rehash of what was said at <a href="http://codeforward_newyorkcity.eventbrite.com/">Coding Forward New York City: Meet the Developers Behind the Obama Campaign</a>
+
+but there were a bunch of interesting insights about state of the art technology in here (mostly Amazon stuff)</li>
+
+<li>A bunch of talks where the same could have been said in half the time, or less</li>
+
+</ul>
+
+<p>Random thoughts about some sponsors:</p>
+
+<ul>
+
+<li>Librato is quite cool.
+
+It's basically how my open source tool <a href="https://github.com/vimeo/graph-explorer">graph-explorer</a> would look like after
+
+finishing a bunch of TODO's, combining it with graphite, polishing it all up, and offering it as a hosted solution.
+
+I find it interesting if this is a successful business with only such a limited scope</li>
+
+<li>
+
+Even cooler is <a href="http://www.datadoghq.com/">datadog</a>.  It goes beyond just metrics and doesn't just provide hosted graphing,
+
+it provides a solution for a philosophy that aims for a centralized insight of all your operational data,
+
+related collaboration and prioritized alerts that are to the point.  They get a lot of things right, the open source world has some catching up to do</li>
+
+</ul>
+
+<p>Interesting that both use Cassandra and free-form tags for flexibility, validating the approach I&rsquo;m taking with graph-explorer.  Now Graphite</p>
+
+<p>could use a distributed metrics storage backend over which one can do map-reduce style jobs to gather intelligence from metrics archives</p>
+
+<p>(maybe based on Cassandra too?), but that&rsquo;s another story.</p>
+
+<p><br/></p>
+
+<p><br/></p>
+
+<p>Anyway, living in NYC with its vibrant ecosystem of devops people and companies organizing plenty of meet-ups and talks on their own</p>
+
+<p>makes it less pressing to have an event like Devopsdays, though it was certainly a good event, thanks to the sponsors and the volunteers.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+            
+                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+            
+                <a href="http://localhost:1313//tags/perf/index.html" rel="tag">perf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

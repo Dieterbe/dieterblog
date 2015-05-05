@@ -1,0 +1,30 @@
+
+baseurl = "http://dieter.plaetinck.be"
+languageCode = "en-us"
+title = "Dieter Plaetinck's blog"
+theme = "dieter"
+
+[[menu.main]]
+    name = "blog"
+    url = "/"
+    weight = 9
+[[menu.main]]
+    name = "about"
+    url = "/about"
+    weight = 10
+
+[[menu.main]]
+    name = "talks"
+    url = "/talks"
+    weight = 20
+
+[[menu.main]]
+    name = "Github"
+    pre = "<i class='fa fa-heart'></i>"
+    weight = 40
+    url = "https://github.com/Dieterbe"
+[[menu.main]]
+    name = "tweets"
+    pre = "<i class='fa fa-road'></i>"
+    weight = 30
+    url = "https://twitter.com/Dieter_be"

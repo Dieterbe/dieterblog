@@ -1,0 +1,34 @@
++++
+title = "Lighttpd socket Arch Linux /var/run tmpfs tmpfiles.d"
+date = "2012-03-25T23:05:05-04:00"
+tags = ["arch", "linux"]
++++
+With Lighttpd you might have a fastcgi socket defined something like "/var/run/lighttpd/sockets/mywebsite.sock".
+
+This won't work anymore as after each reboot /var/run is an empty directory and lighttpd won't start, /var/log/lighttpd/error.log will tell you:
+
+<pre>
+
+2012-03-16 09:21:34: (log.c.166) server started 
+
+2012-03-16 09:21:34: (mod_fastcgi.c.977) bind failed for: unix:/var/run/lighttpd/sockets/mywebsite.sock-0 No such file or directory 
+
+2012-03-16 09:21:34: (mod_fastcgi.c.1397) [ERROR]: spawning fcgi failed. 
+
+2012-03-16 09:21:34: (server.c.945) Configuration of plugins failed. Going down.
+
+</pre>
+
+That's where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">tmpfiles.d</a> comes in.
+
+It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+$ cat /etc/tmpfiles.d/lighttpd.conf 
+
+d /run/lighttpd/sockets 0700 http http
+
+]]>
+
+{{< /highlight >}}

@@ -1,0 +1,158 @@
++++
+title = "Poor mans dmenu benchmark"
+date = "2009-04-25T11:25:26-04:00"
+tags = ["foss", "perf"]
++++
+<!--more-->
+
+<p>generate file:</p>
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+#!/bin/bash
+
+echo "Creating dummy file of 50MB in size (625000 entries of 80chars)"
+
+echo "Note: this takes about an hour and a half"
+
+entries_per_iteration=1000
+
+for i in `seq 1 625`
+
+do
+
+        echo "Iteration $i of 625 ( $entries_per_iteration each )"
+
+        for j in `seq 1 $entries_per_iteration`
+
+        do
+
+                echo "`date +'%Y-%m-%d %H:%M:%S'` `date +%s`abcdefhijklmno`date +%s | md5sum`" >> ./dummy_history_file
+
+        done
+
+done
+
+]]>{{< /highlight >}}<p>measure speed:</p>
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+echo "Plain awk '{print \$3}':"
+
+time awk '{print $3}' dummy_history_file >/dev/null
+
+
+
+echo "awk + sort"
+
+time awk '{print $3}' dummy_history_file | sort >/dev/null
+
+echo "awk + sort + uniq"
+
+time awk '{print $3}' dummy_history_file | sort | uniq >/dev/null
+
+
+
+echo "Plain dmenu:"
+
+dmenu < dummy_history_file
+
+echo "awked into dmenu:"
+
+awk '{print $3}' dummy_history_file | dmenu
+
+echo "awk + sort + uniq into dmenu:"
+
+awk '{print $3}' dummy_history_file | sort | uniq | dmenu
+
+]]>{{< /highlight >}}<p>
+
+Results.<br />
+
+I ran the test twice about an half hour after generating the file, so in the first run, the first awk call may have been affected by a no longer complete Linux block cache.<br />
+
+(I also edited the output format a bit)<br />
+
+Run 1:</p>
+
+<pre>
+
+Plain awk '{print $3}':
+
+real	0m1.253s
+
+user	0m0.907s
+
+sys	0m0.143s
+
+
+
+awk + sort:
+
+real	0m3.696s
+
+user	0m1.887s
+
+sys	0m0.520s
+
+
+
+awk + sort + uniq:
+
+real	0m15.768s
+
+user	0m12.233s
+
+sys	0m0.820s
+
+
+
+Plain dmenu:
+
+awked into dmenu:
+
+awk + sort + uniq into dmenu:
+
+</pre><p>Run 2</p>
+
+<pre>
+
+Plain awk '{print $3}':
+
+real	0m1.223s
+
+user	0m0.923s
+
+sys	0m0.107s
+
+
+
+awk + sort:
+
+real	0m2.799s
+
+user	0m1.910s
+
+sys	0m0.553s
+
+
+
+awk + sort + uniq:
+
+real	0m16.387s
+
+user	0m12.019s
+
+sys	0m0.787s
+
+Plain dmenu:
+
+awked into dmenu:
+
+awk + sort + uniq into dmenu:
+
+</pre><p>Not too bad.  It's especially uniq who seems to cause a lot of slowdown.  (in this dummy test file, are entries are unique. If there were lots of dupes, the results would probably be different, but I suspect that uniq always needs some time to do its work, dupes or not).  The real bottleneck seems to be raw cpu power.  Not storage bandwidth at all since Linux caches it.  If uncached, I estimate the sequential read would take 1.5 seconds or so. (about 30MB/s on common hard disks)</p>
+
+<p>Once the stuff gets piped into dmenu, there is a little lag but it's reasonably responsive imho.<br />
+
+Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other apps running, not a very professional benchmark but you get the idea :)</p>

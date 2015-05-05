@@ -1,0 +1,2326 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Dieter Plaetinck&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://localhost:1313//js/html5.js"></script>
+	<![endif]-->
+    
+    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter Plaetinck&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+	
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter Plaetinck&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item"> 
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item"> 
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<header class="archive-header">
+				<h1 class="archive-title">Content tagged "Linux"</h1>
+			</header>
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/">Lighttpd socket Arch Linux /var/run tmpfs tmpfiles.d</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/" rel="bookmark">
+					<time class="entry-date" datetime="2012-03-25 23:05:05 -0400 EDT">
+						March 25, 2012
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>With Lighttpd you might have a fastcgi socket defined something like &ldquo;/var/run/lighttpd/sockets/mywebsite.sock&rdquo;.</p>
+
+<p>This won&rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&rsquo;t start, /var/log/lighttpd/error.log will tell you:</p>
+
+<pre>
+
+2012-03-16 09:21:34: (log.c.166) server started 
+
+2012-03-16 09:21:34: (mod_fastcgi.c.977) bind failed for: unix:/var/run/lighttpd/sockets/mywebsite.sock-0 No such file or directory 
+
+2012-03-16 09:21:34: (mod_fastcgi.c.1397) [ERROR]: spawning fcgi failed. 
+
+2012-03-16 09:21:34: (server.c.945) Configuration of plugins failed. Going down.
+
+</pre>
+
+<p>That&rsquo;s where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">tmpfiles.d</a> comes in.</p>
+
+<p>It creates files and directories as described in the configs, and gets invoked on boot.  Like so:</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+<span style="color: #19177C">$ </span>cat /etc/tmpfiles.d/lighttpd.conf 
+
+d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/where_are_the_new_arch_linux_images/">Where are the new Arch Linux release images?</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/where_are_the_new_arch_linux_images/" rel="bookmark">
+					<time class="entry-date" datetime="2011-05-17 21:29:58 -0400 EDT">
+						May 17, 2011
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>This is a question I get asked a lot recently.  The latest <a href="http://www.archlinux.org/download/">official images</a> are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I'm not aware of.  Many of these problems can be worked around (with 'pacman -Sy mirrorlist' on the install cd for example), but it's not exactly convenient.</p>
+
+<p>Over the past years (the spare time in between <a href="/my_metalband.html">the band</a>, my search for an apartment in <a href="http://en.wikipedia.org/wiki/Ghent">Ghent</a> and a bunch of other things) I've worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the <a href="http://projects.archlinux.org/users/dieter/releng.git/">releng build environment repository</a>.
+
+Every 3 days, the following happens automatically:
+
+<ul>
+
+<li>packages to build images (archiso) and some of which are included <i>on</i> the images (aif and libui-sh) get rebuilt.  They are actually git versions, the latter two have a separate develop branch which is used. Normal packages get updated the normal way.</li>
+
+<li>the images are rebuilt, and the dual images get generated</li>
+
+<li>the images, the packages and their sources are synced to the public on <a href="http://releng.archlinux.org/">http://releng.archlinux.org</a></li>
+
+</ul>
+
+Actually things are <a href="http://projects.archlinux.org/users/dieter/releng.git/tree/scripts/releng-build-and-release-testing.sh">bit more involved</a> but this is the gist of it.  All of this is now run on a <a href="https://wiki.archlinux.org/index.php/Category:DeveloperWiki:Server_Configuration#Releng_server_.28alberich.29">dedicated VPS</a> donated by <a href="http://www.airvm.com/">airVM</a>.</p>
+
+<p>I never really completed the <a href="/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html">aif automatic test suite</a>, somewhere along the way I decided to focus on crowdsourcing test results.
+
+The weight of testing images (and all possible combinations of features) has always been huge, and trying to script tasks would either get way complicated or insufficient.
+
+So the new approach is largely inspired by the core and testing repositories:  we automatically build testing images, people report feedback, and if there is sufficient feedback for a certain set of images (or a bunch of similar sets of images) that allows us to conclude we have some good material, we can promote the set to official media.
+
+<br/>The latest piece of the puzzle is the new <a href="http://www.archlinux.org/releng/feedback/">releng feedback application</a> which <a href="http://zasshi-slash.blogspot.com/">Tom Willemsen</a> contributed. (again: outsourcing FTW).  It is still fairly basic, but should already be useful enough.  It lists pretty much all features you can use with archiso/AIF based images and automatically updates the list of isos based on what it sees appearing online, so I think it will be a good indicator on what works and what doesn't, and that for each known set of isos.</p>
+
+<p>So there. <b>Bleeding edge images for everyone</b>, and for those who want some quality assurance: <b>the more you contribute, the more likely you'll see official releases</b>.
+
+
+
+<p>While contributing feedback is now certainly very easy, don't think that only providing feedback is sufficient, it takes time to maintain and improve aif and archiso as well and contributions in that department are still very welcome.
+
+I don't think we'll get to the <a href="http://www.archlinux.org/news/200902-iso-release/">original plan</a> of official archiso releases for each stable kernel version, that seems like a lot of work despite all the above.</p>
+
+<p>As for what is new: again too much to list, here is a <a href="http://releng.archlinux.org/isos/Changelog">changelog</a> but I stopped updating it at some point.  I guess the most visible interesting stuff is friendlier package dialogs (with package descriptions), support for nilfs, btrfs and syslinux (thanks <a href="http://pyther.net/">Matthew Gyurgyik</a>), and an issues reporting tool.
+
+Under the hood we refactored quite a bit, mostly blockdevice related stuff, config generation and the "execution plan" (like, how each function calls each other and how failures are tracked) in AIF has been simplified considerably.</p>
+
+<!-- I used to be pedantic about details like "all packages installed in the live environment must be available in the official core/extra repositories but i might become a bit less strict.  or maybe not, it's not hard to switch to official packages. -->
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/restoring_ssh_connections_on_resume/">Restoring ssh connections on resume</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/restoring_ssh_connections_on_resume/" rel="bookmark">
+					<time class="entry-date" datetime="2010-06-16 18:11:50 -0400 EDT">
+						June 16, 2010
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/&hellip;, but they run as root.<br /></p>
+
+<p>If you want to run stuff as a regular user you could do something like</p></p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+su <span style="color: #19177C">$user</span> -c &lt;<span style="color: #008000">command</span>&gt;
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<p>..but these commands have no access to your user environment.<br /></p>
+
+<p>In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&rsquo;t want to reenter your ssh key passwords everytime you resume.<br /></p>
+
+<p>(In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)</p></p>
+
+<p>The solution is very simple. Use this:</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+
+sudo pm-hibernate <span style="color: #666666">&amp;&amp;</span> <span style="color: #008000; font-weight: bold">do</span>-my-stuff.sh
+
+<span style="color: #666666">]]</span>&gt;
+</pre></div>
+<p>This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.<br /></p>
+
+<p>Ideal to kill old ssh processes, and setup tunnels and ssh connections again.<br /></p>
+
+<p>I&rsquo;m probably gonna integrate this into my <a href="http://github.com/Dieterbe/microde">microDE</a></p></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/ext3_logical_partition_resizing/">ext3 logical partition resizing</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/ext3_logical_partition_resizing/" rel="bookmark">
+					<time class="entry-date" datetime="2009-11-01 10:17:26 -0400 -0400">
+						November 1, 2009
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>But what about logical partitions?  A while back I had to resize an ext3 logical partition which ended at the end of the last logical partition.  I learned some usefull stuff but I only made some quick scratch notes and I don&rsquo;t remember all details so:<br /></p>
+
+<p><strong>Do not expect a nice tutorial here, it&rsquo;s more of a commented dump of my scratch notes and some vague memories.<br /></p>
+
+<p>The information in this post is not 100% accurate</strong><br /></p>
+
+<p>I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.<br /></p>
+
+<p></p></p>
+
+<p>I did find various places where they said parted could "handle all partition and filesystem resizing at once".<br />
+
+<a href="http://www.jumpingbean.co.za/blogs/mark/parted_resize_ext3_partition">this post</a> was quite useful, but he was more lucky then me I guess.<br />
+
+In the parted documentation I couldn't find any restriction other then that xattrs don't work.<br />
+
+But it does not support the dir_index and resize_inode features (<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=406680">bug ticket</a>)<br />
+
+You should be able to use tune2fs to remove these options, do the resize and then put them back.  But tune2fs can't put them back and I even had problems removing resize_inode (see below)<br />
+
+Also, I falsely assumed parted would resize the extended partition when you tell it to resize the logical partition.</p>
+
+<p>see here what i did, along with comments and remarks:<br />
+
+[code]<br />
+
+# what features are enabled?<br />
+
+linux-staging:~# tune2fs -l | grep -i feature<br />
+
+Filesystem features:      resize_inode dir_index filetype sparse_super large_file [has_journal]</p>
+
+<p># remove resize_inode feature<br />
+
+linux-staging:~# tune2fs -O ^resize_inode /dev/hda9<br />
+
+tune2fs 1.40-WIP (14-Nov-2006)<br />
+
+Invalid filesystem option set: ^resize_inode # HUH ?</p>
+
+<p># okay then, lets try debugfs<br />
+
+linux-staging:~# debugfs -w -R "feature -dir_index -resize_inode" /dev/hda9<br />
+
+debugfs 1.40-WIP (14-Nov-2006)<br />
+
+Filesystem features: has_journal filetype sparse_super large_file</p>
+
+<p># lets do an e2fsck.  It gave errors but maybe that's normal (?)<br />
+
+# I wonder whether debugfs just unsets the option flags or actually updates the filesystem to not use these features at all (in the latter case, e2fsck should be clean)<br />
+
+linux-staging:~# e2fsck -f /dev/hda9<br />
+
+e2fsck 1.40-WIP (14-Nov-2006)<br />
+
+Filesystem does not have resize_inode enabled, but s_reserved_gdt_blocks<br />
+
+is 176; should be zero.  Fix<y>? yes</p>
+
+<p>Resize_inode not enabled, but the resize inode is non-zero.  Clear<y>? yes</p>
+
+<p>Pass 1: Checking inodes, blocks, and sizes<br />
+
+Inode 58 has INDEX_FL flag set on filesystem without htree support.<br />
+
+Clear HTree index<y>? yes</p>
+
+<p>Pass 2: Checking directory structure<br />
+
+Pass 3: Checking directory connectivity<br />
+
+Pass 4: Checking reference counts<br />
+
+Pass 5: Checking group summary information<br />
+
+Block bitmap differences:  -(5--180) -689 -(32773--32948) -(98309--98484) -(163845--164020) -(229381--229556) -(294917--295092)<br />
+
+-(819205--819380) -(884741--884916) -(1605637--1605812) -(2654213--2654388) -(4096005--4096180) -(7962629--7962804) -(11239429--11239604)<br />
+
+Fix<y>?<br />
+
+Free blocks count wrong for group #0 (0, counted=177).<br />
+
+Fix<y>? yes</p>
+
+<p># lets doublecheck the enabled features<br />
+
+linux-staging:~# tune2fs -l /dev/hda9 | grep -i feature<br />
+
+Filesystem features:      has_journal filetype sparse_super # Hey ? where did 'large_file' go?</p>
+
+<p># do the resize of the logical partition in parted</p>
+
+<p># enable features<br />
+
+tune2fs -O dir_index /dev/hda9<br />
+
+debugfs -w -R "feature large_file resize_inode" /dev/hda9</p>
+
+<p># now all should be good, right? lets do an e2fsck<br />
+
+linux-staging:~# e2fsck -f /dev/hda9<br />
+
+e2fsck 1.40-WIP (14-Nov-2006)<br />
+
+Resize inode not valid.  Recreate<y>? yes</p>
+
+<p>Pass 1: Checking inodes, blocks, and sizes<br />
+
+Pass 2: Checking directory structure<br />
+
+Pass 3: Checking directory connectivity<br />
+
+Pass 3A: Optimizing directories<br />
+
+Pass 4: Checking reference counts<br />
+
+Pass 5: Checking group summary information<br />
+
+Block bitmap differences:  +689<br />
+
+Fix<y>? yes</p>
+
+<p>/dev/hda9: ***** FILE SYSTEM WAS MODIFIED *****<br />
+
+/dev/hda9: 132012/7038048 files (6.2% non-contiguous), 12076862/14368126 blocks</p>
+
+<p># I also got <strong>a lot</strong> of these errors:<br />
+
+Assertion (block < EXT2_SUPER_BLOCKS_COUNT(fs->sb)) at ../../../../libparted/fs/ext2/ext2.h:226 in function ext2_is_data_block() failed.</p>
+
+<p># now here are some more scratch notes. I forgot exactly why and what I did, so I'm just putting them here for reference.</p>
+
+<p>#in fdisk, delete logical, recreate, reboot and do online resize with resize2fs<br />
+
+linux-staging:~# resize2fs /dev/hda9<br />
+
+resize2fs 1.40-WIP (14-Nov-2006)<br />
+
+Filesystem at /dev/hda9 is mounted on /home; on-line resizing required<br />
+
+old desc_blocks = 4, new_desc_blocks = 5<br />
+
+Performing an on-line resize of /dev/hda9 to 19872397 (4k) blocks.<br />
+
+resize2fs: Invalid argument While trying to add group #512</p>
+
+<p>linux-staging:~#  resize2fs /dev/hda9<br />
+
+resize2fs 1.40-WIP (14-Nov-2006)<br />
+
+Please run 'e2fsck -f /dev/hda9' first.</p>
+
+<p>linux-staging:~# e2fsck -f /dev/hda9<br />
+
+e2fsck 1.40-WIP (14-Nov-2006)<br />
+
+Superblock last mount time is in the future.  Fix<y>? yes</p>
+
+<p>Pass 1: Checking inodes, blocks, and sizes<br />
+
+Pass 2: Checking directory structure<br />
+
+Filesystem contains large files, but lacks LARGE_FILE flag in superblock.<br />
+
+Fix<y>? yes</p>
+
+<p>Pass 3: Checking directory connectivity<br />
+
+Pass 4: Checking reference counts<br />
+
+Pass 5: Checking group summary information</p>
+
+<p>/dev/hda9: ***** FILE SYSTEM WAS MODIFIED *****<br />
+
+/dev/hda9: 132012/8208384 files (6.2% non-contiguous), 12113624/16777216 blocks<br />
+
+linux-staging:~# resize2fs /dev/hda9<br />
+
+resize2fs 1.40-WIP (14-Nov-2006)<br />
+
+Resizing the filesystem on /dev/hda9 to 19872397 (4k) blocks.<br />
+
+The filesystem on /dev/hda9 is now 19872397 blocks long.</p>
+
+<p>linux-staging:~# mount /dev/hda9</p>
+
+<p>#  suprisingly, all data looked still intact.<br />
+
+[/code]</p>
+
+<p>After this experience I actually created a VM to do some testing and figured out this is the better way (no fsck errors, and goes much faster):</p>
+
+<ul>
+
+<li>use parted only to increase the extended partition</li>
+
+<li>drop and recreate logical partition with fdisk</li>
+
+<li>resize2fs the logical partition</li>
+
+</ul>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/opening_files_automatically_on_mainstream_linux_desktops/">Opening files automatically on mainstream Linux desktops</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/opening_files_automatically_on_mainstream_linux_desktops/" rel="bookmark">
+					<time class="entry-date" datetime="2009-09-22 19:43:17 -0400 EDT">
+						September 22, 2009
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>The two biggest culprits are:</p>
+
+<ul>
+
+<li>Gtk's "open file with" dialog: if any Gtk program doesn't know how to open a file it brings up this dialog that is horrible to use.  You can search through your entire VFS for the right executable.  No thumbnails, no usage of .desktop files, $PATH, autocompletion and not even limiting the scope to directories such as /usr/bin</li>
+
+<li>Mozilla software such as Firefox and Thunderbird: they only seem to differentiate files by their mimetype, not by extension.  There are add-ons to make it easier to edit these preferences, but eventually you're in a dead end because you get files with correct extensions but unuseful mimetimes (application/octet-stream)</li>
+
+</ul>
+
+<p>Luckily the fd.o guys have come up with <a href="http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html">.desktop files</a>.<br />
+
+In $XDG_DATA_HOME/applications/defaults.list you can define which applications to use for which mime type.<br />
+
+So the only thing you need to do is call <a href="http://portland.freedesktop.org/xdg-utils-1.0/xdg-open.html">xdg-open</a> to open a file with the application you want.<br />
+
+And that's exactly what I did. For now I just configure everything to use xdg-open and that seems to work just fine.  Oddly enough, even though the defaults.list is also based on mimetypes, files that are marked as octet-stream in Thunderbird seem to be properly recognized by xdg-open and opened with the correct program.  Or maybe this is because at the time of testing I only had octet-stream .doc files.  Anyway, we'll see.  But for now it's looking pretty good. </p>
+
+<p>Note: somewhat related and also not very pleasant: epdfview used to say 'encrypted document.. please enter password' whenever you tried to open a non-existent file, a directory,.. basically anything else then a pdf file.  But this seems to be fixed since <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=508969">5 days ago</a>.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/jobhunt_over/">Jobhunt over.</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/jobhunt_over/" rel="bookmark">
+					<time class="entry-date" datetime="2008-12-24 18:07:35 -0400 -0400">
+						December 24, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>Next week I&rsquo;ll start at <a href="http://kangaroot.net/">Kangaroot</a>.  Woohoo.</p></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/looking_for_a_new_job/">Looking for a new job</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/looking_for_a_new_job/" rel="bookmark">
+					<time class="entry-date" datetime="2008-11-24 20:30:51 -0400 -0400">
+						November 24, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>My new ideal (slightly utopic) job would be:</p>
+
+<ul>
+
+<li>Conceptual engineering while still being close to the technical side as well, most notably system engineering and development.</li>
+
+<li>Innovative: go where no one has gone before.
+
+<li>Integrated in the open-source world.  (Bonus points for companies where open source is key in their business model)</li>
+
+<p><!-- Either nearby (East Flanders, preferably the Ghent area), or far enough/international to not have travelling/i move /... -->
+
+</ul>
+
+<p>To get a detailed overview of my interests and skills, I refer to:</p>
+
+<ul>
+
+<li>My Linkedin profile: <a href="http://www.linkedin.com/in/dieterplaetinck">http://www.linkedin.com/in/dieterplaetinck</a></li>
+
+<li>My Curriculum Vitae. <a href="/files/curriculumvitae-dieter-plaetinck-2008-11-24-EN.pdf">EN</a> / <a href="/files/curriculumvitae-dieter-plaetinck-2008-11-24-NL.pdf">NL</a> </li>
+
+</ul>
+
+<p><!-- Interested parties can get reference contact information at my previous employer on request. --></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/aif_the_brand_new_arch_linux_installation_framework/">AIF: the brand new Arch Linux Installation Framework</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/aif_the_brand_new_arch_linux_installation_framework/" rel="bookmark">
+					<time class="entry-date" datetime="2008-11-17 11:45:25 -0400 -0400">
+						November 17, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>(See <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level&hellip;</a>)</p></p>
+
+<p>I looked at the official Arch install scripts to see if I could reuse parts of their code, but unfortunately the code was just one big chunk of bash code with the main program and "flow control" (you must first do this step, then that), UI-code (dialogs etc) and backend logic (create filesystems, ...) all mangled up and mixed very closely together.<br />
+
+Functionality-wise the installer works fine, but I guess the code behind it is the result of years of adding features and quick fixes without refactoring, making it impossible to reuse any of the code.</p>
+
+<p>So I started to write <a href="http://github.com/Dieterbe/aif/">AIF: the Arch Linux Installation Framework</a> (actually it had another name until recently), with these 3 goals in mind:</p>
+
+<ul>
+
+<li>Make all code modular, reusable etc.  Everyone should be able to add/change/remove change certain aspects of an installation procedure easily or build custom installation relying on existing code where appropriate</li>
+
+<li>Port /arch/setup and /arch/quickinst, so you get (almost) the same installer as before, but using totally refactored code.</li>
+
+<li>Write my own automatic procedure for my own custom needs</li>
+
+</ul>
+
+<p>Right now most of the hard work is done and the ported version of /arch/setup seems to work more or less.<br />
+
+I've posted to the arch-general mailing list and the responses I got were very positive.<br />
+
+This is what Aaron Griffin (lead developer of Arch Linux) said:</p>
+
+<blockquote><p>
+
+My honest opinion is that this is awesome. You're the reason I love open source 8)</p>
+
+<p>That said, we haven't release a 2.6.27 ISO just yet, and I need to go<br />
+
+in panic mode and get it out this weekend. But for the next release,<br />
+
+or even a smaller release before then, I'd *love* to incorporate this.</p>
+
+<p>(...)</p>
+
+<p>Just letting you know: I'm not silent because I don't care. I'm silent<br />
+
+because I'm watching and drooling 8)
+
+</p></blockquote>
+
+<p>You can read the whole thread here: <a href="http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-td20256427.html" title="http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-td20256427.html">http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-...</a></p>
+
+<p>I've also built <a href="http://aur.archlinux.org/packages.php?SeB=m&amp;K=Dieter_be">packages</a> to make it easy to install on a current installcd.  The package also comes with a <a href="http://github.com/Dieterbe/aif/tree/master/README">readme</a> and <a href="http://github.com/Dieterbe/aif/tree/master/HOWTO">howto</a> that explain how to install and use AIF.</p>
+
+<p>Right now I encourage people to try it out.  All known bugs are documented in the TODO file, there are probably more that I didn't discover yet.  But it should work pretty well.<br />
+
+I'm very curious for input on the code/design level as well.</p>
+
+<p>Hopefully the Arch guys can set me up with a bugtracker and make some sort of announcement to the community to try it out...</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/im_done_with_gnome_and_gconf/">I&#39;m done with Gnome/Gconf</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/im_done_with_gnome_and_gconf/" rel="bookmark">
+					<time class="entry-date" datetime="2008-09-29 22:01:41 -0400 EDT">
+						September 29, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).<br /></p>
+
+<p>The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime &lsquo;something&rsquo; happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br /></p>
+
+<p>I&rsquo;m fine with the fact they do that.  I&rsquo;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg&rsquo;s</a> $XDG_CACHE_HOME directory)</p></p>
+
+<p>While trying to apply version control to my $HOME I need to spend way too much time scripting various <i>svn reverts</i> of many of those changes (in .gnome2, .gconf/apps/*, and .gconf/desktop), and also updating many <i>svn:ignore</i> properties (although gnome/gconf are definitely not the only culprits for that.)</p>
+
+<p>The Gnome guys make some nice stuff, that's for sure.  But what is crucially important to me seems to be a low-prio thing for them (and let's face it, many users don't care about this...).<br />
+
+They do have a <a href="http://live.gnome.org/GnomeGoals/XDGConfigFolders">Gnome Goal</a> to adress this problem but it clearly states it's only a proposal at this time, so it can take a long time before everything gets cleaned up.  There are also some other <a href="http://brainstorm.ubuntu.com/idea/6557/">ubuntu</a> <a href="http://brainstorm.ubuntu.com/idea/1210">ideas</a>, <a href="https://blueprints.launchpad.net/ubuntu/+spec/correct-home-dir-clutter">Launchpad Blueprints</a> and <a href="http://ploum.frimouvy.org/?184-cleaning-user-preferences-keeping-user-data">blog posts</a> along these lines, so I guess there is some public interest in this.</p>
+
+<p>I can only recommend them (and anyone else for that matter) to cleanly implement the xdg basedir spec.<br />
+
+This means:</p>
+
+<ul>
+
+<li>putting a lot of thought in how and where you store your stuff, while complying to the XDG spec.</li>
+
+<li>carefully implementing those specs &amp; guidelines</li>
+
+<li>making really sure that whatever is in $XDG_DATA_HOME and $XDG_CONFIG_HOME is what the user expects.  Cleanly and transparantly.  Preferrably no bloat (xml) and no automatically changing config files without the user knowing. (Note that this is not clearly specified in the XDG spec.  this is my opinion.)  In $XDG_CACHE_HOME/*yourapp* you can make whatever mess you want ;-)</li>
+
+<li>Use the <a href="http://lists.freedesktop.org/mailman/listinfo/xdg">XDG mailinglist</a>.  It can help you clear up things.</li>
+
+</ul>
+
+<p>I decided to go back to Xfce.<br />
+
+Xfce is more basic then Gnome in terms of features, but being compliant with various freedesktop specs is at the top of their list.  I'm told they implement the <a href="<br />
+
+http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg basedir spec</a> very cleanly, so I'm now back at Xfce 4.4.<br />
+
+I see that they automatically update the files  ~/.config/Thunar/thunarrc and  ~/.config/xfce4/desktop/icons.screen0.rc with non-critical information (size of the windows/panels etc and desktop icons respectively).  Imho this belongs in $XDG_DATA_HOME dir, but then again it's not clearly specified and maybe they discussed it on the mailing list.<br />
+
+In any case , it's looking <strong>much</strong> better then with Gnome.</p>
+
+<p>On a related note:  I also dumped Ubuntu in favor of Arch Linux.  (I've been running Ubuntu for about a year. I used Arch on the laptop before)<br />
+
+I was having some problems with my ubuntu setup...<br />
+
+The network manager (I also tried wicd) could not get my networking working well in some cases (after changing to manual configuration and then rebooting several times it sometimes magically started working).<br />
+
+Combine that with the fact that I just could not login (both in console and in gnome) if my networking wasn't entirely configured...<br />
+
+Ubuntu is not a bad distro.  But they apply many patches on others code and hide as many system details behind fancy gui's and all kinds of daemons as they can.  It's a distro that you can get up and running fast (including things like bluetooth, laptop buttons etc) and if you're lucky, it actually works quite well.<br />
+
+But once things start failing it's a hell to debug.<br />
+
+Arch on the other hand is made for tweaking your system.  It exposes all guts of the system.  you need to setup and tweak everything yourself right from the start but at least it supports you with a framework to do so.<br />
+
+(btw: pkgbuilds are quite similar to Gentoo's ebuilds)</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/rethinking_the_backup_paradigm_a_higher-level_approach/">Rethinking the backup paradigm: a higher-level approach</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/rethinking_the_backup_paradigm_a_higher-level_approach/" rel="bookmark">
+					<time class="entry-date" datetime="2008-07-21 20:21:51 -0400 EDT">
+						July 21, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<h3>The "classic" approaches</h3>
+
+<p>There are many backup scripts/programs out there, each with their own - sometimes subtly and sometimes radically - different approach.<br />
+
+One thing that all solutions have in common is that they choose one or more layers of the system stack to operate on.<br />
+
+What I mean with this "system stack" is that a working to-be-backed-up system can be represented in 'layers' that form a stack, in this case specifically as far as the data on it is concerned.<br />
+
+For a Linux system it looks a bit like this:</p>
+
+<ol>
+
+<li>storage hardware</li>
+
+<li>block device</li>
+
+<li>(LVM/dm-crypt)</li>
+
+<li>filesystem</li>
+
+<li>VFS</li>
+
+<li>user/OS based concepts and patterns (home directories, dotfiles, document/workspace/music directories, ...)</li>
+
+</ol>
+
+<p>Most tools I've seen operate on layers 2, 4 (with optionally a little lvm help) and 5.</p>
+
+<p><b><h7>Block device</h7></b></p>
+
+<p>
+
+Everyone knows dd.  It is the de-facto tool for block device backups. (usually combined with scp, gzip et all).<br />
+
+There are also fancier tools out there that work similarly but can make differential backups.<br />
+
+I would also like to mention <a href="http://www.partimage.org">partimage</a> here.  This tool makes dumps of partitions (block devices) but it only copies used blocks, and therefore it needs to have knowledge of the filesystem stored on the partition.<br />
+
+Usually you run such backup methods by popping in a livecd and running a script.</p>
+
+<p>This solution is good for when your entire hard disk has died: after restoring you have everything back: from the mbr (boot loader &amp; partition layout), dm-crypt/lvm setups, specific filesystem tweaks - although most users don't care about this - (reserved space settings, block size etc), to your entire system (installed packages, config files, home directories, ...) and all your personal data and settings.</p>
+
+<p>But even with differential backups there are a few issues:</p>
+
+<ul>
+
+<li>you store lots of stuff that you actually don't need or could store more efficiently when operating on a higher layer (e.g. the raw bits and bytes of all installed binary programs vs a list of installed packages that could have been reinstalled with a clever script).</li>
+
+<li>It becomes very hard to restore a select few files or directories, especially if you want to roll-back to different dates for different files/directories.</li>
+
+<li>It takes a lot of time to do the backups, especially if you want to backup very frequently (e.g. daily).  If a backup script makes it hard to backup daily, then there is something wrong.</li>
+
+</ul>
+
+<p><b><h7>Filesystems</h7></b></p>
+
+<p>
+
+In this category fall the scripts/tools that do scp's, rsyncs or similar algorithms of the contents of an entire filesystem.<br />
+
+You would usually execute this on a per-filesystem basis from either your live working environment or a liveCD.  The former is easier, the latter is safer against an inconsistent state of your filesystem.  You could do it live and use lvm snapshotting but even then you could have made a snapshot right when an application is in the middle of writing something...</p>
+
+<p>The cool part of these sort of tools (and the one in the upcoming paragraph) compared to the previous type is that is more easy to expose the contents of your filesystem from 'inside the backup' (because it is usually just a directory with a copy of all your files), so it becomes more easy to restore specific files and directories if you would want that, although it is still not suited for roll-backs of specific files/directories to specific versions.<br />
+
+Also, there is no strict control over what gets backed and what not.  If - for example - you decide to do a clean install of your distro (a restore of the same version or a fresh install of new version) then you probably want to copy your backed up home into the new one.  Actually merging is a better term here because you want to keep some of your personal settings, but:</p>
+
+<ul>
+
+<li>you also don't want to break stuff or miss new features (especially if that's how the new version of the distro works) by using old configs for newer packages.</li>
+
+<li>there is usually some clutter in these files that you don't need anyway (temporary data such as caches, and volatile data such as what media players and IM clients like to write away).</li>
+
+</ul>
+
+<p>In this case ploughing through the pile of dotfiles and directories can be cumbersome.  (As far as upgrading is concerned it's not like Linux distributions help the user in this when following the 'upgrade wizard', so this manual ploughing and copying must be done anyway at some point.)<br />
+
+There is a freedesktop standard - <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">the XDG basedir specification</a> - that improves the situation (the organisation part, not the upgrade part) but many projects don't have adopted it yet.  On the other hand you could keep a big rules list for rsync to control what goes in the backup and what not, but the list will get out of hand if you want to tightly control this.</p>
+
+<p>More bad news is that from this layer and upwards you do not backup your MBR and filesystem settings (and whatever is in between: lvm, dm-crypt, ...).  So restoring a full system is a bit harder.  You could still do it of course by backing up the mbr separately and/or use scripts to parse fdisk/tune2fs but it gets complicated to reconstruct a dm-crypt/lvm setup.<br />
+
+<!-- mondorescue.org operates on block device layer i think, they also talk about filesystems but they call ntfs a partition .. kan volledig systeem restoren, of het ook een filesystem kan exposen weet ik niet -->
+
+</p>
+
+<p><b><h7>VFS</h7></b></p>
+
+<p>
+
+These scripts are the ones that basically iterate over your entire VFS, check some ignore options and copy all the rest.  It's a very subtle difference with the previous category.  Especially because they are usually configured to only backup the filesystems stored on harddisks and ignore the 'virtual' stuff, so in practice the result is the same.<br />
+
+That's also why the advantages and disadvantages are basically the same.</p>
+
+<p>The <a href="http://blinkeye.ch/mediawiki/index.php/GNU/Linux_System_Backup_Script_(stage4)">mkstage4.sh script</a> is a well-known example in the Gentoo/Arch community.
+
+</p>
+
+<h3>Going one step further...</h3>
+
+<p>Now... The way I see it, we should not focus on the goal of "making a backup of the entire system" because the result will be a mix of lots of different types of data all mangled together, not efficiently stored and not easily restorable in ways that make most sense for the specific types of data.  Also, all the "classic" approaches need to make compromises. (see advantages/disadvantages of aforementioned techniques). I'm thinking especially of the many different restore scenarios that a good backup strategy must be able to handle.</p>
+
+<p>That's why we should work on the 6th layer: <i>the user/OS based concepts and patterns</i>.<br />
+
+We should look at each type of data to find out what it really means to us, what we want to do with it, how to work with it and how we can store it in a way that makes most sense for each specific type of data.<br />
+
+This gives 2 benefits:</p>
+
+<ul>
+
+<li>You can maximize the usefulness of your 'stuff': you can start doing things with your data that you couldn't do before: I'm thinking of versioning, making branches of stuff for specific hosts/users/... , having up-to-date subsets/copies of specific media, and so on.</li>
+
+<li>As a <i>side-effect</i> you can also more easily create the redundancy you need to save yourself from disasters, with an easy way to restore the specific data you need.</li>
+
+</ul>
+
+<p><b><h7>Getting the most out of your data</h7></b></p>
+
+<p>
+
+I use 2 tools to help me with this</p>
+
+<ul>
+
+<li><a href="http://subversion.tigris.org/">svn</a></li>
+
+<li><a href="/DDM_a_distributed_data_manager">ddm</a></li>
+
+</ul>
+
+<p><i>(If you don't know what <a href="/DDM_a_distributed_data_manager">ddm</a> is , have a look at the page so you get the basic concepts, especially the types of datasets)</i></p>
+
+<p>Generally speaking, I have the following repositories on my home-server:</p>
+
+<ul>
+
+<li>svn: one for each of my bigger projects</li>
+
+<li>svn: one for my collection of scripts and tools</li>
+
+<li>svn: one for my home directories (common stuff in trunk, branches for different hosts with symlinks to common stuff where needed, svn externals to link to other repositories where needed, most ~/.* added directly)</li>
+
+<li>svn: system-wide configuration for all my hosts: /etc, installed package lists, ... (i should put partition table/lvm/dm-crypt/filesystem settings in here too ...)</li>
+
+<li>ddm: one for each type of media (audio, video, photo, documents, ...)</li>
+
+</ul>
+
+<p>To get the most out of these tools, a tightly organized, well-controlled home directory (system) is a must.<br />
+
+This is something I actually plan to blog about in the near future.</p>
+
+<p>Suffice it to say for now that half of the stuff that matters to me is in svn and can/should be reviewed &amp; committed daily.<br />
+
+The other half is stored in ddm repositories, for which I usually have a selection/copy dataset and a buffer.  I just need to flush the buffers regularly and keep my ddm config in svn and I'm safe.</p>
+
+<p>As far as <i>data</i> is concerned, I can do everything I need with svn and ddm.  The former for configs and most of my textfiles, the latter for media and other bigger binary files.  (I store all important ~/.* in svn except .mozilla stuff: these directories are big and messy and go into ddm for now)
+
+</p>
+
+<p><b><h7>Handling the remaining stuff</h7></b></p>
+
+<p>
+
+But of course, data is not the only thing of importance on your system.  Some things are not just files or directories on the system but other properties that must be backed up.  We must be able to reconstruct them, so we need to be able to 'capture' and save their essence.  I'm thinking of the bootloader, the partition table layout, the lvm/dm-crypt setup and filesystem settings (which filesystem on which partition, which block size, reserved space, ...)  Note that this is one the issues that also the filesystem/VFS backup methods suffer from.</p>
+
+<p>For now I don't back this up myself, but I should.  I think the best way to do it is to write scripts that parse output of tools such as fdisk, lvdisplay, tune2fs, ... and store the results in svn.  Restoring this? .. read on!
+
+</p>
+
+<p><b><h7>Putting it all together..</h7></b></p>
+
+<p>
+
+Okay, so now we have some ideas how to organize our <i>data</i> to maximize their usefulness and we can perfectly restore it the way we want thanks to ddm and svn.  But there are 2 issues remaining:</p>
+
+<ul>
+
+<li>How do we (easily) restore <i>properties</i> such as the partition table, dm-crypt setup, specific filesystem settings?</li>
+
+<li>How do we put everything back together to get a working system in the event we need a <i>full system restore</i>?</li>
+
+</ul>
+
+<p>To solve this problem, we need several things:</p>
+
+<ul>
+
+<li>overview meta data for your each entire system. A file that describes how your system looks like, which svn repositories must be checked out where, and what kind of ddm datasets you want for your ddm repositories and where. This file must be easily updateable.</li>
+
+<li>A tool that can reconstruct your entire system according to the just described meta data.</li>
+
+<li>A tool that can setup the lowest layers of your system (partition table, bootloader, dm-crypt/lvm setup, filesystems) just the way <i>you</i> want it.</li>
+
+</ul>
+
+<p>This is all stuff that I haven't implemented myself yet and I'm still thinking about.  For the first item we could work a text files and a few scripts, or not entirely re-invent the wheel and (ab)use svn for this.  Let / be the working copy, svn:ignore most of the system and use svn:externals to reconstruct your working copy needs (basically /home and /etc) , and put the ddm dataset directories in place (without the files that ddm manages of course), then it's just a matter of 'ddm up' in the ddm datasets and we're done.  If anyone has ideas for this let me know :)</p>
+
+<p>For the other stuff we could use scripts that do a complete automatic installation with some scripts.<br />
+
+From work, I have some experience with <a href="http://www.informatik.uni-koeln.de/fai/">fai</a>, but I'm not sure it can do all the stuff we discussed.  But there are certainly lots more similar tools that should be able to do the job.<br />
+
+This may seem overkill for single, unique systems but imho it is the only good way to enjoy all the advantages previously described while also being able to completely construct a fully working and perfectly setup system.  It would definitely be advantageous to be able to use the same tools when doing a 'clean system upgrade' also!</p>
+
+<p>So the end result of my backup strategy: my laptop, home workstation and home fileserver all use ddm and svn to manage everything of importance.  I just need to do so some svn commits and ddm buffer flushes.  To be really sure I then just have to make backups of the ddm and svn repositories on the fileserver and I'm done.<br />
+
+There are some small issues remaining, stuff that needs to be thought of, but this is stuff that can be fixed, unlike the classic methods who are limited by design.
+
+</p>
+
+<p>Any questions or remarks?  Let me know!</p>
+
+<p><!--<br />
+
+* off-site stuff zoals website hosted on hosting accounts : code => eigen svn systeem, database moet je backups van hebben, kan met scripts bvb voor elk offsite ding doe script<br />
+
+* full disk restore is wel nice maar heb je da echt nodig als install van vers os zo vlot kan?<br />
+
+* vgl src code - binaries<br />
+
+* key data zoals mysql db?  ook 'gewoon backuppen' naast ddm en svn<br />
+
+* Mind you that all of this is from the standpoint of a desktop user.  But for other systems - like servers - i believe in a similar approach<br />
+
+--></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/announcing_the_netlog_developer_pages/">Announcing the Netlog Developer Pages</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/announcing_the_netlog_developer_pages/" rel="bookmark">
+					<time class="entry-date" datetime="2008-05-24 12:39:28 -0400 EDT">
+						May 24, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.<br />
+
+We've also launched a <a href="http://en.netlog.com/go/developer/group">group</a> where you can communicate with fellow developers and Netlog employees.<br />
+
+The page also features a <a href="http://en.netlog.com/go/developer/blog">blog</a> where you can follow what is going on in the Netlog Tech team.</p>
+
+<p>PS: We've also updated our <a href="http://en.netlog.com/go/inside/view=jobs">jobs page</a></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
+            
+                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
+            
+                <a href="http://localhost:1313//tags/netlog/index.html" rel="tag">netlog</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/simple_command_to_retrieve_stuff_from_ram_after_closing_or_crashing_an_application/">Simple command to retrieve stuff from RAM after closing/crashing an application</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/simple_command_to_retrieve_stuff_from_ram_after_closing_or_crashing_an_application/" rel="bookmark">
+					<time class="entry-date" datetime="2007-09-15 15:32:24 -0400 EDT">
+						September 15, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>thanks Martin for this tip!<br /></p>
+
+<p><a href="http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-stuff-from-memory" title="http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-stuff-from-memory">http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-...</a></p></p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/assymetric_keys_instead_of_passwords_for_ssh_authentication_to_increase_security_and_convenience/">Assymetric keys instead of passwords for SSH authentication to increase security and convenience</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/assymetric_keys_instead_of_passwords_for_ssh_authentication_to_increase_security_and_convenience/" rel="bookmark">
+					<time class="entry-date" datetime="2007-07-14 20:22:38 -0400 EDT">
+						July 14, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>It's a feature in ssh protocol version 2 (thus it's around for already a while, e.g. we can all use it without updating something) which essentially comes down to this: you generate an asymmetric key pair and distribute the public key to all remote hosts. When logging in to that host, the host will encrypt a random integer, which only you can decrypt (using the private key) and hence prove your identity.  Too secure your private key you'll store it encrypted with a password.  Ssh-agent (which is bundled with openssh) is the tool that interacts with ssh to perform this task: when logging in to a host, ssh-agent will open the private key for you automatically <em>if it can decrypt it with the password it receives from you</em>  But the problem is you'll have to load (enter your password and decrypt the key) each time again.</p>
+
+<p>This is where <a href="http://www.gentoo.org/proj/en/keychain/index.xml">keychain</a> comes in, or you can use <a href="http://www.phil.uu.nl/~xges/ssh/">SSH Agent</a> (don't confuse this with the ssh agent that comes with openssh) if you're a Mac user and like gui's.  These tools basically ask you your passwords for all private keys you wish to use in a session (with session I mean "the whole time of using your computer"), decrypt the encrypted key on your hard disk and cache the decrypted key in ram, so it can be used in all terminals you open.</p>
+
+<p>For more information:<br />
+
+<a href="http://www.ibm.com/developerworks/library/l-keyc.html">OpenSSH key management, Part 1: Understanding RSA/DSA authentication</a><br />
+
+<a href="http://www.ibm.com/developerworks/library/l-keyc2/">OpenSSH key management, Part 2: Introducing ssh-agent and keychain</a><br />
+
+<a href="http://www.ibm.com/developerworks/linux/library/l-keyc3/">OpenSSH key management, Part 3: Agent forwarding and keychain improvements</a> (freaks only ;-))</p>
+
+<p>Have fun</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/the_perfect_gtk_music_player_can_exaile_replace_amarok/">The perfect GTK music player: can Exaile replace Amarok?</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/the_perfect_gtk_music_player_can_exaile_replace_amarok/" rel="bookmark">
+					<time class="entry-date" datetime="2007-07-08 12:50:50 -0400 EDT">
+						July 8, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.</p></p>
+
+<p>So, I've been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.</p>
+
+<h3>Requirements</h3>
+
+<p>First a list of features I would like to see in my new music player.  Let's keep it real: I don't think there is <em>any</em> music player out there that does everything listed here, not even Amarok.  I can live with some missing features, as long as it has the most important ones.  The other features might be added later on anyway, and who knows, maybe I'll start contributing to a project if I really like it...</p>
+
+<p>In order of importance:</p>
+
+<ul>
+
+<li>Last.fm submitting</li>
+
+<li>Jack output</li>
+
+<li>Advanced management of songs/albums/artists and playlists with ratings (not just bookmarks)</li>
+
+<li>Last.fm stream listening</li>
+
+<li>Ipod support</li>
+
+<li>Radio streams</li>
+
+<li>Podcasts</li>
+
+<li>Artist/album/song information fetching from Wikipedia</li>
+
+<li>File system monitoring (Inotify) so that it detects the new songs when I add them to my file system</li>
+
+<li>Lyrics</li>
+
+<li>Volume normalization (either through <a href="http://replaygain.hydrogenaudio.org/">ReplayGain</a> or just automatically) (if this is not built-in I can always route through a compressor/limiter myself)</li>
+
+</ul>
+
+<p>Stuff that other people like, but I don't need/want/care about:</p>
+
+<ul>
+
+<li>On screen display (when a new song starts)</li>
+
+<li>Visualizations</li>
+
+<li>Musicbrainz(*)</li>
+
+<li>CD-ripping (not the task of a music player imho)</li>
+
+</ul>
+
+<p>(*): I absolutely love Musicbrainz and use it all the time but I don't think it is functionality to be put in a music player.  I use the Musicbrainz Picard tagger to organize my collection.  Putting all the needed functionality inside the media player would make it very bloated.  So in theory I actually wouldn't need any tag editing at all in my music player<br />
+
+(this could be a discussion in it's own merit: why don't we get rid of all tag editing functionality in all music players and use decent, separate utilities such as the Musicbrainz Picard tagger to tag your collection?)</p>
+
+<h3>Contenders</h3>
+
+<p>It struck me how many GTK music players there are out there, and especially how similar some of them are.</p>
+
+<ul>
+
+<li><a href="http://www.sacredchao.net/quodlibet/">Quod Libet</a>: written in python, pretty advanced (podcasts, shoutcasts, Last.fm submissions, reg-exp song searching)</li>
+
+<li><a href="http://www.musicpd.org">mpd</a>: although I like a daemon based approach (I sometimes don't have X open - pretty seldomly though - ) it (even combined with any of the graphical front ends) doesn't offer anything close to my requirements</li>
+
+<li><a href="http://banshee-project.org">Banshee</a>: built on Mono. Has podcasts, ipod support, smart playlists, and even inotify support but didn't even compile on Gentoo, so never mind...</li>
+
+<li><a href="http://www.listen-project.org/">Listen</a>: written in python, it looks pretty advanced: podcasts, shoutcasts, Last.fm, Wikipedia fetching, ... it can even create playlists for you based on your Last.fm account</li>
+
+<li><a href="http://live.gnome.org/Rhythmbox">Rhythmbox</a>: Gnomes music player inspired by Apple's iTunes.  featuring internet radio, ratings, lyrics, artwork, Last.fm, podcasts, cd-ripping, ipod writing (only partial !), plugins, file system monitoring (I think through polling, not through inotify).  According to some people it's pretty buggy and I can only agree: version 0.10 (latest)  crashed many times on me :(</li>
+
+<li><a href="http://www.exaile.org">Exaile</a> I kept the best one for the end ;-).  It's another one written in python, inspired by Amarok and hence has many similar features.  In addition to that you can also get guitar tabs with it. (why no drum tabs? ;-) ) According to somebody on trac it's <a href="http://exaile.org/trac/ticket/485">better then Listen</a>.
+
+</li>
+
+</ul>
+
+<h3>is Exaile a worthy alternative?</h3>
+
+<p>Description on the <a href="http://www.exaile.org/">Exaile website</a>:<br />
+
+<cite><br />
+
+Exaile is a music player aiming to be similar to KDE's Amarok, but for GTK+ and written in Python. It incorporates many of the cool things from Amarok (and other media players) like automatic fetching of album art, handling of large libraries, lyrics fetching, artist/album information via Wikipedia, Last.fm submission support, and optional iPod support via a plugin.<br />
+
+In addition, Exaile also includes a built-in SHOUTcast directory browser, tabbed playlists (so you can have more than one playlist open at a time), blacklisting of tracks (so they don't get scanned into your library), downloading of guitar tablature from fretplay.com, and submitting played tracks on your iPod to Last.fm<br />
+
+</cite><br />
+
+The description pretty much sums up all there is about Exaile.<br />
+
+However I want to add it also supports podcasts and streaming radio.<br />
+
+You can also rate all your tracks and it has some smart playlists (depending on ratings, newest, random, top tracks, ...)<br />
+
+It uses sqlite (no MySql support like Amarok, which is not a big miss)<br />
+
+The fact that it allows to have multiple playlists / radio's / ... open in tabs is a killer feature! (Amarok guys: implement this too!)<br />
+
+Another cool thing are the <a href="http://www.exaile.org/plugs">plugins</a> which add even more functionality, and it's very easy to install them from inside the program, enabling goes instantly (without the need of a restart)<br />
+
+Also, it can output via jack, because it uses the GStreamer framework.  It does however create a new jack instance for each song, so each time a song changes, it drops the current jack output and creates a new one.  I don't like this, because each time have to re-attach my routings, maybe there is some automated way to do this (with <a href="http://qjackctl.sourceforge.net/">qjackctl</a> or something?) but I haven't figured it out yet.  If anyone knows more about this, let me know!</p>
+
+<p>When last.fm submission fails (eg when your connection is down) it doesn't keep a queue to resend later like Amarok does, also it currently doesn't offer Last.fm radio streaming.<br />
+
+When searching through your collection the results aren't updated instantly: it takes a second or so (just like when using Amarok, so that's fine)<br />
+
+I don't think Exaile can automatically mount your Ipod for you.  But I don't think this is the task of the media player:  You can always use a deamon (or your DE) to do that (I use thunar-volman in Xfce for that).  The media player should however work well with the device, after it's mounted.  In Exaile the Ipod plugin works pretty well, when you mount your Ipod you can make it connect to it, show you the playlists and songs, and you can add songs and playlists just like in Amarok.  I couldn't, however, edit the playlist that was on the Ipod and creating and deleting a new playlist was a bit buggy (gui still showing old entry with some random ascii characters instead of not showing the playlist anymore)</p>
+
+<p>As a last negative point, it seems to not support inotify as of yet.  You can configure it to systematically re-scan your collection every specific interval which is okay, but doesn't come close to inotify (especially for huge collections)</p>
+
+<p>So, to conclude I would say Exaile is a worthy alternative for Amarok, which is a huge thing to say.  It doesn't offer everything Amarok does, but it does have most important features and even offers some - useful ones - that Amarok doesn't have.  And I never had it to crash or anything like that, it behaved well and stable.</p>
+
+<p>The project is however pretty young and it is being actively developed.  Which is a must because some features still need to be implemented (such as inotify support and Last.fm streaming)<br />
+
+But I see much activity on trac, especially in <a href="http://www.exaile.org/trac/tags/'last.fm'">the domain of Last.fm</a> where I can see that <a href="http://www.exaile.org/trac/ticket/299">support for Last.fm streams is scheduled for the next minor release (0.2.11)</a> so I'm not worrying and I'm using Exaile full time right now.</p>
+
+<p>I haven't deleted Amarok just yet, but I don't think that will take very long ;-) </p>
+
+<p>Don't take my word for it, but if I ever find the time for it,  I would even like to get intimate with the code base and do some contributions.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/music/index.html" rel="tag">music</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/open_source_softwarepatenten_vanuit_ethisch_perspectief/">Open source en softwarepatenten vanuit een ethisch perspectief</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/open_source_softwarepatenten_vanuit_ethisch_perspectief/" rel="bookmark">
+					<time class="entry-date" datetime="2007-05-29 00:53:08 -0400 EDT">
+						May 29, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>Hier moesten 3 elementen in voorkomen:</p></p>
+
+<ul>
+
+<li>Inleidende tekst / Persoonlijke reflectie over beroeps- en bedrijfsethiek</li>
+
+<li>Ethische beschouwingen bij het eindwerk</li>
+
+<li>Uitgebreidere verhandeling met ethische beschouwingen over een vraagstuk naar keuze uit het domein van wetenschap, techniek, beroeps- en bedrijfsleven.  In mijn geval is dit vraagstuk naar keuze "open source en softwarepatenten" geworden</li>
+
+</ul>
+
+<p>Zoals sommigen onder jullie weten vind ik ethiek een heel belangrijk aspect in het leven en ik ben dan ook blij dat ik het issue van open source en softwarepatenten verder heb kunnen uitdiepen, want dit is iets waar ik in geinteresseerd ben.</p>
+
+<p>Mijn werkje kan je <a href="/files/portfolio_ethiek_dieter_plaetinck(nl).pdf">hier</a> downloaden.  Lees het gerust door en laat me weten wat je ervan vindt!</p>
+
+<p>Een heel interessant artikel dat ik ben tegengekomen (wel, eigenlijk mailde de docent van Ethiek het me door ;-) is <a href="http://www.kakupesa.net/kakk/docs/culteng2006_preprint.pdf">Community Ethics and Challenges to Intellectual Property</a> geschreven door Kaido Kikkas.  Neem ook dit zeker door want die kerel slaat de nagel op de kop!<br />
+
+Bovenstaande tekst heeft ook het levensverhaal van Edward Howard Armstrong aangehaald.  Toen ik hierover las heb ik direct zijn hele <a href="http://en.wikipedia.org/wiki/Edwin_Howard_Armstrong">biografie op wikipedia</a> doorgenomen. In het kort komt het er op neer dat die persoon enkele geniale uitvindingen heeft gedaan, maar het bedrijf waarvoor hij werkte heeft via dure rechtzaken hem in de zak gezet en geruineerd.  Uiteindelijk ging zijn huwelijk en zijn hele leven eraan kapot.  En dan heeft hij zelfmoord gepleegd.<br />
+
+Ongelooflijk hoe ver het egoisme van een bedrijf kan gaan.  Laten we dan ook leren uit de geschiedenis en kritisch staan tegenover de nieuwe elementen waar we tegenover staan zoals intellectuele eigendommen en patenten.  We willen toch niet dezelfde fouten maken?</p>
+
+<p>In mijn zoektocht naar meer info over deze man stootte ik op deze pagina: <a href="http://world.std.com/~jlr/doom/doom_eng.htm">doomed engineers</a>.  Neem deze even door!</p>
+
+<p>Last but not least wil ik bij deze ook iedereen de film <a href="http://www.revolution-os.com/">Revolution OS</a> aanraden.  Het is al lang geleden dat ik hem gezien heb, maar hij geeft een prima beeld over de opgang van vrije software (en Linux in het bijzonder), en je leert er vooral ook bij over enkele onethische praktijken van softwaregiganten, you know which one I mean...</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/information-age/index.html" rel="tag">information age</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/i_just_became_a_system_and_network_architect/">I just became a &#34;System &amp; Network Architect&#34;</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/i_just_became_a_system_and_network_architect/" rel="bookmark">
+					<time class="entry-date" datetime="2007-04-17 20:11:07 -0400 EDT">
+						April 17, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I will be working there in a team of all young, enthusiastic people.  Among those, some people are already familiar to me:  my old friend <a href="http://www.lievendekeyser.net/">Lieven</a> (we've played in a band together but kept in touch afterwards) and my ex-classmate <a href="http://www.jurriaanpersyn.com/">Jurriaan</a>.  Both of them love their jobs btw :-).</p>
+
+<p>My official title is "System &amp; Network architect".<br />
+
+Things I will be doing there is  keeping the "lower level" (hardware, network, databases) secure, stable and performing well.<br />
+
+There will be quite some variety: working together with the dev-team, optimizing where possible, but also testing fancy hardware and software setups, hacking some code, deciding which routes we'll take and administering the systems.<br />
+
+Of course it will be in a <a href="http://en.wikipedia.org/wiki/Free_software">sane</a> <a href="http://en.wikipedia.org/wiki/Open_standard">environment</a> :-)  Otherwise I would never have signed.</p>
+
+<p>Those who know me well will see that all this stuff is actually the kind of things I'm messing with in my spare time (among others of course), so these are things that I'm really interested in.  I'm anxious to start, I even already have a few ideas in my head for stuff I want to check/propose, but of course I'll have to wait a bit:  I have to finish my <a href="/masterproef">thesis</a>, then exams, then (hopefully ;-) ) graduate and after a small vacation my term starts.</p>
+
+<p>PS: We (I can say this now ;-) are still hiring, check our <a href="http://incrowd.be/jobs.html">jobs</a> page.</p>
+
+<p>UPDATE: Incrowd <a href="http://corporate.netlog.com/blog/2007/04/facebox-becomes-netlog/">has become</a> <a href="http://nl.netlog.com/">Netlog</a> </p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/netlog/index.html" rel="tag">netlog</a>
+            
+                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/debian_changing_route_the_end_of_the_perfect_server_distribution/">Debian changing route: the end of the perfect server linux distribution?</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/debian_changing_route_the_end_of_the_perfect_server_distribution/" rel="bookmark">
+					<time class="entry-date" datetime="2007-04-10 11:58:30 -0400 EDT">
+						April 10, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>However, it seems like Debian is taking a route that will make it lose it's advantages over other distributions in the server market:<br />
+
+On april 8th <a href="http://www.debian.org/News/2007/20070408">Debian released version 4.0</a>.  But very soon an <a href="http://www.linux-watch.com/news/NS5673962628.html">article</a> popped up and drew my attention.<br />
+
+It complains about several problems such as multiple NIC's just not working.  After reading this, I skimmed over <a href="http://www.debian.org/releases/etch/i386/release-notes/ch-information.en.html">"potential problems" in their release notes</a>, and what do we see?  Many small issues that could have been fixed by just taking a bit longer, often accompanied by lines such as "Although<br />
+
+<package x> has been tested extensively, you may experience minor problems...".  Problems varying from devices not being created to environment variables blindly being overwritten.  (Come on, how hard is it too prevent that?)<br />
+
+So Debian is changing their release mechanism (or was this just a one-timer?  Even then it's bad practice), thereby loosing it's major benefits over other distributions on the servermarket.<br />
+
+Personally I don't think issues like these will make server administrators switch to something else, but they'll sure have some work on their hands if they decide to upgrade ;-)</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/fosdem_2007_review/">Fosdem 2007 review</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/fosdem_2007_review/" rel="bookmark">
+					<time class="entry-date" datetime="2007-03-15 21:02:41 -0400 EDT">
+						March 15, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>It&rsquo;s that time of the year when many European (and some inter-continental) colleagues join us at<br /></p>
+
+<p><a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers&rsquo; European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p></p>
+
+<p><a href="http://www.fosdem.org/2007/">This years edition</a> took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)</p>
+
+<p>Like usual the <a href="http://www.fosdem.org/2007/schedule/days">schedule</a> was pretty full, with lots of things happening at the same time, and only one thing a human being is able to attend at the same time.  Luckily however the 2 biggest rooms (Janson and Chavanne) were videotaped and the <a href="http://www.fosdem.org/2007/media/video">videos</a> are always made available online afterwards.  So knowing that, I could safely follow other rooms if I found those more interesting.</p>
+
+<h3>Saturday</h3>
+
+<p>The first talk started at 10:00h, and it's about an hour drive, if you don't get lost.<br />
+
+But I need my sleep, especially the sparse kind of sleep after Friday evenings.  (same goes for my buddy <a href="http://ghosty.be/">Geert</a> who I could ride along with).  We headed off at 11h, and arrived somewhere around 12:30.  (Let's blame Brussels' bad road signaling for that).  </p>
+
+<p>Missed the opening talks, and the "status of software patents" and "liberating java" talks which I'm was really interested in, but hey they were taped so no problemo ;-). During lunch break I explored the stands a bit, talked with some guys and picked up some reading material.</p>
+
+<p>At the <a href="http://www.gentoo.org/">Gentoo</a> stand there was no merchandise to be found.  I asked whether merch would arrive, but they said they were afraid not.  (and they were right).  No Gentoo merchandise, that was bummer.  I really wanted a t-shirt or something like that.  Gentoo is one of my favorite distros.</p>
+
+<p>At the gnome stand they had made a panel were people could write their favorite things (or things they hate) about gnome on post-its.  There were things like "gnome should use QT" replied by "qt should use gtk" and all kinds of jokes.  Then there was this guy who was repositioning all the post-it's in the shape of letters of kde.  I use neither (I use <a href="http://www.xfce.org/">xfce</a>) but this sure was a cool place to hang out during breaks.  </p>
+
+<p>After that I followed the <a href="http://www.fosdem.org/2007/schedule/events/xorg">X.org talk</a>, <a href="http://www.fosdem.org/2007/schedule/speakers/keith+packard">Keith</a> (the project leader) was a real-funpants and told us all about the developers involved with Xorg.  Where they live, their tasks, favorite beers, and so on.  More of a talk for the community then the developers.</p>
+
+<p>Next was <a href="http://www.fosdem.org/2007/schedule/events/aiglx">the aiglx one</a>.  Actually I preferred attending <a href="http://www.fosdem.org/2007/schedule/events/linuxbios">linuxBIOS</a> which I just find more interesting.  Besides, thanks to my nvidia card i can run GLX_EXT_texture_from_pixmap without aiglx or xgl, but hey, I guess the other guys are less fortunate so I decided to stick with them.  I can always check linuxBIOS later :-).   This talk was pretty advanced.  A real developers-talk you could say.  I certainly couldn't follow ;-)</p>
+
+<p>After that came a talk about the state of <a href="http://www.fosdem.org/2007/schedule/events/linux_kernel"> the Linux kernel</a>.  It was quite interesting, again, this was a talk aimed at developers, which I'm totally not, but I'm a bit familiar with the kernel (running <a href="http://www.gentoo.org/">Gentoo</a> and following <a href="http://kerneltrap.org/">kerneltrap</a> a bit has it advantages) so I could follow, more or less.</p>
+
+<p>Next I followed <a href="http://www.fosdem.org/2007/schedule/events/donators_return">the donators return</a> thing where people who donated (like me) can <a href="http://fosdem.org/2007/support/donate">win prizes</a>.  I didn't win anything but hey, still I felt the money was well spent.  (and I also got a free t-shirt ;-) )  One of <a href="http://www.sun.com/desktop/workstation/ultra20/">these</a> would certainly fit in my room though ;-))</p>
+
+<p>One thing I just had to attend was the Gentoo devroom.  like I said: Gentoo is one of my favorite distributions.  Also, it was our Belgian irc-friend <a href="http://www.fosdem.org/2007/schedule/speakers/dimitry+bradt">Dimitry (aka diox)</a> who gave his talk so I just couldn't miss <a href="http://www.fosdem.org/2007/schedule/events/gentoo_future_discussion">his talk about Gentoo's future</a>.  This was the first devroom I followed and it was totally different then any other talk: it was more of an interactive talk between the devs and the audience.  In the audience were some real devs, but also lot's of "normal" communitypeople.  Next to me there even was a guy who was very new to Gentoo.  I was happy to tell him all about paludis, overlays and other concepts and terms of Gentoo.</p>
+
+<p>After that, there were no more talks to attend, so I went by some stands again (to check if Gentoo merchandise might have arised, among others), met Geert again and, although it was pretty hard to find our way back in the (now darkened) city of Brussels, we managed to drive back home.</p>
+
+<h3>Sunday</h3>
+
+<p>A new day, and wow, so many cool talks to attend: metasploit, drupal, security testing, mozilla, mono, gplv3, the list goes on.  Luckily many of them were in Janson/Chavanne so I could safely skip these and head for...</p>
+
+<p>the Gentoo devroom.  (yeah, sorry, Gentoo here Gentoo there.  My other favorite distro <a href="http://www.archlinux.org/">Arch Linux</a> wasn't featured anywhere, so Gentoo got all the attention)<br />
+
+I missed the "programing with paludis" one (ouch! I would have liked that one) but I was there to hear <a href="http://www.fosdem.org/2007/schedule/speakers/mike+frysinger">Mike</a> talk about <a href="http://www.fosdem.org/2007/schedule/events/gentoo_council">Gentoo's inner workings</a>.  He told us all about Gentoo's history and how (by who) the project is managed.  That Daniel (the founder of Gentoo) left and came back (I found it remarkable he didn't mention <em>why</em> he left (to work at Microsoft).    Guess that wasn't important enough for the community)</p>
+
+<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/chris+gianelloni">Chris</a> talked about <a href="http://www.fosdem.org/2007/schedule/events/gentoo_tinderbox_testing">the process that happens for making releases</a>.  I was impressed.</p>
+
+<p>To fill the gap between 13h and 14h I wanted to follow <a href="http://www.fosdem.org/2007/schedule/events/jabber_oneteam">this</a> talk.  I have no idea what oneteam is, but I like jabber.  The room was stuffed with people though, and when opening the door you literally felt warm air coming out, so I decided to let the jabber guys in their oven :-)</p>
+
+<p>After that some more Gentoo talks: <a href="http://www.fosdem.org/2007/schedule/events/gentoo_community_distro">"what makes Gentoo a community based distribution"</a> by <a href="http://www.fosdem.org/2007/schedule/speakers/christel+dahlksjaer">Christel</a> didn't make me believe Gentoo is any more community based then most other open source Linux distributions, but hey Christel was quite a joker and the community vibe in the room was nice.</p>
+
+<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/marius+mauch">Marius</a> did a <em>great</em> job explaining the ins and outs of portage -especially the new ones- in his talk <a href="http://www.fosdem.org/2007/schedule/events/gentoo_portage">Portage: a look under the surface</a>.</p>
+
+<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/alexander+faeroey">Alexander</a> did a talk called <a href="http://www.fosdem.org/2007/schedule/events/gentoo_bugday">future of the bugday project</a>.  This was pretty much the kind of information you get by reading the forums/newsletters.  Nothing new, but I don't think the talk intended to make groundbreaking revelations either ;-)</p>
+
+<p>17 'o clock.  Damn.. time went fast.. Fosdem pretty much coming to end, luckily there was another nice topic I was really interested in: <a href="http://www.fosdem.org/2007/schedule/events/embedded_security_devices">Linux on embedded security devices</a>.  This talk wasn't very good though:   No kernel revelations.  No open source code.  No in-depth explanations.<br />
+
+Basically a company showing it's product: an embedded device running Linux, running customized code and a presentation showing a scheme showing where they used technologies like SSL, dns or dhcp.  Boring...  And a little demo.<br />
+
+Nice to see, but nothing more then that.</p>
+
+<p>I think it must have been after this talk I went back to the stands to find <a href="http://christophe.vandeplas.com/">Christophe (aka chri)</a>, who I hadn't met yet but I had helped him a bit getting <a href="http://code.google.com/p/weids/">weids, the "Webbased Information Display System"</a> (which was created for fosdem) to work.<br />
+
+After talking some time with chri the <a href="http://www.fsfeurope.org/">Free Software Foundation: Europe</a> got my attention, and I couldn't resist buying one of their lovely t-shirts.  I can't remember how much it cost me, but it was pretty expensive.  No problem though, as I know the money is in very good hands.</p>
+
+<p>After that me and Geert drunk a beer, and then drove home again.</p>
+
+<p>Fosdem was good.</p>
+
+<h2>Did you know...?</h2>
+
+<ul>
+
+<li>I invited the <a href="http://www.cakephp.org/">CakePHP</a> guys to come?  Unfortunately none of them came, but maybe I can convince them next year!</li>
+
+<li>The catering was allright and very, very cheap (and also run by volunteers)</li>
+
+<li>Fosdem is mentioned in this <a href="http://www.gentoo.org/news/en/gwn/20070305-newsletter.xml">Gentoo newsletter</a>.  Including a picture of all the devs, shot by SeJo (sunday afternoon iirc)</li>
+
+<li>You'll find many pictures <a href="http://www.fosdem.org/2007/media/pictures">here</a></li>
+
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>Most of the talks are aimed at developers, and developers certainly are the guys that should come.  Fosdem is the perfect place to meet, discuss (with both developers of your own team, as with devs of other projects that you depend on), learn and hack some code together.</p>
+
+<p>For the community it's another story.  Many of the talks are too hard to follow, and those talks that are aimed at the community usually don't offer more information then what you would find on the websites, forums/mailinglists or newsletters.<br />
+
+The fact that you can download lots of video material is great.  If you stay home you can still make up for it by watching the movies.<br />
+
+It's cool to meet people though.  And if you want to visit stands of different projects (for example to buy merchandise).  That's imho the best reason for non-developers to come to fosdem.  But that's personal of course.</p>
+
+<p>So who's coming with me to fosdem 2008? :-).</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
+            
+                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/information-age/index.html" rel="tag">information age</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
+            
+                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
+            
+                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
+            
+                <a href="http://localhost:1313//tags/conf/index.html" rel="tag">conf</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/my_favorite_bash_tricks/">My favorite bash tricks</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/my_favorite_bash_tricks/" rel="bookmark">
+					<time class="entry-date" datetime="2007-03-14 23:38:54 -0400 EDT">
+						March 14, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>This post is about <a href="http://www.gnu.org/software/bash/">bash</a>, the shell providing so many users easy access to the underlying power of their system.<br /></p>
+
+<p>(not <a href="http://www.bash.org/">bash</a> the quote database, although i really like that website too ;-) )<br /></p>
+
+<p>Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)</p></p>
+
+<p>I assume you have a basic knowledge of bash, the history mechanism, and  ~/.bash* files.<br />
+
+So here they are, my favorite tricks, key combo's and some bonus stuff:</p>
+
+<h3>Tricks</h3>
+
+<ul>
+
+<li>"cd -" takes you back to the previous directory, wherever that was.  Press again to cycle back.</li>
+
+<li>putting arguments between braces {like,so} will execute the command multiple times, once for each "argument".  Bash will make the cartesian product when doing it multiple times in 1 expression.  Some less-obvious tricks with this method are mentioned <a href="http://www.bhaskarvk.info/technology/bash-tricks.html">here</a></li>
+
+<li>HISTIGNORE : with this variable you have control over which things are being saved in your history.  <a href="http://www.talug.org/events/20030709/cmdline_history.html">Here</a> is a nice explication.  Especially the space trick is very useful imho.</li>
+
+<li>CD_PATH : <a href="http://www.caliban.org/bash/">Here</a> is a great explanation ;-)</li>
+
+<li>readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :<br />
+
+<pre><![CDATA[
+
+"\e[5~": history-search-backward
+
+"\e[6~": history-search-forward
+
+]]></pre><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
+
+You can use the up/down arrows too, their codes are "\e[A" and "\e[B"
+
+</li>
+
+<li>for more "natural" history saving behavior (when having several terminals open): put this in .bash_profile: <br/><br />
+
+<pre><![CDATA[PROMPT_COMMAND='history -a']]></pre><p> (write each command separately in a new entry, instead of all at shell exit).<br />
+
+And type </p>
+
+<pre><![CDATA[shopt -s histappend]]></pre><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
+
+</ul>
+
+<h3>Shortcuts/keycombos</h3>
+
+<ul>
+
+<li>ctrl+r : search through your history.  Repeatedly press ctrl+r to cycle through hits.</li>
+
+<li>ctrl-u : cut everything on the current line before the cursor.</li>
+
+<li>ctrl-y : paste text that was cut using ctrl-u. (starting at the cursor)</li>
+
+<li>!$: equals the last word of the previous command. (great when performing several operations on the same file)</li>
+
+</ul>
+
+<h3>Bonus material</h3>
+
+<ul>
+
+<li><a href="http://www.caliban.org/bash/index.shtml#completion">Bash completion</a>, an add-on for bash which adds completion for arguments of your commands.  It's pretty smart and configurable.  (it's in portage, and probably in repos of all popular distros out there)</li>
+
+<li><a href="http://n01se.net/agriffis/nopaste/">This script</a> provides you an interface to the <a href="http://rafb.net/paste/">rafb pastebin</a>!</li>
+
+<li>Recursively delete all .svn folders in this folder, and in folders below. "find . -name .svn -print0 | xargs -0 rm -rf"</li>
+
+<li>Recursively count number of files in a directory: "find -not -type d | wc -l"</li>
+
+</ul>
+
+<h3>Conclusion</h3>
+
+<p>Those were all important tricks I'm currently using.  On the web you'll find lots more useful tips :-).<br />
+
+If that still isn't enough, there is also <a href="http://www.gnu.org/software/bash/manual/bashref.html">man bash</a> :o</p>
+
+<p>With aliases and scripts (and involving tools like sed or awk) the possibilities become pretty much endless.  But for that I refer to <a href="http://tldp.org/LDP/abs/html/">tldp.org</a> and your favorite web search engine.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
+            
+                <a href="http://localhost:1313//tags/productivity/index.html" rel="tag">productivity</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+				<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://localhost:1313/post/blogpost1_hello_world/">Hello world!</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://localhost:1313/post/blogpost1_hello_world/" rel="bookmark">
+					<time class="entry-date" datetime="2007-03-04 14:45:36 -0400 -0400">
+						March 4, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+	
+	<div class="entry-content">
+		<p>I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous <a href="http://www.cakephp.org">CakePHP</a> framework along with an authentication system i wrote, <a href="http://bakery.cakephp.org/articles/view/147">dAuth</a>.<br /></p>
+
+<p>However, due to my lack of time I decided to use the excellent <a href="http://www.drupal.org">drupal</a> platform, of which I&rsquo;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)<br /></p>
+
+<p><a href="http://buytaert.net/">Dries Buytaert</a>&rsquo;s talk on <a href="http://www.fosdem.org/2007/">fosdem</a> this year really helped on making that decision ;-)</p></p>
+
+<p>So, what will this site be about?</p>
+
+<ul>
+
+<li>me</li>
+
+<li>my interests
+
+<ul>
+
+<li><a href="http://en.wikipedia.org/wiki/FOSS">Free &amp; Opensource software</a>, and the thoughts/ideals behind it</li>
+
+<li>PHP scripting/programming (I like C(++), bash and j2se too but I'm not as good at it as I am at php)</li>
+
+<li>Audio recording/mixing/production</li>
+
+<li>Drumming, one of my greatest hobbies</li>
+
+<li>Music, bands, movies,... I like</li>
+
+<li>productivity (<a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a>, automation scripts, shell/DE tweaks, ...)
+
+<li>ethics and philosophy, these aspects are really important in my life</li>
+
+<li><a href="http://www.jhsjatoo.org/">Jeugdhuis SjaTOo</a>, our local youth club</li>
+
+</ul>
+
+<p></li></p>
+
+<p></ul></p>
+
+<p>Now let's get started ;-)</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">		
+			
+                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
+            
+                <a href="http://localhost:1313//tags/drupal/index.html" rel="tag">drupal</a>
+            
+                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+            
+                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+            
+                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
+            
+                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
+            
+		</span>
+	</footer>
+</article> 
+
+			
+		
+		</div>
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    25
+    <br/>
+    <a href="http://localhost:1313/tags/devops">devops</a>
+    23
+    <br/>
+    <a href="http://localhost:1313/tags/golang">golang</a>
+    8
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://localhost:1313/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/git">git</a>
+            3
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://localhost:1313/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

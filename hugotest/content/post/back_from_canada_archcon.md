@@ -1,0 +1,120 @@
++++
+title = "Back from Canada, Archcon"
+date = "2010-07-31T23:10:36-04:00"
+tags = ["life", "arch", "conf"]
++++
+<h3>Archcon</h3>
+
+<p>Archcon was small (20-ish people).  (That's what you get for doing it in Canada ;), but very nice.<br />
+
+Interesting talks, informal, good vibe, decent logistics and catering.<br />
+
+This year it happened because Dusty and Ricardo actually just wanted to have a conference without worrying too much about the attendance,<br />
+
+next year we should do it again because Arch (conferences) rock(s), and because we need more visitors.  More central locations such as Seattle and Europe have been suggested.<br />
+
+Either way, next year both Judd (founder) and Aaron (current overlord) should be there. (this year they both had lame excuses like family reunions and "almost getting married".  Congrats btw, Aaron!)</p>
+
+<p>It was an absolute pleasure to meet some more of my fellow devs, and users.<br />
+
+Here is a pic from the group (unfortunately, a few are missing)<!--more--><br />
+
+<img src="/files/group.jpg"/><br />
+
+People in bold are Arch (ex-) devs</p>
+
+<ol>
+
+<li>Richard (sokuban) from Toronto (linguistics student)</li>
+
+<li>Chris (Gallow) from Toronto</li>
+
+<li>Alex (alexmat) from Tokyo, Japan (very into NILFS, submitted already some patches)</li>
+
+<li>Sander (GogglesGuy) (Dutch guy living in the states now)</li>
+
+<li>Eric from Seattle, WA</li>
+
+<li>Gregory (gelendir) from Quebec city, Canada (aka dude wearing the kilt and fivefingers and funny accent)</li>
+
+<li><b>Kevin (kpiche)</b> from Ottawa (does perl stuff iirc)</li>
+
+<li><b>Loui (louipc)</b> from Toronto, Canada (AUR guy, git lover.  metalfan.  Shook John Petrucci's hand)</li>
+
+<li>Tim from Annapolis (uses Arch for servers at work with some fancy mass-install scripts)</li>
+
+<li>Dustin (daking) from Stanford, CA (runs most of Stanford university on Arch)</li>
+
+<li><b>me</b> from Belgium (arch-releng/aif, uzbl guy) </li>
+
+<li>Walter from Toronto (very into Uzbl, not actually an Arch user... yet)</li>
+
+<li>David (davekong) from New York City</li>
+
+<li><b>Dan (toofishes)</b> from Chicago (Pacman dev)</li>
+
+<li><b>Dusty</b> from Shaunavon SK (shwag, archcon organizer)</li>
+
+<li>Ricardo (ralvez) from  Toronto (archcon organizer)</li>
+
+<li><b>Jason (Xentac)</b> from Victoria, BC (entrepeneur, used to use Arch for the business)</li>
+
+</ol>
+
+<p>See <a href="https://bbs.archlinux.org/viewtopic.php?id=101692">Archcon thread</a> for more info.</p>
+
+<p>Unfortunately I barely slept the night before my AIF talk, so I feel that one didn't go to well.  Although people told me it was OK.<br />
+
+The Uzbl talk was pretty much what I imagined it to be: like the fosdem talk, but a bit more in depth here and there.<br />
+
+My pc was behaving weirdly, but luckily I could use Dan's.</p>
+
+<p>We've been lucky that Walter and Isaac had proper, respectively videotaping and photocamera equipment.  So there are plenty of pics, and nearly all talks got videotaped.<br />
+
+(I think the "hacking pacman" one was the only one not being videotaped, because 2 other talks were going on at the same time.  Too bad, it was a very interesting talk)</p>
+
+<p><a href="http://archlinux.ca/archcon2010/images/">Archcon pictures</a><br />
+
+<a href="http://archlinux.ca/archcon2010/videos/">Archcon videos</a><br />
+
+My slides:<br />
+
+<a href="/files/aif-archcon2010.pdf">AIF (day 1)</a><br />
+
+<a href="/files/uzbl-archcon2010.pdf">Uzbl (day 2)</a></p>
+
+<h3>Other days</h3>
+
+<p>Some thoughts and notes of what I did and saw around Toronto/Montreal..</p>
+
+<ul>
+
+<li>Cities with streets and subways in a grid layout are awesome.  Soo much easier to navigate.</li>
+
+<li>Red lights with countdown timers (in seconds) are awesome.  Although I'm told some places in Europe have them too.</li>
+
+<li>Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. <img src="/files/blog/toronto.ca/high_park_004_500.jpg"/></li>
+
+<li>Montreal was like a European city: more history, old buildings, more crime, but of course a grid layout.  Some nice views though (ie. from Mont Royal).</li>
+
+<li>The youth hostels I went too were great: never got to meet so many interesting people in such a short timespan.</li>
+
+<li>CN tower: I procrastinated visiting until the last day, and when I finally wanted to go in the wheather was perfect, but there was a 2 hour queue, so I skipped it. Anyway there are <a href="http://en.wikipedia.org/wiki/CN_Tower">plenty of pictures online</a>.</li>
+
+<li>Niagara falls were beautiful.  Maid of the myst tour was worth it.  I made pictures but <a href="http://en.wikipedia.org/wiki/File:Niagara_falls_panorama.jpg">those online</a> are better.</li>
+
+<li>I met Kan Johar (founder of <a href="http://plurk.com">plurk.com</a>, amongst others), good times.</li>
+
+<li>Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.<br> <img src="/files/poutine.jpg"/></li>
+
+<li>Dusty and I have been to the <a href="http://linuxcaffe.ca/">Linux Caffe.</a>  The owner is a great guy, he's considering switching to Arch, and he wrote his whole point of sales, accounting and bookkeeping software using shell scripts, perltk and stuff.  He's into suckless.org stuff.   His version 2.0 will probably be based on Xmonad.<br />
+
+<img src="/files/linuxcaffe-pos1.jpg"/><br />
+
+<img src="/files/linuxcaffe-pos2.jpg"/>
+
+</li>
+
+<p>Dusty and me, somewhere on our way to the Niagara falls.<br />
+
+<img src="/files/dustyandme.jpg"></p>

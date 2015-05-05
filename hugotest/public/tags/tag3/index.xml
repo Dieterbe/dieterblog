@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tag3 on Dieter blog</title>
+    <link>http://localhost:1313/tags/tag3/</link>
+    <description>Recent content in Tag3 on Dieter blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 May 2015 14:31:51 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tag3/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>twee</title>
+      <link>http://localhost:1313/post/tweedepost/</link>
+      <pubDate>Sun, 03 May 2015 14:31:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/tweedepost/</guid>
+      <description>&lt;p&gt;twee&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

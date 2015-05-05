@@ -1,0 +1,296 @@
++++
+title = "Influx-cli: a commandline interface to Influxdb."
+date = "2014-09-08T08:36:36-04:00"
+tags = ["monitoring", "golang"]
++++
+Time for another side project:
+
+<a href="https://github.com/Dieterbe/influx-cli">influx-cli</a>,
+
+a commandline interface to influxdb.
+
+<br/>
+
+Nothing groundbreaking, and it behaves pretty much as you would expect if you've ever used
+
+the mysql, pgsql, vsql, etc tools before.
+
+<br/>But I did want to highlight a few interesting features.
+
+</p>
+
+<!--more-->
+
+<br/>
+
+
+
+<p>
+
+<b>You can do things like user management via SQL,
+
+even though influxdb doesn't have an SQL interface for this.</b>
+
+<br/>This is much easier than doing curl http requests!
+
+<pre><![CDATA[
+
+influx> create admin test test
+
+influx> list admin
+
+## 0
+
+                     name root
+
+## 1
+
+                     name test
+
+]]></pre>
+
+</p>
+
+
+
+<p>
+
+<b>You can change parameters and re-bind with the new values</b>
+
+<pre><![CDATA[
+
+influx> \user test
+
+influx> \pass test
+
+influx> \db graphite
+
+influx> bind
+
+]]></pre>
+
+</p>
+
+
+
+<p>
+
+<b>Write your variables (user, pass, host, db, ...) to ~/.influxrc</b>
+
+<pre><![CDATA[
+
+influx> writerc
+
+]]></pre>
+
+</p>
+
+
+
+<p>
+
+<b>You can even do inserts via SQL, instead of http posts</b>
+
+<br>I use this often.  This is very useful to script test cases for bug reports etc.
+
+<pre><![CDATA[
+
+influx> create db issue-1234
+
+influx> \db issue-1234
+
+influx> bind
+
+influx> insert into demo (time, value, tag) values (120000, 10, "hi")
+
+influx> insert into demo (time, value, tag) values (180000, 20, "hi again")
+
+influx> select * from demo
+
+## demo
+
+                time sequence_number               value                 tag
+
+       120000.000000      70001.000000                  10                "hi"
+
+       180000.000000      80001.000000                  20          "hi again"
+
+influx> delete db issue-1234
+
+]]></pre>
+
+</p>
+
+
+
+<p>
+
+<b>You can send queries on standard input, which is useful in shell commands and scripts.</b>
+
+<pre><![CDATA[
+
+$ echo 'list series' | influx-cli | wc -l
+
+194722
+
+$ influx-cli <<< 'list series' | wc -l
+
+194722
+
+]]></pre>
+
+</p>
+
+
+
+<p>
+
+But even better, <b>from inside an influx-cli session, you can send output from any query into any other command.</b>
+
+<br>In fact you can also <b>write output of queries into external files.</b>
+
+All this via familiar shell constructs
+
+<pre><![CDATA[
+
+$ influx-cli
+
+influx> list series | wc -l
+
+194721
+
+influx> list series > list-series.txt
+
+]]></pre>
+
+
+
+(note: the discrepancy of one line is due to <a href="https://github.com/shavac/readline/issues/2">the Go readline library echoing the query</a>.
+
+</p>
+
+
+
+<p>
+
+<b>You can also toggle options, such as compression or display of timings.</b>
+
+<br/>This can be very useful to easily get insights of performance of different operations.
+
+<pre><![CDATA[
+
+influx> \t
+
+timing is now true
+
+influx> select * from foo | wc -l
+
+64637
+
+timing>
+
+query+network: 1.288792048s
+
+displaying   : 457.091811ms
+
+influx> \comp
+
+compression is now disabled
+
+influx> select * from foo | wc -l
+
+64637
+
+timing>
+
+query+network: 969.322374ms
+
+displaying   : 670.736018ms
+
+influx> list series >/dev/null
+
+timing>
+
+query+network: 3.109178142s
+
+displaying   : 65.712027ms
+
+]]></pre>
+
+<br/>This has enabled me to pinpoint slow operations and provide evidence when <a href="https://github.com/influxdb/influxdb/issues/884">when creating tickets</a>.
+
+</p>
+
+
+
+<p>
+
+<b>Executing queries and debugging their result data format, works too</b>
+
+<br/>This is useful when you want to understand the api better or if the database gets support for new queries with a different output format that influx-cli doesn't understand yet.
+
+<pre><![CDATA[
+
+influx> raw select * from foo limit 1
+
+([]*client.Series) (len=1 cap=4) {
+
+ (*client.Series)(0xc20b4f0480)({
+
+  Name: (string) (len=51) "foo",
+
+  Columns: ([]string) (len=3 cap=4) {
+
+   (string) (len=4) "time",
+
+   (string) (len=15) "sequence_number",
+
+   (string) (len=5) "value"
+
+  },
+
+  Points: ([][]interface {}) (len=1 cap=4) {
+
+   ([]interface {}) (len=3 cap=4) {
+
+    (float64) 1.410148588e+12,
+
+    (float64) 1,
+
+    (float64) 95.549995
+
+   }
+
+  }
+
+ })
+
+}
+
+]]></pre>
+
+</p>
+
+
+
+<p>
+
+And that's about it.
+
+I've found this to be a much easier way to interface with InfluxDB then using the web interface and curl, but YMMV.
+
+<br/>If you were wondering, this is of course built on top of the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb go client library</a>, which was overall pretty pleasant to work with.
+
+<br/>Some ideas for future work:
+
+<ul>
+
+<li><a href="https://github.com/Dieterbe/influx-cli/issues/2">bulk insert performance could be better</a></li>
+
+<li>once <a href="https://github.com/influxdb/influxdb/issues/263">influxdb can report query execution time</a> and hopefully also serialization time, the timing output can be more useful.  Right now we can only measure query execution+serialization+network transfer time combined</li>
+
+<li>my gut feeling says that using something like msgpack instead of json, and/or even streaming the resultset as it is being generated (instead of first building the entire result, then serializing it, then sending it over, then having the client deserialize the entire thing) could really help performance, not just here, but basically anywhere you interface with influxdb.  Though I don't have hard numbers on this yet.</li>
+
+</p>
+
+

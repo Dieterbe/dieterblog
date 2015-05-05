@@ -1,0 +1,38 @@
++++
+title = "Emulating two-dimensional (or even multi-dimensional) arrays in bash"
+date = "2007-08-26T12:49:42-04:00"
+tags = ["bash"]
++++
+<p>There is a trick that let's you dynamically create variable names.  Using this, you can emulate additional dimensions.<br />
+
+<!--more--></p>
+
+<p>Here's a simple example for an array with 2 dimensions:</p>
+
+{{< highlight "bash" "style=default" >}}<![CDATA[
+
+#set the value of my_array[i][j] where i = 25 and j = 10 to "value"
+
+
+
+var="my_array25-10"
+
+#or like this: I=25;J=10;var="my_array$I-$J"
+
+
+
+declare $var="value"
+
+]]>{{< /highlight >}}{{< highlight "bash" "style=default" >}}<![CDATA[
+
+#retrieve the value of my_array[i][j] where i = 5 and j = 10
+
+var="my_array5-10"
+
+#or like this: I=5;J=10;var="my_array$I-$J"
+
+echo ${!var}
+
+]]>{{< /highlight >}}<p>
+
+Thanks to the guys from #bash on freenode for their help and their excellent <a href="http://wooledge.org/mywiki/BashFAQ">bash faq</a></p>

@@ -1,0 +1,14 @@
++++
+title = "Dir 2011, Fosdem 2011"
+date = "2011-01-25T23:15:45-04:00"
+tags = ["life", "conf"]
++++
+After that, I'm going to the devopsdinner and Fosdem beer event in Brussels.
+
+On february 5/6 of course, Fosdem itself.  Looking forward to the systemd talk.
+
+On sunday I'll do a talk about <a href="http://www.fosdem.org/2011/schedule/event/distro_crossinstall">simple shell based Gnu/Linux installers</a>,
+
+like mentioned earlier I hope devs from other "lightweight"/kiss-style distro's will be present (Gentoo and other *too's, Crux, *ppix, ... You know who you are)
+
+It would be interesting to share some common codebase for distribution independent topics (like filesystems), or at least discuss how feasible it would be.

@@ -1,0 +1,46 @@
++++
+title = "Hi Planet Devops and Infratalk"
+date = "2013-03-24T11:36:20-04:00"
+tags = ["devops", "monitoring"]
++++
+so for my new readers: you might know me as Dieterbe on irc, <a href="https://github.com/Dieterbe">github</a> or <a href="https://twitter.com/Dieter_be">twitter</a>.
+
+Since my <a href="/moving-to-nyc.html">move from Belgium to NYC</a> (to do backend stuff at Vimeo) I've started writing more about devops-y topics
+
+(whereas I used to write more about general hacking and
+
+<a href="/tag/arch">arch linux release engineering and (automated) installations</a>).
+
+I'll mention some earlier posts you might be interested in:
+
+<!--more-->
+
+
+
+<ul>
+
+<li><a href="/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc.html">Profiling and behavior testing of processes and daemons, and Devopsdays NYC</a></li> 
+
+<li><a href="/graph-explorer-a-graphite-dashboard-unlike-any-other.html">Graph-Explorer: A graphite dashboard unlike any other</a></li>
+
+<li><a href="/client-side-rendered-graphite-charts-for-all.html">Client-side rendered, highly interactive graphite charts for all</li>
+
+<li><a href="/dell_crowbar_openstack_swift.html">Dell crowbar openstack swift</a></li>
+
+<li><a href="/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact.html">
+
+Anthracite, an event/change management database</a> to track what has a business and/or operational impact and show annotated events on dashboards</li>
+
+<li><a href="/histogram-statsd-graphing-over-time-with-graphite.html">Histograms in statsd, and graphing them over time with graphite</a></li>
+
+<li><a href="/stop-abusing-si-prefixes.html">stop abusing SI prefixes</a> cause 1000 &ne; 1024</li>
+
+<li><a href="/what_the_open_source_community_can_learn_from_devops.html">What the open source community can learn from devops</a></li>
+
+</ul>
+
+
+
+FWIW, I'm attending <a href="http://monitorama.com">Monitorama</a> next weekend in Boston.
+
+

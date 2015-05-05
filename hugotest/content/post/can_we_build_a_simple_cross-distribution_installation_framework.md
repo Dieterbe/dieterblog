@@ -3,6 +3,8 @@ title = "Can we build a simple, cross-distribution installation framework?"
 date = "2011-02-06T23:46:18-04:00"
 tags = ["arch", "conf", "life"]
 +++
+Today at <a href="http://www.fosdem.org/2011/">Fosdem 2011</a> I did my talk <a href="http://fosdem.org/2011/schedule/event/distro_crossinstall">Can we build a simple, cross-distribution installation framework?</a>
+
 Basically, using the <a href="http://www.archlinux.org/">Arch</a> Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check
 
 if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.

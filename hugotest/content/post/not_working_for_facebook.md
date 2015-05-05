@@ -3,6 +3,8 @@ title = "Not working for Facebook"
 date = "2010-02-12T22:58:31-04:00"
 tags = ["life"]
 +++
+<p>In november last year, I was contacted by Facebook HR.<br />
+
 They found my background interesting and thought I might be a good<br />
 
 fit for an "application operations engineer" position in Palo Alto, California. (it is<br />

@@ -4,6 +4,8 @@ date = "2015-04-26T09:08:02-04:00"
 tags = ["devops", "monitoring", "life"]
 draft = true
 +++
+<h2>Goodbye vimeo</h2>
+
 <p>
 
 It's never been as hard saying goodbye to the people and the work environment as it is now.

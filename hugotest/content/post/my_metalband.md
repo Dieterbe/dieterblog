@@ -3,6 +3,8 @@ title = "My metal band"
 date = "2011-05-14T14:58:12-04:00"
 tags = ["life", "music"]
 +++
+<img width="18%" src="/files/pdp3.jpg" style="float: left; margin-right: 28px">
+
 <p>Since the audience of this blog is largely technical, I don't post much about other topics, but I feel it's time for a short summary about one of my "real life projects".
 
 <br/>In the spring of 2009 I joined a progressive death metal band.  I've been drumming since I was 17, but during the last 2 years I've been practising and rehearsing like never before.[1]

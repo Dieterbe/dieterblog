@@ -3,6 +3,8 @@ title = "Restoring ssh connections on resume"
 date = "2010-06-16T18:11:50-04:00"
 tags = ["foss", "linux"]
 +++
+<p>I use <a href="http://wiki.archlinux.org/index.php/Pm-utils">pm-utils</a> for hibernation support.<br />
+
 It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.<br />
 
 If you want to run stuff as a regular user you could do something like</p>

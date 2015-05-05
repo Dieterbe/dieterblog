@@ -3,6 +3,8 @@ title = "Announcing the Netlog Developer Pages"
 date = "2008-05-24T12:39:28-04:00"
 tags = ["web2.0", "php", "netlog", "linux", "foss"]
 +++
+<p>At work, we've setup the <a href="http://netlog.com/go/developer">Netlog Developer Pages</a></p>
+
 <p>It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.<br />
 
 We've also launched a <a href="http://en.netlog.com/go/developer/group">group</a> where you can communicate with fellow developers and Netlog employees.<br />

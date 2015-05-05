@@ -3,6 +3,8 @@ title = "I just became a \"System & Network Architect\""
 date = "2007-04-17T20:11:07-04:00"
 tags = ["foss", "linux", "netlog", "life"]
 +++
+<p>I just signed my contract at <a href="http://incrowd.be/">Incrowd</a>, the company behind sites such as <a href="http://redbox.be/">redbox</a> and <a href="http://www.facebox.com/">facebox</a>.</p>
+
 <p>I will be working there in a team of all young, enthusiastic people.  Among those, some people are already familiar to me:  my old friend <a href="http://www.lievendekeyser.net/">Lieven</a> (we've played in a band together but kept in touch afterwards) and my ex-classmate <a href="http://www.jurriaanpersyn.com/">Jurriaan</a>.  Both of them love their jobs btw :-).</p>
 
 <p>My official title is "System &amp; Network architect".<br />

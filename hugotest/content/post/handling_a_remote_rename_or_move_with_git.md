@@ -3,6 +3,8 @@ title = "Handling a remote rename/move with Git"
 date = "2008-11-17T11:29:36-04:00"
 tags = ["foss", "git"]
 +++
+<p>I recently had to rename a repo on my Github account.  Github has made this <a href="http://github.com/blog/128-let-there-be-renaming">very easy</a> but it's just one side of the issue.  Obviously you must also update any references to this remote in other clones, otherwise pushes, fetches etc won't work anymore.</p>
+
 <p>You can do this in two ways:</p>
 
 <ul>

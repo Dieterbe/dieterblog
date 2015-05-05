@@ -3,6 +3,8 @@ title = "Simple command to retrieve stuff from RAM after closing/crashing an app
 date = "2007-09-15T15:32:24-04:00"
 tags = ["linux"]
 +++
+<p>After an app is closed or crashed, the data is still in your RAM and you can very easily get it back by grepping /proc/kcore.<br />
+
 thanks Martin for this tip!<br />
 
 <a href="http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-stuff-from-memory" title="http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-stuff-from-memory">http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-...</a></p>

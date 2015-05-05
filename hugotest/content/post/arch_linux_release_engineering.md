@@ -3,6 +3,8 @@ title = "Arch Linux release engineering"
 date = "2009-01-22T23:11:01-04:00"
 tags = ["arch"]
 +++
+<p>I don't think I've ever seen so much anxiety/impatience/hope/buzz for a new Arch Linux release. (this is because of 2.6.28 with ext4 support).<br />
+
 The last release was 6 months ago, which is not so good.. also the arch-installer project has been slacking for a while.  But the Arch devs have been very busy and many things going on.  You know how it goes...</p>
 
 <p>That's why some new people have stepped up to help out on a new release:<br />

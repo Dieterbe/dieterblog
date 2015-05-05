@@ -3,6 +3,8 @@ title = "Metrics 2.0 now has its own website!"
 date = "2014-04-23T09:10:32-04:00"
 tags = ["devops", "monitoring"]
 +++
+Metrics 2.0 started as a <a href="http://dieter.plaetinck.be/metrics_2_a_proposal.html">half-formal proposal</a> and an implementation via <a href="http://vimeo.github.io/graph-explorer/">graph-explorer</a>, but is broad enough in scope that it deserves its own website, its own spec, its own community.  That's why I launched <a href="http://metrics20.org/">metrics20.org</a> and a <a href="https://groups.google.com/forum/#!forum/metrics20">discussion group</a>.
+
 <!--more-->
 
 

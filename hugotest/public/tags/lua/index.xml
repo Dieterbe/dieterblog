@@ -15,11 +15,13 @@
       <pubDate>Sun, 02 Oct 2011 09:28:45 -0400</pubDate>
       
       <guid>http://localhost:1313/post/luamail_a_mail_client_built_into_luakit/</guid>
-      <description>&lt;p&gt;now I&amp;rsquo;m fed up with the lack of an email client that works in a way I find sane.  Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic &lt;a href=&#34;http://luakit.org&#34;&gt;luakit&lt;/a&gt; browser,&lt;/p&gt;
+      <description>&lt;p&gt;Similarly to how back in 2009 there was no browser that works in a way I find sane, and I started solving that with &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt;,
 
-&lt;p&gt;which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API&amp;rsquo;s.&lt;/p&gt;
+now I&#39;m fed up with the lack of an email client that works in a way I find sane.  Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic &lt;a href=&#34;http://luakit.org&#34;&gt;luakit&lt;/a&gt; browser,
 
-&lt;p&gt;Now I want to build the &amp;ldquo;luakit of email clients&amp;rdquo;.  Let me explain what&amp;rsquo;s that all about&amp;hellip;&lt;/p&gt;&lt;/p&gt;
+which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API&#39;s.
+
+Now I want to build the &#34;luakit of email clients&#34;.  Let me explain what&#39;s that all about...&lt;/p&gt;
 
 &lt;p&gt;Basically the story is pretty much the same as it was with uzbl.  There are no mail clients which offer a high level of customization and interfacing possibilities.  There are some mail clients aimed at &amp;ldquo;power users&amp;rdquo; and &amp;ldquo;lightweight mail clients&amp;rdquo; like mutt/alpine/nmh etc but those are also restricted in extensibility and often crippled in terms of features.  Currently I&amp;rsquo;m using Claws-mail, which is the least sucky client I found, but it&amp;rsquo;s also nowhere near what I want.&lt;/p&gt;
 

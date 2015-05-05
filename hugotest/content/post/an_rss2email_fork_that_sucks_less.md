@@ -3,6 +3,8 @@ title = "An rss2email fork that sucks less"
 date = "2010-09-25T20:33:08-04:00"
 tags = ["python", "foss"]
 +++
+<p><a href="http://www.allthingsrss.com/rss2email/">Rss2email</a> is a great tool.  I like getting all my news messages in my mailbox and using smtp to make the "news delivery" process more robust makes sense.<br />
+
 However, there are some things I didn't like about it so I made a <a href="http://github.com/Dieterbe/rss2email/">github repo</a> where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.<br />
 
 Also, this was a nice opportunity for me to improve my python skills :)</p>

@@ -3,6 +3,8 @@ title = "A few common graphite problems and how they are already solved."
 date = "2013-04-04T08:54:20-04:00"
 tags = ["devops", "monitoring"]
 +++
+<!--more-->
+
 <h4>metrics often seem to lack details, such as units and metric types</h4>
 
 looking at a metric name, it's often hard to know

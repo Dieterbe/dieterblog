@@ -3,6 +3,8 @@ title = "Client-side rendered graphite charts for all"
 date = "2012-11-14T08:49:56-04:00"
 tags = ["devops", "monitoring"]
 +++
+Client-side rendering of charts as opposed to using graphite's server side generated png's
+
 allows various interactivity features, such as:
 
 <!--more-->

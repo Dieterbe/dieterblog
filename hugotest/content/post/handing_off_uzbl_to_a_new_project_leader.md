@@ -3,6 +3,8 @@ title = "Handing off uzbl to a new project leader"
 date = "2010-11-22T15:05:35-04:00"
 tags = ["uzbl"]
 +++
+<p>As of yesterday, <a href="http://necronomicorp.com/lab/">Brendan 'bct' Taylor</a> is the new Uzbl project leader / maintainer.<br />
+
 Yesterday I did the <a href="http://www.uzbl.org/news.php?id=30">newspost on uzbl.org</a> which explains the reasoning.  I can add it feels pretty weird "giving away" and "leaving behind" a project you spent so much time on and which grew a large (well, for a FOSS side project with a hacker audience) base of users and contributors, and which served as inspiration for various other projects.<!--more--></p>
 
 <p>But I know this was the right thing to do.  On one hand there were more and more contributions coming in and changes being proposed but on the other hand I disliked being involved so deeply in a "frontend" project.  Early last year, I happened to <a href="/uzbl_a_browser_that_adheres_to_the_unix_philosophy">see some problems with browsing and had some cool ideas to attempt alleviate them</a>, so it was fun kickstarting the project and making some things working, but I don't want to be the guy <i>maintaining a browser</i>.<br />

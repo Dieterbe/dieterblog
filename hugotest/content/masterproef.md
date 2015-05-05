@@ -3,6 +3,8 @@ title = "Masterproef"
 date = "2007-04-17T16:01:07-04:00"
 tags = ["thesis", "real life"]
 +++
+<p>Op deze pagina verschijnen enkele gegevens, documenten en toevoegingen in het algemeen in het kader van mijn masterproef.  (ook wel bekend als eindwerk of thesis).</p>
+
 <ul>
 
 <li>Titel (nl):  Geautomatiseerde webwinkel en orderverwerking</li>

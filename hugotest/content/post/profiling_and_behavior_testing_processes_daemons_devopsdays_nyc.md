@@ -3,6 +3,8 @@ title = "Profiling and behavior testing of processes and daemons, and Devopsdays
 date = "2013-01-21T15:25:14-04:00"
 tags = ["devops", "monitoring", "perf"]
 +++
+<h3>Profiling a process run</h3>
+
 <a href="https://github.com/Dieterbe/profile-process">
 
 <img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/>

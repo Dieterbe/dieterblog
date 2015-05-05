@@ -128,7 +128,9 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>== A library providing UI functions for shell scripts ==</p></p>
+		<blockquote><p>
+
+== A library providing UI functions for shell scripts ==</p>
 
 <p>When you write bash/shell scripts, do you write your own error/debug/logging/abort functions?<br />
 
@@ -154,7 +156,7 @@ just run the command libui_sh_init</p>
 
 <p>example usage:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #008000">source</span> /usr/lib/libui.sh
 
@@ -166,13 +168,13 @@ log <span style="color: #BA2121">&#39;we just got hassle-free logging&#39;</span
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-<p></p>
+<p>
 
-<p>The library is not strictly a UI library, it also contains a few useful functions like<br /></p>
+The library is not strictly a UI library, it also contains a few useful functions like<br />
 
-<p>check_is_in (check if an element can be found in a set - usually an array) and<br /></p>
+check_is_in (check if an element can be found in a set - usually an array) and<br />
 
-<p>seteditor (interactive $EDITOR selection)</p></p>
+seteditor (interactive $EDITOR selection)</p>
 
 <p>Dependencies:<br />
 
@@ -226,11 +228,13 @@ log <span style="color: #BA2121">&#39;we just got hassle-free logging&#39;</span
 	</header>
 	
 	<div class="entry-content">
-		<p>I&rsquo;ve shared some <a href="http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html">AIF filesystem code design insights and experiences</a> on the arch-releng mailing list.<br /></p>
+		<p>In light of the work and discussions around supporting Nilfs2 and Btrfs on Arch Linux and its installer AIF,<br />
 
-<p>This is some hard to understand code.  Partly because it&rsquo;s in bash (and I&rsquo;ve needed to work around some limitations in bash),<br /></p>
+I've shared some <a href="http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html">AIF filesystem code design insights and experiences</a> on the arch-releng mailing list.<br />
 
-<p>partly because there is some complex logic going on.</p></p>
+This is some hard to understand code.  Partly because it's in bash (and I've needed to work around some limitations in bash),<br />
+
+partly because there is some complex logic going on.</p>
 
 <p>I think it's very useful material for those who are interested (it can also help understanding the user aspect),<br />
 
@@ -492,9 +496,11 @@ And the menu's are here:<br />
 	</header>
 	
 	<div class="entry-content">
-		<p>I quickly hacked this script together which pulls all photo albums from friends on facebook, so I have them available where I want.  (It should also pull your own albums, but I don&rsquo;t have any so I can&rsquo;t check that)<br /></p>
+		<p><a href="http://fbcmd.dtompkins.com/">Fbcmd</a> is pretty cool.<br />
 
-<p>Maybe there are better ways to do this.  I looked at <a href="http://nerd256.diggles.net/fbfs/">fbfs</a> but it looks a bit weird.  I have no idea what the corrupted images fuss is all about.</p></p>
+I quickly hacked this script together which pulls all photo albums from friends on facebook, so I have them available where I want.  (It should also pull your own albums, but I don't have any so I can't check that)<br />
+
+Maybe there are better ways to do this.  I looked at <a href="http://nerd256.diggles.net/fbfs/">fbfs</a> but it looks a bit weird.  I have no idea what the corrupted images fuss is all about.</p>
 
 <p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
@@ -612,7 +618,9 @@ And the menu's are here:<br />
 	</header>
 	
 	<div class="entry-content">
-		<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+		<p>Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing 'echo $?', ' &amp;& echo ok', '|| echo failed' etc on the command line.</p>
+
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[</span> <span style="color: #008000; font-weight: bold">$(</span>tput colors<span style="color: #008000; font-weight: bold">)</span> -gt <span style="color: #666666">0</span> <span style="color: #666666">]</span> ; <span style="color: #008000; font-weight: bold">then</span>
 
@@ -690,11 +698,13 @@ bash_prompt_command<span style="color: #666666">()</span> <span style="color: #6
 	</header>
 	
 	<div class="entry-content">
-		<p>Since the last release many, many things have been changed/fixed/added.<br /></p>
+		<p>DDM v0.4 has been released.<br />
 
-<p><br /></p>
+Since the last release many, many things have been changed/fixed/added.<br />
 
-<p>Here is the Changelog:</p></p>
+<br />
+
+Here is the Changelog:</p>
 
 <p><pre></p>
 
@@ -814,7 +824,9 @@ bash_prompt_command<span style="color: #666666">()</span> <span style="color: #6
 	</header>
 	
 	<div class="entry-content">
-		<p>One of the key factors of a successful <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> implementation is having the tools in place to get that stuff out of your head and into something you can trust, so you can continue your work with the smallest interruption possible.  Many GTD tools I&rsquo;ve checked out focus on the &lsquo;action management&rsquo; part of GTD, leaving out the collection and processing phases (<a href="http://www.thinkingrock.com.au/">Thinkingrock</a> is a notable exception here) and often some other things (reference system etc).</p></p>
+		<p>Often while you're occupied with something, some thought pops into your head.  Something that you want to remember/do something about.<br />
+
+One of the key factors of a successful <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> implementation is having the tools in place to get that stuff out of your head and into something you can trust, so you can continue your work with the smallest interruption possible.  Many GTD tools I've checked out focus on the 'action management' part of GTD, leaving out the collection and processing phases (<a href="http://www.thinkingrock.com.au/">Thinkingrock</a> is a notable exception here) and often some other things (reference system etc).</p>
 
 <p>This is not necessarily a bad thing:  The whole GTD system is built around so many different actions and systems that some stuff can be divided into separate programs.  The only thing that matters is the global workflow, whether inside 1 program or across multiple.</p>
 
@@ -956,7 +968,9 @@ die_error <span style="color: #666666">()</span>
 	</header>
 	
 	<div class="entry-content">
-		<h3>Introduction</h3>
+		<p><b>UPDATE: this information is outdated.  See <a href="http://github.com/Dieterbe/ddm/tree/master" title="http://github.com/Dieterbe/ddm/tree/master">http://github.com/Dieterbe/ddm/tree/master</a> for latest information.</b></p>
+
+<h3>Introduction</h3>
 
 <p>If you have multiple sets of data (e.g.: music, images, documents, movies, ...) and you use these on more then one system ( e.g. a laptop and a file server) then you probably also have some 'rules' on how you use these on your systems.  For example after capturing new images you maybe put them on your laptop first but you like to sync them to your file server frequently.  On the other hand you also want all your high-res images (stored on the server) available for editing on the laptop, and to make it more complicated you might have the same images in a smaller format on your server (for gallery programs etc.) and want these (or a select few albums of them) available on the road. </p>
 
@@ -1292,9 +1306,11 @@ You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/fil
 	</header>
 	
 	<div class="entry-content">
-		<p><br /></p>
+		<p>I've been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
 
-<p>Quote from an <a href="http://www.debian-administration.org/articles/543#comment_17">anonymous reply on debian-administration.org</a></p></p>
+<br />
+
+Quote from an <a href="http://www.debian-administration.org/articles/543#comment_17">anonymous reply on debian-administration.org</a></p>
 
 <p><br/></p>
 
@@ -1404,7 +1420,9 @@ You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/fil
 	</header>
 	
 	<div class="entry-content">
-		<p>This is great if you want to run scripts on the terminal or even without a terminal (scripts automatically started by your desktop environment) and need user input.</p></p>
+		<p>Phew! where to start?  Probably at <a href ="http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively">this blogpost</a>.  It's about making it very easy to work with external encrypted volumes. I'm not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity.  It's an LGPL-licensed program written in C by some guys from Gnome and Sun. You can call it from any script and present a user with a gtk widget such as a password-dialog, filechooser, calendar, ... It has <a href="http://www.linuxmanpages.com/man1/zenity.1.php">many possibilities</a>.<br />
+
+This is great if you want to run scripts on the terminal or even without a terminal (scripts automatically started by your desktop environment) and need user input.</p>
 
 <p>This immediately made me think of using this together with ssh-add, because i was getting a bit tired to open a console and add my key by typing the ssh-add command for every X session. (For the record: ssh-add without any arguments is enough for most users: it looks for keys with default names, but i have multiple keys with some speial names so...)<br />
 
@@ -1480,7 +1498,9 @@ However, since i use multiple keys, i used to use the globbing operator (*) but 
 	</header>
 	
 	<div class="entry-content">
-		<p>There is a trick that let's you dynamically create variable names.  Using this, you can emulate additional dimensions.<br />
+		<p>Ever needed to use arrays of two or more dimensions but got stuck on Bash limited array support which provides only 1 dimension?</p>
+
+<p>There is a trick that let's you dynamically create variable names.  Using this, you can emulate additional dimensions.<br />
 
 </p>
 
@@ -1558,7 +1578,9 @@ However, since i use multiple keys, i used to use the globbing operator (*) but 
 	</header>
 	
 	<div class="entry-content">
-		<p>First of all take <a href="http://www.xfce.org">Xfce</a>: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the <a href="http://goodies.xfce.org/">Xfce Goodies project</a>, more specifically the <a href="http://goodies.xfce.org/projects/panel-plugins/start">Panel Plugins</a> page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.</p></p>
+		<p>FOSS is written by users, for users, and what I've been doing/experiencing this afternoon is a perfect example of that.<br />
+
+First of all take <a href="http://www.xfce.org">Xfce</a>: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the <a href="http://goodies.xfce.org/">Xfce Goodies project</a>, more specifically the <a href="http://goodies.xfce.org/projects/panel-plugins/start">Panel Plugins</a> page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.</p>
 
 <p>Now, for <a href="http://corporate.netlog.com">work</a> I need to keep an eye on <a href="http://www.nagios.org/">Nagios</a>, (Nagios is a great FOSS host/service monitoring web application) but I don't like periodically checking the same webpage over and over again:<br />
 
@@ -1698,7 +1720,9 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 	</header>
 	
 	<div class="entry-content">
-		<p>I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).</p></p>
+		<p>PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.<br />
+
+I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).</p>
 
 <p>You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated:  It gets filled with way too many tags.  Among those tags several of them mean the same (fun, funny, humor, ...) or include the other (humor, jokes, ...)  You can group them in bundles but even then you need to add all the tags to a post if you want it to appear in the results for that tag.  Not very convenient. Also, if you have your del.icio.us bookmarks available in Firefox, you'd have a menu with several hundreds of entries (one for each tag), each menu containing usually just a few (or worse: just one) entry.</p>
 
@@ -1758,7 +1782,9 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 	</header>
 	
 	<div class="entry-content">
-		<p>PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.</p>
+		<h3>Introduction</h3>
+
+<p>PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.</p>
 
 <p>It's written in PHP and uses <a href="http://www.ejeliot.com/">Ed Eliot's</a> <a href="http://www.ejeliot.com/pages/php-delicious">PhpDelicous</a> class to contact the del.icio.us api. (included in download)<br />
 
@@ -1948,9 +1974,11 @@ Make sure pdclient.php has the executable flag (x).  If the directory is in your
 	</header>
 	
 	<div class="entry-content">
-		<p>It&rsquo;s that time of the year when many European (and some inter-continental) colleagues join us at<br /></p>
+		<p>Every year, during a special weekend in February, the <a href="http://www.ulb.ac.be/">University Libre of Brussels</a> suddenly becomes a little more geeky.<br />
 
-<p><a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers&rsquo; European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p></p>
+It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
+
+<a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>
 
 <p><a href="http://www.fosdem.org/2007/">This years edition</a> took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)</p>
 
@@ -2094,11 +2122,13 @@ It's cool to meet people though.  And if you want to visit stands of different p
 	</header>
 	
 	<div class="entry-content">
-		<p>This post is about <a href="http://www.gnu.org/software/bash/">bash</a>, the shell providing so many users easy access to the underlying power of their system.<br /></p>
+		<p>Hello everyone.<br />
 
-<p>(not <a href="http://www.bash.org/">bash</a> the quote database, although i really like that website too ;-) )<br /></p>
+This post is about <a href="http://www.gnu.org/software/bash/">bash</a>, the shell providing so many users easy access to the underlying power of their system.<br />
 
-<p>Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)</p></p>
+(not <a href="http://www.bash.org/">bash</a> the quote database, although i really like that website too ;-) )<br />
+
+Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)</p>
 
 <p>I assume you have a basic knowledge of bash, the history mechanism, and  ~/.bash* files.<br />
 

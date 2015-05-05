@@ -3,6 +3,8 @@ title = "Checking if a git clone has any unique content, git/svn scripts"
 date = "2010-12-16T18:06:23-04:00"
 tags = ["git"]
 +++
+<p>When cleaning up a system and going over git repositories I often wonder if a git repo contains any interesting, but unpushed work. (i.e. "unique" content)<br />
+
 I heard bzr (or was it hg...) can do it out-of-the-box, but I couldn't find any existing solution for git.<br />
 
 So I wrote a script to do this.  It checks a repo for unique commits, tags, branches, dirty files/index, added files, or stashed states.  In comparison to a specific remote, or all of them, and uses an appropriate exitcode.<br />

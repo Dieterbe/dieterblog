@@ -3,6 +3,8 @@ title = "Thailand, Berlin Velocity EU, NYC, Ghent and more metal"
 date = "2012-01-08T18:10:36-04:00"
 tags = ["life", "music", "travel", "photos"]
 +++
+<p>I've been meaning to write about a lot of stuff in separate posts, but they kept getting delayed, so I'll just briefly share everything in one post.
+
 <!--more-->
 
 <h3>Thailand</h3>

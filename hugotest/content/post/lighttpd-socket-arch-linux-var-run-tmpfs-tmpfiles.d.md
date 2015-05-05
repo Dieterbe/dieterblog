@@ -3,6 +3,8 @@ title = "Lighttpd socket Arch Linux /var/run tmpfs tmpfiles.d"
 date = "2012-03-25T23:05:05-04:00"
 tags = ["arch", "linux"]
 +++
+On Arch Linux, and probably <a href="http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html">many other distros</a> /run is a new tmpfs, and /var/run symlinks to it.
+
 With Lighttpd you might have a fastcgi socket defined something like "/var/run/lighttpd/sockets/mywebsite.sock".
 
 This won't work anymore as after each reboot /var/run is an empty directory and lighttpd won't start, /var/log/lighttpd/error.log will tell you:

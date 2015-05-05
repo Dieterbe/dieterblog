@@ -3,6 +3,8 @@ title = "Where are the new Arch Linux release images?"
 date = "2011-05-17T21:29:58-04:00"
 tags = ["linux", "foss", "arch"]
 +++
+<!--more-->
+
 <p>This is a question I get asked a lot recently.  The latest <a href="http://www.archlinux.org/download/">official images</a> are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I'm not aware of.  Many of these problems can be worked around (with 'pacman -Sy mirrorlist' on the install cd for example), but it's not exactly convenient.</p>
 
 

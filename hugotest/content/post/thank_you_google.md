@@ -3,6 +3,8 @@ title = "Thank you Google!"
 date = "2011-03-28T22:54:01-04:00"
 tags = []
 +++
+<p>Google, you get a lot of bad words over you lately.  "Evil", "big brother", "dangerous", ....
+
 <br/>But I just wanted to say: <b>thank you</b>.
 
 <br/>You provide us some nice services. Google search, Gmail, analytics, google maps, ...

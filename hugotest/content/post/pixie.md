@@ -3,6 +3,8 @@ title = "Pixie: simple photo management using directory layouts and tags."
 date = "2013-12-30T14:46:32-04:00"
 tags = ["arch", "golang", "photos"]
 +++
+So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
+
 that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
 
 <!--more-->

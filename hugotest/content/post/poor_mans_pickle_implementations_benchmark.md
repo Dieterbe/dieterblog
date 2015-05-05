@@ -3,6 +3,8 @@ title = "Poor mans pickle implementations benchmark"
 date = "2011-06-16T22:32:12-04:00"
 tags = ["foss", "python", "perf"]
 +++
+<!--more-->
+
 <p><a href="http://nlp.fi.muni.cz/projekty/gensim/">Gensim</a> is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.</p>
 
 

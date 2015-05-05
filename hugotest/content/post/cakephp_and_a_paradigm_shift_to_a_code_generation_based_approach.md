@@ -3,6 +3,8 @@ title = "CakePHP and a paradigm shift to a code generation based approach?"
 date = "2009-01-19T22:16:52-04:00"
 tags = ["foss", "cakephp"]
 +++
+<p>At my <a href="/jobhunt_over">new job</a>, I'm writing a quite full-featured web application.<br />
+
 I've choosen to use CakePHP.<br />
 
 Why? Well, it may be 2 years since I last used it, but I've followed the project and it's planet, and it seems to have matured and gained even more monumentum.<br />

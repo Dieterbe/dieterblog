@@ -3,6 +3,8 @@ title = "Rsyncbench, an rsync benchmarking tool"
 date = "2010-10-15T09:38:12-04:00"
 tags = ["foss", "perf"]
 +++
+<p>Background info:<br />
+
 I'm currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn't need much disk space,<br />
 
 but in the meantime it might be a good idea to look for online backup solutions (oops did I say "online"? I meant "cloud"), like on the (V)PS itself, or maybe as a separate solution.<br />

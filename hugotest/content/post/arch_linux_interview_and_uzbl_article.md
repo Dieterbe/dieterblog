@@ -3,6 +3,8 @@ title = "Arch Linux interview and Uzbl article"
 date = "2010-01-11T21:30:50-04:00"
 tags = ["arch", "uzbl"]
 +++
+<ul>
+
 <li><a href="http://www.osnews.com/story/22692/Arch_Linux_Team">Arch Linux team interview @ OSNews</a></li>
 
 <li><a href="http://lwn.net/Articles/341245/">Uzbl @ LWN.net</a></li>

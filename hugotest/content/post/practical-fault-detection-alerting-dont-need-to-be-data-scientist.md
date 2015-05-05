@@ -3,6 +3,8 @@ title = "Practical fault detection & alerting.  You don't need to be a data scie
 date = "2015-01-29T09:08:02-04:00"
 tags = ["devops", "monitoring"]
 +++
+<br/>
+
 As we try to retain visibility into our increasingly complicated applications and infrastructure, we're building out more advanced monitoring systems.
 
 Specifically, a lot of work is being done on alerting via fault and anomaly detection.

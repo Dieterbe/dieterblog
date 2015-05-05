@@ -3,6 +3,8 @@ title = "DDM v0.4 released"
 date = "2008-09-23T16:21:27-04:00"
 tags = ["foss", "bash"]
 +++
+<p>DDM v0.4 has been released.<br />
+
 Since the last release many, many things have been changed/fixed/added.<br />
 
 <!--more--><br />

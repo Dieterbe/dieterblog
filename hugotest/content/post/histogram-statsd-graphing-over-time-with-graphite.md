@@ -3,6 +3,8 @@ title = "Histograms in statsd, and graphing them over time with graphite."
 date = "2012-11-07T18:45:11-04:00"
 tags = ["devops", "monitoring", "perf"]
 +++
+<p>
+
 I submitted a pull request to statsd which adds <a href="https://github.com/etsy/statsd/pull/162">histogram support</a>.
 
 <img style="float:left;margin:0 5px 0 0;" src="/files/Black_cherry_tree_histogram.svg.png" alt="Example histogram, from Wikipedia"/>

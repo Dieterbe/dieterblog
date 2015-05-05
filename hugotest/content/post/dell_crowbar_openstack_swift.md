@@ -3,6 +3,8 @@ title = "Dell crowbar openstack swift"
 date = "2012-05-02T11:50:11-04:00"
 tags = ["devops", "openstack"]
 +++
+Learned about <a href="https://github.com/dellcloudedge/crowbar">Dell Crowbar</a> the other day.  It seems to be (becoming) a tool I've wanted for quite a while, because it takes automating physical infrastructure to a new level, and is also convenient on virtual.
+
 <!--more-->
 
 <p>

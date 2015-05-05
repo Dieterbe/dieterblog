@@ -123,7 +123,9 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>With Lighttpd you might have a fastcgi socket defined something like &ldquo;/var/run/lighttpd/sockets/mywebsite.sock&rdquo;.</p>
+		<p>On Arch Linux, and probably <a href="http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html">many other distros</a> /run is a new tmpfs, and /var/run symlinks to it.</p>
+
+<p>With Lighttpd you might have a fastcgi socket defined something like &ldquo;/var/run/lighttpd/sockets/mywebsite.sock&rdquo;.</p>
 
 <p>This won&rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&rsquo;t start, /var/log/lighttpd/error.log will tell you:</p>
 

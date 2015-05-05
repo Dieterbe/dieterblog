@@ -3,6 +3,8 @@ title = "A real whisper-to-InfluxDB program."
 date = "2014-09-30T08:37:48-04:00"
 tags = ["devops", "monitoring", "golang"]
 +++
+The <a href="/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html">whisper-to-influxdb migration script</a> I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.
+
 I hinted that one could write a Go program using the unofficial <a href="https://github.com/kisielk/whisper-go">whisper-go</a> bindings and the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb Go client library</a>.
 
 That's what I did now, it's at <a href="https://github.com/vimeo/whisper-to-influxdb">github.com/vimeo/whisper-to-influxdb</a>.

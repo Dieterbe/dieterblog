@@ -3,6 +3,8 @@ title = "About the maemo summit 2009 and the nokia n900"
 date = "2009-10-12T21:20:39-04:00"
 tags = ["life", "n900"]
 +++
+<p>So I'm back from the 3-day <a href="http://wiki.maemo.org/Maemo_Summit_2009">maemo summit</a> in Amsterdam.  It was very nice.  Very well organized, and Nokia definitely invested enough in catering, fancy-suited people and such to please all 400 of us.  I met several interesting people, both from the community, as well as Nokia guys.<br />
+
 The talks were diverse, but interesting (duh?).  I will especially remember the kickoff with its fancy visual effects and loud music that set the mood straight for the entire weekend.<br />
 
 The best moment was, of course, when it was announced that <strong>every summit participant would receive a n900.  Uncontrolled hapiness all around. </strong><br />

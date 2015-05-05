@@ -3,6 +3,8 @@ title = "I'm not going to Fosdem 2008"
 date = "2008-02-12T20:37:50-04:00"
 tags = ["foss", "netlog", "life", "conf"]
 +++
+<p>I wish I could put this on my webpage :</p>
+
 <p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2008.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a><br />
 
 <!--more--><br />

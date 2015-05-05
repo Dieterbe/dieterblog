@@ -3,6 +3,8 @@ title = "Automatic installations with AIF"
 date = "2009-03-14T13:15:20-04:00"
 tags = ["arch"]
 +++
+<p>Yesterday I finished the first working version of AIF's <a href="http://github.com/Dieterbe/aif/blob/b6aad22d8c0657d9205314b176e31878ffbc46a4/src/core/procedures/automatic">automatic procedure</a>, along with a <a href="http://github.com/Dieterbe/aif/blob/b6aad22d8c0657d9205314b176e31878ffbc46a4/examples/generic-install-on-sda">sample config for a basic install.</a>.</p>
+
 <p>For me personally this means I can start working on the next step towards my goal of having all my systems "metadata" centrally stored (along with my real "data"), and the possibility to reconstruct all my systems in a deployment-meets-backup-restore fashion ( see <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a> )</p>
 
 <!--more-->

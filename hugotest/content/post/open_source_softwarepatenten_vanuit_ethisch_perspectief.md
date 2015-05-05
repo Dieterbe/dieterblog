@@ -3,6 +3,8 @@ title = "Open source en softwarepatenten vanuit een ethisch perspectief"
 date = "2007-05-29T00:53:08-04:00"
 tags = ["linux", "information age", "foss"]
 +++
+<p>Voor school moest ik een ethisch verslag schrijven.<br />
+
 Hier moesten 3 elementen in voorkomen:</p>
 
 <ul>

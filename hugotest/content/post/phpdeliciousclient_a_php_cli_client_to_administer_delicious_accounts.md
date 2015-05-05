@@ -3,6 +3,8 @@ title = "PhpDeliciousClient, a php cli client to administer del.icio.us accounts
 date = "2007-07-01T16:52:51-04:00"
 tags = ["web2.0", "php", "foss", "bash"]
 +++
+<p>PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.<br />
+
 I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).</p>
 
 <p>You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated:  It gets filled with way too many tags.  Among those tags several of them mean the same (fun, funny, humor, ...) or include the other (humor, jokes, ...)  You can group them in bundles but even then you need to add all the tags to a post if you want it to appear in the results for that tag.  Not very convenient. Also, if you have your del.icio.us bookmarks available in Firefox, you'd have a menu with several hundreds of entries (one for each tag), each menu containing usually just a few (or worse: just one) entry.</p>

@@ -123,7 +123,9 @@
 	</header>
 	
 	<div class="entry-content">
-		<ul>
+		<p>While setting up Zenoss and reading <a href="http://dev.mysql.com/doc/refman/5.0/en/server-status-variables.html">Mysql documentation about status variables</a> I learned:</p>
+
+<ul>
 
 <li>All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  ("Command statistics:selects" graph in Zenoss)</li>
 

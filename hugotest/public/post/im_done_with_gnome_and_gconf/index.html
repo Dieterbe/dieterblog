@@ -123,11 +123,13 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).<br /></p>
+		<p>I'm managing my ~ in svn but using gnome &amp; gconf makes this rather hard.<br />
 
-<p>The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime &lsquo;something&rsquo; happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br /></p>
+They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).<br />
 
-<p>I&rsquo;m fine with the fact they do that.  I&rsquo;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg&rsquo;s</a> $XDG_CACHE_HOME directory)</p></p>
+The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime 'something' happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br />
+
+I'm fine with the fact they do that.  I'm sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg's</a> $XDG_CACHE_HOME directory)</p>
 
 <p>While trying to apply version control to my $HOME I need to spend way too much time scripting various <i>svn reverts</i> of many of those changes (in .gnome2, .gconf/apps/*, and .gconf/desktop), and also updating many <i>svn:ignore</i> properties (although gnome/gconf are definitely not the only culprits for that.)</p>
 

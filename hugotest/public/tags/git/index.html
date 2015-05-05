@@ -128,13 +128,17 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>There are tons of articles describing <em>how</em> you can rewrite history with git, but they do not answer &ldquo;<em>why</em> should I do it?&ldquo;.</p>
+		<p>
 
-<p>A similar question is &ldquo;what are the tradeoffs / how do I apply this in my distributed workflow?&rdquo;.</p>
+There are tons of articles describing <em>how</em> you can rewrite history with git, but they do not answer "<em>why</em> should I do it?".
 
-<p><br/>Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?</p>
+A similar question is "what are the tradeoffs / how do I apply this in my distributed workflow?".
 
-<p><br/>I&rsquo;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&rsquo;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).</p>
+<br/>Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?
+
+<br/>I'll try to answer these to the best of my abilities, largely based on how I see things.  I won't get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
+
+
 
 <h3>Why rewriting git history?</h3>
 
@@ -274,13 +278,15 @@ See also
 	</header>
 	
 	<div class="entry-content">
-		<p>I heard bzr (or was it hg&hellip;) can do it out-of-the-box, but I couldn&rsquo;t find any existing solution for git.<br /></p>
+		<p>When cleaning up a system and going over git repositories I often wonder if a git repo contains any interesting, but unpushed work. (i.e. "unique" content)<br />
 
-<p>So I wrote a script to do this.  It checks a repo for unique commits, tags, branches, dirty files/index, added files, or stashed states.  In comparison to a specific remote, or all of them, and uses an appropriate exitcode.<br /></p>
+I heard bzr (or was it hg...) can do it out-of-the-box, but I couldn't find any existing solution for git.<br />
 
-<p><a href="https://github.com/Dieterbe/git-scripts/blob/master/git-remote-in-sync.sh">git-remote-in-sync.sh</a><br /></p>
+So I wrote a script to do this.  It checks a repo for unique commits, tags, branches, dirty files/index, added files, or stashed states.  In comparison to a specific remote, or all of them, and uses an appropriate exitcode.<br />
 
-<p>The script is part of a bigger <a href="https://github.com/Dieterbe/git-scripts/">git-scripts</a> repo (most of the scripts written by random people).  Although the original repo creator hasn&rsquo;t gotten back to me this seems like a good starting point to have some sense of order in the wildspread of git scripts.</p></p>
+<a href="https://github.com/Dieterbe/git-scripts/blob/master/git-remote-in-sync.sh">git-remote-in-sync.sh</a><br />
+
+The script is part of a bigger <a href="https://github.com/Dieterbe/git-scripts/">git-scripts</a> repo (most of the scripts written by random people).  Although the original repo creator hasn't gotten back to me this seems like a good starting point to have some sense of order in the wildspread of git scripts.</p>
 
 <p>Here are some other scripts I find pretty useful:</p>
 
@@ -340,7 +346,9 @@ This one is for those occasions where you have a directory tree in svn, and you 
 	</header>
 	
 	<div class="entry-content">
-		<p>You can do this in two ways:</p>
+		<p>I recently had to rename a repo on my Github account.  Github has made this <a href="http://github.com/blog/128-let-there-be-renaming">very easy</a> but it's just one side of the issue.  Obviously you must also update any references to this remote in other clones, otherwise pushes, fetches etc won't work anymore.</p>
+
+<p>You can do this in two ways:</p>
 
 <ul>
 

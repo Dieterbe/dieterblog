@@ -3,6 +3,8 @@ title = "Hacking into my router by brute-forcing http authentication"
 date = "2007-11-28T22:11:51-04:00"
 tags = ["php"]
 +++
+<p>I forgot the username and password to access the web panel of my router.<br />
+
 Luckily I knew some possible usernames and some patterns that I could have used to construct my password, so I just had to try all the combinations... Too much work to do manually but easily done when scripted.</p>
 
 <p>Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)<!--more--></p>

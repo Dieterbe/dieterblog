@@ -3,6 +3,8 @@ title = "Hi Planet Devops and Infratalk"
 date = "2013-03-24T11:36:20-04:00"
 tags = ["devops", "monitoring"]
 +++
+This <a href="http://dieter.plaetinck.be">blog</a> just got added to <a href="http://www.planetdevops.net/">planet devops</a> and <a href="http://infra-talk.org/">infra-talk</a>,
+
 so for my new readers: you might know me as Dieterbe on irc, <a href="https://github.com/Dieterbe">github</a> or <a href="https://twitter.com/Dieter_be">twitter</a>.
 
 Since my <a href="/moving-to-nyc.html">move from Belgium to NYC</a> (to do backend stuff at Vimeo) I've started writing more about devops-y topics

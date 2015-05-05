@@ -3,6 +3,8 @@ title = "Snip: a dead-simple but quite powerful text expander and more"
 date = "2009-09-14T20:22:00-04:00"
 tags = ["foss"]
 +++
+<p>Inspired by <a href="http://bbs.archlinux.org/viewtopic.php?id=71938">Snippy</a> and <a href="http://lifehacker.com/351285/automate-repetitive-typing-with-snippits">snippits</a>, I wrote a simple tool called <a href="http://github.com/Dieterbe/snip">snip</a>.<br />
+
 It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.<br />
 
 <!--more--><br />

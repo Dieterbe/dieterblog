@@ -15,7 +15,9 @@
       <pubDate>Mon, 22 Nov 2010 15:05:35 -0400</pubDate>
       
       <guid>http://localhost:1313/post/handing_off_uzbl_to_a_new_project_leader/</guid>
-      <description>&lt;p&gt;Yesterday I did the &lt;a href=&#34;http://www.uzbl.org/news.php?id=30&#34;&gt;newspost on uzbl.org&lt;/a&gt; which explains the reasoning.  I can add it feels pretty weird &amp;ldquo;giving away&amp;rdquo; and &amp;ldquo;leaving behind&amp;rdquo; a project you spent so much time on and which grew a large (well, for a FOSS side project with a hacker audience) base of users and contributors, and which served as inspiration for various other projects.&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;As of yesterday, &lt;a href=&#34;http://necronomicorp.com/lab/&#34;&gt;Brendan &#39;bct&#39; Taylor&lt;/a&gt; is the new Uzbl project leader / maintainer.&lt;br /&gt;
+
+Yesterday I did the &lt;a href=&#34;http://www.uzbl.org/news.php?id=30&#34;&gt;newspost on uzbl.org&lt;/a&gt; which explains the reasoning.  I can add it feels pretty weird &#34;giving away&#34; and &#34;leaving behind&#34; a project you spent so much time on and which grew a large (well, for a FOSS side project with a hacker audience) base of users and contributors, and which served as inspiration for various other projects.&lt;/p&gt;
 
 &lt;p&gt;But I know this was the right thing to do.  On one hand there were more and more contributions coming in and changes being proposed but on the other hand I disliked being involved so deeply in a &#34;frontend&#34; project.  Early last year, I happened to &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;see some problems with browsing and had some cool ideas to attempt alleviate them&lt;/a&gt;, so it was fun kickstarting the project and making some things working, but I don&#39;t want to be the guy &lt;i&gt;maintaining a browser&lt;/i&gt;.&lt;br /&gt;
 
@@ -37,7 +39,9 @@ Good luck, Uzbl community, although I can&#39;t help but watching closely...&lt;
       <pubDate>Sun, 07 Mar 2010 12:06:18 -0400</pubDate>
       
       <guid>http://localhost:1313/post/uzbl_monitoring_aif_talks/</guid>
-      <description>&lt;ul&gt;
+      <description>&lt;p&gt;I recently did two talks, for which the videos are now online.&lt;/p&gt;
+
+&lt;ul&gt;
 
 &lt;li&gt;&lt;a href=&#34;http://www.uzbl.org/news.php?id=25&#34;&gt;Uzbl lightningtalk @ fosdem 2010&lt;/a&gt;&lt;/li&gt;
 
@@ -67,7 +71,9 @@ Good luck, Uzbl community, although I can&#39;t help but watching closely...&lt;
       <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
       
       <guid>http://localhost:1313/post/fosdem_2010/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
+
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
 
@@ -115,11 +121,13 @@ Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guy
       <pubDate>Mon, 11 Jan 2010 21:30:50 -0400</pubDate>
       
       <guid>http://localhost:1313/post/arch_linux_interview_and_uzbl_article/</guid>
-      <description>&lt;p&gt;&lt;li&gt;&lt;a href=&#34;http://www.osnews.com/story/22692/Arch_Linux_Team&#34;&gt;Arch Linux team interview @ OSNews&lt;/a&gt;&lt;/li&gt;&lt;/p&gt;
+      <description>&lt;ul&gt;
 
-&lt;p&gt;&lt;li&gt;&lt;a href=&#34;http://lwn.net/Articles/341245/&#34;&gt;Uzbl @ LWN.net&lt;/a&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.osnews.com/story/22692/Arch_Linux_Team&#34;&gt;Arch Linux team interview @ OSNews&lt;/a&gt;&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;http://lwn.net/Articles/341245/&#34;&gt;Uzbl @ LWN.net&lt;/a&gt;&lt;/li&gt;
+
+&lt;/ul&gt;
 
 &lt;p&gt;Apologies for only informing you about the second article now.  I assumed most of you follow LWN (you probably should) or found the article anyway.&lt;br /&gt;
 
@@ -171,7 +179,9 @@ Here is a picture of my &#34;Arch releng partner&#34; Gerhard (right) and I (lef
       <pubDate>Mon, 27 Apr 2009 23:02:37 -0400</pubDate>
       
       <guid>http://localhost:1313/post/uzbl_a_browser_that_adheres_to_the_unix_philosophy/</guid>
-      <description>&lt;p&gt;Well, I could not find it.&lt;br /&gt;
+      <description>&lt;p&gt;I need a browser that is fast, not bloated, stores my data (bookmarks, history, account settings, preferences, ...) in simple text files that I can keep under version control, something that does not reinvent the wheel, something that I can control.&lt;/p&gt;
+
+&lt;p&gt;Well, I could not find it.&lt;br /&gt;
 
 So I started the &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=70700&amp;amp;p=1&#34;&gt;uzbl browser&lt;/a&gt; project.&lt;br /&gt;
 

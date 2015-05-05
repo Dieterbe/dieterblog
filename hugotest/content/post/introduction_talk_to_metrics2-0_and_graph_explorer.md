@@ -3,6 +3,8 @@ title = "Introduction talk to metrics 2.0 and Graph-Explorer"
 date = "2014-02-23T16:20:32-04:00"
 tags = ["devops", "monitoring"]
 +++
+This week I had the opportunity to present <a href="http://dieter.plaetinck.be/metrics_2_a_proposal.html">metrics 2.0</a> and
+
 <a href="http://vimeo.github.io/graph-explorer/">Graph-Explorer</a> at the
 
 <a href="http://www.meetup.com/Full-Stack-Engineering-Meetup/">Full-stack engineering meetup</a>.

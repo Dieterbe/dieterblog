@@ -15,7 +15,9 @@
       <pubDate>Sun, 08 Jan 2012 18:10:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/thailand_berlin_velocity_nyc_ghent_metal/</guid>
-      <description>&lt;h3&gt;Thailand&lt;/h3&gt;
+      <description>&lt;p&gt;&lt;p&gt;I&amp;rsquo;ve been meaning to write about a lot of stuff in separate posts, but they kept getting delayed, so I&amp;rsquo;ll just briefly share everything in one post.&lt;/p&gt;
+
+&lt;h3&gt;Thailand&lt;/h3&gt;
 
 &lt;p&gt;In July I did a 3-week group journey through Thailand arranged by &lt;a href=&#34;http://www.explorado.be&#34;&gt;Explorado&lt;/a&gt;, but organized by (&amp;ldquo;outsourced to&amp;rdquo;) the 2 guides of &lt;a href=&#34;http://www.rootsofasia.com/&#34;&gt;roots of Asia&lt;/a&gt;, who did &lt;a href=&#34;http://www.rootsofasia.com/get-to-know-us/feedback.html&#34;&gt;an amazing job&lt;/a&gt;.&lt;/p&gt;
 
@@ -115,7 +117,9 @@
       <pubDate>Sat, 14 May 2011 14:58:12 -0400</pubDate>
       
       <guid>http://localhost:1313/post/my_metalband/</guid>
-      <description>&lt;p&gt;Since the audience of this blog is largely technical, I don&#39;t post much about other topics, but I feel it&#39;s time for a short summary about one of my &#34;real life projects&#34;.
+      <description>&lt;p&gt;&lt;img width=&#34;18%&#34; src=&#34;http://localhost:1313/files/pdp3.jpg&#34; style=&#34;float: left; margin-right: 28px&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Since the audience of this blog is largely technical, I don&#39;t post much about other topics, but I feel it&#39;s time for a short summary about one of my &#34;real life projects&#34;.
 
 &lt;br/&gt;In the spring of 2009 I joined a progressive death metal band.  I&#39;ve been drumming since I was 17, but during the last 2 years I&#39;ve been practising and rehearsing like never before.[1]
 
@@ -163,7 +167,9 @@ More info about the band:
       <pubDate>Sun, 09 Nov 2008 10:33:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/muse...wow/</guid>
-      <description>&lt;p&gt;Songs like &lt;a href=&#34;http://www.youtube.com/watch?v=VTd6nyHuPdw&#34;&gt;Butterflies and Hurricanes&lt;/a&gt; and &lt;a href=&#34;http://www.youtube.com/watch?v=W4R84e1HqvU&#34;&gt;Citizen Erased&lt;/a&gt; are among the most beautiful songs I&amp;rsquo;ve ever heard now.&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Weird as it might sound, I&#39;ve never bothered to listen to Muse songs.. until now.  Some people have recommended the band to me so I really had to stop ignoring this band someday.  And wow.. what have I been missing al that time :/&lt;br /&gt;
+
+Songs like &lt;a href=&#34;http://www.youtube.com/watch?v=VTd6nyHuPdw&#34;&gt;Butterflies and Hurricanes&lt;/a&gt; and &lt;a href=&#34;http://www.youtube.com/watch?v=W4R84e1HqvU&#34;&gt;Citizen Erased&lt;/a&gt; are among the most beautiful songs I&#39;ve ever heard now.&lt;/p&gt;
 </description>
     </item>
     
@@ -173,7 +179,8 @@ More info about the band:
       <pubDate>Sat, 19 Jan 2008 23:36:06 -0400</pubDate>
       
       <guid>http://localhost:1313/post/the_key_to_mastering_a_musical_instrument/</guid>
-      <description></description>
+      <description>&lt;p&gt;The key to mastering a musical instrument is learning an other.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -182,7 +189,9 @@ More info about the band:
       <pubDate>Sun, 08 Jul 2007 12:50:50 -0400</pubDate>
       
       <guid>http://localhost:1313/post/the_perfect_gtk_music_player_can_exaile_replace_amarok/</guid>
-      <description>&lt;p&gt;But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ve always liked Amarok: it does everything I always wanted, &lt;em&gt; and more&lt;/em&gt;.  It looks perfect in every way ...&lt;br /&gt;
+
+But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.&lt;/p&gt;
 
 &lt;p&gt;So, I&#39;ve been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.&lt;/p&gt;
 

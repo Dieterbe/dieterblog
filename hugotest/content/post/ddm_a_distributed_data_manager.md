@@ -3,6 +3,8 @@ title = "DDM : a Distributed Data Manager"
 date = "2008-03-29T20:28:16-04:00"
 tags = ["life", "foss", "bash"]
 +++
+<p><b>UPDATE: this information is outdated.  See <a href="http://github.com/Dieterbe/ddm/tree/master" title="http://github.com/Dieterbe/ddm/tree/master">http://github.com/Dieterbe/ddm/tree/master</a> for latest information.</b></p>
+
 <h3>Introduction</h3>
 
 <p>If you have multiple sets of data (e.g.: music, images, documents, movies, ...) and you use these on more then one system ( e.g. a laptop and a file server) then you probably also have some 'rules' on how you use these on your systems.  For example after capturing new images you maybe put them on your laptop first but you like to sync them to your file server frequently.  On the other hand you also want all your high-res images (stored on the server) available for editing on the laptop, and to make it more complicated you might have the same images in a smaller format on your server (for gallery programs etc.) and want these (or a select few albums of them) available on the road. </p>

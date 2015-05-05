@@ -17,6 +17,8 @@
       <guid>http://localhost:1313/about/</guid>
       <description>&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
 &lt;p&gt;
 
 Hi there, visitor.
@@ -81,7 +83,9 @@ Here are some links you might find interesting.
       <pubDate>Sun, 03 May 2015 23:01:07 -0400</pubDate>
       
       <guid>http://localhost:1313/talks/</guid>
-      <description>&lt;table&gt;
+      <description>&lt;h2&gt;Talks&lt;/h2&gt;
+
+&lt;table&gt;
 
 &lt;tbody&gt;
 
@@ -279,7 +283,9 @@ Here are some links you might find interesting.
       <pubDate>Mon, 27 Apr 2015 09:05:02 -0400</pubDate>
       
       <guid>http://localhost:1313/post/practical-fault-detection-on-timeseries-part-2/</guid>
-      <description>&lt;p&gt;It had an example of a simple but effective approach to find sudden spikes (peaks and drops) within fluctuating time series.&lt;/p&gt;
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://localhost:1313/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html&#34;&gt;previous fault detection article&lt;/a&gt;, we saw how we can cover a lot of ground in fault detection with simple methods and technology that is available today.&lt;/p&gt;
+
+&lt;p&gt;It had an example of a simple but effective approach to find sudden spikes (peaks and drops) within fluctuating time series.&lt;/p&gt;
 
 &lt;p&gt;This post explains the continuation of that work and provides you the means to implement this yourself with minimal effort.&lt;/p&gt;
 
@@ -565,7 +571,9 @@ although i think the ratio of medians (median_now/median_then) should work just 
       <pubDate>Thu, 29 Jan 2015 09:08:02 -0400</pubDate>
       
       <guid>http://localhost:1313/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/</guid>
-      <description>&lt;p&gt;As we try to retain visibility into our increasingly complicated applications and infrastructure, we&amp;rsquo;re building out more advanced monitoring systems.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;As we try to retain visibility into our increasingly complicated applications and infrastructure, we&amp;rsquo;re building out more advanced monitoring systems.&lt;/p&gt;
 
 &lt;p&gt;Specifically, a lot of work is being done on alerting via fault and anomaly detection.&lt;/p&gt;
 
@@ -846,7 +854,9 @@ by just glancing at your alert overview.  You might be looking at very out of da
       <pubDate>Sat, 06 Dec 2014 16:01:02 -0400</pubDate>
       
       <guid>http://localhost:1313/post/it-telemetry-google-group-collaboration-operational-insights/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve seen a bunch of people present their work in advancing the state of the art in this domain:&lt;/p&gt;
+      <description>&lt;p&gt;The discipline of collecting infrastructure &amp;amp; application performance metrics, aggregation, storage, visualizations and alerting has many terms associated with it&amp;hellip;  Telemetry. Insights engineering.  Operational visibility.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve seen a bunch of people present their work in advancing the state of the art in this domain:&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;from &lt;a href=&#34;http://mabrek.github.io/&#34;&gt;Anton Lebedevich&amp;rsquo;s statistics for monitoring series&lt;/a&gt;, &lt;a href=&#34;https://vimeo.com/95069158&#34;&gt;Toufic Boubez&amp;rsquo; talks on anomaly detection&lt;/a&gt; and Twitter&amp;rsquo;s work on &lt;a href=&#34;https://blog.twitter.com/2014/breakout-detection-in-the-wild&#34;&gt;detecting mean shifts&lt;/a&gt; to projects such as &lt;a href=&#34;http://flapjack.io/&#34;&gt;flapjack&lt;/a&gt; (which aims to offload the alerting responsibility from your monitoring apps), the &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics 2.0 standardization effort&lt;/a&gt; or &lt;a href=&#34;https://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;Etsy&amp;rsquo;s Kale stack&lt;/a&gt; which tries to bring interesting changes in timeseries to your attention with minimal configuration.&lt;/p&gt;
 
@@ -864,7 +874,9 @@ by just glancing at your alert overview.  You might be looking at very out of da
       <pubDate>Tue, 30 Sep 2014 08:37:48 -0400</pubDate>
       
       <guid>http://localhost:1313/post/a-real-whisper-to-influxdb-program/</guid>
-      <description>&lt;p&gt;I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;The &lt;a href=&#34;http://localhost:1313/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;whisper-to-influxdb migration script&lt;/a&gt; I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.&lt;/p&gt;
+
+&lt;p&gt;I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s what I did now, it&amp;rsquo;s at &lt;a href=&#34;https://github.com/vimeo/whisper-to-influxdb&#34;&gt;github.com/vimeo/whisper-to-influxdb&lt;/a&gt;.&lt;/p&gt;
 
@@ -884,7 +896,9 @@ by just glancing at your alert overview.  You might be looking at very out of da
       <pubDate>Wed, 24 Sep 2014 07:56:01 -0400</pubDate>
       
       <guid>http://localhost:1313/post/influxdb-as-graphite-backend-part2/</guid>
-      <description>&lt;p&gt;&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -1277,21 +1291,23 @@ influx_updater &amp;amp;
       <pubDate>Mon, 08 Sep 2014 08:36:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/influx-cli_a_commandline_interface_to_influxdb/</guid>
-      <description>&lt;p&gt;Time for another side project:&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt;,&lt;/p&gt;
+Time for another side project:
 
-&lt;p&gt;a commandline interface to influxdb.&lt;/p&gt;
+&lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt;,
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+a commandline interface to influxdb.
 
-&lt;p&gt;Nothing groundbreaking, and it behaves pretty much as you would expect if you&amp;rsquo;ve ever used&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;the mysql, pgsql, vsql, etc tools before.&lt;/p&gt;
+Nothing groundbreaking, and it behaves pretty much as you would expect if you&#39;ve ever used
 
-&lt;p&gt;&lt;br/&gt;But I did want to highlight a few interesting features.&lt;/p&gt;
+the mysql, pgsql, vsql, etc tools before.
 
-&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+&lt;br/&gt;But I did want to highlight a few interesting features.
+
+&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -1555,7 +1571,9 @@ I&#39;ve found this to be a much easier way to interface with InfluxDB then usin
       <pubDate>Tue, 12 Aug 2014 08:36:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/darktable_magnificent_photo_manager_editor/</guid>
-      <description>&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+      <description>&lt;p&gt;A post about the magnificent &lt;a href=&#34;http://darktable.org/&#34;&gt;darktable&lt;/a&gt; photo manager/editor and why I&amp;rsquo;m abandoning &lt;a href=&#34;http://localhost:1313/pixie.html&#34;&gt;pixie&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -1667,13 +1685,15 @@ I even &lt;a href=&#34;https://github.com/Dieterbe/tmsu-to-darktable&#34;&gt;wro
       <pubDate>Sat, 26 Jul 2014 13:22:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;and needing a response that tells them whether the operation succeeded and/or other auxiliary information.&lt;/p&gt;
+It&#39;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
 
-&lt;p&gt;Something centralized manages the shared state, the changes to it and the responses.&lt;/p&gt;
+and needing a response that tells them whether the operation succeeded and/or other auxiliary information.
 
-&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+Something centralized manages the shared state, the changes to it and the responses.
+
+&lt;/p&gt;
 
 &lt;p&gt;
 
@@ -1853,9 +1873,11 @@ Take for example this &lt;a href=&#34;https://github.com/graphite-ng/carbon-rela
       <pubDate>Thu, 29 May 2014 10:39:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/monitorama-pdx-metrics20/</guid>
-      <description>&lt;p&gt;Earlier this month we had another iteration of the &lt;a href=&#34;http://monitorama.com/&#34;&gt;Monitorama&lt;/a&gt; conference, this time in Portland, Oregon.&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+Earlier this month we had another iteration of the &lt;a href=&#34;http://monitorama.com/&#34;&gt;Monitorama&lt;/a&gt; conference, this time in Portland, Oregon.
+
+&lt;/p&gt;
 
 &lt;p&gt;
 
@@ -1919,7 +1941,9 @@ As usual the &lt;a href=&#34;http://www.slideshare.net/Dieterbe/metrics20-343198
       <pubDate>Sun, 18 May 2014 13:22:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/on-graphite-whisper-and-influxdb/</guid>
-      <description>&lt;p&gt;Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;h4&gt;Graphite, and the storage Achilles heel&lt;/h4&gt;
+
+&lt;p&gt;Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).&lt;/p&gt;
 
@@ -2081,7 +2105,9 @@ It should also work with the regular graphite, though I&#39;ve never tried.  (I 
       <pubDate>Wed, 23 Apr 2014 09:10:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/metrics-2-0-own-website/</guid>
-      <description>&lt;p&gt;
+      <description>&lt;p&gt;Metrics 2.0 started as a &lt;a href=&#34;http://dieter.plaetinck.be/metrics_2_a_proposal.html&#34;&gt;half-formal proposal&lt;/a&gt; and an implementation via &lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;graph-explorer&lt;/a&gt;, but is broad enough in scope that it deserves its own website, its own spec, its own community.  That&amp;rsquo;s why I launched &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics20.org&lt;/a&gt; and a &lt;a href=&#34;https://groups.google.com/forum/#!forum/metrics20&#34;&gt;discussion group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;
 
 from the website:
 
@@ -2120,7 +2146,9 @@ from the website:
       <pubDate>Sun, 23 Feb 2014 16:20:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/introduction_talk_to_metrics2-0_and_graph_explorer/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;Graph-Explorer&lt;/a&gt; at the&lt;/p&gt;
+      <description>&lt;p&gt;This week I had the opportunity to present &lt;a href=&#34;http://dieter.plaetinck.be/metrics_2_a_proposal.html&#34;&gt;metrics 2.0&lt;/a&gt; and&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;Graph-Explorer&lt;/a&gt; at the&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.meetup.com/Full-Stack-Engineering-Meetup/&#34;&gt;Full-stack engineering meetup&lt;/a&gt;.&lt;/p&gt;
 

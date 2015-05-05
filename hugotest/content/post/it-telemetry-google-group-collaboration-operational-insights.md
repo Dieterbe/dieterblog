@@ -3,6 +3,8 @@ title = "IT-Telemetry Google group.  Trying to foster more collaboration around 
 date = "2014-12-06T16:01:02-04:00"
 tags = ["devops", "monitoring"]
 +++
+The discipline of collecting infrastructure & application performance metrics, aggregation, storage, visualizations and alerting has many terms associated with it...  Telemetry. Insights engineering.  Operational visibility.
+
 I've seen a bunch of people present their work in advancing the state of the art in this domain:  
 
 <br/>from <a href="http://mabrek.github.io/">Anton Lebedevich's statistics for monitoring series</a>, <a href="https://vimeo.com/95069158">Toufic Boubez' talks on anomaly detection</a> and Twitter's work on <a href="https://blog.twitter.com/2014/breakout-detection-in-the-wild">detecting mean shifts</a> to projects such as <a href="http://flapjack.io/">flapjack</a> (which aims to offload the alerting responsibility from your monitoring apps), the <a href="http://metrics20.org/">metrics 2.0 standardization effort</a> or <a href="https://codeascraft.com/2013/06/11/introducing-kale/">Etsy's Kale stack</a> which tries to bring interesting changes in timeseries to your attention with minimal configuration.

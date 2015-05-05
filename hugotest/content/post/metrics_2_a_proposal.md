@@ -3,6 +3,8 @@ title = "Metrics 2.0: a proposal"
 date = "2013-09-14T11:29:32-04:00"
 tags = ["devops", "monitoring"]
 +++
+<p>
+
 <ul>
 
 <li>

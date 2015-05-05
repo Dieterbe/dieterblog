@@ -18,6 +18,7 @@ def fixheader(lines, draft=False):
     tags = []
 
     for i, line in enumerate(lines):
+        print("considering", i, line)
         line = line.strip()
         if i == 0:
             # replace entity refs like &amp; to &
@@ -53,7 +54,10 @@ def fixheader(lines, draft=False):
         newheader.append("draft = true")
     newheader.append("+++")
 
-    lines = newheader + lines[i+1:]
+    #print("header", lines[0:i])
+    #print("not header", lines[i+1:i+10])
+
+    lines = newheader + lines[i:]
     return lines
 
 def fixreadmore(lines):

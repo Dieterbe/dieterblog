@@ -15,7 +15,9 @@
       <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/pixie/</guid>
-      <description>&lt;p&gt;that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?&lt;/p&gt;
+      <description>&lt;p&gt;So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way&lt;/p&gt;
+
+&lt;p&gt;that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -41,7 +43,9 @@
       <pubDate>Sat, 21 Jul 2012 16:50:11 -0400</pubDate>
       
       <guid>http://localhost:1313/post/resigning_arch_linux/</guid>
-      <description>&lt;p&gt;A few days ago, I &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2012-July/002628.html&#34;&gt;resigned as Arch Linux developer&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;A few days ago, I &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2012-July/002628.html&#34;&gt;resigned as Arch Linux developer&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;I&amp;rsquo;m sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest.&lt;/p&gt;
 
@@ -61,7 +65,9 @@
       <pubDate>Sun, 25 Mar 2012 23:05:05 -0400</pubDate>
       
       <guid>http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</guid>
-      <description>&lt;p&gt;With Lighttpd you might have a fastcgi socket defined something like &amp;ldquo;/var/run/lighttpd/sockets/mywebsite.sock&amp;rdquo;.&lt;/p&gt;
+      <description>&lt;p&gt;On Arch Linux, and probably &lt;a href=&#34;http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html&#34;&gt;many other distros&lt;/a&gt; /run is a new tmpfs, and /var/run symlinks to it.&lt;/p&gt;
+
+&lt;p&gt;With Lighttpd you might have a fastcgi socket defined something like &amp;ldquo;/var/run/lighttpd/sockets/mywebsite.sock&amp;rdquo;.&lt;/p&gt;
 
 &lt;p&gt;This won&amp;rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&amp;rsquo;t start, /var/log/lighttpd/error.log will tell you:&lt;/p&gt;
 
@@ -147,7 +153,9 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
       <pubDate>Sun, 06 Feb 2011 23:46:18 -0400</pubDate>
       
       <guid>http://localhost:1313/post/can_we_build_a_simple_cross-distribution_installation_framework/</guid>
-      <description>&lt;p&gt;Basically, using the &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch&lt;/a&gt; Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check&lt;/p&gt;
+      <description>&lt;p&gt;Today at &lt;a href=&#34;http://www.fosdem.org/2011/&#34;&gt;Fosdem 2011&lt;/a&gt; I did my talk &lt;a href=&#34;http://fosdem.org/2011/schedule/event/distro_crossinstall&#34;&gt;Can we build a simple, cross-distribution installation framework?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically, using the &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch&lt;/a&gt; Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check&lt;/p&gt;
 
 &lt;p&gt;if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.&lt;/p&gt;
 
@@ -169,11 +177,13 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
       <pubDate>Wed, 08 Dec 2010 12:24:03 -0400</pubDate>
       
       <guid>http://localhost:1313/post/filesystem_code_in_aif/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve shared some &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html&#34;&gt;AIF filesystem code design insights and experiences&lt;/a&gt; on the arch-releng mailing list.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;In light of the work and discussions around supporting Nilfs2 and Btrfs on Arch Linux and its installer AIF,&lt;br /&gt;
 
-&lt;p&gt;This is some hard to understand code.  Partly because it&amp;rsquo;s in bash (and I&amp;rsquo;ve needed to work around some limitations in bash),&lt;br /&gt;&lt;/p&gt;
+I&#39;ve shared some &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html&#34;&gt;AIF filesystem code design insights and experiences&lt;/a&gt; on the arch-releng mailing list.&lt;br /&gt;
 
-&lt;p&gt;partly because there is some complex logic going on.&lt;/p&gt;&lt;/p&gt;
+This is some hard to understand code.  Partly because it&#39;s in bash (and I&#39;ve needed to work around some limitations in bash),&lt;br /&gt;
+
+partly because there is some complex logic going on.&lt;/p&gt;
 
 &lt;p&gt;I think it&#39;s very useful material for those who are interested (it can also help understanding the user aspect),&lt;br /&gt;
 
@@ -401,11 +411,13 @@ And the menu&#39;s are here:&lt;br /&gt;
       <pubDate>Wed, 25 Aug 2010 22:11:58 -0400</pubDate>
       
       <guid>http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</guid>
-      <description>&lt;p&gt;It is the birthplace of many applications, most of them not Arch Linux specific.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;The &lt;a href=&#34;https://bbs.archlinux.org/viewforum.php?id=27&#34;&gt;Community contributions&lt;/a&gt; subforum of the Arch Linux forums is awesome.&lt;br /&gt;
 
-&lt;p&gt;File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.&lt;br /&gt;&lt;/p&gt;
+It is the birthplace of many applications, most of them not Arch Linux specific.&lt;br /&gt;
 
-&lt;p&gt;Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.&lt;/p&gt;&lt;/p&gt;
+File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.&lt;br /&gt;
+
+Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.&lt;/p&gt;
 
 &lt;p&gt;If you like to discover new apps and tools, check it out.&lt;/p&gt;
 </description>
@@ -417,7 +429,9 @@ And the menu&#39;s are here:&lt;br /&gt;
       <pubDate>Sat, 31 Jul 2010 23:10:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/back_from_canada_archcon/</guid>
-      <description>&lt;h3&gt;Archcon&lt;/h3&gt;
+      <description>&lt;p&gt;I&#39;m back from Canada/Archcon, and it was great. I&#39;ve been in Toronto for 11 days, and visited Montreal for 3 days.&lt;/p&gt;
+
+&lt;h3&gt;Archcon&lt;/h3&gt;
 
 &lt;p&gt;Archcon was small (20-ish people).  (That&#39;s what you get for doing it in Canada ;), but very nice.&lt;br /&gt;
 
@@ -541,9 +555,11 @@ My slides:&lt;br /&gt;
       <pubDate>Sun, 04 Jul 2010 11:34:08 -0400</pubDate>
       
       <guid>http://localhost:1313/post/off_to_toronto_july_14-28_archcon/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s a very small conference, and the first of its kind.  At the &lt;a href=&#34;http://localhost:1313/froscon_2009_afterthoughts&#34;&gt;last FrOSCon&lt;/a&gt; we have been playing with the idea to hold an informal Arch conference in Europe, but those were just ideas.  Dusty and Ricardo beat us with an actual implementation.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;As mentioned &lt;a href=&#34;http://localhost:1313/uzbl_monitoring_aif_talks&#34;&gt;earlier&lt;/a&gt;, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;Archcon in Toronto&lt;/a&gt; in a few weeks.&lt;br /&gt;
 
-&lt;p&gt;This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.&lt;/p&gt;&lt;/p&gt;
+It&#39;s a very small conference, and the first of its kind.  At the &lt;a href=&#34;http://localhost:1313/froscon_2009_afterthoughts&#34;&gt;last FrOSCon&lt;/a&gt; we have been playing with the idea to hold an informal Arch conference in Europe, but those were just ideas.  Dusty and Ricardo beat us with an actual implementation.&lt;br /&gt;
+
+This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=116&#34;&gt;Archcon schedule&lt;/a&gt;.  I&#39;ll be talking about AIF and uzbl.&lt;/p&gt;
 
@@ -575,7 +591,9 @@ My slides:&lt;br /&gt;
       <pubDate>Sun, 07 Mar 2010 12:06:18 -0400</pubDate>
       
       <guid>http://localhost:1313/post/uzbl_monitoring_aif_talks/</guid>
-      <description>&lt;ul&gt;
+      <description>&lt;p&gt;I recently did two talks, for which the videos are now online.&lt;/p&gt;
+
+&lt;ul&gt;
 
 &lt;li&gt;&lt;a href=&#34;http://www.uzbl.org/news.php?id=25&#34;&gt;Uzbl lightningtalk @ fosdem 2010&lt;/a&gt;&lt;/li&gt;
 
@@ -605,7 +623,9 @@ My slides:&lt;br /&gt;
       <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
       
       <guid>http://localhost:1313/post/fosdem_2010/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
+
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
 
@@ -653,11 +673,13 @@ Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guy
       <pubDate>Mon, 11 Jan 2010 21:30:50 -0400</pubDate>
       
       <guid>http://localhost:1313/post/arch_linux_interview_and_uzbl_article/</guid>
-      <description>&lt;p&gt;&lt;li&gt;&lt;a href=&#34;http://www.osnews.com/story/22692/Arch_Linux_Team&#34;&gt;Arch Linux team interview @ OSNews&lt;/a&gt;&lt;/li&gt;&lt;/p&gt;
+      <description>&lt;ul&gt;
 
-&lt;p&gt;&lt;li&gt;&lt;a href=&#34;http://lwn.net/Articles/341245/&#34;&gt;Uzbl @ LWN.net&lt;/a&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.osnews.com/story/22692/Arch_Linux_Team&#34;&gt;Arch Linux team interview @ OSNews&lt;/a&gt;&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;http://lwn.net/Articles/341245/&#34;&gt;Uzbl @ LWN.net&lt;/a&gt;&lt;/li&gt;
+
+&lt;/ul&gt;
 
 &lt;p&gt;Apologies for only informing you about the second article now.  I assumed most of you follow LWN (you probably should) or found the article anyway.&lt;br /&gt;
 
@@ -709,9 +731,11 @@ Here is a picture of my &#34;Arch releng partner&#34; Gerhard (right) and I (lef
       <pubDate>Mon, 10 Aug 2009 12:36:48 -0400</pubDate>
       
       <guid>http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/</guid>
-      <description>&lt;p&gt;I hope people will like &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF&lt;/a&gt; because it was a lot of work and we didn&amp;rsquo;t receive much feedback.  I personally like it to apply my &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;fancy backup restoration&lt;/a&gt; approach.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;So, the Arch Linux &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=77680&#34;&gt;2009.08 release&lt;/a&gt; is now behind us, nicely on schedule.&lt;br /&gt;
 
-&lt;p&gt;But I&amp;rsquo;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt; I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)&lt;/p&gt;&lt;/p&gt;
+I hope people will like &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF&lt;/a&gt; because it was a lot of work and we didn&#39;t receive much feedback.  I personally like it to apply my &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;fancy backup restoration&lt;/a&gt; approach.&lt;br /&gt;
+
+But I&#39;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt; I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)&lt;/p&gt;
 
 &lt;p&gt;Later this week I&#39;m off to the &lt;a href=&#34;http://www.countingcows.be/home.php&#34;&gt;Counting Cows festival&lt;/a&gt; in France, and the week after that (august 22-23) I&#39;m going to &lt;a href=&#34;http://www.froscon.org/&#34;&gt;FrOSCon&lt;/a&gt; in Germany where I will meet some of my Arch Linux colleagues in real life, which I&#39;m really looking forward to.&lt;/p&gt;
 
@@ -725,7 +749,9 @@ Here is a picture of my &#34;Arch releng partner&#34; Gerhard (right) and I (lef
       <pubDate>Wed, 22 Jul 2009 22:36:30 -0400</pubDate>
       
       <guid>http://localhost:1313/post/aif_automatic_lvm_dm_crypt_installations_and_test_suite/</guid>
-      <description>&lt;p&gt;Amongst the slew of fixes and improvements there are also some cool new things I&#39;m working on.&lt;br /&gt;
+      <description>&lt;p&gt;We&#39;re working hard on a new &lt;a href=&#34;http://www.archlinux.org&#34;&gt;Arch&lt;/a&gt; release. (should be done by &lt;a href=&#34;http://froscon.org/&#34;&gt;froscon&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Amongst the slew of fixes and improvements there are also some cool new things I&#39;m working on.&lt;br /&gt;
 
 First of all, I worked more on the automatic installations.  Now you can easily install an LVM based Arch system on top of dm_crypt for example.&lt;br /&gt;
 

@@ -3,6 +3,8 @@ title = "Zenoss & Mysql monitoring"
 date = "2009-06-06T10:35:40-04:00"
 tags = ["foss", "monitoring", "mysql"]
 +++
+<p>I've been playing with <a href="http://www.zenoss.com/">Zenoss</a> (2.4) for the first time.  Here are my thoughts:<!--more--></p>
+
 <ul>
 
 <li>One big package that installs itself in /usr/local and copies an initscript to /etc/init.d .  Contains a mysql instance, rrdtool, python and several more binaries. (all in all about 500MB installed).  Not the cleanest way to do things but definitely easy to install/deploy.  This is also where your data will end up</li>

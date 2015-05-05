@@ -3,6 +3,8 @@ title = "Poor mans dmenu benchmark"
 date = "2009-04-25T11:25:26-04:00"
 tags = ["foss", "perf"]
 +++
+<p>I wanted to know how responsive <a href="http://tools.suckless.org/dmenu">dmenu</a> and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).</p>
+
 <!--more-->
 
 <p>generate file:</p>

@@ -3,6 +3,8 @@ title = "Froscon 2009 afterthoughts"
 date = "2009-08-28T19:00:02-04:00"
 tags = ["life", "uzbl", "arch", "conf"]
 +++
+<!--more-->
+
 <p><a href="http://froscon.org/">Froscon</a> was great.</p>
 
 <ul>

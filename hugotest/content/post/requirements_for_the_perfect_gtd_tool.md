@@ -3,6 +3,8 @@ title = "Requirements for the perfect GTD tool"
 date = "2008-08-09T16:04:45-04:00"
 tags = ["life", "productivity", "foss"]
 +++
+<p>I've been reading <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> lately and it's absolutely a great and inspiring book.<br />
+
 Having made my home office space into a real <i>Zen</i> I want to start implementing GTD in my digital life but it seems very hard to find a good GTD tool that fully implements GTD. (even though there are a lot of tools out there)</p>
 
 <p>The most interesting ones (each for different reasons) I've looked at so far are <a href="http://www.thinkingrock.com.au/index.php">Thinkingrock</a>, <a href="http://www.rousette.org.uk/projects/">tracks</a> and <a href="https://gna.org/projects/yagtd/">yagtd</a> (the latter requiring most work before it does everything I need, but it's also the most easy to dive into the code base). I'm keeping my eyes open because there are certainly more things to discover.</p>

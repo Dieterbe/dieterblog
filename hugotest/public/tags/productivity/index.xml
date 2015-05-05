@@ -15,7 +15,9 @@
       <pubDate>Sat, 13 Dec 2008 17:43:02 -0400</pubDate>
       
       <guid>http://localhost:1313/post/number_1_productivity_tip_showers/</guid>
-      <description>&lt;p&gt;Take a shower.  When I&amp;rsquo;m thinking about a problem and I take a shower, the ideas and thoughts just start popping up, one after each other, or sometimes even two at the same time.  It&amp;rsquo;s amazing.  And it works every time.&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;When you&#39;re stuck on a problem, or not even stuck but you just want to boost your creative/out-of-the-box thinking...&lt;br /&gt;
+
+Take a shower.  When I&#39;m thinking about a problem and I take a shower, the ideas and thoughts just start popping up, one after each other, or sometimes even two at the same time.  It&#39;s amazing.  And it works every time.&lt;/p&gt;
 
 &lt;p&gt;Sometimes the amount of thoughts and ideas is so much that I need a piece of paper to write everything down immediately when I come out, otherwise I&#39;ll forget stuff before I leave the bathrooom.&lt;/p&gt;
 
@@ -29,7 +31,9 @@
       <pubDate>Wed, 13 Aug 2008 20:42:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/</guid>
-      <description>&lt;p&gt;One of the key factors of a successful &lt;a href=&#34;http://en.wikipedia.org/wiki/Getting_Things_Done&#34;&gt;GTD&lt;/a&gt; implementation is having the tools in place to get that stuff out of your head and into something you can trust, so you can continue your work with the smallest interruption possible.  Many GTD tools I&amp;rsquo;ve checked out focus on the &amp;lsquo;action management&amp;rsquo; part of GTD, leaving out the collection and processing phases (&lt;a href=&#34;http://www.thinkingrock.com.au/&#34;&gt;Thinkingrock&lt;/a&gt; is a notable exception here) and often some other things (reference system etc).&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Often while you&#39;re occupied with something, some thought pops into your head.  Something that you want to remember/do something about.&lt;br /&gt;
+
+One of the key factors of a successful &lt;a href=&#34;http://en.wikipedia.org/wiki/Getting_Things_Done&#34;&gt;GTD&lt;/a&gt; implementation is having the tools in place to get that stuff out of your head and into something you can trust, so you can continue your work with the smallest interruption possible.  Many GTD tools I&#39;ve checked out focus on the &#39;action management&#39; part of GTD, leaving out the collection and processing phases (&lt;a href=&#34;http://www.thinkingrock.com.au/&#34;&gt;Thinkingrock&lt;/a&gt; is a notable exception here) and often some other things (reference system etc).&lt;/p&gt;
 
 &lt;p&gt;This is not necessarily a bad thing:  The whole GTD system is built around so many different actions and systems that some stuff can be divided into separate programs.  The only thing that matters is the global workflow, whether inside 1 program or across multiple.&lt;/p&gt;
 
@@ -137,7 +141,9 @@ die_error &lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
       <pubDate>Sat, 09 Aug 2008 16:04:45 -0400</pubDate>
       
       <guid>http://localhost:1313/post/requirements_for_the_perfect_gtd_tool/</guid>
-      <description>&lt;p&gt;Having made my home office space into a real &lt;i&gt;Zen&lt;/i&gt; I want to start implementing GTD in my digital life but it seems very hard to find a good GTD tool that fully implements GTD. (even though there are a lot of tools out there)&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ve been reading &lt;a href=&#34;http://en.wikipedia.org/wiki/Getting_Things_Done&#34;&gt;GTD&lt;/a&gt; lately and it&#39;s absolutely a great and inspiring book.&lt;br /&gt;
+
+Having made my home office space into a real &lt;i&gt;Zen&lt;/i&gt; I want to start implementing GTD in my digital life but it seems very hard to find a good GTD tool that fully implements GTD. (even though there are a lot of tools out there)&lt;/p&gt;
 
 &lt;p&gt;The most interesting ones (each for different reasons) I&#39;ve looked at so far are &lt;a href=&#34;http://www.thinkingrock.com.au/index.php&#34;&gt;Thinkingrock&lt;/a&gt;, &lt;a href=&#34;http://www.rousette.org.uk/projects/&#34;&gt;tracks&lt;/a&gt; and &lt;a href=&#34;https://gna.org/projects/yagtd/&#34;&gt;yagtd&lt;/a&gt; (the latter requiring most work before it does everything I need, but it&#39;s also the most easy to dive into the code base). I&#39;m keeping my eyes open because there are certainly more things to discover.&lt;/p&gt;
 
@@ -227,7 +233,9 @@ From a writers perspective: I find it also amazing how stuff that is so hard to 
       <pubDate>Sun, 15 Jun 2008 21:20:00 -0400</pubDate>
       
       <guid>http://localhost:1313/post/dump_your_azerty_and_querty_because_the_only_keyboard_layout_that_makes_sense_is_dvorak/</guid>
-      <description>&lt;p&gt;For those who have no clue what I&#39;m talking about: think for 30 seconds which characters you type the most and which the least (eg: which characters occur the most/least in the language you type?).&lt;/p&gt;
+      <description>&lt;p&gt;For a while now I am typing using solely the Dvorak keyboard layout.  I roughly estimate it has been 4 or 5 months now - with the first month being a pain in the ass because i had to relearn typing pretty much from scratch - but now my typing speed is starting to exceed what it used to be in querty, and I still have much headroom to improve.&lt;/p&gt;
+
+&lt;p&gt;For those who have no clue what I&#39;m talking about: think for 30 seconds which characters you type the most and which the least (eg: which characters occur the most/least in the language you type?).&lt;/p&gt;
 
 &lt;p&gt;Ok you got them?  Now look at your keyboard and spot where these characters are.  Now consider where your fingers are most of the time (if you&#39;ve never learned to type: the &#39;base position&#39; for your fingers is on the middle row).  Notice anything strange?&lt;/p&gt;
 
@@ -251,9 +259,11 @@ If you would like more information, I highly recommend &lt;a href=&#34;http://dv
       <pubDate>Wed, 30 Jan 2008 21:37:31 -0400</pubDate>
       
       <guid>http://localhost:1313/post/per_directory_bash_history/</guid>
-      <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ve been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
 
-&lt;p&gt;Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#comment_17&#34;&gt;anonymous reply on debian-administration.org&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+&lt;br /&gt;
+
+Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#comment_17&#34;&gt;anonymous reply on debian-administration.org&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -329,11 +339,13 @@ If you would like more information, I highly recommend &lt;a href=&#34;http://dv
       <pubDate>Wed, 14 Mar 2007 23:38:54 -0400</pubDate>
       
       <guid>http://localhost:1313/post/my_favorite_bash_tricks/</guid>
-      <description>&lt;p&gt;This post is about &lt;a href=&#34;http://www.gnu.org/software/bash/&#34;&gt;bash&lt;/a&gt;, the shell providing so many users easy access to the underlying power of their system.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Hello everyone.&lt;br /&gt;
 
-&lt;p&gt;(not &lt;a href=&#34;http://www.bash.org/&#34;&gt;bash&lt;/a&gt; the quote database, although i really like that website too ;-) )&lt;br /&gt;&lt;/p&gt;
+This post is about &lt;a href=&#34;http://www.gnu.org/software/bash/&#34;&gt;bash&lt;/a&gt;, the shell providing so many users easy access to the underlying power of their system.&lt;br /&gt;
 
-&lt;p&gt;Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)&lt;/p&gt;&lt;/p&gt;
+(not &lt;a href=&#34;http://www.bash.org/&#34;&gt;bash&lt;/a&gt; the quote database, although i really like that website too ;-) )&lt;br /&gt;
+
+Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)&lt;/p&gt;
 
 &lt;p&gt;I assume you have a basic knowledge of bash, the history mechanism, and  ~/.bash* files.&lt;br /&gt;
 

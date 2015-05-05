@@ -3,6 +3,8 @@ title = "Blog moved"
 date = "2011-01-19T19:48:39-04:00"
 tags = []
 +++
+This blog now runs on <a href="http://pyblosxom.bluesock.org/">Pyblosxom</a> on Lighttpd on my new <a href="http://www.linode.com">Linode</a> machine.
+
 <br/>The moving/conversion process wasn't as smooth as I thought it would be as I needed to work quite a bit on pyblosxom and implement some new plugins
 
 to get certain features working (like syntax highlighting).

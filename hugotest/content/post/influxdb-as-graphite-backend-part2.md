@@ -3,6 +3,8 @@ title = "InfluxDB as a graphite backend, part 2"
 date = "2014-09-24T07:56:01-04:00"
 tags = ["devops", "monitoring", "golang"]
 +++
+<br>
+
 <br/>Updated oct 1, 2014 with a new <i>Disk space efficiency</i> section which fixes some mistakes and adds more clarity.
 
 <br/>

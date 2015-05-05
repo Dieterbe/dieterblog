@@ -15,7 +15,9 @@
       <pubDate>Tue, 30 Sep 2014 08:37:48 -0400</pubDate>
       
       <guid>http://localhost:1313/post/a-real-whisper-to-influxdb-program/</guid>
-      <description>&lt;p&gt;I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;The &lt;a href=&#34;http://localhost:1313/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;whisper-to-influxdb migration script&lt;/a&gt; I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.&lt;/p&gt;
+
+&lt;p&gt;I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s what I did now, it&amp;rsquo;s at &lt;a href=&#34;https://github.com/vimeo/whisper-to-influxdb&#34;&gt;github.com/vimeo/whisper-to-influxdb&lt;/a&gt;.&lt;/p&gt;
 
@@ -35,7 +37,9 @@
       <pubDate>Wed, 24 Sep 2014 07:56:01 -0400</pubDate>
       
       <guid>http://localhost:1313/post/influxdb-as-graphite-backend-part2/</guid>
-      <description>&lt;p&gt;&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -428,21 +432,23 @@ influx_updater &amp;amp;
       <pubDate>Mon, 08 Sep 2014 08:36:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/influx-cli_a_commandline_interface_to_influxdb/</guid>
-      <description>&lt;p&gt;Time for another side project:&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt;,&lt;/p&gt;
+Time for another side project:
 
-&lt;p&gt;a commandline interface to influxdb.&lt;/p&gt;
+&lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt;,
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+a commandline interface to influxdb.
 
-&lt;p&gt;Nothing groundbreaking, and it behaves pretty much as you would expect if you&amp;rsquo;ve ever used&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;the mysql, pgsql, vsql, etc tools before.&lt;/p&gt;
+Nothing groundbreaking, and it behaves pretty much as you would expect if you&#39;ve ever used
 
-&lt;p&gt;&lt;br/&gt;But I did want to highlight a few interesting features.&lt;/p&gt;
+the mysql, pgsql, vsql, etc tools before.
 
-&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+&lt;br/&gt;But I did want to highlight a few interesting features.
+
+&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -706,13 +712,15 @@ I&#39;ve found this to be a much easier way to interface with InfluxDB then usin
       <pubDate>Sat, 26 Jul 2014 13:22:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;and needing a response that tells them whether the operation succeeded and/or other auxiliary information.&lt;/p&gt;
+It&#39;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
 
-&lt;p&gt;Something centralized manages the shared state, the changes to it and the responses.&lt;/p&gt;
+and needing a response that tells them whether the operation succeeded and/or other auxiliary information.
 
-&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+Something centralized manages the shared state, the changes to it and the responses.
+
+&lt;/p&gt;
 
 &lt;p&gt;
 
@@ -892,7 +900,9 @@ Take for example this &lt;a href=&#34;https://github.com/graphite-ng/carbon-rela
       <pubDate>Sun, 18 May 2014 13:22:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/on-graphite-whisper-and-influxdb/</guid>
-      <description>&lt;p&gt;Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;h4&gt;Graphite, and the storage Achilles heel&lt;/h4&gt;
+
+&lt;p&gt;Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).&lt;/p&gt;
 
@@ -1054,7 +1064,9 @@ It should also work with the regular graphite, though I&#39;ve never tried.  (I 
       <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/pixie/</guid>
-      <description>&lt;p&gt;that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?&lt;/p&gt;
+      <description>&lt;p&gt;So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way&lt;/p&gt;
+
+&lt;p&gt;that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -1080,13 +1092,15 @@ It should also work with the regular graphite, though I&#39;ve never tried.  (I 
       <pubDate>Sat, 07 Sep 2013 20:54:20 -0400</pubDate>
       
       <guid>http://localhost:1313/post/graphite-ng_a-next-gen-graphite-server-in-go/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve been a &lt;a href=&#34;https://github.com/graphite-project/&#34;&gt;graphite&lt;/a&gt; contributor for a while (and still am).  It&amp;rsquo;s a &lt;i&gt;great&lt;/i&gt; tool for timeseries metrics.&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;Two weeks ago I started working on &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;Graphite-ng&lt;/a&gt;:&lt;/p&gt;
+I&#39;ve been a &lt;a href=&#34;https://github.com/graphite-project/&#34;&gt;graphite&lt;/a&gt; contributor for a while (and still am).  It&#39;s a &lt;i&gt;great&lt;/i&gt; tool for timeseries metrics.
 
-&lt;p&gt;it&amp;rsquo;s somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in &lt;a href=&#34;http://golang.org&#34;&gt;Golang&lt;/a&gt;.&lt;/p&gt;
+Two weeks ago I started working on &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;Graphite-ng&lt;/a&gt;:
 
-&lt;p&gt;The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like&lt;/p&gt;&lt;/p&gt;
+it&#39;s somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in &lt;a href=&#34;http://golang.org&#34;&gt;Golang&lt;/a&gt;.
+
+The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like&lt;/p&gt;
 
 &lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
 

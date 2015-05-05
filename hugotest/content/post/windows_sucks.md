@@ -3,6 +3,8 @@ title = "Windows sucks"
 date = "2008-05-01T14:22:17-04:00"
 tags = ["life"]
 +++
+<p>I had to fix a problem at <a href="http://www.plaetinck.be">my dad's company</a>...<br />
+
 "The network was broken."</p>
 
 <p>It was a NetBEUI network connecting some windows stations - it has been running for years - and now suddenly the nodes couldn't find eachother.<br />

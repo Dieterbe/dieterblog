@@ -3,6 +3,8 @@ title = "Uzbl.  A browser that adheres to the unix philosophy."
 date = "2009-04-27T23:02:37-04:00"
 tags = ["uzbl", "foss"]
 +++
+<p>I need a browser that is fast, not bloated, stores my data (bookmarks, history, account settings, preferences, ...) in simple text files that I can keep under version control, something that does not reinvent the wheel, something that I can control.</p>
+
 <p>Well, I could not find it.<br />
 
 So I started the <a href="http://bbs.archlinux.org/viewtopic.php?id=70700&amp;p=1">uzbl browser</a> project.<!--more--><br />

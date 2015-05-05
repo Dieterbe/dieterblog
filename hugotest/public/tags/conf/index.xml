@@ -15,7 +15,9 @@
       <pubDate>Sun, 06 Feb 2011 23:46:18 -0400</pubDate>
       
       <guid>http://localhost:1313/post/can_we_build_a_simple_cross-distribution_installation_framework/</guid>
-      <description>&lt;p&gt;Basically, using the &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch&lt;/a&gt; Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check&lt;/p&gt;
+      <description>&lt;p&gt;Today at &lt;a href=&#34;http://www.fosdem.org/2011/&#34;&gt;Fosdem 2011&lt;/a&gt; I did my talk &lt;a href=&#34;http://fosdem.org/2011/schedule/event/distro_crossinstall&#34;&gt;Can we build a simple, cross-distribution installation framework?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically, using the &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch&lt;/a&gt; Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check&lt;/p&gt;
 
 &lt;p&gt;if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.&lt;/p&gt;
 
@@ -37,7 +39,9 @@
       <pubDate>Tue, 25 Jan 2011 23:15:45 -0400</pubDate>
       
       <guid>http://localhost:1313/post/dir_fosdem_2011/</guid>
-      <description>&lt;p&gt;After that, I&amp;rsquo;m going to the devopsdinner and Fosdem beer event in Brussels.&lt;/p&gt;
+      <description>&lt;p&gt;On February 4, I&amp;rsquo;ll be in Amsterdam at &lt;a href=&#34;http://ilps.science.uva.nl/dir2011/cfp.html&#34;&gt;DIR 2011&lt;/a&gt;, the 11th Dutch-Belgian Information Retrieval Workshop.&lt;/p&gt;
+
+&lt;p&gt;After that, I&amp;rsquo;m going to the devopsdinner and Fosdem beer event in Brussels.&lt;/p&gt;
 
 &lt;p&gt;On february &lt;sup&gt;5&lt;/sup&gt;&amp;frasl;&lt;sub&gt;6&lt;/sub&gt; of course, Fosdem itself.  Looking forward to the systemd talk.&lt;/p&gt;
 
@@ -55,7 +59,9 @@
       <pubDate>Sat, 31 Jul 2010 23:10:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/back_from_canada_archcon/</guid>
-      <description>&lt;h3&gt;Archcon&lt;/h3&gt;
+      <description>&lt;p&gt;I&#39;m back from Canada/Archcon, and it was great. I&#39;ve been in Toronto for 11 days, and visited Montreal for 3 days.&lt;/p&gt;
+
+&lt;h3&gt;Archcon&lt;/h3&gt;
 
 &lt;p&gt;Archcon was small (20-ish people).  (That&#39;s what you get for doing it in Canada ;), but very nice.&lt;br /&gt;
 
@@ -179,7 +185,9 @@ My slides:&lt;br /&gt;
       <pubDate>Sun, 07 Mar 2010 12:06:18 -0400</pubDate>
       
       <guid>http://localhost:1313/post/uzbl_monitoring_aif_talks/</guid>
-      <description>&lt;ul&gt;
+      <description>&lt;p&gt;I recently did two talks, for which the videos are now online.&lt;/p&gt;
+
+&lt;ul&gt;
 
 &lt;li&gt;&lt;a href=&#34;http://www.uzbl.org/news.php?id=25&#34;&gt;Uzbl lightningtalk @ fosdem 2010&lt;/a&gt;&lt;/li&gt;
 
@@ -209,7 +217,9 @@ My slides:&lt;br /&gt;
       <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
       
       <guid>http://localhost:1313/post/fosdem_2010/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
+
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
 
@@ -295,7 +305,9 @@ Here is a picture of my &#34;Arch releng partner&#34; Gerhard (right) and I (lef
       <pubDate>Thu, 05 Feb 2009 21:20:15 -0400</pubDate>
       
       <guid>http://localhost:1313/post/fosdem_2009/</guid>
-      <description>&lt;p&gt;I&#39;m particulary interested in:&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2009.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I&#39;m particulary interested in:&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -319,7 +331,9 @@ Here is a picture of my &#34;Arch releng partner&#34; Gerhard (right) and I (lef
       <pubDate>Tue, 12 Feb 2008 20:37:50 -0400</pubDate>
       
       <guid>http://localhost:1313/post/im_not_going_to_fosdem_2008/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
+      <description>&lt;p&gt;I wish I could put this on my webpage :&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
 
 &lt;br /&gt;
 
@@ -339,9 +353,11 @@ No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms wou
       <pubDate>Thu, 15 Mar 2007 21:02:41 -0400</pubDate>
       
       <guid>http://localhost:1313/post/fosdem_2007_review/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Every year, during a special weekend in February, the &lt;a href=&#34;http://www.ulb.ac.be/&#34;&gt;University Libre of Brussels&lt;/a&gt; suddenly becomes a little more geeky.&lt;br /&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&amp;rsquo; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;&lt;/p&gt;
+It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
+
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;This years edition&lt;/a&gt; took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)&lt;/p&gt;
 

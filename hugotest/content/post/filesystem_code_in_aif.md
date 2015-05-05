@@ -3,6 +3,8 @@ title = "Filesystem code in AIF"
 date = "2010-12-08T12:24:03-04:00"
 tags = ["bash", "arch"]
 +++
+<p>In light of the work and discussions around supporting Nilfs2 and Btrfs on Arch Linux and its installer AIF,<br />
+
 I've shared some <a href="http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html">AIF filesystem code design insights and experiences</a> on the arch-releng mailing list.<br />
 
 This is some hard to understand code.  Partly because it's in bash (and I've needed to work around some limitations in bash),<br />

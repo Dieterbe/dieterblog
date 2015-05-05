@@ -3,6 +3,8 @@ title = "dautostart, a standalone freedesktop-compliant application starter"
 date = "2008-10-19T13:26:08-04:00"
 tags = ["foss"]
 +++
+<p>I couldn't find a standalone application/script that implements <a href="http://standards.freedesktop.org/autostart-spec/autostart-spec-latest.html">freedesktop compliant (XDG based) autostarting</a> of applications, so I decided to write my own.<br />
+
 The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://github.com/Dieterbe/dautostart">http://github.com/Dieterbe/dautostart</a> .</p>
 
 <p>Right now, all the basics seem to work (except "Autostart Of Applications After Mount" of the spec).<br />

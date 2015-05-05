@@ -3,6 +3,8 @@ title = "Opening files automatically on mainstream Linux desktops"
 date = "2009-09-22T19:43:17-04:00"
 tags = ["foss", "linux"]
 +++
+<p>Xfce/Gnu/Linux works amazingly well on my moms workstation, with one exception: opening files automatically with the correct program.</p>
+
 <p>The two biggest culprits are:</p>
 
 <ul>

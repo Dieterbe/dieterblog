@@ -3,6 +3,8 @@ title = "Looking for a new job"
 date = "2008-11-24T20:30:51-04:00"
 tags = ["life", "linux"]
 +++
+<p>The <a href="/i_just_became_a_system_and_network_architect">adventure at Netlog</a> didn't work out entirely, so <em>I'm looking for a new challenge!</em></p>
+
 <p>My new ideal (slightly utopic) job would be:</p>
 
 <ul>

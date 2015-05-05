@@ -3,6 +3,8 @@ title = "Anthracite, an event database to enrich monitoring dashboards and to al
 date = "2012-11-12T08:49:56-04:00"
 tags = ["devops", "monitoring"]
 +++
+<h4>Introduction</h4>
+
 <p>Graphite can show events such as <a href="http://codeascraft.etsy.com/2010/12/08/track-every-release/">code deploys</a> and
 
 <a href="https://github.com/joemiller/puppet-graphite_event">puppet changes</a> as vertical markers on your graph.

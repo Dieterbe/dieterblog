@@ -3,6 +3,8 @@ title = "Practical fault detection on timeseries part 2: first macros and templa
 date = "2015-04-27T09:05:02-04:00"
 tags = ["devops", "monitoring"]
 +++
+In the <a href="/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html">previous fault detection article</a>, we saw how we can cover a lot of ground in fault detection with simple methods and technology that is available today.
+
 It had an example of a simple but effective approach to find sudden spikes (peaks and drops) within fluctuating time series.
 
 This post explains the continuation of that work and provides you the means to implement this yourself with minimal effort.

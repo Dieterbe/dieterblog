@@ -15,13 +15,17 @@
       <pubDate>Sat, 05 Mar 2011 18:27:35 -0400</pubDate>
       
       <guid>http://localhost:1313/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/</guid>
-      <description>&lt;p&gt;There are tons of articles describing &lt;em&gt;how&lt;/em&gt; you can rewrite history with git, but they do not answer &amp;ldquo;&lt;em&gt;why&lt;/em&gt; should I do it?&amp;ldquo;.&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;A similar question is &amp;ldquo;what are the tradeoffs / how do I apply this in my distributed workflow?&amp;rdquo;.&lt;/p&gt;
+There are tons of articles describing &lt;em&gt;how&lt;/em&gt; you can rewrite history with git, but they do not answer &#34;&lt;em&gt;why&lt;/em&gt; should I do it?&#34;.
 
-&lt;p&gt;&lt;br/&gt;Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?&lt;/p&gt;
+A similar question is &#34;what are the tradeoffs / how do I apply this in my distributed workflow?&#34;.
 
-&lt;p&gt;&lt;br/&gt;I&amp;rsquo;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&amp;rsquo;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).&lt;/p&gt;
+&lt;br/&gt;Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?
+
+&lt;br/&gt;I&#39;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&#39;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
+
+
 
 &lt;h3&gt;Why rewriting git history?&lt;/h3&gt;
 
@@ -127,13 +131,15 @@ See also
       <pubDate>Thu, 16 Dec 2010 18:06:23 -0400</pubDate>
       
       <guid>http://localhost:1313/post/checking_if_a_git_clone_has_any_unique_content__git_and_svn_scripts/</guid>
-      <description>&lt;p&gt;I heard bzr (or was it hg&amp;hellip;) can do it out-of-the-box, but I couldn&amp;rsquo;t find any existing solution for git.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;When cleaning up a system and going over git repositories I often wonder if a git repo contains any interesting, but unpushed work. (i.e. &#34;unique&#34; content)&lt;br /&gt;
 
-&lt;p&gt;So I wrote a script to do this.  It checks a repo for unique commits, tags, branches, dirty files/index, added files, or stashed states.  In comparison to a specific remote, or all of them, and uses an appropriate exitcode.&lt;br /&gt;&lt;/p&gt;
+I heard bzr (or was it hg...) can do it out-of-the-box, but I couldn&#39;t find any existing solution for git.&lt;br /&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/Dieterbe/git-scripts/blob/master/git-remote-in-sync.sh&#34;&gt;git-remote-in-sync.sh&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
+So I wrote a script to do this.  It checks a repo for unique commits, tags, branches, dirty files/index, added files, or stashed states.  In comparison to a specific remote, or all of them, and uses an appropriate exitcode.&lt;br /&gt;
 
-&lt;p&gt;The script is part of a bigger &lt;a href=&#34;https://github.com/Dieterbe/git-scripts/&#34;&gt;git-scripts&lt;/a&gt; repo (most of the scripts written by random people).  Although the original repo creator hasn&amp;rsquo;t gotten back to me this seems like a good starting point to have some sense of order in the wildspread of git scripts.&lt;/p&gt;&lt;/p&gt;
+&lt;a href=&#34;https://github.com/Dieterbe/git-scripts/blob/master/git-remote-in-sync.sh&#34;&gt;git-remote-in-sync.sh&lt;/a&gt;&lt;br /&gt;
+
+The script is part of a bigger &lt;a href=&#34;https://github.com/Dieterbe/git-scripts/&#34;&gt;git-scripts&lt;/a&gt; repo (most of the scripts written by random people).  Although the original repo creator hasn&#39;t gotten back to me this seems like a good starting point to have some sense of order in the wildspread of git scripts.&lt;/p&gt;
 
 &lt;p&gt;Here are some other scripts I find pretty useful:&lt;/p&gt;
 
@@ -161,7 +167,9 @@ This one is for those occasions where you have a directory tree in svn, and you 
       <pubDate>Mon, 17 Nov 2008 11:29:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/handling_a_remote_rename_or_move_with_git/</guid>
-      <description>&lt;p&gt;You can do this in two ways:&lt;/p&gt;
+      <description>&lt;p&gt;I recently had to rename a repo on my Github account.  Github has made this &lt;a href=&#34;http://github.com/blog/128-let-there-be-renaming&#34;&gt;very easy&lt;/a&gt; but it&#39;s just one side of the issue.  Obviously you must also update any references to this remote in other clones, otherwise pushes, fetches etc won&#39;t work anymore.&lt;/p&gt;
+
+&lt;p&gt;You can do this in two ways:&lt;/p&gt;
 
 &lt;ul&gt;
 

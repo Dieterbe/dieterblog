@@ -3,6 +3,8 @@ title = "Fosdem 2010"
 date = "2010-01-24T17:10:16-04:00"
 tags = ["life", "foss", "uzbl", "arch", "conf"]
 +++
+<p>I'll be at fosdem - 10th edition - again this year.<br />
+
 <a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2010.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a></p>
 
 <p>I'll be presenting a <a href="http://fosdem.org/2010/schedule/events/uzbl">lightning talk</a> about <a href="http://www.uzbl.org/">uzbl</a>.<br />

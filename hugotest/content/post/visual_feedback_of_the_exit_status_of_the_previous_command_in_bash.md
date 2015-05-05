@@ -3,6 +3,8 @@ title = "Visual feedback of the exit status of the previous command in bash"
 date = "2008-10-14T21:56:50-04:00"
 tags = ["bash"]
 +++
+<p>Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing 'echo $?', ' &amp;& echo ok', '|| echo failed' etc on the command line.<!--more--></p>
+
 {{< highlight "bash" "style=default" >}}<![CDATA[
 
 if [ $(tput colors) -gt 0 ] ; then

@@ -15,7 +15,9 @@
       <pubDate>Sat, 24 May 2008 12:39:28 -0400</pubDate>
       
       <guid>http://localhost:1313/post/announcing_the_netlog_developer_pages/</guid>
-      <description>&lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
+      <description>&lt;p&gt;At work, we&#39;ve setup the &lt;a href=&#34;http://netlog.com/go/developer&#34;&gt;Netlog Developer Pages&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
 
 We&#39;ve also launched a &lt;a href=&#34;http://en.netlog.com/go/developer/group&#34;&gt;group&lt;/a&gt; where you can communicate with fellow developers and Netlog employees.&lt;br /&gt;
 
@@ -31,7 +33,9 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <pubDate>Sat, 19 Apr 2008 12:10:11 -0400</pubDate>
       
       <guid>http://localhost:1313/post/i_survived_lcl_31_3_2008/</guid>
-      <description>&lt;p&gt;If you&#39;re one of the sysadmins of a website with 35M members and 150M hits per day this means you&#39;re in for an exciting night ...&lt;/p&gt;
+      <description>&lt;p&gt;On 31-3-2008 &lt;a href=&#34;http://www.lcl.be&#34;&gt;LCL&lt;/a&gt;, one of the most used datacenters in Belgium - and the only one with a 0% downtime record in Belgium - had major power issues with their datacenter in Diegem, bringing lots of Belgian parties offline.  (more specifics &lt;a href=&#34;http://www.google.be/search?q=lcl+diegem+power+failure&#34;&gt;on the net&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;If you&#39;re one of the sysadmins of a website with 35M members and 150M hits per day this means you&#39;re in for an exciting night ...&lt;/p&gt;
 
 &lt;p&gt;Long story short: LCL couldn&#39;t bring the power back up fast enough so we rented our own generator.  After rushing to Brussels we ( The Netlog ITS-team) could sit in the offices upstairs.  But after a while they had to close it down but we could stay in a room nearby (without furniture).   After that we went to Steven&#39;s appartment in Machelen.  We worked about 30 hours in a row, getting our sites back up and running (mostly fixing corrupted databases).  Our friends from the devteam also did some great achievements the next day, by using the redundancy of denormalized database layouts they could restore nearly all missing content that had vanished because of table repairs.&lt;/p&gt;
 
@@ -79,9 +83,11 @@ Jakob - Steven - me - Kenny&lt;/p&gt;
       <pubDate>Mon, 03 Mar 2008 21:12:42 -0400</pubDate>
       
       <guid>http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/</guid>
-      <description>&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+      <description>&lt;p&gt;If you serve lots of (small) files with Lighttpd you might notice you&#39;re not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn&#39;t have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
 
-&lt;p&gt;(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)&lt;/p&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)&lt;/p&gt;
 
 &lt;p&gt;This is explained on the &lt;a href=&#34;http://trac.lighttpd.net/trac/wiki/HowtoSpeedUpStatWithFastcgi&#34;&gt; HowtoSpeedUpStatWithFastcgi&lt;/a&gt; page on the &lt;a href=&#34;http://trac.lighttpd.net/trac/&#34;&gt; Lighty wiki&lt;/a&gt;.&lt;/p&gt;
 
@@ -411,7 +417,9 @@ Jakob - Steven - me - Kenny&lt;/p&gt;
       <pubDate>Tue, 12 Feb 2008 20:37:50 -0400</pubDate>
       
       <guid>http://localhost:1313/post/im_not_going_to_fosdem_2008/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
+      <description>&lt;p&gt;I wish I could put this on my webpage :&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
 
 &lt;br /&gt;
 
@@ -431,7 +439,9 @@ No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms wou
       <pubDate>Sun, 05 Aug 2007 16:42:46 -0400</pubDate>
       
       <guid>http://localhost:1313/post/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</guid>
-      <description>&lt;p&gt;First of all take &lt;a href=&#34;http://www.xfce.org&#34;&gt;Xfce&lt;/a&gt;: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the &lt;a href=&#34;http://goodies.xfce.org/&#34;&gt;Xfce Goodies project&lt;/a&gt;, more specifically the &lt;a href=&#34;http://goodies.xfce.org/projects/panel-plugins/start&#34;&gt;Panel Plugins&lt;/a&gt; page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;FOSS is written by users, for users, and what I&#39;ve been doing/experiencing this afternoon is a perfect example of that.&lt;br /&gt;
+
+First of all take &lt;a href=&#34;http://www.xfce.org&#34;&gt;Xfce&lt;/a&gt;: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the &lt;a href=&#34;http://goodies.xfce.org/&#34;&gt;Xfce Goodies project&lt;/a&gt;, more specifically the &lt;a href=&#34;http://goodies.xfce.org/projects/panel-plugins/start&#34;&gt;Panel Plugins&lt;/a&gt; page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.&lt;/p&gt;
 
 &lt;p&gt;Now, for &lt;a href=&#34;http://corporate.netlog.com&#34;&gt;work&lt;/a&gt; I need to keep an eye on &lt;a href=&#34;http://www.nagios.org/&#34;&gt;Nagios&lt;/a&gt;, (Nagios is a great FOSS host/service monitoring web application) but I don&#39;t like periodically checking the same webpage over and over again:&lt;br /&gt;
 
@@ -535,7 +545,9 @@ You can also see at the left the notes plugin and the mail checker plugin and at
       <pubDate>Tue, 17 Apr 2007 20:11:07 -0400</pubDate>
       
       <guid>http://localhost:1313/post/i_just_became_a_system_and_network_architect/</guid>
-      <description>&lt;p&gt;I will be working there in a team of all young, enthusiastic people.  Among those, some people are already familiar to me:  my old friend &lt;a href=&#34;http://www.lievendekeyser.net/&#34;&gt;Lieven&lt;/a&gt; (we&#39;ve played in a band together but kept in touch afterwards) and my ex-classmate &lt;a href=&#34;http://www.jurriaanpersyn.com/&#34;&gt;Jurriaan&lt;/a&gt;.  Both of them love their jobs btw :-).&lt;/p&gt;
+      <description>&lt;p&gt;I just signed my contract at &lt;a href=&#34;http://incrowd.be/&#34;&gt;Incrowd&lt;/a&gt;, the company behind sites such as &lt;a href=&#34;http://redbox.be/&#34;&gt;redbox&lt;/a&gt; and &lt;a href=&#34;http://www.facebox.com/&#34;&gt;facebox&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I will be working there in a team of all young, enthusiastic people.  Among those, some people are already familiar to me:  my old friend &lt;a href=&#34;http://www.lievendekeyser.net/&#34;&gt;Lieven&lt;/a&gt; (we&#39;ve played in a band together but kept in touch afterwards) and my ex-classmate &lt;a href=&#34;http://www.jurriaanpersyn.com/&#34;&gt;Jurriaan&lt;/a&gt;.  Both of them love their jobs btw :-).&lt;/p&gt;
 
 &lt;p&gt;My official title is &#34;System &amp;amp; Network architect&#34;.&lt;br /&gt;
 

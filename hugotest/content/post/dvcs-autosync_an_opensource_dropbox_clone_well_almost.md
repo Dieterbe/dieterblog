@@ -3,6 +3,8 @@ title = "Dvcs-autosync: An open source dropbox clone... well.. almost"
 date = "2011-03-26T21:48:56-04:00"
 tags = ["foss", "python"]
 +++
+I found the Dvcs-autosync project on the <a href="http://lists.madduck.net/listinfo/vcs-home">vcs-home</a> mailing list,
+
 which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.
 
 <br/>In short:

@@ -3,6 +3,8 @@ title = "Moving to New York City"
 date = "2012-08-19T16:50:11-04:00"
 tags = ["vimeo", "life", "travel"]
 +++
+<p>
+
 I have a one-way ticket to NYC on Sept. 21st.  <a href="http://vimeo.com/about">Vimeo HQ</a> is in Manhattan, and practically the whole team works in the building so it makes sense for me to relocate and join them locally.
 
 I'm looking forward to working with the colleagues face to face, but mainly I'm looking forward to the experience of living in such a different place, and exploring the US.

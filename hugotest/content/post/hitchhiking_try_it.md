@@ -3,6 +3,8 @@ title = "Hitchhiking.. try it."
 date = "2011-07-06T16:04:45-04:00"
 tags = ["life"]
 +++
+For the last few months, I've started to actively use hitchhiking as a means to
+
 travel between home and work.
 
 What started as a "I'm not sure about this, it seems a bit awkward, but I do

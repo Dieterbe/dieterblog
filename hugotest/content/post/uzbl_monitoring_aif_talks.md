@@ -3,6 +3,8 @@ title = "Uzbl, monitoring, AIF talks"
 date = "2010-03-07T12:06:18-04:00"
 tags = ["life", "uzbl", "arch", "monitoring", "conf"]
 +++
+<p>I recently did two talks, for which the videos are now online.</p>
+
 <ul>
 
 <li><a href="http://www.uzbl.org/news.php?id=25">Uzbl lightningtalk @ fosdem 2010</a></li>

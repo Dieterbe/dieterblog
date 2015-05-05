@@ -3,6 +3,8 @@ title = "Rethinking the backup paradigm: a higher-level approach"
 date = "2008-07-21T20:21:51-04:00"
 tags = ["linux"]
 +++
+<p>In this post I explain my vision on the concepts of backups and how several common practices are in my opinion suboptimal and become unnecessary or at least can be done more easily by managing data on a higher level by employing other patterns such as versioning important directories and distributed data management.<!--more-->  </p>
+
 <h3>The "classic" approaches</h3>
 
 <p>There are many backup scripts/programs out there, each with their own - sometimes subtly and sometimes radically - different approach.<br />

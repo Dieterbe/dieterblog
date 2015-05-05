@@ -3,6 +3,8 @@ title = "The perfect GTK music player: can Exaile replace Amarok?"
 date = "2007-07-08T12:50:50-04:00"
 tags = ["linux", "foss", "music"]
 +++
+<p>I've always liked Amarok: it does everything I always wanted, <em> and more</em>.  It looks perfect in every way ...<br />
+
 But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.</p>
 
 <p>So, I've been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.<!--more--></p>

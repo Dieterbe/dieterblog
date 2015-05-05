@@ -678,7 +678,9 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
 	</header>
 	
 	<div class="entry-content">
-		<p>which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.</p>
+		<p>I found the Dvcs-autosync project on the <a href="http://lists.madduck.net/listinfo/vcs-home">vcs-home</a> mailing list,</p>
+
+<p>which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.</p>
 
 <p><br/>In short:</p>
 
@@ -778,13 +780,17 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
 	</header>
 	
 	<div class="entry-content">
-		<p>There are tons of articles describing <em>how</em> you can rewrite history with git, but they do not answer &ldquo;<em>why</em> should I do it?&ldquo;.</p>
+		<p>
 
-<p>A similar question is &ldquo;what are the tradeoffs / how do I apply this in my distributed workflow?&rdquo;.</p>
+There are tons of articles describing <em>how</em> you can rewrite history with git, but they do not answer "<em>why</em> should I do it?".
 
-<p><br/>Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?</p>
+A similar question is "what are the tradeoffs / how do I apply this in my distributed workflow?".
 
-<p><br/>I&rsquo;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&rsquo;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).</p>
+<br/>Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?
+
+<br/>I'll try to answer these to the best of my abilities, largely based on how I see things.  I won't get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
+
+
 
 <h3>Why rewriting git history?</h3>
 
@@ -924,7 +930,9 @@ See also
 	</header>
 	
 	<div class="entry-content">
-		<p>== A library providing UI functions for shell scripts ==</p></p>
+		<blockquote><p>
+
+== A library providing UI functions for shell scripts ==</p>
 
 <p>When you write bash/shell scripts, do you write your own error/debug/logging/abort functions?<br />
 
@@ -950,7 +958,7 @@ just run the command libui_sh_init</p>
 
 <p>example usage:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #008000">source</span> /usr/lib/libui.sh
 
@@ -962,13 +970,13 @@ log <span style="color: #BA2121">&#39;we just got hassle-free logging&#39;</span
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-<p></p>
+<p>
 
-<p>The library is not strictly a UI library, it also contains a few useful functions like<br /></p>
+The library is not strictly a UI library, it also contains a few useful functions like<br />
 
-<p>check_is_in (check if an element can be found in a set - usually an array) and<br /></p>
+check_is_in (check if an element can be found in a set - usually an array) and<br />
 
-<p>seteditor (interactive $EDITOR selection)</p></p>
+seteditor (interactive $EDITOR selection)</p>
 
 <p>Dependencies:<br />
 
@@ -1022,13 +1030,15 @@ log <span style="color: #BA2121">&#39;we just got hassle-free logging&#39;</span
 	</header>
 	
 	<div class="entry-content">
-		<p>I&rsquo;m currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn&rsquo;t need much disk space,<br /></p>
+		<p>Background info:<br />
 
-<p>but in the meantime it might be a good idea to look for online backup solutions (oops did I say &ldquo;online&rdquo;? I meant &ldquo;cloud&rdquo;), like on the (V)PS itself, or maybe as a separate solution.<br /></p>
+I'm currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn't need much disk space,<br />
 
-<p>But I&rsquo;ve got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)<br /></p>
+but in the meantime it might be a good idea to look for online backup solutions (oops did I say "online"? I meant "cloud"), like on the (V)PS itself, or maybe as a separate solution.<br />
 
-<p>At this point the biggest contenders are <a href="http://linode.com/">Linode</a> (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), <a href="http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/">Rackspace backup</a> gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there&rsquo;s <a href="http://www.hetzner.de/">Hetzner</a>, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)</p></p>
+But I've got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)<br />
+
+At this point the biggest contenders are <a href="http://linode.com/">Linode</a> (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), <a href="http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/">Rackspace backup</a> gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there's <a href="http://www.hetzner.de/">Hetzner</a>, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)</p>
 
 <p>Another issue, given the limited capacity of Belgian internet connections, I needed to figure out how much bandwith rsync really needs, so I can calculate if the duration of a backup run including syncing the full vdi file is still reasonable.</p>
 
@@ -1128,9 +1138,11 @@ I'll figure out something else.  Like backing up from inside windows (maybe usin
 	</header>
 	
 	<div class="entry-content">
-		<p>However, there are some things I didn&rsquo;t like about it so I made a <a href="http://github.com/Dieterbe/rss2email/">github repo</a> where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.<br /></p>
+		<p><a href="http://www.allthingsrss.com/rss2email/">Rss2email</a> is a great tool.  I like getting all my news messages in my mailbox and using smtp to make the "news delivery" process more robust makes sense.<br />
 
-<p>Also, this was a nice opportunity for me to improve my python skills :)</p></p>
+However, there are some things I didn't like about it so I made a <a href="http://github.com/Dieterbe/rss2email/">github repo</a> where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.<br />
+
+Also, this was a nice opportunity for me to improve my python skills :)</p>
 
 <p>Here is how it compares:<br />
 
@@ -1284,7 +1296,9 @@ For now, you can treat this as an alternative version that stands on it's own.  
 	</header>
 	
 	<div class="entry-content">
-		<p>For the sake of getting a point across, I'll simplify some things.</p>
+		<p>Being active as both a developer and ops person in the professional life, and both an open source developer and packager in my spare time, I noticed some common ground between both worlds, and I think the open source community can learn from the Devops movement which is solving problems in the professional tech world.</p>
+
+<p>For the sake of getting a point across, I'll simplify some things.</p>
 
 <h3>First, a crash course on Devops...</h3>
 
@@ -1494,11 +1508,13 @@ Some ideas I have:</p>
 	</header>
 	
 	<div class="entry-content">
-		<p>It is the birthplace of many applications, most of them not Arch Linux specific.<br /></p>
+		<p>The <a href="https://bbs.archlinux.org/viewforum.php?id=27">Community contributions</a> subforum of the Arch Linux forums is awesome.<br />
 
-<p>File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.<br /></p>
+It is the birthplace of many applications, most of them not Arch Linux specific.<br />
 
-<p>Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.</p></p>
+File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.<br />
+
+Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.</p>
 
 <p>If you like to discover new apps and tools, check it out.</p>
 
@@ -1544,9 +1560,11 @@ Some ideas I have:</p>
 	</header>
 	
 	<div class="entry-content">
-		<p>It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/&hellip;, but they run as root.<br /></p>
+		<p>I use <a href="http://wiki.archlinux.org/index.php/Pm-utils">pm-utils</a> for hibernation support.<br />
 
-<p>If you want to run stuff as a regular user you could do something like</p></p>
+It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.<br />
+
+If you want to run stuff as a regular user you could do something like</p>
 
 <p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
@@ -1616,7 +1634,9 @@ sudo pm-hibernate <span style="color: #666666">&amp;&amp;</span> <span style="co
 	</header>
 	
 	<div class="entry-content">
-		<p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2010.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a></p></p>
+		<p>I'll be at fosdem - 10th edition - again this year.<br />
+
+<a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2010.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a></p>
 
 <p>I'll be presenting a <a href="http://fosdem.org/2010/schedule/events/uzbl">lightning talk</a> about <a href="http://www.uzbl.org/">uzbl</a>.<br />
 
@@ -1704,7 +1724,9 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	</header>
 	
 	<div class="entry-content">
-		<p>The two biggest culprits are:</p>
+		<p>Xfce/Gnu/Linux works amazingly well on my moms workstation, with one exception: opening files automatically with the correct program.</p>
+
+<p>The two biggest culprits are:</p>
 
 <ul>
 
@@ -1766,11 +1788,13 @@ And that's exactly what I did. For now I just configure everything to use xdg-op
 	</header>
 	
 	<div class="entry-content">
-		<p>It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.<br /></p>
+		<p>Inspired by <a href="http://bbs.archlinux.org/viewtopic.php?id=71938">Snippy</a> and <a href="http://lifehacker.com/351285/automate-repetitive-typing-with-snippits">snippits</a>, I wrote a simple tool called <a href="http://github.com/Dieterbe/snip">snip</a>.<br />
 
-<p><br /></p>
+It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.<br />
 
-<p>It works like this: you bind a key (in your WM or with <a href="http://freshmeat.net/projects/xbindkeys/">xbindkeys</a>) to launch <code>snip</code> with the <code>load</code> or <code>save</code> argument.</p></p>
+<br />
+
+It works like this: you bind a key (in your WM or with <a href="http://freshmeat.net/projects/xbindkeys/">xbindkeys</a>) to launch `snip` with the `load` or `save` argument.</p>
 
 <ul>
 
@@ -1826,9 +1850,11 @@ I'm sure a lot of people will come up with more cool things :)</p>
 	</header>
 	
 	<div class="entry-content">
-		<p>I hope people will like <a href="http://github.com/Dieterbe/aif/">AIF</a> because it was a lot of work and we didn&rsquo;t receive much feedback.  I personally like it to apply my <a href="/rethinking_the_backup_paradigm_a_higher-level_approach">fancy backup restoration</a> approach.<br /></p>
+		<p>So, the Arch Linux <a href="http://bbs.archlinux.org/viewtopic.php?id=77680">2009.08 release</a> is now behind us, nicely on schedule.<br />
 
-<p>But I&rsquo;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With <a href="/uzbl_a_browser_that_adheres_to_the_unix_philosophy">uzbl</a> I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)</p></p>
+I hope people will like <a href="http://github.com/Dieterbe/aif/">AIF</a> because it was a lot of work and we didn't receive much feedback.  I personally like it to apply my <a href="/rethinking_the_backup_paradigm_a_higher-level_approach">fancy backup restoration</a> approach.<br />
+
+But I'm sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With <a href="/uzbl_a_browser_that_adheres_to_the_unix_philosophy">uzbl</a> I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)</p>
 
 <p>Later this week I'm off to the <a href="http://www.countingcows.be/home.php">Counting Cows festival</a> in France, and the week after that (august 22-23) I'm going to <a href="http://www.froscon.org/">FrOSCon</a> in Germany where I will meet some of my Arch Linux colleagues in real life, which I'm really looking forward to.</p>
 
@@ -1878,7 +1904,9 @@ I'm sure a lot of people will come up with more cool things :)</p>
 	</header>
 	
 	<div class="entry-content">
-		<ul>
+		<p>While setting up Zenoss and reading <a href="http://dev.mysql.com/doc/refman/5.0/en/server-status-variables.html">Mysql documentation about status variables</a> I learned:</p>
+
+<ul>
 
 <li>All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  ("Command statistics:selects" graph in Zenoss)</li>
 
@@ -1932,7 +1960,9 @@ I'm sure a lot of people will come up with more cool things :)</p>
 	</header>
 	
 	<div class="entry-content">
-		<ul>
+		<p>I've been playing with <a href="http://www.zenoss.com/">Zenoss</a> (2.4) for the first time.  Here are my thoughts:</p>
+
+<ul>
 
 <li>One big package that installs itself in /usr/local and copies an initscript to /etc/init.d .  Contains a mysql instance, rrdtool, python and several more binaries. (all in all about 500MB installed).  Not the cleanest way to do things but definitely easy to install/deploy.  This is also where your data will end up</li>
 
@@ -2022,7 +2052,9 @@ Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
 	</header>
 	
 	<div class="entry-content">
-		<p>Well, I could not find it.<br />
+		<p>I need a browser that is fast, not bloated, stores my data (bookmarks, history, account settings, preferences, ...) in simple text files that I can keep under version control, something that does not reinvent the wheel, something that I can control.</p>
+
+<p>Well, I could not find it.<br />
 
 So I started the <a href="http://bbs.archlinux.org/viewtopic.php?id=70700&amp;p=1">uzbl browser</a> project.<br />
 
@@ -2096,7 +2128,9 @@ It is stil very early in the process, but some things already work.</p>
 	</header>
 	
 	<div class="entry-content">
-		<p>generate file:</p>
+		<p>I wanted to know how responsive <a href="http://tools.suckless.org/dmenu">dmenu</a> and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).</p>
+
+<p>generate file:</p>
 
 <p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
@@ -2284,7 +2318,9 @@ Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other a
 	</header>
 	
 	<div class="entry-content">
-		<p>I'm particulary interested in:</p>
+		<p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2009.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a></p>
+
+<p>I'm particulary interested in:</p>
 
 <ul>
 
@@ -2346,13 +2382,15 @@ Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other a
 	</header>
 	
 	<div class="entry-content">
-		<p>I&rsquo;ve choosen to use CakePHP.<br /></p>
+		<p>At my <a href="/jobhunt_over">new job</a>, I'm writing a quite full-featured web application.<br />
 
-<p>Why? Well, it may be 2 years since I last used it, but I&rsquo;ve followed the project and it&rsquo;s planet, and it seems to have matured and gained even more monumentum.<br /></p>
+I've choosen to use CakePHP.<br />
 
-<p>I want to use something that is widely used so there is plenty of stuff available for it, it&rsquo;s RAD, it&rsquo;s flexible and powerful.<br /></p>
+Why? Well, it may be 2 years since I last used it, but I've followed the project and it's planet, and it seems to have matured and gained even more monumentum.<br />
 
-<p>I noticed things such as CLI support and documentation have improved tremendously too.</p></p>
+I want to use something that is widely used so there is plenty of stuff available for it, it's RAD, it's flexible and powerful.<br />
+
+I noticed things such as CLI support and documentation have improved tremendously too.</p>
 
 <p>However, I find that still, the recommended (or at least "most commonly used") practices are not as efficient as they could be, and that emphasis is placed on the wrong aspects.<br />
 
@@ -2511,7 +2549,9 @@ done<br />
 	</header>
 	
 	<div class="entry-content">
-		<p>Next week I&rsquo;ll start at <a href="http://kangaroot.net/">Kangaroot</a>.  Woohoo.</p></p>
+		<p>What better way to launch the new year then starting to work as a System Engineer/Developer for a consulting firm where everyone breathes Linux and Open Source?<br />
+
+Next week I'll start at <a href="http://kangaroot.net/">Kangaroot</a>.  Woohoo.</p>
 
 	</div>
 
@@ -2557,7 +2597,9 @@ done<br />
 	</header>
 	
 	<div class="entry-content">
-		<p>* Changes since alpha 0.5:</p>
+		<p>My holidays present for Arch devs and users: AIF alpha-0.6 !</p>
+
+<p>* Changes since alpha 0.5:</p>
 
 <ul>
 
@@ -2717,7 +2759,9 @@ Dieter</p>
 	</header>
 	
 	<div class="entry-content">
-		<p>(See <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level&hellip;</a>)</p></p>
+		<p>Recently I started thinking about writing my own automatic installer that would set up my system exactly the way I want.<br />
+
+(See <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a>)</p>
 
 <p>I looked at the official Arch install scripts to see if I could reuse parts of their code, but unfortunately the code was just one big chunk of bash code with the main program and "flow control" (you must first do this step, then that), UI-code (dialogs etc) and backend logic (create filesystems, ...) all mangled up and mixed very closely together.<br />
 
@@ -2813,7 +2857,9 @@ I'm very curious for input on the code/design level as well.</p>
 	</header>
 	
 	<div class="entry-content">
-		<p>You can do this in two ways:</p>
+		<p>I recently had to rename a repo on my Github account.  Github has made this <a href="http://github.com/blog/128-let-there-be-renaming">very easy</a> but it's just one side of the issue.  Obviously you must also update any references to this remote in other clones, otherwise pushes, fetches etc won't work anymore.</p>
+
+<p>You can do this in two ways:</p>
 
 <ul>
 
@@ -2867,7 +2913,9 @@ I'm very curious for input on the code/design level as well.</p>
 	</header>
 	
 	<div class="entry-content">
-		<p>The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://github.com/Dieterbe/dautostart">http://github.com/Dieterbe/dautostart</a> .</p></p>
+		<p>I couldn't find a standalone application/script that implements <a href="http://standards.freedesktop.org/autostart-spec/autostart-spec-latest.html">freedesktop compliant (XDG based) autostarting</a> of applications, so I decided to write my own.<br />
+
+The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://github.com/Dieterbe/dautostart">http://github.com/Dieterbe/dautostart</a> .</p>
 
 <p>Right now, all the basics seem to work (except "Autostart Of Applications After Mount" of the spec).<br />
 
@@ -2917,11 +2965,13 @@ It's probably not bugfree.  I hacked it together in a few hours (but it works fo
 	</header>
 	
 	<div class="entry-content">
-		<p>They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).<br /></p>
+		<p>I'm managing my ~ in svn but using gnome &amp; gconf makes this rather hard.<br />
 
-<p>The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime &lsquo;something&rsquo; happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br /></p>
+They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).<br />
 
-<p>I&rsquo;m fine with the fact they do that.  I&rsquo;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg&rsquo;s</a> $XDG_CACHE_HOME directory)</p></p>
+The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime 'something' happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br />
+
+I'm fine with the fact they do that.  I'm sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg's</a> $XDG_CACHE_HOME directory)</p>
 
 <p>While trying to apply version control to my $HOME I need to spend way too much time scripting various <i>svn reverts</i> of many of those changes (in .gnome2, .gconf/apps/*, and .gconf/desktop), and also updating many <i>svn:ignore</i> properties (although gnome/gconf are definitely not the only culprits for that.)</p>
 
@@ -3013,11 +3063,13 @@ Arch on the other hand is made for tweaking your system.  It exposes all guts of
 	</header>
 	
 	<div class="entry-content">
-		<p>Since the last release many, many things have been changed/fixed/added.<br /></p>
+		<p>DDM v0.4 has been released.<br />
 
-<p><br /></p>
+Since the last release many, many things have been changed/fixed/added.<br />
 
-<p>Here is the Changelog:</p></p>
+<br />
+
+Here is the Changelog:</p>
 
 <p><pre></p>
 
@@ -3137,9 +3189,11 @@ Arch on the other hand is made for tweaking your system.  It exposes all guts of
 	</header>
 	
 	<div class="entry-content">
-		<p>Git is a damn cool VCS for distributed development, and I think Github integrates with it really nicely, adding some useful aspects for following and collaborating on projects.<br /></p>
+		<p>I've put my (somewhat interesting) projects on <a href="http://github.com/">GitHub</a>.<br />
 
-<p>The projects I have migrated to my <a href="https://github.com/Dieterbe">GitHub profile</a> are:</p></p>
+Git is a damn cool VCS for distributed development, and I think Github integrates with it really nicely, adding some useful aspects for following and collaborating on projects.<br />
+
+The projects I have migrated to my <a href="https://github.com/Dieterbe">GitHub profile</a> are:</p>
 
 <ul>
 
@@ -3193,7 +3247,9 @@ Arch on the other hand is made for tweaking your system.  It exposes all guts of
 	</header>
 	
 	<div class="entry-content">
-		<p>Having made my home office space into a real <i>Zen</i> I want to start implementing GTD in my digital life but it seems very hard to find a good GTD tool that fully implements GTD. (even though there are a lot of tools out there)</p></p>
+		<p>I've been reading <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> lately and it's absolutely a great and inspiring book.<br />
+
+Having made my home office space into a real <i>Zen</i> I want to start implementing GTD in my digital life but it seems very hard to find a good GTD tool that fully implements GTD. (even though there are a lot of tools out there)</p>
 
 <p>The most interesting ones (each for different reasons) I've looked at so far are <a href="http://www.thinkingrock.com.au/index.php">Thinkingrock</a>, <a href="http://www.rousette.org.uk/projects/">tracks</a> and <a href="https://gna.org/projects/yagtd/">yagtd</a> (the latter requiring most work before it does everything I need, but it's also the most easy to dive into the code base). I'm keeping my eyes open because there are certainly more things to discover.</p>
 
@@ -3319,7 +3375,9 @@ From a writers perspective: I find it also amazing how stuff that is so hard to 
 	</header>
 	
 	<div class="entry-content">
-		<p>It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.<br />
+		<p>At work, we've setup the <a href="http://netlog.com/go/developer">Netlog Developer Pages</a></p>
+
+<p>It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.<br />
 
 We've also launched a <a href="http://en.netlog.com/go/developer/group">group</a> where you can communicate with fellow developers and Netlog employees.<br />
 
@@ -3375,7 +3433,9 @@ The page also features a <a href="http://en.netlog.com/go/developer/blog">blog</
 	</header>
 	
 	<div class="entry-content">
-		<h3>Introduction</h3>
+		<p><b>UPDATE: this information is outdated.  See <a href="http://github.com/Dieterbe/ddm/tree/master" title="http://github.com/Dieterbe/ddm/tree/master">http://github.com/Dieterbe/ddm/tree/master</a> for latest information.</b></p>
+
+<h3>Introduction</h3>
 
 <p>If you have multiple sets of data (e.g.: music, images, documents, movies, ...) and you use these on more then one system ( e.g. a laptop and a file server) then you probably also have some 'rules' on how you use these on your systems.  For example after capturing new images you maybe put them on your laptop first but you like to sync them to your file server frequently.  On the other hand you also want all your high-res images (stored on the server) available for editing on the laptop, and to make it more complicated you might have the same images in a smaller format on your server (for gallery programs etc.) and want these (or a select few albums of them) available on the road. </p>
 
@@ -3711,9 +3771,11 @@ You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/fil
 	</header>
 	
 	<div class="entry-content">
-		<p><br/></p>
+		<p>If you serve lots of (small) files with Lighttpd you might notice you're not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn't have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
 
-<p>(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p></p>
+<br/>
+
+(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p>
 
 <p>This is explained on the <a href="http://trac.lighttpd.net/trac/wiki/HowtoSpeedUpStatWithFastcgi"> HowtoSpeedUpStatWithFastcgi</a> page on the <a href="http://trac.lighttpd.net/trac/"> Lighty wiki</a>.</p>
 
@@ -4079,7 +4141,9 @@ You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/fil
 	</header>
 	
 	<div class="entry-content">
-		<p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2008.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a><br />
+		<p>I wish I could put this on my webpage :</p>
+
+<p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2008.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a><br />
 
 <br />
 
@@ -4137,7 +4201,9 @@ No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms wou
 	</header>
 	
 	<div class="entry-content">
-		<p>This is great if you want to run scripts on the terminal or even without a terminal (scripts automatically started by your desktop environment) and need user input.</p></p>
+		<p>Phew! where to start?  Probably at <a href ="http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively">this blogpost</a>.  It's about making it very easy to work with external encrypted volumes. I'm not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity.  It's an LGPL-licensed program written in C by some guys from Gnome and Sun. You can call it from any script and present a user with a gtk widget such as a password-dialog, filechooser, calendar, ... It has <a href="http://www.linuxmanpages.com/man1/zenity.1.php">many possibilities</a>.<br />
+
+This is great if you want to run scripts on the terminal or even without a terminal (scripts automatically started by your desktop environment) and need user input.</p>
 
 <p>This immediately made me think of using this together with ssh-add, because i was getting a bit tired to open a console and add my key by typing the ssh-add command for every X session. (For the record: ssh-add without any arguments is enough for most users: it looks for keys with default names, but i have multiple keys with some speial names so...)<br />
 
@@ -4213,7 +4279,9 @@ However, since i use multiple keys, i used to use the globbing operator (*) but 
 	</header>
 	
 	<div class="entry-content">
-		<p>First of all take <a href="http://www.xfce.org">Xfce</a>: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the <a href="http://goodies.xfce.org/">Xfce Goodies project</a>, more specifically the <a href="http://goodies.xfce.org/projects/panel-plugins/start">Panel Plugins</a> page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.</p></p>
+		<p>FOSS is written by users, for users, and what I've been doing/experiencing this afternoon is a perfect example of that.<br />
+
+First of all take <a href="http://www.xfce.org">Xfce</a>: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the <a href="http://goodies.xfce.org/">Xfce Goodies project</a>, more specifically the <a href="http://goodies.xfce.org/projects/panel-plugins/start">Panel Plugins</a> page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.</p>
 
 <p>Now, for <a href="http://corporate.netlog.com">work</a> I need to keep an eye on <a href="http://www.nagios.org/">Nagios</a>, (Nagios is a great FOSS host/service monitoring web application) but I don't like periodically checking the same webpage over and over again:<br />
 
@@ -4353,7 +4421,9 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 	</header>
 	
 	<div class="entry-content">
-		<p>It's a feature in ssh protocol version 2 (thus it's around for already a while, e.g. we can all use it without updating something) which essentially comes down to this: you generate an asymmetric key pair and distribute the public key to all remote hosts. When logging in to that host, the host will encrypt a random integer, which only you can decrypt (using the private key) and hence prove your identity.  Too secure your private key you'll store it encrypted with a password.  Ssh-agent (which is bundled with openssh) is the tool that interacts with ssh to perform this task: when logging in to a host, ssh-agent will open the private key for you automatically <em>if it can decrypt it with the password it receives from you</em>  But the problem is you'll have to load (enter your password and decrypt the key) each time again.</p>
+		<p>I've been using <a href="http://www.openssh.com/">OpenSSH</a> already for a while and although I've seen mentions of "public key authentication" and "RSA encryption" several times in it's config files, I never decided to figure out what it did exactly, and stuck to password authentication.  But now the guys at work explained how it works and after reading more about it, I'm totally hooked on it!</p>
+
+<p>It's a feature in ssh protocol version 2 (thus it's around for already a while, e.g. we can all use it without updating something) which essentially comes down to this: you generate an asymmetric key pair and distribute the public key to all remote hosts. When logging in to that host, the host will encrypt a random integer, which only you can decrypt (using the private key) and hence prove your identity.  Too secure your private key you'll store it encrypted with a password.  Ssh-agent (which is bundled with openssh) is the tool that interacts with ssh to perform this task: when logging in to a host, ssh-agent will open the private key for you automatically <em>if it can decrypt it with the password it receives from you</em>  But the problem is you'll have to load (enter your password and decrypt the key) each time again.</p>
 
 <p>This is where <a href="http://www.gentoo.org/proj/en/keychain/index.xml">keychain</a> comes in, or you can use <a href="http://www.phil.uu.nl/~xges/ssh/">SSH Agent</a> (don't confuse this with the ssh agent that comes with openssh) if you're a Mac user and like gui's.  These tools basically ask you your passwords for all private keys you wish to use in a session (with session I mean "the whole time of using your computer"), decrypt the encrypted key on your hard disk and cache the decrypted key in ram, so it can be used in all terminals you open.</p>
 
@@ -4409,7 +4479,9 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 	</header>
 	
 	<div class="entry-content">
-		<p>But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.</p></p>
+		<p>I've always liked Amarok: it does everything I always wanted, <em> and more</em>.  It looks perfect in every way ...<br />
+
+But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.</p>
 
 <p>So, I've been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.</p>
 
@@ -4573,7 +4645,9 @@ But I see much activity on trac, especially in <a href="http://www.exaile.org/tr
 	</header>
 	
 	<div class="entry-content">
-		<p>It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc.</p>
+		<p>dAuth is a secure authentication system for CakePHP.</p>
+
+<p>It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc.</p>
 
 <p><a href="http://bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3" onClick="javascript:urchinTracker('bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3');">Read all about it</a></p>
 
@@ -4629,7 +4703,9 @@ But I see much activity on trac, especially in <a href="http://www.exaile.org/tr
 	</header>
 	
 	<div class="entry-content">
-		<p>I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).</p></p>
+		<p>PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.<br />
+
+I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).</p>
 
 <p>You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated:  It gets filled with way too many tags.  Among those tags several of them mean the same (fun, funny, humor, ...) or include the other (humor, jokes, ...)  You can group them in bundles but even then you need to add all the tags to a post if you want it to appear in the results for that tag.  Not very convenient. Also, if you have your del.icio.us bookmarks available in Firefox, you'd have a menu with several hundreds of entries (one for each tag), each menu containing usually just a few (or worse: just one) entry.</p>
 
@@ -4689,7 +4765,9 @@ But I see much activity on trac, especially in <a href="http://www.exaile.org/tr
 	</header>
 	
 	<div class="entry-content">
-		<p>PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.</p>
+		<h3>Introduction</h3>
+
+<p>PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.</p>
 
 <p>It's written in PHP and uses <a href="http://www.ejeliot.com/">Ed Eliot's</a> <a href="http://www.ejeliot.com/pages/php-delicious">PhpDelicous</a> class to contact the del.icio.us api. (included in download)<br />
 
@@ -4879,7 +4957,9 @@ Make sure pdclient.php has the executable flag (x).  If the directory is in your
 	</header>
 	
 	<div class="entry-content">
-		<p>Hier moesten 3 elementen in voorkomen:</p></p>
+		<p>Voor school moest ik een ethisch verslag schrijven.<br />
+
+Hier moesten 3 elementen in voorkomen:</p>
 
 <ul>
 
@@ -4949,7 +5029,9 @@ Ongelooflijk hoe ver het egoisme van een bedrijf kan gaan.  Laten we dan ook ler
 	</header>
 	
 	<div class="entry-content">
-		<p>I will be working there in a team of all young, enthusiastic people.  Among those, some people are already familiar to me:  my old friend <a href="http://www.lievendekeyser.net/">Lieven</a> (we've played in a band together but kept in touch afterwards) and my ex-classmate <a href="http://www.jurriaanpersyn.com/">Jurriaan</a>.  Both of them love their jobs btw :-).</p>
+		<p>I just signed my contract at <a href="http://incrowd.be/">Incrowd</a>, the company behind sites such as <a href="http://redbox.be/">redbox</a> and <a href="http://www.facebox.com/">facebox</a>.</p>
+
+<p>I will be working there in a team of all young, enthusiastic people.  Among those, some people are already familiar to me:  my old friend <a href="http://www.lievendekeyser.net/">Lieven</a> (we've played in a band together but kept in touch afterwards) and my ex-classmate <a href="http://www.jurriaanpersyn.com/">Jurriaan</a>.  Both of them love their jobs btw :-).</p>
 
 <p>My official title is "System &amp; Network architect".<br />
 
@@ -5011,9 +5093,11 @@ Of course it will be in a <a href="http://en.wikipedia.org/wiki/Free_software">s
 	</header>
 	
 	<div class="entry-content">
-		<p>It&rsquo;s that time of the year when many European (and some inter-continental) colleagues join us at<br /></p>
+		<p>Every year, during a special weekend in February, the <a href="http://www.ulb.ac.be/">University Libre of Brussels</a> suddenly becomes a little more geeky.<br />
 
-<p><a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers&rsquo; European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p></p>
+It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
+
+<a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>
 
 <p><a href="http://www.fosdem.org/2007/">This years edition</a> took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)</p>
 
@@ -5157,11 +5241,13 @@ It's cool to meet people though.  And if you want to visit stands of different p
 	</header>
 	
 	<div class="entry-content">
-		<p>This post is about <a href="http://www.gnu.org/software/bash/">bash</a>, the shell providing so many users easy access to the underlying power of their system.<br /></p>
+		<p>Hello everyone.<br />
 
-<p>(not <a href="http://www.bash.org/">bash</a> the quote database, although i really like that website too ;-) )<br /></p>
+This post is about <a href="http://www.gnu.org/software/bash/">bash</a>, the shell providing so many users easy access to the underlying power of their system.<br />
 
-<p>Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)</p></p>
+(not <a href="http://www.bash.org/">bash</a> the quote database, although i really like that website too ;-) )<br />
+
+Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)</p>
 
 <p>I assume you have a basic knowledge of bash, the history mechanism, and  ~/.bash* files.<br />
 
@@ -5285,11 +5371,13 @@ If that still isn't enough, there is also <a href="http://www.gnu.org/software/b
 	</header>
 	
 	<div class="entry-content">
-		<p>I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous <a href="http://www.cakephp.org">CakePHP</a> framework along with an authentication system i wrote, <a href="http://bakery.cakephp.org/articles/view/147">dAuth</a>.<br /></p>
+		<p>Finally, my own website...<br />
 
-<p>However, due to my lack of time I decided to use the excellent <a href="http://www.drupal.org">drupal</a> platform, of which I&rsquo;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)<br /></p>
+I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous <a href="http://www.cakephp.org">CakePHP</a> framework along with an authentication system i wrote, <a href="http://bakery.cakephp.org/articles/view/147">dAuth</a>.<br />
 
-<p><a href="http://buytaert.net/">Dries Buytaert</a>&rsquo;s talk on <a href="http://www.fosdem.org/2007/">fosdem</a> this year really helped on making that decision ;-)</p></p>
+However, due to my lack of time I decided to use the excellent <a href="http://www.drupal.org">drupal</a> platform, of which I'm quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)<br />
+
+<a href="http://buytaert.net/">Dries Buytaert</a>'s talk on <a href="http://www.fosdem.org/2007/">fosdem</a> this year really helped on making that decision ;-)</p>
 
 <p>So, what will this site be about?</p>
 

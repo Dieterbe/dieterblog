@@ -3,6 +3,8 @@ title = "Vimeo holiday special & other great videos"
 date = "2013-12-22T12:46:32-04:00"
 tags = ["vimeo"]
 +++
+<p>
+
 We (the <a href="http://vimeo.com/staff">Vimeo Staff</a>) just <a href="https://vimeo.com/blog/post:602">released</a> the <a href="http://vimeo.com/82236972">2013 Vimeo Holiday Special</a>, embedded below.
 
 <br/>(and I have a line in it! "Who's behind this?")

@@ -3,6 +3,8 @@ title = "You can't make bits harder to copy"
 date = "2007-06-02T13:06:40-04:00"
 tags = ["information age"]
 +++
+<p>I just watched <a href="http://www.youtube.com/watch?v=xgXwmXpaH2Q">Cory Doctorow's talk</a> which is part of the Authors@Google series on youtube.</p>
+
 <p>He made some great points about where the (music) industry gets/does it wrong and about some fundamental flaws in our law systems (especially with regards to copyright).  All of which are of course results of the challenges imposed by the "information age".<!--more--> (which I also introduced in <a href="/open_source_softwarepatenten_vanuit_ethisch_perspectief">my paper about open source and software patents (dutch)</a>)</p>
 
 <p>I never really looked into the technical side of DRM but Cory made it very clear:<br />

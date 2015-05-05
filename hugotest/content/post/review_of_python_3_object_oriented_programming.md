@@ -3,6 +3,8 @@ title = "Review of \"Python 3 Object Oriented Programming\""
 date = "2010-08-23T19:01:09-04:00"
 tags = ["python"]
 +++
+<p><a href="http://archlinux.me/dusty/">Dusty Phillips</a>, Arch Linux shwag guy, Archcon co-organizer, (python) consultant and since recently <a href="/back_from_canada_archcon">buddy of mine</a> wrote his first <a href="https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;utm_medium=bookrev&amp;utm_content=blog&amp;utm_campaign=mdb_004281">book: Python 3 Object Oriented Programming</a>.</p>
+
 <p>I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.<br />
 
 <!--more-->

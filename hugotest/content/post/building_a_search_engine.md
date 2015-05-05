@@ -3,6 +3,8 @@ title = "Building a search engine"
 date = "2011-01-22T19:15:29-04:00"
 tags = ["life"]
 +++
+<p>I started working at <a href="http://www.ibcn.intec.ugent.be/">IBCN</a>, the research group of the university of Ghent.
+
 I was looking to get back to the challenging world of high-performance and large-scale (web) applications, but I also wanted something more conceptual and researchy, rather then the highly hands-on dev- and ops work I've been doing for a few years now.
 
 <br/>The <a href="https://projects.ibbt.be/bom-vl/">Bom-vl</a> project is pretty broad: it aims to make the Flemish cultural heritage media more useable by properly digitizing, archiving and making public the (currently mostly analog) archives from providers such as TV stations.</p>

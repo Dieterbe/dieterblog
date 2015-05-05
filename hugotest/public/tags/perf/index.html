@@ -128,7 +128,9 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.</p>
+		<h4>Graphite, and the storage Achilles heel</h4>
+
+<p>Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.</p>
 
 <p><br/>For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).</p>
 
@@ -328,13 +330,15 @@ It should also work with the regular graphite, though I've never tried.  (I have
 	</header>
 	
 	<div class="entry-content">
-		<p>I&rsquo;ve been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It&rsquo;s a <i>great</i> tool for timeseries metrics.</p>
+		<p>
 
-<p>Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:</p>
+I've been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It's a <i>great</i> tool for timeseries metrics.
 
-<p>it&rsquo;s somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in <a href="http://golang.org">Golang</a>.</p>
+Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:
 
-<p>The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p></p>
+it's somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in <a href="http://golang.org">Golang</a>.
+
+The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p>
 
 <p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
 
@@ -480,7 +484,9 @@ There's a ton of dashboards out there (<a href="http://vimeo.github.io/graph-exp
 	</header>
 	
 	<div class="entry-content">
-		<p><a href="https://github.com/Dieterbe/profile-process"></p>
+		<h3>Profiling a process run</h3>
+
+<p><a href="https://github.com/Dieterbe/profile-process"></p>
 
 <p><img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/></p>
 
@@ -670,17 +676,19 @@ related collaboration and prioritized alerts that are to the point.  They get a 
 	</header>
 	
 	<div class="entry-content">
-		<p>I submitted a pull request to statsd which adds <a href="https://github.com/etsy/statsd/pull/162">histogram support</a>.</p>
+		<p>
 
-<p><img style="float:left;margin:0 5px 0 0;" src="/files/Black_cherry_tree_histogram.svg.png" alt="Example histogram, from Wikipedia"/></p>
+I submitted a pull request to statsd which adds <a href="https://github.com/etsy/statsd/pull/162">histogram support</a>.
 
-<p><br/>(refresher: a histogram is [a visualization of] a frequency distribution of data,</p>
+<img style="float:left;margin:0 5px 0 0;" src="/files/Black_cherry_tree_histogram.svg.png" alt="Example histogram, from Wikipedia"/>
 
-<p>paraphrasing your data by keeping frequencies for entire classes (ranges of data).</p>
+<br/>(refresher: a histogram is [a visualization of] a frequency distribution of data,
 
-<p><a href="http://en.wikipedia.org/wiki/Histogram">histograms - Wikipedia</a>)</p>
+paraphrasing your data by keeping frequencies for entire classes (ranges of data).
 
-<p><br/>It&rsquo;s commonly documented how to plot single histograms, that is a 2D diagram consisting of rectangles whose</p>
+<a href="http://en.wikipedia.org/wiki/Histogram">histograms - Wikipedia</a>)
+
+<br/>It's commonly documented how to plot single histograms, that is a 2D diagram consisting of rectangles whose
 
 <ul>
 
@@ -690,19 +698,19 @@ related collaboration and prioritized alerts that are to the point.  They get a 
 
 </ul>
 
-<p>Class intervals go on x-axis, frequencies on y-axis.</p>
+Class intervals go on x-axis, frequencies on y-axis.
 
-<p><br/></p>
+<br/>
 
-<p><br/></p>
+<br/>
 
-<p>Note: histogram class intervals are supposed to have the same width.</p>
+Note: histogram class intervals are supposed to have the same width.
 
-<p><br/>My implementation allows arbitrary class intervals with potentially different widths,</p>
+<br/>My implementation allows arbitrary class intervals with potentially different widths,
 
-<p>as well as an upper boundary of infinite.</p>
+as well as an upper boundary of infinite.
 
-<p></p></p>
+</p>
 
 <h4>Plotting histograms.. over time</h4>
 
@@ -1436,13 +1444,15 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 	</header>
 	
 	<div class="entry-content">
-		<p>I&rsquo;m currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn&rsquo;t need much disk space,<br /></p>
+		<p>Background info:<br />
 
-<p>but in the meantime it might be a good idea to look for online backup solutions (oops did I say &ldquo;online&rdquo;? I meant &ldquo;cloud&rdquo;), like on the (V)PS itself, or maybe as a separate solution.<br /></p>
+I'm currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn't need much disk space,<br />
 
-<p>But I&rsquo;ve got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)<br /></p>
+but in the meantime it might be a good idea to look for online backup solutions (oops did I say "online"? I meant "cloud"), like on the (V)PS itself, or maybe as a separate solution.<br />
 
-<p>At this point the biggest contenders are <a href="http://linode.com/">Linode</a> (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), <a href="http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/">Rackspace backup</a> gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there&rsquo;s <a href="http://www.hetzner.de/">Hetzner</a>, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)</p></p>
+But I've got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)<br />
+
+At this point the biggest contenders are <a href="http://linode.com/">Linode</a> (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), <a href="http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/">Rackspace backup</a> gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there's <a href="http://www.hetzner.de/">Hetzner</a>, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)</p>
 
 <p>Another issue, given the limited capacity of Belgian internet connections, I needed to figure out how much bandwith rsync really needs, so I can calculate if the duration of a backup run including syncing the full vdi file is still reasonable.</p>
 
@@ -1542,7 +1552,9 @@ I'll figure out something else.  Like backing up from inside windows (maybe usin
 	</header>
 	
 	<div class="entry-content">
-		<p>I haven't touched the code for a few months, but better to put it online then to let it rot.<br />
+		<p>Implementation for Facebook <a href="http://www.facebook.com/careers/puzzles.php?puzzle_id=2">usr bin crash</a> puzzle. (<a href="/not_working_for_facebook">how/why</a>)</p>
+
+<p>I haven't touched the code for a few months, but better to put it online then to let it rot.<br />
 
 <a href="http://github.com/Dieterbe/facebookpuzzles/" title="http://github.com/Dieterbe/facebookpuzzles/">http://github.com/Dieterbe/facebookpuzzles/</a></p>
 
@@ -1600,7 +1612,9 @@ I'll figure out something else.  Like backing up from inside windows (maybe usin
 	</header>
 	
 	<div class="entry-content">
-		<ul>
+		<p>While setting up Zenoss and reading <a href="http://dev.mysql.com/doc/refman/5.0/en/server-status-variables.html">Mysql documentation about status variables</a> I learned:</p>
+
+<ul>
 
 <li>All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  ("Command statistics:selects" graph in Zenoss)</li>
 
@@ -1654,7 +1668,9 @@ I'll figure out something else.  Like backing up from inside windows (maybe usin
 	</header>
 	
 	<div class="entry-content">
-		<p>generate file:</p>
+		<p>I wanted to know how responsive <a href="http://tools.suckless.org/dmenu">dmenu</a> and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).</p>
+
+<p>generate file:</p>
 
 <p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
@@ -1842,9 +1858,11 @@ Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other a
 	</header>
 	
 	<div class="entry-content">
-		<p><br/></p>
+		<p>If you serve lots of (small) files with Lighttpd you might notice you're not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn't have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
 
-<p>(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p></p>
+<br/>
+
+(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p>
 
 <p>This is explained on the <a href="http://trac.lighttpd.net/trac/wiki/HowtoSpeedUpStatWithFastcgi"> HowtoSpeedUpStatWithFastcgi</a> page on the <a href="http://trac.lighttpd.net/trac/"> Lighty wiki</a>.</p>
 

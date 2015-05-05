@@ -3,6 +3,8 @@ title = "Video of me drumming"
 date = "2007-11-04T18:28:17-04:00"
 tags = ["real life", "drums"]
 +++
+<p>I recorded a little drumvideo while practicing.<br />
+
 It's just some improvisation... Find the mistakes! ;-)</p>
 
 <p>Recorded with 2 shure SM57's, an M-audio mobilepre USB and the iSight cam in my macbook pro.</p>

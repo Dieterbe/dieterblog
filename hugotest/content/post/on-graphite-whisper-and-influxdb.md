@@ -3,6 +3,8 @@ title = "On Graphite, Whisper and InfluxDB"
 date = "2014-05-18T13:22:32-04:00"
 tags = ["devops", "monitoring", "golang", "perf"]
 +++
+<h4>Graphite, and the storage Achilles heel</h4>
+
 
 
 Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.

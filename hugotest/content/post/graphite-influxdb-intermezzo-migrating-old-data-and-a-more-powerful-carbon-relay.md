@@ -3,6 +3,8 @@ title = "Graphite & Influxdb intermezzo: migrating old data and a more powerful 
 date = "2014-09-20T15:18:32-04:00"
 tags = ["devops", "monitoring", "golang"]
 +++
+<!--more-->
+
 
 
 <h4>Migrating data from whisper into InfluxDB</h4>

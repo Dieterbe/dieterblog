@@ -445,7 +445,9 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
       <pubDate>Sat, 26 Mar 2011 21:48:56 -0400</pubDate>
       
       <guid>http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</guid>
-      <description>&lt;p&gt;which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.&lt;/p&gt;
+      <description>&lt;p&gt;I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,&lt;/p&gt;
+
+&lt;p&gt;which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;In short:&lt;/p&gt;
 
@@ -511,17 +513,19 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
       <pubDate>Sun, 19 Dec 2010 19:54:07 -0400</pubDate>
       
       <guid>http://localhost:1313/post/migrating_blogs_from_drupal_to_pyblosxom/</guid>
-      <description>&lt;p&gt;Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://pyblosxom.bluesock.org/&#34;&gt;pyblosxom&lt;/a&gt; is a pretty cool blogging platform written in python.&lt;br /&gt;
 
-&lt;p&gt;The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn&amp;rsquo;t just rely on an external service like disqus, but stores comments as plaintext files as well.&lt;br /&gt;&lt;/p&gt;
+Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.&lt;br /&gt;
 
-&lt;p&gt;Some features seem a bit overengineered (like, multiple possible locations to store themes (known as &amp;ldquo;flavours&amp;rdquo;) and templates; I&amp;rsquo;m a fan of convention over configuration and keeping things simple), but discussing this with the maintainer revealed this is because pyblosxom is meant as a reimplementation of the original perl-based bloxsom project.  Over time features could be simplified and/or redesigned.&lt;br /&gt;&lt;/p&gt;
+The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn&#39;t just rely on an external service like disqus, but stores comments as plaintext files as well.&lt;br /&gt;
 
-&lt;p&gt;So I plan to migrate this blog from drupal to pyblosxom.&lt;br /&gt;&lt;/p&gt;
+Some features seem a bit overengineered (like, multiple possible locations to store themes (known as &#34;flavours&#34;) and templates; I&#39;m a fan of convention over configuration and keeping things simple), but discussing this with the maintainer revealed this is because pyblosxom is meant as a reimplementation of the original perl-based bloxsom project.  Over time features could be simplified and/or redesigned.&lt;br /&gt;
 
-&lt;p&gt;To do this, I&amp;rsquo;m building the tool &lt;a href=&#34;https://github.com/Dieterbe/drupal-to-pyblosxom&#34;&gt;drupal-to-pyblosxom&lt;/a&gt;.&lt;br /&gt;&lt;/p&gt;
+So I plan to migrate this blog from drupal to pyblosxom.&lt;br /&gt;
 
-&lt;p&gt;The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&amp;rsquo;m about halfway, if there&amp;rsquo;s anyone out there with a similar use case, help is welcome ;)&lt;/p&gt;&lt;/p&gt;
+To do this, I&#39;m building the tool &lt;a href=&#34;https://github.com/Dieterbe/drupal-to-pyblosxom&#34;&gt;drupal-to-pyblosxom&lt;/a&gt;.&lt;br /&gt;
+
+The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)&lt;/p&gt;
 </description>
     </item>
     
@@ -531,9 +535,11 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
       <pubDate>Sat, 25 Sep 2010 20:33:08 -0400</pubDate>
       
       <guid>http://localhost:1313/post/an_rss2email_fork_that_sucks_less/</guid>
-      <description>&lt;p&gt;However, there are some things I didn&amp;rsquo;t like about it so I made a &lt;a href=&#34;http://github.com/Dieterbe/rss2email/&#34;&gt;github repo&lt;/a&gt; where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.allthingsrss.com/rss2email/&#34;&gt;Rss2email&lt;/a&gt; is a great tool.  I like getting all my news messages in my mailbox and using smtp to make the &#34;news delivery&#34; process more robust makes sense.&lt;br /&gt;
 
-&lt;p&gt;Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt;&lt;/p&gt;
+However, there are some things I didn&#39;t like about it so I made a &lt;a href=&#34;http://github.com/Dieterbe/rss2email/&#34;&gt;github repo&lt;/a&gt; where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.&lt;br /&gt;
+
+Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt;
 
 &lt;p&gt;Here is how it compares:&lt;br /&gt;
 
@@ -654,6 +660,8 @@ For now, you can treat this as an alternative version that stands on it&#39;s ow
       
       <guid>http://localhost:1313/post/review_of_python_3_object_oriented_programming/</guid>
       <description>
+
+&lt;p&gt;&lt;a href=&#34;http://archlinux.me/dusty/&#34;&gt;Dusty Phillips&lt;/a&gt;, Arch Linux shwag guy, Archcon co-organizer, (python) consultant and since recently &lt;a href=&#34;http://localhost:1313/back_from_canada_archcon&#34;&gt;buddy of mine&lt;/a&gt; wrote his first &lt;a href=&#34;https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;amp;utm_medium=bookrev&amp;amp;utm_content=blog&amp;amp;utm_campaign=mdb_004281&#34;&gt;book: Python 3 Object Oriented Programming&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.&lt;br /&gt;
 

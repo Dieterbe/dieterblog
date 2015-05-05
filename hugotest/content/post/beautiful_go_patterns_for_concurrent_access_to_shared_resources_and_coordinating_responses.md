@@ -3,6 +3,8 @@ title = "Beautiful Go patterns for concurrent access to shared resources and coo
 date = "2014-07-26T13:22:32-04:00"
 tags = ["golang"]
 +++
+<p>
+
 It's a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
 
 and needing a response that tells them whether the operation succeeded and/or other auxiliary information.

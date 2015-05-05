@@ -15,7 +15,9 @@
       <pubDate>Sun, 25 Mar 2012 23:05:05 -0400</pubDate>
       
       <guid>http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</guid>
-      <description>&lt;p&gt;With Lighttpd you might have a fastcgi socket defined something like &amp;ldquo;/var/run/lighttpd/sockets/mywebsite.sock&amp;rdquo;.&lt;/p&gt;
+      <description>&lt;p&gt;On Arch Linux, and probably &lt;a href=&#34;http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html&#34;&gt;many other distros&lt;/a&gt; /run is a new tmpfs, and /var/run symlinks to it.&lt;/p&gt;
+
+&lt;p&gt;With Lighttpd you might have a fastcgi socket defined something like &amp;ldquo;/var/run/lighttpd/sockets/mywebsite.sock&amp;rdquo;.&lt;/p&gt;
 
 &lt;p&gt;This won&amp;rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&amp;rsquo;t start, /var/log/lighttpd/error.log will tell you:&lt;/p&gt;
 
@@ -101,9 +103,11 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
       <pubDate>Wed, 16 Jun 2010 18:11:50 -0400</pubDate>
       
       <guid>http://localhost:1313/post/restoring_ssh_connections_on_resume/</guid>
-      <description>&lt;p&gt;It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/&amp;hellip;, but they run as root.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I use &lt;a href=&#34;http://wiki.archlinux.org/index.php/Pm-utils&#34;&gt;pm-utils&lt;/a&gt; for hibernation support.&lt;br /&gt;
 
-&lt;p&gt;If you want to run stuff as a regular user you could do something like&lt;/p&gt;&lt;/p&gt;
+It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.&lt;br /&gt;
+
+If you want to run stuff as a regular user you could do something like&lt;/p&gt;
 
 &lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
@@ -139,15 +143,17 @@ sudo pm-hibernate &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&
       <pubDate>Sun, 01 Nov 2009 10:17:26 -0400</pubDate>
       
       <guid>http://localhost:1313/post/ext3_logical_partition_resizing/</guid>
-      <description>&lt;p&gt;But what about logical partitions?  A while back I had to resize an ext3 logical partition which ended at the end of the last logical partition.  I learned some usefull stuff but I only made some quick scratch notes and I don&amp;rsquo;t remember all details so:&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;You probably know you can resize primary partitions by deleting them and recreating them, keeping the starting block the same but using a higher block as ending point.  You can then increase the filesystem.&lt;br /&gt;
 
-&lt;p&gt;&lt;strong&gt;Do not expect a nice tutorial here, it&amp;rsquo;s more of a commented dump of my scratch notes and some vague memories.&lt;br /&gt;&lt;/p&gt;
+But what about logical partitions?  A while back I had to resize an ext3 logical partition which ended at the end of the last logical partition.  I learned some usefull stuff but I only made some quick scratch notes and I don&#39;t remember all details so:&lt;br /&gt;
 
-&lt;p&gt;The information in this post is not 100% accurate&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;strong&gt;Do not expect a nice tutorial here, it&#39;s more of a commented dump of my scratch notes and some vague memories.&lt;br /&gt;
 
-&lt;p&gt;I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.&lt;br /&gt;&lt;/p&gt;
+The information in this post is not 100% accurate&lt;/strong&gt;&lt;br /&gt;
 
-&lt;p&gt;&lt;/p&gt;&lt;/p&gt;
+I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.&lt;br /&gt;
+
+&lt;/p&gt;
 
 &lt;p&gt;I did find various places where they said parted could &#34;handle all partition and filesystem resizing at once&#34;.&lt;br /&gt;
 
@@ -351,7 +357,9 @@ The filesystem on /dev/hda9 is now 19872397 blocks long.&lt;/p&gt;
       <pubDate>Tue, 22 Sep 2009 19:43:17 -0400</pubDate>
       
       <guid>http://localhost:1313/post/opening_files_automatically_on_mainstream_linux_desktops/</guid>
-      <description>&lt;p&gt;The two biggest culprits are:&lt;/p&gt;
+      <description>&lt;p&gt;Xfce/Gnu/Linux works amazingly well on my moms workstation, with one exception: opening files automatically with the correct program.&lt;/p&gt;
+
+&lt;p&gt;The two biggest culprits are:&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -379,7 +387,9 @@ And that&#39;s exactly what I did. For now I just configure everything to use xd
       <pubDate>Wed, 24 Dec 2008 18:07:35 -0400</pubDate>
       
       <guid>http://localhost:1313/post/jobhunt_over/</guid>
-      <description>&lt;p&gt;Next week I&amp;rsquo;ll start at &lt;a href=&#34;http://kangaroot.net/&#34;&gt;Kangaroot&lt;/a&gt;.  Woohoo.&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;What better way to launch the new year then starting to work as a System Engineer/Developer for a consulting firm where everyone breathes Linux and Open Source?&lt;br /&gt;
+
+Next week I&#39;ll start at &lt;a href=&#34;http://kangaroot.net/&#34;&gt;Kangaroot&lt;/a&gt;.  Woohoo.&lt;/p&gt;
 </description>
     </item>
     
@@ -389,7 +399,9 @@ And that&#39;s exactly what I did. For now I just configure everything to use xd
       <pubDate>Mon, 24 Nov 2008 20:30:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/looking_for_a_new_job/</guid>
-      <description>&lt;p&gt;My new ideal (slightly utopic) job would be:&lt;/p&gt;
+      <description>&lt;p&gt;The &lt;a href=&#34;http://localhost:1313/i_just_became_a_system_and_network_architect&#34;&gt;adventure at Netlog&lt;/a&gt; didn&#39;t work out entirely, so &lt;em&gt;I&#39;m looking for a new challenge!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;My new ideal (slightly utopic) job would be:&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -423,7 +435,9 @@ And that&#39;s exactly what I did. For now I just configure everything to use xd
       <pubDate>Mon, 17 Nov 2008 11:45:25 -0400</pubDate>
       
       <guid>http://localhost:1313/post/aif_the_brand_new_arch_linux_installation_framework/</guid>
-      <description>&lt;p&gt;(See &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34; title=&#34;/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;rethinking_the_backup_paradigm_a_higher-level&amp;hellip;&lt;/a&gt;)&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Recently I started thinking about writing my own automatic installer that would set up my system exactly the way I want.&lt;br /&gt;
+
+(See &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34; title=&#34;/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;rethinking_the_backup_paradigm_a_higher-level...&lt;/a&gt;)&lt;/p&gt;
 
 &lt;p&gt;I looked at the official Arch install scripts to see if I could reuse parts of their code, but unfortunately the code was just one big chunk of bash code with the main program and &#34;flow control&#34; (you must first do this step, then that), UI-code (dialogs etc) and backend logic (create filesystems, ...) all mangled up and mixed very closely together.&lt;br /&gt;
 
@@ -483,11 +497,13 @@ I&#39;m very curious for input on the code/design level as well.&lt;/p&gt;
       <pubDate>Mon, 29 Sep 2008 22:01:41 -0400</pubDate>
       
       <guid>http://localhost:1313/post/im_done_with_gnome_and_gconf/</guid>
-      <description>&lt;p&gt;They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;m managing my ~ in svn but using gnome &amp;amp; gconf makes this rather hard.&lt;br /&gt;
 
-&lt;p&gt;The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime &amp;lsquo;something&amp;rsquo; happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.&lt;br /&gt;&lt;/p&gt;
+They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).&lt;br /&gt;
 
-&lt;p&gt;I&amp;rsquo;m fine with the fact they do that.  I&amp;rsquo;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as &lt;a href=&#34;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&#34;&gt;xdg&amp;rsquo;s&lt;/a&gt; $XDG_CACHE_HOME directory)&lt;/p&gt;&lt;/p&gt;
+The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime &#39;something&#39; happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.&lt;br /&gt;
+
+I&#39;m fine with the fact they do that.  I&#39;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as &lt;a href=&#34;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&#34;&gt;xdg&#39;s&lt;/a&gt; $XDG_CACHE_HOME directory)&lt;/p&gt;
 
 &lt;p&gt;While trying to apply version control to my $HOME I need to spend way too much time scripting various &lt;i&gt;svn reverts&lt;/i&gt; of many of those changes (in .gnome2, .gconf/apps/*, and .gconf/desktop), and also updating many &lt;i&gt;svn:ignore&lt;/i&gt; properties (although gnome/gconf are definitely not the only culprits for that.)&lt;/p&gt;
 
@@ -545,7 +561,9 @@ Arch on the other hand is made for tweaking your system.  It exposes all guts of
       <pubDate>Mon, 21 Jul 2008 20:21:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/rethinking_the_backup_paradigm_a_higher-level_approach/</guid>
-      <description>&lt;h3&gt;The &#34;classic&#34; approaches&lt;/h3&gt;
+      <description>&lt;p&gt;In this post I explain my vision on the concepts of backups and how several common practices are in my opinion suboptimal and become unnecessary or at least can be done more easily by managing data on a higher level by employing other patterns such as versioning important directories and distributed data management.  &lt;/p&gt;
+
+&lt;h3&gt;The &#34;classic&#34; approaches&lt;/h3&gt;
 
 &lt;p&gt;There are many backup scripts/programs out there, each with their own - sometimes subtly and sometimes radically - different approach.&lt;br /&gt;
 
@@ -777,7 +795,9 @@ There are some small issues remaining, stuff that needs to be thought of, but th
       <pubDate>Sat, 24 May 2008 12:39:28 -0400</pubDate>
       
       <guid>http://localhost:1313/post/announcing_the_netlog_developer_pages/</guid>
-      <description>&lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
+      <description>&lt;p&gt;At work, we&#39;ve setup the &lt;a href=&#34;http://netlog.com/go/developer&#34;&gt;Netlog Developer Pages&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
 
 We&#39;ve also launched a &lt;a href=&#34;http://en.netlog.com/go/developer/group&#34;&gt;group&lt;/a&gt; where you can communicate with fellow developers and Netlog employees.&lt;br /&gt;
 
@@ -793,9 +813,11 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <pubDate>Sat, 15 Sep 2007 15:32:24 -0400</pubDate>
       
       <guid>http://localhost:1313/post/simple_command_to_retrieve_stuff_from_ram_after_closing_or_crashing_an_application/</guid>
-      <description>&lt;p&gt;thanks Martin for this tip!&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;After an app is closed or crashed, the data is still in your RAM and you can very easily get it back by grepping /proc/kcore.&lt;br /&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-stuff-from-memory&#34; title=&#34;http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-stuff-from-memory&#34;&gt;http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-...&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+thanks Martin for this tip!&lt;br /&gt;
+
+&lt;a href=&#34;http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-stuff-from-memory&#34; title=&#34;http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-stuff-from-memory&#34;&gt;http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-...&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -805,7 +827,9 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <pubDate>Sat, 14 Jul 2007 20:22:38 -0400</pubDate>
       
       <guid>http://localhost:1313/post/assymetric_keys_instead_of_passwords_for_ssh_authentication_to_increase_security_and_convenience/</guid>
-      <description>&lt;p&gt;It&#39;s a feature in ssh protocol version 2 (thus it&#39;s around for already a while, e.g. we can all use it without updating something) which essentially comes down to this: you generate an asymmetric key pair and distribute the public key to all remote hosts. When logging in to that host, the host will encrypt a random integer, which only you can decrypt (using the private key) and hence prove your identity.  Too secure your private key you&#39;ll store it encrypted with a password.  Ssh-agent (which is bundled with openssh) is the tool that interacts with ssh to perform this task: when logging in to a host, ssh-agent will open the private key for you automatically &lt;em&gt;if it can decrypt it with the password it receives from you&lt;/em&gt;  But the problem is you&#39;ll have to load (enter your password and decrypt the key) each time again.&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ve been using &lt;a href=&#34;http://www.openssh.com/&#34;&gt;OpenSSH&lt;/a&gt; already for a while and although I&#39;ve seen mentions of &#34;public key authentication&#34; and &#34;RSA encryption&#34; several times in it&#39;s config files, I never decided to figure out what it did exactly, and stuck to password authentication.  But now the guys at work explained how it works and after reading more about it, I&#39;m totally hooked on it!&lt;/p&gt;
+
+&lt;p&gt;It&#39;s a feature in ssh protocol version 2 (thus it&#39;s around for already a while, e.g. we can all use it without updating something) which essentially comes down to this: you generate an asymmetric key pair and distribute the public key to all remote hosts. When logging in to that host, the host will encrypt a random integer, which only you can decrypt (using the private key) and hence prove your identity.  Too secure your private key you&#39;ll store it encrypted with a password.  Ssh-agent (which is bundled with openssh) is the tool that interacts with ssh to perform this task: when logging in to a host, ssh-agent will open the private key for you automatically &lt;em&gt;if it can decrypt it with the password it receives from you&lt;/em&gt;  But the problem is you&#39;ll have to load (enter your password and decrypt the key) each time again.&lt;/p&gt;
 
 &lt;p&gt;This is where &lt;a href=&#34;http://www.gentoo.org/proj/en/keychain/index.xml&#34;&gt;keychain&lt;/a&gt; comes in, or you can use &lt;a href=&#34;http://www.phil.uu.nl/~xges/ssh/&#34;&gt;SSH Agent&lt;/a&gt; (don&#39;t confuse this with the ssh agent that comes with openssh) if you&#39;re a Mac user and like gui&#39;s.  These tools basically ask you your passwords for all private keys you wish to use in a session (with session I mean &#34;the whole time of using your computer&#34;), decrypt the encrypted key on your hard disk and cache the decrypted key in ram, so it can be used in all terminals you open.&lt;/p&gt;
 
@@ -827,7 +851,9 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <pubDate>Sun, 08 Jul 2007 12:50:50 -0400</pubDate>
       
       <guid>http://localhost:1313/post/the_perfect_gtk_music_player_can_exaile_replace_amarok/</guid>
-      <description>&lt;p&gt;But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ve always liked Amarok: it does everything I always wanted, &lt;em&gt; and more&lt;/em&gt;.  It looks perfect in every way ...&lt;br /&gt;
+
+But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.&lt;/p&gt;
 
 &lt;p&gt;So, I&#39;ve been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.&lt;/p&gt;
 
@@ -955,7 +981,9 @@ But I see much activity on trac, especially in &lt;a href=&#34;http://www.exaile
       <pubDate>Tue, 29 May 2007 00:53:08 -0400</pubDate>
       
       <guid>http://localhost:1313/post/open_source_softwarepatenten_vanuit_ethisch_perspectief/</guid>
-      <description>&lt;p&gt;Hier moesten 3 elementen in voorkomen:&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Voor school moest ik een ethisch verslag schrijven.&lt;br /&gt;
+
+Hier moesten 3 elementen in voorkomen:&lt;/p&gt;
 
 &lt;ul&gt;
 

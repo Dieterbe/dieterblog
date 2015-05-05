@@ -3,6 +3,8 @@ title = "Thesis finished"
 date = "2007-05-24T16:55:34-04:00"
 tags = ["life", "thesis"]
 +++
+<p>Yesterday, after a night of searching and fixing spelling errors, things that could be better explained and other small details,<br />
+
 I got my thesis printed and delivered the six books to my school.<br />
 
 <!--more--><br />

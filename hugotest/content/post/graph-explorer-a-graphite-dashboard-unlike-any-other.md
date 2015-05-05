@@ -3,6 +3,8 @@ title = "Graph-Explorer: A graphite dashboard unlike any other"
 date = "2013-01-09T09:25:36-04:00"
 tags = ["devops", "monitoring"]
 +++
+The above sounds like a marketing phrase and I'm just as skeptical of them as you, but I feel it's in place. Not because GE is necessarily better, but it's certainly <i>different</i>.
+
 <!--more-->
 
 <br/>

@@ -3,6 +3,8 @@ title = "Influx-cli: a commandline interface to Influxdb."
 date = "2014-09-08T08:36:36-04:00"
 tags = ["monitoring", "golang"]
 +++
+<p>
+
 Time for another side project:
 
 <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a>,

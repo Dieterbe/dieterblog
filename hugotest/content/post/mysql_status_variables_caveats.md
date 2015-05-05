@@ -3,6 +3,8 @@ title = "Mysql status variables caveats"
 date = "2009-06-06T11:33:34-04:00"
 tags = ["foss", "monitoring", "perf", "mysql"]
 +++
+<p>While setting up Zenoss and reading <a href="http://dev.mysql.com/doc/refman/5.0/en/server-status-variables.html">Mysql documentation about status variables</a> I learned:</p>
+
 <ul>
 
 <li>All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  ("Command statistics:selects" graph in Zenoss)</li>

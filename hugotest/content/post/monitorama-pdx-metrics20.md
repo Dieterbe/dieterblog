@@ -3,6 +3,8 @@ title = "Monitorama PDX & my metrics 2.0 presentation"
 date = "2014-05-29T10:39:32-04:00"
 tags = ["devops", "monitoring"]
 +++
+<p>
+
 Earlier this month we had another iteration of the <a href="http://monitorama.com/">Monitorama</a> conference, this time in Portland, Oregon.
 
 </p>

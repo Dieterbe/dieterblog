@@ -3,6 +3,8 @@ title = "AIF: the brand new Arch Linux Installation Framework"
 date = "2008-11-17T11:45:25-04:00"
 tags = ["linux", "foss", "arch"]
 +++
+<p>Recently I started thinking about writing my own automatic installer that would set up my system exactly the way I want.<br />
+
 (See <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a>)</p>
 
 <p>I looked at the official Arch install scripts to see if I could reuse parts of their code, but unfortunately the code was just one big chunk of bash code with the main program and "flow control" (you must first do this step, then that), UI-code (dialogs etc) and backend logic (create filesystems, ...) all mangled up and mixed very closely together.<br />

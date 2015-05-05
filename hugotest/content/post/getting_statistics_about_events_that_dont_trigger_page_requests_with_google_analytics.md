@@ -3,6 +3,8 @@ title = "Getting statistics about events that don't trigger page requests with G
 date = "2007-06-24T19:27:42-04:00"
 tags = ["web2.0", "drupal", "cakephp"]
 +++
+<p>You probably already heard of <a href="www.google.com/analytics">Google Analytics</a>.  It's a pretty nice program that (<em>basically</em>) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;topic=11012">events that don't require page requests!</a><br />
+
 Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).<!--more--></p>
 
 <p>The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function <em>urchinTracker()</em> you just add <em>onClick="javascript:urchinTracker('/this-is-something-i-want-to-track');"</em> to your hyperlink.<br />

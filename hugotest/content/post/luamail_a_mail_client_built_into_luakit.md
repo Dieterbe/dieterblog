@@ -3,6 +3,8 @@ title = "Luamail: a mail client built into luakit"
 date = "2011-10-02T09:28:45-04:00"
 tags = ["mail", "lua"]
 +++
+<p>Similarly to how back in 2009 there was no browser that works in a way I find sane, and I started solving that with <a href="/uzbl_a_browser_that_adheres_to_the_unix_philosophy">uzbl</a>,
+
 now I'm fed up with the lack of an email client that works in a way I find sane.  Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic <a href="http://luakit.org">luakit</a> browser,
 
 which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API's.

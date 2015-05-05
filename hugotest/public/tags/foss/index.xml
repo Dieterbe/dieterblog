@@ -493,7 +493,9 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
       <pubDate>Sat, 26 Mar 2011 21:48:56 -0400</pubDate>
       
       <guid>http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</guid>
-      <description>&lt;p&gt;which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.&lt;/p&gt;
+      <description>&lt;p&gt;I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,&lt;/p&gt;
+
+&lt;p&gt;which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;In short:&lt;/p&gt;
 
@@ -559,13 +561,17 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
       <pubDate>Sat, 05 Mar 2011 18:27:35 -0400</pubDate>
       
       <guid>http://localhost:1313/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/</guid>
-      <description>&lt;p&gt;There are tons of articles describing &lt;em&gt;how&lt;/em&gt; you can rewrite history with git, but they do not answer &amp;ldquo;&lt;em&gt;why&lt;/em&gt; should I do it?&amp;ldquo;.&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;A similar question is &amp;ldquo;what are the tradeoffs / how do I apply this in my distributed workflow?&amp;rdquo;.&lt;/p&gt;
+There are tons of articles describing &lt;em&gt;how&lt;/em&gt; you can rewrite history with git, but they do not answer &#34;&lt;em&gt;why&lt;/em&gt; should I do it?&#34;.
 
-&lt;p&gt;&lt;br/&gt;Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?&lt;/p&gt;
+A similar question is &#34;what are the tradeoffs / how do I apply this in my distributed workflow?&#34;.
 
-&lt;p&gt;&lt;br/&gt;I&amp;rsquo;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&amp;rsquo;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).&lt;/p&gt;
+&lt;br/&gt;Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?
+
+&lt;br/&gt;I&#39;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&#39;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
+
+
 
 &lt;h3&gt;Why rewriting git history?&lt;/h3&gt;
 
@@ -671,7 +677,9 @@ See also
       <pubDate>Tue, 28 Dec 2010 22:59:15 -0400</pubDate>
       
       <guid>http://localhost:1313/post/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</guid>
-      <description>&lt;p&gt;== A library providing UI functions for shell scripts ==&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;blockquote&gt;&lt;p&gt;
+
+== A library providing UI functions for shell scripts ==&lt;/p&gt;
 
 &lt;p&gt;When you write bash/shell scripts, do you write your own error/debug/logging/abort functions?&lt;br /&gt;
 
@@ -697,7 +705,7 @@ just run the command libui_sh_init&lt;/p&gt;
 
 &lt;p&gt;example usage:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000&#34;&gt;source&lt;/span&gt; /usr/lib/libui.sh
 
@@ -709,13 +717,13 @@ log &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;we just got hassle-free 
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;The library is not strictly a UI library, it also contains a few useful functions like&lt;br /&gt;&lt;/p&gt;
+The library is not strictly a UI library, it also contains a few useful functions like&lt;br /&gt;
 
-&lt;p&gt;check_is_in (check if an element can be found in a set - usually an array) and&lt;br /&gt;&lt;/p&gt;
+check_is_in (check if an element can be found in a set - usually an array) and&lt;br /&gt;
 
-&lt;p&gt;seteditor (interactive $EDITOR selection)&lt;/p&gt;&lt;/p&gt;
+seteditor (interactive $EDITOR selection)&lt;/p&gt;
 
 &lt;p&gt;Dependencies:&lt;br /&gt;
 
@@ -735,13 +743,15 @@ log &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;we just got hassle-free 
       <pubDate>Fri, 15 Oct 2010 09:38:12 -0400</pubDate>
       
       <guid>http://localhost:1313/post/rsyncbench_an_rsync_benchmarking_tool/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn&amp;rsquo;t need much disk space,&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Background info:&lt;br /&gt;
 
-&lt;p&gt;but in the meantime it might be a good idea to look for online backup solutions (oops did I say &amp;ldquo;online&amp;rdquo;? I meant &amp;ldquo;cloud&amp;rdquo;), like on the (V)PS itself, or maybe as a separate solution.&lt;br /&gt;&lt;/p&gt;
+I&#39;m currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn&#39;t need much disk space,&lt;br /&gt;
 
-&lt;p&gt;But I&amp;rsquo;ve got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)&lt;br /&gt;&lt;/p&gt;
+but in the meantime it might be a good idea to look for online backup solutions (oops did I say &#34;online&#34;? I meant &#34;cloud&#34;), like on the (V)PS itself, or maybe as a separate solution.&lt;br /&gt;
 
-&lt;p&gt;At this point the biggest contenders are &lt;a href=&#34;http://linode.com/&#34;&gt;Linode&lt;/a&gt; (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), &lt;a href=&#34;http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/&#34;&gt;Rackspace backup&lt;/a&gt; gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there&amp;rsquo;s &lt;a href=&#34;http://www.hetzner.de/&#34;&gt;Hetzner&lt;/a&gt;, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)&lt;/p&gt;&lt;/p&gt;
+But I&#39;ve got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)&lt;br /&gt;
+
+At this point the biggest contenders are &lt;a href=&#34;http://linode.com/&#34;&gt;Linode&lt;/a&gt; (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), &lt;a href=&#34;http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/&#34;&gt;Rackspace backup&lt;/a&gt; gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there&#39;s &lt;a href=&#34;http://www.hetzner.de/&#34;&gt;Hetzner&lt;/a&gt;, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)&lt;/p&gt;
 
 &lt;p&gt;Another issue, given the limited capacity of Belgian internet connections, I needed to figure out how much bandwith rsync really needs, so I can calculate if the duration of a backup run including syncing the full vdi file is still reasonable.&lt;/p&gt;
 
@@ -807,9 +817,11 @@ I&#39;ll figure out something else.  Like backing up from inside windows (maybe 
       <pubDate>Sat, 25 Sep 2010 20:33:08 -0400</pubDate>
       
       <guid>http://localhost:1313/post/an_rss2email_fork_that_sucks_less/</guid>
-      <description>&lt;p&gt;However, there are some things I didn&amp;rsquo;t like about it so I made a &lt;a href=&#34;http://github.com/Dieterbe/rss2email/&#34;&gt;github repo&lt;/a&gt; where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.allthingsrss.com/rss2email/&#34;&gt;Rss2email&lt;/a&gt; is a great tool.  I like getting all my news messages in my mailbox and using smtp to make the &#34;news delivery&#34; process more robust makes sense.&lt;br /&gt;
 
-&lt;p&gt;Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt;&lt;/p&gt;
+However, there are some things I didn&#39;t like about it so I made a &lt;a href=&#34;http://github.com/Dieterbe/rss2email/&#34;&gt;github repo&lt;/a&gt; where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.&lt;br /&gt;
+
+Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt;
 
 &lt;p&gt;Here is how it compares:&lt;br /&gt;
 
@@ -929,7 +941,9 @@ For now, you can treat this as an alternative version that stands on it&#39;s ow
       <pubDate>Fri, 03 Sep 2010 22:26:22 -0400</pubDate>
       
       <guid>http://localhost:1313/post/what_the_open_source_community_can_learn_from_devops/</guid>
-      <description>&lt;p&gt;For the sake of getting a point across, I&#39;ll simplify some things.&lt;/p&gt;
+      <description>&lt;p&gt;Being active as both a developer and ops person in the professional life, and both an open source developer and packager in my spare time, I noticed some common ground between both worlds, and I think the open source community can learn from the Devops movement which is solving problems in the professional tech world.&lt;/p&gt;
+
+&lt;p&gt;For the sake of getting a point across, I&#39;ll simplify some things.&lt;/p&gt;
 
 &lt;h3&gt;First, a crash course on Devops...&lt;/h3&gt;
 
@@ -1105,11 +1119,13 @@ Some ideas I have:&lt;/p&gt;
       <pubDate>Wed, 25 Aug 2010 22:11:58 -0400</pubDate>
       
       <guid>http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</guid>
-      <description>&lt;p&gt;It is the birthplace of many applications, most of them not Arch Linux specific.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;The &lt;a href=&#34;https://bbs.archlinux.org/viewforum.php?id=27&#34;&gt;Community contributions&lt;/a&gt; subforum of the Arch Linux forums is awesome.&lt;br /&gt;
 
-&lt;p&gt;File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.&lt;br /&gt;&lt;/p&gt;
+It is the birthplace of many applications, most of them not Arch Linux specific.&lt;br /&gt;
 
-&lt;p&gt;Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.&lt;/p&gt;&lt;/p&gt;
+File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.&lt;br /&gt;
+
+Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.&lt;/p&gt;
 
 &lt;p&gt;If you like to discover new apps and tools, check it out.&lt;/p&gt;
 </description>
@@ -1121,9 +1137,11 @@ Some ideas I have:&lt;/p&gt;
       <pubDate>Wed, 16 Jun 2010 18:11:50 -0400</pubDate>
       
       <guid>http://localhost:1313/post/restoring_ssh_connections_on_resume/</guid>
-      <description>&lt;p&gt;It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/&amp;hellip;, but they run as root.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I use &lt;a href=&#34;http://wiki.archlinux.org/index.php/Pm-utils&#34;&gt;pm-utils&lt;/a&gt; for hibernation support.&lt;br /&gt;
 
-&lt;p&gt;If you want to run stuff as a regular user you could do something like&lt;/p&gt;&lt;/p&gt;
+It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.&lt;br /&gt;
+
+If you want to run stuff as a regular user you could do something like&lt;/p&gt;
 
 &lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
@@ -1159,7 +1177,9 @@ sudo pm-hibernate &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&
       <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
       
       <guid>http://localhost:1313/post/fosdem_2010/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
+
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
 
@@ -1207,7 +1227,9 @@ Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guy
       <pubDate>Tue, 22 Sep 2009 19:43:17 -0400</pubDate>
       
       <guid>http://localhost:1313/post/opening_files_automatically_on_mainstream_linux_desktops/</guid>
-      <description>&lt;p&gt;The two biggest culprits are:&lt;/p&gt;
+      <description>&lt;p&gt;Xfce/Gnu/Linux works amazingly well on my moms workstation, with one exception: opening files automatically with the correct program.&lt;/p&gt;
+
+&lt;p&gt;The two biggest culprits are:&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -1235,11 +1257,13 @@ And that&#39;s exactly what I did. For now I just configure everything to use xd
       <pubDate>Mon, 14 Sep 2009 20:22:00 -0400</pubDate>
       
       <guid>http://localhost:1313/post/snip_a_dead-simple_but_quite_powerful_text_expander_and_more/</guid>
-      <description>&lt;p&gt;It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Inspired by &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=71938&#34;&gt;Snippy&lt;/a&gt; and &lt;a href=&#34;http://lifehacker.com/351285/automate-repetitive-typing-with-snippits&#34;&gt;snippits&lt;/a&gt;, I wrote a simple tool called &lt;a href=&#34;http://github.com/Dieterbe/snip&#34;&gt;snip&lt;/a&gt;.&lt;br /&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.&lt;br /&gt;
 
-&lt;p&gt;It works like this: you bind a key (in your WM or with &lt;a href=&#34;http://freshmeat.net/projects/xbindkeys/&#34;&gt;xbindkeys&lt;/a&gt;) to launch &lt;code&gt;snip&lt;/code&gt; with the &lt;code&gt;load&lt;/code&gt; or &lt;code&gt;save&lt;/code&gt; argument.&lt;/p&gt;&lt;/p&gt;
+&lt;br /&gt;
+
+It works like this: you bind a key (in your WM or with &lt;a href=&#34;http://freshmeat.net/projects/xbindkeys/&#34;&gt;xbindkeys&lt;/a&gt;) to launch `snip` with the `load` or `save` argument.&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -1263,9 +1287,11 @@ I&#39;m sure a lot of people will come up with more cool things :)&lt;/p&gt;
       <pubDate>Mon, 10 Aug 2009 12:36:48 -0400</pubDate>
       
       <guid>http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/</guid>
-      <description>&lt;p&gt;I hope people will like &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF&lt;/a&gt; because it was a lot of work and we didn&amp;rsquo;t receive much feedback.  I personally like it to apply my &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;fancy backup restoration&lt;/a&gt; approach.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;So, the Arch Linux &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=77680&#34;&gt;2009.08 release&lt;/a&gt; is now behind us, nicely on schedule.&lt;br /&gt;
 
-&lt;p&gt;But I&amp;rsquo;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt; I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)&lt;/p&gt;&lt;/p&gt;
+I hope people will like &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF&lt;/a&gt; because it was a lot of work and we didn&#39;t receive much feedback.  I personally like it to apply my &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;fancy backup restoration&lt;/a&gt; approach.&lt;br /&gt;
+
+But I&#39;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt; I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)&lt;/p&gt;
 
 &lt;p&gt;Later this week I&#39;m off to the &lt;a href=&#34;http://www.countingcows.be/home.php&#34;&gt;Counting Cows festival&lt;/a&gt; in France, and the week after that (august 22-23) I&#39;m going to &lt;a href=&#34;http://www.froscon.org/&#34;&gt;FrOSCon&lt;/a&gt; in Germany where I will meet some of my Arch Linux colleagues in real life, which I&#39;m really looking forward to.&lt;/p&gt;
 
@@ -1279,7 +1305,9 @@ I&#39;m sure a lot of people will come up with more cool things :)&lt;/p&gt;
       <pubDate>Sat, 06 Jun 2009 11:33:34 -0400</pubDate>
       
       <guid>http://localhost:1313/post/mysql_status_variables_caveats/</guid>
-      <description>&lt;ul&gt;
+      <description>&lt;p&gt;While setting up Zenoss and reading &lt;a href=&#34;http://dev.mysql.com/doc/refman/5.0/en/server-status-variables.html&#34;&gt;Mysql documentation about status variables&lt;/a&gt; I learned:&lt;/p&gt;
+
+&lt;ul&gt;
 
 &lt;li&gt;All select_* variables (&#34;Select statistics&#34; graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  (&#34;Command statistics:selects&#34; graph in Zenoss)&lt;/li&gt;
 

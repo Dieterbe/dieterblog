@@ -3,6 +3,8 @@ title = "My favorite bash tricks"
 date = "2007-03-14T23:38:54-04:00"
 tags = ["linux", "foss", "bash", "productivity"]
 +++
+<p>Hello everyone.<br />
+
 This post is about <a href="http://www.gnu.org/software/bash/">bash</a>, the shell providing so many users easy access to the underlying power of their system.<br />
 
 (not <a href="http://www.bash.org/">bash</a> the quote database, although i really like that website too ;-) )<br />

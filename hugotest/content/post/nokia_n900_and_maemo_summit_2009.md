@@ -3,6 +3,8 @@ title = "nokia n900 & maemo summit 2009"
 date = "2009-10-02T17:40:14-04:00"
 tags = ["life", "n900"]
 +++
+<p>I have been looking for the <a href="http://bbs.archlinux.org/viewtopic.php?pid=580045">"perfect mobile companion device"</a> already for a while.  Basically I want a "pocket PC that can do as much as possible over which i have as much control as possible so I can do things my way, but still fits in a pocket and which can do gsm and such"<br />
+
 So, something like a netbook, but really portable, and that can also do telephony stuff.<br />
 
 Nokia's recently announced <a href="http://maemo.nokia.com/n900/">n900</a> seems to be very close to what I'm looking for.<br />

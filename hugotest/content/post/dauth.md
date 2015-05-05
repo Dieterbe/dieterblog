@@ -3,6 +3,8 @@ title = "dAuth"
 date = "2007-07-02T13:19:14-04:00"
 tags = ["php", "foss", "dauth", "cakephp"]
 +++
+<p>dAuth is a secure authentication system for CakePHP.</p>
+
 <p>It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc.</p>
 
 <p><a href="http://bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3" onClick="javascript:urchinTracker('bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3');">Read all about it</a></p>

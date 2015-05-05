@@ -3,6 +3,8 @@ title = "Darktable: a magnificent photo manager and editor"
 date = "2014-08-12T08:36:36-04:00"
 tags = ["photos"]
 +++
+A post about the magnificent <a href="http://darktable.org/">darktable</a> photo manager/editor and why I'm abandoning <a href="/pixie.html">pixie</a>
+
 
 
 <!--more-->

@@ -3,6 +3,8 @@ title = "Dir 2011, Fosdem 2011"
 date = "2011-01-25T23:15:45-04:00"
 tags = ["life", "conf"]
 +++
+On February 4, I'll be in Amsterdam at <a href="http://ilps.science.uva.nl/dir2011/cfp.html">DIR 2011</a>, the 11th Dutch-Belgian Information Retrieval Workshop.
+
 After that, I'm going to the devopsdinner and Fosdem beer event in Brussels.
 
 On february 5/6 of course, Fosdem itself.  Looking forward to the systemd talk.

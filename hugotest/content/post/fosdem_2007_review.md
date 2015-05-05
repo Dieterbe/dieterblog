@@ -3,6 +3,8 @@ title = "Fosdem 2007 review"
 date = "2007-03-15T21:02:41-04:00"
 tags = ["life", "php", "linux", "information age", "foss", "cakephp", "bash", "web2.0", "conf"]
 +++
+<p>Every year, during a special weekend in February, the <a href="http://www.ulb.ac.be/">University Libre of Brussels</a> suddenly becomes a little more geeky.<br />
+
 It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
 
 <a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>

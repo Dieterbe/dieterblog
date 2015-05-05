@@ -3,6 +3,8 @@ title = "Graphite-ng: A next-gen graphite server in Go."
 date = "2013-09-07T20:54:20-04:00"
 tags = ["devops", "monitoring", "golang", "perf"]
 +++
+<p>
+
 I've been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It's a <i>great</i> tool for timeseries metrics.
 
 Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:

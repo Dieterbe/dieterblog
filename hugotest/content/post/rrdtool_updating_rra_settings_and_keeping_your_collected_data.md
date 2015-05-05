@@ -3,6 +3,8 @@ title = "RRDtool: updating RRA settings and keeping your collected data"
 date = "2009-12-09T15:05:14-04:00"
 tags = ["devops", "monitoring"]
 +++
+When you use <a href="http://oss.oetiker.ch/rrdtool/">rrdtool</a>, it can happen that you first create your databases, then collect a whole bunch of data and decide later you want more accuracy/longer periods.<br />
+
 <!--more-->
 
 Especially when using <a href="community.zenoss.org">zenoss</a> (the monitoring solution I mostly work with at <a href="http://www.kangaroot.net/">Kangaroot</a>), which uses very conservative RRD settings by default (i.e. 5-minute intervals for only the first 50 hours).  Zenoss provides a way for you to change the way RRD's are created, but not to apply those settings to already existing RRD files, which I found out *after* I started monitoring everything ;)</p>

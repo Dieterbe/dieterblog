@@ -3,6 +3,8 @@ title = "Why rewriting git history? And why should commits be in imperative pres
 date = "2011-03-05T18:27:35-04:00"
 tags = ["foss", "git"]
 +++
+<p>
+
 There are tons of articles describing <em>how</em> you can rewrite history with git, but they do not answer "<em>why</em> should I do it?".
 
 A similar question is "what are the tradeoffs / how do I apply this in my distributed workflow?".

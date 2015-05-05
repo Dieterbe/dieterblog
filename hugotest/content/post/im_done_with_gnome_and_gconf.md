@@ -3,6 +3,8 @@ title = "I'm done with Gnome/Gconf"
 date = "2008-09-29T22:01:41-04:00"
 tags = ["foss", "linux"]
 +++
+<p>I'm managing my ~ in svn but using gnome &amp; gconf makes this rather hard.<br />
+
 They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).<br />
 
 The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime 'something' happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br />

@@ -15,7 +15,9 @@
       <pubDate>Fri, 12 Feb 2010 23:25:46 -0400</pubDate>
       
       <guid>http://localhost:1313/post/facebook_usrbincrash_php_implementation/</guid>
-      <description>&lt;p&gt;I haven&#39;t touched the code for a few months, but better to put it online then to let it rot.&lt;br /&gt;
+      <description>&lt;p&gt;Implementation for Facebook &lt;a href=&#34;http://www.facebook.com/careers/puzzles.php?puzzle_id=2&#34;&gt;usr bin crash&lt;/a&gt; puzzle. (&lt;a href=&#34;http://localhost:1313/not_working_for_facebook&#34;&gt;how/why&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;I haven&#39;t touched the code for a few months, but better to put it online then to let it rot.&lt;br /&gt;
 
 &lt;a href=&#34;http://github.com/Dieterbe/facebookpuzzles/&#34; title=&#34;http://github.com/Dieterbe/facebookpuzzles/&#34;&gt;http://github.com/Dieterbe/facebookpuzzles/&lt;/a&gt;&lt;/p&gt;
 
@@ -39,7 +41,9 @@
       <pubDate>Sat, 24 May 2008 12:39:28 -0400</pubDate>
       
       <guid>http://localhost:1313/post/announcing_the_netlog_developer_pages/</guid>
-      <description>&lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
+      <description>&lt;p&gt;At work, we&#39;ve setup the &lt;a href=&#34;http://netlog.com/go/developer&#34;&gt;Netlog Developer Pages&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
 
 We&#39;ve also launched a &lt;a href=&#34;http://en.netlog.com/go/developer/group&#34;&gt;group&lt;/a&gt; where you can communicate with fellow developers and Netlog employees.&lt;br /&gt;
 
@@ -55,7 +59,9 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <pubDate>Wed, 28 Nov 2007 22:11:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/hacking_into_my_router_by_brute_force_http_authentication/</guid>
-      <description>&lt;p&gt;Luckily I knew some possible usernames and some patterns that I could have used to construct my password, so I just had to try all the combinations&amp;hellip; Too much work to do manually but easily done when scripted.&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I forgot the username and password to access the web panel of my router.&lt;br /&gt;
+
+Luckily I knew some possible usernames and some patterns that I could have used to construct my password, so I just had to try all the combinations... Too much work to do manually but easily done when scripted.&lt;/p&gt;
 
 &lt;p&gt;Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)&lt;/p&gt;
 
@@ -167,9 +173,11 @@ tryme(&lt;span style=&#34;color: #19177C&#34;&gt;$host&lt;/span&gt;,&lt;span sty
       <pubDate>Thu, 19 Jul 2007 00:34:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/bye_cakephp_bye_dauth_hello_drupal/</guid>
-      <description>&lt;p&gt;I still like Cake &amp;hellip; In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is &amp;hellip; because there are some minor things I don&amp;rsquo;t like but that&amp;rsquo;s not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I&#39;m afraid the time has come to say goodbye to CakePHP, and to the projects I&#39;ve been working on for it.&lt;br /&gt;
 
-&lt;p&gt;But .. all the sites I currently work on are all community sites or blogs, and although some of them have some specific requirements, in the end it&amp;rsquo;s all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that&amp;rsquo;s becoming easier and easier to do)&lt;/p&gt;&lt;/p&gt;
+I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don&#39;t like but that&#39;s not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.&lt;br /&gt;
+
+But .. all the sites I currently work on are all community sites or blogs, and although some of them have some specific requirements, in the end it&#39;s all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that&#39;s becoming easier and easier to do)&lt;/p&gt;
 
 &lt;p&gt;I think Drupal is a magnificent CMS because it is plug and play (I need that because my time is getting pretty sparse lately!) but also because it has a pretty active community: there are so many 3rd party modules being developed, and usually you can just upload the module in your modules folder , enable it from your control panel and presto!&lt;/p&gt;
 
@@ -193,7 +201,9 @@ The further I&#39;ve tried to perfect the safeguarding of the confidentiality of
       <pubDate>Mon, 02 Jul 2007 13:19:14 -0400</pubDate>
       
       <guid>http://localhost:1313/post/dauth/</guid>
-      <description>&lt;p&gt;It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc.&lt;/p&gt;
+      <description>&lt;p&gt;dAuth is a secure authentication system for CakePHP.&lt;/p&gt;
+
+&lt;p&gt;It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3&#34; onClick=&#34;javascript:urchinTracker(&#39;bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3&#39;);&#34;&gt;Read all about it&lt;/a&gt;&lt;/p&gt;
 
@@ -211,7 +221,9 @@ The further I&#39;ve tried to perfect the safeguarding of the confidentiality of
       <pubDate>Sun, 01 Jul 2007 16:52:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/</guid>
-      <description>&lt;p&gt;I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.&lt;br /&gt;
+
+I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).&lt;/p&gt;
 
 &lt;p&gt;You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated:  It gets filled with way too many tags.  Among those tags several of them mean the same (fun, funny, humor, ...) or include the other (humor, jokes, ...)  You can group them in bundles but even then you need to add all the tags to a post if you want it to appear in the results for that tag.  Not very convenient. Also, if you have your del.icio.us bookmarks available in Firefox, you&#39;d have a menu with several hundreds of entries (one for each tag), each menu containing usually just a few (or worse: just one) entry.&lt;/p&gt;
 
@@ -233,7 +245,9 @@ The further I&#39;ve tried to perfect the safeguarding of the confidentiality of
       <pubDate>Fri, 29 Jun 2007 13:52:21 -0400</pubDate>
       
       <guid>http://localhost:1313/post/php_delicious_client/</guid>
-      <description>&lt;p&gt;PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.&lt;/p&gt;
+      <description>&lt;h3&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.&lt;/p&gt;
 
 &lt;p&gt;It&#39;s written in PHP and uses &lt;a href=&#34;http://www.ejeliot.com/&#34;&gt;Ed Eliot&#39;s&lt;/a&gt; &lt;a href=&#34;http://www.ejeliot.com/pages/php-delicious&#34;&gt;PhpDelicous&lt;/a&gt; class to contact the del.icio.us api. (included in download)&lt;br /&gt;
 
@@ -385,7 +399,9 @@ Make sure pdclient.php has the executable flag (x).  If the directory is in your
       <pubDate>Tue, 29 May 2007 21:25:13 -0400</pubDate>
       
       <guid>http://localhost:1313/post/drag_n_drop_tutorial_with_cakephp_ajax_prototype_scriptaculous/</guid>
-      <description>&lt;p&gt;During the development of my &lt;a href=&#34;http://localhost:1313/masterproef&#34;&gt;thesis&lt;/a&gt; I wanted to create a drag &#39;n drop interface.  But I never did anything like that, I never used CakePHP&#39;s Ajax helper and neither made I ever use of more advanced functionalities of Scriptaculous/Prototype.  Hell I even never touched Ajax before this! &lt;/p&gt;
+      <description>&lt;h3&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;During the development of my &lt;a href=&#34;http://localhost:1313/masterproef&#34;&gt;thesis&lt;/a&gt; I wanted to create a drag &#39;n drop interface.  But I never did anything like that, I never used CakePHP&#39;s Ajax helper and neither made I ever use of more advanced functionalities of Scriptaculous/Prototype.  Hell I even never touched Ajax before this! &lt;/p&gt;
 
 &lt;p&gt;Although there are some basic CakePHP/Ajax tutorials out there, I still had a hard time because some knowledge about Ajax (in CakePHP) was assumed in all of those.  After a lot of googling I even found a tutorial called &lt;a href=&#34;http://www.dustinweber.com/blog/_archives/2007/4/4/2859177.html&#34;&gt;CakePHP: Sortable AJAX Drag &amp;amp; Drops - The Basics&lt;/a&gt;  &lt;br/&gt;&#34;Perfect!&#34; I thought, until after staring at the article for a long while and I started to notice nowhere in the article &#34;$ajax-&gt;drag&#34;, &#34;$ajax-&gt;drop&#34; or &#34;$ajax-&gt;dropRemote&#34; is used.  (those are calls on the CakePHP Ajax helper to enhance objects to become draggable, or to become a dropbox where draggables can be dropped into).  So the only more or less suited tutorial about drag &#39;n drop was actually about sorting and didn&#39;t use the drag/drop function calls at all.  Even though it contains very useful information.&lt;/p&gt;
 
@@ -585,7 +601,9 @@ This is explained in this movie:&lt;a href=&#34;http://www.youtube.com/watch?v=W
       <pubDate>Sat, 07 Apr 2007 15:52:48 -0400</pubDate>
       
       <guid>http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/</guid>
-      <description>&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.   For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.&lt;br /&gt;
+      <description>&lt;p&gt;In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;DAuth&lt;/a&gt; (written by me), &lt;a href=&#34;http://bakery.cakephp.org/articles/view/99&#34;&gt;OthAuth&lt;/a&gt; (written by &lt;a href=&#34;http://www.devmoz.com/blog&#34;&gt;Crazylegs&lt;/a&gt;) and &lt;a href=&#34;http://bakery.cakephp.org/tags/view/auth&#34;&gt;many others&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.   For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.&lt;br /&gt;
 
 Disclaimer: not everything I&#39;ll say here will be correct, first of all because I&#39;m not able to fully understand every piece of the source code (yet), secondly because the 1.2 api is still changing.&lt;/p&gt;
 
@@ -671,9 +689,11 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
       <pubDate>Thu, 15 Mar 2007 21:02:41 -0400</pubDate>
       
       <guid>http://localhost:1313/post/fosdem_2007_review/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Every year, during a special weekend in February, the &lt;a href=&#34;http://www.ulb.ac.be/&#34;&gt;University Libre of Brussels&lt;/a&gt; suddenly becomes a little more geeky.&lt;br /&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&amp;rsquo; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;&lt;/p&gt;
+It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
+
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;This years edition&lt;/a&gt; took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)&lt;/p&gt;
 
@@ -769,11 +789,13 @@ It&#39;s cool to meet people though.  And if you want to visit stands of differe
       <pubDate>Sun, 04 Mar 2007 14:45:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/blogpost1_hello_world/</guid>
-      <description>&lt;p&gt;I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous &lt;a href=&#34;http://www.cakephp.org&#34;&gt;CakePHP&lt;/a&gt; framework along with an authentication system i wrote, &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;dAuth&lt;/a&gt;.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Finally, my own website...&lt;br /&gt;
 
-&lt;p&gt;However, due to my lack of time I decided to use the excellent &lt;a href=&#34;http://www.drupal.org&#34;&gt;drupal&lt;/a&gt; platform, of which I&amp;rsquo;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)&lt;br /&gt;&lt;/p&gt;
+I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous &lt;a href=&#34;http://www.cakephp.org&#34;&gt;CakePHP&lt;/a&gt; framework along with an authentication system i wrote, &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;dAuth&lt;/a&gt;.&lt;br /&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://buytaert.net/&#34;&gt;Dries Buytaert&lt;/a&gt;&amp;rsquo;s talk on &lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;fosdem&lt;/a&gt; this year really helped on making that decision ;-)&lt;/p&gt;&lt;/p&gt;
+However, due to my lack of time I decided to use the excellent &lt;a href=&#34;http://www.drupal.org&#34;&gt;drupal&lt;/a&gt; platform, of which I&#39;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)&lt;br /&gt;
+
+&lt;a href=&#34;http://buytaert.net/&#34;&gt;Dries Buytaert&lt;/a&gt;&#39;s talk on &lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;fosdem&lt;/a&gt; this year really helped on making that decision ;-)&lt;/p&gt;
 
 &lt;p&gt;So, what will this site be about?&lt;/p&gt;
 

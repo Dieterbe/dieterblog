@@ -3,6 +3,8 @@ title = "Kwartee 4 2007 verslag"
 date = "2007-03-19T12:09:06-04:00"
 tags = ["life"]
 +++
+<p>Dit weekend (17-18 maart) ben ik naar <a href="http://www.formaat.be/index.php?l1=5&amp;l2=18&amp;l3=19&amp;l4=129">Kwartee 4</a> geweest.<br />
+
 <a href="http://www.formaat.be/index.php?l1=5&amp;l2=18&amp;l3=19">Kwartee weekends</a> worden georganiseerd door <a href="http://www.formaat.be/">Formaat</a> (vroeger bekend als VFJ) en ging door in <a href="http://www.destelheide.be/">vormingscentrum destelheide</a> te Dworp (dichtbij Halle, ten zuiden van Brussel).<br />
 
 Twee man sterk (Steven en ik) vertegenwoordigden we <a href="http://www.jhsjatoo.org/">jeugdhuis SjaTOo</a>.</p>

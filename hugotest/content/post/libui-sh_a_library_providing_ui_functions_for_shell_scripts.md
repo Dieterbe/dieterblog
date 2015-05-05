@@ -3,6 +3,8 @@ title = "Libui-sh: a library providing UI functions for shell scripts"
 date = "2010-12-28T22:59:15-04:00"
 tags = ["foss", "bash"]
 +++
+<blockquote><p>
+
 == A library providing UI functions for shell scripts ==</p>
 
 <p>When you write bash/shell scripts, do you write your own error/debug/logging/abort functions?<br />

@@ -3,6 +3,8 @@ title = "new AIF release"
 date = "2008-12-17T09:50:11-04:00"
 tags = ["foss", "arch"]
 +++
+<p>My holidays present for Arch devs and users: AIF alpha-0.6 !</p>
+
 <p>* Changes since alpha 0.5:<!--more--></p>
 
 <ul>

@@ -3,6 +3,8 @@ title = "A fast way to get stuff out of your head and into your GTD inbox"
 date = "2008-08-13T20:42:51-04:00"
 tags = ["productivity", "bash"]
 +++
+<p>Often while you're occupied with something, some thought pops into your head.  Something that you want to remember/do something about.<!--more--><br />
+
 One of the key factors of a successful <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> implementation is having the tools in place to get that stuff out of your head and into something you can trust, so you can continue your work with the smallest interruption possible.  Many GTD tools I've checked out focus on the 'action management' part of GTD, leaving out the collection and processing phases (<a href="http://www.thinkingrock.com.au/">Thinkingrock</a> is a notable exception here) and often some other things (reference system etc).</p>
 
 <p>This is not necessarily a bad thing:  The whole GTD system is built around so many different actions and systems that some stuff can be divided into separate programs.  The only thing that matters is the global workflow, whether inside 1 program or across multiple.</p>

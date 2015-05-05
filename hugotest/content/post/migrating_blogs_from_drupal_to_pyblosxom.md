@@ -3,6 +3,8 @@ title = "Migrating blogs from Drupal to Pyblosxom"
 date = "2010-12-19T19:54:07-04:00"
 tags = ["python", "drupal"]
 +++
+<p><a href="http://pyblosxom.bluesock.org/">pyblosxom</a> is a pretty cool blogging platform written in python.<br />
+
 Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.<br />
 
 The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn't just rely on an external service like disqus, but stores comments as plaintext files as well.<br />

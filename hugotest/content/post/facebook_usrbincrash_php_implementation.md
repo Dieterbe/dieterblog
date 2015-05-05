@@ -3,6 +3,8 @@ title = "facebook usrbincrash php implementation"
 date = "2010-02-12T23:25:46-04:00"
 tags = ["php", "perf"]
 +++
+<p>Implementation for Facebook <a href="http://www.facebook.com/careers/puzzles.php?puzzle_id=2">usr bin crash</a> puzzle. (<a href="/not_working_for_facebook">how/why</a>)</p>
+
 <p>I haven't touched the code for a few months, but better to put it online then to let it rot.<br />
 
 <a href="http://github.com/Dieterbe/facebookpuzzles/" title="http://github.com/Dieterbe/facebookpuzzles/">http://github.com/Dieterbe/facebookpuzzles/</a></p>

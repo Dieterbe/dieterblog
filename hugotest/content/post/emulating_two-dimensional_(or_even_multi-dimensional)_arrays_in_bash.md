@@ -3,6 +3,8 @@ title = "Emulating two-dimensional (or even multi-dimensional) arrays in bash"
 date = "2007-08-26T12:49:42-04:00"
 tags = ["bash"]
 +++
+<p>Ever needed to use arrays of two or more dimensions but got stuck on Bash limited array support which provides only 1 dimension?</p>
+
 <p>There is a trick that let's you dynamically create variable names.  Using this, you can emulate additional dimensions.<br />
 
 <!--more--></p>

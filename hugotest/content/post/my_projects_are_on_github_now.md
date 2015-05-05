@@ -3,6 +3,8 @@ title = "My projects are on github now"
 date = "2008-09-09T11:40:03-04:00"
 tags = ["foss"]
 +++
+<p>I've put my (somewhat interesting) projects on <a href="http://github.com/">GitHub</a>.<br />
+
 Git is a damn cool VCS for distributed development, and I think Github integrates with it really nicely, adding some useful aspects for following and collaborating on projects.<br />
 
 The projects I have migrated to my <a href="https://github.com/Dieterbe">GitHub profile</a> are:<!--more--></p>

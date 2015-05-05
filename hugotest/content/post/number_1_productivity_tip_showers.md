@@ -3,6 +3,8 @@ title = "#1 productivity tip: showers"
 date = "2008-12-13T17:43:02-04:00"
 tags = ["life", "productivity"]
 +++
+<p>When you're stuck on a problem, or not even stuck but you just want to boost your creative/out-of-the-box thinking...<br />
+
 Take a shower.  When I'm thinking about a problem and I take a shower, the ideas and thoughts just start popping up, one after each other, or sometimes even two at the same time.  It's amazing.  And it works every time.<!--more--></p>
 
 <p>Sometimes the amount of thoughts and ideas is so much that I need a piece of paper to write everything down immediately when I come out, otherwise I'll forget stuff before I leave the bathrooom.</p>

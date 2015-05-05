@@ -3,6 +3,8 @@ title = "Back from Canada, Archcon"
 date = "2010-07-31T23:10:36-04:00"
 tags = ["life", "arch", "conf"]
 +++
+<p>I'm back from Canada/Archcon, and it was great. I've been in Toronto for 11 days, and visited Montreal for 3 days.</p>
+
 <h3>Archcon</h3>
 
 <p>Archcon was small (20-ish people).  (That's what you get for doing it in Canada ;), but very nice.<br />

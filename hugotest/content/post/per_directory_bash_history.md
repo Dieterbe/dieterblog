@@ -3,6 +3,8 @@ title = "Per-directory bash history"
 date = "2008-01-30T21:37:31-04:00"
 tags = ["bash", "productivity"]
 +++
+<p>I've been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
+
 <!--more--><br />
 
 Quote from an <a href="http://www.debian-administration.org/articles/543#comment_17">anonymous reply on debian-administration.org</a></p>

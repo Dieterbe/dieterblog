@@ -123,15 +123,17 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>But what about logical partitions?  A while back I had to resize an ext3 logical partition which ended at the end of the last logical partition.  I learned some usefull stuff but I only made some quick scratch notes and I don&rsquo;t remember all details so:<br /></p>
+		<p>You probably know you can resize primary partitions by deleting them and recreating them, keeping the starting block the same but using a higher block as ending point.  You can then increase the filesystem.<br />
 
-<p><strong>Do not expect a nice tutorial here, it&rsquo;s more of a commented dump of my scratch notes and some vague memories.<br /></p>
+But what about logical partitions?  A while back I had to resize an ext3 logical partition which ended at the end of the last logical partition.  I learned some usefull stuff but I only made some quick scratch notes and I don't remember all details so:<br />
 
-<p>The information in this post is not 100% accurate</strong><br /></p>
+<strong>Do not expect a nice tutorial here, it's more of a commented dump of my scratch notes and some vague memories.<br />
 
-<p>I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.<br /></p>
+The information in this post is not 100% accurate</strong><br />
 
-<p></p></p>
+I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.<br />
+
+</p>
 
 <p>I did find various places where they said parted could "handle all partition and filesystem resizing at once".<br />
 

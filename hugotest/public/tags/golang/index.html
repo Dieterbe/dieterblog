@@ -128,7 +128,9 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>I hinted that one could write a Go program using the unofficial <a href="https://github.com/kisielk/whisper-go">whisper-go</a> bindings and the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb Go client library</a>.</p>
+		<p>The <a href="/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html">whisper-to-influxdb migration script</a> I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.</p>
+
+<p>I hinted that one could write a Go program using the unofficial <a href="https://github.com/kisielk/whisper-go">whisper-go</a> bindings and the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb Go client library</a>.</p>
 
 <p>That&rsquo;s what I did now, it&rsquo;s at <a href="https://github.com/vimeo/whisper-to-influxdb">github.com/vimeo/whisper-to-influxdb</a>.</p>
 
@@ -184,7 +186,9 @@
 	</header>
 	
 	<div class="entry-content">
-		<p><br/>Updated oct 1, 2014 with a new <i>Disk space efficiency</i> section which fixes some mistakes and adds more clarity.</p>
+		<p><br></p>
+
+<p><br/>Updated oct 1, 2014 with a new <i>Disk space efficiency</i> section which fixes some mistakes and adds more clarity.</p>
 
 <p><br/></p>
 
@@ -649,21 +653,23 @@ influx_updater &amp;
 	</header>
 	
 	<div class="entry-content">
-		<p>Time for another side project:</p>
+		<p>
 
-<p><a href="https://github.com/Dieterbe/influx-cli">influx-cli</a>,</p>
+Time for another side project:
 
-<p>a commandline interface to influxdb.</p>
+<a href="https://github.com/Dieterbe/influx-cli">influx-cli</a>,
 
-<p><br/></p>
+a commandline interface to influxdb.
 
-<p>Nothing groundbreaking, and it behaves pretty much as you would expect if you&rsquo;ve ever used</p>
+<br/>
 
-<p>the mysql, pgsql, vsql, etc tools before.</p>
+Nothing groundbreaking, and it behaves pretty much as you would expect if you've ever used
 
-<p><br/>But I did want to highlight a few interesting features.</p>
+the mysql, pgsql, vsql, etc tools before.
 
-<p></p></p>
+<br/>But I did want to highlight a few interesting features.
+
+</p>
 
 <p><br/></p>
 
@@ -961,13 +967,15 @@ I've found this to be a much easier way to interface with InfluxDB then using th
 	</header>
 	
 	<div class="entry-content">
-		<p>It&rsquo;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,</p>
+		<p>
 
-<p>and needing a response that tells them whether the operation succeeded and/or other auxiliary information.</p>
+It's a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
 
-<p>Something centralized manages the shared state, the changes to it and the responses.</p>
+and needing a response that tells them whether the operation succeeded and/or other auxiliary information.
 
-<p></p></p>
+Something centralized manages the shared state, the changes to it and the responses.
+
+</p>
 
 <p>
 
@@ -1179,7 +1187,9 @@ Take for example this <a href="https://github.com/graphite-ng/carbon-relay-ng/pu
 	</header>
 	
 	<div class="entry-content">
-		<p>Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.</p>
+		<h4>Graphite, and the storage Achilles heel</h4>
+
+<p>Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.</p>
 
 <p><br/>For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).</p>
 
@@ -1379,7 +1389,9 @@ It should also work with the regular graphite, though I've never tried.  (I have
 	</header>
 	
 	<div class="entry-content">
-		<p>that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?</p>
+		<p>So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way</p>
+
+<p>that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?</p>
 
 <p><br/></p>
 
@@ -1441,13 +1453,15 @@ It should also work with the regular graphite, though I've never tried.  (I have
 	</header>
 	
 	<div class="entry-content">
-		<p>I&rsquo;ve been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It&rsquo;s a <i>great</i> tool for timeseries metrics.</p>
+		<p>
 
-<p>Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:</p>
+I've been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It's a <i>great</i> tool for timeseries metrics.
 
-<p>it&rsquo;s somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in <a href="http://golang.org">Golang</a>.</p>
+Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:
 
-<p>The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p></p>
+it's somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in <a href="http://golang.org">Golang</a>.
+
+The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p>
 
 <p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
 

@@ -3,6 +3,8 @@ title = "A script that pulls photos from facebook"
 date = "2009-08-18T17:36:21-04:00"
 tags = ["bash"]
 +++
+<p><a href="http://fbcmd.dtompkins.com/">Fbcmd</a> is pretty cool.<br />
+
 I quickly hacked this script together which pulls all photo albums from friends on facebook, so I have them available where I want.  (It should also pull your own albums, but I don't have any so I can't check that)<!--more--><br />
 
 Maybe there are better ways to do this.  I looked at <a href="http://nerd256.diggles.net/fbfs/">fbfs</a> but it looks a bit weird.  I have no idea what the corrupted images fuss is all about.</p>

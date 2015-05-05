@@ -3,6 +3,8 @@ title = "Joining Vimeo"
 date = "2012-03-27T11:50:36-04:00"
 tags = ["vimeo"]
 +++
+Working on <a href="/building_a_search_engine.html">scalable information retrieval systems at the university of Ghent</a> has been very fun: interesting and challenging work, smart team, and an environment that fosters growth and innovation.  I could definitely see myself continuing there...
+
 <br/>
 
 However, <a href="https://vimeo.com/">Vimeo</a> got in touch and told me about their plans... specifically what's going into the <a href="https://vimeo.com/35514005">new version</a> and what other stuff they have on their roadmap.

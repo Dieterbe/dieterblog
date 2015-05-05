@@ -15,7 +15,9 @@
       <pubDate>Sat, 24 May 2008 12:39:28 -0400</pubDate>
       
       <guid>http://localhost:1313/post/announcing_the_netlog_developer_pages/</guid>
-      <description>&lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
+      <description>&lt;p&gt;At work, we&#39;ve setup the &lt;a href=&#34;http://netlog.com/go/developer&#34;&gt;Netlog Developer Pages&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
 
 We&#39;ve also launched a &lt;a href=&#34;http://en.netlog.com/go/developer/group&#34;&gt;group&lt;/a&gt; where you can communicate with fellow developers and Netlog employees.&lt;br /&gt;
 
@@ -31,7 +33,9 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <pubDate>Sun, 08 Jul 2007 12:38:38 -0400</pubDate>
       
       <guid>http://localhost:1313/post/webpages_should_not_contain_add_to_digg_delicious_technorati_links/</guid>
-      <description>&lt;p&gt;Why not? Because this is meta level functionality.  Not functionality of the blog/article/page in question, but on a higher level.  And thus this should be handled on a higher level: the web browser.  Just like we can create and manage bookmarks (I mean the old fashioned ones, not the delicious ones) in our browser: this is not the task of a web page. (we all know how silly &amp;ldquo;bookmark this&amp;rdquo; links look on a page, right?)&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;I don&#39;t like pages / articles / blog posts /.. accompanied by &#34;Digg this&#34;, &#34;add to Del.icio.us&#34; or &#34;add to Technorati&#34; links.&lt;br /&gt;
+
+Why not? Because this is meta level functionality.  Not functionality of the blog/article/page in question, but on a higher level.  And thus this should be handled on a higher level: the web browser.  Just like we can create and manage bookmarks (I mean the old fashioned ones, not the delicious ones) in our browser: this is not the task of a web page. (we all know how silly &#34;bookmark this&#34; links look on a page, right?)&lt;/p&gt;
 
 &lt;p&gt;Whether you like these kind of services or not is up to you (personally I think the most popular content is often the most subjective,   biased and close minded, not to mention too mainstream for &#34;real&#34; geeks but that&#39;s another story) but people who are serious about it should just make sure they can do it for any page they visit (eg use a Firefox extension to enable digging and adding to delicious) so we can get rid of this ugly clutter that is put on some pages.&lt;/p&gt;
 
@@ -47,7 +51,9 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <pubDate>Sun, 01 Jul 2007 16:52:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/</guid>
-      <description>&lt;p&gt;I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.&lt;br /&gt;
+
+I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).&lt;/p&gt;
 
 &lt;p&gt;You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated:  It gets filled with way too many tags.  Among those tags several of them mean the same (fun, funny, humor, ...) or include the other (humor, jokes, ...)  You can group them in bundles but even then you need to add all the tags to a post if you want it to appear in the results for that tag.  Not very convenient. Also, if you have your del.icio.us bookmarks available in Firefox, you&#39;d have a menu with several hundreds of entries (one for each tag), each menu containing usually just a few (or worse: just one) entry.&lt;/p&gt;
 
@@ -69,7 +75,9 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <pubDate>Fri, 29 Jun 2007 13:52:21 -0400</pubDate>
       
       <guid>http://localhost:1313/post/php_delicious_client/</guid>
-      <description>&lt;p&gt;PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.&lt;/p&gt;
+      <description>&lt;h3&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.&lt;/p&gt;
 
 &lt;p&gt;It&#39;s written in PHP and uses &lt;a href=&#34;http://www.ejeliot.com/&#34;&gt;Ed Eliot&#39;s&lt;/a&gt; &lt;a href=&#34;http://www.ejeliot.com/pages/php-delicious&#34;&gt;PhpDelicous&lt;/a&gt; class to contact the del.icio.us api. (included in download)&lt;br /&gt;
 
@@ -221,7 +229,9 @@ Make sure pdclient.php has the executable flag (x).  If the directory is in your
       <pubDate>Sun, 24 Jun 2007 19:27:42 -0400</pubDate>
       
       <guid>http://localhost:1313/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/</guid>
-      <description>&lt;p&gt;Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).&lt;/p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;You probably already heard of &lt;a href=&#34;www.google.com/analytics&#34;&gt;Google Analytics&lt;/a&gt;.  It&#39;s a pretty nice program that (&lt;em&gt;basically&lt;/em&gt;) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;amp;topic=11012&#34;&gt;events that don&#39;t require page requests!&lt;/a&gt;&lt;br /&gt;
+
+Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).&lt;/p&gt;
 
 &lt;p&gt;The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function &lt;em&gt;urchinTracker()&lt;/em&gt; you just add &lt;em&gt;onClick=&#34;javascript:urchinTracker(&#39;/this-is-something-i-want-to-track&#39;);&#34;&lt;/em&gt; to your hyperlink.&lt;br /&gt;
 
@@ -249,7 +259,9 @@ urchinTracker(&#39;/outgoing/example_com&#39;);&lt;/em&gt; respectively.&lt;/p&g
       <pubDate>Mon, 18 Jun 2007 12:01:13 -0400</pubDate>
       
       <guid>http://localhost:1313/post/bye_google_sandbox/</guid>
-      <description>&lt;p&gt;Google has this system called the sandbox where new pages go into for 6 months, in order to prevent scammers/spammers from resurrecting dummy pages - and scoring well in Google - all the time.&lt;br /&gt;
+      <description>&lt;p&gt;Today I&#39;m finally out of Google&#39;s Sandbox.&lt;/p&gt;
+
+&lt;p&gt;Google has this system called the sandbox where new pages go into for 6 months, in order to prevent scammers/spammers from resurrecting dummy pages - and scoring well in Google - all the time.&lt;br /&gt;
 
 During these 6 months a page will score very bad in search results, even if it should rate very well for the specific keywords.&lt;/p&gt;
 
@@ -265,7 +277,9 @@ During these 6 months a page will score very bad in search results, even if it s
       <pubDate>Sat, 07 Apr 2007 15:52:48 -0400</pubDate>
       
       <guid>http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/</guid>
-      <description>&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.   For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.&lt;br /&gt;
+      <description>&lt;p&gt;In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;DAuth&lt;/a&gt; (written by me), &lt;a href=&#34;http://bakery.cakephp.org/articles/view/99&#34;&gt;OthAuth&lt;/a&gt; (written by &lt;a href=&#34;http://www.devmoz.com/blog&#34;&gt;Crazylegs&lt;/a&gt;) and &lt;a href=&#34;http://bakery.cakephp.org/tags/view/auth&#34;&gt;many others&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.   For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.&lt;br /&gt;
 
 Disclaimer: not everything I&#39;ll say here will be correct, first of all because I&#39;m not able to fully understand every piece of the source code (yet), secondly because the 1.2 api is still changing.&lt;/p&gt;
 
@@ -351,9 +365,11 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
       <pubDate>Thu, 15 Mar 2007 21:02:41 -0400</pubDate>
       
       <guid>http://localhost:1313/post/fosdem_2007_review/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Every year, during a special weekend in February, the &lt;a href=&#34;http://www.ulb.ac.be/&#34;&gt;University Libre of Brussels&lt;/a&gt; suddenly becomes a little more geeky.&lt;br /&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&amp;rsquo; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;&lt;/p&gt;
+It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
+
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;This years edition&lt;/a&gt; took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)&lt;/p&gt;
 
@@ -449,11 +465,13 @@ It&#39;s cool to meet people though.  And if you want to visit stands of differe
       <pubDate>Sun, 04 Mar 2007 14:45:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/blogpost1_hello_world/</guid>
-      <description>&lt;p&gt;I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous &lt;a href=&#34;http://www.cakephp.org&#34;&gt;CakePHP&lt;/a&gt; framework along with an authentication system i wrote, &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;dAuth&lt;/a&gt;.&lt;br /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;Finally, my own website...&lt;br /&gt;
 
-&lt;p&gt;However, due to my lack of time I decided to use the excellent &lt;a href=&#34;http://www.drupal.org&#34;&gt;drupal&lt;/a&gt; platform, of which I&amp;rsquo;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)&lt;br /&gt;&lt;/p&gt;
+I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous &lt;a href=&#34;http://www.cakephp.org&#34;&gt;CakePHP&lt;/a&gt; framework along with an authentication system i wrote, &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;dAuth&lt;/a&gt;.&lt;br /&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://buytaert.net/&#34;&gt;Dries Buytaert&lt;/a&gt;&amp;rsquo;s talk on &lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;fosdem&lt;/a&gt; this year really helped on making that decision ;-)&lt;/p&gt;&lt;/p&gt;
+However, due to my lack of time I decided to use the excellent &lt;a href=&#34;http://www.drupal.org&#34;&gt;drupal&lt;/a&gt; platform, of which I&#39;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)&lt;br /&gt;
+
+&lt;a href=&#34;http://buytaert.net/&#34;&gt;Dries Buytaert&lt;/a&gt;&#39;s talk on &lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;fosdem&lt;/a&gt; this year really helped on making that decision ;-)&lt;/p&gt;
 
 &lt;p&gt;So, what will this site be about?&lt;/p&gt;
 

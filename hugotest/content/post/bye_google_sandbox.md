@@ -3,6 +3,8 @@ title = "Bye, Google sandbox!"
 date = "2007-06-18T12:01:13-04:00"
 tags = ["web2.0"]
 +++
+<p>Today I'm finally out of Google's Sandbox.</p>
+
 <p>Google has this system called the sandbox where new pages go into for 6 months, in order to prevent scammers/spammers from resurrecting dummy pages - and scoring well in Google - all the time.<br />
 
 During these 6 months a page will score very bad in search results, even if it should rate very well for the specific keywords.</p>

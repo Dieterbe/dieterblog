@@ -137,9 +137,7 @@ In my case it was not good enough because zenoss uses a variety of resolutions (
 
 I <a href="http://stackoverflow.com/questions/802902/export-import-rrdtool-database-with-differents-rra/1867163#1867163">found</a> a <a href="http://code.google.com/p/pmptools/source/browse/trunk/rrd/rrdmove">perl tool</a> that does just that.  (I think, I didn't study all details).  So, you install that in your /home/zenoss for instance and then you run the following script, which creates new rrd files with the new settings and uses the perl script to copy all data into it.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/sh</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/sh</span>
 
 <span style="color: #408080; font-style: italic"># invoke me like this:</span>
 
@@ -188,8 +186,6 @@ cp <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$file<
 cp <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$base</span><span style="color: #BA2121">&quot;</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$file</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">||</span> <span style="color: #008000">exit </span>5
 
 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Done&quot;</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>
 

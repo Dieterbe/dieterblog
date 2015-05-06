@@ -17,7 +17,7 @@ In my case it was not good enough because zenoss uses a variety of resolutions (
 
 I <a href="http://stackoverflow.com/questions/802902/export-import-rrdtool-database-with-differents-rra/1867163#1867163">found</a> a <a href="http://code.google.com/p/pmptools/source/browse/trunk/rrd/rrdmove">perl tool</a> that does just that.  (I think, I didn't study all details).  So, you install that in your /home/zenoss for instance and then you run the following script, which creates new rrd files with the new settings and uses the perl script to copy all data into it.</p>
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 #!/bin/sh
 
@@ -69,6 +69,6 @@ cp "$base" "$file" || exit 5
 
 echo "Done"
 
-]]>{{< /highlight >}}<p>
+{{< /highlight >}}<p>
 
 Oh and btw, <a href="http://www.famzah.net/rrdwizard/index.php">rrdwizard</a> is a cool webapp when you're feeling too lazy/have forgotten how to write rrdtool commands</p>

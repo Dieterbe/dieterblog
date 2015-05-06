@@ -1312,9 +1312,7 @@ to do this.  I personally had no need for this, until a recent small influxdb ou
 
 
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
 <span style="color: #408080; font-style: italic"># whisper dir without trailing slash.</span>
 
@@ -1347,8 +1345,6 @@ influx_updater &amp;
   whisper-fetch.py --from<span style="color: #666666">=</span><span style="color: #19177C">$start</span> --until<span style="color: #666666">=</span><span style="color: #19177C">$end</span> <span style="color: #19177C">$wsp_dir</span>/<span style="color: #19177C">$wsp</span>.wsp | grep -v <span style="color: #BA2121">&#39;None$&#39;</span> | awk <span style="color: #BA2121">&#39;{print &quot;insert into \&quot;&#39;</span><span style="color: #19177C">$series</span><span style="color: #BA2121">&#39;\&quot; values (&quot;$1&quot;000,1,&quot;$2&quot;)&quot;}&#39;</span> &gt; <span style="color: #19177C">$pipe_path</span>
 
 <span style="color: #008000; font-weight: bold">done</span> &lt; &lt;<span style="color: #666666">(</span>find <span style="color: #19177C">$wsp_dir</span> -name <span style="color: #BA2121">&#39;*.wsp&#39;</span> | sed -e <span style="color: #BA2121">&quot;s#</span><span style="color: #19177C">$wsp_dir</span><span style="color: #BA2121">/##&quot;</span> -e <span style="color: #BA2121">&quot;s/.wsp</span><span style="color: #19177C">$/</span><span style="color: #BA2121">/&quot;</span><span style="color: #666666">)</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>
 
@@ -2068,11 +2064,11 @@ to identify and use metrics and organize tags around them.
 
 The proposed ingestion (carbon etc) protocol looks like this:
 
-<pre><![CDATA[
+<pre>
 
 <intrinsic_tags>  <extrinsic_tags> <value> <timestamp>
 
-]]></pre>
+</pre>
 
 <ul>
 
@@ -2104,7 +2100,7 @@ dimension (aspect) of the metric.
 
 A metric in its basic form (without extrinsic tags) would look like:
 
-<pre><![CDATA[
+<pre>
 
 graphite: stats.gauges.db15.mysql.bytes_received
 
@@ -2112,7 +2108,7 @@ opentsdb: mysql.bytes_received host=db15
 
 proposal: service=mysql server=db15 direction=in unit=B
 
-]]></pre>
+</pre>
 
 </li>
 
@@ -2366,11 +2362,7 @@ it's somewhere between an early clone/rewrite, a redesign, and an experiment pla
 
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-<span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
-
-]]<span style="color: #666666">&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
 </pre></div>
 
 
@@ -3416,11 +3408,11 @@ I have a working prototype on <a href="https://github.com/Dieterbe/anthracite">g
 
 
 
-<pre><![CDATA[
+<pre>
 
 <unix_timestamp> <type> <description>
 
-]]></pre>
+</pre>
 
 
 
@@ -3432,7 +3424,7 @@ I have a working prototype on <a href="https://github.com/Dieterbe/anthracite">g
 
 
 
-<pre><![CDATA[
+<pre>
 
 # a deploy_* type for each project
 
@@ -3452,7 +3444,7 @@ ts manual_dieter "i have to try this firewall thing on the LB"
 
 ts backup "backup from database slave vimeomysql22"
 
-]]></pre>
+</pre>
 
 
 
@@ -3618,11 +3610,7 @@ Tips and notes:
 
 the histogram implementation stores absolute frequencies, but it's easy to get relative frequencies in percent, like so:
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-target<span style="color: #666666">=</span>scale(divideSeries(stats.timers.<span style="color: #666666">&lt;</span>your_metric<span style="color: #666666">&gt;</span>.bin_<span style="color: #666666">*</span>,stats.timers.render_time.count),<span style="color: #666666">100</span>)
-
-]]<span style="color: #666666">&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">target<span style="color: #666666">=</span>scale(divideSeries(stats.timers.<span style="color: #666666">&lt;</span>your_metric<span style="color: #666666">&gt;</span>.bin_<span style="color: #666666">*</span>,stats.timers.render_time.count),<span style="color: #666666">100</span>)
 </pre></div>
 
 
@@ -3664,9 +3652,7 @@ a misleading name but <a href="https://github.com/etsy/statsd/issues/98">we're w
 
 <h4>First version</h4>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
 width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
 
@@ -3691,8 +3677,6 @@ target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.
 target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
 
 lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
-
-]]<span style="color: #666666">&gt;</span>
 </pre></div>
 
 
@@ -3726,9 +3710,7 @@ This adaption is basically the same as before, but leaves out the smallest class
 
 the other bands are a bit more visible but the effect isn't as clear as we want.
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
 width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
 
@@ -3751,8 +3733,6 @@ target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.
 target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
 
 lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
-
-]]<span style="color: #666666">&gt;</span>
 </pre></div>
 
 
@@ -3766,9 +3746,7 @@ Finally, the bigger the values represented by each class the more we inflate the
 
 so the more problematic cases become more visible, despite having a lower frequency.
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
 width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
 
@@ -3793,8 +3771,6 @@ target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.
 target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">60</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
 
 lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
-
-]]<span style="color: #666666">&gt;</span>
 </pre></div>
 
 
@@ -4164,9 +4140,7 @@ In my case it was not good enough because zenoss uses a variety of resolutions (
 
 I <a href="http://stackoverflow.com/questions/802902/export-import-rrdtool-database-with-differents-rra/1867163#1867163">found</a> a <a href="http://code.google.com/p/pmptools/source/browse/trunk/rrd/rrdmove">perl tool</a> that does just that.  (I think, I didn't study all details).  So, you install that in your /home/zenoss for instance and then you run the following script, which creates new rrd files with the new settings and uses the perl script to copy all data into it.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/sh</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/sh</span>
 
 <span style="color: #408080; font-style: italic"># invoke me like this:</span>
 
@@ -4215,8 +4189,6 @@ cp <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$file<
 cp <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$base</span><span style="color: #BA2121">&quot;</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$file</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">||</span> <span style="color: #008000">exit </span>5
 
 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Done&quot;</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>
 

@@ -45,14 +45,14 @@ def fixheader(lines, draft=False):
         raise Exception("incomplete header")
 
     newheader = [
-        "+++",
-        "title = \"%s\"" % title,
-        "date = \"%sT%s-04:00\"" % (date, time),
-        "tags = [%s]" % ', '.join(['"%s"' % i for i in tags]),
+        "+++\n",
+        "title = \"%s\"\n" % title,
+        "date = \"%sT%s-04:00\"\n" % (date, time),
+        "tags = [%s]\n" % ', '.join(['"%s"' % i for i in tags]),
     ]
     if draft:
-        newheader.append("draft = true")
-    newheader.append("+++")
+        newheader.append("draft = true\n")
+    newheader.append("+++\n")
 
     #print("header", lines[0:i])
     #print("not header", lines[i+1:i+10])
@@ -67,6 +67,9 @@ def fixreadmore(lines):
 def fixhighlight(lines):
     out = []
     for i, line in enumerate(lines):
+        # due to how processing works in hugo, CDATA sections would show up literally. we of course don't want that
+        line = line.replace('<![CDATA[', '')
+        line = line.replace(']]>', '')
         # quote lang arg because lang can be like html+php
         line = re.sub('<code lang="([a-zA-Z\+]+)">', '{{< highlight "\\1" "style=default" >}}', line)
         line = line.replace('<code>', '{{< highlight "c" "style=default" >}}')  # sorry i really don't think we can do better than this, pygments invoked via hugo needs a lang specified
@@ -89,10 +92,12 @@ def process_entry(entry):
     print(base, "---->", new)
     f = open(entry, "r")
     lines = f.readlines()
+    print("lines before", lines[:20])
     lines = fixhighlight(fixreadmore(fixheader(lines, draft)))
+    print("lines after", lines[:20])
     f.close()
     f = open(new, "w")
-    f.write("\n".join(lines))
+    f.write(''.join(lines))
     f.close()
 
 def process_page(page):

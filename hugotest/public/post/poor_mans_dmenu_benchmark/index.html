@@ -129,9 +129,7 @@
 
 <p>generate file:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Creating dummy file of 50MB in size (625000 entries of 80chars)&quot;</span>
 
@@ -154,14 +152,10 @@
         <span style="color: #008000; font-weight: bold">done</span>
 
 <span style="color: #008000; font-weight: bold">done</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>measure speed:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Plain awk &#39;{print \$3}&#39;:&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Plain awk &#39;{print \$3}&#39;:&quot;</span>
 
 <span style="color: #008000">time </span>awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file &gt;/dev/null
 
@@ -188,8 +182,6 @@ awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file 
 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;awk + sort + uniq into dmenu:&quot;</span>
 
 awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file | sort | uniq | dmenu
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>
 

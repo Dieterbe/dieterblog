@@ -152,13 +152,9 @@ That's where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">t
 
 It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">$ </span>cat /etc/tmpfiles.d/lighttpd.conf 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>cat /etc/tmpfiles.d/lighttpd.conf 
 
 d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 
 
@@ -304,11 +300,7 @@ It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume
 
 If you want to run stuff as a regular user you could do something like</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-su <span style="color: #19177C">$user</span> -c &lt;<span style="color: #008000">command</span>&gt;
-
-<span style="color: #666666">]]</span>&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">su <span style="color: #19177C">$user</span> -c &lt;<span style="color: #008000">command</span>&gt;
 </pre></div>
 <p>..but these commands have no access to your user environment.<br />
 
@@ -318,11 +310,7 @@ In my user environment I have a variable which I need access to, namely SSH_AUTH
 
 <p>The solution is very simple. Use this:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-sudo pm-hibernate <span style="color: #666666">&amp;&amp;</span> <span style="color: #008000; font-weight: bold">do</span>-my-stuff.sh
-
-<span style="color: #666666">]]</span>&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">sudo pm-hibernate <span style="color: #666666">&amp;&amp;</span> <span style="color: #008000; font-weight: bold">do</span>-my-stuff.sh
 </pre></div>
 <p>This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.<br />
 
@@ -1956,13 +1944,13 @@ So here they are, my favorite tricks, key combo's and some bonus stuff:</p>
 
 <li>readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :<br />
 
-<pre><![CDATA[
+<pre>
 
 "\e[5~": history-search-backward
 
 "\e[6~": history-search-forward
 
-]]></pre><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
+</pre><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
 
 You can use the up/down arrows too, their codes are "\e[A" and "\e[B"
 
@@ -1970,11 +1958,11 @@ You can use the up/down arrows too, their codes are "\e[A" and "\e[B"
 
 <li>for more "natural" history saving behavior (when having several terminals open): put this in .bash_profile: <br/><br />
 
-<pre><![CDATA[PROMPT_COMMAND='history -a']]></pre><p> (write each command separately in a new entry, instead of all at shell exit).<br />
+<pre>PROMPT_COMMAND='history -a'</pre><p> (write each command separately in a new entry, instead of all at shell exit).<br />
 
 And type </p>
 
-<pre><![CDATA[shopt -s histappend]]></pre><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
+<pre>shopt -s histappend</pre><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
 
 </ul>
 

@@ -185,11 +185,7 @@ Tips and notes:
 
 the histogram implementation stores absolute frequencies, but it's easy to get relative frequencies in percent, like so:
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-target<span style="color: #666666">=</span>scale(divideSeries(stats.timers.<span style="color: #666666">&lt;</span>your_metric<span style="color: #666666">&gt;</span>.bin_<span style="color: #666666">*</span>,stats.timers.render_time.count),<span style="color: #666666">100</span>)
-
-]]<span style="color: #666666">&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">target<span style="color: #666666">=</span>scale(divideSeries(stats.timers.<span style="color: #666666">&lt;</span>your_metric<span style="color: #666666">&gt;</span>.bin_<span style="color: #666666">*</span>,stats.timers.render_time.count),<span style="color: #666666">100</span>)
 </pre></div>
 
 
@@ -231,9 +227,7 @@ a misleading name but <a href="https://github.com/etsy/statsd/issues/98">we're w
 
 <h4>First version</h4>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
 width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
 
@@ -258,8 +252,6 @@ target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.
 target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
 
 lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
-
-]]<span style="color: #666666">&gt;</span>
 </pre></div>
 
 
@@ -293,9 +285,7 @@ This adaption is basically the same as before, but leaves out the smallest class
 
 the other bands are a bit more visible but the effect isn't as clear as we want.
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
 width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
 
@@ -318,8 +308,6 @@ target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.
 target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">100</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
 
 lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
-
-]]<span style="color: #666666">&gt;</span>
 </pre></div>
 
 
@@ -333,9 +321,7 @@ Finally, the bigger the values represented by each class the more we inflate the
 
 so the more problematic cases become more visible, despite having a lower frequency.
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
 width<span style="color: #666666">=740&amp;</span>from<span style="color: #666666">=-24</span>h<span style="color: #666666">&amp;</span>title<span style="color: #666666">=</span>Render time histogram<span style="color: #666666">&amp;</span>
 
@@ -360,8 +346,6 @@ target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.
 target<span style="color: #666666">=</span>alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color: #666666">60</span>),<span style="color: #BA2121">&#39;FF0000&#39;</span>),<span style="color: #BA2121">&#39;inf&#39;</span>)<span style="color: #666666">&amp;</span>
 
 lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&amp;</span>areaMode<span style="color: #666666">=</span>stacked<span style="color: #666666">&amp;</span>drawNullAsZero<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span><span style="color: #666666">&amp;</span>hideLegend<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">false</span>
-
-]]<span style="color: #666666">&gt;</span>
 </pre></div>
 
 

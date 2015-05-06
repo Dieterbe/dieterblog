@@ -89,13 +89,9 @@ That&#39;s where this new tool &lt;a href=&#34;https://www.google.be/#hl=nl&amp;
 
 It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;$ &lt;/span&gt;cat /etc/tmpfiles.d/lighttpd.conf 
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$ &lt;/span&gt;cat /etc/tmpfiles.d/lighttpd.conf 
 
 d /run/lighttpd/sockets &lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span&gt; http http
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 </description>
@@ -771,11 +767,7 @@ First of all, I worked more on the automatic installations.  Now you can easily 
 
 You type this command:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And &lt;strong&gt;bam&lt;/strong&gt; you have a complete working system with LVM, dm_crypt etc all set up.  You just need to change your keymap, hostname, network config and such (or, configure that on the beforehand in the config file for AIF)&lt;/p&gt;
 

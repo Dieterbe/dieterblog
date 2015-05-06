@@ -83,11 +83,11 @@ Keep in mind though that everything can be overridden through .ddm files in data
 
 Unless overridden, ddm will construct the repo path as follows:  </p>
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 $TYPE_BASE/$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX
 
-]]>{{< /highlight >}}<p>(if unclear, read on)</p>
+{{< /highlight >}}<p>(if unclear, read on)</p>
 
 <p>In the .ddm file in your dataset directory you can override defaults.</p>
 
@@ -95,7 +95,7 @@ $TYPE_BASE/$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX
 
 <p>This is how my file looks like.</p>
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 ALLOWED_REPO_TYPES='svn vfs'
 
@@ -109,9 +109,9 @@ SVN_PREFIX='ddm-'
 
 VFS_BASE='/net/server/home/dieter/ddm-repo'
 
-]]>{{< /highlight >}}<p>These are all the options you can specify:</p>
+{{< /highlight >}}<p>These are all the options you can specify:</p>
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 SVN_BASE=''
 
@@ -133,11 +133,11 @@ ALLOWED_REPO_TYPES='vfs'
 
 IGNORE_DATASET_REMOTE_SVN=0 #nag if the repo url figured out is not the same as the one in 'svn info'. you should leave this 0
 
-]]>{{< /highlight >}}<h5>dataset/.ddm</h5>
+{{< /highlight >}}<h5>dataset/.ddm</h5>
 
 <p>For an example see below.  Possible options are these:</p>
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 DATASET_LOCAL='' #path to dataset locally (including type suffix if any)
 
@@ -181,9 +181,9 @@ doupdate
 
 postupdate
 
-]]>{{< /highlight >}}<h4>Invocation</h4>
+{{< /highlight >}}<h4>Invocation</h4>
 
-<pre><![CDATA[
+<pre>
 
 dieter@dieter-mbp:~$ ddm -h
 
@@ -211,7 +211,7 @@ OPTIONS:
 
    -v                Verbose
 
-]]></pre><h4>Examples</h4>
+</pre><h4>Examples</h4>
 
 <h5>Update my video-selection.</h5>
 
@@ -219,7 +219,7 @@ OPTIONS:
 
 The .ddm file looks like this</p>
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 doupdate()
 
@@ -229,11 +229,11 @@ doupdate()
 
 }
 
-]]>{{< /highlight >}}<p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
+{{< /highlight >}}<p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
 
 It will then delete all the ones I've already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)</p>
 
-<pre><![CDATA[
+<pre>
 
 dieter@dieter-mbp:~$ ddm -u -v -d video-selection/
 
@@ -277,7 +277,7 @@ Copying new files... (10 items).
 
 finished
 
-]]></pre><h4>Download</h4>
+</pre><h4>Download</h4>
 
 <p>The code is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt">Gpl v3</a><br />
 

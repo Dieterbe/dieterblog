@@ -21,7 +21,7 @@ ssh-add *mykey* < /dev/null<br />
 
 This revealed that there are already some utilities specifically for this purpose!  Let's see...:</p>
 
-<pre><![CDATA[
+<pre>
 
 dieter@dieter-mbp:~$ aptitude search askpass
 
@@ -33,7 +33,7 @@ p   ssh-askpass-fullscreen                                         - Under Gnome
 
 p   ssh-askpass-gnome                                              - interactive X program to prompt users for a passphrase for ssh-add  
 
-]]></pre><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p>
+</pre><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p>
 
 <p>After installing this you can just put your ssh-add line in the settings panel called "autostarted Applications" from Xfce and for your next session it will show a nice gtk popup to ask for your password and it works like a charm :)<br />
 

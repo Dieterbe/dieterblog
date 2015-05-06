@@ -145,13 +145,9 @@ That's where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">t
 
 It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">$ </span>cat /etc/tmpfiles.d/lighttpd.conf 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>cat /etc/tmpfiles.d/lighttpd.conf 
 
 d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 
 

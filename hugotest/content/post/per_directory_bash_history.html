@@ -15,7 +15,7 @@ Quote from an <a href="http://www.debian-administration.org/articles/543#comment
 
 So I use the following bash function:
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 #
 
@@ -51,11 +51,11 @@ function mycd()
 
 }
 
-]]>{{< /highlight >}}
+{{< /highlight >}}
 
 <p>and then set it up with the following in my bashrc:</p>
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 shopt -s histappend
 
@@ -63,7 +63,7 @@ alias cd="mycd"
 
 export HISTFILE="$HOME/.dir_bash_history$PWD/bash_history.txt"
 
-]]>{{< /highlight >}}</cite>
+{{< /highlight >}}</cite>
 
 <p>Great stuff.  It would be nice to be able to use both the global and the directory-specific history by combining with an extra modifier key .<br />
 

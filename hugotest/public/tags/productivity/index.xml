@@ -63,9 +63,7 @@ If something goes wrong (and only then!) it will show a popup with &lt;a href=&#
 
 &lt;p&gt;Here is the file, save it as gtdinbox.sh&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
 
 
@@ -128,8 +126,6 @@ die_error &lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
         &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Cancelled input into &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 </description>
@@ -271,9 +267,7 @@ Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#
 
 So I use the following bash function:
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# Usage: mycd &amp;lt;path&amp;gt;&lt;/span&gt;
 
@@ -306,22 +300,16 @@ So I use the following bash function:
    &lt;span style=&#34;color: #008000&#34;&gt;history&lt;/span&gt; -r &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# read from current histfile&lt;/span&gt;
 
 &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and then set it up with the following in my bashrc:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000&#34;&gt;shopt&lt;/span&gt; -s histappend
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #008000&#34;&gt;shopt&lt;/span&gt; -s histappend
 
 &lt;span style=&#34;color: #008000&#34;&gt;alias cd&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;mycd&amp;quot;&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000&#34;&gt;export &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;HISTFILE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/.dir_bash_history&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PWD&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/bash_history.txt&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/cite&gt;
 
@@ -365,13 +353,13 @@ So here they are, my favorite tricks, key combo&#39;s and some bonus stuff:&lt;/
 
 &lt;li&gt;readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :&lt;br /&gt;
 
-&lt;pre&gt;&lt;![CDATA[
+&lt;pre&gt;
 
 &#34;\e[5~&#34;: history-search-backward
 
 &#34;\e[6~&#34;: history-search-forward
 
-]]&gt;&lt;/pre&gt;&lt;p&gt;This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*&lt;br /&gt;
+&lt;/pre&gt;&lt;p&gt;This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*&lt;br /&gt;
 
 You can use the up/down arrows too, their codes are &#34;\e[A&#34; and &#34;\e[B&#34;
 
@@ -379,11 +367,11 @@ You can use the up/down arrows too, their codes are &#34;\e[A&#34; and &#34;\e[B
 
 &lt;li&gt;for more &#34;natural&#34; history saving behavior (when having several terminals open): put this in .bash_profile: &lt;br/&gt;&lt;br /&gt;
 
-&lt;pre&gt;&lt;![CDATA[PROMPT_COMMAND=&#39;history -a&#39;]]&gt;&lt;/pre&gt;&lt;p&gt; (write each command separately in a new entry, instead of all at shell exit).&lt;br /&gt;
+&lt;pre&gt;PROMPT_COMMAND=&#39;history -a&#39;&lt;/pre&gt;&lt;p&gt; (write each command separately in a new entry, instead of all at shell exit).&lt;br /&gt;
 
 And type &lt;/p&gt;
 
-&lt;pre&gt;&lt;![CDATA[shopt -s histappend]]&gt;&lt;/pre&gt;&lt;p&gt; to append instead of overwrite. (this might be default on some distro&#39;s.  I think it was on Gentoo)&lt;/li&gt;
+&lt;pre&gt;shopt -s histappend&lt;/pre&gt;&lt;p&gt; to append instead of overwrite. (this might be default on some distro&#39;s.  I think it was on Gentoo)&lt;/li&gt;
 
 &lt;/ul&gt;
 

@@ -988,17 +988,13 @@ just run the command libui_sh_init</p>
 
 <p>example usage:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #008000">source</span> /usr/lib/libui.sh
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">source</span> /usr/lib/libui.sh
 
 ask_yesno <span style="color: #BA2121">&#39;do you want to continue?&#39;</span> <span style="color: #666666">||</span> <span style="color: #008000; font-weight: bold">return</span>
 
 libui_sh_init cli /tmp /tmp/yourlogfile
 
 log <span style="color: #BA2121">&#39;we just got hassle-free logging&#39;</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>
 
@@ -1596,11 +1592,7 @@ It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume
 
 If you want to run stuff as a regular user you could do something like</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-su <span style="color: #19177C">$user</span> -c &lt;<span style="color: #008000">command</span>&gt;
-
-<span style="color: #666666">]]</span>&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">su <span style="color: #19177C">$user</span> -c &lt;<span style="color: #008000">command</span>&gt;
 </pre></div>
 <p>..but these commands have no access to your user environment.<br />
 
@@ -1610,11 +1602,7 @@ In my user environment I have a variable which I need access to, namely SSH_AUTH
 
 <p>The solution is very simple. Use this:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-sudo pm-hibernate <span style="color: #666666">&amp;&amp;</span> <span style="color: #008000; font-weight: bold">do</span>-my-stuff.sh
-
-<span style="color: #666666">]]</span>&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">sudo pm-hibernate <span style="color: #666666">&amp;&amp;</span> <span style="color: #008000; font-weight: bold">do</span>-my-stuff.sh
 </pre></div>
 <p>This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.<br />
 
@@ -2164,9 +2152,7 @@ It is stil very early in the process, but some things already work.</p>
 
 <p>generate file:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Creating dummy file of 50MB in size (625000 entries of 80chars)&quot;</span>
 
@@ -2189,14 +2175,10 @@ It is stil very early in the process, but some things already work.</p>
         <span style="color: #008000; font-weight: bold">done</span>
 
 <span style="color: #008000; font-weight: bold">done</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>measure speed:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Plain awk &#39;{print \$3}&#39;:&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Plain awk &#39;{print \$3}&#39;:&quot;</span>
 
 <span style="color: #008000">time </span>awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file &gt;/dev/null
 
@@ -2223,8 +2205,6 @@ awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file 
 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;awk + sort + uniq into dmenu:&quot;</span>
 
 awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file | sort | uniq | dmenu
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>
 
@@ -2680,13 +2660,9 @@ there are now generic, transparent functions for asking dates,numbers,strings,ch
 
 <li>support for commandline args<br />
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-/arch/aif -p interactive -d     <span style="color: #408080; font-style: italic"># runs the interactive profile with debugging enabled</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">/arch/aif -p interactive -d     <span style="color: #408080; font-style: italic"># runs the interactive profile with debugging enabled</span>
 
 /arch/aif -p interactive -i cli <span style="color: #408080; font-style: italic"># runs the interactive profile in CLI mode.</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 </li>
 
@@ -3544,11 +3520,7 @@ Keep in mind though that everything can be overridden through .ddm files in data
 
 Unless overridden, ddm will construct the repo path as follows:  </p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">$TYPE_BASE</span>/<span style="color: #19177C">$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX</span>
-
-<span style="color: #666666">]]</span>&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$TYPE_BASE</span>/<span style="color: #19177C">$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX</span>
 </pre></div>
 <p>(if unclear, read on)</p>
 
@@ -3558,9 +3530,7 @@ Unless overridden, ddm will construct the repo path as follows:  </p>
 
 <p>This is how my file looks like.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">ALLOWED_REPO_TYPES</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;svn vfs&#39;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">ALLOWED_REPO_TYPES</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;svn vfs&#39;</span>
 
 <span style="color: #19177C">DEFAULT_REPO_TYPE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;vfs&#39;</span>
 
@@ -3571,14 +3541,10 @@ Unless overridden, ddm will construct the repo path as follows:  </p>
 <span style="color: #19177C">SVN_PREFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;ddm-&#39;</span>
 
 <span style="color: #19177C">VFS_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;/net/server/home/dieter/ddm-repo&#39;</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>These are all the options you can specify:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">SVN_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">SVN_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
 
 <span style="color: #19177C">SVN_PREFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
 
@@ -3597,16 +3563,12 @@ Unless overridden, ddm will construct the repo path as follows:  </p>
 <span style="color: #19177C">ALLOWED_REPO_TYPES</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;vfs&#39;</span>
 
 <span style="color: #19177C">IGNORE_DATASET_REMOTE_SVN</span><span style="color: #666666">=0</span> <span style="color: #408080; font-style: italic">#nag if the repo url figured out is not the same as the one in &#39;svn info&#39;. you should leave this 0</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <h5>dataset/.ddm</h5>
 
 <p>For an example see below.  Possible options are these:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">DATASET_LOCAL</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#path to dataset locally (including type suffix if any)</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">DATASET_LOCAL</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#path to dataset locally (including type suffix if any)</span>
 
 <span style="color: #19177C">DATASET_REMOTE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#path to dataset remotely (or locally if network mount)</span>
 
@@ -3647,12 +3609,10 @@ preupdate
 doupdate
 
 postupdate
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <h4>Invocation</h4>
 
-<pre><![CDATA[
+<pre>
 
 dieter@dieter-mbp:~$ ddm -h
 
@@ -3680,7 +3640,7 @@ OPTIONS:
 
    -v                Verbose
 
-]]></pre><h4>Examples</h4>
+</pre><h4>Examples</h4>
 
 <h5>Update my video-selection.</h5>
 
@@ -3688,23 +3648,19 @@ OPTIONS:
 
 The .ddm file looks like this</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-doupdate<span style="color: #666666">()</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doupdate<span style="color: #666666">()</span>
 
 <span style="color: #666666">{</span>
 
 	slidewindow mplayer <span style="color: #666666">10</span> 1
 
 <span style="color: #666666">}</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
 
 It will then delete all the ones I've already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)</p>
 
-<pre><![CDATA[
+<pre>
 
 dieter@dieter-mbp:~$ ddm -u -v -d video-selection/
 
@@ -3748,7 +3704,7 @@ Copying new files... (10 items).
 
 finished
 
-]]></pre><h4>Download</h4>
+</pre><h4>Download</h4>
 
 <p>The code is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt">Gpl v3</a><br />
 
@@ -3812,9 +3768,7 @@ You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/fil
 
 <p>Have fun !</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-<span style="color: #408080; font-style: italic">/*</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/*</span>
 
 <span style="color: #408080; font-style: italic">  Originally written by Fobax.</span>
 
@@ -4119,8 +4073,6 @@ You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/fil
         <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;  
 
 }
-
-]]<span style="color: #666666">&gt;</span>
 </pre></div>
 
 
@@ -4246,7 +4198,7 @@ ssh-add *mykey* < /dev/null<br />
 
 This revealed that there are already some utilities specifically for this purpose!  Let's see...:</p>
 
-<pre><![CDATA[
+<pre>
 
 dieter@dieter-mbp:~$ aptitude search askpass
 
@@ -4258,7 +4210,7 @@ p   ssh-askpass-fullscreen                                         - Under Gnome
 
 p   ssh-askpass-gnome                                              - interactive X program to prompt users for a passphrase for ssh-add  
 
-]]></pre><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p>
+</pre><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p>
 
 <p>After installing this you can just put your ssh-add line in the settings panel called "autostarted Applications" from Xfce and for your next session it will show a nice gtk popup to ask for your password and it works like a charm :)<br />
 
@@ -4334,9 +4286,7 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 
 <p>And here is the source code of my bash script</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
 
 
@@ -4395,8 +4345,6 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 <span style="color: #BA2121">Services: </span><span style="color: #19177C">$SERVICES_CRIT</span><span style="color: #BA2121"> crit / </span><span style="color: #19177C">$SERVICES_WARN</span><span style="color: #BA2121"> warn / </span><span style="color: #19177C">$SERVICES_UNKNOWN</span><span style="color: #BA2121"> unknown / </span><span style="color: #19177C">$SERVICES_OK</span><span style="color: #BA2121"> ok / </span><span style="color: #19177C">$SERVICES_PENDING</span><span style="color: #BA2121"> pending&lt;/tool&gt;&quot;</span>
 
 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;&lt;click&gt;firefox https://&lt;yourhost&gt;/nagios&lt;/click&gt;&quot;</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>At my company we use https, If you use http I don't know if the authentication method is the same. If not check the -d flag for curl.<br />
 
@@ -5296,13 +5244,13 @@ So here they are, my favorite tricks, key combo's and some bonus stuff:</p>
 
 <li>readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :<br />
 
-<pre><![CDATA[
+<pre>
 
 "\e[5~": history-search-backward
 
 "\e[6~": history-search-forward
 
-]]></pre><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
+</pre><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
 
 You can use the up/down arrows too, their codes are "\e[A" and "\e[B"
 
@@ -5310,11 +5258,11 @@ You can use the up/down arrows too, their codes are "\e[A" and "\e[B"
 
 <li>for more "natural" history saving behavior (when having several terminals open): put this in .bash_profile: <br/><br />
 
-<pre><![CDATA[PROMPT_COMMAND='history -a']]></pre><p> (write each command separately in a new entry, instead of all at shell exit).<br />
+<pre>PROMPT_COMMAND='history -a'</pre><p> (write each command separately in a new entry, instead of all at shell exit).<br />
 
 And type </p>
 
-<pre><![CDATA[shopt -s histappend]]></pre><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
+<pre>shopt -s histappend</pre><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
 
 </ul>
 

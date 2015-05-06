@@ -43,17 +43,13 @@ just run the command libui_sh_init&lt;/p&gt;
 
 &lt;p&gt;example usage:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000&#34;&gt;source&lt;/span&gt; /usr/lib/libui.sh
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #008000&#34;&gt;source&lt;/span&gt; /usr/lib/libui.sh
 
 ask_yesno &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;do you want to continue?&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt;
 
 libui_sh_init cli /tmp /tmp/yourlogfile
 
 log &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;we just got hassle-free logging&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 
@@ -321,9 +317,7 @@ I quickly hacked this script together which pulls all photo albums from friends 
 
 Maybe there are better ways to do this.  I looked at &lt;a href=&#34;http://nerd256.diggles.net/fbfs/&#34;&gt;fbfs&lt;/a&gt; but it looks a bit weird.  I have no idea what the corrupted images fuss is all about.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
 
 
@@ -388,8 +382,6 @@ Maybe there are better ways to do this.  I looked at &lt;a href=&#34;http://nerd
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;done&lt;/span&gt; &amp;lt; &lt;span style=&#34;color: #19177C&#34;&gt;$i&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;done&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 
@@ -407,9 +399,7 @@ Here&#39;s a picture from &lt;a href=&#34;http://www.countingcows.be&#34;&gt;Cou
       <guid>http://localhost:1313/post/visual_feedback_of_the_exit_status_of_the_previous_command_in_bash/</guid>
       <description>&lt;p&gt;Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing &#39;echo $?&#39;, &#39; &amp;amp;&amp; echo ok&#39;, &#39;|| echo failed&#39; etc on the command line.&lt;!--more--&gt;&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;tput colors&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt; -gt &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt; ; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;tput colors&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt; -gt &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt; ; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt;
 
     &lt;span style=&#34;color: #19177C&#34;&gt;RED&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;tput setaf 1&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
 
@@ -438,8 +428,6 @@ bash_prompt_command&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &l
 
 
 &lt;span style=&#34;color: #19177C&#34;&gt;PS1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;\u@\h \[\$exit_to_color\]\W\[&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$RST&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;\] \$&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 
@@ -567,9 +555,7 @@ If something goes wrong (and only then!) it will show a popup with &lt;a href=&#
 
 &lt;p&gt;Here is the file, save it as gtdinbox.sh&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
 
 
@@ -632,8 +618,6 @@ die_error &lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
         &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Cancelled input into &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 </description>
@@ -725,11 +709,7 @@ Keep in mind though that everything can be overridden through .ddm files in data
 
 Unless overridden, ddm will construct the repo path as follows:  &lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;$TYPE_BASE&lt;/span&gt;/&lt;span style=&#34;color: #19177C&#34;&gt;$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$TYPE_BASE&lt;/span&gt;/&lt;span style=&#34;color: #19177C&#34;&gt;$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;(if unclear, read on)&lt;/p&gt;
 
@@ -739,9 +719,7 @@ Unless overridden, ddm will construct the repo path as follows:  &lt;/p&gt;
 
 &lt;p&gt;This is how my file looks like.&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;ALLOWED_REPO_TYPES&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;svn vfs&amp;#39;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #19177C&#34;&gt;ALLOWED_REPO_TYPES&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;svn vfs&amp;#39;&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;DEFAULT_REPO_TYPE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;vfs&amp;#39;&lt;/span&gt;
 
@@ -752,14 +730,10 @@ Unless overridden, ddm will construct the repo path as follows:  &lt;/p&gt;
 &lt;span style=&#34;color: #19177C&#34;&gt;SVN_PREFIX&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;ddm-&amp;#39;&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;VFS_BASE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;/net/server/home/dieter/ddm-repo&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;These are all the options you can specify:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;SVN_BASE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #19177C&#34;&gt;SVN_BASE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;SVN_PREFIX&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
 
@@ -778,16 +752,12 @@ Unless overridden, ddm will construct the repo path as follows:  &lt;/p&gt;
 &lt;span style=&#34;color: #19177C&#34;&gt;ALLOWED_REPO_TYPES&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;vfs&amp;#39;&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;IGNORE_DATASET_REMOTE_SVN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=0&lt;/span&gt; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#nag if the repo url figured out is not the same as the one in &amp;#39;svn info&amp;#39;. you should leave this 0&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h5&gt;dataset/.ddm&lt;/h5&gt;
 
 &lt;p&gt;For an example see below.  Possible options are these:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;DATASET_LOCAL&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#path to dataset locally (including type suffix if any)&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #19177C&#34;&gt;DATASET_LOCAL&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#path to dataset locally (including type suffix if any)&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;DATASET_REMOTE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#path to dataset remotely (or locally if network mount)&lt;/span&gt;
 
@@ -828,12 +798,10 @@ preupdate
 doupdate
 
 postupdate
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Invocation&lt;/h4&gt;
 
-&lt;pre&gt;&lt;![CDATA[
+&lt;pre&gt;
 
 dieter@dieter-mbp:~$ ddm -h
 
@@ -861,7 +829,7 @@ OPTIONS:
 
    -v                Verbose
 
-]]&gt;&lt;/pre&gt;&lt;h4&gt;Examples&lt;/h4&gt;
+&lt;/pre&gt;&lt;h4&gt;Examples&lt;/h4&gt;
 
 &lt;h5&gt;Update my video-selection.&lt;/h5&gt;
 
@@ -869,23 +837,19 @@ OPTIONS:
 
 The .ddm file looks like this&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-doupdate&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;doupdate&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
 
 &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
 
 	slidewindow mplayer &lt;span style=&#34;color: #666666&#34;&gt;10&lt;/span&gt; 1
 
 &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This means that ddm will look in my bash history and look for the movie files in this directory I have played (using &#34;mplayer video-selection/*somefile*).&lt;br /&gt;
 
 It will then delete all the ones I&#39;ve already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)&lt;/p&gt;
 
-&lt;pre&gt;&lt;![CDATA[
+&lt;pre&gt;
 
 dieter@dieter-mbp:~$ ddm -u -v -d video-selection/
 
@@ -929,7 +893,7 @@ Copying new files... (10 items).
 
 finished
 
-]]&gt;&lt;/pre&gt;&lt;h4&gt;Download&lt;/h4&gt;
+&lt;/pre&gt;&lt;h4&gt;Download&lt;/h4&gt;
 
 &lt;p&gt;The code is licensed under &lt;a href=&#34;http://www.gnu.org/licenses/gpl-3.0.txt&#34;&gt;Gpl v3&lt;/a&gt;&lt;br /&gt;
 
@@ -955,9 +919,7 @@ Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#
 
 So I use the following bash function:
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# Usage: mycd &amp;lt;path&amp;gt;&lt;/span&gt;
 
@@ -990,22 +952,16 @@ So I use the following bash function:
    &lt;span style=&#34;color: #008000&#34;&gt;history&lt;/span&gt; -r &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# read from current histfile&lt;/span&gt;
 
 &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and then set it up with the following in my bashrc:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000&#34;&gt;shopt&lt;/span&gt; -s histappend
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #008000&#34;&gt;shopt&lt;/span&gt; -s histappend
 
 &lt;span style=&#34;color: #008000&#34;&gt;alias cd&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;mycd&amp;quot;&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000&#34;&gt;export &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;HISTFILE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/.dir_bash_history&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PWD&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/bash_history.txt&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/cite&gt;
 
@@ -1041,7 +997,7 @@ ssh-add *mykey* &lt; /dev/null&lt;br /&gt;
 
 This revealed that there are already some utilities specifically for this purpose!  Let&#39;s see...:&lt;/p&gt;
 
-&lt;pre&gt;&lt;![CDATA[
+&lt;pre&gt;
 
 dieter@dieter-mbp:~$ aptitude search askpass
 
@@ -1053,7 +1009,7 @@ p   ssh-askpass-fullscreen                                         - Under Gnome
 
 p   ssh-askpass-gnome                                              - interactive X program to prompt users for a passphrase for ssh-add  
 
-]]&gt;&lt;/pre&gt;&lt;p&gt;I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D&lt;/p&gt;
+&lt;/pre&gt;&lt;p&gt;I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D&lt;/p&gt;
 
 &lt;p&gt;After installing this you can just put your ssh-add line in the settings panel called &#34;autostarted Applications&#34; from Xfce and for your next session it will show a nice gtk popup to ask for your password and it works like a charm :)&lt;br /&gt;
 
@@ -1075,9 +1031,7 @@ However, since i use multiple keys, i used to use the globbing operator (*) but 
 
 &lt;p&gt;Here&#39;s a simple example for an array with 2 dimensions:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#set the value of my_array[i][j] where i = 25 and j = 10 to &amp;quot;value&amp;quot;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#set the value of my_array[i][j] where i = 25 and j = 10 to &amp;quot;value&amp;quot;&lt;/span&gt;
 
 
 
@@ -1088,20 +1042,14 @@ However, since i use multiple keys, i used to use the globbing operator (*) but 
 
 
 &lt;span style=&#34;color: #008000&#34;&gt;declare&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$var&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#retrieve the value of my_array[i][j] where i = 5 and j = 10&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#retrieve the value of my_array[i][j] where i = 5 and j = 10&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;var&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;my_array5-10&amp;quot;&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#or like this: I=5;J=10;var=&amp;quot;my_array$I-$J&amp;quot;&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BB6688; font-weight: bold&#34;&gt;${&lt;/span&gt;!var&lt;span style=&#34;color: #BB6688; font-weight: bold&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 
@@ -1143,9 +1091,7 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 
 &lt;p&gt;And here is the source code of my bash script&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
 
 
@@ -1204,8 +1150,6 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 &lt;span style=&#34;color: #BA2121&#34;&gt;Services: &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_CRIT&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; crit / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_WARN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; warn / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_UNKNOWN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; unknown / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_OK&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; ok / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_PENDING&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; pending&amp;lt;/tool&amp;gt;&amp;quot;&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;click&amp;gt;firefox https://&amp;lt;yourhost&amp;gt;/nagios&amp;lt;/click&amp;gt;&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;At my company we use https, If you use http I don&#39;t know if the authentication method is the same. If not check the -d flag for curl.&lt;br /&gt;
 
@@ -1527,13 +1471,13 @@ So here they are, my favorite tricks, key combo&#39;s and some bonus stuff:&lt;/
 
 &lt;li&gt;readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :&lt;br /&gt;
 
-&lt;pre&gt;&lt;![CDATA[
+&lt;pre&gt;
 
 &#34;\e[5~&#34;: history-search-backward
 
 &#34;\e[6~&#34;: history-search-forward
 
-]]&gt;&lt;/pre&gt;&lt;p&gt;This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*&lt;br /&gt;
+&lt;/pre&gt;&lt;p&gt;This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*&lt;br /&gt;
 
 You can use the up/down arrows too, their codes are &#34;\e[A&#34; and &#34;\e[B&#34;
 
@@ -1541,11 +1485,11 @@ You can use the up/down arrows too, their codes are &#34;\e[A&#34; and &#34;\e[B
 
 &lt;li&gt;for more &#34;natural&#34; history saving behavior (when having several terminals open): put this in .bash_profile: &lt;br/&gt;&lt;br /&gt;
 
-&lt;pre&gt;&lt;![CDATA[PROMPT_COMMAND=&#39;history -a&#39;]]&gt;&lt;/pre&gt;&lt;p&gt; (write each command separately in a new entry, instead of all at shell exit).&lt;br /&gt;
+&lt;pre&gt;PROMPT_COMMAND=&#39;history -a&#39;&lt;/pre&gt;&lt;p&gt; (write each command separately in a new entry, instead of all at shell exit).&lt;br /&gt;
 
 And type &lt;/p&gt;
 
-&lt;pre&gt;&lt;![CDATA[shopt -s histappend]]&gt;&lt;/pre&gt;&lt;p&gt; to append instead of overwrite. (this might be default on some distro&#39;s.  I think it was on Gentoo)&lt;/li&gt;
+&lt;pre&gt;shopt -s histappend&lt;/pre&gt;&lt;p&gt; to append instead of overwrite. (this might be default on some distro&#39;s.  I think it was on Gentoo)&lt;/li&gt;
 
 &lt;/ul&gt;
 

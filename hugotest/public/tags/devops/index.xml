@@ -1023,9 +1023,7 @@ to do this.  I personally had no need for this, until a recent small influxdb ou
 
 
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# whisper dir without trailing slash.&lt;/span&gt;
 
@@ -1058,8 +1056,6 @@ influx_updater &amp;amp;
   whisper-fetch.py --from&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$start&lt;/span&gt; --until&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$end&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt;/&lt;span style=&#34;color: #19177C&#34;&gt;$wsp&lt;/span&gt;.wsp | grep -v &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;None$&amp;#39;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print &amp;quot;insert into \&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$series&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;\&amp;quot; values (&amp;quot;$1&amp;quot;000,1,&amp;quot;$2&amp;quot;)&amp;quot;}&amp;#39;&lt;/span&gt; &amp;gt; &lt;span style=&#34;color: #19177C&#34;&gt;$pipe_path&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;done&lt;/span&gt; &amp;lt; &amp;lt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;find &lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt; -name &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;*.wsp&amp;#39;&lt;/span&gt; | sed -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;s#&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/##&amp;quot;&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;s/.wsp&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$/&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 
@@ -1603,11 +1599,11 @@ to identify and use metrics and organize tags around them.
 
 The proposed ingestion (carbon etc) protocol looks like this:
 
-&lt;pre&gt;&lt;![CDATA[
+&lt;pre&gt;
 
 &lt;intrinsic_tags&gt;  &lt;extrinsic_tags&gt; &lt;value&gt; &lt;timestamp&gt;
 
-]]&gt;&lt;/pre&gt;
+&lt;/pre&gt;
 
 &lt;ul&gt;
 
@@ -1639,7 +1635,7 @@ dimension (aspect) of the metric.
 
 A metric in its basic form (without extrinsic tags) would look like:
 
-&lt;pre&gt;&lt;![CDATA[
+&lt;pre&gt;
 
 graphite: stats.gauges.db15.mysql.bytes_received
 
@@ -1647,7 +1643,7 @@ opentsdb: mysql.bytes_received host=db15
 
 proposal: service=mysql server=db15 direction=in unit=B
 
-]]&gt;&lt;/pre&gt;
+&lt;/pre&gt;
 
 &lt;/li&gt;
 
@@ -1867,11 +1863,7 @@ it&#39;s somewhere between an early clone/rewrite, a redesign, and an experiment
 
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
-
-&lt;span style=&#34;color: #BB6688&#34;&gt;/render/&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;?&lt;/span&gt;target&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;sum(scale(stats.web2,&lt;span style=&#34;color: #666666&#34;&gt;5.12&lt;/span&gt;),derivative(stats.web2))
-
-]]&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BB6688&#34;&gt;/render/&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;?&lt;/span&gt;target&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;sum(scale(stats.web2,&lt;span style=&#34;color: #666666&#34;&gt;5.12&lt;/span&gt;),derivative(stats.web2))
 &lt;/pre&gt;&lt;/div&gt;
 
 

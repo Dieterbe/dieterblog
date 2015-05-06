@@ -135,9 +135,7 @@ Quote from an <a href="http://www.debian-administration.org/articles/543#comment
 
 So I use the following bash function:
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#</span>
 
 <span style="color: #408080; font-style: italic"># Usage: mycd &lt;path&gt;</span>
 
@@ -170,22 +168,16 @@ So I use the following bash function:
    <span style="color: #008000">history</span> -r <span style="color: #408080; font-style: italic"># read from current histfile</span>
 
 <span style="color: #666666">}</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 
 
 <p>and then set it up with the following in my bashrc:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #008000">shopt</span> -s histappend
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">shopt</span> -s histappend
 
 <span style="color: #008000">alias cd</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;mycd&quot;</span>
 
 <span style="color: #008000">export </span><span style="color: #19177C">HISTFILE</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HOME</span><span style="color: #BA2121">/.dir_bash_history</span><span style="color: #19177C">$PWD</span><span style="color: #BA2121">/bash_history.txt&quot;</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 </cite>
 

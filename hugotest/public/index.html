@@ -464,21 +464,13 @@ Furthermore, I introduced some tooling: <a href="https://github.com/graphite-ng/
 	
 	<div class="entry-content">
 		<p>
-
 Time for another side project:
-
 <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a>,
-
 a commandline interface to influxdb.
-
 <br/>
-
 Nothing groundbreaking, and it behaves pretty much as you would expect if you've ever used
-
 the mysql, pgsql, vsql, etc tools before.
-
 <br/>But I did want to highlight a few interesting features.
-
 </p>
 
         </br>
@@ -1033,11 +1025,7 @@ it's somewhere between an early clone/rewrite, a redesign, and an experiment pla
 
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-<span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
-
-]]<span style="color: #666666">&gt;</span>
+<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
 </pre></div>
 </p>
 
@@ -3184,7 +3172,7 @@ Either way, next year both Judd (founder) and Aaron (current overlord) should be
 	</header>
 	
 	<div class="entry-content">
-		I use pm-utils for hibernation support. It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root. If you want to run stuff as a regular user you could do something like &lt;![CDATA[ su $user -c &lt;command&gt; ]]&gt; ..but these commands have no access to your user environment. In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.
+		I use pm-utils for hibernation support. It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root. If you want to run stuff as a regular user you could do something like su $user -c &lt;command&gt; ..but these commands have no access to your user environment. In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.
         </br>
         </br>
         <a href="http://localhost:1313/post/restoring_ssh_connections_on_resume/">Full article</a>
@@ -4017,7 +4005,7 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	</header>
 	
 	<div class="entry-content">
-		We're working hard on a new Arch release. (should be done by froscon) Amongst the slew of fixes and improvements there are also some cool new things I'm working on. First of all, I worked more on the automatic installations. Now you can easily install an LVM based Arch system on top of dm_crypt for example. You type this command: &lt;![CDATA[ aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda ]]&gt; And bam you have a complete working system with LVM, dm_crypt etc all set up.
+		We're working hard on a new Arch release. (should be done by froscon) Amongst the slew of fixes and improvements there are also some cool new things I'm working on. First of all, I worked more on the automatic installations. Now you can easily install an LVM based Arch system on top of dm_crypt for example. You type this command: aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda And bam you have a complete working system with LVM, dm_crypt etc all set up.
         </br>
         </br>
         <a href="http://localhost:1313/post/aif_automatic_lvm_dm_crypt_installations_and_test_suite/">Full article</a>

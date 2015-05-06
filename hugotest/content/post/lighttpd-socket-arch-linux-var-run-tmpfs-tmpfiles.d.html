@@ -25,12 +25,12 @@ That's where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">t
 
 It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
 
-{{< highlight "bash" "style=default" >}}<![CDATA[
+{{< highlight "bash" "style=default" >}}
 
 $ cat /etc/tmpfiles.d/lighttpd.conf 
 
 d /run/lighttpd/sockets 0700 http http
 
-]]>
+
 
 {{< /highlight >}}

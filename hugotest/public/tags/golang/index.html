@@ -552,9 +552,7 @@ to do this.  I personally had no need for this, until a recent small influxdb ou
 
 
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
 <span style="color: #408080; font-style: italic"># whisper dir without trailing slash.</span>
 
@@ -587,8 +585,6 @@ influx_updater &amp;
   whisper-fetch.py --from<span style="color: #666666">=</span><span style="color: #19177C">$start</span> --until<span style="color: #666666">=</span><span style="color: #19177C">$end</span> <span style="color: #19177C">$wsp_dir</span>/<span style="color: #19177C">$wsp</span>.wsp | grep -v <span style="color: #BA2121">&#39;None$&#39;</span> | awk <span style="color: #BA2121">&#39;{print &quot;insert into \&quot;&#39;</span><span style="color: #19177C">$series</span><span style="color: #BA2121">&#39;\&quot; values (&quot;$1&quot;000,1,&quot;$2&quot;)&quot;}&#39;</span> &gt; <span style="color: #19177C">$pipe_path</span>
 
 <span style="color: #008000; font-weight: bold">done</span> &lt; &lt;<span style="color: #666666">(</span>find <span style="color: #19177C">$wsp_dir</span> -name <span style="color: #BA2121">&#39;*.wsp&#39;</span> | sed -e <span style="color: #BA2121">&quot;s#</span><span style="color: #19177C">$wsp_dir</span><span style="color: #BA2121">/##&quot;</span> -e <span style="color: #BA2121">&quot;s/.wsp</span><span style="color: #19177C">$/</span><span style="color: #BA2121">/&quot;</span><span style="color: #666666">)</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>
 
@@ -697,297 +693,151 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
 	
 	<div class="entry-content">
 		<p>
-
 Time for another side project:
-
 <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a>,
-
 a commandline interface to influxdb.
-
 <br/>
-
 Nothing groundbreaking, and it behaves pretty much as you would expect if you've ever used
-
 the mysql, pgsql, vsql, etc tools before.
-
 <br/>But I did want to highlight a few interesting features.
-
 </p>
-
 <!--more-->
-
 <br/>
 
-
-
 <p>
-
 <b>You can do things like user management via SQL,
-
 even though influxdb doesn't have an SQL interface for this.</b>
-
 <br/>This is much easier than doing curl http requests!
-
-<pre><![CDATA[
-
+<pre>
 influx> create admin test test
-
 influx> list admin
-
 ## 0
-
                      name root
-
 ## 1
-
                      name test
-
-]]></pre>
-
+</pre>
 </p>
 
-
-
 <p>
-
 <b>You can change parameters and re-bind with the new values</b>
-
-<pre><![CDATA[
-
+<pre>
 influx> \user test
-
 influx> \pass test
-
 influx> \db graphite
-
 influx> bind
-
-]]></pre>
-
+</pre>
 </p>
 
-
-
 <p>
-
 <b>Write your variables (user, pass, host, db, ...) to ~/.influxrc</b>
-
-<pre><![CDATA[
-
+<pre>
 influx> writerc
-
-]]></pre>
-
+</pre>
 </p>
 
-
-
 <p>
-
 <b>You can even do inserts via SQL, instead of http posts</b>
-
 <br>I use this often.  This is very useful to script test cases for bug reports etc.
-
-<pre><![CDATA[
-
+<pre>
 influx> create db issue-1234
-
 influx> \db issue-1234
-
 influx> bind
-
 influx> insert into demo (time, value, tag) values (120000, 10, "hi")
-
 influx> insert into demo (time, value, tag) values (180000, 20, "hi again")
-
 influx> select * from demo
-
 ## demo
-
                 time sequence_number               value                 tag
-
        120000.000000      70001.000000                  10                "hi"
-
        180000.000000      80001.000000                  20          "hi again"
-
 influx> delete db issue-1234
-
-]]></pre>
-
+</pre>
 </p>
 
-
-
 <p>
-
 <b>You can send queries on standard input, which is useful in shell commands and scripts.</b>
-
-<pre><![CDATA[
-
+<pre>
 $ echo 'list series' | influx-cli | wc -l
-
 194722
-
 $ influx-cli <<< 'list series' | wc -l
-
 194722
-
-]]></pre>
-
+</pre>
 </p>
 
-
-
 <p>
-
 But even better, <b>from inside an influx-cli session, you can send output from any query into any other command.</b>
-
 <br>In fact you can also <b>write output of queries into external files.</b>
-
 All this via familiar shell constructs
-
-<pre><![CDATA[
-
+<pre>
 $ influx-cli
-
 influx> list series | wc -l
-
 194721
-
 influx> list series > list-series.txt
-
-]]></pre>
-
-
+</pre>
 
 (note: the discrepancy of one line is due to <a href="https://github.com/shavac/readline/issues/2">the Go readline library echoing the query</a>.
-
 </p>
 
-
-
 <p>
-
 <b>You can also toggle options, such as compression or display of timings.</b>
-
 <br/>This can be very useful to easily get insights of performance of different operations.
-
-<pre><![CDATA[
-
+<pre>
 influx> \t
-
 timing is now true
-
 influx> select * from foo | wc -l
-
 64637
-
 timing>
-
 query+network: 1.288792048s
-
 displaying   : 457.091811ms
-
 influx> \comp
-
 compression is now disabled
-
 influx> select * from foo | wc -l
-
 64637
-
 timing>
-
 query+network: 969.322374ms
-
 displaying   : 670.736018ms
-
 influx> list series >/dev/null
-
 timing>
-
 query+network: 3.109178142s
-
 displaying   : 65.712027ms
-
-]]></pre>
-
+</pre>
 <br/>This has enabled me to pinpoint slow operations and provide evidence when <a href="https://github.com/influxdb/influxdb/issues/884">when creating tickets</a>.
-
 </p>
 
-
-
 <p>
-
 <b>Executing queries and debugging their result data format, works too</b>
-
 <br/>This is useful when you want to understand the api better or if the database gets support for new queries with a different output format that influx-cli doesn't understand yet.
-
-<pre><![CDATA[
-
+<pre>
 influx> raw select * from foo limit 1
-
 ([]*client.Series) (len=1 cap=4) {
-
  (*client.Series)(0xc20b4f0480)({
-
   Name: (string) (len=51) "foo",
-
   Columns: ([]string) (len=3 cap=4) {
-
    (string) (len=4) "time",
-
    (string) (len=15) "sequence_number",
-
    (string) (len=5) "value"
-
   },
-
   Points: ([][]interface {}) (len=1 cap=4) {
-
    ([]interface {}) (len=3 cap=4) {
-
     (float64) 1.410148588e+12,
-
     (float64) 1,
-
     (float64) 95.549995
-
    }
-
   }
-
  })
-
 }
-
-]]></pre>
-
+</pre>
 </p>
-
-
 
 <p>
-
 And that's about it.
-
 I've found this to be a much easier way to interface with InfluxDB then using the web interface and curl, but YMMV.
-
 <br/>If you were wondering, this is of course built on top of the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb go client library</a>, which was overall pretty pleasant to work with.
-
 <br/>Some ideas for future work:
-
 <ul>
-
 <li><a href="https://github.com/Dieterbe/influx-cli/issues/2">bulk insert performance could be better</a></li>
-
 <li>once <a href="https://github.com/influxdb/influxdb/issues/263">influxdb can report query execution time</a> and hopefully also serialization time, the timing output can be more useful.  Right now we can only measure query execution+serialization+network transfer time combined</li>
-
 <li>my gut feeling says that using something like msgpack instead of json, and/or even streaming the resultset as it is being generated (instead of first building the entire result, then serializing it, then sending it over, then having the client deserialize the entire thing) could really help performance, not just here, but basically anywhere you interface with influxdb.  Though I don't have hard numbers on this yet.</li>
-
 </p>
-
 
 
 	</div>
@@ -1092,9 +942,7 @@ As long as the requesters write a request to the requests channel and then read 
 
 
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;![CDATA[
-
-<span style="color: #008000; font-weight: bold">package</span> main
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">package</span> main
 
 
 
@@ -1179,8 +1027,6 @@ As long as the requesters write a request to the requests channel and then read 
     <span style="color: #008000">close</span>(requests)
 
 }
-
-]]&gt;
 </pre></div>
 
 
@@ -1582,11 +1428,7 @@ it's somewhere between an early clone/rewrite, a redesign, and an experiment pla
 
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
-
-<span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
-
-]]<span style="color: #666666">&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
 </pre></div>
 
 

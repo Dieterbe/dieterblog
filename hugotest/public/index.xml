@@ -1299,9 +1299,7 @@ to do this.  I personally had no need for this, until a recent small influxdb ou
 
 
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
-
-&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# whisper dir without trailing slash.&lt;/span&gt;
 
@@ -1334,8 +1332,6 @@ influx_updater &amp;amp;
   whisper-fetch.py --from&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$start&lt;/span&gt; --until&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$end&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt;/&lt;span style=&#34;color: #19177C&#34;&gt;$wsp&lt;/span&gt;.wsp | grep -v &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;None$&amp;#39;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print &amp;quot;insert into \&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$series&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;\&amp;quot; values (&amp;quot;$1&amp;quot;000,1,&amp;quot;$2&amp;quot;)&amp;quot;}&amp;#39;&lt;/span&gt; &amp;gt; &lt;span style=&#34;color: #19177C&#34;&gt;$pipe_path&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;done&lt;/span&gt; &amp;lt; &amp;lt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;find &lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt; -name &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;*.wsp&amp;#39;&lt;/span&gt; | sed -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;s#&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/##&amp;quot;&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;s/.wsp&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$/&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt;
-
-&lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 
@@ -1408,297 +1404,151 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
       
       <guid>http://localhost:1313/post/influx-cli_a_commandline_interface_to_influxdb/</guid>
       <description>&lt;p&gt;
-
 Time for another side project:
-
 &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt;,
-
 a commandline interface to influxdb.
-
 &lt;br/&gt;
-
 Nothing groundbreaking, and it behaves pretty much as you would expect if you&#39;ve ever used
-
 the mysql, pgsql, vsql, etc tools before.
-
 &lt;br/&gt;But I did want to highlight a few interesting features.
-
 &lt;/p&gt;
-
 &lt;!--more--&gt;
-
 &lt;br/&gt;
 
-
-
 &lt;p&gt;
-
 &lt;b&gt;You can do things like user management via SQL,
-
 even though influxdb doesn&#39;t have an SQL interface for this.&lt;/b&gt;
-
 &lt;br/&gt;This is much easier than doing curl http requests!
-
-&lt;pre&gt;&lt;![CDATA[
-
+&lt;pre&gt;
 influx&gt; create admin test test
-
 influx&gt; list admin
-
 ## 0
-
                      name root
-
 ## 1
-
                      name test
-
-]]&gt;&lt;/pre&gt;
-
+&lt;/pre&gt;
 &lt;/p&gt;
 
-
-
 &lt;p&gt;
-
 &lt;b&gt;You can change parameters and re-bind with the new values&lt;/b&gt;
-
-&lt;pre&gt;&lt;![CDATA[
-
+&lt;pre&gt;
 influx&gt; \user test
-
 influx&gt; \pass test
-
 influx&gt; \db graphite
-
 influx&gt; bind
-
-]]&gt;&lt;/pre&gt;
-
+&lt;/pre&gt;
 &lt;/p&gt;
 
-
-
 &lt;p&gt;
-
 &lt;b&gt;Write your variables (user, pass, host, db, ...) to ~/.influxrc&lt;/b&gt;
-
-&lt;pre&gt;&lt;![CDATA[
-
+&lt;pre&gt;
 influx&gt; writerc
-
-]]&gt;&lt;/pre&gt;
-
+&lt;/pre&gt;
 &lt;/p&gt;
 
-
-
 &lt;p&gt;
-
 &lt;b&gt;You can even do inserts via SQL, instead of http posts&lt;/b&gt;
-
 &lt;br&gt;I use this often.  This is very useful to script test cases for bug reports etc.
-
-&lt;pre&gt;&lt;![CDATA[
-
+&lt;pre&gt;
 influx&gt; create db issue-1234
-
 influx&gt; \db issue-1234
-
 influx&gt; bind
-
 influx&gt; insert into demo (time, value, tag) values (120000, 10, &#34;hi&#34;)
-
 influx&gt; insert into demo (time, value, tag) values (180000, 20, &#34;hi again&#34;)
-
 influx&gt; select * from demo
-
 ## demo
-
                 time sequence_number               value                 tag
-
        120000.000000      70001.000000                  10                &#34;hi&#34;
-
        180000.000000      80001.000000                  20          &#34;hi again&#34;
-
 influx&gt; delete db issue-1234
-
-]]&gt;&lt;/pre&gt;
-
+&lt;/pre&gt;
 &lt;/p&gt;
 
-
-
 &lt;p&gt;
-
 &lt;b&gt;You can send queries on standard input, which is useful in shell commands and scripts.&lt;/b&gt;
-
-&lt;pre&gt;&lt;![CDATA[
-
+&lt;pre&gt;
 $ echo &#39;list series&#39; | influx-cli | wc -l
-
 194722
-
 $ influx-cli &lt;&lt;&lt; &#39;list series&#39; | wc -l
-
 194722
-
-]]&gt;&lt;/pre&gt;
-
+&lt;/pre&gt;
 &lt;/p&gt;
 
-
-
 &lt;p&gt;
-
 But even better, &lt;b&gt;from inside an influx-cli session, you can send output from any query into any other command.&lt;/b&gt;
-
 &lt;br&gt;In fact you can also &lt;b&gt;write output of queries into external files.&lt;/b&gt;
-
 All this via familiar shell constructs
-
-&lt;pre&gt;&lt;![CDATA[
-
+&lt;pre&gt;
 $ influx-cli
-
 influx&gt; list series | wc -l
-
 194721
-
 influx&gt; list series &gt; list-series.txt
-
-]]&gt;&lt;/pre&gt;
-
-
+&lt;/pre&gt;
 
 (note: the discrepancy of one line is due to &lt;a href=&#34;https://github.com/shavac/readline/issues/2&#34;&gt;the Go readline library echoing the query&lt;/a&gt;.
-
 &lt;/p&gt;
 
-
-
 &lt;p&gt;
-
 &lt;b&gt;You can also toggle options, such as compression or display of timings.&lt;/b&gt;
-
 &lt;br/&gt;This can be very useful to easily get insights of performance of different operations.
-
-&lt;pre&gt;&lt;![CDATA[
-
+&lt;pre&gt;
 influx&gt; \t
-
 timing is now true
-
 influx&gt; select * from foo | wc -l
-
 64637
-
 timing&gt;
-
 query+network: 1.288792048s
-
 displaying   : 457.091811ms
-
 influx&gt; \comp
-
 compression is now disabled
-
 influx&gt; select * from foo | wc -l
-
 64637
-
 timing&gt;
-
 query+network: 969.322374ms
-
 displaying   : 670.736018ms
-
 influx&gt; list series &gt;/dev/null
-
 timing&gt;
-
 query+network: 3.109178142s
-
 displaying   : 65.712027ms
-
-]]&gt;&lt;/pre&gt;
-
+&lt;/pre&gt;
 &lt;br/&gt;This has enabled me to pinpoint slow operations and provide evidence when &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/884&#34;&gt;when creating tickets&lt;/a&gt;.
-
 &lt;/p&gt;
 
-
-
 &lt;p&gt;
-
 &lt;b&gt;Executing queries and debugging their result data format, works too&lt;/b&gt;
-
 &lt;br/&gt;This is useful when you want to understand the api better or if the database gets support for new queries with a different output format that influx-cli doesn&#39;t understand yet.
-
-&lt;pre&gt;&lt;![CDATA[
-
+&lt;pre&gt;
 influx&gt; raw select * from foo limit 1
-
 ([]*client.Series) (len=1 cap=4) {
-
  (*client.Series)(0xc20b4f0480)({
-
   Name: (string) (len=51) &#34;foo&#34;,
-
   Columns: ([]string) (len=3 cap=4) {
-
    (string) (len=4) &#34;time&#34;,
-
    (string) (len=15) &#34;sequence_number&#34;,
-
    (string) (len=5) &#34;value&#34;
-
   },
-
   Points: ([][]interface {}) (len=1 cap=4) {
-
    ([]interface {}) (len=3 cap=4) {
-
     (float64) 1.410148588e+12,
-
     (float64) 1,
-
     (float64) 95.549995
-
    }
-
   }
-
  })
-
 }
-
-]]&gt;&lt;/pre&gt;
-
+&lt;/pre&gt;
 &lt;/p&gt;
-
-
 
 &lt;p&gt;
-
 And that&#39;s about it.
-
 I&#39;ve found this to be a much easier way to interface with InfluxDB then using the web interface and curl, but YMMV.
-
 &lt;br/&gt;If you were wondering, this is of course built on top of the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb go client library&lt;/a&gt;, which was overall pretty pleasant to work with.
-
 &lt;br/&gt;Some ideas for future work:
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe/influx-cli/issues/2&#34;&gt;bulk insert performance could be better&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;once &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/263&#34;&gt;influxdb can report query execution time&lt;/a&gt; and hopefully also serialization time, the timing output can be more useful.  Right now we can only measure query execution+serialization+network transfer time combined&lt;/li&gt;
-
 &lt;li&gt;my gut feeling says that using something like msgpack instead of json, and/or even streaming the resultset as it is being generated (instead of first building the entire result, then serializing it, then sending it over, then having the client deserialize the entire thing) could really help performance, not just here, but basically anywhere you interface with influxdb.  Though I don&#39;t have hard numbers on this yet.&lt;/li&gt;
-
 &lt;/p&gt;
-
 
 </description>
     </item>
@@ -1891,9 +1741,7 @@ As long as the requesters write a request to the requests channel and then read 
 
 
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;![CDATA[
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;package&lt;/span&gt; main
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 
 
@@ -1978,8 +1826,6 @@ As long as the requesters write a request to the requests channel and then read 
     &lt;span style=&#34;color: #008000&#34;&gt;close&lt;/span&gt;(requests)
 
 }
-
-]]&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

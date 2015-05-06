@@ -31,7 +31,7 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <p>The view looks like this:</p>
 
-{{< highlight "html+php" "style=default" >}}<![CDATA[
+{{< highlight "html+php" "style=default" >}}
 
 <?php foreach($articles as $article): ?>
 
@@ -91,11 +91,11 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 */
 
-]]>{{< /highlight >}}<p>
+{{< /highlight >}}<p>
 
 The controller would have functions like this:</p>
 
-{{< highlight "html+php" "style=default" >}}<![CDATA[
+{{< highlight "html+php" "style=default" >}}
 
 <?php
 
@@ -147,11 +147,11 @@ function removearticle(){
 
 ?>
 
-]]>{{< /highlight >}}<p>
+{{< /highlight >}}<p>
 
 The view controller/cart.ctp could look something like this:</p>
 
-{{< highlight "html+php" "style=default" >}}<![CDATA[
+{{< highlight "html+php" "style=default" >}}
 
 <ul>
 
@@ -167,7 +167,7 @@ The view controller/cart.ctp could look something like this:</p>
 
 <?php if(!$articles) echo "No articles in the cart!"; ?>
 
-]]>{{< /highlight >}}<p>
+{{< /highlight >}}<p>
 
 There you have it.  All explanations are inside the sources, I hope it's clear enough.  If not, just ask :-)</p>
 

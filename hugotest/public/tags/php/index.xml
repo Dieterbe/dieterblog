@@ -67,9 +67,7 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 
 &lt;p&gt;&lt;strong&gt;DISCLAIMER&lt;/strong&gt;:  Don&#39;t use this code for anything illegal!  I&#39;m not responsible for what you do with this!&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;![CDATA[
-
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;$host&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;;
 
@@ -160,8 +158,6 @@ tryme(&lt;span style=&#34;color: #19177C&#34;&gt;$host&lt;/span&gt;,&lt;span sty
 }
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
-
-]]&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 </description>
@@ -427,25 +423,23 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 &lt;p&gt;The view looks like this:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;foreach&lt;/span&gt;(&lt;span style=&#34;color: #19177C&#34;&gt;$articles&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;)&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;foreach&lt;/span&gt;(&lt;span style=&#34;color: #19177C&#34;&gt;$articles&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;)&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;div&lt;/span&gt; &lt;span style=&#34;color: #7D9029&#34;&gt;id=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;[&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Article&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;]; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;div id=&amp;quot;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;[&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Article&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;]; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&amp;quot;&amp;gt;&lt;/span&gt;
+   &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;[&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Article&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;description&amp;#39;&lt;/span&gt;]; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;   &amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;[&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Article&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;description&amp;#39;&lt;/span&gt;]; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
-
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$ajax&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #7D9029&#34;&gt;drag&lt;/span&gt;(&lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;[&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Article&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;],&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;array&lt;/span&gt;(&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;revert&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;true&lt;/span&gt;)); &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;/*&lt;/span&gt;
+/*
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;   the revert thing will make the draggable return to it&amp;#39;s original position.  Set this to false and the object will stay where you put it.&lt;/span&gt;
+   the revert thing will make the draggable return to it&amp;#39;s original position.  Set this to false and the object will stay where you put it.
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;   This does not have anything to do with a function call being made btw, that&amp;#39;s the job for the draggables&lt;/span&gt;
+   This does not have anything to do with a function call being made btw, that&amp;#39;s the job for the draggables
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;*/&lt;/span&gt;
+*/
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;endforeach&lt;/span&gt;; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
 
@@ -453,17 +447,17 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;div id=&amp;quot;cart&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;div&lt;/span&gt; &lt;span style=&#34;color: #7D9029&#34;&gt;id=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;cart&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;   &amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$this&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #7D9029&#34;&gt;requestAction&lt;/span&gt;(&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;/controller/showcart&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt; // this call is not necessary.  You can use it to fill the &amp;lt;div&amp;gt; with some content to start with&lt;/span&gt;
+   &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$this&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #7D9029&#34;&gt;requestAction&lt;/span&gt;(&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;/controller/showcart&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt; // this call is not necessary.  You can use it to fill the &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;div&amp;gt;&lt;/span&gt; with some content to start with
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
 
 
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;div id=&amp;quot;thrashbin&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;div&lt;/span&gt; &lt;span style=&#34;color: #7D9029&#34;&gt;id=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;thrashbin&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
 
 
 
@@ -475,27 +469,23 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;/*&lt;/span&gt;
+/*
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;   these two calls make objects with DOM id&amp;#39;s &amp;#39;cart&amp;#39; and &amp;#39;thrashbin&amp;#39; droppable.  When an object is dropped into them, the actions defined by &amp;#39;url&amp;#39; are called.&lt;/span&gt;
+   these two calls make objects with DOM id&amp;#39;s &amp;#39;cart&amp;#39; and &amp;#39;thrashbin&amp;#39; droppable.  When an object is dropped into them, the actions defined by &amp;#39;url&amp;#39; are called.
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;   The &amp;#39;with&amp;#39;=&amp;gt;&amp;#39;{draggedid:element.id} passes the id of the dropped element to the function that is called (on the background, no page refresh or anything like that!).&lt;/span&gt;
+   The &amp;#39;with&amp;#39;=&amp;gt;&amp;#39;{draggedid:element.id} passes the id of the dropped element to the function that is called (on the background, no page refresh or anything like that!).
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;   The update thing makes sure that the entire output of the requestAction call is displayed inside the &amp;lt;div id=&amp;quot;cart&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;.&lt;/span&gt;
+   The update thing makes sure that the entire output of the requestAction call is displayed inside the &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;div&lt;/span&gt; &lt;span style=&#34;color: #7D9029&#34;&gt;id=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;cart&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;.
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;   So that means that the page will update the part of the page which is specified (dom id &amp;#39;cart&amp;#39;) when the output from the requestAction call is received&lt;/span&gt;
+   So that means that the page will update the part of the page which is specified (dom id &amp;#39;cart&amp;#39;) when the output from the requestAction call is received
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;*/&lt;/span&gt;
-
-&lt;span style=&#34;color: #BC7A00&#34;&gt;]]&amp;gt;&lt;/span&gt;
+*/
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 
 The controller would have functions like this:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
-
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt;
 
 
 
@@ -544,30 +534,24 @@ The controller would have functions like this:&lt;/p&gt;
 }
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
-
-&lt;span style=&#34;color: #BC7A00&#34;&gt;]]&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 
 The view controller/cart.ctp could look something like this:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
-
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;foreach&lt;/span&gt;(&lt;span style=&#34;color: #19177C&#34;&gt;$articles&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$artikel&lt;/span&gt;)&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;li&amp;gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;[&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Article&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;]; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;[&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Article&amp;#39;&lt;/span&gt;][&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;]; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;endforeach&lt;/span&gt;; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
 
-&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
 
 
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$articles&lt;/span&gt;) &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;No articles in the cart!&amp;quot;&lt;/span&gt;; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
-
-&lt;span style=&#34;color: #BC7A00&#34;&gt;]]&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 

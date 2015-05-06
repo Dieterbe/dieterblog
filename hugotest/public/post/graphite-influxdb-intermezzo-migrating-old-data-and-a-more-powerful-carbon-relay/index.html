@@ -137,9 +137,7 @@ to do this.  I personally had no need for this, until a recent small influxdb ou
 
 
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
 <span style="color: #408080; font-style: italic"># whisper dir without trailing slash.</span>
 
@@ -172,8 +170,6 @@ influx_updater &amp;
   whisper-fetch.py --from<span style="color: #666666">=</span><span style="color: #19177C">$start</span> --until<span style="color: #666666">=</span><span style="color: #19177C">$end</span> <span style="color: #19177C">$wsp_dir</span>/<span style="color: #19177C">$wsp</span>.wsp | grep -v <span style="color: #BA2121">&#39;None$&#39;</span> | awk <span style="color: #BA2121">&#39;{print &quot;insert into \&quot;&#39;</span><span style="color: #19177C">$series</span><span style="color: #BA2121">&#39;\&quot; values (&quot;$1&quot;000,1,&quot;$2&quot;)&quot;}&#39;</span> &gt; <span style="color: #19177C">$pipe_path</span>
 
 <span style="color: #008000; font-weight: bold">done</span> &lt; &lt;<span style="color: #666666">(</span>find <span style="color: #19177C">$wsp_dir</span> -name <span style="color: #BA2121">&#39;*.wsp&#39;</span> | sed -e <span style="color: #BA2121">&quot;s#</span><span style="color: #19177C">$wsp_dir</span><span style="color: #BA2121">/##&quot;</span> -e <span style="color: #BA2121">&quot;s/.wsp</span><span style="color: #19177C">$/</span><span style="color: #BA2121">/&quot;</span><span style="color: #666666">)</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>
 

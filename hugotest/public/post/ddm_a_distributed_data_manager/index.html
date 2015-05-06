@@ -203,11 +203,7 @@ Keep in mind though that everything can be overridden through .ddm files in data
 
 Unless overridden, ddm will construct the repo path as follows:  </p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">$TYPE_BASE</span>/<span style="color: #19177C">$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX</span>
-
-<span style="color: #666666">]]</span>&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$TYPE_BASE</span>/<span style="color: #19177C">$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX</span>
 </pre></div>
 <p>(if unclear, read on)</p>
 
@@ -217,9 +213,7 @@ Unless overridden, ddm will construct the repo path as follows:  </p>
 
 <p>This is how my file looks like.</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">ALLOWED_REPO_TYPES</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;svn vfs&#39;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">ALLOWED_REPO_TYPES</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;svn vfs&#39;</span>
 
 <span style="color: #19177C">DEFAULT_REPO_TYPE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;vfs&#39;</span>
 
@@ -230,14 +224,10 @@ Unless overridden, ddm will construct the repo path as follows:  </p>
 <span style="color: #19177C">SVN_PREFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;ddm-&#39;</span>
 
 <span style="color: #19177C">VFS_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;/net/server/home/dieter/ddm-repo&#39;</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>These are all the options you can specify:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">SVN_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">SVN_BASE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
 
 <span style="color: #19177C">SVN_PREFIX</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span>
 
@@ -256,16 +246,12 @@ Unless overridden, ddm will construct the repo path as follows:  </p>
 <span style="color: #19177C">ALLOWED_REPO_TYPES</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;vfs&#39;</span>
 
 <span style="color: #19177C">IGNORE_DATASET_REMOTE_SVN</span><span style="color: #666666">=0</span> <span style="color: #408080; font-style: italic">#nag if the repo url figured out is not the same as the one in &#39;svn info&#39;. you should leave this 0</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <h5>dataset/.ddm</h5>
 
 <p>For an example see below.  Possible options are these:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #19177C">DATASET_LOCAL</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#path to dataset locally (including type suffix if any)</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">DATASET_LOCAL</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#path to dataset locally (including type suffix if any)</span>
 
 <span style="color: #19177C">DATASET_REMOTE</span><span style="color: #666666">=</span><span style="color: #BA2121">&#39;&#39;</span> <span style="color: #408080; font-style: italic">#path to dataset remotely (or locally if network mount)</span>
 
@@ -306,12 +292,10 @@ preupdate
 doupdate
 
 postupdate
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <h4>Invocation</h4>
 
-<pre><![CDATA[
+<pre>
 
 dieter@dieter-mbp:~$ ddm -h
 
@@ -339,7 +323,7 @@ OPTIONS:
 
    -v                Verbose
 
-]]></pre><h4>Examples</h4>
+</pre><h4>Examples</h4>
 
 <h5>Update my video-selection.</h5>
 
@@ -347,23 +331,19 @@ OPTIONS:
 
 The .ddm file looks like this</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-doupdate<span style="color: #666666">()</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">doupdate<span style="color: #666666">()</span>
 
 <span style="color: #666666">{</span>
 
 	slidewindow mplayer <span style="color: #666666">10</span> 1
 
 <span style="color: #666666">}</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 <p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
 
 It will then delete all the ones I've already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)</p>
 
-<pre><![CDATA[
+<pre>
 
 dieter@dieter-mbp:~$ ddm -u -v -d video-selection/
 
@@ -407,7 +387,7 @@ Copying new files... (10 items).
 
 finished
 
-]]></pre><h4>Download</h4>
+</pre><h4>Download</h4>
 
 <p>The code is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt">Gpl v3</a><br />
 

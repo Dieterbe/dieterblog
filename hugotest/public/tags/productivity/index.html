@@ -212,9 +212,7 @@ If something goes wrong (and only then!) it will show a popup with <a href="http
 
 <p>Here is the file, save it as gtdinbox.sh</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#!/bin/bash</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
 
 
@@ -277,8 +275,6 @@ die_error <span style="color: #666666">()</span>
         <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Cancelled input into </span><span style="color: #19177C">$inboxfile</span><span style="color: #BA2121">&quot;</span>
 
 <span style="color: #008000; font-weight: bold">fi</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 
 
@@ -522,9 +518,7 @@ Quote from an <a href="http://www.debian-administration.org/articles/543#comment
 
 So I use the following bash function:
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #408080; font-style: italic">#</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#</span>
 
 <span style="color: #408080; font-style: italic"># Usage: mycd &lt;path&gt;</span>
 
@@ -557,22 +551,16 @@ So I use the following bash function:
    <span style="color: #008000">history</span> -r <span style="color: #408080; font-style: italic"># read from current histfile</span>
 
 <span style="color: #666666">}</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 
 
 <p>and then set it up with the following in my bashrc:</p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
-
-<span style="color: #008000">shopt</span> -s histappend
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000">shopt</span> -s histappend
 
 <span style="color: #008000">alias cd</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;mycd&quot;</span>
 
 <span style="color: #008000">export </span><span style="color: #19177C">HISTFILE</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HOME</span><span style="color: #BA2121">/.dir_bash_history</span><span style="color: #19177C">$PWD</span><span style="color: #BA2121">/bash_history.txt&quot;</span>
-
-<span style="color: #666666">]]</span>&gt;
 </pre></div>
 </cite>
 
@@ -650,13 +638,13 @@ So here they are, my favorite tricks, key combo's and some bonus stuff:</p>
 
 <li>readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :<br />
 
-<pre><![CDATA[
+<pre>
 
 "\e[5~": history-search-backward
 
 "\e[6~": history-search-forward
 
-]]></pre><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
+</pre><p>This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*<br />
 
 You can use the up/down arrows too, their codes are "\e[A" and "\e[B"
 
@@ -664,11 +652,11 @@ You can use the up/down arrows too, their codes are "\e[A" and "\e[B"
 
 <li>for more "natural" history saving behavior (when having several terminals open): put this in .bash_profile: <br/><br />
 
-<pre><![CDATA[PROMPT_COMMAND='history -a']]></pre><p> (write each command separately in a new entry, instead of all at shell exit).<br />
+<pre>PROMPT_COMMAND='history -a'</pre><p> (write each command separately in a new entry, instead of all at shell exit).<br />
 
 And type </p>
 
-<pre><![CDATA[shopt -s histappend]]></pre><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
+<pre>shopt -s histappend</pre><p> to append instead of overwrite. (this might be default on some distro's.  I think it was on Gentoo)</li>
 
 </ul>
 

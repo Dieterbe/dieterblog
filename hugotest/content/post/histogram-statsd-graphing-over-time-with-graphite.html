@@ -65,11 +65,11 @@ Tips and notes:
 
 the histogram implementation stores absolute frequencies, but it's easy to get relative frequencies in percent, like so:
 
-{{< highlight "javascript" "style=default" >}}<![CDATA[
+{{< highlight "javascript" "style=default" >}}
 
 target=scale(divideSeries(stats.timers.<your_metric>.bin_*,stats.timers.render_time.count),100)
 
-]]>{{< /highlight >}}
+{{< /highlight >}}
 
 </li>
 
@@ -109,7 +109,7 @@ a misleading name but <a href="https://github.com/etsy/statsd/issues/98">we're w
 
 <h4>First version</h4>
 
-{{< highlight "javascript" "style=default" >}}<![CDATA[
+{{< highlight "javascript" "style=default" >}}
 
 http://localhost:9000/render/?height=300&
 
@@ -137,7 +137,7 @@ target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.tim
 
 lineMode=slope&areaMode=stacked&drawNullAsZero=false&hideLegend=false
 
-]]>{{< /highlight >}}
+{{< /highlight >}}
 
 <img src="/files/rendertime-histogram.png" width="740" height="300" alt="rendertime histogram" />
 
@@ -169,7 +169,7 @@ This adaption is basically the same as before, but leaves out the smallest class
 
 the other bands are a bit more visible but the effect isn't as clear as we want.
 
-{{< highlight "javascript" "style=default" >}}<![CDATA[
+{{< highlight "javascript" "style=default" >}}
 
 http://localhost:9000/render/?height=300&
 
@@ -195,7 +195,7 @@ target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.tim
 
 lineMode=slope&areaMode=stacked&drawNullAsZero=false&hideLegend=false
 
-]]>{{< /highlight >}}
+{{< /highlight >}}
 
 <img src="/files/rendertime-histogram-leaving-out-first-class.png" width="740" height="300" alt="rendertime histogram leaving out first class" />
 
@@ -207,7 +207,7 @@ Finally, the bigger the values represented by each class the more we inflate the
 
 so the more problematic cases become more visible, despite having a lower frequency.
 
-{{< highlight "javascript" "style=default" >}}<![CDATA[
+{{< highlight "javascript" "style=default" >}}
 
 http://localhost:9000/render/?height=300&
 
@@ -235,7 +235,7 @@ target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.tim
 
 lineMode=slope&areaMode=stacked&drawNullAsZero=false&hideLegend=false
 
-]]>{{< /highlight >}}
+{{< /highlight >}}
 
 <img src="/files/rendertime-histogram-higher-focus-for-higher-class-interval.png" width="740" height="300" alt="rendertime histogram with higher focus for higher class interval" />
 

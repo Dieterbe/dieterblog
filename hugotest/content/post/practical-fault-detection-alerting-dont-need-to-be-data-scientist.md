@@ -37,7 +37,7 @@ But ironically, in doing so, they often seem to think that they are now only all
 
 <br/>
 
-<img src="http://dieter.plaetinck.be/files/fault-detection-moving-average.png">
+<img src="/files/fault-detection-moving-average.png">
 
 from <a href="https://speakerdeck.com/astanway/a-deep-dive-into-monitoring-with-skyline">A Deep Dive into Monitoring with Skyline</a>
 
@@ -73,7 +73,7 @@ crontabs cause (by definition) periodic spikes in activity, user activity causes
 
 <br/>
 
-<img width="70%" src="http://dieter.plaetinck.be//files/anomaly-detection-cases.png">
+<img width="70%" src="/files/anomaly-detection-cases.png">
 
 <br/>
 
@@ -171,7 +171,7 @@ Our most important data falls within the user-driven category from above where v
 
 <br/>
 
-<img style="float:left; margin:15px;" src="http://dieter.plaetinck.be/files/poor-mans-fault-detection.png">
+<img style="float:left; margin:15px;" src="/files/poor-mans-fault-detection.png">
 
 <br/>
 
@@ -279,7 +279,7 @@ In my last <a href="https://www.usenix.org/conference/lisa14/conference-program/
 
 <center>
 
-<img src="http://dieter.plaetinck.be/files/metrics20-alerting.png" width="50%">
+<img src="/files/metrics20-alerting.png" width="50%">
 
 </center>
 

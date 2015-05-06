@@ -333,7 +333,7 @@ But ironically, in doing so, they often seem to think that they are now only all
 
 &lt;br/&gt;
 
-&lt;img src=&#34;http://dieter.plaetinck.be/files/fault-detection-moving-average.png&#34;&gt;
+&lt;img src=&#34;http://localhost:1313/files/fault-detection-moving-average.png&#34;&gt;
 
 from &lt;a href=&#34;https://speakerdeck.com/astanway/a-deep-dive-into-monitoring-with-skyline&#34;&gt;A Deep Dive into Monitoring with Skyline&lt;/a&gt;
 
@@ -367,7 +367,7 @@ Another example: During his &lt;a href=&#34;https://coderanger.net/talks/echo/&#
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img width=&#34;70%&#34; src=&#34;http://dieter.plaetinck.be//files/anomaly-detection-cases.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img width=&#34;70%&#34; src=&#34;http://localhost:1313/files/anomaly-detection-cases.png&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -456,7 +456,7 @@ Another example: During his &lt;a href=&#34;https://coderanger.net/talks/echo/&#
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&#34;float:left; margin:15px;&#34; src=&#34;http://dieter.plaetinck.be/files/poor-mans-fault-detection.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&#34;float:left; margin:15px;&#34; src=&#34;http://localhost:1313/files/poor-mans-fault-detection.png&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
@@ -552,7 +552,7 @@ new needs.  You choose your own alerting granularity (it can automatically insta
 
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/metrics20-alerting.png&#34; width=&#34;50%&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/metrics20-alerting.png&#34; width=&#34;50%&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 

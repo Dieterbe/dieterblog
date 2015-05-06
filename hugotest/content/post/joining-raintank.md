@@ -92,6 +92,10 @@ snapshots
 
 
 
+continuing collaboration set up with bosun
+
+
+
  how i see myself integrating in the team:
 
 the way I see it, there's some good, next-gen ideas and implementation in some of the things i've built and/or have experience with (metrics2.0, graph-explorer, bosun) but clearly some of these projects (esp the former two) have been handicapped by a steep learning curve and weak UX.  Part of the reason I'm excited in joining in RT is that over time I will be able to gently infuse some of these re-envisioned ideas into the grafana package, with a much higher focus on user friendlyness.

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Netlog on Dieter Plaetinck&#39;s blog</title>
+    <title>Netlog on Dieter&#39;s blog</title>
     <link>http://localhost:1313/tags/netlog/</link>
-    <description>Recent content in Netlog on Dieter Plaetinck&#39;s blog</description>
+    <description>Recent content in Netlog on Dieter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 May 2008 12:39:28 -0400</lastBuildDate>

@@ -131,6 +131,8 @@
 
 <p>Long story short:  I finally got it working (thanks to Krazylegz and kristofer and possibly others too, it has been a while so I may forget someone ;-), and learned a lot in the process.  I will share what I learned with you guys so that hopefully it's a bit easier for you then what I had to go through.</p>
 
+<!--more-->
+
 <h3>Prerequisites</h3>
 
 <p>CakePHP.  I used 1.2 but I think this will work on 1.1 too (because the Ajax helper is in there for a long time.  it's even fully documented in the 1.1 manual)<br />
@@ -149,7 +151,7 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <p>The view looks like this:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
 
 <span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">foreach</span>(<span style="color: #19177C">$articles</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #19177C">$article</span>)<span style="color: #666666">:</span> <span style="color: #BC7A00">?&gt;</span>
 
@@ -211,11 +213,11 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <span style="color: #BC7A00">]]&gt;</span>
 </pre></div>
-<p></p>
+<p>
 
-<p>The controller would have functions like this:</p></p>
+The controller would have functions like this:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
 
 <span style="color: #BC7A00">&lt;?php</span>
 
@@ -269,11 +271,11 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <span style="color: #BC7A00">]]&gt;</span>
 </pre></div>
-<p></p>
+<p>
 
-<p>The view controller/cart.ctp could look something like this:</p></p>
+The view controller/cart.ctp could look something like this:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
 
 <span style="color: #BC7A00">&lt;ul&gt;</span>
 
@@ -291,9 +293,9 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <span style="color: #BC7A00">]]&gt;</span>
 </pre></div>
-<p></p>
+<p>
 
-<p>There you have it.  All explanations are inside the sources, I hope it&rsquo;s clear enough.  If not, just ask :-)</p></p>
+There you have it.  All explanations are inside the sources, I hope it's clear enough.  If not, just ask :-)</p>
 
 <h3>Common misconceptions</h3>
 

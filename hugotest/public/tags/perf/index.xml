@@ -17,9 +17,13 @@
       <guid>http://localhost:1313/post/on-graphite-whisper-and-influxdb/</guid>
       <description>&lt;h4&gt;Graphite, and the storage Achilles heel&lt;/h4&gt;
 
-&lt;p&gt;Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).&lt;/p&gt;
+
+Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.
+
+&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).
+
+&lt;!--more--&gt;
 
 &lt;ul&gt;
 
@@ -35,15 +39,15 @@
 
 &lt;/ul&gt;
 
-&lt;p&gt;Common recommendations are to &lt;a href=&#34;http://bitprophet.org/blog/2013/03/07/graphite/&#34;&gt;run multiple carbon agents&lt;/a&gt; and&lt;/p&gt;
+Common recommendations are to &lt;a href=&#34;http://bitprophet.org/blog/2013/03/07/graphite/&#34;&gt;run multiple carbon agents&lt;/a&gt; and
 
-&lt;p&gt;&lt;a href=&#34;http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5&#34;&gt;running graphite on SSD drives&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5&#34;&gt;running graphite on SSD drives&lt;/a&gt;.
 
-&lt;p&gt;&lt;br/&gt;If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though &lt;a href=&#34;https://github.com/jssjr/carbonate/&#34;&gt;carbonate&lt;/a&gt; makes this easier.  This is a path I simply don&amp;rsquo;t want to go down.&lt;/p&gt;
+&lt;br/&gt;If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though &lt;a href=&#34;https://github.com/jssjr/carbonate/&#34;&gt;carbonate&lt;/a&gt; makes this easier.  This is a path I simply don&#39;t want to go down.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
 &lt;p&gt;
 
@@ -53,17 +57,21 @@
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;In particular, &lt;a href=&#34;http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d&#34;&gt;running Ceres instead of whisper&lt;/a&gt;, is only a slight improvement, that suffers from most of the same problems.  I don&amp;rsquo;t see any good reason to keep working on Ceres, other than perhaps that it&amp;rsquo;s a fun exercise.   This probably explains the slow pace of development.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;However, many mistakenly believe Ceres is &amp;ldquo;the future&amp;rdquo;.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;a href=&#34;http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage&#34;&gt;Switching to LevelDB&lt;/a&gt; seems much more sensible but IMHO still doesn&amp;rsquo;t cut it as a general purpose, scalable solution.&lt;/p&gt;
+In particular, &lt;a href=&#34;http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d&#34;&gt;running Ceres instead of whisper&lt;/a&gt;, is only a slight improvement, that suffers from most of the same problems.  I don&#39;t see any good reason to keep working on Ceres, other than perhaps that it&#39;s a fun exercise.   This probably explains the slow pace of development.
+
+&lt;br/&gt;However, many mistakenly believe Ceres is &#34;the future&#34;.
+
+&lt;br/&gt;&lt;a href=&#34;http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage&#34;&gt;Switching to LevelDB&lt;/a&gt; seems much more sensible but IMHO still doesn&#39;t cut it as a general purpose, scalable solution.
+
+
 
 &lt;h4&gt;The ideal backend&lt;/h4&gt;
 
-&lt;p&gt;I believe we can build a backend for graphite that&lt;/p&gt;
+I believe we can build a backend for graphite that
 
 &lt;ul&gt;
 
@@ -83,47 +91,65 @@
 
 &lt;/ul&gt;
 
-&lt;p&gt;While we&amp;rsquo;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.&lt;/p&gt;
+
+While we&#39;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.
+
+&lt;br/&gt;And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.
+
+
 
 &lt;h4&gt;InfluxDB&lt;/h4&gt;
 
-&lt;p&gt;There&amp;rsquo;s a lot of databases that you could hook up to graphite.&lt;/p&gt;
 
-&lt;p&gt;riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.&lt;/p&gt;
 
-&lt;p&gt;Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.&lt;/p&gt;
+There&#39;s a lot of databases that you could hook up to graphite.
 
-&lt;p&gt;I&amp;rsquo;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.&lt;/p&gt;
+riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.&lt;/p&gt;
+Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.
 
-&lt;p&gt;In particular, installing it is a breeze (no dependencies), it&amp;rsquo;s specifically built for timeseries (not based on a general purpose database),&lt;/p&gt;
+I&#39;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.
 
-&lt;p&gt;which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;And they&amp;rsquo;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&amp;rsquo;m pretty confident that these guys can pull off something big.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+In particular, installing it is a breeze (no dependencies), it&#39;s specifically built for timeseries (not based on a general purpose database),
 
-&lt;p&gt;Technically, InfluxDB is a &amp;ldquo;timeseries, metrics, and analytics&amp;rdquo; databases with use cases well beyond graphite and even technical operations.&lt;/p&gt;
+which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.
 
-&lt;p&gt;Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.&lt;/p&gt;
+And they&#39;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&#39;m pretty confident that these guys can pull off something big.
+
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+Technically, InfluxDB is a &#34;timeseries, metrics, and analytics&#34; databases with use cases well beyond graphite and even technical operations.
+
+Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.
+
+
+
+
 
 &lt;h4&gt;Graphite + InfluxDB&lt;/h4&gt;
 
-&lt;p&gt;InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use &lt;a href=&#34;http://grafana.org/&#34;&gt;Grafana&lt;/a&gt;), which means at some point you could completely swap graphite for InfluxDB.&lt;/p&gt;
 
-&lt;p&gt;However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.&lt;/p&gt;
 
-&lt;p&gt;So here&amp;rsquo;s how my setup currently works:&lt;/p&gt;
+InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use &lt;a href=&#34;http://grafana.org/&#34;&gt;Grafana&lt;/a&gt;), which means at some point you could completely swap graphite for InfluxDB.
+
+
+
+However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.
+
+So here&#39;s how my setup currently works:
+
+
 
 &lt;ul&gt;
 
@@ -155,21 +181,27 @@ It should also work with the regular graphite, though I&#39;ve never tried.  (I 
 
 &lt;/ul&gt;
 
-&lt;p&gt;With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.&lt;/p&gt;
 
-&lt;p&gt;Later i might do more extensive benchmarking and acceptance testing.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+Later i might do more extensive benchmarking and acceptance testing.
 
-&lt;p&gt;If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &amp;ldquo;backup&amp;rdquo;.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;We&amp;rsquo;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&amp;rsquo;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &#34;backup&#34;.
 
-&lt;p&gt;&lt;br/&gt;To be continued..&lt;/p&gt;
+We&#39;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&#39;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)
+
+
+
+&lt;br/&gt;
+
+&lt;br/&gt;To be continued..
+
+
 </description>
     </item>
     
@@ -189,13 +221,13 @@ it&#39;s somewhere between an early clone/rewrite, a redesign, and an experiment
 
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
 
 &lt;span style=&#34;color: #BB6688&#34;&gt;/render/&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;?&lt;/span&gt;target&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;sum(scale(stats.web2,&lt;span style=&#34;color: #666666&#34;&gt;5.12&lt;/span&gt;),derivative(stats.web2))
 
 ]]&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 
 &lt;p&gt;
 
@@ -204,6 +236,10 @@ I.e. it lets you retrieve your timeseries, processed by function pipelines which
 Currently it only fetches metrics from text files but I&#39;m working on decent metrics storage as well.
 
 &lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
 
 &lt;p&gt;
 
@@ -251,6 +287,8 @@ and its performance looks promising.  Leaving out the non-essentials (see below)
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 The API server I developed sets up a processing pipeline as directed by your query: every processing function runs in a goroutine
@@ -279,13 +317,15 @@ There&#39;s a ton of dashboards out there (&lt;a href=&#34;http://vimeo.github.i
 
 &lt;/p&gt;
 
-&lt;p&gt;For more information, see &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;the Graphite-ng homepage&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;PS: props to &lt;a href=&#34;http://felixge.de/&#34;&gt;Felix Geisendorfer&lt;/a&gt; who suggested a graphite clone in Go first,&lt;/p&gt;
+For more information, see &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;the Graphite-ng homepage&lt;/a&gt;.
 
-&lt;p&gt;it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;br/&gt;PS: props to &lt;a href=&#34;http://felixge.de/&#34;&gt;Felix Geisendorfer&lt;/a&gt; who suggested a graphite clone in Go first,
+
+it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!
 </description>
     </item>
     
@@ -297,65 +337,73 @@ There&#39;s a ton of dashboards out there (&lt;a href=&#34;http://vimeo.github.i
       <guid>http://localhost:1313/post/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/</guid>
       <description>&lt;h3&gt;Profiling a process run&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/Dieterbe/profile-process&#34;&gt;&lt;/p&gt;
+&lt;a href=&#34;https://github.com/Dieterbe/profile-process&#34;&gt;
 
-&lt;p&gt;&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/presentation-simple-black-box/images/profile_io.png&#34; width=&#34;100px&#34; height=&#34;100px&#34;/&gt;&lt;/p&gt;
+&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/presentation-simple-black-box/images/profile_io.png&#34; width=&#34;100px&#34; height=&#34;100px&#34;/&gt;
 
-&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/a&gt;
 
-&lt;p&gt;I wanted the ability to run a given process and get&lt;/p&gt;
+I wanted the ability to run a given process and get
 
-&lt;p&gt;&lt;br/&gt;a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.&lt;/p&gt;
+&lt;br/&gt;a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.
 
-&lt;p&gt;&lt;br/&gt;Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.&lt;/p&gt;
+&lt;br/&gt;Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.
 
-&lt;p&gt;&lt;br/&gt;Couldn&amp;rsquo;t find a tool for it, so I wrote &lt;a href=&#34;https://github.com/Dieterbe/profile-process&#34;&gt;profile-process&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;Couldn&#39;t find a tool for it, so I wrote &lt;a href=&#34;https://github.com/Dieterbe/profile-process&#34;&gt;profile-process&lt;/a&gt;
 
-&lt;p&gt;&lt;br/&gt;which does exactly that in &amp;lt;100 lines of python.&lt;/p&gt;
+&lt;br/&gt;which does exactly that in &lt;100 lines of python.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+
 
 &lt;h3&gt;black-box behavior testing processes/daemons&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/vimeo/simple-black-box&#34;&gt;&lt;/p&gt;
+&lt;a href=&#34;https://github.com/vimeo/simple-black-box&#34;&gt;
 
-&lt;p&gt;&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/presentation-simple-black-box/images/screenshot-no-pause.png&#34; width=&#34;150px&#34; height=&#34;100px&#34;/&gt;&lt;/p&gt;
+&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/presentation-simple-black-box/images/screenshot-no-pause.png&#34; width=&#34;150px&#34; height=&#34;100px&#34;/&gt;
 
-&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/a&gt;
 
-&lt;p&gt;I wrote &lt;a href=&#34;https://github.com/vimeo/simple-black-box&#34;&gt;simple-black-box&lt;/a&gt; to do this.&lt;/p&gt;
+I wrote &lt;a href=&#34;https://github.com/vimeo/simple-black-box&#34;&gt;simple-black-box&lt;/a&gt; to do this.
 
-&lt;p&gt;&lt;br/&gt;It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, &amp;hellip;)&lt;/p&gt;
+&lt;br/&gt;It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, ...)
 
-&lt;p&gt;&lt;br/&gt;and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,&lt;/p&gt;
+&lt;br/&gt;and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,
 
-&lt;p&gt;&lt;br/&gt;file existence/checksums in the VFS/swift clusters, etc.&lt;/p&gt;
+&lt;br/&gt;file existence/checksums in the VFS/swift clusters, etc.
 
-&lt;p&gt;&lt;br/&gt;Each test-case is a scenario.&lt;/p&gt;
+&lt;br/&gt;Each test-case is a scenario.
 
-&lt;p&gt;&lt;br/&gt;It also can use &lt;a href=&#34;http://logstash.net/&#34;&gt;logstash&lt;/a&gt; to give a centralized &amp;ldquo;distributed stack trace&amp;rdquo; when you need to debug a failure after&lt;/p&gt;
+&lt;br/&gt;It also can use &lt;a href=&#34;http://logstash.net/&#34;&gt;logstash&lt;/a&gt; to give a centralized &#34;distributed stack trace&#34; when you need to debug a failure after
 
-&lt;p&gt;multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.&lt;/p&gt;
+multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.
 
-&lt;p&gt;&lt;br/&gt;You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.&lt;/p&gt;
+&lt;br/&gt;You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.
+
+&lt;!--more--&gt;
+
+
 
 &lt;h3&gt;Simple-black-box talk @ Devopsdays NYC&lt;/h3&gt;
 
-&lt;p&gt;I did a quick &lt;a href=&#34;http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/&#34;&gt;5min talk&lt;/a&gt;, despite some display/timing issues it was well received.&lt;/p&gt;
+I did a quick &lt;a href=&#34;http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/&#34;&gt;5min talk&lt;/a&gt;, despite some display/timing issues it was well received.
 
-&lt;p&gt;(in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to&lt;/p&gt;
+(in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to
 
-&lt;p&gt;hire me -but being shy about it&amp;hellip;- it was quite awkward)&lt;/p&gt;
+hire me -but being shy about it...- it was quite awkward)
 
-&lt;p&gt;&lt;br/&gt;&amp;rarr; &lt;a href=&#34;http://localhost:1313/files/presentation-simple-black-box/slideshow.html&#34;&gt;slides&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;&amp;rarr; &lt;a href=&#34;http://localhost:1313/files/presentation-simple-black-box/slideshow.html&#34;&gt;slides&lt;/a&gt;
 
-&lt;p&gt;&lt;br/&gt;&amp;rarr; &lt;a href=&#34;http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498&#34;&gt;raw uncut video&lt;/a&gt;.  Go to &amp;lsquo;New York, January 18th, 2013&amp;rsquo; from 02:36:25 to 02:41:15&lt;/p&gt;
+&lt;br/&gt;&amp;rarr; &lt;a href=&#34;http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498&#34;&gt;raw uncut video&lt;/a&gt;.  Go to &#39;New York, January 18th, 2013&#39; from 02:36:25 to 02:41:15
+
+
 
 &lt;h3&gt;More random thoughts about Devopsdays NYC&lt;/h3&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;a href=&#34;http://devopsdays.org/events/2012-newyork/&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/devopsdays/workers.png&#34; width=&#34;300px&#34; height=&#34;300px&#34;/&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;&lt;a href=&#34;http://devopsdays.org/events/2012-newyork/&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/devopsdays/workers.png&#34; width=&#34;300px&#34; height=&#34;300px&#34;/&gt;&lt;/a&gt;&lt;/center&gt;
 
 &lt;ul&gt;
 
@@ -407,7 +455,7 @@ but there were a bunch of interesting insights about state of the art technology
 
 &lt;/ul&gt;
 
-&lt;p&gt;Random thoughts about some sponsors:&lt;/p&gt;
+Random thoughts about some sponsors: 
 
 &lt;ul&gt;
 
@@ -429,19 +477,19 @@ related collaboration and prioritized alerts that are to the point.  They get a 
 
 &lt;/ul&gt;
 
-&lt;p&gt;Interesting that both use Cassandra and free-form tags for flexibility, validating the approach I&amp;rsquo;m taking with graph-explorer.  Now Graphite&lt;/p&gt;
+Interesting that both use Cassandra and free-form tags for flexibility, validating the approach I&#39;m taking with graph-explorer.  Now Graphite
 
-&lt;p&gt;could use a distributed metrics storage backend over which one can do map-reduce style jobs to gather intelligence from metrics archives&lt;/p&gt;
+could use a distributed metrics storage backend over which one can do map-reduce style jobs to gather intelligence from metrics archives
 
-&lt;p&gt;(maybe based on Cassandra too?), but that&amp;rsquo;s another story.&lt;/p&gt;
+(maybe based on Cassandra too?), but that&#39;s another story.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Anyway, living in NYC with its vibrant ecosystem of devops people and companies organizing plenty of meet-ups and talks on their own&lt;/p&gt;
+Anyway, living in NYC with its vibrant ecosystem of devops people and companies organizing plenty of meet-ups and talks on their own
 
-&lt;p&gt;makes it less pressing to have an event like Devopsdays, though it was certainly a good event, thanks to the sponsors and the volunteers.&lt;/p&gt;
+makes it less pressing to have an event like Devopsdays, though it was certainly a good event, thanks to the sponsors and the volunteers.
 </description>
     </item>
     
@@ -489,6 +537,8 @@ as well as an upper boundary of infinite.
 
 &lt;h4&gt;Plotting histograms.. over time&lt;/h4&gt;
 
+&lt;!--more--&gt;
+
 &lt;p&gt;
 
 We want to plot histograms over time, and not just for a few select points in time (in which case you can just make several histograms),
@@ -501,9 +551,9 @@ but a contiguous range of time, preferably through graphite&#39;s 2D graphs caus
 
 &lt;p&gt;The example I&#39;ll use are page rendering timings, condensed into classes with upper boundaries of 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 50 and infinite seconds&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;Tips and notes:&lt;/p&gt;
+Tips and notes:
 
 &lt;ul&gt;
 
@@ -551,9 +601,13 @@ a misleading name but &lt;a href=&#34;https://github.com/etsy/statsd/issues/98&#
 
 &lt;/ul&gt;
 
+
+
+
+
 &lt;h4&gt;First version&lt;/h4&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
 
 http&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//localhost:9000/render/?height=300&amp;amp;&lt;/span&gt;
 
@@ -583,37 +637,39 @@ lineMode&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;slope&lt;span s
 
 ]]&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/rendertime-histogram.png&#34; width=&#34;740&#34; height=&#34;300&#34; alt=&#34;rendertime histogram&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;Turns out we mainly see the vast majority that performs well, simply because with this way of rendering,&lt;/p&gt;
+&lt;img src=&#34;http://localhost:1313/files/rendertime-histogram.png&#34; width=&#34;740&#34; height=&#34;300&#34; alt=&#34;rendertime histogram&#34; /&gt;
 
-&lt;p&gt;the higher the frequency of a class, the more prominent.  Bad values are hard to see because there&amp;rsquo;s not many of them,&lt;/p&gt;
+&lt;br/&gt;Turns out we mainly see the vast majority that performs well, simply because with this way of rendering,
 
-&lt;p&gt;despite being more interesting.&lt;/p&gt;
+the higher the frequency of a class, the more prominent.  Bad values are hard to see because there&#39;s not many of them,
 
-&lt;p&gt;A thought I had at this point was to make all &amp;ldquo;class bands&amp;rdquo; equally wide and use a green-to-red gradient to denote the frequency values,&lt;/p&gt;
+despite being more interesting.
 
-&lt;p&gt;or even just keep the current color assignments but rely on something like opacity to express frequencies. Alas, none of this is currently&lt;/p&gt;
+A thought I had at this point was to make all &#34;class bands&#34; equally wide and use a green-to-red gradient to denote the frequency values,
 
-&lt;p&gt;possible with graphite, as far as I can tell.  Though I would like to explore this further.  Especially because I think it wouldn&amp;rsquo;t be hard to implement&lt;/p&gt;
+or even just keep the current color assignments but rely on something like opacity to express frequencies. Alas, none of this is currently
 
-&lt;p&gt;in graphite.&lt;/p&gt;
+possible with graphite, as far as I can tell.  Though I would like to explore this further.  Especially because I think it wouldn&#39;t be hard to implement
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+in graphite.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;So, let&amp;rsquo;s see what &lt;i&gt;can&lt;/i&gt; be done right now.&lt;/p&gt;
+&lt;br/&gt;
+
+So, let&#39;s see what &lt;i&gt;can&lt;/i&gt; be done right now.
+
+
 
 &lt;h4&gt;Leaving out the smallest class&lt;/h4&gt;
 
-&lt;p&gt;This adaption is basically the same as before, but leaves out the smallest class (which took most space), this way&lt;/p&gt;
+This adaption is basically the same as before, but leaves out the smallest class (which took most space), this way
 
-&lt;p&gt;the other bands are a bit more visible but the effect isn&amp;rsquo;t as clear as we want.&lt;/p&gt;
+the other bands are a bit more visible but the effect isn&#39;t as clear as we want.
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
 
 http&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//localhost:9000/render/?height=300&amp;amp;&lt;/span&gt;
 
@@ -641,17 +697,19 @@ lineMode&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;slope&lt;span s
 
 ]]&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/rendertime-histogram-leaving-out-first-class.png&#34; width=&#34;740&#34; height=&#34;300&#34; alt=&#34;rendertime histogram leaving out first class&#34; /&gt;&lt;/p&gt;
+
+&lt;img src=&#34;http://localhost:1313/files/rendertime-histogram-leaving-out-first-class.png&#34; width=&#34;740&#34; height=&#34;300&#34; alt=&#34;rendertime histogram leaving out first class&#34; /&gt;
+
+
 
 &lt;h4&gt;Per-band scaling&lt;/h4&gt;
 
-&lt;p&gt;Finally, the bigger the values represented by each class the more we inflate the band,&lt;/p&gt;
+Finally, the bigger the values represented by each class the more we inflate the band,
 
-&lt;p&gt;so the more problematic cases become more visible, despite having a lower frequency.&lt;/p&gt;
+so the more problematic cases become more visible, despite having a lower frequency.
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
 
 http&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//localhost:9000/render/?height=300&amp;amp;&lt;/span&gt;
 
@@ -681,33 +739,35 @@ lineMode&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;slope&lt;span s
 
 ]]&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/rendertime-histogram-higher-focus-for-higher-class-interval.png&#34; width=&#34;740&#34; height=&#34;300&#34; alt=&#34;rendertime histogram with higher focus for higher class interval&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;I started off by scaling each band by the width of the class interval.  This is actually more arbitrary than it may seem.&lt;/p&gt;
+&lt;img src=&#34;http://localhost:1313/files/rendertime-histogram-higher-focus-for-higher-class-interval.png&#34; width=&#34;740&#34; height=&#34;300&#34; alt=&#34;rendertime histogram with higher focus for higher class interval&#34; /&gt;
 
-&lt;p&gt;&lt;br/&gt;The point is that now it&amp;rsquo;s easier to spot acute as well as long-standing problems, but note you can&amp;rsquo;t really read statistics from this graph because of the per-band scaling.&lt;/p&gt;
+&lt;br/&gt;I started off by scaling each band by the width of the class interval.  This is actually more arbitrary than it may seem.
 
-&lt;p&gt;&lt;br/&gt;Note also that outliers contribute to the outer band(s) and are given as much focus as non-outliers in the same bands.&lt;/p&gt;
+&lt;br/&gt;The point is that now it&#39;s easier to spot acute as well as long-standing problems, but note you can&#39;t really read statistics from this graph because of the per-band scaling.
 
-&lt;p&gt;In a system over which you have no complete control (i.e. if you were graphing histograms of time until first byte or page loaded at client,&lt;/p&gt;
+&lt;br/&gt;Note also that outliers contribute to the outer band(s) and are given as much focus as non-outliers in the same bands.
 
-&lt;p&gt;where you rely on the internet as a transport) it makes sense to give less attention to outliers and focus on optimizing for as many users as possible,&lt;/p&gt;
+In a system over which you have no complete control (i.e. if you were graphing histograms of time until first byte or page loaded at client,
 
-&lt;p&gt;I think it there&amp;rsquo;s no reliable way to subtract outliers from the upper bands and you should also graph averages and percentiles and understand what each&lt;/p&gt;
+where you rely on the internet as a transport) it makes sense to give less attention to outliers and focus on optimizing for as many users as possible,
 
-&lt;p&gt;graph does.&lt;/p&gt;
+I think it there&#39;s no reliable way to subtract outliers from the upper bands and you should also graph averages and percentiles and understand what each
 
-&lt;p&gt;But anyway here I want to include outliers, because they represent latencies we can fix.&lt;/p&gt;
+graph does.
+
+But anyway here I want to include outliers, because they represent latencies we can fix.
+
+
 
 &lt;h4&gt;Final notes&lt;/h4&gt;
 
-&lt;p&gt;While the tools we have are by no means perfect, I&amp;rsquo;m seeing gradual improvement in the monitoring space.  This work is only a small piece&lt;/p&gt;
+While the tools we have are by no means perfect, I&#39;m seeing gradual improvement in the monitoring space.  This work is only a small piece
 
-&lt;p&gt;of the puzzle. The rendering of histograms can be improved but at this point I think they are good enough to be usable. The real challenge is&lt;/p&gt;
+of the puzzle. The rendering of histograms can be improved but at this point I think they are good enough to be usable. The real challenge is
 
-&lt;p&gt;putting in place automated trending, anomaly detection and alerting.  If we can figure that out, there&amp;rsquo;s less need to be looking at graphs in the first place.&lt;/p&gt;
+putting in place automated trending, anomaly detection and alerting.  If we can figure that out, there&#39;s less need to be looking at graphs in the first place.
 </description>
     </item>
     
@@ -717,11 +777,17 @@ lineMode&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;slope&lt;span s
       <pubDate>Thu, 16 Jun 2011 22:32:12 -0400</pubDate>
       
       <guid>http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://nlp.fi.muni.cz/projekty/gensim/&#34;&gt;Gensim&lt;/a&gt; is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.&lt;/p&gt;
+      <description>&lt;!--more--&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://nlp.fi.muni.cz/projekty/gensim/&#34;&gt;Gensim&lt;/a&gt; is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.&lt;/p&gt;
+
+
 
 &lt;p&gt;But anyway we&#39;re having some issues in it with cPickle (it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/31&#34;&gt;breaks when saving large matrices&lt;/a&gt;, it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/30&#34;&gt;breaks with some objects&lt;/a&gt;).
 
 For now I worked around it by using &lt;a href=&#34;http://jsonpickle.github.com/&#34;&gt;jsonpickle&lt;/a&gt; but I wonder how viable this alternative really is.&lt;/p&gt;
+
+
 
 &lt;p&gt;To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - &lt;a href=&#34;https://github.com/Dieterbe/picklebench&#34;&gt;picklebench&lt;/a&gt; - to compare pickle, cPickle and jsonpickle.
 
@@ -729,7 +795,9 @@ The script fills a dictionary which gets bigger and bigger, and for certain size
 
 We continue until memory is exhausted.&lt;/p&gt;
 
-&lt;p&gt;limitations of this benchmark:&lt;/p&gt;
+&lt;!--more--&gt;
+
+limitations of this benchmark:
 
 &lt;ul&gt;
 
@@ -751,7 +819,7 @@ We continue until memory is exhausted.&lt;/p&gt;
 
 &lt;/ul&gt;
 
-&lt;p&gt;You can easily &lt;a href=&#34;https://github.com/Dieterbe/picklebench/blob/master/runall.sh&#34;&gt;run the program&lt;/a&gt; yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.&lt;/p&gt;
+You can easily &lt;a href=&#34;https://github.com/Dieterbe/picklebench/blob/master/runall.sh&#34;&gt;run the program&lt;/a&gt; yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.
 
 &lt;pre&gt;
 
@@ -1115,7 +1183,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/pre&gt;
 
-&lt;p&gt;Paraphrased:&lt;/p&gt;
+Paraphrased:
 
 &lt;ul&gt;
 
@@ -1127,7 +1195,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/ul&gt;
 
-&lt;p&gt;Conclusion:&lt;/p&gt;
+Conclusion:
 
 &lt;ul&gt;
 
@@ -1179,7 +1247,7 @@ At this point the biggest contenders are &lt;a href=&#34;http://linode.com/&#34;
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;br /&gt;
 
 Non-features:&lt;/p&gt;
 
@@ -1267,9 +1335,11 @@ I&#39;ll figure out something else.  Like backing up from inside windows (maybe 
       <guid>http://localhost:1313/post/poor_mans_dmenu_benchmark/</guid>
       <description>&lt;p&gt;I wanted to know how responsive &lt;a href=&#34;http://tools.suckless.org/dmenu&#34;&gt;dmenu&lt;/a&gt; and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).&lt;/p&gt;
 
+&lt;!--more--&gt;
+
 &lt;p&gt;generate file:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
@@ -1297,9 +1367,9 @@ I&#39;ll figure out something else.  Like backing up from inside windows (maybe 
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;measure speed:&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;measure speed:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Plain awk &amp;#39;{print \$3}&amp;#39;:&amp;quot;&lt;/span&gt;
 
@@ -1331,83 +1401,93 @@ awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $3}&amp;#39;&lt;/
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;Results.&lt;br /&gt;&lt;/p&gt;
+Results.&lt;br /&gt;
 
-&lt;p&gt;I ran the test twice about an half hour after generating the file, so in the first run, the first awk call may have been affected by a no longer complete Linux block cache.&lt;br /&gt;&lt;/p&gt;
+I ran the test twice about an half hour after generating the file, so in the first run, the first awk call may have been affected by a no longer complete Linux block cache.&lt;br /&gt;
 
-&lt;p&gt;(I also edited the output format a bit)&lt;br /&gt;&lt;/p&gt;
+(I also edited the output format a bit)&lt;br /&gt;
 
-&lt;p&gt;Run 1:&lt;/p&gt;&lt;/p&gt;
+Run 1:&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&lt;/p&gt;
+&lt;pre&gt;
 
-&lt;p&gt;Plain awk &amp;lsquo;{print $3}&amp;rsquo;:&lt;/p&gt;
+Plain awk &#39;{print $3}&#39;:
 
-&lt;p&gt;real    0m1.253s&lt;/p&gt;
+real	0m1.253s
 
-&lt;p&gt;user    0m0.907s&lt;/p&gt;
+user	0m0.907s
 
-&lt;p&gt;sys 0m0.143s&lt;/p&gt;
+sys	0m0.143s
 
-&lt;p&gt;awk + sort:&lt;/p&gt;
 
-&lt;p&gt;real    0m3.696s&lt;/p&gt;
 
-&lt;p&gt;user    0m1.887s&lt;/p&gt;
+awk + sort:
 
-&lt;p&gt;sys 0m0.520s&lt;/p&gt;
+real	0m3.696s
 
-&lt;p&gt;awk + sort + uniq:&lt;/p&gt;
+user	0m1.887s
 
-&lt;p&gt;real    0m15.768s&lt;/p&gt;
+sys	0m0.520s
 
-&lt;p&gt;user    0m12.233s&lt;/p&gt;
 
-&lt;p&gt;sys 0m0.820s&lt;/p&gt;
 
-&lt;p&gt;Plain dmenu:&lt;/p&gt;
+awk + sort + uniq:
 
-&lt;p&gt;awked into dmenu:&lt;/p&gt;
+real	0m15.768s
 
-&lt;p&gt;awk + sort + uniq into dmenu:&lt;/p&gt;
+user	0m12.233s
 
-&lt;p&gt;&lt;/pre&gt;&lt;p&gt;Run 2&lt;/p&gt;&lt;/p&gt;
+sys	0m0.820s
 
-&lt;p&gt;&lt;pre&gt;&lt;/p&gt;
 
-&lt;p&gt;Plain awk &amp;lsquo;{print $3}&amp;rsquo;:&lt;/p&gt;
 
-&lt;p&gt;real    0m1.223s&lt;/p&gt;
+Plain dmenu:
 
-&lt;p&gt;user    0m0.923s&lt;/p&gt;
+awked into dmenu:
 
-&lt;p&gt;sys 0m0.107s&lt;/p&gt;
+awk + sort + uniq into dmenu:
 
-&lt;p&gt;awk + sort:&lt;/p&gt;
+&lt;/pre&gt;&lt;p&gt;Run 2&lt;/p&gt;
 
-&lt;p&gt;real    0m2.799s&lt;/p&gt;
+&lt;pre&gt;
 
-&lt;p&gt;user    0m1.910s&lt;/p&gt;
+Plain awk &#39;{print $3}&#39;:
 
-&lt;p&gt;sys 0m0.553s&lt;/p&gt;
+real	0m1.223s
 
-&lt;p&gt;awk + sort + uniq:&lt;/p&gt;
+user	0m0.923s
 
-&lt;p&gt;real    0m16.387s&lt;/p&gt;
+sys	0m0.107s
 
-&lt;p&gt;user    0m12.019s&lt;/p&gt;
 
-&lt;p&gt;sys 0m0.787s&lt;/p&gt;
 
-&lt;p&gt;Plain dmenu:&lt;/p&gt;
+awk + sort:
 
-&lt;p&gt;awked into dmenu:&lt;/p&gt;
+real	0m2.799s
 
-&lt;p&gt;awk + sort + uniq into dmenu:&lt;/p&gt;
+user	0m1.910s
 
-&lt;p&gt;&lt;/pre&gt;&lt;p&gt;Not too bad.  It&amp;rsquo;s especially uniq who seems to cause a lot of slowdown.  (in this dummy test file, are entries are unique. If there were lots of dupes, the results would probably be different, but I suspect that uniq always needs some time to do its work, dupes or not).  The real bottleneck seems to be raw cpu power.  Not storage bandwidth at all since Linux caches it.  If uncached, I estimate the sequential read would take 1.5 seconds or so. (about 30MB/s on common hard disks)&lt;/p&gt;&lt;/p&gt;
+sys	0m0.553s
+
+
+
+awk + sort + uniq:
+
+real	0m16.387s
+
+user	0m12.019s
+
+sys	0m0.787s
+
+Plain dmenu:
+
+awked into dmenu:
+
+awk + sort + uniq into dmenu:
+
+&lt;/pre&gt;&lt;p&gt;Not too bad.  It&#39;s especially uniq who seems to cause a lot of slowdown.  (in this dummy test file, are entries are unique. If there were lots of dupes, the results would probably be different, but I suspect that uniq always needs some time to do its work, dupes or not).  The real bottleneck seems to be raw cpu power.  Not storage bandwidth at all since Linux caches it.  If uncached, I estimate the sequential read would take 1.5 seconds or so. (about 30MB/s on common hard disks)&lt;/p&gt;
 
 &lt;p&gt;Once the stuff gets piped into dmenu, there is a little lag but it&#39;s reasonably responsive imho.&lt;br /&gt;
 
@@ -1423,7 +1503,7 @@ Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other a
       <guid>http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/</guid>
       <description>&lt;p&gt;If you serve lots of (small) files with Lighttpd you might notice you&#39;re not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn&#39;t have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
 
-&lt;br/&gt;
+&lt;!--more--&gt;&lt;br/&gt;
 
 (in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)&lt;/p&gt;
 
@@ -1435,7 +1515,7 @@ Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other a
 
 &lt;p&gt;Have fun !&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;/*&lt;/span&gt;
 
@@ -1745,7 +1825,7 @@ Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other a
 
 ]]&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 </description>
     </item>
     

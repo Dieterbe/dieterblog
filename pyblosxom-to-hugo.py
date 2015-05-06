@@ -77,14 +77,14 @@ def process_entry(entry):
     base = entry[8:]
     draft = False 
     if base[-4:] == ".txt":
-        new = hugo + "/content/post/" +base[:-4] + ".md"
+        new = hugo + "/content/post/" +base[:-4] + ".html"
     elif ".txt" in base:  # .txt.draft, .txt.unpub, etc
         draft = True
-        new = hugo + "/content/post/" + re.sub("\.txt.*", ".md", base)
+        new = hugo + "/content/post/" + re.sub("\.txt.*", ".html", base)
     else:  # .draft, .unpub
         draft = True
         p = pathlib.PurePath(entry)
-        new = hugo + "/content/post/" + p.with_suffix('.md').name
+        new = hugo + "/content/post/" + p.with_suffix('.html').name
 
     print(base, "---->", new)
     f = open(entry, "r")
@@ -98,7 +98,7 @@ def process_entry(entry):
 def process_page(page):
     base = page[6:]
     # for my case we can assume .txt extension
-    new = hugo + "/content/" +base[:-4] + ".md"
+    new = hugo + "/content/" +base[:-4] + ".html"
     print(base, "---->", new)
     f = open(page, "r")
     lines = f.readlines()

@@ -141,7 +141,11 @@ the mysql, pgsql, vsql, etc tools before.
 
 </p>
 
-<p><br/></p>
+<!--more-->
+
+<br/>
+
+
 
 <p>
 
@@ -169,6 +173,8 @@ influx> list admin
 
 </p>
 
+
+
 <p>
 
 <b>You can change parameters and re-bind with the new values</b>
@@ -187,6 +193,8 @@ influx> bind
 
 </p>
 
+
+
 <p>
 
 <b>Write your variables (user, pass, host, db, ...) to ~/.influxrc</b>
@@ -198,6 +206,8 @@ influx> writerc
 ]]></pre>
 
 </p>
+
+
 
 <p>
 
@@ -233,6 +243,8 @@ influx> delete db issue-1234
 
 </p>
 
+
+
 <p>
 
 <b>You can send queries on standard input, which is useful in shell commands and scripts.</b>
@@ -250,6 +262,8 @@ $ influx-cli <<< 'list series' | wc -l
 ]]></pre>
 
 </p>
+
+
 
 <p>
 
@@ -276,6 +290,8 @@ influx> list series > list-series.txt
 (note: the discrepancy of one line is due to <a href="https://github.com/shavac/readline/issues/2">the Go readline library echoing the query</a>.
 
 </p>
+
+
 
 <p>
 
@@ -327,6 +343,8 @@ displaying   : 65.712027ms
 
 </p>
 
+
+
 <p>
 
 <b>Executing queries and debugging their result data format, works too</b>
@@ -375,6 +393,8 @@ influx> raw select * from foo limit 1
 
 </p>
 
+
+
 <p>
 
 And that's about it.
@@ -394,6 +414,8 @@ I've found this to be a much easier way to interface with InfluxDB then using th
 <li>my gut feeling says that using something like msgpack instead of json, and/or even streaming the resultset as it is being generated (instead of first building the entire result, then serializing it, then sending it over, then having the client deserialize the entire thing) could really help performance, not just here, but basically anywhere you interface with influxdb.  Though I don't have hard numbers on this yet.</li>
 
 </p>
+
+
 
 	</div>
 

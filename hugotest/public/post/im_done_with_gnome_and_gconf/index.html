@@ -129,7 +129,7 @@ They mangle cache data together with user data and user preferences and spread t
 
 The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime 'something' happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br />
 
-I'm fine with the fact they do that.  I'm sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg's</a> $XDG_CACHE_HOME directory)</p>
+I'm fine with the fact they do that.  I'm sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg's</a> $XDG_CACHE_HOME directory)<!--more--></p>
 
 <p>While trying to apply version control to my $HOME I need to spend way too much time scripting various <i>svn reverts</i> of many of those changes (in .gnome2, .gconf/apps/*, and .gconf/desktop), and also updating many <i>svn:ignore</i> properties (although gnome/gconf are definitely not the only culprits for that.)</p>
 

@@ -133,13 +133,13 @@ it's somewhere between an early clone/rewrite, a redesign, and an experiment pla
 
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
 
 <span style="color: #BB6688">/render/</span><span style="color: #666666">?</span>target<span style="color: #666666">=</span>sum(scale(stats.web2,<span style="color: #666666">5.12</span>),derivative(stats.web2))
 
 ]]<span style="color: #666666">&gt;</span>
 </pre></div>
-</p>
+
 
 <p>
 
@@ -148,6 +148,10 @@ I.e. it lets you retrieve your timeseries, processed by function pipelines which
 Currently it only fetches metrics from text files but I'm working on decent metrics storage as well.
 
 </p>
+
+<!--more-->
+
+
 
 <p>
 
@@ -195,6 +199,8 @@ and its performance looks promising.  Leaving out the non-essentials (see below)
 
 </p>
 
+
+
 <p>
 
 The API server I developed sets up a processing pipeline as directed by your query: every processing function runs in a goroutine
@@ -223,13 +229,15 @@ There's a ton of dashboards out there (<a href="http://vimeo.github.io/graph-exp
 
 </p>
 
-<p>For more information, see <a href="https://github.com/graphite-ng/graphite-ng">the Graphite-ng homepage</a>.</p>
 
-<p><br/></p>
 
-<p><br/>PS: props to <a href="http://felixge.de/">Felix Geisendorfer</a> who suggested a graphite clone in Go first,</p>
+For more information, see <a href="https://github.com/graphite-ng/graphite-ng">the Graphite-ng homepage</a>.
 
-<p>it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!</p>
+<br/>
+
+<br/>PS: props to <a href="http://felixge.de/">Felix Geisendorfer</a> who suggested a graphite clone in Go first,
+
+it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!
 
 	</div>
 

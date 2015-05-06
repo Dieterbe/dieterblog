@@ -125,65 +125,73 @@
 	<div class="entry-content">
 		<h3>Profiling a process run</h3>
 
-<p><a href="https://github.com/Dieterbe/profile-process"></p>
+<a href="https://github.com/Dieterbe/profile-process">
 
-<p><img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/></p>
+<img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/>
 
-<p></a></p>
+</a>
 
-<p>I wanted the ability to run a given process and get</p>
+I wanted the ability to run a given process and get
 
-<p><br/>a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.</p>
+<br/>a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.
 
-<p><br/>Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.</p>
+<br/>Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.
 
-<p><br/>Couldn&rsquo;t find a tool for it, so I wrote <a href="https://github.com/Dieterbe/profile-process">profile-process</a></p>
+<br/>Couldn't find a tool for it, so I wrote <a href="https://github.com/Dieterbe/profile-process">profile-process</a>
 
-<p><br/>which does exactly that in &lt;100 lines of python.</p>
+<br/>which does exactly that in <100 lines of python.
 
-<p><br/></p>
+<br/>
 
-<p><br/></p>
+<br/>
+
+
 
 <h3>black-box behavior testing processes/daemons</h3>
 
-<p><a href="https://github.com/vimeo/simple-black-box"></p>
+<a href="https://github.com/vimeo/simple-black-box">
 
-<p><img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/screenshot-no-pause.png" width="150px" height="100px"/></p>
+<img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/screenshot-no-pause.png" width="150px" height="100px"/>
 
-<p></a></p>
+</a>
 
-<p>I wrote <a href="https://github.com/vimeo/simple-black-box">simple-black-box</a> to do this.</p>
+I wrote <a href="https://github.com/vimeo/simple-black-box">simple-black-box</a> to do this.
 
-<p><br/>It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, &hellip;)</p>
+<br/>It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, ...)
 
-<p><br/>and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,</p>
+<br/>and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,
 
-<p><br/>file existence/checksums in the VFS/swift clusters, etc.</p>
+<br/>file existence/checksums in the VFS/swift clusters, etc.
 
-<p><br/>Each test-case is a scenario.</p>
+<br/>Each test-case is a scenario.
 
-<p><br/>It also can use <a href="http://logstash.net/">logstash</a> to give a centralized &ldquo;distributed stack trace&rdquo; when you need to debug a failure after</p>
+<br/>It also can use <a href="http://logstash.net/">logstash</a> to give a centralized "distributed stack trace" when you need to debug a failure after
 
-<p>multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.</p>
+multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.
 
-<p><br/>You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.</p>
+<br/>You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.
+
+<!--more-->
+
+
 
 <h3>Simple-black-box talk @ Devopsdays NYC</h3>
 
-<p>I did a quick <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">5min talk</a>, despite some display/timing issues it was well received.</p>
+I did a quick <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">5min talk</a>, despite some display/timing issues it was well received.
 
-<p>(in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to</p>
+(in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to
 
-<p>hire me -but being shy about it&hellip;- it was quite awkward)</p>
+hire me -but being shy about it...- it was quite awkward)
 
-<p><br/>&rarr; <a href="/files/presentation-simple-black-box/slideshow.html">slides</a></p>
+<br/>&rarr; <a href="/files/presentation-simple-black-box/slideshow.html">slides</a>
 
-<p><br/>&rarr; <a href="http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498">raw uncut video</a>.  Go to &lsquo;New York, January 18th, 2013&rsquo; from 02:36:25 to 02:41:15</p>
+<br/>&rarr; <a href="http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498">raw uncut video</a>.  Go to 'New York, January 18th, 2013' from 02:36:25 to 02:41:15
+
+
 
 <h3>More random thoughts about Devopsdays NYC</h3>
 
-<p><center><a href="http://devopsdays.org/events/2012-newyork/"><img src="/files/blog/devopsdays/workers.png" width="300px" height="300px"/></a></center></p>
+<center><a href="http://devopsdays.org/events/2012-newyork/"><img src="/files/blog/devopsdays/workers.png" width="300px" height="300px"/></a></center>
 
 <ul>
 
@@ -235,7 +243,7 @@ but there were a bunch of interesting insights about state of the art technology
 
 </ul>
 
-<p>Random thoughts about some sponsors:</p>
+Random thoughts about some sponsors: 
 
 <ul>
 
@@ -257,19 +265,19 @@ related collaboration and prioritized alerts that are to the point.  They get a 
 
 </ul>
 
-<p>Interesting that both use Cassandra and free-form tags for flexibility, validating the approach I&rsquo;m taking with graph-explorer.  Now Graphite</p>
+Interesting that both use Cassandra and free-form tags for flexibility, validating the approach I'm taking with graph-explorer.  Now Graphite
 
-<p>could use a distributed metrics storage backend over which one can do map-reduce style jobs to gather intelligence from metrics archives</p>
+could use a distributed metrics storage backend over which one can do map-reduce style jobs to gather intelligence from metrics archives
 
-<p>(maybe based on Cassandra too?), but that&rsquo;s another story.</p>
+(maybe based on Cassandra too?), but that's another story.
 
-<p><br/></p>
+<br/>
 
-<p><br/></p>
+<br/>
 
-<p>Anyway, living in NYC with its vibrant ecosystem of devops people and companies organizing plenty of meet-ups and talks on their own</p>
+Anyway, living in NYC with its vibrant ecosystem of devops people and companies organizing plenty of meet-ups and talks on their own
 
-<p>makes it less pressing to have an event like Devopsdays, though it was certainly a good event, thanks to the sponsors and the volunteers.</p>
+makes it less pressing to have an event like Devopsdays, though it was certainly a good event, thanks to the sponsors and the volunteers.
 
 	</div>
 

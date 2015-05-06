@@ -15,9 +15,9 @@
       <pubDate>Sun, 03 May 2015 23:01:07 -0400</pubDate>
       
       <guid>http://localhost:1313/about/</guid>
-      <description>&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+      <description>&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
 &lt;p&gt;
 
@@ -47,11 +47,15 @@ Some people still know me from the &lt;a href=&#34;http://localhost:1313/tag/uzb
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 You can email me on first-name at last-name dot be.  (i.e just like the domain)
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -73,7 +77,9 @@ Here are some links you might find interesting.
 
 &lt;/p&gt;
 
-&lt;p&gt;I use &lt;a href=&#34;http://pyblosxom.github.io/&#34;&gt;pyblosxom&lt;/a&gt; as blogging engine (though looking at &lt;a href=&#34;http://hugo.spf13.com/&#34;&gt;hugo&lt;/a&gt; as a successor).&lt;/p&gt;
+
+
+I use &lt;a href=&#34;http://pyblosxom.github.io/&#34;&gt;pyblosxom&lt;/a&gt; as blogging engine (though looking at &lt;a href=&#34;http://hugo.spf13.com/&#34;&gt;hugo&lt;/a&gt; as a successor).
 </description>
     </item>
     
@@ -261,6 +267,8 @@ Here are some links you might find interesting.
 
 &lt;/table&gt;
 
+
+
 &lt;h2&gt;Other fun public performances&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -283,13 +291,13 @@ Here are some links you might find interesting.
       <pubDate>Mon, 27 Apr 2015 09:05:02 -0400</pubDate>
       
       <guid>http://localhost:1313/post/practical-fault-detection-on-timeseries-part-2/</guid>
-      <description>&lt;p&gt;In the &lt;a href=&#34;http://localhost:1313/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html&#34;&gt;previous fault detection article&lt;/a&gt;, we saw how we can cover a lot of ground in fault detection with simple methods and technology that is available today.&lt;/p&gt;
+      <description>In the &lt;a href=&#34;http://localhost:1313/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html&#34;&gt;previous fault detection article&lt;/a&gt;, we saw how we can cover a lot of ground in fault detection with simple methods and technology that is available today.
 
-&lt;p&gt;It had an example of a simple but effective approach to find sudden spikes (peaks and drops) within fluctuating time series.&lt;/p&gt;
+It had an example of a simple but effective approach to find sudden spikes (peaks and drops) within fluctuating time series.
 
-&lt;p&gt;This post explains the continuation of that work and provides you the means to implement this yourself with minimal effort.&lt;/p&gt;
+This post explains the continuation of that work and provides you the means to implement this yourself with minimal effort.
 
-&lt;p&gt;I&amp;rsquo;m sharing with you:&lt;/p&gt;
+I&#39;m sharing with you:
 
 &lt;ul&gt;
 
@@ -301,13 +309,17 @@ Here are some links you might find interesting.
 
 &lt;/ul&gt;
 
-&lt;p&gt;We reuse this stuff for a variety of cases where the data behaves similarly and I suspect that you will be able to apply this to a bunch of your monitoring targets as well.&lt;/p&gt;
+We reuse this stuff for a variety of cases where the data behaves similarly and I suspect that you will be able to apply this to a bunch of your monitoring targets as well.
+
+&lt;!--more--&gt;
 
 &lt;h2&gt;Target use case&lt;/h2&gt;
 
-&lt;p&gt;As in the previous article, we focus on the specific category of timeseries metrics driven by user activity.&lt;/p&gt;
+As in the previous article, we focus on the specific category of timeseries metrics driven by user activity.
 
-&lt;p&gt;Those series are expected to fluctuate in at least some kind of (usually daily) pattern, but is expected to have a certain smoothness to it. Think web requests per second or uploads per minute.   There are a few characteristics that are considered faulty or at least worth our attention:&lt;/p&gt;
+Those series are expected to fluctuate in at least some kind of (usually daily) pattern, but is expected to have a certain smoothness to it. Think web requests per second or uploads per minute.   There are a few characteristics that are considered faulty or at least worth our attention:
+
+
 
 &lt;table&gt;
 
@@ -337,21 +349,31 @@ Here are some links you might find interesting.
 
 &lt;/table&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;[*] Note that some regular patterns can look like this as well. For example weekend traffic lower than weekdays, etc.  We see this a lot.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;The illustrations don&amp;rsquo;t portray this for simplicity.   But the alerting logic below supports this just fine by comparing to same day last week instead of yesterday, etc.&lt;/p&gt;
+&lt;br/&gt;
+
+[*] Note that some regular patterns can look like this as well. For example weekend traffic lower than weekdays, etc.  We see this a lot.
+
+&lt;br/&gt;The illustrations don&#39;t portray this for simplicity.   But the alerting logic below supports this just fine by comparing to same day last week instead of yesterday, etc.
+
+
+
+
 
 &lt;h2&gt;Introducing the new approach&lt;/h2&gt;
 
-&lt;p&gt;The &lt;a href=&#34;http://localhost:1313/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html&#34;&gt;previous article&lt;/a&gt; demonstrated using graphite to compute standard deviation.&lt;/p&gt;
 
-&lt;p&gt;This let us alert on the erraticness of the series in general and as a particularly interesting side-effect, on spikes up and down.&lt;/p&gt;
 
-&lt;p&gt;The new approach is more refined and concrete by leveraging some of bosun&amp;rsquo;s and Grafana&amp;rsquo;s strengths.  We can&amp;rsquo;t always detect the last case above via erraticness checking (a lower amount may be introduced gradually, not via a sudden drop) so now we monitor for that as well, covering all cases above.&lt;/p&gt;
+The &lt;a href=&#34;http://localhost:1313/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html&#34;&gt;previous article&lt;/a&gt; demonstrated using graphite to compute standard deviation.
 
-&lt;p&gt;We use&lt;/p&gt;
+This let us alert on the erraticness of the series in general and as a particularly interesting side-effect, on spikes up and down.
+
+The new approach is more refined and concrete by leveraging some of bosun&#39;s and Grafana&#39;s strengths.  We can&#39;t always detect the last case above via erraticness checking (a lower amount may be introduced gradually, not via a sudden drop) so now we monitor for that as well, covering all cases above.
+
+
+
+We use 
 
 &lt;ul&gt;
 
@@ -363,43 +385,43 @@ Here are some links you might find interesting.
 
 &lt;/ul&gt;
 
-&lt;p&gt;We can then leverage this for various use cases, as long as the expectations of the data are as outlined above.&lt;/p&gt;
+We can then leverage this for various use cases, as long as the expectations of the data are as outlined above.
 
-&lt;p&gt;We use this for web traffic, volume of log messages, uploads, telemetry traffic, etc.&lt;/p&gt;
+We use this for web traffic, volume of log messages, uploads, telemetry traffic, etc.
 
-&lt;p&gt;For each case we simply define the graphite queries and some parameters and leverage the existing mentioned Bosun and Grafana configuration.&lt;/p&gt;
+For each case we simply define the graphite queries and some parameters and leverage the existing mentioned Bosun and Grafana configuration.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;The best way to introduce this is probably by showing how a notification looks like:&lt;/p&gt;
+The best way to introduce this is probably by showing how a notification looks like:
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;center&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/practical-alerting-dm-notification.png&#34;&gt;&lt;img height=&#34;600px&#34; src=&#34;http://localhost:1313/files/practical-alerting-dm-notification.png&#34;/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;http://localhost:1313/files/practical-alerting-dm-notification.png&#34;&gt;&lt;img height=&#34;600px&#34; src=&#34;http://localhost:1313/files/practical-alerting-dm-notification.png&#34;/&gt;&lt;/a&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;(image redacted to hide confidential information&lt;/p&gt;
+(image redacted to hide confidential information
 
-&lt;p&gt;&lt;br/&gt;the numbers are not accurate and for demonstration purposes only)&lt;/p&gt;
+&lt;br/&gt;the numbers are not accurate and for demonstration purposes only)
 
-&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/center&gt;
 
-&lt;p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;As you can tell by the sections, we look at some global data (for example &amp;ldquo;all web traffic&amp;rdquo;, &amp;ldquo;all log messages&amp;rdquo;, etc), and also&lt;/p&gt;
+As you can tell by the sections, we look at some global data (for example &#34;all web traffic&#34;, &#34;all log messages&#34;, etc), and also
 
-&lt;p&gt;by data segregated by a particular dimension (for example web traffic by country, log messages by key, etc)&lt;/p&gt;
+by data segregated by a particular dimension (for example web traffic by country, log messages by key, etc)
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;To cover all problematic cases outlined above, we do 3 different checks:&lt;/p&gt;
+To cover all problematic cases outlined above, we do 3 different checks:
 
-&lt;p&gt;(note, everything is parametrized so you can tune it, see further down)&lt;/p&gt;
+(note, everything is parametrized so you can tune it, see further down)
 
 &lt;ul&gt;
 
@@ -411,51 +433,63 @@ Here are some links you might find interesting.
 
 &lt;/ul&gt;
 
-&lt;p&gt;If any, or multiple of these conditions are in warning or critical state, we get 1 alert that gives us all the information we need.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;Note the various links to GE (Graph-Explorer) and Grafana for timeshifts.&lt;/p&gt;
+If any, or multiple of these conditions are in warning or critical state, we get 1 alert that gives us all the information we need.
 
-&lt;p&gt;The Graph-Explorer links are just standard GEQL queries, I usually use this if i want to be easily manage what I&amp;rsquo;m viewing (compare against other countries, adjust time interval, etc) because that&amp;rsquo;s what GE is really good at.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;The timeshift view is a Grafana dashboard that takes in a Graphite expression as a template variable, and can hence be set via a GET parameter by using the url  &lt;pre&gt;&lt;a href=&#34;http://grafana/#/dashboard/db/templatetimeshift?var-patt=expression&#34;&gt;http://grafana/#/dashboard/db/templatetimeshift?var-patt=expression&lt;/a&gt;&lt;/pre&gt;&lt;/p&gt;
+Note the various links to GE (Graph-Explorer) and Grafana for timeshifts.
 
-&lt;p&gt;It shows the current past week as red dots, and the past weeks before that as timeshifts in various shades of blue representing the age of the data. (darker is older).&lt;/p&gt;
+The Graph-Explorer links are just standard GEQL queries, I usually use this if i want to be easily manage what I&#39;m viewing (compare against other countries, adjust time interval, etc) because that&#39;s what GE is really good at.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+The timeshift view is a Grafana dashboard that takes in a Graphite expression as a template variable, and can hence be set via a GET parameter by using the url  &lt;pre&gt;http://grafana/#/dashboard/db/templatetimeshift?var-patt=expression&lt;/pre&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+It shows the current past week as red dots, and the past weeks before that as timeshifts in various shades of blue representing the age of the data. (darker is older).
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/practical-alerting-screenshot-template-timeshift.png&#34;&gt;&lt;img width=&#34;50%&#34; src=&#34;http://localhost:1313/files/practical-alerting-screenshot-template-timeshift.png&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;This allows us to easily spot when traffic becomes too low, overly erratic, etc as this example shows:&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;a href=&#34;http://localhost:1313/files/practical-alerting-screenshot-template-timeshift.png&#34;&gt;&lt;img width=&#34;50%&#34; src=&#34;http://localhost:1313/files/practical-alerting-screenshot-template-timeshift.png&#34; /&gt;&lt;/a&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/practical-alerting-timeshift-use.png&#34;&gt;&lt;img width=&#34;50%&#34; src=&#34;http://localhost:1313/files/practical-alerting-timeshift-use.png&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+This allows us to easily spot when traffic becomes too low, overly erratic, etc as this example shows:
+
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+
+
+&lt;a href=&#34;http://localhost:1313/files/practical-alerting-timeshift-use.png&#34;&gt;&lt;img width=&#34;50%&#34; src=&#34;http://localhost:1313/files/practical-alerting-timeshift-use.png&#34; /&gt;&lt;/a&gt;
+
+&lt;br/&gt;
+
+
 
 &lt;h2&gt;Getting started&lt;/h2&gt;
 
-&lt;p&gt;Note: I Won&amp;rsquo;t explain the details of the bosun configuration.  Familiarity with bosun is assumed.  The &lt;a href=&#34;http://bosun.org/&#34;&gt;bosun documentation&lt;/a&gt; is pretty complete.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+Note: I Won&#39;t explain the details of the bosun configuration.  Familiarity with bosun is assumed.  The &lt;a href=&#34;http://bosun.org/&#34;&gt;bosun documentation&lt;/a&gt; is pretty complete.
 
-&lt;p&gt;&lt;a href=&#34;https://gist.github.com/Dieterbe/d1892fa0b4454b892216&#34;&gt;Gist with bosun macro, template, example use, and Grafana dashboard definition&lt;/a&gt;.  Load the bosun stuff in your bosun.conf and import the dashboard in Grafana.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;a href=&#34;https://gist.github.com/Dieterbe/d1892fa0b4454b892216&#34;&gt;Gist with bosun macro, template, example use, and Grafana dashboard definition&lt;/a&gt;.  Load the bosun stuff in your bosun.conf and import the dashboard in Grafana.
 
-&lt;p&gt;The pieces fit together like so:&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+The pieces fit together like so:
+
+
 
 &lt;ul&gt;
 
@@ -491,11 +525,13 @@ We warn if one or more segregated items didn&#39;t meet their median requirement
 
 &lt;/ul&gt;
 
+
+
 &lt;h2&gt;Erraticness formula refinements&lt;/h2&gt;
 
-&lt;p&gt;&lt;img style=&#34;float: right; margin: 45px;&#34; width=&#34;30%&#34; src=&#34;http://localhost:1313/files/practical-alerting-notes-cleaned-small.jpg&#34; /&gt;&lt;/p&gt;
+&lt;img style=&#34;float: right; margin: 45px;&#34; width=&#34;30%&#34; src=&#34;http://localhost:1313/files/practical-alerting-notes-cleaned-small.jpg&#34; /&gt;
 
-&lt;p&gt;You may notice that the formula has changed to&lt;/p&gt;
+You may notice that the formula has changed to
 
 &lt;pre&gt;
 
@@ -515,6 +551,8 @@ We warn if one or more segregated items didn&#39;t meet their median requirement
 
 &lt;/ul&gt;
 
+
+
 &lt;!--
 
 streak covers cases where values are very low so that stdev is in the same order (like low volume logs) and we can&#39;t properly use the erraticness or x-deviations. for example logs with very little traffic, datapoints representing healthy traffic can look like (1, 2, 0, 3, 1, ..)
@@ -529,9 +567,11 @@ although i think the ratio of medians (median_now/median_then) should work just 
 
 --&gt;
 
+
+
 &lt;h2&gt;Still far from perfect&lt;/h2&gt;
 
-&lt;p&gt;While this has been very helpful to us, I want to highlight a few things that could be improved.&lt;/p&gt;
+While this has been very helpful to us, I want to highlight a few things that could be improved.
 
 &lt;ul&gt;
 
@@ -555,13 +595,17 @@ although i think the ratio of medians (median_now/median_then) should work just 
 
 &lt;/ul&gt;
 
+
+
 &lt;h2&gt;In conclusion&lt;/h2&gt;
 
-&lt;p&gt;I know many people are struggling with poor alerting rules (static thresholds?)&lt;/p&gt;
+I know many people are struggling with poor alerting rules (static thresholds?)
 
-&lt;p&gt;&lt;br/&gt;As I explained in the previous article I fondly believe that the commonly cited solutions (anomaly detection via machine learning) are a very difficult endeavor and results can be achieved much quicker and more simpler.&lt;/p&gt;
+&lt;br/&gt;As I explained in the previous article I fondly believe that the commonly cited solutions (anomaly detection via machine learning) are a very difficult endeavor and results can be achieved much quicker and more simpler.
 
-&lt;p&gt;&lt;br/&gt;While this only focuses on one class of timeseries (it won&amp;rsquo;t work on diskspace metrics for example) I found this class to be in the most dire need of better fault detection.  Hopefully this is useful to you. Good luck and let me know how it goes!&lt;/p&gt;
+&lt;br/&gt;While this only focuses on one class of timeseries (it won&#39;t work on diskspace metrics for example) I found this class to be in the most dire need of better fault detection.  Hopefully this is useful to you. Good luck and let me know how it goes!
+
+
 </description>
     </item>
     
@@ -571,17 +615,21 @@ although i think the ratio of medians (median_now/median_then) should work just 
       <pubDate>Thu, 29 Jan 2015 09:08:02 -0400</pubDate>
       
       <guid>http://localhost:1313/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/</guid>
-      <description>&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+      <description>&lt;br/&gt;
 
-&lt;p&gt;As we try to retain visibility into our increasingly complicated applications and infrastructure, we&amp;rsquo;re building out more advanced monitoring systems.&lt;/p&gt;
+As we try to retain visibility into our increasingly complicated applications and infrastructure, we&#39;re building out more advanced monitoring systems.
 
-&lt;p&gt;Specifically, a lot of work is being done on alerting via fault and anomaly detection.&lt;/p&gt;
+Specifically, a lot of work is being done on alerting via fault and anomaly detection.
 
-&lt;p&gt;This post covers some common notions around these new approaches, debunks some of the myths that ask for over-complicated solutions, and provides some practical pointers that any programmer or sysadmin can implement that don&amp;rsquo;t require becoming a data scientist.&lt;/p&gt;
+This post covers some common notions around these new approaches, debunks some of the myths that ask for over-complicated solutions, and provides some practical pointers that any programmer or sysadmin can implement that don&#39;t require becoming a data scientist.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;!--more--&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+
 
 &lt;h2&gt;It&#39;s not all about math&lt;/h2&gt;
 
@@ -623,45 +671,49 @@ Another example: During his &lt;a href=&#34;https://coderanger.net/talks/echo/&#
 
 &lt;/p&gt;
 
+
+
 &lt;h2&gt;Unsupervised machine learning... let&#39;s not get ahead of ourselves.&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;Etsy&amp;rsquo;s Kale&lt;/a&gt; has ambitious goals: you configure a set of algorithms, and those algorithms get applied to &lt;b&gt;all&lt;/b&gt; of your timeseries.  Out of that should come insights into what&amp;rsquo;s going wrong.  The premise is that the found anomalies are relevant and indicative of faults that require our attention.&lt;/p&gt;
+&lt;a href=&#34;https://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;Etsy&#39;s Kale&lt;/a&gt; has ambitious goals: you configure a set of algorithms, and those algorithms get applied to &lt;b&gt;all&lt;/b&gt; of your timeseries.  Out of that should come insights into what&#39;s going wrong.  The premise is that the found anomalies are relevant and indicative of faults that require our attention.
 
-&lt;p&gt;&lt;br/&gt;I have quite a variety amongst my metrics.  For example diskspace metrics exhibit a sawtooth pattern (due to constant growth and periodic cleanup),&lt;/p&gt;
+&lt;br/&gt;I have quite a variety amongst my metrics.  For example diskspace metrics exhibit a sawtooth pattern (due to constant growth and periodic cleanup),
 
-&lt;p&gt;crontabs cause (by definition) periodic spikes in activity, user activity causes a fairly smooth graph which is characterized by its daily pattern and often some seasonality and a long-term trend.&lt;/p&gt;
+crontabs cause (by definition) periodic spikes in activity, user activity causes a fairly smooth graph which is characterized by its daily pattern and often some seasonality and a long-term trend.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;img width=&#34;70%&#34; src=&#34;http://localhost:1313/files/anomaly-detection-cases.png&#34;&gt;&lt;/p&gt;
+&lt;img width=&#34;70%&#34; src=&#34;http://localhost:1313/files/anomaly-detection-cases.png&#34;&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;Because they look differently, anomalies and faults look different too.  In fact, within each category there are multiple problematic scenarios. (e.g. user activity based timeseries should not suddenly drop, but also not be significantly lower than other days, even if the signal stays smooth and follows the daily rhythm)&lt;/p&gt;
+&lt;br/&gt;Because they look differently, anomalies and faults look different too.  In fact, within each category there are multiple problematic scenarios. (e.g. user activity based timeseries should not suddenly drop, but also not be significantly lower than other days, even if the signal stays smooth and follows the daily rhythm)
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;I have a hard time believing that running the same algorithms on all of that data, and doing minimal configuration on them, will produce meaningful results. At least I expect a very low signal/noise ratio.  Unfortunately, of the people who I&amp;rsquo;ve asked about their experiences with Kale/Skyline, the only cases where it&amp;rsquo;s been useful is where skyline input has been restricted to a certain category of metrics - it&amp;rsquo;s up to you do this filtering (perhaps via carbon-relay rules), potentially running multiple skyline instances - and sufficient time is required hand-selecting the appropriate algorithms to match the data.  This reduces the utility.&lt;/p&gt;
+&lt;br/&gt;I have a hard time believing that running the same algorithms on all of that data, and doing minimal configuration on them, will produce meaningful results. At least I expect a very low signal/noise ratio.  Unfortunately, of the people who I&#39;ve asked about their experiences with Kale/Skyline, the only cases where it&#39;s been useful is where skyline input has been restricted to a certain category of metrics - it&#39;s up to you do this filtering (perhaps via carbon-relay rules), potentially running multiple skyline instances - and sufficient time is required hand-selecting the appropriate algorithms to match the data.  This reduces the utility.
 
-&lt;p&gt;&lt;br/&gt;&amp;ldquo;Minimal configuration&amp;rdquo; sounds great but this doesn&amp;rsquo;t seem to work.&lt;/p&gt;
+&lt;br/&gt;&#34;Minimal configuration&#34; sounds great but this doesn&#39;t seem to work.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Instead, something like &lt;a href=&#34;http://bosun.org/&#34;&gt;Bosun&lt;/a&gt; (see further down) where you can visualize your series, experiment with algorithms and see the results in place on current and historical data, to manage alerting rules seems more practical.&lt;/p&gt;
+Instead, something like &lt;a href=&#34;http://bosun.org/&#34;&gt;Bosun&lt;/a&gt; (see further down) where you can visualize your series, experiment with algorithms and see the results in place on current and historical data, to manage alerting rules seems more practical.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;Some companies (all proprietary) take it a step further and pay tens of engineers to work on algorithms that inspect all of your series, classify them into categories, &amp;ldquo;learn&amp;rdquo; them and automatically configure algorithms that will do anomaly detection, so it can alert anytime something looks unusual (though not necessarily faulty).&lt;/p&gt;
+&lt;br/&gt;Some companies (all proprietary) take it a step further and pay tens of engineers to work on algorithms that inspect all of your series, classify them into categories, &#34;learn&#34; them and automatically configure algorithms that will do anomaly detection, so it can alert anytime something looks unusual (though not necessarily faulty). 
 
-&lt;p&gt;This probably works fairly well, but has a high cost, still can&amp;rsquo;t know everything there is to know about your timeseries, is of no help of your timeseries is behaving faulty from the start and still alerts on anomalous, but irrelevant outliers.&lt;/p&gt;
+This probably works fairly well, but has a high cost, still can&#39;t know everything there is to know about your timeseries, is of no help of your timeseries is behaving faulty from the start and still alerts on anomalous, but irrelevant outliers.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;I&amp;rsquo;m &lt;b&gt;suggesting we don&amp;rsquo;t need to make it that fancy&lt;/b&gt; and we can do much better by &lt;b&gt;injecting some domain knowledge&lt;/b&gt; into our monitoring system:&lt;/p&gt;
+
+
+I&#39;m &lt;b&gt;suggesting we don&#39;t need to make it that fancy&lt;/b&gt; and we can do much better by &lt;b&gt;injecting some domain knowledge&lt;/b&gt; into our monitoring system:
 
 &lt;ul&gt;
 
@@ -679,80 +731,89 @@ Another example: During his &lt;a href=&#34;https://coderanger.net/talks/echo/&#
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Anomaly detection is useful if you don&amp;rsquo;t know what you&amp;rsquo;re looking for, or providing an extra watching eye on your log data.  Which is why it&amp;rsquo;s commonly used for detecting fraud in security logs and such.&lt;/p&gt;
+Anomaly detection is useful if you don&#39;t know what you&#39;re looking for, or providing an extra watching eye on your log data.  Which is why it&#39;s commonly used for detecting fraud in security logs and such.
 
-&lt;p&gt;For operational metrics of which admins know what they mean, should and should not look like, and how they relate to each other, we can build more simple and more effective solutions.&lt;/p&gt;
+For operational metrics of which admins know what they mean, should and should not look like, and how they relate to each other, we can build more simple and more effective solutions.
+
+
+
+
 
 &lt;h2&gt;The trap of complex event processing... no need to abandon familiar tools&lt;/h2&gt;
 
-&lt;p&gt;On your quest into better alerting, you soon read and hear about real-time stream processing, and CEP (complex event processing) systems.&lt;/p&gt;
+On your quest into better alerting, you soon read and hear about real-time stream processing, and CEP (complex event processing) systems.
 
-&lt;p&gt;It&amp;rsquo;s not hard to be convinced on their merits:  who wouldn&amp;rsquo;t want real-time as-soon-as-the-data-arrives-you-can-execute-logic-and-fire-alerts?&lt;/p&gt;
+It&#39;s not hard to be convinced on their merits:  who wouldn&#39;t want real-time as-soon-as-the-data-arrives-you-can-execute-logic-and-fire-alerts?
 
-&lt;p&gt;&lt;br/&gt;They also come with a fairly extensive and flexible language that lets you program or compose monitoring rules using your domain knowledge.&lt;/p&gt;
+&lt;br/&gt;They also come with a fairly extensive and flexible language that lets you program or compose monitoring rules using your domain knowledge.
 
-&lt;p&gt;I believe I&amp;rsquo;ve heard of &lt;a href=&#34;https://storm.apache.org/&#34;&gt;storm&lt;/a&gt; for monitoring, but &lt;a href=&#34;http://riemann.io/&#34;&gt;Riemann&lt;/a&gt; is the best known of these tools that focus on open source monitoring.&lt;/p&gt;
+I believe I&#39;ve heard of &lt;a href=&#34;https://storm.apache.org/&#34;&gt;storm&lt;/a&gt; for monitoring, but &lt;a href=&#34;http://riemann.io/&#34;&gt;Riemann&lt;/a&gt; is the best known of these tools that focus on open source monitoring.
 
-&lt;p&gt;It is a nice, powerful tool and probably the easiest of the CEP tools to adopt.  It can also produce very useful dashboards.&lt;/p&gt;
+It is a nice, powerful tool and probably the easiest of the CEP tools to adopt.  It can also produce very useful dashboards.
 
-&lt;p&gt;However, these tools come with their own API or language, and programming against real-time streams is quite a paradigm shift which can be hard to justify.  And while their architecture and domain specificity works well for large scale situations, these benefits aren&amp;rsquo;t worth it for most (medium and small) shops I know:  it&amp;rsquo;s a lot easier (albeit less efficient) to just query a datastore over and over and program in the language you&amp;rsquo;re used to.  With a decent timeseries store (or one written to hold the most recent data in memory such as &lt;a href=&#34;https://github.com/dgryski/carbonmem&#34;&gt;carbonmem&lt;/a&gt;) this is not an issue, and the difference in timeliness of alerts becomes negligible!&lt;/p&gt;
+However, these tools come with their own API or language, and programming against real-time streams is quite a paradigm shift which can be hard to justify.  And while their architecture and domain specificity works well for large scale situations, these benefits aren&#39;t worth it for most (medium and small) shops I know:  it&#39;s a lot easier (albeit less efficient) to just query a datastore over and over and program in the language you&#39;re used to.  With a decent timeseries store (or one written to hold the most recent data in memory such as &lt;a href=&#34;https://github.com/dgryski/carbonmem&#34;&gt;carbonmem&lt;/a&gt;) this is not an issue, and the difference in timeliness of alerts becomes negligible!
+
+
+
+
 
 &lt;h2&gt;An example: finding spikes&lt;/h2&gt;
 
-&lt;p&gt;Like many places, we were stuck with static thresholds, which don&amp;rsquo;t cover some common failure scenarios.&lt;/p&gt;
+Like many places, we were stuck with static thresholds, which don&#39;t cover some common failure scenarios.
 
-&lt;p&gt;So I started asking myself some questions:&lt;/p&gt;
+So I started asking myself some questions:
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;center&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;i&amp;gt;which behavioral categories of timeseries do we have, what kind of issues can arise in each category,
+    &lt;i&gt;which behavioral categories of timeseries do we have, what kind of issues can arise in each category,
 
-    &amp;lt;br/&amp;gt;how does that look like in the data, and what&#39;s the simplest way I can detect each scenario?&amp;lt;/i&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+        &lt;br/&gt;how does that look like in the data, and what&#39;s the simplest way I can detect each scenario?&lt;/i&gt;
 
-&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/center&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Our most important data falls within the user-driven category from above where various timeseries from across the stack are driven by, and reflect user activity.  And within this category, the most common problem (at least in my experience) is spikes in the data.  I.e. a sudden drop in requests/s or a sudden spike in response time.  As it turned out, this is much easier to detect than one might think:&lt;/p&gt;
+Our most important data falls within the user-driven category from above where various timeseries from across the stack are driven by, and reflect user activity.  And within this category, the most common problem (at least in my experience) is spikes in the data.  I.e. a sudden drop in requests/s or a sudden spike in response time.  As it turned out, this is much easier to detect than one might think:
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;img style=&#34;float:left; margin:15px;&#34; src=&#34;http://localhost:1313/files/poor-mans-fault-detection.png&#34;&gt;&lt;/p&gt;
+&lt;img style=&#34;float:left; margin:15px;&#34; src=&#34;http://localhost:1313/files/poor-mans-fault-detection.png&#34;&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;In this example I just track the standard deviation of a moving window of 10 points.  &lt;a href=&#34;http://en.wikipedia.org/wiki/Standard_deviation&#34;&gt;Standard deviation&lt;/a&gt; is simply a measure of how much numerical values differ from each other.  Any sudden spike bumps the standard deviation.   We can then simply set a threshold on the deviation.  Fairly trivial to set up, but has been highly effective for us.&lt;/p&gt;
+In this example I just track the standard deviation of a moving window of 10 points.  &lt;a href=&#34;http://en.wikipedia.org/wiki/Standard_deviation&#34;&gt;Standard deviation&lt;/a&gt; is simply a measure of how much numerical values differ from each other.  Any sudden spike bumps the standard deviation.   We can then simply set a threshold on the deviation.  Fairly trivial to set up, but has been highly effective for us.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;You do need to manually declare what is an acceptable standard deviation value to be compared against, which you will typically deduce from previous data.  This can be annoying until you build an interface to speed up, or a tool to automate this step.&lt;/p&gt;
+&lt;br/&gt;You do need to manually declare what is an acceptable standard deviation value to be compared against, which you will typically deduce from previous data.  This can be annoying until you build an interface to speed up, or a tool to automate this step.
 
-&lt;p&gt;&lt;br/&gt;In fact, it&amp;rsquo;s trivial to collect previous deviation data (e.g. from the same time of the day, yesterday, or the same time of the week, last week) and automatically use that to guide a threshold.  (&lt;a href=&#34;http://bosun.org/&#34;&gt;Bosun&lt;/a&gt; - see the following section - has &amp;ldquo;band&amp;rdquo; and &amp;ldquo;graphiteBand&amp;rdquo; functions to assist with this).  This is susceptible to previous outliers, but you can easily select multiple previous timeframes to minimize this issue in practice.&lt;/p&gt;
+&lt;br/&gt;In fact, it&#39;s trivial to collect previous deviation data (e.g. from the same time of the day, yesterday, or the same time of the week, last week) and automatically use that to guide a threshold.  (&lt;a href=&#34;http://bosun.org/&#34;&gt;Bosun&lt;/a&gt; - see the following section - has &#34;band&#34; and &#34;graphiteBand&#34; functions to assist with this).  This is susceptible to previous outliers, but you can easily select multiple previous timeframes to minimize this issue in practice.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://groups.google.com/forum/#!topic/it-telemetry/Zb2H4DP6qtk&#34;&gt;it-telemetry thread&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;https://groups.google.com/forum/#!topic/it-telemetry/Zb2H4DP6qtk&#34;&gt;it-telemetry thread&lt;/a&gt;
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
 
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
 
-&lt;p&gt;So without requiring fancy anomaly detection, machine learning, advanced math, or event processing, we are able to reliably detect faults using simple, familiar tools.  Some basic statistical concepts (standard deviation, moving average, etc) are a must, but nothing that requires getting a PhD.  In this case I&amp;rsquo;ve been using &lt;a href=&#34;http://graphite.readthedocs.org/en/0.9.10/functions.html#graphite.render.functions.stdev&#34;&gt;Graphite&amp;rsquo;s stdev function&lt;/a&gt; and &lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;Graph-Explorer&amp;rsquo;s&lt;/a&gt; alerting feature to manage these kinds of rules, but it doesn&amp;rsquo;t allow for a very practical iterative workflow, so the non-trivial rules will be going into &lt;a href=&#34;http://bosun.org/&#34;&gt;Bosun&lt;/a&gt;.&lt;/p&gt;
+So without requiring fancy anomaly detection, machine learning, advanced math, or event processing, we are able to reliably detect faults using simple, familiar tools.  Some basic statistical concepts (standard deviation, moving average, etc) are a must, but nothing that requires getting a PhD.  In this case I&#39;ve been using &lt;a href=&#34;http://graphite.readthedocs.org/en/0.9.10/functions.html#graphite.render.functions.stdev&#34;&gt;Graphite&#39;s stdev function&lt;/a&gt; and &lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;Graph-Explorer&#39;s&lt;/a&gt; alerting feature to manage these kinds of rules, but it doesn&#39;t allow for a very practical iterative workflow, so the non-trivial rules will be going into &lt;a href=&#34;http://bosun.org/&#34;&gt;Bosun&lt;/a&gt;.
 
-&lt;p&gt;&lt;br/&gt;BTW, you can also &lt;a href=&#34;http://obfuscurity.com/2012/05/Polling-Graphite-with-Nagios&#34;&gt;use a script to query Graphite from a Nagios check and do your logic&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;BTW, you can also &lt;a href=&#34;http://obfuscurity.com/2012/05/Polling-Graphite-with-Nagios&#34;&gt;use a script to query Graphite from a Nagios check and do your logic&lt;/a&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
+
+  
 
 &lt;!--
 
@@ -772,15 +833,19 @@ of course this masks when your monitoring breaks, so you still need something el
 
 --&gt;
 
+
+
 &lt;h2&gt;Workflow is key.  A closer look at bosun&lt;/h2&gt;
 
-&lt;p&gt;One of the reasons we&amp;rsquo;ve been chasing self-learning algorithms is that we have lost faith in the feasibility of a more direct approach.  We can no longer imagine building and maintaining alerting rules because we have no system that provides powerful alerting, helps us keep oversight and streamlines the process of maintaining and iteratively developing alerting.&lt;/p&gt;
+One of the reasons we&#39;ve been chasing self-learning algorithms is that we have lost faith in the feasibility of a more direct approach.  We can no longer imagine building and maintaining alerting rules because we have no system that provides powerful alerting, helps us keep oversight and streamlines the process of maintaining and iteratively developing alerting.
 
-&lt;p&gt;&lt;br/&gt;I recently discovered &lt;a href=&#34;http://bosun.org/&#34;&gt;bosun&lt;/a&gt;, an alerting frontend (&amp;ldquo;IDE&amp;rdquo;) by Stack Exchange, &lt;a href=&#34;https://www.usenix.org/conference/lisa14/conference-program/presentation/brandt&#34;&gt;presented at Lisa14&lt;/a&gt;.  I highly recommend watching the video.  They have identified various issues that made alerting a pain, and built a solution that makes human-controlled alerting much more doable.  We&amp;rsquo;ve been using it for a month now with good results (I also gave it support for Graphite).&lt;/p&gt;
+&lt;br/&gt;I recently discovered &lt;a href=&#34;http://bosun.org/&#34;&gt;bosun&lt;/a&gt;, an alerting frontend (&#34;IDE&#34;) by Stack Exchange, &lt;a href=&#34;https://www.usenix.org/conference/lisa14/conference-program/presentation/brandt&#34;&gt;presented at Lisa14&lt;/a&gt;.  I highly recommend watching the video.  They have identified various issues that made alerting a pain, and built a solution that makes human-controlled alerting much more doable.  We&#39;ve been using it for a month now with good results (I also gave it support for Graphite).
 
-&lt;p&gt;I&amp;rsquo;ll explain its merits, and it&amp;rsquo;ll also become apparent how this ties into some of the things I brought up above:&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&#34;float:left; margin:35px;&#34; src=&#34;http://bosun.org/public/ss_rule_timeline.png&#34; width=&#34;15%&#34;&gt;&lt;/p&gt;
+
+I&#39;ll explain its merits, and it&#39;ll also become apparent how this ties into some of the things I brought up above:
+
+&lt;img style=&#34;float:left; margin:35px;&#34; src=&#34;http://bosun.org/public/ss_rule_timeline.png&#34; width=&#34;15%&#34;&gt;
 
 &lt;ul&gt;
 
@@ -794,35 +859,43 @@ new needs.  You choose your own alerting granularity (it can automatically insta
 
 &lt;/ul&gt;
 
-&lt;p&gt;The &lt;a href=&#34;http://bosun.org/examples.html&#34;&gt;examples&lt;/a&gt; section gives you an idea of the things you can do.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;I haven&amp;rsquo;t seen anything solve a pragmatic alerting workflow like bosun (hence their name &amp;ldquo;alerting IDE&amp;rdquo;), and its ability to not hold you back as you work on your alerts is refreshing. Furthermore, the built-in processing functions are very &lt;b&gt;complimentary to graphite&lt;/b&gt;:&lt;/p&gt;
 
-&lt;p&gt;Graphite has a decent API which works well at aggregating and transforming one or more series into one new series; the bosun language is great at reducing series to single numbers, providing boolean logic, and so on, which you need to declare alerting expressions.  This makes them a great combination.&lt;/p&gt;
+The &lt;a href=&#34;http://bosun.org/examples.html&#34;&gt;examples&lt;/a&gt; section gives you an idea of the things you can do.
 
-&lt;p&gt;&lt;br/&gt;Of course Bosun isn&amp;rsquo;t perfect either.  Plenty of things can be done to make it (and alerting in general) better.  But it does exemplify many of my points, and it&amp;rsquo;s a nice leap forward in our monitoring toolkit.&lt;/p&gt;
+&lt;br/&gt;I haven&#39;t seen anything solve a pragmatic alerting workflow like bosun (hence their name &#34;alerting IDE&#34;), and its ability to not hold you back as you work on your alerts is refreshing. Furthermore, the built-in processing functions are very &lt;b&gt;complimentary to graphite&lt;/b&gt;:
+
+Graphite has a decent API which works well at aggregating and transforming one or more series into one new series; the bosun language is great at reducing series to single numbers, providing boolean logic, and so on, which you need to declare alerting expressions.  This makes them a great combination.
+
+&lt;br/&gt;Of course Bosun isn&#39;t perfect either.  Plenty of things can be done to make it (and alerting in general) better.  But it does exemplify many of my points, and it&#39;s a nice leap forward in our monitoring toolkit.
+
+
 
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;Many of us aren&amp;rsquo;t ready for some of the new technologies, and some of the technology isn&amp;rsquo;t - and perhaps never will be - ready for us.&lt;/p&gt;
+Many of us aren&#39;t ready for some of the new technologies, and some of the technology isn&#39;t - and perhaps never will be - ready for us.
 
-&lt;p&gt;As an end-user investigating your options, it&amp;rsquo;s easy to get lured in a direction that promotes over-complication and stimulates your inner scientist but just isn&amp;rsquo;t realistic.&lt;/p&gt;
+As an end-user investigating your options, it&#39;s easy to get lured in a direction that promotes over-complication and stimulates your inner scientist but just isn&#39;t realistic.
 
-&lt;p&gt;&lt;br/&gt;Taking a step back, it becomes apparent we &lt;b&gt;can&lt;/b&gt; setup automated fault detection.  But instead of using machine learning, use metadata, instead of trying to come up with all-encompassing holy grail of math, use several rules of code that you prototype and iterate over, then reuse for similar cases.  Instead of requiring a paradigm shift, use a language you&amp;rsquo;re familiar with.  Especially by polishing up the workflow, we can make many &amp;ldquo;manual&amp;rdquo; tasks much easier and quicker.  I believe we can keep polishing up the workflow, distilling common patterns into macros or functions that can be reused, leveraging metric metadata and other sources of truth to configure fault detection, and perhaps even introducing &amp;ldquo;metrics coverage&amp;rdquo;, akin to &amp;ldquo;code coverage&amp;rdquo;: verify how much, and which of the metrics are adequately represented in alerting rules, so we can easily spot which metrics have yet to be included in alerting rules.  I think there&amp;rsquo;s a lot of things we can do to make fault detection work better for us, but we have to look in the right direction.&lt;/p&gt;
+&lt;br/&gt;Taking a step back, it becomes apparent we &lt;b&gt;can&lt;/b&gt; setup automated fault detection.  But instead of using machine learning, use metadata, instead of trying to come up with all-encompassing holy grail of math, use several rules of code that you prototype and iterate over, then reuse for similar cases.  Instead of requiring a paradigm shift, use a language you&#39;re familiar with.  Especially by polishing up the workflow, we can make many &#34;manual&#34; tasks much easier and quicker.  I believe we can keep polishing up the workflow, distilling common patterns into macros or functions that can be reused, leveraging metric metadata and other sources of truth to configure fault detection, and perhaps even introducing &#34;metrics coverage&#34;, akin to &#34;code coverage&#34;: verify how much, and which of the metrics are adequately represented in alerting rules, so we can easily spot which metrics have yet to be included in alerting rules.  I think there&#39;s a lot of things we can do to make fault detection work better for us, but we have to look in the right direction.
+
+
 
 &lt;h2&gt;PS: leveraging metrics 2.0 for anomaly detection&lt;/h2&gt;
 
-&lt;p&gt;In my last &lt;a href=&#34;https://www.usenix.org/conference/lisa14/conference-program/presentation/plaetinck&#34;&gt;metrics 2.0 talk, at LISA14&lt;/a&gt; I explored a few ideas on leveraging metrics 2.0 metadata for alerting and fault detection, such as automatically discovering error metrics across the stack, getting high level insights via tags, correlation, etc. If you&amp;rsquo;re interested, it&amp;rsquo;s in the video from 24:55 until 29:40&lt;/p&gt;
+In my last &lt;a href=&#34;https://www.usenix.org/conference/lisa14/conference-program/presentation/plaetinck&#34;&gt;metrics 2.0 talk, at LISA14&lt;/a&gt; I explored a few ideas on leveraging metrics 2.0 metadata for alerting and fault detection, such as automatically discovering error metrics across the stack, getting high level insights via tags, correlation, etc. If you&#39;re interested, it&#39;s in the video from 24:55 until 29:40
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;center&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/metrics20-alerting.png&#34; width=&#34;50%&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;http://localhost:1313/files/metrics20-alerting.png&#34; width=&#34;50%&#34;&gt;
 
-&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/center&gt;
+
+
 
 &lt;!--
 
@@ -854,17 +927,19 @@ by just glancing at your alert overview.  You might be looking at very out of da
       <pubDate>Sat, 06 Dec 2014 16:01:02 -0400</pubDate>
       
       <guid>http://localhost:1313/post/it-telemetry-google-group-collaboration-operational-insights/</guid>
-      <description>&lt;p&gt;The discipline of collecting infrastructure &amp;amp; application performance metrics, aggregation, storage, visualizations and alerting has many terms associated with it&amp;hellip;  Telemetry. Insights engineering.  Operational visibility.&lt;/p&gt;
+      <description>The discipline of collecting infrastructure &amp; application performance metrics, aggregation, storage, visualizations and alerting has many terms associated with it...  Telemetry. Insights engineering.  Operational visibility.
 
-&lt;p&gt;I&amp;rsquo;ve seen a bunch of people present their work in advancing the state of the art in this domain:&lt;/p&gt;
+I&#39;ve seen a bunch of people present their work in advancing the state of the art in this domain:  
 
-&lt;p&gt;&lt;br/&gt;from &lt;a href=&#34;http://mabrek.github.io/&#34;&gt;Anton Lebedevich&amp;rsquo;s statistics for monitoring series&lt;/a&gt;, &lt;a href=&#34;https://vimeo.com/95069158&#34;&gt;Toufic Boubez&amp;rsquo; talks on anomaly detection&lt;/a&gt; and Twitter&amp;rsquo;s work on &lt;a href=&#34;https://blog.twitter.com/2014/breakout-detection-in-the-wild&#34;&gt;detecting mean shifts&lt;/a&gt; to projects such as &lt;a href=&#34;http://flapjack.io/&#34;&gt;flapjack&lt;/a&gt; (which aims to offload the alerting responsibility from your monitoring apps), the &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics 2.0 standardization effort&lt;/a&gt; or &lt;a href=&#34;https://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;Etsy&amp;rsquo;s Kale stack&lt;/a&gt; which tries to bring interesting changes in timeseries to your attention with minimal configuration.&lt;/p&gt;
+&lt;br/&gt;from &lt;a href=&#34;http://mabrek.github.io/&#34;&gt;Anton Lebedevich&#39;s statistics for monitoring series&lt;/a&gt;, &lt;a href=&#34;https://vimeo.com/95069158&#34;&gt;Toufic Boubez&#39; talks on anomaly detection&lt;/a&gt; and Twitter&#39;s work on &lt;a href=&#34;https://blog.twitter.com/2014/breakout-detection-in-the-wild&#34;&gt;detecting mean shifts&lt;/a&gt; to projects such as &lt;a href=&#34;http://flapjack.io/&#34;&gt;flapjack&lt;/a&gt; (which aims to offload the alerting responsibility from your monitoring apps), the &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics 2.0 standardization effort&lt;/a&gt; or &lt;a href=&#34;https://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;Etsy&#39;s Kale stack&lt;/a&gt; which tries to bring interesting changes in timeseries to your attention with minimal configuration.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Much of this work is being shared via conference talks and blog posts, especially around anomaly and fault detection, and I couldn&amp;rsquo;t find a location for collaboration, quicker feedback and discussions on more abstract (algorithmic/mathematical) topics or those that cross project boundaries.  So I created the &lt;a href=&#34;https://groups.google.com/forum/#!forum/it-telemetry&#34;&gt;IT-telemetry&lt;/a&gt; Google group.  If I missed something existing, let me know.  I can shut this down and point to whatever already exists.  Either way I hope this kind of avenue proves useful to people working on these kinds of problems.&lt;/p&gt;
+
+
+Much of this work is being shared via conference talks and blog posts, especially around anomaly and fault detection, and I couldn&#39;t find a location for collaboration, quicker feedback and discussions on more abstract (algorithmic/mathematical) topics or those that cross project boundaries.  So I created the &lt;a href=&#34;https://groups.google.com/forum/#!forum/it-telemetry&#34;&gt;IT-telemetry&lt;/a&gt; Google group.  If I missed something existing, let me know.  I can shut this down and point to whatever already exists.  Either way I hope this kind of avenue proves useful to people working on these kinds of problems.
 </description>
     </item>
     
@@ -874,19 +949,21 @@ by just glancing at your alert overview.  You might be looking at very out of da
       <pubDate>Tue, 30 Sep 2014 08:37:48 -0400</pubDate>
       
       <guid>http://localhost:1313/post/a-real-whisper-to-influxdb-program/</guid>
-      <description>&lt;p&gt;The &lt;a href=&#34;http://localhost:1313/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;whisper-to-influxdb migration script&lt;/a&gt; I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.&lt;/p&gt;
+      <description>The &lt;a href=&#34;http://localhost:1313/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;whisper-to-influxdb migration script&lt;/a&gt; I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.
 
-&lt;p&gt;I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.&lt;/p&gt;
+I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.
 
-&lt;p&gt;That&amp;rsquo;s what I did now, it&amp;rsquo;s at &lt;a href=&#34;https://github.com/vimeo/whisper-to-influxdb&#34;&gt;github.com/vimeo/whisper-to-influxdb&lt;/a&gt;.&lt;/p&gt;
+That&#39;s what I did now, it&#39;s at &lt;a href=&#34;https://github.com/vimeo/whisper-to-influxdb&#34;&gt;github.com/vimeo/whisper-to-influxdb&lt;/a&gt;.
 
-&lt;p&gt;It uses configurable amounts of workers for both whisper fetches and InfluxDB commits,&lt;/p&gt;
+It uses configurable amounts of workers for both whisper fetches and InfluxDB commits,
 
-&lt;p&gt;but it&amp;rsquo;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.&lt;/p&gt;
+but it&#39;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.
 
-&lt;p&gt;My series, and hence my commits have at most 60k records, and presumably InfluxDB could handle a lot more per commit, so we might leverage better batching later.  Either way, this way I can consistently commit about 100k series every 2.5 hours (or 10/s), where each serie has a few thousand points on average, with peaks up to 60k points. I usually play with 1 to 30 InfluxDB workers.&lt;/p&gt;
+My series, and hence my commits have at most 60k records, and presumably InfluxDB could handle a lot more per commit, so we might leverage better batching later.  Either way, this way I can consistently commit about 100k series every 2.5 hours (or 10/s), where each serie has a few thousand points on average, with peaks up to 60k points. I usually play with 1 to 30 InfluxDB workers. 
 
-&lt;p&gt;Even though I&amp;rsquo;ve hit a few &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/985&#34;&gt;InfluxDB&lt;/a&gt; &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/970&#34;&gt;issues&lt;/a&gt;, this tool has enabled me to fill in gaps after outages and to do a restore from whisper after a complete database wipe.&lt;/p&gt;
+Even though I&#39;ve hit a few &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/985&#34;&gt;InfluxDB&lt;/a&gt; &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/970&#34;&gt;issues&lt;/a&gt;, this tool has enabled me to fill in gaps after outages and to do a restore from whisper after a complete database wipe.
+
+
 </description>
     </item>
     
@@ -896,15 +973,17 @@ by just glancing at your alert overview.  You might be looking at very out of da
       <pubDate>Wed, 24 Sep 2014 07:56:01 -0400</pubDate>
       
       <guid>http://localhost:1313/post/influxdb-as-graphite-backend-part2/</guid>
-      <description>&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+      <description>&lt;br&gt;
 
-&lt;p&gt;&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.&lt;/p&gt;
+&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;The &lt;i&gt;Graphite + InfluxDB&lt;/i&gt; series continues.&lt;/p&gt;
+
+&lt;p&gt;
+
+The &lt;i&gt;Graphite + InfluxDB&lt;/i&gt; series continues.
 
 &lt;ul&gt;
 
@@ -922,6 +1001,10 @@ Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graph
 
 &lt;/ul&gt;
 
+&lt;!--more--&gt;
+
+
+
 &lt;h4&gt;Progress made&lt;/h4&gt;
 
 &lt;ul&gt;
@@ -938,23 +1021,27 @@ Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graph
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;&lt;a href=&#34;http://graphite-api.readthedocs.org&#34;&gt;graphite-api&lt;/a&gt; received various bug fixes and support for templating, statsd instrumentation and caching.&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;http://graphite-api.readthedocs.org&#34;&gt;graphite-api&lt;/a&gt; received various bug fixes and support for templating, statsd instrumentation and caching.
 
-&lt;p&gt;&lt;br/&gt;Much of this was driven by graphite-influxdb: the caching allows us to cache metadata and the statsd integration gives us insights into the performance of the steps it goes through of building a graph (getting metadata from InfluxDB, querying InfluxDB, interacting with cache, post processing data, etc).&lt;/li&gt;&lt;/p&gt;
+&lt;br/&gt;Much of this was driven by graphite-influxdb: the caching allows us to cache metadata and the statsd integration gives us insights into the performance of the steps it goes through of building a graph (getting metadata from InfluxDB, querying InfluxDB, interacting with cache, post processing data, etc).&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;the progress on InfluxDB and graphite-api in turn enabled &lt;a href=&#34;https://github.com/vimeo/graphite-influxdb&#34;&gt;graphite-influxdb&lt;/a&gt; to become faster and simpler (note: graphite-influxdb requires InfluxDB 0.8).  Furthermore you can now configure series resolutions (but different retentions per serie is on the roadmap, see &lt;i&gt;State of affairs and what&amp;rsquo;s coming&lt;/i&gt;), and of course it also got a bunch of bugfixes.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;the progress on InfluxDB and graphite-api in turn enabled &lt;a href=&#34;https://github.com/vimeo/graphite-influxdb&#34;&gt;graphite-influxdb&lt;/a&gt; to become faster and simpler (note: graphite-influxdb requires InfluxDB 0.8).  Furthermore you can now configure series resolutions (but different retentions per serie is on the roadmap, see &lt;i&gt;State of affairs and what&#39;s coming&lt;/i&gt;), and of course it also got a bunch of bugfixes.&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Because of all these improvements, all involved components are now ready for serious use.&lt;/p&gt;
+Because of all these improvements, all involved components are now ready for serious use.
+
+
 
 &lt;h4&gt;Putting it all together, with docker&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://www.docker.com/&#34;&gt;Docker&lt;/a&gt; probably needs no introduction, it&amp;rsquo;s a nifty tool to build an environment with given software installed, and allows to easily deploy it and run it in isolation.&lt;/p&gt;
+&lt;a href=&#34;https://www.docker.com/&#34;&gt;Docker&lt;/a&gt; probably needs no introduction, it&#39;s a nifty tool to build an environment with given software installed, and allows to easily deploy it and run it in isolation.
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/vimeo/graphite-api-influxdb-docker&#34;&gt;graphite-api-influxdb-docker&lt;/a&gt; is a very creatively named project that generates the - also very creatively named - docker image &lt;a href=&#34;https://registry.hub.docker.com/u/vimeo/graphite-api-influxdb/&#34;&gt;graphite-api-influxdb&lt;/a&gt;, which contains graphite-api and graphite-influxdb, making it easy to hook in a customized configuration and get it up and running quickly.  This is the recommended way to set this up, and this is what we run in production.&lt;/p&gt;
+&lt;a href=&#34;https://github.com/vimeo/graphite-api-influxdb-docker&#34;&gt;graphite-api-influxdb-docker&lt;/a&gt; is a very creatively named project that generates the - also very creatively named - docker image &lt;a href=&#34;https://registry.hub.docker.com/u/vimeo/graphite-api-influxdb/&#34;&gt;graphite-api-influxdb&lt;/a&gt;, which contains graphite-api and graphite-influxdb, making it easy to hook in a customized configuration and get it up and running quickly.  This is the recommended way to set this up, and this is what we run in production.
+
+
 
 &lt;h4&gt;The setup&lt;/h4&gt;
 
@@ -1006,17 +1093,19 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;As you can tell, on both machines RAM is vastly over provisioned, and they have lots of cpu available (the difference in cores should be negligible), but the difference in RAID level is important to note: RAID 5 comes with a write penalty. Even though the whisper machine has more, and faster disks, it probably has a disadvantage for writes.  Maybe.  Haven&amp;rsquo;t done raid stuff in a long time, and I haven&amp;rsquo;t it measured it out.&lt;/p&gt;
+As you can tell, on both machines RAM is vastly over provisioned, and they have lots of cpu available (the difference in cores should be negligible), but the difference in RAID level is important to note: RAID 5 comes with a write penalty. Even though the whisper machine has more, and faster disks, it probably has a disadvantage for writes.  Maybe.  Haven&#39;t done raid stuff in a long time, and I haven&#39;t it measured it out.
 
-&lt;p&gt;&lt;br/&gt;&lt;b&gt;Clearly you&amp;rsquo;ll need to take the results with a grain of salt, as unfortunately I do not have 2 systems available with the same configuration and their baseline (raw) performance is unknown.&lt;/b&gt;.&lt;/p&gt;
+&lt;br/&gt;&lt;b&gt;Clearly you&#39;ll need to take the results with a grain of salt, as unfortunately I do not have 2 systems available with the same configuration and their baseline (raw) performance is unknown.&lt;/b&gt;.
 
-&lt;p&gt;&lt;br/&gt;Note: no InfluxDB clustering, see &lt;i&gt;State of affairs and what&amp;rsquo;s coming&lt;/i&gt;.&lt;/p&gt;
+&lt;br/&gt;Note: no InfluxDB clustering, see &lt;i&gt;State of affairs and what&#39;s coming&lt;/i&gt;.
+
+
 
 &lt;h4&gt;The empirical validation &amp;amp; migration&lt;/h4&gt;
 
-&lt;p&gt;Once everything was setup and I could confidently send 100% of traffic to InfluxDB via carbon-relay-ng, it was trivial to run our dashboards with a flag deciding which server to go to.&lt;/p&gt;
+Once everything was setup and I could confidently send 100% of traffic to InfluxDB via carbon-relay-ng, it was trivial to run our dashboards with a flag deciding which server to go to.
 
-&lt;p&gt;This way I have literally been running our graphite dashboards next to each other, allowing us to compare both stacks on:&lt;/p&gt;
+This way I have literally been running our graphite dashboards next to each other, allowing us to compare both stacks on:
 
 &lt;ul&gt;
 
@@ -1026,39 +1115,45 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;Soon enough my colleagues started asking to make graphite-api + InfluxDB the default, as it was much faster in all common cases.  I flipped the switch and everybody has been happy.&lt;/p&gt;
+Soon enough my colleagues started asking to make graphite-api + InfluxDB the default, as it was much faster in all common cases.  I flipped the switch and everybody has been happy.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;When loading a page with many dashboards, the InfluxDB machine will occasionally spike up to 500% cpu, though I rarely get to see any iowait (!), even after syncing the block cache (i just realized it&amp;rsquo;ll probably still use the cache for reads after sync?)&lt;/p&gt;
+When loading a page with many dashboards, the InfluxDB machine will occasionally spike up to 500% cpu, though I rarely get to see any iowait (!), even after syncing the block cache (i just realized it&#39;ll probably still use the cache for reads after sync?)
 
-&lt;p&gt;&lt;br/&gt;The carbon/whisper machine, on the other hand, is always fighting iowait, which could be caused by the raid 5 write amplification but the random io due to the whisper format probably has more to do with it.  Via the MAX_UPDATES_PER_SECOND I&amp;rsquo;ve tried to linearize writes, with mixed success.  But I&amp;rsquo;ve never gone to deep into it.  So basically &lt;b&gt;comparing write performance would be unfair in these circumstances, I am only comparing reads in these tests&lt;/b&gt;.  Despite the different storage setups, the Linux block cache should make things fair for reads.   Whisper&amp;rsquo;s iowait will handicap the reads, but I always did successive runs with fully loaded PNGs to make sure the block cache was warm for reads.&lt;/p&gt;
+&lt;br/&gt;The carbon/whisper machine, on the other hand, is always fighting iowait, which could be caused by the raid 5 write amplification but the random io due to the whisper format probably has more to do with it.  Via the MAX_UPDATES_PER_SECOND I&#39;ve tried to linearize writes, with mixed success.  But I&#39;ve never gone to deep into it.  So basically &lt;b&gt;comparing write performance would be unfair in these circumstances, I am only comparing reads in these tests&lt;/b&gt;.  Despite the different storage setups, the Linux block cache should make things fair for reads.   Whisper&#39;s iowait will handicap the reads, but I always did successive runs with fully loaded PNGs to make sure the block cache was warm for reads.
+
+
 
 &lt;h4&gt;A &#34;slightly more professional&#34; benchmark&lt;/h4&gt;
 
-&lt;p&gt;I could have stopped here, but the validation above was not very scientific.  I wanted to do a somewhat more formal benchmark, to measure read speeds (though I did not have much time so it had to be quick and easy).&lt;/p&gt;
+I could have stopped here, but the validation above was not very scientific.  I wanted to do a somewhat more formal benchmark, to measure read speeds (though I did not have much time so it had to be quick and easy).
 
-&lt;p&gt;&lt;br/&gt;I wanted to compare InfluxDB vs whisper, and specifically how performance scales as you play with parameters such as number of series, points per series, and time range fetched (i.e. amount of points).  I &lt;a href=&#34;https://groups.google.com/forum/#!topic/influxdb/0VeUQCqzgVg&#34;&gt;posted the benchmark on the InfluxDB mailing list&lt;/a&gt;.  Look there for all information. I just want to reiterate the conclusion here:  I was surprised.  Because of the results above, I had assumed that InfluxDB would perform reads noticeably quicker than whisper but this is not the case.  (maybe because whisper reads are nicely sequential - it&amp;rsquo;s mostly writes that suffer from the whisper format)&lt;/p&gt;
+&lt;br/&gt;I wanted to compare InfluxDB vs whisper, and specifically how performance scales as you play with parameters such as number of series, points per series, and time range fetched (i.e. amount of points).  I &lt;a href=&#34;https://groups.google.com/forum/#!topic/influxdb/0VeUQCqzgVg&#34;&gt;posted the benchmark on the InfluxDB mailing list&lt;/a&gt;.  Look there for all information. I just want to reiterate the conclusion here:  I was surprised.  Because of the results above, I had assumed that InfluxDB would perform reads noticeably quicker than whisper but this is not the case.  (maybe because whisper reads are nicely sequential - it&#39;s mostly writes that suffer from the whisper format)
 
-&lt;p&gt;&lt;br/&gt;This very much contrasts my earlier findings where the graphite-api+InfluxDB powered dashboards clearly take the lead.  I have yet to figure out why this is.  Maybe something to do with the performance of graphite-web vs graphite-api itself, gunicorn vs apache, worker configuration, or maybe InfluxDB only starts outperforming whisper as concurrency increases.  Some more investigation is definitely needed!&lt;/p&gt;
+&lt;br/&gt;This very much contrasts my earlier findings where the graphite-api+InfluxDB powered dashboards clearly take the lead.  I have yet to figure out why this is.  Maybe something to do with the performance of graphite-web vs graphite-api itself, gunicorn vs apache, worker configuration, or maybe InfluxDB only starts outperforming whisper as concurrency increases.  Some more investigation is definitely needed!
+
+
 
 &lt;h4&gt;Future benchmarks&lt;/h4&gt;
 
-&lt;p&gt;The simple benchmark above was very simple to execute, as it only requires influx-cli and whisper-fetch (so you can easily check for yourself), but clearly there is a need to test more realistic scenarios with concurrent reads, and doing some write benchmarks would be nice too.&lt;/p&gt;
+The simple benchmark above was very simple to execute, as it only requires influx-cli and whisper-fetch (so you can easily check for yourself), but clearly there is a need to test more realistic scenarios with concurrent reads, and doing some write benchmarks would be nice too.
 
-&lt;p&gt;&lt;br/&gt;We should also look into cpu and memory usage.  I have had the luxury of being able to completely ignore memory usage, but others seem to notice excessive InfluxDB memory usage.&lt;/p&gt;
+&lt;br/&gt;We should also look into cpu and memory usage.  I have had the luxury of being able to completely ignore memory usage, but others seem to notice excessive InfluxDB memory usage.
 
-&lt;p&gt;&lt;br/&gt;conclusion: many tests and benchmarks should happen, but I don&amp;rsquo;t really have time to conduct them.  Hopefully other people in the community will take this on.&lt;/p&gt;
+&lt;br/&gt;conclusion: many tests and benchmarks should happen, but I don&#39;t really have time to conduct them.  Hopefully other people in the community will take this on.
+
+
 
 &lt;h4&gt;Disk space efficiency&lt;/h4&gt;
 
-&lt;p&gt;Last time I checked, using LevelDB I was pretty close to 24B per record (which makes sense because time, seq_no and value are all 64bit values, and each record has those 3 fields).  (this was with snappy compression enabled, so it didn&amp;rsquo;t seem to give much benefit).&lt;/p&gt;
+Last time I checked, using LevelDB I was pretty close to 24B per record (which makes sense because time, seq_no and value are all 64bit values, and each record has those 3 fields).  (this was with snappy compression enabled, so it didn&#39;t seem to give much benefit).
 
-&lt;p&gt;&lt;br/&gt;Whisper seems to consume 12 Bytes per record - a 32bit timestamp and a 64bit float value - making it considerably more storage efficient than InfluxDB/levelDB for now.&lt;/p&gt;
+&lt;br/&gt;Whisper seems to consume 12 Bytes per record - a 32bit timestamp and a 64bit float value - making it considerably more storage efficient than InfluxDB/levelDB for now.
 
-&lt;p&gt;&lt;br/&gt;Some notes on this though:&lt;/p&gt;
+&lt;br/&gt;Some notes on this though:
 
 &lt;ul&gt;
 
@@ -1074,11 +1169,15 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;It would be great if somebody with more Ceres experience could chip in here, as - in the context of space efficiency - it looks like a neat little format.&lt;/p&gt;
+It would be great if somebody with more Ceres experience could chip in here, as - in the context of space efficiency - it looks like a neat little format.
 
-&lt;p&gt;Also, I&amp;rsquo;m probably not making proper use of the compression features that InfluxDB&amp;rsquo;s storage engines support.  This also requires some more looking into.&lt;/p&gt;
+Also, I&#39;m probably not making proper use of the compression features that InfluxDB&#39;s storage engines support.  This also requires some more looking into.
+
+
+
+
 
 &lt;h4&gt;State of affairs and what&#39;s coming&lt;/h4&gt;
 
@@ -1096,28 +1195,27 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;li&gt;With the 0.8 release out the door, the shard spaces/rollups/retention intervals feature will start stabilizing, so we can start supporting multiple retention intervals per metric&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;With the 0.8 release out the door, the shard spaces/rollups/retention intervals feature will start stabilizing, so we can start supporting multiple retention intervals per metric&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Because InfluxDB clustering is &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/903&#34;&gt;undergoing major changes&lt;/a&gt;, and because clustering is not a high priority for me, I haven&amp;rsquo;t needed to worry about this.  I&amp;rsquo;ll probably only start looking at clustering somewhere in 2015 because I have more pressing issues.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Because InfluxDB clustering is &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/903&#34;&gt;undergoing major changes&lt;/a&gt;, and because clustering is not a high priority for me, I haven&#39;t needed to worry about this.  I&#39;ll probably only start looking at clustering somewhere in 2015 because I have more pressing issues.&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Once the new clustering system and the storage subsystem have matured (sounds like a v1.0 ~ v1.2 to me) we&amp;rsquo;ll get more speed improvements and robustness.  Most of the integration work is done, it&amp;rsquo;s just a matter of doing smaller improvements, bug fixes and waiting for InfluxDB to become better.  Maintaining this stack aside, I personally will start focusing more on:&lt;/p&gt;
+&lt;li&gt;Once the new clustering system and the storage subsystem have matured (sounds like a v1.0 ~ v1.2 to me) we&#39;ll get more speed improvements and robustness.  Most of the integration work is done, it&#39;s just a matter of doing smaller improvements, bug fixes and waiting for InfluxDB to become better.  Maintaining this stack aside, I personally will start focusing more on:
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;ul&amp;gt;
+    &lt;ul&gt;
 
-&amp;lt;li&amp;gt;per-second resolution in our data feeds, and potentially storage&amp;lt;/li&amp;gt;
+    &lt;li&gt;per-second resolution in our data feeds, and potentially storage&lt;/li&gt;
 
-&amp;lt;li&amp;gt;realtime (but basic) anomaly detection, realtime graphs for some key timeseries.  Adrian Cockcroft had an inspirational piece in his &amp;lt;a href=&amp;quot;https://vimeo.com/95064249&amp;quot;&amp;gt;Monitorama keynote&amp;lt;/a&amp;gt; about how alerts from timeseries should trigger within seconds.&amp;lt;/li&amp;gt;
+    &lt;li&gt;realtime (but basic) anomaly detection, realtime graphs for some key timeseries.  Adrian Cockcroft had an inspirational piece in his &lt;a href=&#34;https://vimeo.com/95064249&#34;&gt;Monitorama keynote&lt;/a&gt; about how alerts from timeseries should trigger within seconds.&lt;/li&gt;
 
-&amp;lt;li&amp;gt;Mozilla&#39;s awesome &amp;lt;a href=&amp;quot;http://hekad.readthedocs.org&amp;quot;&amp;gt;heka&amp;lt;/a&amp;gt; project (this &amp;lt;a href=&amp;quot;https://vimeo.com/98689689&amp;quot;&amp;gt;heka video&amp;lt;/a&amp;gt; is great), which should help a lot with the above.  Also looking at &amp;lt;a href=&amp;quot;http://codeascraft.com/2013/06/11/introducing-kale/&amp;quot;&amp;gt;Etsy&#39;s kale stack&amp;lt;/a&amp;gt; for anomaly detection&amp;lt;/li&amp;gt;
+    &lt;li&gt;Mozilla&#39;s awesome &lt;a href=&#34;http://hekad.readthedocs.org&#34;&gt;heka&lt;/a&gt; project (this &lt;a href=&#34;https://vimeo.com/98689689&#34;&gt;heka video&lt;/a&gt; is great), which should help a lot with the above.  Also looking at &lt;a href=&#34;http://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;Etsy&#39;s kale stack&lt;/a&gt; for anomaly detection&lt;/li&gt;
 
-&amp;lt;li&amp;gt;metrics 2.0 and making sure metrics 2.0 works well with InfluxDB.  Up to now I find the series / columns as a data model too limiting and arbitrary, it could be so much more powerful, ditto for the query language.&amp;lt;/li&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;li&gt;metrics 2.0 and making sure metrics 2.0 works well with InfluxDB.  Up to now I find the series / columns as a data model too limiting and arbitrary, it could be so much more powerful, ditto for the query language.&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Can we do anything else to make InfluxDB (+graphite) faster? Yes!&lt;/p&gt;
+&lt;li&gt;Can we do anything else to make InfluxDB (+graphite) faster? Yes!
 
 &lt;ul&gt;
 
@@ -1129,9 +1227,9 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;li&gt;Another thing to keep in mind when switching to graphite-api + InfluxDB: you loose the graphite composer.  I have a few people relying on this, so I can either patch it to talk to graphite-api (meh), separate it out (meh) or replace it with a nicer dashboard like tessera, grafana or descartes.  (or Graph-Explorer, but it can be a bit too much of a paradigm shift).&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Another thing to keep in mind when switching to graphite-api + InfluxDB: you loose the graphite composer.  I have a few people relying on this, so I can either patch it to talk to graphite-api (meh), separate it out (meh) or replace it with a nicer dashboard like tessera, grafana or descartes.  (or Graph-Explorer, but it can be a bit too much of a paradigm shift).&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;some more InfluxDB stuff I&amp;rsquo;m looking forward to:&lt;/p&gt;
+&lt;li&gt;some more InfluxDB stuff I&#39;m looking forward to:
 
 &lt;ul&gt;
 
@@ -1143,37 +1241,41 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Tracking exceptions in graphite-api is &lt;a href=&#34;https://github.com/brutasse/graphite-api/search?q=exception&amp;type=Issues&amp;utf8=%E2%9C%93&#34;&gt;much harder than it should be&lt;/a&gt;.  Currently there&amp;rsquo;s no way to display exceptions to the user (in the http response) or to even log them.  So sometimes you&amp;rsquo;ll get http 500 responses and don&amp;rsquo;t know why.  You can use the &lt;a href=&#34;http://graphite-api.readthedocs.org/en/latest/configuration.html#extra-sections&#34;&gt;sentry integration&lt;/a&gt; which works all right, but is clunky.  Hopefully this will be addressed soon.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Tracking exceptions in graphite-api is &lt;a href=&#34;https://github.com/brutasse/graphite-api/search?q=exception&amp;type=Issues&amp;utf8=%E2%9C%93&#34;&gt;much harder than it should be&lt;/a&gt;.  Currently there&#39;s no way to display exceptions to the user (in the http response) or to even log them.  So sometimes you&#39;ll get http 500 responses and don&#39;t know why.  You can use the &lt;a href=&#34;http://graphite-api.readthedocs.org/en/latest/configuration.html#extra-sections&#34;&gt;sentry integration&lt;/a&gt; which works all right, but is clunky.  Hopefully this will be addressed soon.&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
+
+
 
 &lt;h4&gt;Conclusion&lt;/h4&gt;
 
-&lt;p&gt;The graphite-influxdb stack works and is ready for general consumption.  It&amp;rsquo;s easy to install and operate, and performs well.&lt;/p&gt;
+The graphite-influxdb stack works and is ready for general consumption.  It&#39;s easy to install and operate, and performs well.
 
-&lt;p&gt;It is expected that InfluxDB will over time mature and ultimately meet all my &lt;a href=&#34;http://localhost:1313/on-graphite-whisper-and-influxdb.html&#34;&gt;requirements of the ideal backend&lt;/a&gt;.  It definitely has a long way to go.  More benchmarks and tests are needed.  Keep in mind that we&amp;rsquo;re not doing large volumes of metrics. For small/medium shops this solution should work well, but on larger scales you will definitely run into issues.  You might conclude that InfluxDB is not for you (yet) (there are alternative projects, after all).&lt;/p&gt;
+It is expected that InfluxDB will over time mature and ultimately meet all my &lt;a href=&#34;http://localhost:1313/on-graphite-whisper-and-influxdb.html&#34;&gt;requirements of the ideal backend&lt;/a&gt;.  It definitely has a long way to go.  More benchmarks and tests are needed.  Keep in mind that we&#39;re not doing large volumes of metrics. For small/medium shops this solution should work well, but on larger scales you will definitely run into issues.  You might conclude that InfluxDB is not for you (yet) (there are alternative projects, after all).
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Finally, a closing thought:&lt;/p&gt;
+Finally, a closing thought:
 
-&lt;p&gt;&lt;br/&gt;&lt;i&gt;Having graphs and dashboards that look nice and load fast is a good thing to have, but keep in mind that graphs and dashboards should be a last resort.  It&amp;rsquo;s a solution if all else fails.  The fewer graphs you need, the better you&amp;rsquo;re doing.&lt;/p&gt;
+&lt;br/&gt;&lt;i&gt;Having graphs and dashboards that look nice and load fast is a good thing to have, but keep in mind that graphs and dashboards should be a last resort.  It&#39;s a solution if all else fails.  The fewer graphs you need, the better you&#39;re doing.
 
-&lt;p&gt;&lt;br/&gt;How can you avoid needing graphs?  Automatic alerting on your data.&lt;/p&gt;
+&lt;br/&gt;How can you avoid needing graphs?  Automatic alerting on your data.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;I see graphs as a temporary measure: they provide headroom while you develop an understanding of the operational behavior of your infrastructure, conceive a model of it, and implement the alerting you need to do troubleshooting and capacity planning.  Of course, this process consumes more resources (time and otherwise), and these expenses are not always justifiable, but I think this is the ideal case we should be working towards.&lt;/i&gt;&lt;/p&gt;
+&lt;br/&gt;I see graphs as a temporary measure: they provide headroom while you develop an understanding of the operational behavior of your infrastructure, conceive a model of it, and implement the alerting you need to do troubleshooting and capacity planning.  Of course, this process consumes more resources (time and otherwise), and these expenses are not always justifiable, but I think this is the ideal case we should be working towards.&lt;/i&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;Either way, good luck and have fun!&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+Either way, good luck and have fun!
 </description>
     </item>
     
@@ -1183,13 +1285,21 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
       <pubDate>Sat, 20 Sep 2014 15:18:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</guid>
-      <description>&lt;h4&gt;Migrating data from whisper into InfluxDB&lt;/h4&gt;
+      <description>&lt;!--more--&gt;
 
-&lt;p&gt;&lt;i&gt;&amp;ldquo;How do i migrate whisper data to influxdb&amp;rdquo;&lt;/i&gt; is a question that comes up regularly, and I&amp;rsquo;ve always replied it should be easy to write a tool&lt;/p&gt;
 
-&lt;p&gt;to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;h4&gt;Migrating data from whisper into InfluxDB&lt;/h4&gt;
+
+
+
+&lt;i&gt;&#34;How do i migrate whisper data to influxdb&#34;&lt;/i&gt; is a question that comes up regularly, and I&#39;ve always replied it should be easy to write a tool
+
+to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:
+
+
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
@@ -1227,19 +1337,25 @@ influx_updater &amp;amp;
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;It relies on the recently introduced asynchronous inserts feature of &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt; - which commits inserts in batches to improve the speed - and the whisper-fetch tool.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;You could probably also write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;Maybe it&amp;rsquo;s a bug in my code, I didn&amp;rsquo;t test this much, because I didn&amp;rsquo;t need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.&lt;/p&gt;
+
+It relies on the recently introduced asynchronous inserts feature of &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt; - which commits inserts in batches to improve the speed - and the whisper-fetch tool.
+
+&lt;br/&gt;
+
+You could probably also write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.
+
+&lt;br/&gt;Maybe it&#39;s a bug in my code, I didn&#39;t test this much, because I didn&#39;t need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.
+
+
 
 &lt;h4&gt;A more powerful carbon-relay-ng&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt; received a bunch of love and has been a great help in my graphite+influxdb experiments.&lt;/p&gt;
+&lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt; received a bunch of love and has been a great help in my graphite+influxdb experiments.
 
 &lt;p&gt;
 
@@ -1247,7 +1363,7 @@ influx_updater &amp;amp;
 
 &lt;/p&gt;
 
-&lt;p&gt;Here&amp;rsquo;s what changed:&lt;/p&gt;
+Here&#39;s what changed:
 
 &lt;ul&gt;
 
@@ -1261,27 +1377,27 @@ influx_updater &amp;amp;
 
 &lt;/ul&gt;
 
-&lt;p&gt;Beside our metrics storage, I also plan to put our anomaly detection (currently playing with &lt;a href=&#34;http://hekad.readthedocs.org/en/v0.7.1/&#34;&gt;heka&lt;/a&gt; and &lt;a href=&#34;http://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;kale&lt;/a&gt;) and &lt;a href=&#34;https://github.com/vimeo/carbon-tagger&#34;&gt;carbon-tagger&lt;/a&gt; behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.&lt;/p&gt;
+Beside our metrics storage, I also plan to put our anomaly detection (currently playing with &lt;a href=&#34;http://hekad.readthedocs.org/en/v0.7.1/&#34;&gt;heka&lt;/a&gt; and &lt;a href=&#34;http://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;kale&lt;/a&gt;) and &lt;a href=&#34;https://github.com/vimeo/carbon-tagger&#34;&gt;carbon-tagger&lt;/a&gt; behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;I used to think of carbon-relay-ng as the python carbon-relay but on steroids,&lt;/p&gt;
+I used to think of carbon-relay-ng as the python carbon-relay but on steroids,
 
-&lt;p&gt;now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,&lt;/p&gt;
+now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,
 
-&lt;p&gt;&lt;br/&gt;or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.&lt;/p&gt;
+&lt;br/&gt;or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.
 
-&lt;p&gt;&lt;br/&gt;I&amp;rsquo;d like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular &lt;a href=&#34;http://raftconsensus.github.io/&#34;&gt;raft&lt;/a&gt; consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.&lt;/p&gt;
+&lt;br/&gt;I&#39;d like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular &lt;a href=&#34;http://raftconsensus.github.io/&#34;&gt;raft&lt;/a&gt; consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.
 
-&lt;p&gt;(note: InfluxDB &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/859&#34;&gt;might introduce such a component&lt;/a&gt;, so I&amp;rsquo;m also a bit waiting to see what they come up with)&lt;/p&gt;
+(note: InfluxDB &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/859&#34;&gt;might introduce such a component&lt;/a&gt;, so I&#39;m also a bit waiting to see what they come up with)
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in &lt;a href=&#34;http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html&#34;&gt;On Graphite, Whisper and InfluxDB&lt;/a&gt;.  That said, both should be fairly easy to implement in carbon-relay-ng, and I&amp;rsquo;m willing to assist those who want to contribute it.&lt;/p&gt;
+Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in &lt;a href=&#34;http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html&#34;&gt;On Graphite, Whisper and InfluxDB&lt;/a&gt;.  That said, both should be fairly easy to implement in carbon-relay-ng, and I&#39;m willing to assist those who want to contribute it.
 </description>
     </item>
     
@@ -1309,7 +1425,11 @@ the mysql, pgsql, vsql, etc tools before.
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;!--more--&gt;
+
+&lt;br/&gt;
+
+
 
 &lt;p&gt;
 
@@ -1337,6 +1457,8 @@ influx&gt; list admin
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 &lt;b&gt;You can change parameters and re-bind with the new values&lt;/b&gt;
@@ -1355,6 +1477,8 @@ influx&gt; bind
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 &lt;b&gt;Write your variables (user, pass, host, db, ...) to ~/.influxrc&lt;/b&gt;
@@ -1366,6 +1490,8 @@ influx&gt; writerc
 ]]&gt;&lt;/pre&gt;
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -1401,6 +1527,8 @@ influx&gt; delete db issue-1234
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 &lt;b&gt;You can send queries on standard input, which is useful in shell commands and scripts.&lt;/b&gt;
@@ -1418,6 +1546,8 @@ $ influx-cli &lt;&lt;&lt; &#39;list series&#39; | wc -l
 ]]&gt;&lt;/pre&gt;
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -1444,6 +1574,8 @@ influx&gt; list series &gt; list-series.txt
 (note: the discrepancy of one line is due to &lt;a href=&#34;https://github.com/shavac/readline/issues/2&#34;&gt;the Go readline library echoing the query&lt;/a&gt;.
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -1495,6 +1627,8 @@ displaying   : 65.712027ms
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 &lt;b&gt;Executing queries and debugging their result data format, works too&lt;/b&gt;
@@ -1543,6 +1677,8 @@ influx&gt; raw select * from foo limit 1
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 And that&#39;s about it.
@@ -1562,6 +1698,8 @@ I&#39;ve found this to be a much easier way to interface with InfluxDB then usin
 &lt;li&gt;my gut feeling says that using something like msgpack instead of json, and/or even streaming the resultset as it is being generated (instead of first building the entire result, then serializing it, then sending it over, then having the client deserialize the entire thing) could really help performance, not just here, but basically anywhere you interface with influxdb.  Though I don&#39;t have hard numbers on this yet.&lt;/li&gt;
 
 &lt;/p&gt;
+
+
 </description>
     </item>
     
@@ -1571,11 +1709,17 @@ I&#39;ve found this to be a much easier way to interface with InfluxDB then usin
       <pubDate>Tue, 12 Aug 2014 08:36:36 -0400</pubDate>
       
       <guid>http://localhost:1313/post/darktable_magnificent_photo_manager_editor/</guid>
-      <description>&lt;p&gt;A post about the magnificent &lt;a href=&#34;http://darktable.org/&#34;&gt;darktable&lt;/a&gt; photo manager/editor and why I&amp;rsquo;m abandoning &lt;a href=&#34;http://localhost:1313/pixie.html&#34;&gt;pixie&lt;/a&gt;&lt;/p&gt;
+      <description>A post about the magnificent &lt;a href=&#34;http://darktable.org/&#34;&gt;darktable&lt;/a&gt; photo manager/editor and why I&#39;m abandoning &lt;a href=&#34;http://localhost:1313/pixie.html&#34;&gt;pixie&lt;/a&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+
 
 &lt;p&gt;
 
@@ -1613,15 +1757,15 @@ would consider pixie feature complete, so only as of a few days ago I started gi
 
 As it turns out, darktable is actually a fantastic application, and despite some imperfections, the difference is clear enough for me to abandon pixie.&lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;center&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/darktable-lighttable.png&#34;&gt;&lt;/p&gt;
+&lt;a href=&#34;http://localhost:1313/files/darktable-lighttable.png&#34;&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/darktable-lighttable.png&#34; width=&#34;30%&#34;/&gt;&lt;/p&gt;
+&lt;img src=&#34;http://localhost:1313/files/darktable-lighttable.png&#34; width=&#34;30%&#34;/&gt;
 
-&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/a&gt;
 
-&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/center&gt;
 
 &lt;p&gt;
 
@@ -1653,15 +1797,15 @@ You can tag, assign metadata, create edits, etc. and re-size on export.  It stor
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;center&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/darktable-darkroom.png&#34;&gt;&lt;/p&gt;
+&lt;a href=&#34;http://localhost:1313/files/darktable-darkroom.png&#34;&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/darktable-darkroom.png&#34; width=&#34;30%&#34;/&gt;&lt;/p&gt;
+&lt;img src=&#34;http://localhost:1313/files/darktable-darkroom.png&#34; width=&#34;30%&#34;/&gt;
 
-&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/a&gt;
 
-&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;/center&gt;
 
 &lt;p&gt;
 
@@ -1676,6 +1820,8 @@ Finally I&#39;d love to declare all my exports in a config file (collect files w
 I even &lt;a href=&#34;https://github.com/Dieterbe/tmsu-to-darktable&#34;&gt;wrote a script&lt;/a&gt; that automatically does all tag assignments in darktable based on the pixie information in tmsu, to make the transition friction free.
 
 &lt;/p&gt;
+
+
 </description>
     </item>
     
@@ -1695,11 +1841,17 @@ Something centralized manages the shared state, the changes to it and the respon
 
 &lt;/p&gt;
 
+&lt;!--more--&gt;
+
+
+
 &lt;p&gt;
 
 This is effectively two things.
 
 &lt;/p&gt;
+
+
 
 &lt;h2&gt;Pattern one: making access to thread-unsafe data structures thread safe&lt;/h2&gt;
 
@@ -1713,6 +1865,8 @@ I saw this first in &lt;a href=&#34;https://github.com/bitly/statsdaemon/blob/ma
 
 &lt;/p&gt;
 
+
+
 &lt;h2&gt;pattern two: coordinating flow of responses&lt;/h2&gt;
 
 &lt;p&gt;
@@ -1720,6 +1874,8 @@ I saw this first in &lt;a href=&#34;https://github.com/bitly/statsdaemon/blob/ma
 For the second, after (potentially time consuming) work, returning a response to the invoker, (let&#39;s say in the carbon-relay-ng case where you want to notify whether the route change succeeded) I have so far just passed on references to the admin interface session along with the request, and after completion of the work it would spawn a new goroutine that resumes the session with the given response.  Not the most elegant, but it works.
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -1733,7 +1889,9 @@ As long as the requesters write a request to the requests channel and then read 
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;![CDATA[
+
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;![CDATA[
 
 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -1823,9 +1981,13 @@ As long as the requesters write a request to the requests channel and then read 
 
 ]]&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/32BSXT0xhN&#34;&gt;code on Go playground&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;a href=&#34;http://play.golang.org/p/32BSXT0xhN&#34;&gt;code on Go playground&lt;/a&gt;
+
+
 
 &lt;p&gt;
 
@@ -1845,6 +2007,8 @@ beautiful example of it I&#39;ve come across so far.  The routines are blocked o
 
 &lt;/p&gt;
 
+
+
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;
@@ -1856,6 +2020,8 @@ But I think as you evolve from go rookie to experienced developer (and often nee
 you will encounter some interesting patterns and also have your &#34;aha!&#34; moments, so I hope this will help someone.
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -1887,6 +2053,8 @@ Earlier this month we had another iteration of the &lt;a href=&#34;http://monito
 
 &lt;/p&gt;
 
+&lt;!--more--&gt;
+
 &lt;p&gt;
 
 I think the conference was better than the first one in Boston, much more to learn.  Also this one was quite focused on telemetry (timeseries metrics processing), lots of talks on timeseries analytics, not so much about things like sensu or nagios.  
@@ -1901,9 +2069,9 @@ I always loved audio processing and production.  Combining these two interests h
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;i&gt;&lt;/p&gt;
+&lt;i&gt;
 
 &lt;p&gt;I&#39;m happy to see the idea reinforced that telemetry is a key part of modern monitoring.
 
@@ -1911,7 +2079,9 @@ For me personally, telemetry (the tech and the process) is &lt;b&gt;the most fas
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;/i&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;/i&gt;&lt;br/&gt;
+
+
 
 &lt;p&gt;I had the privilege to present &lt;a href=&#34;http://metrics20.org&#34;&gt;metrics 2.0&lt;/a&gt; and
 
@@ -1943,9 +2113,13 @@ As usual the &lt;a href=&#34;http://www.slideshare.net/Dieterbe/metrics20-343198
       <guid>http://localhost:1313/post/on-graphite-whisper-and-influxdb/</guid>
       <description>&lt;h4&gt;Graphite, and the storage Achilles heel&lt;/h4&gt;
 
-&lt;p&gt;Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).&lt;/p&gt;
+
+Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.
+
+&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).
+
+&lt;!--more--&gt;
 
 &lt;ul&gt;
 
@@ -1961,15 +2135,15 @@ As usual the &lt;a href=&#34;http://www.slideshare.net/Dieterbe/metrics20-343198
 
 &lt;/ul&gt;
 
-&lt;p&gt;Common recommendations are to &lt;a href=&#34;http://bitprophet.org/blog/2013/03/07/graphite/&#34;&gt;run multiple carbon agents&lt;/a&gt; and&lt;/p&gt;
+Common recommendations are to &lt;a href=&#34;http://bitprophet.org/blog/2013/03/07/graphite/&#34;&gt;run multiple carbon agents&lt;/a&gt; and
 
-&lt;p&gt;&lt;a href=&#34;http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5&#34;&gt;running graphite on SSD drives&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5&#34;&gt;running graphite on SSD drives&lt;/a&gt;.
 
-&lt;p&gt;&lt;br/&gt;If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though &lt;a href=&#34;https://github.com/jssjr/carbonate/&#34;&gt;carbonate&lt;/a&gt; makes this easier.  This is a path I simply don&amp;rsquo;t want to go down.&lt;/p&gt;
+&lt;br/&gt;If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though &lt;a href=&#34;https://github.com/jssjr/carbonate/&#34;&gt;carbonate&lt;/a&gt; makes this easier.  This is a path I simply don&#39;t want to go down.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
 &lt;p&gt;
 
@@ -1979,17 +2153,21 @@ As usual the &lt;a href=&#34;http://www.slideshare.net/Dieterbe/metrics20-343198
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;In particular, &lt;a href=&#34;http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d&#34;&gt;running Ceres instead of whisper&lt;/a&gt;, is only a slight improvement, that suffers from most of the same problems.  I don&amp;rsquo;t see any good reason to keep working on Ceres, other than perhaps that it&amp;rsquo;s a fun exercise.   This probably explains the slow pace of development.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;However, many mistakenly believe Ceres is &amp;ldquo;the future&amp;rdquo;.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;a href=&#34;http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage&#34;&gt;Switching to LevelDB&lt;/a&gt; seems much more sensible but IMHO still doesn&amp;rsquo;t cut it as a general purpose, scalable solution.&lt;/p&gt;
+In particular, &lt;a href=&#34;http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d&#34;&gt;running Ceres instead of whisper&lt;/a&gt;, is only a slight improvement, that suffers from most of the same problems.  I don&#39;t see any good reason to keep working on Ceres, other than perhaps that it&#39;s a fun exercise.   This probably explains the slow pace of development.
+
+&lt;br/&gt;However, many mistakenly believe Ceres is &#34;the future&#34;.
+
+&lt;br/&gt;&lt;a href=&#34;http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage&#34;&gt;Switching to LevelDB&lt;/a&gt; seems much more sensible but IMHO still doesn&#39;t cut it as a general purpose, scalable solution.
+
+
 
 &lt;h4&gt;The ideal backend&lt;/h4&gt;
 
-&lt;p&gt;I believe we can build a backend for graphite that&lt;/p&gt;
+I believe we can build a backend for graphite that
 
 &lt;ul&gt;
 
@@ -2009,47 +2187,65 @@ As usual the &lt;a href=&#34;http://www.slideshare.net/Dieterbe/metrics20-343198
 
 &lt;/ul&gt;
 
-&lt;p&gt;While we&amp;rsquo;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.&lt;/p&gt;
+
+While we&#39;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.
+
+&lt;br/&gt;And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.
+
+
 
 &lt;h4&gt;InfluxDB&lt;/h4&gt;
 
-&lt;p&gt;There&amp;rsquo;s a lot of databases that you could hook up to graphite.&lt;/p&gt;
 
-&lt;p&gt;riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.&lt;/p&gt;
 
-&lt;p&gt;Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.&lt;/p&gt;
+There&#39;s a lot of databases that you could hook up to graphite.
 
-&lt;p&gt;I&amp;rsquo;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.&lt;/p&gt;
+riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.&lt;/p&gt;
+Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.
 
-&lt;p&gt;In particular, installing it is a breeze (no dependencies), it&amp;rsquo;s specifically built for timeseries (not based on a general purpose database),&lt;/p&gt;
+I&#39;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.
 
-&lt;p&gt;which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;And they&amp;rsquo;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&amp;rsquo;m pretty confident that these guys can pull off something big.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+In particular, installing it is a breeze (no dependencies), it&#39;s specifically built for timeseries (not based on a general purpose database),
 
-&lt;p&gt;Technically, InfluxDB is a &amp;ldquo;timeseries, metrics, and analytics&amp;rdquo; databases with use cases well beyond graphite and even technical operations.&lt;/p&gt;
+which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.
 
-&lt;p&gt;Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.&lt;/p&gt;
+And they&#39;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&#39;m pretty confident that these guys can pull off something big.
+
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+Technically, InfluxDB is a &#34;timeseries, metrics, and analytics&#34; databases with use cases well beyond graphite and even technical operations.
+
+Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.
+
+
+
+
 
 &lt;h4&gt;Graphite + InfluxDB&lt;/h4&gt;
 
-&lt;p&gt;InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use &lt;a href=&#34;http://grafana.org/&#34;&gt;Grafana&lt;/a&gt;), which means at some point you could completely swap graphite for InfluxDB.&lt;/p&gt;
 
-&lt;p&gt;However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.&lt;/p&gt;
 
-&lt;p&gt;So here&amp;rsquo;s how my setup currently works:&lt;/p&gt;
+InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use &lt;a href=&#34;http://grafana.org/&#34;&gt;Grafana&lt;/a&gt;), which means at some point you could completely swap graphite for InfluxDB.
+
+
+
+However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.
+
+So here&#39;s how my setup currently works:
+
+
 
 &lt;ul&gt;
 
@@ -2081,21 +2277,27 @@ It should also work with the regular graphite, though I&#39;ve never tried.  (I 
 
 &lt;/ul&gt;
 
-&lt;p&gt;With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.&lt;/p&gt;
 
-&lt;p&gt;Later i might do more extensive benchmarking and acceptance testing.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+Later i might do more extensive benchmarking and acceptance testing.
 
-&lt;p&gt;If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &amp;ldquo;backup&amp;rdquo;.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;We&amp;rsquo;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&amp;rsquo;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &#34;backup&#34;.
 
-&lt;p&gt;&lt;br/&gt;To be continued..&lt;/p&gt;
+We&#39;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&#39;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)
+
+
+
+&lt;br/&gt;
+
+&lt;br/&gt;To be continued..
+
+
 </description>
     </item>
     
@@ -2105,7 +2307,11 @@ It should also work with the regular graphite, though I&#39;ve never tried.  (I 
       <pubDate>Wed, 23 Apr 2014 09:10:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/metrics-2-0-own-website/</guid>
-      <description>&lt;p&gt;Metrics 2.0 started as a &lt;a href=&#34;http://dieter.plaetinck.be/metrics_2_a_proposal.html&#34;&gt;half-formal proposal&lt;/a&gt; and an implementation via &lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;graph-explorer&lt;/a&gt;, but is broad enough in scope that it deserves its own website, its own spec, its own community.  That&amp;rsquo;s why I launched &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics20.org&lt;/a&gt; and a &lt;a href=&#34;https://groups.google.com/forum/#!forum/metrics20&#34;&gt;discussion group&lt;/a&gt;.&lt;/p&gt;
+      <description>Metrics 2.0 started as a &lt;a href=&#34;http://dieter.plaetinck.be/metrics_2_a_proposal.html&#34;&gt;half-formal proposal&lt;/a&gt; and an implementation via &lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;graph-explorer&lt;/a&gt;, but is broad enough in scope that it deserves its own website, its own spec, its own community.  That&#39;s why I launched &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics20.org&lt;/a&gt; and a &lt;a href=&#34;https://groups.google.com/forum/#!forum/metrics20&#34;&gt;discussion group&lt;/a&gt;.
+
+&lt;!--more--&gt;
+
+
 
 &lt;p&gt;
 
@@ -2113,30 +2319,29 @@ from the website:
 
 &lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;  &amp;lt;p&amp;gt;
+      &lt;p&gt;
 
-  We have pretty good storage of timeseries data, collection agents, and dashboards.  But the idea of giving timeseries a &amp;quot;name&amp;quot; or a
+      We have pretty good storage of timeseries data, collection agents, and dashboards.  But the idea of giving timeseries a &#34;name&#34; or a
 
-  &amp;quot;key&amp;quot; is profoundly limiting us.  Especially when they&#39;re not standardized and missing information.
+      &#34;key&#34; is profoundly limiting us.  Especially when they&#39;re not standardized and missing information.
 
-  &amp;lt;br/&amp;gt;Metrics 2.0 aims for &amp;lt;b&amp;gt;self-describing&amp;lt;/b&amp;gt;, &amp;lt;b&amp;gt;standardized&amp;lt;/b&amp;gt; metrics using &amp;lt;b&amp;gt;orthogonal tags&amp;lt;/b&amp;gt; for every dimension.
+      &lt;br/&gt;Metrics 2.0 aims for &lt;b&gt;self-describing&lt;/b&gt;, &lt;b&gt;standardized&lt;/b&gt; metrics using &lt;b&gt;orthogonal tags&lt;/b&gt; for every dimension.
 
-  &amp;quot;metrics&amp;quot; being the pieces of information that point to, and describe timeseries of data.
+      &#34;metrics&#34; being the pieces of information that point to, and describe timeseries of data.
 
-  &amp;lt;/p&amp;gt;By adopting metrics 2.0 you can:
+      &lt;/p&gt;By adopting metrics 2.0 you can:
 
-  &amp;lt;ul&amp;gt;
+      &lt;ul&gt;
 
-    &amp;lt;li&amp;gt;increase compatibility between tools&amp;lt;/li&amp;gt;
+        &lt;li&gt;increase compatibility between tools&lt;/li&gt;
 
-    &amp;lt;li&amp;gt;get immediate understanding of metrics&amp;lt;/li&amp;gt;
+        &lt;li&gt;get immediate understanding of metrics&lt;/li&gt;
 
-    &amp;lt;li&amp;gt;build graphs, plots, dashboards and alerting expressions with minimal hassle&amp;lt;/li&amp;gt;
+        &lt;li&gt;build graphs, plots, dashboards and alerting expressions with minimal hassle&lt;/li&gt;
 
-  &amp;lt;/ul&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+      &lt;/ul&gt;
 
-&lt;p&gt;Read more on &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics20.org&lt;/a&gt;.&lt;/p&gt;
+Read more on &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics20.org&lt;/a&gt;.
 </description>
     </item>
     
@@ -2146,19 +2351,23 @@ from the website:
       <pubDate>Sun, 23 Feb 2014 16:20:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/introduction_talk_to_metrics2-0_and_graph_explorer/</guid>
-      <description>&lt;p&gt;This week I had the opportunity to present &lt;a href=&#34;http://dieter.plaetinck.be/metrics_2_a_proposal.html&#34;&gt;metrics 2.0&lt;/a&gt; and&lt;/p&gt;
+      <description>This week I had the opportunity to present &lt;a href=&#34;http://dieter.plaetinck.be/metrics_2_a_proposal.html&#34;&gt;metrics 2.0&lt;/a&gt; and
 
-&lt;p&gt;&lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;Graph-Explorer&lt;/a&gt; at the&lt;/p&gt;
+&lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;Graph-Explorer&lt;/a&gt; at the
 
-&lt;p&gt;&lt;a href=&#34;http://www.meetup.com/Full-Stack-Engineering-Meetup/&#34;&gt;Full-stack engineering meetup&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://www.meetup.com/Full-Stack-Engineering-Meetup/&#34;&gt;Full-stack engineering meetup&lt;/a&gt;.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;!--more--&gt;
 
-&lt;p&gt;I could easily talk for hours about this stuff but the talk had to be about 20 minutes so I paraphrased it to be only&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;about the basic concepts and ideas and some practical use cases and features.  I think it serves as a pretty good introduction&lt;/p&gt;
+I could easily talk for hours about this stuff but the talk had to be about 20 minutes so I paraphrased it to be only
 
-&lt;p&gt;and a showcase of the most commonly used features (graph composition, aggregations and unit conversion), and some new stuff such as alerting and dashboards.&lt;/p&gt;
+about the basic concepts and ideas and some practical use cases and features.  I think it serves as a pretty good introduction
+
+and a showcase of the most commonly used features (graph composition, aggregations and unit conversion), and some new stuff such as alerting and dashboards.
+
+
 
 &lt;p&gt;
 
@@ -2172,11 +2381,15 @@ The &lt;a href=&#34;http://vimeo.com/87194301&#34;&gt;video&lt;/a&gt; and &lt;a 
 
 &lt;/p&gt;
 
+
+
 &lt;iframe src=&#34;//player.vimeo.com/video/87194301?title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=33a352&#34;
 
 width=&#34;500&#34; height=&#34;281&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
 
 &lt;iframe src=&#34;http://www.slideshare.net/slideshow/embed_code/31440297&#34; width=&#34;427&#34; height=&#34;356&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt; &lt;/iframe&gt;
+
+
 
 &lt;p&gt;
 

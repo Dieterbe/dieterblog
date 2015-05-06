@@ -15,11 +15,11 @@
       <pubDate>Sun, 25 Mar 2012 23:05:05 -0400</pubDate>
       
       <guid>http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</guid>
-      <description>&lt;p&gt;On Arch Linux, and probably &lt;a href=&#34;http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html&#34;&gt;many other distros&lt;/a&gt; /run is a new tmpfs, and /var/run symlinks to it.&lt;/p&gt;
+      <description>On Arch Linux, and probably &lt;a href=&#34;http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html&#34;&gt;many other distros&lt;/a&gt; /run is a new tmpfs, and /var/run symlinks to it.
 
-&lt;p&gt;With Lighttpd you might have a fastcgi socket defined something like &amp;ldquo;/var/run/lighttpd/sockets/mywebsite.sock&amp;rdquo;.&lt;/p&gt;
+With Lighttpd you might have a fastcgi socket defined something like &#34;/var/run/lighttpd/sockets/mywebsite.sock&#34;.
 
-&lt;p&gt;This won&amp;rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&amp;rsquo;t start, /var/log/lighttpd/error.log will tell you:&lt;/p&gt;
+This won&#39;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&#39;t start, /var/log/lighttpd/error.log will tell you:
 
 &lt;pre&gt;
 
@@ -33,11 +33,11 @@
 
 &lt;/pre&gt;
 
-&lt;p&gt;That&amp;rsquo;s where this new tool &lt;a href=&#34;https://www.google.be/#hl=nl&amp;q=tmpfiles.d&#34;&gt;tmpfiles.d&lt;/a&gt; comes in.&lt;/p&gt;
+That&#39;s where this new tool &lt;a href=&#34;https://www.google.be/#hl=nl&amp;q=tmpfiles.d&#34;&gt;tmpfiles.d&lt;/a&gt; comes in.
 
-&lt;p&gt;It creates files and directories as described in the configs, and gets invoked on boot.  Like so:&lt;/p&gt;
+It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;$ &lt;/span&gt;cat /etc/tmpfiles.d/lighttpd.conf 
 
@@ -45,7 +45,7 @@ d /run/lighttpd/sockets &lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 </description>
     </item>
     
@@ -55,7 +55,11 @@ d /run/lighttpd/sockets &lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span
       <pubDate>Tue, 17 May 2011 21:29:58 -0400</pubDate>
       
       <guid>http://localhost:1313/post/where_are_the_new_arch_linux_images/</guid>
-      <description>&lt;p&gt;This is a question I get asked a lot recently.  The latest &lt;a href=&#34;http://www.archlinux.org/download/&#34;&gt;official images&lt;/a&gt; are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I&#39;m not aware of.  Many of these problems can be worked around (with &#39;pacman -Sy mirrorlist&#39; on the install cd for example), but it&#39;s not exactly convenient.&lt;/p&gt;
+      <description>&lt;!--more--&gt;
+
+&lt;p&gt;This is a question I get asked a lot recently.  The latest &lt;a href=&#34;http://www.archlinux.org/download/&#34;&gt;official images&lt;/a&gt; are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I&#39;m not aware of.  Many of these problems can be worked around (with &#39;pacman -Sy mirrorlist&#39; on the install cd for example), but it&#39;s not exactly convenient.&lt;/p&gt;
+
+
 
 &lt;p&gt;Over the past years (the spare time in between &lt;a href=&#34;http://localhost:1313/my_metalband.html&#34;&gt;the band&lt;/a&gt;, my search for an apartment in &lt;a href=&#34;http://en.wikipedia.org/wiki/Ghent&#34;&gt;Ghent&lt;/a&gt; and a bunch of other things) I&#39;ve worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/&#34;&gt;releng build environment repository&lt;/a&gt;.
 
@@ -73,6 +77,8 @@ Every 3 days, the following happens automatically:
 
 Actually things are &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/tree/scripts/releng-build-and-release-testing.sh&#34;&gt;bit more involved&lt;/a&gt; but this is the gist of it.  All of this is now run on a &lt;a href=&#34;https://wiki.archlinux.org/index.php/Category:DeveloperWiki:Server_Configuration#Releng_server_.28alberich.29&#34;&gt;dedicated VPS&lt;/a&gt; donated by &lt;a href=&#34;http://www.airvm.com/&#34;&gt;airVM&lt;/a&gt;.&lt;/p&gt;
 
+
+
 &lt;p&gt;I never really completed the &lt;a href=&#34;http://localhost:1313/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html&#34;&gt;aif automatic test suite&lt;/a&gt;, somewhere along the way I decided to focus on crowdsourcing test results.
 
 The weight of testing images (and all possible combinations of features) has always been huge, and trying to script tasks would either get way complicated or insufficient.
@@ -89,9 +95,13 @@ So the new approach is largely inspired by the core and testing repositories:  w
 
 I don&#39;t think we&#39;ll get to the &lt;a href=&#34;http://www.archlinux.org/news/200902-iso-release/&#34;&gt;original plan&lt;/a&gt; of official archiso releases for each stable kernel version, that seems like a lot of work despite all the above.&lt;/p&gt;
 
+
+
 &lt;p&gt;As for what is new: again too much to list, here is a &lt;a href=&#34;http://releng.archlinux.org/isos/Changelog&#34;&gt;changelog&lt;/a&gt; but I stopped updating it at some point.  I guess the most visible interesting stuff is friendlier package dialogs (with package descriptions), support for nilfs, btrfs and syslinux (thanks &lt;a href=&#34;http://pyther.net/&#34;&gt;Matthew Gyurgyik&lt;/a&gt;), and an issues reporting tool.
 
 Under the hood we refactored quite a bit, mostly blockdevice related stuff, config generation and the &#34;execution plan&#34; (like, how each function calls each other and how failures are tracked) in AIF has been simplified considerably.&lt;/p&gt;
+
+
 
 &lt;!-- I used to be pedantic about details like &#34;all packages installed in the live environment must be available in the official core/extra repositories but i might become a bit less strict.  or maybe not, it&#39;s not hard to switch to official packages. --&gt;
 </description>
@@ -109,31 +119,31 @@ It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume
 
 If you want to run stuff as a regular user you could do something like&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 su &lt;span style=&#34;color: #19177C&#34;&gt;$user&lt;/span&gt; -c &amp;lt;&lt;span style=&#34;color: #008000&#34;&gt;command&lt;/span&gt;&amp;gt;
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;..but these commands have no access to your user environment.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;..but these commands have no access to your user environment.&lt;br /&gt;
 
-&lt;p&gt;In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&amp;rsquo;t want to reenter your ssh key passwords everytime you resume.&lt;br /&gt;&lt;/p&gt;
+In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&#39;t want to reenter your ssh key passwords everytime you resume.&lt;br /&gt;
 
-&lt;p&gt;(In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)&lt;/p&gt;&lt;/p&gt;
+(In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)&lt;/p&gt;
 
 &lt;p&gt;The solution is very simple. Use this:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 sudo pm-hibernate &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;-my-stuff.sh
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.&lt;br /&gt;
 
-&lt;p&gt;Ideal to kill old ssh processes, and setup tunnels and ssh connections again.&lt;br /&gt;&lt;/p&gt;
+Ideal to kill old ssh processes, and setup tunnels and ssh connections again.&lt;br /&gt;
 
-&lt;p&gt;I&amp;rsquo;m probably gonna integrate this into my &lt;a href=&#34;http://github.com/Dieterbe/microde&#34;&gt;microDE&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+I&#39;m probably gonna integrate this into my &lt;a href=&#34;http://github.com/Dieterbe/microde&#34;&gt;microDE&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -153,7 +163,7 @@ The information in this post is not 100% accurate&lt;/strong&gt;&lt;br /&gt;
 
 I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.&lt;br /&gt;
 
-&lt;/p&gt;
+&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;I did find various places where they said parted could &#34;handle all partition and filesystem resizing at once&#34;.&lt;br /&gt;
 
@@ -369,7 +379,7 @@ The filesystem on /dev/hda9 is now 19872397 blocks long.&lt;/p&gt;
 
 &lt;/ul&gt;
 
-&lt;p&gt;Luckily the fd.o guys have come up with &lt;a href=&#34;http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html&#34;&gt;.desktop files&lt;/a&gt;.&lt;br /&gt;
+&lt;p&gt;Luckily the fd.o guys have come up with &lt;a href=&#34;http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html&#34;&gt;.desktop files&lt;/a&gt;.&lt;!--more--&gt;&lt;br /&gt;
 
 In $XDG_DATA_HOME/applications/defaults.list you can define which applications to use for which mime type.&lt;br /&gt;
 
@@ -443,7 +453,7 @@ Next week I&#39;ll start at &lt;a href=&#34;http://kangaroot.net/&#34;&gt;Kangar
 
 Functionality-wise the installer works fine, but I guess the code behind it is the result of years of adding features and quick fixes without refactoring, making it impossible to reuse any of the code.&lt;/p&gt;
 
-&lt;p&gt;So I started to write &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF: the Arch Linux Installation Framework&lt;/a&gt; (actually it had another name until recently), with these 3 goals in mind:&lt;/p&gt;
+&lt;p&gt;So I started to write &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF: the Arch Linux Installation Framework&lt;/a&gt;&lt;!--more--&gt; (actually it had another name until recently), with these 3 goals in mind:&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -503,7 +513,7 @@ They mangle cache data together with user data and user preferences and spread t
 
 The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime &#39;something&#39; happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.&lt;br /&gt;
 
-I&#39;m fine with the fact they do that.  I&#39;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as &lt;a href=&#34;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&#34;&gt;xdg&#39;s&lt;/a&gt; $XDG_CACHE_HOME directory)&lt;/p&gt;
+I&#39;m fine with the fact they do that.  I&#39;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as &lt;a href=&#34;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&#34;&gt;xdg&#39;s&lt;/a&gt; $XDG_CACHE_HOME directory)&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;While trying to apply version control to my $HOME I need to spend way too much time scripting various &lt;i&gt;svn reverts&lt;/i&gt; of many of those changes (in .gnome2, .gconf/apps/*, and .gconf/desktop), and also updating many &lt;i&gt;svn:ignore&lt;/i&gt; properties (although gnome/gconf are definitely not the only culprits for that.)&lt;/p&gt;
 
@@ -561,7 +571,7 @@ Arch on the other hand is made for tweaking your system.  It exposes all guts of
       <pubDate>Mon, 21 Jul 2008 20:21:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/rethinking_the_backup_paradigm_a_higher-level_approach/</guid>
-      <description>&lt;p&gt;In this post I explain my vision on the concepts of backups and how several common practices are in my opinion suboptimal and become unnecessary or at least can be done more easily by managing data on a higher level by employing other patterns such as versioning important directories and distributed data management.  &lt;/p&gt;
+      <description>&lt;p&gt;In this post I explain my vision on the concepts of backups and how several common practices are in my opinion suboptimal and become unnecessary or at least can be done more easily by managing data on a higher level by employing other patterns such as versioning important directories and distributed data management.&lt;!--more--&gt;  &lt;/p&gt;
 
 &lt;h3&gt;The &#34;classic&#34; approaches&lt;/h3&gt;
 
@@ -855,7 +865,7 @@ thanks Martin for this tip!&lt;br /&gt;
 
 But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.&lt;/p&gt;
 
-&lt;p&gt;So, I&#39;ve been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.&lt;/p&gt;
+&lt;p&gt;So, I&#39;ve been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;h3&gt;Requirements&lt;/h3&gt;
 

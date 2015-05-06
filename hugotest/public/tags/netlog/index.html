@@ -188,7 +188,7 @@ The page also features a <a href="http://en.netlog.com/go/developer/blog">blog</
 	<div class="entry-content">
 		<p>On 31-3-2008 <a href="http://www.lcl.be">LCL</a>, one of the most used datacenters in Belgium - and the only one with a 0% downtime record in Belgium - had major power issues with their datacenter in Diegem, bringing lots of Belgian parties offline.  (more specifics <a href="http://www.google.be/search?q=lcl+diegem+power+failure">on the net</a>).</p>
 
-<p>If you're one of the sysadmins of a website with 35M members and 150M hits per day this means you're in for an exciting night ...</p>
+<p>If you're one of the sysadmins of a website with 35M members and 150M hits per day this means you're in for an exciting night ...<!--more--></p>
 
 <p>Long story short: LCL couldn't bring the power back up fast enough so we rented our own generator.  After rushing to Brussels we ( The Netlog ITS-team) could sit in the offices upstairs.  But after a while they had to close it down but we could stay in a room nearby (without furniture).   After that we went to Steven's appartment in Machelen.  We worked about 30 hours in a row, getting our sites back up and running (mostly fixing corrupted databases).  Our friends from the devteam also did some great achievements the next day, by using the redundancy of denormalized database layouts they could restore nearly all missing content that had vanished because of table repairs.</p>
 
@@ -272,7 +272,7 @@ Jakob - Steven - me - Kenny</p>
 	<div class="entry-content">
 		<p>If you serve lots of (small) files with Lighttpd you might notice you're not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn't have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
 
-<br/>
+<!--more--><br/>
 
 (in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p>
 
@@ -284,7 +284,7 @@ Jakob - Steven - me - Kenny</p>
 
 <p>Have fun !</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
 
 <span style="color: #408080; font-style: italic">/*</span>
 
@@ -594,7 +594,7 @@ Jakob - Steven - me - Kenny</p>
 
 ]]<span style="color: #666666">&gt;</span>
 </pre></div>
-</p>
+
 
 	</div>
 
@@ -644,7 +644,7 @@ Jakob - Steven - me - Kenny</p>
 
 <p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2008.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a><br />
 
-<br />
+<!--more--><br />
 
 Fosdem looks interesting again : talks about iogrind , scons , cakephp , virtualbox , openAFS , ...<br />
 
@@ -700,7 +700,7 @@ No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms wou
 	</header>
 	
 	<div class="entry-content">
-		<p>FOSS is written by users, for users, and what I've been doing/experiencing this afternoon is a perfect example of that.<br />
+		<p>FOSS is written by users, for users, and what I've been doing/experiencing this afternoon is a perfect example of that.<!--more--><br />
 
 First of all take <a href="http://www.xfce.org">Xfce</a>: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the <a href="http://goodies.xfce.org/">Xfce Goodies project</a>, more specifically the <a href="http://goodies.xfce.org/projects/panel-plugins/start">Panel Plugins</a> page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.</p>
 
@@ -728,7 +728,7 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 
 <p>And here is the source code of my bash script</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
@@ -792,9 +792,9 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-<p>At my company we use https, If you use http I don&rsquo;t know if the authentication method is the same. If not check the -d flag for curl.<br /></p>
+<p>At my company we use https, If you use http I don't know if the authentication method is the same. If not check the -d flag for curl.<br />
 
-<p>The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)</p></p>
+The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)</p>
 
 <p>PS: does anyone know a good Apple Keychain- like daemon that I can query from other scripts to receive passwords? Preferably GTK ones that do not pull in Gnome deps.  So I don't have to store passwords in cleartext... (and I need this anyway for other purposes :p)</p>
 
@@ -848,7 +848,7 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 
 <p>My official title is "System &amp; Network architect".<br />
 
-Things I will be doing there is  keeping the "lower level" (hardware, network, databases) secure, stable and performing well.<br />
+Things I will be doing there is <!--more--> keeping the "lower level" (hardware, network, databases) secure, stable and performing well.<br />
 
 There will be quite some variety: working together with the dev-team, optimizing where possible, but also testing fancy hardware and software setups, hacking some code, deciding which routes we'll take and administering the systems.<br />
 

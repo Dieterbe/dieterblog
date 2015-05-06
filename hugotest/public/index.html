@@ -244,7 +244,7 @@
 	</header>
 	
 	<div class="entry-content">
-		The discipline of collecting infrastructure &amp; application performance metrics, aggregation, storage, visualizations and alerting has many terms associated with it&hellip; Telemetry. Insights engineering. Operational visibility. I&rsquo;ve seen a bunch of people present their work in advancing the state of the art in this domain: from Anton Lebedevich&rsquo;s statistics for monitoring series, Toufic Boubez&rsquo; talks on anomaly detection and Twitter&rsquo;s work on detecting mean shifts to projects such as flapjack (which aims to offload the alerting responsibility from your monitoring apps), the metrics 2.0 standardization effort or Etsy&rsquo;s Kale stack which tries to bring interesting changes in timeseries to your attention with minimal configuration.
+		The discipline of collecting infrastructure & application performance metrics, aggregation, storage, visualizations and alerting has many terms associated with it... Telemetry. Insights engineering. Operational visibility. I've seen a bunch of people present their work in advancing the state of the art in this domain: from Anton Lebedevich's statistics for monitoring series, Toufic Boubez' talks on anomaly detection and Twitter's work on detecting mean shifts to projects such as flapjack (which aims to offload the alerting responsibility from your monitoring apps), the metrics 2.0 standardization effort or Etsy's Kale stack which tries to bring interesting changes in timeseries to your attention with minimal configuration.
         </br>
         </br>
         <a href="http://localhost:1313/post/it-telemetry-google-group-collaboration-operational-insights/">Full article</a>
@@ -291,7 +291,7 @@
 	</header>
 	
 	<div class="entry-content">
-		The whisper-to-influxdb migration script I posted earlier is pretty bad. A shell script, without concurrency, and an undiagnosed performance issue. I hinted that one could write a Go program using the unofficial whisper-go bindings and the influxdb Go client library. That&rsquo;s what I did now, it&rsquo;s at github.com/vimeo/whisper-to-influxdb. It uses configurable amounts of workers for both whisper fetches and InfluxDB commits, but it&rsquo;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.
+		The whisper-to-influxdb migration script I posted earlier is pretty bad. A shell script, without concurrency, and an undiagnosed performance issue. I hinted that one could write a Go program using the unofficial whisper-go bindings and the influxdb Go client library. That's what I did now, it's at github.com/vimeo/whisper-to-influxdb. It uses configurable amounts of workers for both whisper fetches and InfluxDB commits, but it's still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.
         </br>
         </br>
         <a href="http://localhost:1313/post/a-real-whisper-to-influxdb-program/">Full article</a>
@@ -1595,7 +1595,7 @@ as well as an upper boundary of infinite.
 	</header>
 	
 	<div class="entry-content">
-		A few days ago, I resigned as Arch Linux developer. I&rsquo;m sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest. The Releng team we started more than 3 years ago is now dead, but other developers are showing interest in iso building and installer scripts, so as long as they don&rsquo;t burn out, you&rsquo;ll see new isos again.
+		A few days ago, I resigned as Arch Linux developer. I'm sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest. The Releng team we started more than 3 years ago is now dead, but other developers are showing interest in iso building and installer scripts, so as long as they don't burn out, you'll see new isos again.
         </br>
         </br>
         <a href="http://localhost:1313/post/resigning_arch_linux/">Full article</a>
@@ -1688,7 +1688,7 @@ as well as an upper boundary of infinite.
 	</header>
 	
 	<div class="entry-content">
-		Working on scalable information retrieval systems at the university of Ghent has been very fun: interesting and challenging work, smart team, and an environment that fosters growth and innovation. I could definitely see myself continuing there&hellip; However, Vimeo got in touch and told me about their plans&hellip; specifically what&rsquo;s going into the new version and what other stuff they have on their roadmap. I can honestly say vimeo is the most beautiful web property I&rsquo;ve ever seen [*], not just that, they also provide a top product/service, and host a great community of passionate people who create some of the most beautiful online videos I&rsquo;ve ever seen.
+		Working on scalable information retrieval systems at the university of Ghent has been very fun: interesting and challenging work, smart team, and an environment that fosters growth and innovation. I could definitely see myself continuing there... However, Vimeo got in touch and told me about their plans... specifically what's going into the new version and what other stuff they have on their roadmap. I can honestly say vimeo is the most beautiful web property I've ever seen [*], not just that, they also provide a top product/service, and host a great community of passionate people who create some of the most beautiful online videos I've ever seen.
         </br>
         </br>
         <a href="http://localhost:1313/post/joining_vimeo/">Full article</a>
@@ -1733,7 +1733,7 @@ as well as an upper boundary of infinite.
 	</header>
 	
 	<div class="entry-content">
-		On Arch Linux, and probably many other distros /run is a new tmpfs, and /var/run symlinks to it. With Lighttpd you might have a fastcgi socket defined something like &ldquo;/var/run/lighttpd/sockets/mywebsite.sock&rdquo;. This won&rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&rsquo;t start, /var/log/lighttpd/error.log will tell you: 2012-03-16 09:21:34: (log.c.166) server started 2012-03-16 09:21:34: (mod_fastcgi.c.977) bind failed for: unix:/var/run/lighttpd/sockets/mywebsite.sock-0 No such file or directory 2012-03-16 09:21:34: (mod_fastcgi.c.1397) [ERROR]: spawning fcgi failed.
+		On Arch Linux, and probably many other distros /run is a new tmpfs, and /var/run symlinks to it. With Lighttpd you might have a fastcgi socket defined something like "/var/run/lighttpd/sockets/mywebsite.sock". This won't work anymore as after each reboot /var/run is an empty directory and lighttpd won't start, /var/log/lighttpd/error.log will tell you: 2012-03-16 09:21:34: (log.c.166) server started 2012-03-16 09:21:34: (mod_fastcgi.c.977) bind failed for: unix:/var/run/lighttpd/sockets/mywebsite.sock-0 No such file or directory 2012-03-16 09:21:34: (mod_fastcgi.c.1397) [ERROR]: spawning fcgi failed.
         </br>
         </br>
         <a href="http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/">Full article</a>
@@ -2202,7 +2202,7 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	</header>
 	
 	<div class="entry-content">
-		This has been on my mind for a while. But now I actually took some time to launch a little project to do something about it. 1024 just ain&rsquo;t 1000. stop abusing SI prefixes!
+		This has been on my mind for a while. But now I actually took some time to launch a little project to do something about it. 1024 just ain't 1000. stop abusing SI prefixes!
         </br>
         </br>
         <a href="http://localhost:1313/post/stop-abusing-si-prefixes/">Full article</a>
@@ -2350,7 +2350,7 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	</header>
 	
 	<div class="entry-content">
-		On February 4, I&rsquo;ll be in Amsterdam at DIR 2011, the 11th Dutch-Belgian Information Retrieval Workshop. After that, I&rsquo;m going to the devopsdinner and Fosdem beer event in Brussels. On february 5&frasl;6 of course, Fosdem itself. Looking forward to the systemd talk. On sunday I&rsquo;ll do a talk about simple shell based Gnu/Linux installers, like mentioned earlier I hope devs from other &ldquo;lightweight&rdquo;/kiss-style distro&rsquo;s will be present (Gentoo and other *too&rsquo;s, Crux, *ppix, &hellip; You know who you are) It would be interesting to share some common codebase for distribution independent topics (like filesystems), or at least discuss how feasible it would be.
+		On February 4, I'll be in Amsterdam at DIR 2011, the 11th Dutch-Belgian Information Retrieval Workshop. After that, I'm going to the devopsdinner and Fosdem beer event in Brussels. On february 5/6 of course, Fosdem itself. Looking forward to the systemd talk. On sunday I'll do a talk about simple shell based Gnu/Linux installers, like mentioned earlier I hope devs from other "lightweight"/kiss-style distro's will be present (Gentoo and other *too's, Crux, *ppix, ...
         </br>
         </br>
         <a href="http://localhost:1313/post/dir_fosdem_2011/">Full article</a>
@@ -2442,7 +2442,7 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	</header>
 	
 	<div class="entry-content">
-		This blog now runs on Pyblosxom on Lighttpd on my new Linode machine. The moving/conversion process wasn&rsquo;t as smooth as I thought it would be as I needed to work quite a bit on pyblosxom and implement some new plugins to get certain features working (like syntax highlighting). Also, my previous hosting provider removed my account before the contract expired. But luckily I managed to restore everything and all should work pretty much as before, in particular: Rss feeds should still be working on the old urls and the same GUID&rsquo;s are used to avoid spamming anyone, syntax highlighting of all old entries and comments works, but not yet posting highlighted code in new comments.
+		This blog now runs on Pyblosxom on Lighttpd on my new Linode machine. The moving/conversion process wasn't as smooth as I thought it would be as I needed to work quite a bit on pyblosxom and implement some new plugins to get certain features working (like syntax highlighting). Also, my previous hosting provider removed my account before the contract expired. But luckily I managed to restore everything and all should work pretty much as before, in particular: Rss feeds should still be working on the old urls and the same GUID's are used to avoid spamming anyone, syntax highlighting of all old entries and comments works, but not yet posting highlighted code in new comments.
         </br>
         </br>
         <a href="http://localhost:1313/post/blog_moved/">Full article</a>

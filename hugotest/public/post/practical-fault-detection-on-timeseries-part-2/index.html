@@ -123,13 +123,13 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>In the <a href="/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html">previous fault detection article</a>, we saw how we can cover a lot of ground in fault detection with simple methods and technology that is available today.</p>
+		In the <a href="/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html">previous fault detection article</a>, we saw how we can cover a lot of ground in fault detection with simple methods and technology that is available today.
 
-<p>It had an example of a simple but effective approach to find sudden spikes (peaks and drops) within fluctuating time series.</p>
+It had an example of a simple but effective approach to find sudden spikes (peaks and drops) within fluctuating time series.
 
-<p>This post explains the continuation of that work and provides you the means to implement this yourself with minimal effort.</p>
+This post explains the continuation of that work and provides you the means to implement this yourself with minimal effort.
 
-<p>I&rsquo;m sharing with you:</p>
+I'm sharing with you:
 
 <ul>
 
@@ -141,13 +141,17 @@
 
 </ul>
 
-<p>We reuse this stuff for a variety of cases where the data behaves similarly and I suspect that you will be able to apply this to a bunch of your monitoring targets as well.</p>
+We reuse this stuff for a variety of cases where the data behaves similarly and I suspect that you will be able to apply this to a bunch of your monitoring targets as well.
+
+<!--more-->
 
 <h2>Target use case</h2>
 
-<p>As in the previous article, we focus on the specific category of timeseries metrics driven by user activity.</p>
+As in the previous article, we focus on the specific category of timeseries metrics driven by user activity.
 
-<p>Those series are expected to fluctuate in at least some kind of (usually daily) pattern, but is expected to have a certain smoothness to it. Think web requests per second or uploads per minute.   There are a few characteristics that are considered faulty or at least worth our attention:</p>
+Those series are expected to fluctuate in at least some kind of (usually daily) pattern, but is expected to have a certain smoothness to it. Think web requests per second or uploads per minute.   There are a few characteristics that are considered faulty or at least worth our attention:
+
+
 
 <table>
 
@@ -177,21 +181,31 @@
 
 </table>
 
-<p><br/></p>
 
-<p>[*] Note that some regular patterns can look like this as well. For example weekend traffic lower than weekdays, etc.  We see this a lot.</p>
 
-<p><br/>The illustrations don&rsquo;t portray this for simplicity.   But the alerting logic below supports this just fine by comparing to same day last week instead of yesterday, etc.</p>
+<br/>
+
+[*] Note that some regular patterns can look like this as well. For example weekend traffic lower than weekdays, etc.  We see this a lot.
+
+<br/>The illustrations don't portray this for simplicity.   But the alerting logic below supports this just fine by comparing to same day last week instead of yesterday, etc.
+
+
+
+
 
 <h2>Introducing the new approach</h2>
 
-<p>The <a href="/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html">previous article</a> demonstrated using graphite to compute standard deviation.</p>
 
-<p>This let us alert on the erraticness of the series in general and as a particularly interesting side-effect, on spikes up and down.</p>
 
-<p>The new approach is more refined and concrete by leveraging some of bosun&rsquo;s and Grafana&rsquo;s strengths.  We can&rsquo;t always detect the last case above via erraticness checking (a lower amount may be introduced gradually, not via a sudden drop) so now we monitor for that as well, covering all cases above.</p>
+The <a href="/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html">previous article</a> demonstrated using graphite to compute standard deviation.
 
-<p>We use</p>
+This let us alert on the erraticness of the series in general and as a particularly interesting side-effect, on spikes up and down.
+
+The new approach is more refined and concrete by leveraging some of bosun's and Grafana's strengths.  We can't always detect the last case above via erraticness checking (a lower amount may be introduced gradually, not via a sudden drop) so now we monitor for that as well, covering all cases above.
+
+
+
+We use 
 
 <ul>
 
@@ -203,43 +217,43 @@
 
 </ul>
 
-<p>We can then leverage this for various use cases, as long as the expectations of the data are as outlined above.</p>
+We can then leverage this for various use cases, as long as the expectations of the data are as outlined above.
 
-<p>We use this for web traffic, volume of log messages, uploads, telemetry traffic, etc.</p>
+We use this for web traffic, volume of log messages, uploads, telemetry traffic, etc.
 
-<p>For each case we simply define the graphite queries and some parameters and leverage the existing mentioned Bosun and Grafana configuration.</p>
+For each case we simply define the graphite queries and some parameters and leverage the existing mentioned Bosun and Grafana configuration.
 
-<p><br/></p>
+<br/>
 
-<p><p></p>
+<p>
 
-<p>The best way to introduce this is probably by showing how a notification looks like:</p>
+The best way to introduce this is probably by showing how a notification looks like:
 
-<p><br/></p>
+<br/>
 
-<p><center></p>
+<center>
 
-<p><a href="/files/practical-alerting-dm-notification.png"><img height="600px" src="/files/practical-alerting-dm-notification.png"/></a></p>
+<a href="/files/practical-alerting-dm-notification.png"><img height="600px" src="/files/practical-alerting-dm-notification.png"/></a>
 
-<p><br/></p>
+<br/>
 
-<p>(image redacted to hide confidential information</p>
+(image redacted to hide confidential information
 
-<p><br/>the numbers are not accurate and for demonstration purposes only)</p>
+<br/>the numbers are not accurate and for demonstration purposes only)
 
-<p></center></p>
+</center>
 
-<p><p></p>
+<p>
 
-<p>As you can tell by the sections, we look at some global data (for example &ldquo;all web traffic&rdquo;, &ldquo;all log messages&rdquo;, etc), and also</p>
+As you can tell by the sections, we look at some global data (for example "all web traffic", "all log messages", etc), and also
 
-<p>by data segregated by a particular dimension (for example web traffic by country, log messages by key, etc)</p>
+by data segregated by a particular dimension (for example web traffic by country, log messages by key, etc)
 
-<p><br/></p>
+<br/>
 
-<p>To cover all problematic cases outlined above, we do 3 different checks:</p>
+To cover all problematic cases outlined above, we do 3 different checks:
 
-<p>(note, everything is parametrized so you can tune it, see further down)</p>
+(note, everything is parametrized so you can tune it, see further down)
 
 <ul>
 
@@ -251,51 +265,63 @@
 
 </ul>
 
-<p>If any, or multiple of these conditions are in warning or critical state, we get 1 alert that gives us all the information we need.</p>
 
-<p><br/></p>
 
-<p>Note the various links to GE (Graph-Explorer) and Grafana for timeshifts.</p>
+If any, or multiple of these conditions are in warning or critical state, we get 1 alert that gives us all the information we need.
 
-<p>The Graph-Explorer links are just standard GEQL queries, I usually use this if i want to be easily manage what I&rsquo;m viewing (compare against other countries, adjust time interval, etc) because that&rsquo;s what GE is really good at.</p>
+<br/>
 
-<p>The timeshift view is a Grafana dashboard that takes in a Graphite expression as a template variable, and can hence be set via a GET parameter by using the url  <pre><a href="http://grafana/#/dashboard/db/templatetimeshift?var-patt=expression">http://grafana/#/dashboard/db/templatetimeshift?var-patt=expression</a></pre></p>
+Note the various links to GE (Graph-Explorer) and Grafana for timeshifts.
 
-<p>It shows the current past week as red dots, and the past weeks before that as timeshifts in various shades of blue representing the age of the data. (darker is older).</p>
+The Graph-Explorer links are just standard GEQL queries, I usually use this if i want to be easily manage what I'm viewing (compare against other countries, adjust time interval, etc) because that's what GE is really good at.
 
-<p><br/></p>
+The timeshift view is a Grafana dashboard that takes in a Graphite expression as a template variable, and can hence be set via a GET parameter by using the url  <pre>http://grafana/#/dashboard/db/templatetimeshift?var-patt=expression</pre>
 
-<p><br/></p>
+It shows the current past week as red dots, and the past weeks before that as timeshifts in various shades of blue representing the age of the data. (darker is older).
 
-<p><a href="/files/practical-alerting-screenshot-template-timeshift.png"><img width="50%" src="/files/practical-alerting-screenshot-template-timeshift.png" /></a></p>
+<br/>
 
-<p><br/></p>
+<br/>
 
-<p>This allows us to easily spot when traffic becomes too low, overly erratic, etc as this example shows:</p>
 
-<p><br/></p>
 
-<p><br/></p>
+<a href="/files/practical-alerting-screenshot-template-timeshift.png"><img width="50%" src="/files/practical-alerting-screenshot-template-timeshift.png" /></a>
 
-<p><a href="/files/practical-alerting-timeshift-use.png"><img width="50%" src="/files/practical-alerting-timeshift-use.png" /></a></p>
+<br/>
 
-<p><br/></p>
+This allows us to easily spot when traffic becomes too low, overly erratic, etc as this example shows:
+
+<br/>
+
+<br/>
+
+
+
+<a href="/files/practical-alerting-timeshift-use.png"><img width="50%" src="/files/practical-alerting-timeshift-use.png" /></a>
+
+<br/>
+
+
 
 <h2>Getting started</h2>
 
-<p>Note: I Won&rsquo;t explain the details of the bosun configuration.  Familiarity with bosun is assumed.  The <a href="http://bosun.org/">bosun documentation</a> is pretty complete.</p>
 
-<p><br/></p>
 
-<p><br/></p>
+Note: I Won't explain the details of the bosun configuration.  Familiarity with bosun is assumed.  The <a href="http://bosun.org/">bosun documentation</a> is pretty complete.
 
-<p><a href="https://gist.github.com/Dieterbe/d1892fa0b4454b892216">Gist with bosun macro, template, example use, and Grafana dashboard definition</a>.  Load the bosun stuff in your bosun.conf and import the dashboard in Grafana.</p>
+<br/>
 
-<p><br/></p>
+<br/>
 
-<p><br/></p>
+<a href="https://gist.github.com/Dieterbe/d1892fa0b4454b892216">Gist with bosun macro, template, example use, and Grafana dashboard definition</a>.  Load the bosun stuff in your bosun.conf and import the dashboard in Grafana.
 
-<p>The pieces fit together like so:</p>
+<br/>
+
+<br/>
+
+The pieces fit together like so:
+
+
 
 <ul>
 
@@ -331,11 +357,13 @@ We warn if one or more segregated items didn't meet their median requirements, a
 
 </ul>
 
+
+
 <h2>Erraticness formula refinements</h2>
 
-<p><img style="float: right; margin: 45px;" width="30%" src="/files/practical-alerting-notes-cleaned-small.jpg" /></p>
+<img style="float: right; margin: 45px;" width="30%" src="/files/practical-alerting-notes-cleaned-small.jpg" />
 
-<p>You may notice that the formula has changed to</p>
+You may notice that the formula has changed to
 
 <pre>
 
@@ -355,6 +383,8 @@ We warn if one or more segregated items didn't meet their median requirements, a
 
 </ul>
 
+
+
 <!--
 
 streak covers cases where values are very low so that stdev is in the same order (like low volume logs) and we can't properly use the erraticness or x-deviations. for example logs with very little traffic, datapoints representing healthy traffic can look like (1, 2, 0, 3, 1, ..)
@@ -369,9 +399,11 @@ although i think the ratio of medians (median_now/median_then) should work just 
 
 -->
 
+
+
 <h2>Still far from perfect</h2>
 
-<p>While this has been very helpful to us, I want to highlight a few things that could be improved.</p>
+While this has been very helpful to us, I want to highlight a few things that could be improved.
 
 <ul>
 
@@ -395,13 +427,17 @@ although i think the ratio of medians (median_now/median_then) should work just 
 
 </ul>
 
+
+
 <h2>In conclusion</h2>
 
-<p>I know many people are struggling with poor alerting rules (static thresholds?)</p>
+I know many people are struggling with poor alerting rules (static thresholds?)
 
-<p><br/>As I explained in the previous article I fondly believe that the commonly cited solutions (anomaly detection via machine learning) are a very difficult endeavor and results can be achieved much quicker and more simpler.</p>
+<br/>As I explained in the previous article I fondly believe that the commonly cited solutions (anomaly detection via machine learning) are a very difficult endeavor and results can be achieved much quicker and more simpler.
 
-<p><br/>While this only focuses on one class of timeseries (it won&rsquo;t work on diskspace metrics for example) I found this class to be in the most dire need of better fault detection.  Hopefully this is useful to you. Good luck and let me know how it goes!</p>
+<br/>While this only focuses on one class of timeseries (it won't work on diskspace metrics for example) I found this class to be in the most dire need of better fault detection.  Hopefully this is useful to you. Good luck and let me know how it goes!
+
+
 
 	</div>
 

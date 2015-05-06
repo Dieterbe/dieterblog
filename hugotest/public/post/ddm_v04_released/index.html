@@ -127,71 +127,61 @@
 
 Since the last release many, many things have been changed/fixed/added.<br />
 
-<br />
+<!--more--><br />
 
 Here is the Changelog:</p>
 
-<p><pre></p>
+<pre>
 
-<p>4.0 (23-9-2008)</p>
+4.0 (23-9-2008)
 
-<ul>
-<li><p>new dataset types (dataset types are now: blob, buffer, cache, copy, direct, extension, selection)</p></li>
+ * new dataset types (dataset types are now: blob, buffer, cache, copy, direct, extension, selection)
 
-<li><p>new (default) actions (default actions are now: backup, checkout, commit, flush, restore, update)</p></li>
+ * new (default) actions (default actions are now: backup, checkout, commit, flush, restore, update)
 
-<li><p>actions and callbacks are addable/customizable/disableable etc</p></li>
+ * actions and callbacks are addable/customizable/disableable etc
 
-<li><p>some actions for certain dataset types are now implemented that weren&rsquo;t before (see manual)</p></li>
+ * some actions for certain dataset types are now implemented that weren't before (see manual)
 
-<li><p>better choosen commandline switches. especially needed for specifying (custom) actions.</p></li>
+ * better choosen commandline switches. especially needed for specifying (custom) actions.
 
-<li><p>ddm follows XDG basedir spec now (<a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html" title="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html</a>).</p></li>
-</ul>
+ * ddm follows XDG basedir spec now (<a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html" title="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html</a>).
 
-<p>This affects the location of ddmrc and plugins (read on)</p>
+   This affects the location of ddmrc and plugins (read on)
 
-<ul>
-<li>datasets can have arbitrary names now. (so it&rsquo;s also fully compatible with the XDG usedir spec now <a href="http://freedesktop.org/wiki/Software/xdg-user-dirs" title="http://freedesktop.org/wiki/Software/xdg-user-dirs">http://freedesktop.org/wiki/Software/xdg-user-dirs</a> )</li>
-</ul>
+ * datasets can have arbitrary names now. (so it's also fully compatible with the XDG usedir spec now <a href="http://freedesktop.org/wiki/Software/xdg-user-dirs" title="http://freedesktop.org/wiki/Software/xdg-user-dirs">http://freedesktop.org/wiki/Software/xdg-user-dirs</a> )
 
-<p>In some cases you do need to make up for this by specifying one or two vars in the .ddm file. See manual.</p>
+   In some cases you do need to make up for this by specifying one or two vars in the .ddm file. See manual.
 
-<ul>
-<li><p>possibility to create plugins.</p></li>
+ * possibility to create plugins.
 
-<li><p>2 plugins come by default now:</p>
+ * 2 plugins come by default now:
 
-<ul>
-<li><p>slidewindow (old function pluginized now)</p></li>
+   - slidewindow (old function pluginized now)
 
-<li><p>get_exaile (supposed to populate selection with favorite/most-played/&hellip; music according to the exaile</p></li>
-</ul></li>
-</ul>
+   - get_exaile (supposed to populate selection with favorite/most-played/... music according to the exaile
 
-<p>music player database). this plugin is still <em>work in progress</em></p>
+   music player database). this plugin is still *work in progress*
 
-<ul>
-<li><p>slidewindow is more flexible now (configurable subpaths, regex grepstring, &hellip;) <em>api has changed</em></p></li>
+ * slidewindow is more flexible now (configurable subpaths, regex grepstring, ...) *api has changed*
 
-<li><p>pretend mode</p></li>
+ * pretend mode
 
-<li><p>validators for actions, repositories and datasets</p></li>
+ * validators for actions, repositories and datasets
 
-<li><p>new, better and more generic wrappers for rsync, svn, rm, cd, mkdir and &lsquo;keep&rsquo;</p></li>
+ * new, better and more generic wrappers for rsync, svn, rm, cd, mkdir and 'keep'
 
-<li><p>refactored exit codes</p></li>
+ * refactored exit codes
 
-<li><p>better validation, error handling, help information</p></li>
+ * better validation, error handling, help information
 
-<li><p>better documentation (MANUAL, examples, &hellip;) comes with sources now + can be seen online @ <a href="http://github.com/Dieterbe/ddm" title="http://github.com/Dieterbe/ddm">http://github.com/Dieterbe/ddm</a>)</p></li>
+ * better documentation (MANUAL, examples, ...) comes with sources now + can be seen online @ <a href="http://github.com/Dieterbe/ddm" title="http://github.com/Dieterbe/ddm">http://github.com/Dieterbe/ddm</a>)
 
-<li><p>lots of changes and fixes big and small</p></li>
-</ul>
+ * lots of changes and fixes big and small
 
-<p></pre><p></p>
+</pre><p>
 
-<p>The <a href="http://github.com/Dieterbe/ddm">ddm project on github</a> has now 2 branches:</p></p>
+The <a href="http://github.com/Dieterbe/ddm">ddm project on github</a> has now 2 branches:</p>
 
 <ul>
 

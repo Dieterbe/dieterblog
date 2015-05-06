@@ -123,11 +123,17 @@
 	</header>
 	
 	<div class="entry-content">
-		<p><a href="http://nlp.fi.muni.cz/projekty/gensim/">Gensim</a> is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.</p>
+		<!--more-->
+
+<p><a href="http://nlp.fi.muni.cz/projekty/gensim/">Gensim</a> is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.</p>
+
+
 
 <p>But anyway we're having some issues in it with cPickle (it <a href="https://github.com/piskvorky/gensim/issues/31">breaks when saving large matrices</a>, it <a href="https://github.com/piskvorky/gensim/issues/30">breaks with some objects</a>).
 
 For now I worked around it by using <a href="http://jsonpickle.github.com/">jsonpickle</a> but I wonder how viable this alternative really is.</p>
+
+
 
 <p>To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - <a href="https://github.com/Dieterbe/picklebench">picklebench</a> - to compare pickle, cPickle and jsonpickle.
 
@@ -135,7 +141,9 @@ The script fills a dictionary which gets bigger and bigger, and for certain size
 
 We continue until memory is exhausted.</p>
 
-<p>limitations of this benchmark:</p>
+<!--more-->
+
+limitations of this benchmark:
 
 <ul>
 
@@ -157,7 +165,7 @@ We continue until memory is exhausted.</p>
 
 </ul>
 
-<p>You can easily <a href="https://github.com/Dieterbe/picklebench/blob/master/runall.sh">run the program</a> yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.</p>
+You can easily <a href="https://github.com/Dieterbe/picklebench/blob/master/runall.sh">run the program</a> yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.
 
 <pre>
 
@@ -521,7 +529,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 </pre>
 
-<p>Paraphrased:</p>
+Paraphrased:
 
 <ul>
 
@@ -533,7 +541,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 </ul>
 
-<p>Conclusion:</p>
+Conclusion:
 
 <ul>
 

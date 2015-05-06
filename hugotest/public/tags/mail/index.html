@@ -136,7 +136,11 @@ which is much in the same vein, except that all configuration, extensions, event
 
 Now I want to build the "luakit of email clients".  Let me explain what's that all about...</p>
 
-<p>Basically the story is pretty much the same as it was with uzbl.  There are no mail clients which offer a high level of customization and interfacing possibilities.  There are some mail clients aimed at &ldquo;power users&rdquo; and &ldquo;lightweight mail clients&rdquo; like mutt/alpine/nmh etc but those are also restricted in extensibility and often crippled in terms of features.  Currently I&rsquo;m using Claws-mail, which is the least sucky client I found, but it&rsquo;s also nowhere near what I want.</p>
+<!--more-->
+
+Basically the story is pretty much the same as it was with uzbl.  There are no mail clients which offer a high level of customization and interfacing possibilities.  There are some mail clients aimed at "power users" and "lightweight mail clients" like mutt/alpine/nmh etc but those are also restricted in extensibility and often crippled in terms of features.  Currently I'm using Claws-mail, which is the least sucky client I found, but it's also nowhere near what I want.
+
+
 
 <h3>So, what do I want in a mail client?</h3>
 
@@ -180,37 +184,41 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 
 <ul>
 
-    <li>Differentiate properly between received mails that are "definitely optional for me", and "aimed to me".  I.e. mark all mails from a mailing list low-priority, unless a 'To'/'Cc'/'Bcc' field contains any of the addresses I use to send from <i>or</i> when the mail is a reply to a mail I sent earlier (check Message-ID and mail subject)
+	<li>Differentiate properly between received mails that are "definitely optional for me", and "aimed to me".  I.e. mark all mails from a mailing list low-priority, unless a 'To'/'Cc'/'Bcc' field contains any of the addresses I use to send from <i>or</i> when the mail is a reply to a mail I sent earlier (check Message-ID and mail subject)
 
-    <li>Use a tag-based interface towards gmail.  Gmail uses tags instead of folders, which it cannot really expose properly over IMAP (it must "duplicate" the same message in multiple folders when speaking IMAP).  I want to modify my client so that for gmail accounts, it also uses tags instead of folders</li>
+	<li>Use a tag-based interface towards gmail.  Gmail uses tags instead of folders, which it cannot really expose properly over IMAP (it must "duplicate" the same message in multiple folders when speaking IMAP).  I want to modify my client so that for gmail accounts, it also uses tags instead of folders</li>
 
-    <li>Use different key bindings dependent on account in use or any property such as sender of a mail message.  Example: when deleting a message, delete straight away when it has a certain spamassasin score or is an rss2email message, move to Trash otherwise.  When the message is from anyone I know (in my contact list), ask me to confirm and offer moving to an archive folder instead.</li>
+	<li>Use different key bindings dependent on account in use or any property such as sender of a mail message.  Example: when deleting a message, delete straight away when it has a certain spamassasin score or is an rss2email message, move to Trash otherwise.  When the message is from anyone I know (in my contact list), ask me to confirm and offer moving to an archive folder instead.</li>
 
-    <li>When I get a mail from nagios with a critical alert, show an inotify error message containing the right information (parse the nagios mail first), and set urgent flag.  Do the same when my boss sent me a mail containing the phrase 'urgent', unless the 'To' field contains more than 20 addresses.  Give me a key bind that sends a mail containing "I'm on it!" and switch to my browser workspace and open all my monitoring pages in my browser.  Don't disturb me for any other e-mail</li>
+	<li>When I get a mail from nagios with a critical alert, show an inotify error message containing the right information (parse the nagios mail first), and set urgent flag.  Do the same when my boss sent me a mail containing the phrase 'urgent', unless the 'To' field contains more than 20 addresses.  Give me a key bind that sends a mail containing "I'm on it!" and switch to my browser workspace and open all my monitoring pages in my browser.  Don't disturb me for any other e-mail</li>
 
-    <li>Use bottom posting by default, but when I'm replying to mailing list foo or person bar, use top-posting instead.</li>
+	<li>Use bottom posting by default, but when I'm replying to mailing list foo or person bar, use top-posting instead.</li>
 
-    <li>Display mails by default threaded by subject and date. But for my news feeds messages (which arrive on the same account!), group by sender.  maybe even categorize senders so that I can quickly delete all humorous messages from various senders/feeds if I have no time or feel guilty about slacking off</li>
+	<li>Display mails by default threaded by subject and date. But for my news feeds messages (which arrive on the same account!), group by sender.  maybe even categorize senders so that I can quickly delete all humorous messages from various senders/feeds if I have no time or feel guilty about slacking off</li>
 
 </ul>
 
-<p></li></p>
+</li>
 
-<p></ul></p>
+</ul>
+
+
 
 <h3>Implementation</h3>
 
-<p>My first idea was to build a standalone mail client by reusing the luakit C-based host program and all bindings it exposes</p>
+My first idea was to build a standalone mail client by reusing the luakit C-based host program and all bindings it exposes
 
-<p>(webkitGtk widget with bindings, gtk bindings, lots of lua code for menu&rsquo;s, keyboard control, downloading external files, proxy code, etc. very useful stuff); which would mean we supply a set of different config files for the luakit host program, along with some more lua libraries and/or bindings to C software.</p>
+(webkitGtk widget with bindings, gtk bindings, lots of lua code for menu's, keyboard control, downloading external files, proxy code, etc. very useful stuff); which would mean we supply a set of different config files for the luakit host program, along with some more lua libraries and/or bindings to C software.
 
-<p><br/>But instead we choose to neatly integrate the mail client in luakit itself, which makes it easier to develop and keep up with luakit (the diff is minimal instead of extensive), and it&rsquo;s probably more</p>
+<br/>But instead we choose to neatly integrate the mail client in luakit itself, which makes it easier to develop and keep up with luakit (the diff is minimal instead of extensive), and it's probably more
 
-<p>convenient for the user.  So we just forked the luakit project and try to do our stuff in a separate branch, adding the mail client bits in between the existing browser bits.</p>
+convenient for the user.  So we just forked the luakit project and try to do our stuff in a separate branch, adding the mail client bits in between the existing browser bits.
 
-<p>The good news is, so many needed things already exist, so building the client shouldn&rsquo;t be that much work.</p>
 
-<p>I&rsquo;ve been researching our options (and still am), this is how the list of things we&rsquo;ll rely on looks like so far:</p>
+
+The good news is, so many needed things already exist, so building the client shouldn't be that much work.
+
+I've been researching our options (and still am), this is how the list of things we'll rely on looks like so far:
 
 <ul>
 
@@ -230,23 +238,29 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 
 </ul>
 
-<p><a href="https://github.com/mason-larobina">Mason (luakit maintainer)</a> liked the idea from the start; <a href="http://sahd.lamafam.org/">Gerry (luaimap maintainer)</a> also liked the idea and joined the project right away :)</p>
+
+
+<a href="https://github.com/mason-larobina">Mason (luakit maintainer)</a> liked the idea from the start; <a href="http://sahd.lamafam.org/">Gerry (luaimap maintainer)</a> also liked the idea and joined the project right away :)
+
+
 
 <h3>Why not uzbl-style?</h3>
 
-<p>Gerry asked: &ldquo;why not structure the mail client like uzbl is (fast c core with shell and python around it)?&rdquo;</p>
+Gerry asked: "why not structure the mail client like uzbl is (fast c core with shell and python around it)?"
 
-<p><br/>The main lesson I learned from doing uzbl is: the very ideology-based approach of &ldquo;one program for each thing&rdquo; is nice in theory, but can become a hassle in practice.  The means of IPC are limited: passing command line arguments, setting environment variables, or creating your own little protocol that needs to be parsed.  Advanced constructs like loops and branches complicate things more, and when passing stuff through various processes like we did, it can be tricky to figure out how to quote your strings so that they are expanded at the right stage.  It&rsquo;s also hard to jump between various pieces of code; the separation between processes start to feel like real barriers.</p>
+<br/>The main lesson I learned from doing uzbl is: the very ideology-based approach of "one program for each thing" is nice in theory, but can become a hassle in practice.  The means of IPC are limited: passing command line arguments, setting environment variables, or creating your own little protocol that needs to be parsed.  Advanced constructs like loops and branches complicate things more, and when passing stuff through various processes like we did, it can be tricky to figure out how to quote your strings so that they are expanded at the right stage.  It's also hard to jump between various pieces of code; the separation between processes start to feel like real barriers.
 
-<p><br/>Luakit provides lua API&rsquo;s, which means all extensions should be primarily written in lua (which is a burden if you don&rsquo;t feel like learning a new language), you can still exec any other script or program if you want to from lua however, but the API&rsquo;s are very fine grained, and pretty much everything is exposed,so there&rsquo;s lots of things you can do, but in a way that feels more robust and reliable.  And things work faster too.</p>
+<br/>Luakit provides lua API's, which means all extensions should be primarily written in lua (which is a burden if you don't feel like learning a new language), you can still exec any other script or program if you want to from lua however, but the API's are very fine grained, and pretty much everything is exposed,so there's lots of things you can do, but in a way that feels more robust and reliable.  And things work faster too.
 
-<p><br/>I&rsquo;m not that experienced yet with luakit to grasp all its downsides, but it feels more reliable.  And maybe subconsciously, the fact that luakit feels as nice as uzbl without me needing to do anything (Mason did all the hard work of writing lua bindings and writing all lua code), whereas uzbl involved lots of hard work for me, maybe that twists my perception a bit.  But not too much, I think.</p>
+<br/>I'm not that experienced yet with luakit to grasp all its downsides, but it feels more reliable.  And maybe subconsciously, the fact that luakit feels as nice as uzbl without me needing to do anything (Mason did all the hard work of writing lua bindings and writing all lua code), whereas uzbl involved lots of hard work for me, maybe that twists my perception a bit.  But not too much, I think.
 
-<p><br/>The same upsides and downsides go for writing a mail client; so luakit-style seems more appropriate to me. Especially since so many libraries and components already exist, and just need to stitched together.</p>
+<br/>The same upsides and downsides go for writing a mail client; so luakit-style seems more appropriate to me. Especially since so many libraries and components already exist, and just need to stitched together.
+
+
 
 <h3>Show me the code already!!</h3>
 
-<p>We actually have a very rough, but working prototype.  Ready for you to try out.  See the <a href="http://lists.luakit.org/archive/luakit-dev/2011-September/000206.html">luakit-dev post</a> for details.</p>
+We actually have a very rough, but working prototype.  Ready for you to try out.  See the <a href="http://lists.luakit.org/archive/luakit-dev/2011-September/000206.html">luakit-dev post</a> for details.
 
 <ul>
 

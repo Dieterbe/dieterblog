@@ -492,7 +492,7 @@ Make sure pdclient.php has the executable flag (x).  If the directory is in your
 	<div class="entry-content">
 		<p>You probably already heard of <a href="www.google.com/analytics">Google Analytics</a>.  It's a pretty nice program that (<em>basically</em>) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;topic=11012">events that don't require page requests!</a><br />
 
-Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).</p>
+Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).<!--more--></p>
 
 <p>The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function <em>urchinTracker()</em> you just add <em>onClick="javascript:urchinTracker('/this-is-something-i-want-to-track');"</em> to your hyperlink.<br />
 
@@ -608,7 +608,7 @@ During these 6 months a page will score very bad in search results, even if it s
 	<div class="entry-content">
 		<p>In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as <a href="http://bakery.cakephp.org/articles/view/147">DAuth</a> (written by me), <a href="http://bakery.cakephp.org/articles/view/99">OthAuth</a> (written by <a href="http://www.devmoz.com/blog">Crazylegs</a>) and <a href="http://bakery.cakephp.org/tags/view/auth">many others</a>.</p>
 
-<p>However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn't finished yet but it sure is worth it looking at.  (In fact I'm thinking about making a new dAuth version built on cake's own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.   For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.<br />
+<p>However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn't finished yet but it sure is worth it looking at.  (In fact I'm thinking about making a new dAuth version built on cake's own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.  <!--more--> For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.<br />
 
 Disclaimer: not everything I'll say here will be correct, first of all because I'm not able to fully understand every piece of the source code (yet), secondly because the 1.2 api is still changing.</p>
 
@@ -676,11 +676,11 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 
 </ul>
 
-<p></li></p>
+</li>
 
-<p><li>Another callback new in 1.2 is <strong>shutdown(&amp;$controller)</strong>.  Unlike initialize, this one is mentioned on <a href="http://cake.insertdesignhere.com/posts/view/17">Nate&rsquo;s blog</a>.  It removes &lsquo;Auth.redirect&rsquo; from the session when the user is logged in.</li></p>
+<li>Another callback new in 1.2 is <strong>shutdown(&amp;$controller)</strong>.  Unlike initialize, this one is mentioned on <a href="http://cake.insertdesignhere.com/posts/view/17">Nate's blog</a>.  It removes 'Auth.redirect' from the session when the user is logged in.</li>
 
-<p></ul></p>
+</ul>
 
 <h3>Conclusion</h3>
 
@@ -735,6 +735,8 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
 
 <a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>
+
+<!--more-->
 
 <p><a href="http://www.fosdem.org/2007/">This years edition</a> took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)</p>
 
@@ -914,9 +916,9 @@ However, due to my lack of time I decided to use the excellent <a href="http://w
 
 </ul>
 
-<p></li></p>
+</li>
 
-<p></ul></p>
+</ul>
 
 <p>Now let's get started ;-)</p>
 

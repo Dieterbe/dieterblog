@@ -125,9 +125,13 @@
 	<div class="entry-content">
 		<h4>Graphite, and the storage Achilles heel</h4>
 
-<p>Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.</p>
 
-<p><br/>For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).</p>
+
+Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.
+
+<br/>For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).
+
+<!--more-->
 
 <ul>
 
@@ -143,15 +147,15 @@
 
 </ul>
 
-<p>Common recommendations are to <a href="http://bitprophet.org/blog/2013/03/07/graphite/">run multiple carbon agents</a> and</p>
+Common recommendations are to <a href="http://bitprophet.org/blog/2013/03/07/graphite/">run multiple carbon agents</a> and
 
-<p><a href="http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5">running graphite on SSD drives</a>.</p>
+<a href="http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5">running graphite on SSD drives</a>.
 
-<p><br/>If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though <a href="https://github.com/jssjr/carbonate/">carbonate</a> makes this easier.  This is a path I simply don&rsquo;t want to go down.</p>
+<br/>If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though <a href="https://github.com/jssjr/carbonate/">carbonate</a> makes this easier.  This is a path I simply don't want to go down.
 
-<p><br/></p>
+<br/>
 
-<p><br/></p>
+<br/>
 
 <p>
 
@@ -161,17 +165,21 @@
 
 </p>
 
-<p><br/></p>
+<br/>
 
-<p>In particular, <a href="http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d">running Ceres instead of whisper</a>, is only a slight improvement, that suffers from most of the same problems.  I don&rsquo;t see any good reason to keep working on Ceres, other than perhaps that it&rsquo;s a fun exercise.   This probably explains the slow pace of development.</p>
 
-<p><br/>However, many mistakenly believe Ceres is &ldquo;the future&rdquo;.</p>
 
-<p><br/><a href="http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage">Switching to LevelDB</a> seems much more sensible but IMHO still doesn&rsquo;t cut it as a general purpose, scalable solution.</p>
+In particular, <a href="http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d">running Ceres instead of whisper</a>, is only a slight improvement, that suffers from most of the same problems.  I don't see any good reason to keep working on Ceres, other than perhaps that it's a fun exercise.   This probably explains the slow pace of development.
+
+<br/>However, many mistakenly believe Ceres is "the future".
+
+<br/><a href="http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage">Switching to LevelDB</a> seems much more sensible but IMHO still doesn't cut it as a general purpose, scalable solution.
+
+
 
 <h4>The ideal backend</h4>
 
-<p>I believe we can build a backend for graphite that</p>
+I believe we can build a backend for graphite that
 
 <ul>
 
@@ -191,47 +199,65 @@
 
 </ul>
 
-<p>While we&rsquo;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.</p>
 
-<p><br/>And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.</p>
+
+While we're at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.
+
+<br/>And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.
+
+
 
 <h4>InfluxDB</h4>
 
-<p>There&rsquo;s a lot of databases that you could hook up to graphite.</p>
 
-<p>riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.</p>
 
-<p>Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.</p>
+There's a lot of databases that you could hook up to graphite.
 
-<p>I&rsquo;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.</p>
+riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.
 
-<p><br/></p>
 
-<p><br/></p>
 
-<p>InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.</p>
+Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.
 
-<p>In particular, installing it is a breeze (no dependencies), it&rsquo;s specifically built for timeseries (not based on a general purpose database),</p>
+I'm personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.
 
-<p>which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.</p>
+<br/>
 
-<p>And they&rsquo;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&rsquo;m pretty confident that these guys can pull off something big.</p>
+<br/>
 
-<p><br/></p>
+InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.
 
-<p><br/></p>
+In particular, installing it is a breeze (no dependencies), it's specifically built for timeseries (not based on a general purpose database),
 
-<p>Technically, InfluxDB is a &ldquo;timeseries, metrics, and analytics&rdquo; databases with use cases well beyond graphite and even technical operations.</p>
+which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.
 
-<p>Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.</p>
+And they're in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I'm pretty confident that these guys can pull off something big.
+
+<br/>
+
+<br/>
+
+Technically, InfluxDB is a "timeseries, metrics, and analytics" databases with use cases well beyond graphite and even technical operations.
+
+Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.
+
+
+
+
 
 <h4>Graphite + InfluxDB</h4>
 
-<p>InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use <a href="http://grafana.org/">Grafana</a>), which means at some point you could completely swap graphite for InfluxDB.</p>
 
-<p>However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.</p>
 
-<p>So here&rsquo;s how my setup currently works:</p>
+InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use <a href="http://grafana.org/">Grafana</a>), which means at some point you could completely swap graphite for InfluxDB.
+
+
+
+However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.
+
+So here's how my setup currently works:
+
+
 
 <ul>
 
@@ -263,21 +289,27 @@ It should also work with the regular graphite, though I've never tried.  (I have
 
 </ul>
 
-<p>With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.</p>
 
-<p>Later i might do more extensive benchmarking and acceptance testing.</p>
 
-<p><br/></p>
+With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.
 
-<p><br/></p>
+Later i might do more extensive benchmarking and acceptance testing.
 
-<p>If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &ldquo;backup&rdquo;.</p>
+<br/>
 
-<p>We&rsquo;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&rsquo;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)</p>
+<br/>
 
-<p><br/></p>
+If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live "backup".
 
-<p><br/>To be continued..</p>
+We'll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I'm really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)
+
+
+
+<br/>
+
+<br/>To be continued..
+
+
 
 	</div>
 

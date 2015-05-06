@@ -63,11 +63,11 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
 
 Luckily I knew some possible usernames and some patterns that I could have used to construct my password, so I just had to try all the combinations... Too much work to do manually but easily done when scripted.&lt;/p&gt;
 
-&lt;p&gt;Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)&lt;/p&gt;
+&lt;p&gt;Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;DISCLAIMER&lt;/strong&gt;:  Don&#39;t use this code for anything illegal!  I&#39;m not responsible for what you do with this!&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;![CDATA[
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;![CDATA[
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt;
 
@@ -163,7 +163,7 @@ tryme(&lt;span style=&#34;color: #19177C&#34;&gt;$host&lt;/span&gt;,&lt;span sty
 
 ]]&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 </description>
     </item>
     
@@ -177,7 +177,7 @@ tryme(&lt;span style=&#34;color: #19177C&#34;&gt;$host&lt;/span&gt;,&lt;span sty
 
 I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don&#39;t like but that&#39;s not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.&lt;br /&gt;
 
-But .. all the sites I currently work on are all community sites or blogs, and although some of them have some specific requirements, in the end it&#39;s all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that&#39;s becoming easier and easier to do)&lt;/p&gt;
+But .. all the sites I currently work on are all community sites or blogs&lt;!--more--&gt;, and although some of them have some specific requirements, in the end it&#39;s all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that&#39;s becoming easier and easier to do)&lt;/p&gt;
 
 &lt;p&gt;I think Drupal is a magnificent CMS because it is plug and play (I need that because my time is getting pretty sparse lately!) but also because it has a pretty active community: there are so many 3rd party modules being developed, and usually you can just upload the module in your modules folder , enable it from your control panel and presto!&lt;/p&gt;
 
@@ -407,6 +407,8 @@ Make sure pdclient.php has the executable flag (x).  If the directory is in your
 
 &lt;p&gt;Long story short:  I finally got it working (thanks to Krazylegz and kristofer and possibly others too, it has been a while so I may forget someone ;-), and learned a lot in the process.  I will share what I learned with you guys so that hopefully it&#39;s a bit easier for you then what I had to go through.&lt;/p&gt;
 
+&lt;!--more--&gt;
+
 &lt;h3&gt;Prerequisites&lt;/h3&gt;
 
 &lt;p&gt;CakePHP.  I used 1.2 but I think this will work on 1.1 too (because the Ajax helper is in there for a long time.  it&#39;s even fully documented in the 1.1 manual)&lt;br /&gt;
@@ -425,7 +427,7 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 &lt;p&gt;The view looks like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;foreach&lt;/span&gt;(&lt;span style=&#34;color: #19177C&#34;&gt;$articles&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$article&lt;/span&gt;)&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #BC7A00&#34;&gt;?&amp;gt;&lt;/span&gt;
 
@@ -487,11 +489,11 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;]]&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;The controller would have functions like this:&lt;/p&gt;&lt;/p&gt;
+The controller would have functions like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;?php&lt;/span&gt;
 
@@ -545,11 +547,11 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;]]&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;The view controller/cart.ctp could look something like this:&lt;/p&gt;&lt;/p&gt;
+The view controller/cart.ctp could look something like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;![CDATA[&lt;/span&gt;
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
 
@@ -567,9 +569,9 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;]]&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;There you have it.  All explanations are inside the sources, I hope it&amp;rsquo;s clear enough.  If not, just ask :-)&lt;/p&gt;&lt;/p&gt;
+There you have it.  All explanations are inside the sources, I hope it&#39;s clear enough.  If not, just ask :-)&lt;/p&gt;
 
 &lt;h3&gt;Common misconceptions&lt;/h3&gt;
 
@@ -603,7 +605,7 @@ This is explained in this movie:&lt;a href=&#34;http://www.youtube.com/watch?v=W
       <guid>http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/</guid>
       <description>&lt;p&gt;In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;DAuth&lt;/a&gt; (written by me), &lt;a href=&#34;http://bakery.cakephp.org/articles/view/99&#34;&gt;OthAuth&lt;/a&gt; (written by &lt;a href=&#34;http://www.devmoz.com/blog&#34;&gt;Crazylegs&lt;/a&gt;) and &lt;a href=&#34;http://bakery.cakephp.org/tags/view/auth&#34;&gt;many others&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.   For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.&lt;br /&gt;
+&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.  &lt;!--more--&gt; For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.&lt;br /&gt;
 
 Disclaimer: not everything I&#39;ll say here will be correct, first of all because I&#39;m not able to fully understand every piece of the source code (yet), secondly because the 1.2 api is still changing.&lt;/p&gt;
 
@@ -671,11 +673,11 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Another callback new in 1.2 is &lt;strong&gt;shutdown(&amp;amp;$controller)&lt;/strong&gt;.  Unlike initialize, this one is mentioned on &lt;a href=&#34;http://cake.insertdesignhere.com/posts/view/17&#34;&gt;Nate&amp;rsquo;s blog&lt;/a&gt;.  It removes &amp;lsquo;Auth.redirect&amp;rsquo; from the session when the user is logged in.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Another callback new in 1.2 is &lt;strong&gt;shutdown(&amp;amp;$controller)&lt;/strong&gt;.  Unlike initialize, this one is mentioned on &lt;a href=&#34;http://cake.insertdesignhere.com/posts/view/17&#34;&gt;Nate&#39;s blog&lt;/a&gt;.  It removes &#39;Auth.redirect&#39; from the session when the user is logged in.&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 
@@ -694,6 +696,8 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
 
 &lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+
+&lt;!--more--&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;This years edition&lt;/a&gt; took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)&lt;/p&gt;
 
@@ -825,9 +829,9 @@ However, due to my lack of time I decided to use the excellent &lt;a href=&#34;h
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Now let&#39;s get started ;-)&lt;/p&gt;
 </description>

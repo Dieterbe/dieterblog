@@ -27,7 +27,7 @@ So I plan to migrate this blog from drupal to pyblosxom.&lt;br /&gt;
 
 To do this, I&#39;m building the tool &lt;a href=&#34;https://github.com/Dieterbe/drupal-to-pyblosxom&#34;&gt;drupal-to-pyblosxom&lt;/a&gt;.&lt;br /&gt;
 
-The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)&lt;/p&gt;
+The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)&lt;!--more--&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -37,7 +37,7 @@ The goal is to convert posts, associated metadata (publish time, tags) and comme
       <pubDate>Sun, 29 Jul 2007 15:57:23 -0400</pubDate>
       
       <guid>http://localhost:1313/post/upgrading_drupal_the_easy_way/</guid>
-      <description>&lt;p&gt;I just upgraded this site to &lt;a href=&#34;http://drupal.org/drupal-5.2&#34;&gt;Drupal 5.2&lt;/a&gt;.  The package came with upgrading instructions consisting of 11 steps to complete the upgrade proces, but after reading it a few times I realized it could be done easier.&lt;/p&gt;
+      <description>&lt;p&gt;I just upgraded this site to &lt;a href=&#34;http://drupal.org/drupal-5.2&#34;&gt;Drupal 5.2&lt;/a&gt;.  The package came with upgrading instructions consisting of 11 steps to complete the upgrade proces, but after reading it a few times I realized it could be done easier.&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is a synthesized version of the upgrade instructions that came with the package:&lt;/p&gt;
 
@@ -107,7 +107,7 @@ The goal is to convert posts, associated metadata (publish time, tags) and comme
 
 I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don&#39;t like but that&#39;s not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.&lt;br /&gt;
 
-But .. all the sites I currently work on are all community sites or blogs, and although some of them have some specific requirements, in the end it&#39;s all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that&#39;s becoming easier and easier to do)&lt;/p&gt;
+But .. all the sites I currently work on are all community sites or blogs&lt;!--more--&gt;, and although some of them have some specific requirements, in the end it&#39;s all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that&#39;s becoming easier and easier to do)&lt;/p&gt;
 
 &lt;p&gt;I think Drupal is a magnificent CMS because it is plug and play (I need that because my time is getting pretty sparse lately!) but also because it has a pretty active community: there are so many 3rd party modules being developed, and usually you can just upload the module in your modules folder , enable it from your control panel and presto!&lt;/p&gt;
 
@@ -133,7 +133,7 @@ The further I&#39;ve tried to perfect the safeguarding of the confidentiality of
       <guid>http://localhost:1313/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/</guid>
       <description>&lt;p&gt;You probably already heard of &lt;a href=&#34;www.google.com/analytics&#34;&gt;Google Analytics&lt;/a&gt;.  It&#39;s a pretty nice program that (&lt;em&gt;basically&lt;/em&gt;) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;amp;topic=11012&#34;&gt;events that don&#39;t require page requests!&lt;/a&gt;&lt;br /&gt;
 
-Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).&lt;/p&gt;
+Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function &lt;em&gt;urchinTracker()&lt;/em&gt; you just add &lt;em&gt;onClick=&#34;javascript:urchinTracker(&#39;/this-is-something-i-want-to-track&#39;);&#34;&lt;/em&gt; to your hyperlink.&lt;br /&gt;
 
@@ -197,9 +197,9 @@ However, due to my lack of time I decided to use the excellent &lt;a href=&#34;h
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Now let&#39;s get started ;-)&lt;/p&gt;
 </description>

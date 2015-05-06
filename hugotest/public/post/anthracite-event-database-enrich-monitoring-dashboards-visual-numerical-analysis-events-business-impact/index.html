@@ -141,7 +141,13 @@ as well as allowing visual and numerical analysis of events that have a business
 
 It has a TCP receiver, a database (sqlite3), a http interface to deliver event data in many formats and a simple web frontend for humans.</p>
 
+<!--more-->
+
+
+
 <p>design goals:</p>
+
+
 
 <ul>
 
@@ -163,18 +169,23 @@ It has a TCP receiver, a database (sqlite3), a http interface to deliver event d
 
         </ul>
 
-<pre><code>&lt;/li&gt;
+    </li>
 
-&lt;li&gt;super easy to install and run: install dependencies, clone repo. &lt;i&gt;the app is ready to run&lt;/i&gt;&lt;/li&gt;
-</code></pre>
+    <li>super easy to install and run: install dependencies, clone repo. <i>the app is ready to run</i></li>
 
-<p></ul></p>
+</ul>
 
-<p>I have a working prototype on <a href="https://github.com/Dieterbe/anthracite">github.com/Dieterbe/anthracite</a></p>
+
+
+I have a working prototype on <a href="https://github.com/Dieterbe/anthracite">github.com/Dieterbe/anthracite</a>
+
+
 
 <h4>About "relevant events"</h4>
 
 <p>I recommend you submit any event that <strong>has</strong> or <strong>might have</strong> a <strong>relevant</strong> effect on:</p>
+
+
 
 <ul>
 
@@ -186,9 +197,13 @@ It has a TCP receiver, a database (sqlite3), a http interface to deliver event d
 
 </ul>
 
+
+
 <h4>Formats and conventions</h4>
 
 <p>The TCP receiver listens for lines in this format:</p>
+
+
 
 <pre><![CDATA[
 
@@ -196,11 +211,15 @@ It has a TCP receiver, a database (sqlite3), a http interface to deliver event d
 
 ]]></pre>
 
+
+
 <p>There are no restrictions for type and description, other than that they must be non-empty strings.
 
 <br/>I do have some suggestions which I'll demonstrate through fictive examples;
 
 <br/>but note that there's room for improvement, see the section below)</p>
+
+
 
 <pre><![CDATA[
 
@@ -224,51 +243,55 @@ ts backup "backup from database slave vimeomysql22"
 
 ]]></pre>
 
+
+
 <h4>Thoughts on incident nomenclature, severity levels and incident analysis</h4>
 
-<p>Because there are so many unique and often subtle pieces of information pertaining to each individual incident, it&rsquo;s often hard to map an incident to</p>
+Because there are so many unique and often subtle pieces of information pertaining to each individual incident, it's often hard to map an incident to
 
-<p>a simple severity level or keyword.</p>
+a simple severity level or keyword.
 
-<p>When displaying events as popups on graphs I think no severity levels are needed, the graphs and event descriptions are much more clear than any</p>
+When displaying events as popups on graphs I think no severity levels are needed, the graphs and event descriptions are much more clear than any
 
-<p>severity level could convey.<br></p>
+severity level could convey.<br>
 
-<p>However, I do think these levels are very useful for reporting and numerical analysis.<br></p>
+However, I do think these levels are very useful for reporting and numerical analysis.<br>
 
-<p>On slide 53 of <a href="http://www.slideshare.net/jallspaw/ops-metametrics-the-currency-you-pay-for-change">the metametrics slidedeck</a> Allspaw</p>
+On slide 53 of <a href="http://www.slideshare.net/jallspaw/ops-metametrics-the-currency-you-pay-for-change">the metametrics slidedeck</a> Allspaw
 
-<p>mentions severity levels, which can be paraphrased in terms of service degradation for the end user:</p>
+mentions severity levels, which can be paraphrased in terms of service degradation for the end user:
 
-<p>1 (full), 2 (major), 3 (minor), 4 (no).<br></p>
+1 (full), 2 (major), 3 (minor), 4 (no).<br>
 
-<p>I would like to extend this notion into the opposite spectrum, and have similar levels on the positivie scale,</p>
+I would like to extend this notion into the opposite spectrum, and have similar levels on the positivie scale,
 
-<p>so that they represent positive incidents (like viral videos, press mentions, &hellip;) as opposed to problematic ones (outages).</p>
+so that they represent positive incidents (like viral videos, press mentions, ...) as opposed to problematic ones (outages).
 
-<p><br/>For incident analysis we need a rich nomenclature and schema:</p>
+<br/>For incident analysis we need a rich nomenclature and schema:
 
-<p><b>incidents can (presumably) have a positive or negative impact, can be self-induced or not, and can be categorized with severity levels</b>;</p>
+<b>incidents can (presumably) have a positive or negative impact, can be self-induced or not, and can be categorized with severity levels</b>;
 
-<p><b>they can also be planned for (maintenance, release announcements) or not</b>.  While we&rsquo;re at it,</p>
+<b>they can also be planned for (maintenance, release announcements) or not</b>.  While we're at it,
 
-<p>how about events to mark point in time where the cause was detected, as well as resolved, so we can calculate TTD and TTR (see Allspaw slidedeck)?</p>
+how about events to mark point in time where the cause was detected, as well as resolved, so we can calculate TTD and TTR (see Allspaw slidedeck)?
 
-<p><br/>Since basically any event can have a positive or negative impact, an option is to leave out the type &lsquo;incident&rsquo; and give a severity field for every</p>
+<br/>Since basically any event can have a positive or negative impact, an option is to leave out the type 'incident' and give a severity field for every
 
-<p>event type.</p>
+event type.
 
-<p><br/>I&rsquo;m thinking of a good nomenclature and a schema to express all this.</p>
+<br/>I'm thinking of a good nomenclature and a schema to express all this.
 
-<p>(btw, notice how in common ops literature the word incident is usually associated with outages and bad things;</p>
+(btw, notice how in common ops literature the word incident is usually associated with outages and bad things;
 
-<p>while actually an incident can just as well be a positive event) as well as UI features to support this analysis.</p>
+while actually an incident can just as well be a positive event) as well as UI features to support this analysis.
+
+
 
 <h4>I need your help</h4>
 
-<p>The tcp receiver works, the backend works, i have a crude (but functional) web app, and a simple http api to retrieve the events in all kinds of formats.</p>
+The tcp receiver works, the backend works, i have a crude (but functional) web app, and a simple http api to retrieve the events in all kinds of formats.
 
-<p>Next up are:</p>
+Next up are:
 
 <ul>
 

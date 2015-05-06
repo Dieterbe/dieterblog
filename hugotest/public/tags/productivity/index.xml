@@ -17,7 +17,7 @@
       <guid>http://localhost:1313/post/number_1_productivity_tip_showers/</guid>
       <description>&lt;p&gt;When you&#39;re stuck on a problem, or not even stuck but you just want to boost your creative/out-of-the-box thinking...&lt;br /&gt;
 
-Take a shower.  When I&#39;m thinking about a problem and I take a shower, the ideas and thoughts just start popping up, one after each other, or sometimes even two at the same time.  It&#39;s amazing.  And it works every time.&lt;/p&gt;
+Take a shower.  When I&#39;m thinking about a problem and I take a shower, the ideas and thoughts just start popping up, one after each other, or sometimes even two at the same time.  It&#39;s amazing.  And it works every time.&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Sometimes the amount of thoughts and ideas is so much that I need a piece of paper to write everything down immediately when I come out, otherwise I&#39;ll forget stuff before I leave the bathrooom.&lt;/p&gt;
 
@@ -31,7 +31,7 @@ Take a shower.  When I&#39;m thinking about a problem and I take a shower, the i
       <pubDate>Wed, 13 Aug 2008 20:42:51 -0400</pubDate>
       
       <guid>http://localhost:1313/post/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/</guid>
-      <description>&lt;p&gt;Often while you&#39;re occupied with something, some thought pops into your head.  Something that you want to remember/do something about.&lt;br /&gt;
+      <description>&lt;p&gt;Often while you&#39;re occupied with something, some thought pops into your head.  Something that you want to remember/do something about.&lt;!--more--&gt;&lt;br /&gt;
 
 One of the key factors of a successful &lt;a href=&#34;http://en.wikipedia.org/wiki/Getting_Things_Done&#34;&gt;GTD&lt;/a&gt; implementation is having the tools in place to get that stuff out of your head and into something you can trust, so you can continue your work with the smallest interruption possible.  Many GTD tools I&#39;ve checked out focus on the &#39;action management&#39; part of GTD, leaving out the collection and processing phases (&lt;a href=&#34;http://www.thinkingrock.com.au/&#34;&gt;Thinkingrock&lt;/a&gt; is a notable exception here) and often some other things (reference system etc).&lt;/p&gt;
 
@@ -63,7 +63,7 @@ If something goes wrong (and only then!) it will show a popup with &lt;a href=&#
 
 &lt;p&gt;Here is the file, save it as gtdinbox.sh&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
@@ -131,7 +131,7 @@ die_error &lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 </description>
     </item>
     
@@ -149,7 +149,7 @@ Having made my home office space into a real &lt;i&gt;Zen&lt;/i&gt; I want to st
 
 &lt;p&gt;Even though there are probably no applications out there that can do everything I want, I just wanted to share my feature-wishlist.  These are the requirements I find that a really good tool should comply with:&lt;br /&gt;
 
-&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
 
 In order of importance (sort of):&lt;/p&gt;
 
@@ -237,7 +237,7 @@ From a writers perspective: I find it also amazing how stuff that is so hard to 
 
 &lt;p&gt;For those who have no clue what I&#39;m talking about: think for 30 seconds which characters you type the most and which the least (eg: which characters occur the most/least in the language you type?).&lt;/p&gt;
 
-&lt;p&gt;Ok you got them?  Now look at your keyboard and spot where these characters are.  Now consider where your fingers are most of the time (if you&#39;ve never learned to type: the &#39;base position&#39; for your fingers is on the middle row).  Notice anything strange?&lt;/p&gt;
+&lt;p&gt;Ok you got them?  Now look at your keyboard and spot where these characters are.  Now consider where your fingers are most of the time (if you&#39;ve never learned to type: the &#39;base position&#39; for your fingers is on the middle row).  Notice anything strange?&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Now how take a look at this picture:&lt;br /&gt;
 
@@ -261,17 +261,17 @@ If you would like more information, I highly recommend &lt;a href=&#34;http://dv
       <guid>http://localhost:1313/post/per_directory_bash_history/</guid>
       <description>&lt;p&gt;I&#39;ve been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
 
-&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
 
 Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#comment_17&#34;&gt;anonymous reply on debian-administration.org&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;cite&gt;&lt;/p&gt;
+&lt;cite&gt;
 
-&lt;p&gt;So I use the following bash function:&lt;/p&gt;
+So I use the following bash function:
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
 
@@ -309,11 +309,11 @@ Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 
 &lt;p&gt;and then set it up with the following in my bashrc:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #008000&#34;&gt;shopt&lt;/span&gt; -s histappend
 
@@ -323,7 +323,7 @@ Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/cite&gt;&lt;/p&gt;
+&lt;/cite&gt;
 
 &lt;p&gt;Great stuff.  It would be nice to be able to use both the global and the directory-specific history by combining with an extra modifier key .&lt;br /&gt;
 

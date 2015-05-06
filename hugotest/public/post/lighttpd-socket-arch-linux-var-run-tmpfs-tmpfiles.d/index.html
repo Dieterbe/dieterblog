@@ -123,11 +123,11 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>On Arch Linux, and probably <a href="http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html">many other distros</a> /run is a new tmpfs, and /var/run symlinks to it.</p>
+		On Arch Linux, and probably <a href="http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html">many other distros</a> /run is a new tmpfs, and /var/run symlinks to it.
 
-<p>With Lighttpd you might have a fastcgi socket defined something like &ldquo;/var/run/lighttpd/sockets/mywebsite.sock&rdquo;.</p>
+With Lighttpd you might have a fastcgi socket defined something like "/var/run/lighttpd/sockets/mywebsite.sock".
 
-<p>This won&rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&rsquo;t start, /var/log/lighttpd/error.log will tell you:</p>
+This won't work anymore as after each reboot /var/run is an empty directory and lighttpd won't start, /var/log/lighttpd/error.log will tell you:
 
 <pre>
 
@@ -141,11 +141,11 @@
 
 </pre>
 
-<p>That&rsquo;s where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">tmpfiles.d</a> comes in.</p>
+That's where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">tmpfiles.d</a> comes in.
 
-<p>It creates files and directories as described in the configs, and gets invoked on boot.  Like so:</p>
+It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #19177C">$ </span>cat /etc/tmpfiles.d/lighttpd.conf 
 
@@ -153,7 +153,7 @@ d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-</p>
+
 
 	</div>
 

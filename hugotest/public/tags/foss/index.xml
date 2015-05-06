@@ -15,11 +15,17 @@
       <pubDate>Thu, 16 Jun 2011 22:32:12 -0400</pubDate>
       
       <guid>http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://nlp.fi.muni.cz/projekty/gensim/&#34;&gt;Gensim&lt;/a&gt; is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.&lt;/p&gt;
+      <description>&lt;!--more--&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://nlp.fi.muni.cz/projekty/gensim/&#34;&gt;Gensim&lt;/a&gt; is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.&lt;/p&gt;
+
+
 
 &lt;p&gt;But anyway we&#39;re having some issues in it with cPickle (it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/31&#34;&gt;breaks when saving large matrices&lt;/a&gt;, it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/30&#34;&gt;breaks with some objects&lt;/a&gt;).
 
 For now I worked around it by using &lt;a href=&#34;http://jsonpickle.github.com/&#34;&gt;jsonpickle&lt;/a&gt; but I wonder how viable this alternative really is.&lt;/p&gt;
+
+
 
 &lt;p&gt;To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - &lt;a href=&#34;https://github.com/Dieterbe/picklebench&#34;&gt;picklebench&lt;/a&gt; - to compare pickle, cPickle and jsonpickle.
 
@@ -27,7 +33,9 @@ The script fills a dictionary which gets bigger and bigger, and for certain size
 
 We continue until memory is exhausted.&lt;/p&gt;
 
-&lt;p&gt;limitations of this benchmark:&lt;/p&gt;
+&lt;!--more--&gt;
+
+limitations of this benchmark:
 
 &lt;ul&gt;
 
@@ -49,7 +57,7 @@ We continue until memory is exhausted.&lt;/p&gt;
 
 &lt;/ul&gt;
 
-&lt;p&gt;You can easily &lt;a href=&#34;https://github.com/Dieterbe/picklebench/blob/master/runall.sh&#34;&gt;run the program&lt;/a&gt; yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.&lt;/p&gt;
+You can easily &lt;a href=&#34;https://github.com/Dieterbe/picklebench/blob/master/runall.sh&#34;&gt;run the program&lt;/a&gt; yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.
 
 &lt;pre&gt;
 
@@ -413,7 +421,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/pre&gt;
 
-&lt;p&gt;Paraphrased:&lt;/p&gt;
+Paraphrased:
 
 &lt;ul&gt;
 
@@ -425,7 +433,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/ul&gt;
 
-&lt;p&gt;Conclusion:&lt;/p&gt;
+Conclusion:
 
 &lt;ul&gt;
 
@@ -445,7 +453,11 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
       <pubDate>Tue, 17 May 2011 21:29:58 -0400</pubDate>
       
       <guid>http://localhost:1313/post/where_are_the_new_arch_linux_images/</guid>
-      <description>&lt;p&gt;This is a question I get asked a lot recently.  The latest &lt;a href=&#34;http://www.archlinux.org/download/&#34;&gt;official images&lt;/a&gt; are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I&#39;m not aware of.  Many of these problems can be worked around (with &#39;pacman -Sy mirrorlist&#39; on the install cd for example), but it&#39;s not exactly convenient.&lt;/p&gt;
+      <description>&lt;!--more--&gt;
+
+&lt;p&gt;This is a question I get asked a lot recently.  The latest &lt;a href=&#34;http://www.archlinux.org/download/&#34;&gt;official images&lt;/a&gt; are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I&#39;m not aware of.  Many of these problems can be worked around (with &#39;pacman -Sy mirrorlist&#39; on the install cd for example), but it&#39;s not exactly convenient.&lt;/p&gt;
+
+
 
 &lt;p&gt;Over the past years (the spare time in between &lt;a href=&#34;http://localhost:1313/my_metalband.html&#34;&gt;the band&lt;/a&gt;, my search for an apartment in &lt;a href=&#34;http://en.wikipedia.org/wiki/Ghent&#34;&gt;Ghent&lt;/a&gt; and a bunch of other things) I&#39;ve worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/&#34;&gt;releng build environment repository&lt;/a&gt;.
 
@@ -463,6 +475,8 @@ Every 3 days, the following happens automatically:
 
 Actually things are &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/tree/scripts/releng-build-and-release-testing.sh&#34;&gt;bit more involved&lt;/a&gt; but this is the gist of it.  All of this is now run on a &lt;a href=&#34;https://wiki.archlinux.org/index.php/Category:DeveloperWiki:Server_Configuration#Releng_server_.28alberich.29&#34;&gt;dedicated VPS&lt;/a&gt; donated by &lt;a href=&#34;http://www.airvm.com/&#34;&gt;airVM&lt;/a&gt;.&lt;/p&gt;
 
+
+
 &lt;p&gt;I never really completed the &lt;a href=&#34;http://localhost:1313/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html&#34;&gt;aif automatic test suite&lt;/a&gt;, somewhere along the way I decided to focus on crowdsourcing test results.
 
 The weight of testing images (and all possible combinations of features) has always been huge, and trying to script tasks would either get way complicated or insufficient.
@@ -479,9 +493,13 @@ So the new approach is largely inspired by the core and testing repositories:  w
 
 I don&#39;t think we&#39;ll get to the &lt;a href=&#34;http://www.archlinux.org/news/200902-iso-release/&#34;&gt;original plan&lt;/a&gt; of official archiso releases for each stable kernel version, that seems like a lot of work despite all the above.&lt;/p&gt;
 
+
+
 &lt;p&gt;As for what is new: again too much to list, here is a &lt;a href=&#34;http://releng.archlinux.org/isos/Changelog&#34;&gt;changelog&lt;/a&gt; but I stopped updating it at some point.  I guess the most visible interesting stuff is friendlier package dialogs (with package descriptions), support for nilfs, btrfs and syslinux (thanks &lt;a href=&#34;http://pyther.net/&#34;&gt;Matthew Gyurgyik&lt;/a&gt;), and an issues reporting tool.
 
 Under the hood we refactored quite a bit, mostly blockdevice related stuff, config generation and the &#34;execution plan&#34; (like, how each function calls each other and how failures are tracked) in AIF has been simplified considerably.&lt;/p&gt;
+
+
 
 &lt;!-- I used to be pedantic about details like &#34;all packages installed in the live environment must be available in the official core/extra repositories but i might become a bit less strict.  or maybe not, it&#39;s not hard to switch to official packages. --&gt;
 </description>
@@ -493,11 +511,11 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
       <pubDate>Sat, 26 Mar 2011 21:48:56 -0400</pubDate>
       
       <guid>http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</guid>
-      <description>&lt;p&gt;I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,&lt;/p&gt;
+      <description>I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,
 
-&lt;p&gt;which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.&lt;/p&gt;
+which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.
 
-&lt;p&gt;&lt;br/&gt;In short:&lt;/p&gt;
+&lt;br/&gt;In short:
 
 &lt;ul&gt;
 
@@ -517,7 +535,9 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
 
 &lt;/ul&gt;
 
-&lt;p&gt;Use cases:&lt;/p&gt;
+Use cases:
+
+&lt;!--more--&gt;
 
 &lt;ul&gt;
 
@@ -533,7 +553,7 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
 
 &lt;/ul&gt;
 
-&lt;p&gt;Thoughts:&lt;/p&gt;
+Thoughts:
 
 &lt;ul&gt;
 
@@ -549,9 +569,13 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
 
 &lt;/ul&gt;
 
-&lt;p&gt;If it sounds like something you need, try it out.  And contributions welcome.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;Next up to the todolist: more clever heuristic for event coalescing, setting up bugtracker.&lt;/p&gt;
+
+If it sounds like something you need, try it out.  And contributions welcome.
+
+&lt;br/&gt;Next up to the todolist: more clever heuristic for event coalescing, setting up bugtracker.
+
+
 </description>
     </item>
     
@@ -571,7 +595,7 @@ A similar question is &#34;what are the tradeoffs / how do I apply this in my di
 
 &lt;br/&gt;I&#39;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&#39;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
 
-
+&lt;!--more--&gt;
 
 &lt;h3&gt;Why rewriting git history?&lt;/h3&gt;
 
@@ -613,6 +637,8 @@ Because you obviously don&#39;t want to break the history of other people follow
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 To paraphrase, I would say:
@@ -622,6 +648,8 @@ To paraphrase, I would say:
 &lt;br/&gt;Just like using git is good to progressively help reaching better software, so is git history rewriting good for progressively reaching a better git history.  Version control on top of version control, if you will.  A very crude form of version control but I don&#39;t think it needs to be any more advanced then this.
 
 &lt;/p&gt;
+
+
 
 &lt;h3&gt;Why should I write my commits in imperative present tense (&#39;do foo&#39;) rather then past tense (&#39;did foo&#39;)?&lt;/h3&gt;
 
@@ -695,7 +723,7 @@ Low impact, easy to use, but still flexible.&lt;br /&gt;
 
 cli by default, can optionally use ncurses dialogs as well.&lt;br /&gt;
 
-&lt;/p&gt;
+&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;To start using it, you only need to source it and you can start calling its functions.&lt;br /&gt;
 
@@ -775,7 +803,7 @@ At this point the biggest contenders are &lt;a href=&#34;http://linode.com/&#34;
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;br /&gt;
 
 Non-features:&lt;/p&gt;
 
@@ -825,7 +853,7 @@ Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt
 
 &lt;p&gt;Here is how it compares:&lt;br /&gt;
 
-&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
 
 (most of the changes are only in the xdg branch, which is the one I use and test)&lt;/p&gt;
 
@@ -947,7 +975,7 @@ For now, you can treat this as an alternative version that stands on it&#39;s ow
 
 &lt;h3&gt;First, a crash course on Devops...&lt;/h3&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;!--more--&gt;&lt;br /&gt;
 
 A commonly used organisatorial idiom used in tech companies is that of developers and operations.&lt;/p&gt;
 
@@ -1143,31 +1171,31 @@ It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume
 
 If you want to run stuff as a regular user you could do something like&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 su &lt;span style=&#34;color: #19177C&#34;&gt;$user&lt;/span&gt; -c &amp;lt;&lt;span style=&#34;color: #008000&#34;&gt;command&lt;/span&gt;&amp;gt;
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;..but these commands have no access to your user environment.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;..but these commands have no access to your user environment.&lt;br /&gt;
 
-&lt;p&gt;In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&amp;rsquo;t want to reenter your ssh key passwords everytime you resume.&lt;br /&gt;&lt;/p&gt;
+In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&#39;t want to reenter your ssh key passwords everytime you resume.&lt;br /&gt;
 
-&lt;p&gt;(In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)&lt;/p&gt;&lt;/p&gt;
+(In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)&lt;/p&gt;
 
 &lt;p&gt;The solution is very simple. Use this:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 sudo pm-hibernate &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;-my-stuff.sh
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.&lt;br /&gt;
 
-&lt;p&gt;Ideal to kill old ssh processes, and setup tunnels and ssh connections again.&lt;br /&gt;&lt;/p&gt;
+Ideal to kill old ssh processes, and setup tunnels and ssh connections again.&lt;br /&gt;
 
-&lt;p&gt;I&amp;rsquo;m probably gonna integrate this into my &lt;a href=&#34;http://github.com/Dieterbe/microde&#34;&gt;microDE&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+I&#39;m probably gonna integrate this into my &lt;a href=&#34;http://github.com/Dieterbe/microde&#34;&gt;microDE&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -1185,7 +1213,7 @@ sudo pm-hibernate &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&
 
 Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guys Roman, JGC, Thomas and me will hang out at the &lt;a href=&#34;http://fosdem.org/2010/schedule/devrooms/distributions&#34;&gt;distro miniconf&lt;/a&gt;.  We might join the &lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_infrastructure&#34;&gt;infrastructure round-table&lt;/a&gt; panel, but there is no concrete information yet.&lt;/p&gt;
 
-&lt;p&gt;More stuff I&#39;m looking forward to:&lt;/p&gt;
+&lt;p&gt;More stuff I&#39;m looking forward to:&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -1239,7 +1267,7 @@ Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guy
 
 &lt;/ul&gt;
 
-&lt;p&gt;Luckily the fd.o guys have come up with &lt;a href=&#34;http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html&#34;&gt;.desktop files&lt;/a&gt;.&lt;br /&gt;
+&lt;p&gt;Luckily the fd.o guys have come up with &lt;a href=&#34;http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html&#34;&gt;.desktop files&lt;/a&gt;.&lt;!--more--&gt;&lt;br /&gt;
 
 In $XDG_DATA_HOME/applications/defaults.list you can define which applications to use for which mime type.&lt;br /&gt;
 
@@ -1261,7 +1289,7 @@ And that&#39;s exactly what I did. For now I just configure everything to use xd
 
 It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.&lt;br /&gt;
 
-&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
 
 It works like this: you bind a key (in your WM or with &lt;a href=&#34;http://freshmeat.net/projects/xbindkeys/&#34;&gt;xbindkeys&lt;/a&gt;) to launch `snip` with the `load` or `save` argument.&lt;/p&gt;
 

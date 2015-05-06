@@ -35,7 +35,7 @@ The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&
       <guid>http://localhost:1313/post/i_survived_lcl_31_3_2008/</guid>
       <description>&lt;p&gt;On 31-3-2008 &lt;a href=&#34;http://www.lcl.be&#34;&gt;LCL&lt;/a&gt;, one of the most used datacenters in Belgium - and the only one with a 0% downtime record in Belgium - had major power issues with their datacenter in Diegem, bringing lots of Belgian parties offline.  (more specifics &lt;a href=&#34;http://www.google.be/search?q=lcl+diegem+power+failure&#34;&gt;on the net&lt;/a&gt;).&lt;/p&gt;
 
-&lt;p&gt;If you&#39;re one of the sysadmins of a website with 35M members and 150M hits per day this means you&#39;re in for an exciting night ...&lt;/p&gt;
+&lt;p&gt;If you&#39;re one of the sysadmins of a website with 35M members and 150M hits per day this means you&#39;re in for an exciting night ...&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;Long story short: LCL couldn&#39;t bring the power back up fast enough so we rented our own generator.  After rushing to Brussels we ( The Netlog ITS-team) could sit in the offices upstairs.  But after a while they had to close it down but we could stay in a room nearby (without furniture).   After that we went to Steven&#39;s appartment in Machelen.  We worked about 30 hours in a row, getting our sites back up and running (mostly fixing corrupted databases).  Our friends from the devteam also did some great achievements the next day, by using the redundancy of denormalized database layouts they could restore nearly all missing content that had vanished because of table repairs.&lt;/p&gt;
 
@@ -85,7 +85,7 @@ Jakob - Steven - me - Kenny&lt;/p&gt;
       <guid>http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/</guid>
       <description>&lt;p&gt;If you serve lots of (small) files with Lighttpd you might notice you&#39;re not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn&#39;t have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
 
-&lt;br/&gt;
+&lt;!--more--&gt;&lt;br/&gt;
 
 (in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)&lt;/p&gt;
 
@@ -97,7 +97,7 @@ Jakob - Steven - me - Kenny&lt;/p&gt;
 
 &lt;p&gt;Have fun !&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;/*&lt;/span&gt;
 
@@ -407,7 +407,7 @@ Jakob - Steven - me - Kenny&lt;/p&gt;
 
 ]]&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 </description>
     </item>
     
@@ -421,7 +421,7 @@ Jakob - Steven - me - Kenny&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
 
-&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
 
 Fosdem looks interesting again : talks about iogrind , scons , cakephp , virtualbox , openAFS , ...&lt;br /&gt;
 
@@ -439,7 +439,7 @@ No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms wou
       <pubDate>Sun, 05 Aug 2007 16:42:46 -0400</pubDate>
       
       <guid>http://localhost:1313/post/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</guid>
-      <description>&lt;p&gt;FOSS is written by users, for users, and what I&#39;ve been doing/experiencing this afternoon is a perfect example of that.&lt;br /&gt;
+      <description>&lt;p&gt;FOSS is written by users, for users, and what I&#39;ve been doing/experiencing this afternoon is a perfect example of that.&lt;!--more--&gt;&lt;br /&gt;
 
 First of all take &lt;a href=&#34;http://www.xfce.org&#34;&gt;Xfce&lt;/a&gt;: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the &lt;a href=&#34;http://goodies.xfce.org/&#34;&gt;Xfce Goodies project&lt;/a&gt;, more specifically the &lt;a href=&#34;http://goodies.xfce.org/projects/panel-plugins/start&#34;&gt;Panel Plugins&lt;/a&gt; page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.&lt;/p&gt;
 
@@ -467,7 +467,7 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 
 &lt;p&gt;And here is the source code of my bash script&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
@@ -531,9 +531,9 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;At my company we use https, If you use http I don&amp;rsquo;t know if the authentication method is the same. If not check the -d flag for curl.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;At my company we use https, If you use http I don&#39;t know if the authentication method is the same. If not check the -d flag for curl.&lt;br /&gt;
 
-&lt;p&gt;The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)&lt;/p&gt;&lt;/p&gt;
+The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)&lt;/p&gt;
 
 &lt;p&gt;PS: does anyone know a good Apple Keychain- like daemon that I can query from other scripts to receive passwords? Preferably GTK ones that do not pull in Gnome deps.  So I don&#39;t have to store passwords in cleartext... (and I need this anyway for other purposes :p)&lt;/p&gt;
 </description>
@@ -551,7 +551,7 @@ You can also see at the left the notes plugin and the mail checker plugin and at
 
 &lt;p&gt;My official title is &#34;System &amp;amp; Network architect&#34;.&lt;br /&gt;
 
-Things I will be doing there is  keeping the &#34;lower level&#34; (hardware, network, databases) secure, stable and performing well.&lt;br /&gt;
+Things I will be doing there is &lt;!--more--&gt; keeping the &#34;lower level&#34; (hardware, network, databases) secure, stable and performing well.&lt;br /&gt;
 
 There will be quite some variety: working together with the dev-team, optimizing where possible, but also testing fancy hardware and software setups, hacking some code, deciding which routes we&#39;ll take and administering the systems.&lt;br /&gt;
 

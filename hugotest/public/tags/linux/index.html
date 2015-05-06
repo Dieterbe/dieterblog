@@ -128,11 +128,11 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>On Arch Linux, and probably <a href="http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html">many other distros</a> /run is a new tmpfs, and /var/run symlinks to it.</p>
+		On Arch Linux, and probably <a href="http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html">many other distros</a> /run is a new tmpfs, and /var/run symlinks to it.
 
-<p>With Lighttpd you might have a fastcgi socket defined something like &ldquo;/var/run/lighttpd/sockets/mywebsite.sock&rdquo;.</p>
+With Lighttpd you might have a fastcgi socket defined something like "/var/run/lighttpd/sockets/mywebsite.sock".
 
-<p>This won&rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&rsquo;t start, /var/log/lighttpd/error.log will tell you:</p>
+This won't work anymore as after each reboot /var/run is an empty directory and lighttpd won't start, /var/log/lighttpd/error.log will tell you:
 
 <pre>
 
@@ -146,11 +146,11 @@
 
 </pre>
 
-<p>That&rsquo;s where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">tmpfiles.d</a> comes in.</p>
+That's where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">tmpfiles.d</a> comes in.
 
-<p>It creates files and directories as described in the configs, and gets invoked on boot.  Like so:</p>
+It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #19177C">$ </span>cat /etc/tmpfiles.d/lighttpd.conf 
 
@@ -158,7 +158,7 @@ d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-</p>
+
 
 	</div>
 
@@ -202,7 +202,11 @@ d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
 	</header>
 	
 	<div class="entry-content">
-		<p>This is a question I get asked a lot recently.  The latest <a href="http://www.archlinux.org/download/">official images</a> are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I'm not aware of.  Many of these problems can be worked around (with 'pacman -Sy mirrorlist' on the install cd for example), but it's not exactly convenient.</p>
+		<!--more-->
+
+<p>This is a question I get asked a lot recently.  The latest <a href="http://www.archlinux.org/download/">official images</a> are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I'm not aware of.  Many of these problems can be worked around (with 'pacman -Sy mirrorlist' on the install cd for example), but it's not exactly convenient.</p>
+
+
 
 <p>Over the past years (the spare time in between <a href="/my_metalband.html">the band</a>, my search for an apartment in <a href="http://en.wikipedia.org/wiki/Ghent">Ghent</a> and a bunch of other things) I've worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the <a href="http://projects.archlinux.org/users/dieter/releng.git/">releng build environment repository</a>.
 
@@ -220,6 +224,8 @@ Every 3 days, the following happens automatically:
 
 Actually things are <a href="http://projects.archlinux.org/users/dieter/releng.git/tree/scripts/releng-build-and-release-testing.sh">bit more involved</a> but this is the gist of it.  All of this is now run on a <a href="https://wiki.archlinux.org/index.php/Category:DeveloperWiki:Server_Configuration#Releng_server_.28alberich.29">dedicated VPS</a> donated by <a href="http://www.airvm.com/">airVM</a>.</p>
 
+
+
 <p>I never really completed the <a href="/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html">aif automatic test suite</a>, somewhere along the way I decided to focus on crowdsourcing test results.
 
 The weight of testing images (and all possible combinations of features) has always been huge, and trying to script tasks would either get way complicated or insufficient.
@@ -236,9 +242,13 @@ So the new approach is largely inspired by the core and testing repositories:  w
 
 I don't think we'll get to the <a href="http://www.archlinux.org/news/200902-iso-release/">original plan</a> of official archiso releases for each stable kernel version, that seems like a lot of work despite all the above.</p>
 
+
+
 <p>As for what is new: again too much to list, here is a <a href="http://releng.archlinux.org/isos/Changelog">changelog</a> but I stopped updating it at some point.  I guess the most visible interesting stuff is friendlier package dialogs (with package descriptions), support for nilfs, btrfs and syslinux (thanks <a href="http://pyther.net/">Matthew Gyurgyik</a>), and an issues reporting tool.
 
 Under the hood we refactored quite a bit, mostly blockdevice related stuff, config generation and the "execution plan" (like, how each function calls each other and how failures are tracked) in AIF has been simplified considerably.</p>
+
+
 
 <!-- I used to be pedantic about details like "all packages installed in the live environment must be available in the official core/extra repositories but i might become a bit less strict.  or maybe not, it's not hard to switch to official packages. -->
 
@@ -292,31 +302,31 @@ It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume
 
 If you want to run stuff as a regular user you could do something like</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 su <span style="color: #19177C">$user</span> -c &lt;<span style="color: #008000">command</span>&gt;
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-<p>..but these commands have no access to your user environment.<br /></p>
+<p>..but these commands have no access to your user environment.<br />
 
-<p>In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&rsquo;t want to reenter your ssh key passwords everytime you resume.<br /></p>
+In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don't want to reenter your ssh key passwords everytime you resume.<br />
 
-<p>(In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)</p></p>
+(In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)</p>
 
 <p>The solution is very simple. Use this:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 sudo pm-hibernate <span style="color: #666666">&amp;&amp;</span> <span style="color: #008000; font-weight: bold">do</span>-my-stuff.sh
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-<p>This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.<br /></p>
+<p>This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.<br />
 
-<p>Ideal to kill old ssh processes, and setup tunnels and ssh connections again.<br /></p>
+Ideal to kill old ssh processes, and setup tunnels and ssh connections again.<br />
 
-<p>I&rsquo;m probably gonna integrate this into my <a href="http://github.com/Dieterbe/microde">microDE</a></p></p>
+I'm probably gonna integrate this into my <a href="http://github.com/Dieterbe/microde">microDE</a></p>
 
 	</div>
 
@@ -370,7 +380,7 @@ The information in this post is not 100% accurate</strong><br />
 
 I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.<br />
 
-</p>
+<!--more--></p>
 
 <p>I did find various places where they said parted could "handle all partition and filesystem resizing at once".<br />
 
@@ -618,7 +628,7 @@ The filesystem on /dev/hda9 is now 19872397 blocks long.</p>
 
 </ul>
 
-<p>Luckily the fd.o guys have come up with <a href="http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html">.desktop files</a>.<br />
+<p>Luckily the fd.o guys have come up with <a href="http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html">.desktop files</a>.<!--more--><br />
 
 In $XDG_DATA_HOME/applications/defaults.list you can define which applications to use for which mime type.<br />
 
@@ -796,7 +806,7 @@ Next week I'll start at <a href="http://kangaroot.net/">Kangaroot</a>.  Woohoo.<
 
 Functionality-wise the installer works fine, but I guess the code behind it is the result of years of adding features and quick fixes without refactoring, making it impossible to reuse any of the code.</p>
 
-<p>So I started to write <a href="http://github.com/Dieterbe/aif/">AIF: the Arch Linux Installation Framework</a> (actually it had another name until recently), with these 3 goals in mind:</p>
+<p>So I started to write <a href="http://github.com/Dieterbe/aif/">AIF: the Arch Linux Installation Framework</a><!--more--> (actually it had another name until recently), with these 3 goals in mind:</p>
 
 <ul>
 
@@ -892,7 +902,7 @@ They mangle cache data together with user data and user preferences and spread t
 
 The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime 'something' happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br />
 
-I'm fine with the fact they do that.  I'm sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg's</a> $XDG_CACHE_HOME directory)</p>
+I'm fine with the fact they do that.  I'm sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg's</a> $XDG_CACHE_HOME directory)<!--more--></p>
 
 <p>While trying to apply version control to my $HOME I need to spend way too much time scripting various <i>svn reverts</i> of many of those changes (in .gnome2, .gconf/apps/*, and .gconf/desktop), and also updating many <i>svn:ignore</i> properties (although gnome/gconf are definitely not the only culprits for that.)</p>
 
@@ -984,7 +994,7 @@ Arch on the other hand is made for tweaking your system.  It exposes all guts of
 	</header>
 	
 	<div class="entry-content">
-		<p>In this post I explain my vision on the concepts of backups and how several common practices are in my opinion suboptimal and become unnecessary or at least can be done more easily by managing data on a higher level by employing other patterns such as versioning important directories and distributed data management.  </p>
+		<p>In this post I explain my vision on the concepts of backups and how several common practices are in my opinion suboptimal and become unnecessary or at least can be done more easily by managing data on a higher level by employing other patterns such as versioning important directories and distributed data management.<!--more-->  </p>
 
 <h3>The "classic" approaches</h3>
 
@@ -1416,7 +1426,7 @@ thanks Martin for this tip!<br />
 
 But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.</p>
 
-<p>So, I've been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.</p>
+<p>So, I've been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.<!--more--></p>
 
 <h3>Requirements</h3>
 
@@ -1656,7 +1666,7 @@ Ongelooflijk hoe ver het egoisme van een bedrijf kan gaan.  Laten we dan ook ler
 
 <p>My official title is "System &amp; Network architect".<br />
 
-Things I will be doing there is  keeping the "lower level" (hardware, network, databases) secure, stable and performing well.<br />
+Things I will be doing there is <!--more--> keeping the "lower level" (hardware, network, databases) secure, stable and performing well.<br />
 
 There will be quite some variety: working together with the dev-team, optimizing where possible, but also testing fancy hardware and software setups, hacking some code, deciding which routes we'll take and administering the systems.<br />
 
@@ -1716,7 +1726,7 @@ Of course it will be in a <a href="http://en.wikipedia.org/wiki/Free_software">s
 	<div class="entry-content">
 		<p>From the very little experience I have with <a href="http://www.debian.org/">Debian</a>, and from the stuff I've been reading about it, I think I can safely say Debian has always been a special distribution: packages always take very long to get into the stable tree, because Debian wanted to be a rock solid system where packages go through a lot of testing.  ("We release it when it's done")  The end result is a distro where you don't have the latest software, neither as much flexibility as, say <a href="http://www.gentoo.org/">Gentoo</a> or <a href="http://www.archlinux.org">Arch</a>: You'd many times need to adapt your way of doing things to the "Debian way" (or be prepared to look for help in really obscure places and probably break things) but the end result is a stable distro where everything works very decently.  That, combined with no licensing fees (unlike for example <a href="http://www.redhat.com">Red hat</a>), make it the perfect choice for a server in small companies, where money is more important then features such as professional support or official certifications.</p>
 
-<p>However, it seems like Debian is taking a route that will make it lose it's advantages over other distributions in the server market:<br />
+<p>However, it seems like Debian is taking a route that will make it lose it's advantages over other distributions in the server market:<!--more--><br />
 
 On april 8th <a href="http://www.debian.org/News/2007/20070408">Debian released version 4.0</a>.  But very soon an <a href="http://www.linux-watch.com/news/NS5673962628.html">article</a> popped up and drew my attention.<br />
 
@@ -1773,6 +1783,8 @@ Personally I don't think issues like these will make server administrators switc
 It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
 
 <a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>
+
+<!--more-->
 
 <p><a href="http://www.fosdem.org/2007/">This years edition</a> took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)</p>
 
@@ -2082,9 +2094,9 @@ However, due to my lack of time I decided to use the excellent <a href="http://w
 
 </ul>
 
-<p></li></p>
+</li>
 
-<p></ul></p>
+</ul>
 
 <p>Now let's get started ;-)</p>
 

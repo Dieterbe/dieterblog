@@ -152,7 +152,7 @@ There are also some smaller enoyances such as when you specify one option like t
 
 One thing that is pretty neat though, If you update $this->recursive in a model, the baked views will contain stuff for the associated things.  But so much more could be done...<br />
 
-</p>
+<!--more--></p>
 
 <p>Ideallistically speaking, the bake tool (and it libraries) should imho become much more advanced:</p>
 
@@ -196,38 +196,37 @@ The first rev is the original cakephp code, so you can look at the diffs if you 
 
 </ul>
 
-<p>See this example sql file.  When baking a model, the code will first try to find a specific rule for the model, if not found, it will look for a global rule, and if still not found, ask the question interactively.<br /></p>
+See this example sql file.  When baking a model, the code will first try to find a specific rule for the model, if not found, it will look for a global rule, and if still not found, ask the question interactively.<br />
 
-<p>[code lang=&ldquo;sql&rdquo;]<br /></p>
+[code lang="sql"]<br />
 
-<p>&ndash; cake validate ALL id none<br /></p>
+-- cake validate ALL id none<br />
 
-<p>&ndash; cake validate ALL created none<br /></p>
+-- cake validate ALL created none<br />
 
-<p>&ndash; cake validate ALL modified none<br /></p>
+-- cake validate ALL modified none<br />
 
-<p>(&hellip;)<br /></p>
+(...)<br />
 
-<p>CREATE TABLE foos (<br /></p>
+CREATE TABLE foos (<br />
 
-<pre><code>id serial NOT NULL,&lt;br /&gt;
+    id serial NOT NULL,<br />
 
-name character varying(255) NOT NULL, --cake validate apc alphanumeric&lt;br /&gt;
+    name character varying(255) NOT NULL, --cake validate apc alphanumeric<br />
 
-type character varying(255) NOT NULL, --cake validate apc notempty&lt;br /&gt;
+    type character varying(255) NOT NULL, --cake validate apc notempty<br />
 
-room_id integer NOT NULL, --cake validate apc numeric&lt;br /&gt;
+    room_id integer NOT NULL, --cake validate apc numeric<br />
 
-created timestamp without time zone,&lt;br /&gt;
+    created timestamp without time zone,<br />
 
-modified timestamp without time zone&lt;br /&gt;
-</code></pre>
+    modified timestamp without time zone<br />
 
-<p>);<br /></p>
+);<br />
 
-<p>[/code]</p>
+[/code]
 
-<p></ul></p>
+</ul>
 
 <p>Here is the bash code which I currently use to bake all my models without any interactivity:</p>
 
@@ -299,7 +298,7 @@ done<br />
 
 I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don't like but that's not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.<br />
 
-But .. all the sites I currently work on are all community sites or blogs, and although some of them have some specific requirements, in the end it's all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that's becoming easier and easier to do)</p>
+But .. all the sites I currently work on are all community sites or blogs<!--more-->, and although some of them have some specific requirements, in the end it's all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that's becoming easier and easier to do)</p>
 
 <p>I think Drupal is a magnificent CMS because it is plug and play (I need that because my time is getting pretty sparse lately!) but also because it has a pretty active community: there are so many 3rd party modules being developed, and usually you can just upload the module in your modules folder , enable it from your control panel and presto!</p>
 
@@ -419,7 +418,7 @@ The further I've tried to perfect the safeguarding of the confidentiality of the
 	<div class="entry-content">
 		<p>You probably already heard of <a href="www.google.com/analytics">Google Analytics</a>.  It's a pretty nice program that (<em>basically</em>) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;topic=11012">events that don't require page requests!</a><br />
 
-Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).</p>
+Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).<!--more--></p>
 
 <p>The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function <em>urchinTracker()</em> you just add <em>onClick="javascript:urchinTracker('/this-is-something-i-want-to-track');"</em> to your hyperlink.<br />
 
@@ -491,6 +490,8 @@ urchinTracker('/outgoing/example_com');</em> respectively.</p>
 
 <p>Long story short:  I finally got it working (thanks to Krazylegz and kristofer and possibly others too, it has been a while so I may forget someone ;-), and learned a lot in the process.  I will share what I learned with you guys so that hopefully it's a bit easier for you then what I had to go through.</p>
 
+<!--more-->
+
 <h3>Prerequisites</h3>
 
 <p>CakePHP.  I used 1.2 but I think this will work on 1.1 too (because the Ajax helper is in there for a long time.  it's even fully documented in the 1.1 manual)<br />
@@ -509,7 +510,7 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <p>The view looks like this:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
 
 <span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">foreach</span>(<span style="color: #19177C">$articles</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #19177C">$article</span>)<span style="color: #666666">:</span> <span style="color: #BC7A00">?&gt;</span>
 
@@ -571,11 +572,11 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <span style="color: #BC7A00">]]&gt;</span>
 </pre></div>
-<p></p>
+<p>
 
-<p>The controller would have functions like this:</p></p>
+The controller would have functions like this:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
 
 <span style="color: #BC7A00">&lt;?php</span>
 
@@ -629,11 +630,11 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <span style="color: #BC7A00">]]&gt;</span>
 </pre></div>
-<p></p>
+<p>
 
-<p>The view controller/cart.ctp could look something like this:</p></p>
+The view controller/cart.ctp could look something like this:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;![CDATA[</span>
 
 <span style="color: #BC7A00">&lt;ul&gt;</span>
 
@@ -651,9 +652,9 @@ Keep in mind that each object where you want to assign some functionality to (su
 
 <span style="color: #BC7A00">]]&gt;</span>
 </pre></div>
-<p></p>
+<p>
 
-<p>There you have it.  All explanations are inside the sources, I hope it&rsquo;s clear enough.  If not, just ask :-)</p></p>
+There you have it.  All explanations are inside the sources, I hope it's clear enough.  If not, just ask :-)</p>
 
 <h3>Common misconceptions</h3>
 
@@ -721,7 +722,7 @@ This is explained in this movie:<a href="http://www.youtube.com/watch?v=W4jXAaEM
 	<div class="entry-content">
 		<p>In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as <a href="http://bakery.cakephp.org/articles/view/147">DAuth</a> (written by me), <a href="http://bakery.cakephp.org/articles/view/99">OthAuth</a> (written by <a href="http://www.devmoz.com/blog">Crazylegs</a>) and <a href="http://bakery.cakephp.org/tags/view/auth">many others</a>.</p>
 
-<p>However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn't finished yet but it sure is worth it looking at.  (In fact I'm thinking about making a new dAuth version built on cake's own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.   For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.<br />
+<p>However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn't finished yet but it sure is worth it looking at.  (In fact I'm thinking about making a new dAuth version built on cake's own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.  <!--more--> For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.<br />
 
 Disclaimer: not everything I'll say here will be correct, first of all because I'm not able to fully understand every piece of the source code (yet), secondly because the 1.2 api is still changing.</p>
 
@@ -789,11 +790,11 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 
 </ul>
 
-<p></li></p>
+</li>
 
-<p><li>Another callback new in 1.2 is <strong>shutdown(&amp;$controller)</strong>.  Unlike initialize, this one is mentioned on <a href="http://cake.insertdesignhere.com/posts/view/17">Nate&rsquo;s blog</a>.  It removes &lsquo;Auth.redirect&rsquo; from the session when the user is logged in.</li></p>
+<li>Another callback new in 1.2 is <strong>shutdown(&amp;$controller)</strong>.  Unlike initialize, this one is mentioned on <a href="http://cake.insertdesignhere.com/posts/view/17">Nate's blog</a>.  It removes 'Auth.redirect' from the session when the user is logged in.</li>
 
-<p></ul></p>
+</ul>
 
 <h3>Conclusion</h3>
 
@@ -848,6 +849,8 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
 
 <a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>
+
+<!--more-->
 
 <p><a href="http://www.fosdem.org/2007/">This years edition</a> took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)</p>
 
@@ -1027,9 +1030,9 @@ However, due to my lack of time I decided to use the excellent <a href="http://w
 
 </ul>
 
-<p></li></p>
+</li>
 
-<p></ul></p>
+</ul>
 
 <p>Now let's get started ;-)</p>
 

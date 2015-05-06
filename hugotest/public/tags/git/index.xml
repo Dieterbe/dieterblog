@@ -25,7 +25,7 @@ A similar question is &#34;what are the tradeoffs / how do I apply this in my di
 
 &lt;br/&gt;I&#39;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&#39;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
 
-
+&lt;!--more--&gt;
 
 &lt;h3&gt;Why rewriting git history?&lt;/h3&gt;
 
@@ -67,6 +67,8 @@ Because you obviously don&#39;t want to break the history of other people follow
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 To paraphrase, I would say:
@@ -76,6 +78,8 @@ To paraphrase, I would say:
 &lt;br/&gt;Just like using git is good to progressively help reaching better software, so is git history rewriting good for progressively reaching a better git history.  Version control on top of version control, if you will.  A very crude form of version control but I don&#39;t think it needs to be any more advanced then this.
 
 &lt;/p&gt;
+
+
 
 &lt;h3&gt;Why should I write my commits in imperative present tense (&#39;do foo&#39;) rather then past tense (&#39;did foo&#39;)?&lt;/h3&gt;
 
@@ -141,7 +145,7 @@ So I wrote a script to do this.  It checks a repo for unique commits, tags, bran
 
 The script is part of a bigger &lt;a href=&#34;https://github.com/Dieterbe/git-scripts/&#34;&gt;git-scripts&lt;/a&gt; repo (most of the scripts written by random people).  Although the original repo creator hasn&#39;t gotten back to me this seems like a good starting point to have some sense of order in the wildspread of git scripts.&lt;/p&gt;
 
-&lt;p&gt;Here are some other scripts I find pretty useful:&lt;/p&gt;
+&lt;p&gt;Here are some other scripts I find pretty useful:&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 

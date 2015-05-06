@@ -147,7 +147,7 @@ There are also some smaller enoyances such as when you specify one option like t
 
 One thing that is pretty neat though, If you update $this->recursive in a model, the baked views will contain stuff for the associated things.  But so much more could be done...<br />
 
-</p>
+<!--more--></p>
 
 <p>Ideallistically speaking, the bake tool (and it libraries) should imho become much more advanced:</p>
 
@@ -191,38 +191,37 @@ The first rev is the original cakephp code, so you can look at the diffs if you 
 
 </ul>
 
-<p>See this example sql file.  When baking a model, the code will first try to find a specific rule for the model, if not found, it will look for a global rule, and if still not found, ask the question interactively.<br /></p>
+See this example sql file.  When baking a model, the code will first try to find a specific rule for the model, if not found, it will look for a global rule, and if still not found, ask the question interactively.<br />
 
-<p>[code lang=&ldquo;sql&rdquo;]<br /></p>
+[code lang="sql"]<br />
 
-<p>&ndash; cake validate ALL id none<br /></p>
+-- cake validate ALL id none<br />
 
-<p>&ndash; cake validate ALL created none<br /></p>
+-- cake validate ALL created none<br />
 
-<p>&ndash; cake validate ALL modified none<br /></p>
+-- cake validate ALL modified none<br />
 
-<p>(&hellip;)<br /></p>
+(...)<br />
 
-<p>CREATE TABLE foos (<br /></p>
+CREATE TABLE foos (<br />
 
-<pre><code>id serial NOT NULL,&lt;br /&gt;
+    id serial NOT NULL,<br />
 
-name character varying(255) NOT NULL, --cake validate apc alphanumeric&lt;br /&gt;
+    name character varying(255) NOT NULL, --cake validate apc alphanumeric<br />
 
-type character varying(255) NOT NULL, --cake validate apc notempty&lt;br /&gt;
+    type character varying(255) NOT NULL, --cake validate apc notempty<br />
 
-room_id integer NOT NULL, --cake validate apc numeric&lt;br /&gt;
+    room_id integer NOT NULL, --cake validate apc numeric<br />
 
-created timestamp without time zone,&lt;br /&gt;
+    created timestamp without time zone,<br />
 
-modified timestamp without time zone&lt;br /&gt;
-</code></pre>
+    modified timestamp without time zone<br />
 
-<p>);<br /></p>
+);<br />
 
-<p>[/code]</p>
+[/code]
 
-<p></ul></p>
+</ul>
 
 <p>Here is the bash code which I currently use to bake all my models without any interactivity:</p>
 

@@ -161,6 +161,8 @@ as well as an upper boundary of infinite.
 
 <h4>Plotting histograms.. over time</h4>
 
+<!--more-->
+
 <p>
 
 We want to plot histograms over time, and not just for a few select points in time (in which case you can just make several histograms),
@@ -173,9 +175,9 @@ but a contiguous range of time, preferably through graphite's 2D graphs cause gr
 
 <p>The example I'll use are page rendering timings, condensed into classes with upper boundaries of 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 50 and infinite seconds</p>
 
-<p><p></p>
+<p>
 
-<p>Tips and notes:</p>
+Tips and notes:
 
 <ul>
 
@@ -223,9 +225,13 @@ a misleading name but <a href="https://github.com/etsy/statsd/issues/98">we're w
 
 </ul>
 
+
+
+
+
 <h4>First version</h4>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
 
 http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
@@ -255,37 +261,39 @@ lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&
 
 ]]<span style="color: #666666">&gt;</span>
 </pre></div>
-</p>
 
-<p><img src="/files/rendertime-histogram.png" width="740" height="300" alt="rendertime histogram" /></p>
 
-<p><br/>Turns out we mainly see the vast majority that performs well, simply because with this way of rendering,</p>
+<img src="/files/rendertime-histogram.png" width="740" height="300" alt="rendertime histogram" />
 
-<p>the higher the frequency of a class, the more prominent.  Bad values are hard to see because there&rsquo;s not many of them,</p>
+<br/>Turns out we mainly see the vast majority that performs well, simply because with this way of rendering,
 
-<p>despite being more interesting.</p>
+the higher the frequency of a class, the more prominent.  Bad values are hard to see because there's not many of them,
 
-<p>A thought I had at this point was to make all &ldquo;class bands&rdquo; equally wide and use a green-to-red gradient to denote the frequency values,</p>
+despite being more interesting.
 
-<p>or even just keep the current color assignments but rely on something like opacity to express frequencies. Alas, none of this is currently</p>
+A thought I had at this point was to make all "class bands" equally wide and use a green-to-red gradient to denote the frequency values,
 
-<p>possible with graphite, as far as I can tell.  Though I would like to explore this further.  Especially because I think it wouldn&rsquo;t be hard to implement</p>
+or even just keep the current color assignments but rely on something like opacity to express frequencies. Alas, none of this is currently
 
-<p>in graphite.</p>
+possible with graphite, as far as I can tell.  Though I would like to explore this further.  Especially because I think it wouldn't be hard to implement
 
-<p><br/></p>
+in graphite.
 
-<p><br/></p>
+<br/>
 
-<p>So, let&rsquo;s see what <i>can</i> be done right now.</p>
+<br/>
+
+So, let's see what <i>can</i> be done right now.
+
+
 
 <h4>Leaving out the smallest class</h4>
 
-<p>This adaption is basically the same as before, but leaves out the smallest class (which took most space), this way</p>
+This adaption is basically the same as before, but leaves out the smallest class (which took most space), this way
 
-<p>the other bands are a bit more visible but the effect isn&rsquo;t as clear as we want.</p>
+the other bands are a bit more visible but the effect isn't as clear as we want.
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
 
 http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
@@ -313,17 +321,19 @@ lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&
 
 ]]<span style="color: #666666">&gt;</span>
 </pre></div>
-</p>
 
-<p><img src="/files/rendertime-histogram-leaving-out-first-class.png" width="740" height="300" alt="rendertime histogram leaving out first class" /></p>
+
+<img src="/files/rendertime-histogram-leaving-out-first-class.png" width="740" height="300" alt="rendertime histogram leaving out first class" />
+
+
 
 <h4>Per-band scaling</h4>
 
-<p>Finally, the bigger the values represented by each class the more we inflate the band,</p>
+Finally, the bigger the values represented by each class the more we inflate the band,
 
-<p>so the more problematic cases become more visible, despite having a lower frequency.</p>
+so the more problematic cases become more visible, despite having a lower frequency.
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&lt;!</span>[CDATA[
 
 http<span style="color: #666666">:</span><span style="color: #408080; font-style: italic">//localhost:9000/render/?height=300&amp;</span>
 
@@ -353,33 +363,35 @@ lineMode<span style="color: #666666">=</span>slope<span style="color: #666666">&
 
 ]]<span style="color: #666666">&gt;</span>
 </pre></div>
-</p>
 
-<p><img src="/files/rendertime-histogram-higher-focus-for-higher-class-interval.png" width="740" height="300" alt="rendertime histogram with higher focus for higher class interval" /></p>
 
-<p><br/>I started off by scaling each band by the width of the class interval.  This is actually more arbitrary than it may seem.</p>
+<img src="/files/rendertime-histogram-higher-focus-for-higher-class-interval.png" width="740" height="300" alt="rendertime histogram with higher focus for higher class interval" />
 
-<p><br/>The point is that now it&rsquo;s easier to spot acute as well as long-standing problems, but note you can&rsquo;t really read statistics from this graph because of the per-band scaling.</p>
+<br/>I started off by scaling each band by the width of the class interval.  This is actually more arbitrary than it may seem.
 
-<p><br/>Note also that outliers contribute to the outer band(s) and are given as much focus as non-outliers in the same bands.</p>
+<br/>The point is that now it's easier to spot acute as well as long-standing problems, but note you can't really read statistics from this graph because of the per-band scaling.
 
-<p>In a system over which you have no complete control (i.e. if you were graphing histograms of time until first byte or page loaded at client,</p>
+<br/>Note also that outliers contribute to the outer band(s) and are given as much focus as non-outliers in the same bands.
 
-<p>where you rely on the internet as a transport) it makes sense to give less attention to outliers and focus on optimizing for as many users as possible,</p>
+In a system over which you have no complete control (i.e. if you were graphing histograms of time until first byte or page loaded at client,
 
-<p>I think it there&rsquo;s no reliable way to subtract outliers from the upper bands and you should also graph averages and percentiles and understand what each</p>
+where you rely on the internet as a transport) it makes sense to give less attention to outliers and focus on optimizing for as many users as possible,
 
-<p>graph does.</p>
+I think it there's no reliable way to subtract outliers from the upper bands and you should also graph averages and percentiles and understand what each
 
-<p>But anyway here I want to include outliers, because they represent latencies we can fix.</p>
+graph does.
+
+But anyway here I want to include outliers, because they represent latencies we can fix.
+
+
 
 <h4>Final notes</h4>
 
-<p>While the tools we have are by no means perfect, I&rsquo;m seeing gradual improvement in the monitoring space.  This work is only a small piece</p>
+While the tools we have are by no means perfect, I'm seeing gradual improvement in the monitoring space.  This work is only a small piece
 
-<p>of the puzzle. The rendering of histograms can be improved but at this point I think they are good enough to be usable. The real challenge is</p>
+of the puzzle. The rendering of histograms can be improved but at this point I think they are good enough to be usable. The real challenge is
 
-<p>putting in place automated trending, anomaly detection and alerting.  If we can figure that out, there&rsquo;s less need to be looking at graphs in the first place.</p>
+putting in place automated trending, anomaly detection and alerting.  If we can figure that out, there's less need to be looking at graphs in the first place.
 
 	</div>
 

@@ -15,11 +15,17 @@
       <pubDate>Thu, 16 Jun 2011 22:32:12 -0400</pubDate>
       
       <guid>http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://nlp.fi.muni.cz/projekty/gensim/&#34;&gt;Gensim&lt;/a&gt; is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.&lt;/p&gt;
+      <description>&lt;!--more--&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://nlp.fi.muni.cz/projekty/gensim/&#34;&gt;Gensim&lt;/a&gt; is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.&lt;/p&gt;
+
+
 
 &lt;p&gt;But anyway we&#39;re having some issues in it with cPickle (it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/31&#34;&gt;breaks when saving large matrices&lt;/a&gt;, it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/30&#34;&gt;breaks with some objects&lt;/a&gt;).
 
 For now I worked around it by using &lt;a href=&#34;http://jsonpickle.github.com/&#34;&gt;jsonpickle&lt;/a&gt; but I wonder how viable this alternative really is.&lt;/p&gt;
+
+
 
 &lt;p&gt;To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - &lt;a href=&#34;https://github.com/Dieterbe/picklebench&#34;&gt;picklebench&lt;/a&gt; - to compare pickle, cPickle and jsonpickle.
 
@@ -27,7 +33,9 @@ The script fills a dictionary which gets bigger and bigger, and for certain size
 
 We continue until memory is exhausted.&lt;/p&gt;
 
-&lt;p&gt;limitations of this benchmark:&lt;/p&gt;
+&lt;!--more--&gt;
+
+limitations of this benchmark:
 
 &lt;ul&gt;
 
@@ -49,7 +57,7 @@ We continue until memory is exhausted.&lt;/p&gt;
 
 &lt;/ul&gt;
 
-&lt;p&gt;You can easily &lt;a href=&#34;https://github.com/Dieterbe/picklebench/blob/master/runall.sh&#34;&gt;run the program&lt;/a&gt; yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.&lt;/p&gt;
+You can easily &lt;a href=&#34;https://github.com/Dieterbe/picklebench/blob/master/runall.sh&#34;&gt;run the program&lt;/a&gt; yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.
 
 &lt;pre&gt;
 
@@ -413,7 +421,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/pre&gt;
 
-&lt;p&gt;Paraphrased:&lt;/p&gt;
+Paraphrased:
 
 &lt;ul&gt;
 
@@ -425,7 +433,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/ul&gt;
 
-&lt;p&gt;Conclusion:&lt;/p&gt;
+Conclusion:
 
 &lt;ul&gt;
 
@@ -445,11 +453,11 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
       <pubDate>Sat, 26 Mar 2011 21:48:56 -0400</pubDate>
       
       <guid>http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</guid>
-      <description>&lt;p&gt;I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,&lt;/p&gt;
+      <description>I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,
 
-&lt;p&gt;which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.&lt;/p&gt;
+which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.
 
-&lt;p&gt;&lt;br/&gt;In short:&lt;/p&gt;
+&lt;br/&gt;In short:
 
 &lt;ul&gt;
 
@@ -469,7 +477,9 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/ul&gt;
 
-&lt;p&gt;Use cases:&lt;/p&gt;
+Use cases:
+
+&lt;!--more--&gt;
 
 &lt;ul&gt;
 
@@ -485,7 +495,7 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/ul&gt;
 
-&lt;p&gt;Thoughts:&lt;/p&gt;
+Thoughts:
 
 &lt;ul&gt;
 
@@ -501,9 +511,13 @@ Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file
 
 &lt;/ul&gt;
 
-&lt;p&gt;If it sounds like something you need, try it out.  And contributions welcome.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;Next up to the todolist: more clever heuristic for event coalescing, setting up bugtracker.&lt;/p&gt;
+
+If it sounds like something you need, try it out.  And contributions welcome.
+
+&lt;br/&gt;Next up to the todolist: more clever heuristic for event coalescing, setting up bugtracker.
+
+
 </description>
     </item>
     
@@ -525,7 +539,7 @@ So I plan to migrate this blog from drupal to pyblosxom.&lt;br /&gt;
 
 To do this, I&#39;m building the tool &lt;a href=&#34;https://github.com/Dieterbe/drupal-to-pyblosxom&#34;&gt;drupal-to-pyblosxom&lt;/a&gt;.&lt;br /&gt;
 
-The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)&lt;/p&gt;
+The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)&lt;!--more--&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -543,7 +557,7 @@ Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt
 
 &lt;p&gt;Here is how it compares:&lt;br /&gt;
 
-&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
 
 (most of the changes are only in the xdg branch, which is the one I use and test)&lt;/p&gt;
 
@@ -659,13 +673,11 @@ For now, you can treat this as an alternative version that stands on it&#39;s ow
       <pubDate>Mon, 23 Aug 2010 19:01:09 -0400</pubDate>
       
       <guid>http://localhost:1313/post/review_of_python_3_object_oriented_programming/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://archlinux.me/dusty/&#34;&gt;Dusty Phillips&lt;/a&gt;, Arch Linux shwag guy, Archcon co-organizer, (python) consultant and since recently &lt;a href=&#34;http://localhost:1313/back_from_canada_archcon&#34;&gt;buddy of mine&lt;/a&gt; wrote his first &lt;a href=&#34;https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;amp;utm_medium=bookrev&amp;amp;utm_content=blog&amp;amp;utm_campaign=mdb_004281&#34;&gt;book: Python 3 Object Oriented Programming&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;http://archlinux.me/dusty/&#34;&gt;Dusty Phillips&lt;/a&gt;, Arch Linux shwag guy, Archcon co-organizer, (python) consultant and since recently &lt;a href=&#34;http://localhost:1313/back_from_canada_archcon&#34;&gt;buddy of mine&lt;/a&gt; wrote his first &lt;a href=&#34;https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;amp;utm_medium=bookrev&amp;amp;utm_content=blog&amp;amp;utm_campaign=mdb_004281&#34;&gt;book: Python 3 Object Oriented Programming&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.&lt;br /&gt;
 
-
+&lt;!--more--&gt;
 
 Mind you, my Python knowledge is very limited.  I have done some python programming, and I once read (most of) &lt;a href=&#34;http://diveintopython.org/&#34;&gt;Dive into python&lt;/a&gt;, but over the years that experience has vanished from my memory.  Dusty&#39;s book has had many proofreads/reviews by python-aficionado&#39;s, now it gets a fresh perspective from an amateur, and for me this was a good opportunity to work on my python skills.&lt;/p&gt;
 
@@ -713,89 +725,97 @@ It is quite convenient however, to have the author of a book available in your j
 
 So FWIW here are the things I asked him about and which responses I got, with some comments added by me afterwards.&lt;/p&gt;
 
-&lt;p&gt;&lt;pre&gt;&amp;lt;![CDATA[&lt;/p&gt;
+&lt;pre&gt;&lt;![CDATA[
 
-&lt;p&gt;&lt;Dieterbe&gt; hmm you mention that methods &lt;em&gt;need&lt;/em&gt; a self param, but why is this?&lt;/p&gt;
+&lt;Dieterbe&gt; hmm you mention that methods *need* a self param, but why is this?
 
-&lt;pre&gt;&lt;code&gt;       can&#39;t python automatically make a variable self available in the scope of the function, when calling it?
-&lt;/code&gt;&lt;/pre&gt;
+           can&#39;t python automatically make a variable self available in the scope of the function, when calling it?
 
-&lt;p&gt;&lt;Dusty&gt;    no, they are always explicit&lt;/p&gt;
+&lt;Dusty&gt;    no, they are always explicit
 
-&lt;p&gt;&lt;Dieterbe&gt; but why?&lt;/p&gt;
+&lt;Dieterbe&gt; but why?
 
-&lt;p&gt;&lt;Dusty&gt;    it&amp;rsquo;s part of the python philosophy, I guess. &amp;ldquo;explicit is better than implicit&amp;rdquo; is in the zen of python poem.&lt;/p&gt;
+&lt;Dusty&gt;    it&#39;s part of the python philosophy, I guess. &#34;explicit is better than implicit&#34; is in the zen of python poem.
 
-&lt;pre&gt;&lt;code&gt;       Basically, if you are accessing a variable in any namespace, that variable has to be have been made explicitly available in that 
+           Basically, if you are accessing a variable in any namespace, that variable has to be have been made explicitly available in that 
 
-       namespace. The one exception is the from X import * syntax, which 98% of python programmers avoid exactly because of the namespace issues.
-&lt;/code&gt;&lt;/pre&gt;
+           namespace. The one exception is the from X import * syntax, which 98% of python programmers avoid exactly because of the namespace issues.
 
-&lt;p&gt;&lt;Dieterbe&gt; right&lt;/p&gt;
+&lt;Dieterbe&gt; right
 
-&lt;h1 id=&#34;good-to-know-too-bad-this-isn-t-really-mentioned-anywhere:37a013f17aef3425193c174bed26d75b&#34;&gt;good to know.  Too bad this isn&amp;rsquo;t really mentioned anywhere.&lt;/h1&gt;
 
-&lt;p&gt;&lt;Dieterbe&gt; i don&amp;rsquo;t quite get why - in your notebook example of chap 2 - you iterate over the list to find the correct note based on its id.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;       can&#39;t you just get the element based on it&#39;s index in the list? (ie keep the node id in sync with the index in the list)
-&lt;/code&gt;&lt;/pre&gt;
+# good to know.  Too bad this isn&#39;t really mentioned anywhere.
 
-&lt;p&gt;&lt;Dusty&gt;    I don&amp;rsquo;t have the code in front of me, but I suspect that it&amp;rsquo;s because if a note is deleted, that id should not be recycled and applied to another note.&lt;/p&gt;
 
-&lt;p&gt;&lt;Dieterbe&gt; but still, since you keep the last used id, and keep increasing it, you won&amp;rsquo;t recycle id&amp;rsquo;s.&lt;/p&gt;
 
-&lt;p&gt;&lt;Dusty&gt;    yeah, but the index in the list will change&lt;/p&gt;
 
-&lt;p&gt;&lt;Dusty&gt;    when you delete #4&lt;/p&gt;
 
-&lt;p&gt;&lt;Dieterbe&gt; oh&lt;/p&gt;
+&lt;Dieterbe&gt; i don&#39;t quite get why - in your notebook example of chap 2 - you iterate over the list to find the correct note based on its id.
 
-&lt;p&gt;&lt;Dusty&gt;    the object with ID 5 becomes the object at #4&lt;/p&gt;
+           can&#39;t you just get the element based on it&#39;s index in the list? (ie keep the node id in sync with the index in the list)
 
-&lt;p&gt;&lt;Dieterbe&gt; thanks buddy&lt;/p&gt;
+&lt;Dusty&gt;    I don&#39;t have the code in front of me, but I suspect that it&#39;s because if a note is deleted, that id should not be recycled and applied to another note.
 
-&lt;p&gt;&lt;Dusty&gt;    no problem. :)&lt;/p&gt;
+&lt;Dieterbe&gt; but still, since you keep the last used id, and keep increasing it, you won&#39;t recycle id&#39;s.
 
-&lt;h1 id=&#34;again-makes-perfect-sense-but-if-you-don-t-know-the-ins-and-outs-of-the-datatypes-you-re-on-your-own:37a013f17aef3425193c174bed26d75b&#34;&gt;again, makes perfect sense.  But if you don&amp;rsquo;t know the ins and outs of the datatypes, you&amp;rsquo;re on your own.&lt;/h1&gt;
+&lt;Dusty&gt;    yeah, but the index in the list will change
 
-&lt;p&gt;&lt;Dieterbe&gt; i had a question about your example for the decorator pattern.&lt;/p&gt;
+&lt;Dusty&gt;    when you delete #4
 
-&lt;pre&gt;&lt;code&gt;       you use a socket and then you have 2 decorators that implement a send function which do some stuff (logging and what not)
+&lt;Dieterbe&gt; oh
 
-       but also the actual sending on the socket
-&lt;/code&gt;&lt;/pre&gt;
+&lt;Dusty&gt;    the object with ID 5 becomes the object at #4
 
-&lt;p&gt;&lt;Dieterbe&gt; and you mention you can have multiple decorators on the same object.  but since each decorator also does the sending on the socket,&lt;/p&gt;
+&lt;Dieterbe&gt; thanks buddy
 
-&lt;pre&gt;&lt;code&gt;       doesn&#39;t that mean the sending happens multiple times?
-&lt;/code&gt;&lt;/pre&gt;
+&lt;Dusty&gt;    no problem. :)
 
-&lt;p&gt;&lt;Dusty&gt;    no, because the first decorator is decorating the second decorator&lt;/p&gt;
 
-&lt;p&gt;&lt;Dusty&gt;    which is decorating the socket&lt;/p&gt;
 
-&lt;p&gt;&lt;Dieterbe&gt; ah yes you&amp;rsquo;re right. and although you did not specify it like this in the explanation text, it should be clear from the code.&lt;/p&gt;
+# again, makes perfect sense.  But if you don&#39;t know the ins and outs of the datatypes, you&#39;re on your own.
 
-&lt;h1 id=&#34;if-i-would-have-looked-better-at-the-code-i-would-have-figured-it-out:37a013f17aef3425193c174bed26d75b&#34;&gt;If I would have looked better at the code I would have figured it out.&lt;/h1&gt;
 
-&lt;h1 id=&#34;i-just-assumed-something-had-to-be-wrong-i-m-too-used-to-the-way-behaviors-are-implemented-in-cakephp:37a013f17aef3425193c174bed26d75b&#34;&gt;I just assumed something had to be wrong, I&amp;rsquo;m too used to the way &amp;lsquo;behaviors&amp;rsquo; are implemented in CakePHP.&lt;/h1&gt;
 
-&lt;p&gt;&lt;Dieterbe&gt; one last remark i have about the book: i couldn&amp;rsquo;t find an explanation of static variables/properties.&lt;/p&gt;
+&lt;Dieterbe&gt; i had a question about your example for the decorator pattern.
 
-&lt;pre&gt;&lt;code&gt;       i did see a very short mention of static methods in the case study at the end of chap 3, i would have expected to have that info a bit more 
+           you use a socket and then you have 2 decorators that implement a send function which do some stuff (logging and what not)
 
-       prominent, in it&#39;s own subsection or something
-&lt;/code&gt;&lt;/pre&gt;
+           but also the actual sending on the socket
 
-&lt;p&gt;&lt;Dieterbe&gt; especially because you use static class methods a few times throughout the book&lt;/p&gt;
+&lt;Dieterbe&gt; and you mention you can have multiple decorators on the same object.  but since each decorator also does the sending on the socket,
 
-&lt;p&gt;&lt;Dusty&gt;    I had a long section on them and ended up removing it because the chapter was too long and one of my reviewers suggested that they aren&amp;rsquo;t very good form in Python.&lt;/p&gt;
+           doesn&#39;t that mean the sending happens multiple times?
 
-&lt;p&gt;&lt;Dieterbe&gt; hmm. i see&lt;/p&gt;
+&lt;Dusty&gt;    no, because the first decorator is decorating the second decorator
 
-&lt;p&gt;]]&amp;gt;&lt;/pre&gt;&lt;p&gt;&lt;/p&gt;
+&lt;Dusty&gt;    which is decorating the socket
 
-&lt;p&gt;The writing is pretty informal, and here and there you&amp;rsquo;ll find a subtle reference or joke.  But of course that&amp;rsquo;s not what you buy this book for.&lt;/p&gt;&lt;/p&gt;
+&lt;Dieterbe&gt; ah yes you&#39;re right. and although you did not specify it like this in the explanation text, it should be clear from the code.
+
+
+
+# If I would have looked better at the code I would have figured it out.
+
+# I just assumed something had to be wrong, I&#39;m too used to the way &#39;behaviors&#39; are implemented in CakePHP.
+
+
+
+&lt;Dieterbe&gt; one last remark i have about the book: i couldn&#39;t find an explanation of static variables/properties.
+
+           i did see a very short mention of static methods in the case study at the end of chap 3, i would have expected to have that info a bit more 
+
+           prominent, in it&#39;s own subsection or something
+
+&lt;Dieterbe&gt; especially because you use static class methods a few times throughout the book
+
+&lt;Dusty&gt;    I had a long section on them and ended up removing it because the chapter was too long and one of my reviewers suggested that they aren&#39;t very good form in Python.
+
+&lt;Dieterbe&gt; hmm. i see
+
+]]&gt;&lt;/pre&gt;&lt;p&gt;
+
+The writing is pretty informal, and here and there you&#39;ll find a subtle reference or joke.  But of course that&#39;s not what you buy this book for.&lt;/p&gt;
 
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 

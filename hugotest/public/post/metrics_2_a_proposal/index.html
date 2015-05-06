@@ -149,7 +149,7 @@ OpenTSDB's metrics are shorter, because they move some of the dimensions (server
 
 I think our metrics format is restrictive and we do our self a disservice using it:
 
-
+<!--more-->
 
 <ul>
 
@@ -174,6 +174,8 @@ is to be aggregated, and this information is often lacking or incorrect.</li>
 <b>We can solve all of this.  In an elegant way, even!</b>
 
 </p>
+
+
 
 <p>
 
@@ -205,6 +207,8 @@ the format proved too restrictive.
 
 </p>
 
+
+
 <p>
 
 Now for <a href="https://github.com/graphite-ng/graphite-ng">Graphite-NG</a> I wanted to rethink the metric, taking the simplicity of Graphite,
@@ -215,9 +219,9 @@ to identify and use metrics and organize tags around them.
 
 </p>
 
-<p><p></p>
+<p>
 
-<p>The proposed ingestion (carbon etc) protocol looks like this:</p>
+The proposed ingestion (carbon etc) protocol looks like this:
 
 <pre><![CDATA[
 
@@ -241,20 +245,19 @@ dimension (aspect) of the metric.
 
     </ul>
 
-<pre><code>Internally, the metric ID is nothing more than the string of intrinsic tags you provided (similar to Graphite style).
+    Internally, the metric ID is nothing more than the string of intrinsic tags you provided (similar to Graphite style).
 
-When defining a new metric, write down the intrinsic tags/nodes (like you would do with Graphite except you can use &lt;b&gt;any order&lt;/b&gt;), and then keep 'em in that order
+    When defining a new metric, write down the intrinsic tags/nodes (like you would do with Graphite except you can use <b>any order</b>), and then keep 'em in that order
 
-(to keep the same ID).  &lt;b&gt;The ordering does not affect your ability to work with the metrics in any way&lt;/b&gt;.
+    (to keep the same ID).  <b>The ordering does not affect your ability to work with the metrics in any way</b>.
 
-The backend indexes the tags and you'll usually rely on those to work with the metrics, and rarely with the ID itself.
-</code></pre>
+    The backend indexes the tags and you'll usually rely on those to work with the metrics, and rarely with the ID itself.
 
-<p></li></p>
+</li>
 
-<p><li></p>
+<li>
 
-<p>A metric in its basic form (without extrinsic tags) would look like:</p>
+A metric in its basic form (without extrinsic tags) would look like:
 
 <pre><![CDATA[
 
@@ -266,27 +269,27 @@ proposal: service=mysql server=db15 direction=in unit=B
 
 ]]></pre>
 
-<p></li></p>
+</li>
 
-<p><li></p>
+<li>
 
-<p>key=val tags are most useful: the key is a name of the aspect, which allows you to express &ldquo;I want to see my metrics averaged/summed/.. by this</p>
+key=val tags are most useful: the key is a name of the aspect, which allows you to express "I want to see my metrics averaged/summed/.. by this
 
-<p>aspect, in different graphs based on another aspect, etc&rdquo;</p>
+aspect, in different graphs based on another aspect, etc"
 
-<p>(<a href="https://github.com/vimeo/graph-explorer/wiki/GEQL#special-statements">e.g. GEQL statements</a>),</p>
+(<a href="https://github.com/vimeo/graph-explorer/wiki/GEQL#special-statements">e.g. GEQL statements</a>),
 
-<p>and because you can use them for filtering,</p>
+and because you can use them for filtering,
 
-<p>so I highly recommend to take some time to come up with a good key for every tag.</p>
+so I highly recommend to take some time to come up with a good key for every tag.
 
-<p>However sometimes it can be hard to come up with a concise, but descriptive key for a tag, hence they are not mandatory.</p>
+However sometimes it can be hard to come up with a concise, but descriptive key for a tag, hence they are not mandatory.
 
-<p>For regular words without a key, the backend will assign dummy keys (&lsquo;n1&rsquo;, &lsquo;n2&rsquo;, etc) to facilitate those features without hassle.</p>
+For regular words without a key, the backend will assign dummy keys ('n1', 'n2', etc) to facilitate those features without hassle.
 
-<p>Note the two spaces between intrinsic and extrinsic.</p>
+Note the two spaces between intrinsic and extrinsic.
 
-<p>With extrinsic tags the example could look like:</p>
+With extrinsic tags the example could look like:
 
 <pre>
 
@@ -294,29 +297,33 @@ service=mysql server=db15 direction=in unit=B  src=diamond processed_by_statsd e
 
 </pre>
 
-<p>to mean that this metric came from diamond, went through statsd, and that the machine is currently in the prod environment</p>
+to mean that this metric came from diamond, went through statsd, and that the machine is currently in the prod environment
 
-<p></li></p>
+</li>
 
-<p><li>Tags can contain any character except whitespace and null.</p>
+<li>Tags can contain any character except whitespace and null.
 
-<p>Specifically: dots (great for metrics that contain an ip, histogram bin, a percentile, etc) and slashes (unit can be &lsquo;B/s&rsquo; too)</p>
+Specifically: dots (great for metrics that contain an ip, histogram bin, a percentile, etc) and slashes (unit can be 'B/s' too)
 
-<p></li></p>
+</li>
 
-<p><li>the unit tag is mandatory. It allows dashboards to show the proper label on the Y-axis, and to do conversions</p>
+<li>the unit tag is mandatory. It allows dashboards to show the proper label on the Y-axis, and to do conversions
 
-<p>(for example in Graph Explorer, if your metric is an amount of B used on a disk drive, and you request the increase in GB per day.</p>
+(for example in Graph Explorer, if your metric is an amount of B used on a disk drive, and you request the increase in GB per day.
 
-<p>it will automatically convert (and derive) the data).</p>
+it will automatically convert (and derive) the data).
 
-<p>We should aim for standardization of units.  I maintain a table of</p>
+We should aim for standardization of units.  I maintain a table of
 
-<p><a href="https://github.com/vimeo/graph-explorer/wiki/Units-&-Prefixes">standardized units &amp; prefixes</a> which uses SI and IEC as starting point,</p>
+<a href="https://github.com/vimeo/graph-explorer/wiki/Units-&-Prefixes">standardized units & prefixes</a> which uses SI and IEC as starting point,
 
-<p>and extends it with units commonly used in IT.</li></p>
+and extends it with units commonly used in IT.</li>
 
-<p></ul></p>
+</ul>
+
+
+
+
 
 <h3>Further thoughts/comparisons</h3>
 
@@ -360,24 +367,25 @@ that computes a rate per second for metrics with 'unit=B' can yield a metric wit
 
     </ul>
 
-<pre><code>Also, metrics that are summary statistics (i.e. with statsd) will get intrinsic tags like 'stat=median' or 'stat=upper_90'.
+    Also, metrics that are summary statistics (i.e. with statsd) will get intrinsic tags like 'stat=median' or 'stat=upper_90'.
 
-This has three fantastic consequences:
+    This has three fantastic consequences:
 
-&lt;ul&gt;
+    <ul>
 
-&lt;li&gt;aggregation (rollups from higher to lower resolution) knows what to do without configurating aggregation functions, because it can be deduced from the metric itself&lt;/li&gt;
+    <li>aggregation (rollups from higher to lower resolution) knows what to do without configurating aggregation functions, because it can be deduced from the metric itself</li>
 
-&lt;li&gt;renderers that have to render &gt;1 datapoints per pixel, will produce more accurate, relevant graphs because they can deduce what the metric is meant to represent&lt;/li&gt;
+    <li>renderers that have to render >1 datapoints per pixel, will produce more accurate, relevant graphs because they can deduce what the metric is meant to represent</li>
 
-&lt;li&gt;API functions such as &quot;cumulative&quot;, &quot;summarize&quot; and &quot;smartSummarize&quot; don't need to be configured with an explicit aggregation function&lt;/li&gt;
+    <li>API functions such as "cumulative", "summarize" and "smartSummarize" don't need to be configured with an explicit aggregation function</li>
 
-&lt;/ul&gt;
-</code></pre>
+    </ul>
 
-<p></li></p>
+</li>
 
-<p></ul></p>
+</ul>
+
+
 
 <h4>From the Graphite perspective, specifically</h4>
 
@@ -403,6 +411,8 @@ so you'll be limited no matter how much time you spend organising metrics.</li>
 
 </ul>
 
+
+
 <h4>From the OpenTSDB perspective, specifically</h4>
 
 <ul>
@@ -414,6 +424,8 @@ so you'll be limited no matter how much time you spend organising metrics.</li>
 <li>probably more, I'm not very familiar with it</li>
 
 </ul>
+
+
 
 <h4>From the structured_metrics/carbon-tagger perspective, specifically</h4>
 
@@ -429,23 +441,33 @@ so you'll be limited no matter how much time you spend organising metrics.</li>
 
 </ul>
 
+
+
+
+
+
+
+
+
 <h3>Backwards compatibility</h3>
 
 <!-- These changes may seem a little invasive, but it's actually not that bad: TODO is that so?-->
 
-<p><ul></p>
+<ul>
 
-<p><li>Sometimes you merely want the ability to copy a &ldquo;metric id&rdquo; from the app source code, and paste it in a &ldquo;/render/?target=&rdquo; url to see that particular metric.</p>
+<li>Sometimes you merely want the ability to copy a "metric id" from the app source code, and paste it in a "/render/?target=" url to see that particular metric.
 
-<p>You can still do this: copy the intrinsic tags string and you have the id.</li></p>
+You can still do this: copy the intrinsic tags string and you have the id.</li>
 
-<p><li>if you wanted to, you could easily stay compatible with the official graphite protocol:</p>
+<li>if you wanted to, you could easily stay compatible with the official graphite protocol:
 
-<p>for incoming metrics, add a &lsquo;unit=Unknown&rsquo; tag and optionally turn the dots into</p>
+for incoming metrics, add a 'unit=Unknown' tag and optionally turn the dots into
 
-<p>spaces (so that every node becomes a tag), so you can mix old-style and new style metrics in the same system.</p>
+spaces (so that every node becomes a tag), so you can mix old-style and new style metrics in the same system.
 
-<p></li></p>
+</li>
+
+
 
 	</div>
 

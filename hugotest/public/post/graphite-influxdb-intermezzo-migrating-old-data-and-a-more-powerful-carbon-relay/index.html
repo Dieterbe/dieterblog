@@ -123,13 +123,21 @@
 	</header>
 	
 	<div class="entry-content">
-		<h4>Migrating data from whisper into InfluxDB</h4>
+		<!--more-->
 
-<p><i>&ldquo;How do i migrate whisper data to influxdb&rdquo;</i> is a question that comes up regularly, and I&rsquo;ve always replied it should be easy to write a tool</p>
 
-<p>to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<h4>Migrating data from whisper into InfluxDB</h4>
+
+
+
+<i>"How do i migrate whisper data to influxdb"</i> is a question that comes up regularly, and I've always replied it should be easy to write a tool
+
+to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:
+
+
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
@@ -167,19 +175,25 @@ influx_updater &amp;
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-<p></p>
+<p>
 
-<p>It relies on the recently introduced asynchronous inserts feature of <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a> - which commits inserts in batches to improve the speed - and the whisper-fetch tool.</p>
 
-<p><br/></p>
 
-<p>You could probably also write a Go program using the unofficial <a href="https://github.com/kisielk/whisper-go">whisper-go</a> bindings and the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb Go client library</a>.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.</p>
 
-<p><br/>Maybe it&rsquo;s a bug in my code, I didn&rsquo;t test this much, because I didn&rsquo;t need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.</p>
+
+It relies on the recently introduced asynchronous inserts feature of <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a> - which commits inserts in batches to improve the speed - and the whisper-fetch tool.
+
+<br/>
+
+You could probably also write a Go program using the unofficial <a href="https://github.com/kisielk/whisper-go">whisper-go</a> bindings and the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb Go client library</a>.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.
+
+<br/>Maybe it's a bug in my code, I didn't test this much, because I didn't need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.
+
+
 
 <h4>A more powerful carbon-relay-ng</h4>
 
-<p><a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> received a bunch of love and has been a great help in my graphite+influxdb experiments.</p>
+<a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> received a bunch of love and has been a great help in my graphite+influxdb experiments.
 
 <p>
 
@@ -187,7 +201,7 @@ influx_updater &amp;
 
 </p>
 
-<p>Here&rsquo;s what changed:</p>
+Here's what changed:
 
 <ul>
 
@@ -201,27 +215,27 @@ influx_updater &amp;
 
 </ul>
 
-<p>Beside our metrics storage, I also plan to put our anomaly detection (currently playing with <a href="http://hekad.readthedocs.org/en/v0.7.1/">heka</a> and <a href="http://codeascraft.com/2013/06/11/introducing-kale/">kale</a>) and <a href="https://github.com/vimeo/carbon-tagger">carbon-tagger</a> behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.</p>
+Beside our metrics storage, I also plan to put our anomaly detection (currently playing with <a href="http://hekad.readthedocs.org/en/v0.7.1/">heka</a> and <a href="http://codeascraft.com/2013/06/11/introducing-kale/">kale</a>) and <a href="https://github.com/vimeo/carbon-tagger">carbon-tagger</a> behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.
 
-<p><br/></p>
+<br/>
 
-<p><br/></p>
+<br/>
 
-<p>I used to think of carbon-relay-ng as the python carbon-relay but on steroids,</p>
+I used to think of carbon-relay-ng as the python carbon-relay but on steroids,
 
-<p>now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,</p>
+now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,
 
-<p><br/>or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.</p>
+<br/>or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.
 
-<p><br/>I&rsquo;d like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular <a href="http://raftconsensus.github.io/">raft</a> consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.</p>
+<br/>I'd like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular <a href="http://raftconsensus.github.io/">raft</a> consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.
 
-<p>(note: InfluxDB <a href="https://github.com/influxdb/influxdb/pull/859">might introduce such a component</a>, so I&rsquo;m also a bit waiting to see what they come up with)</p>
+(note: InfluxDB <a href="https://github.com/influxdb/influxdb/pull/859">might introduce such a component</a>, so I'm also a bit waiting to see what they come up with)
 
-<p><br/></p>
+<br/>
 
-<p><br/></p>
+<br/>
 
-<p>Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in <a href="http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html">On Graphite, Whisper and InfluxDB</a>.  That said, both should be fairly easy to implement in carbon-relay-ng, and I&rsquo;m willing to assist those who want to contribute it.</p>
+Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in <a href="http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html">On Graphite, Whisper and InfluxDB</a>.  That said, both should be fairly easy to implement in carbon-relay-ng, and I'm willing to assist those who want to contribute it.
 
 	</div>
 

@@ -123,7 +123,7 @@
 	</header>
 	
 	<div class="entry-content">
-		<p>Phew! where to start?  Probably at <a href ="http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively">this blogpost</a>.  It's about making it very easy to work with external encrypted volumes. I'm not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity.  It's an LGPL-licensed program written in C by some guys from Gnome and Sun. You can call it from any script and present a user with a gtk widget such as a password-dialog, filechooser, calendar, ... It has <a href="http://www.linuxmanpages.com/man1/zenity.1.php">many possibilities</a>.<br />
+		<p>Phew! where to start?  Probably at <a href ="http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively">this blogpost</a>.  It's about making it very easy to work with external encrypted volumes. I'm not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity. <!--more--> It's an LGPL-licensed program written in C by some guys from Gnome and Sun. You can call it from any script and present a user with a gtk widget such as a password-dialog, filechooser, calendar, ... It has <a href="http://www.linuxmanpages.com/man1/zenity.1.php">many possibilities</a>.<br />
 
 This is great if you want to run scripts on the terminal or even without a terminal (scripts automatically started by your desktop environment) and need user input.</p>
 
@@ -141,19 +141,19 @@ ssh-add *mykey* < /dev/null<br />
 
 This revealed that there are already some utilities specifically for this purpose!  Let's see...:</p>
 
-<p><pre>&lt;![CDATA[</p>
+<pre><![CDATA[
 
-<p>dieter@dieter-mbp:~$ aptitude search askpass</p>
+dieter@dieter-mbp:~$ aptitude search askpass
 
-<p>p   gtk-led-askpass                                                - GTK+ password dialog suitable for use with ssh-add</p>
+p   gtk-led-askpass                                                - GTK+ password dialog suitable for use with ssh-add                      
 
-<p>p   ssh-askpass                                                    - under X, asks user for a passphrase for ssh-add</p>
+p   ssh-askpass                                                    - under X, asks user for a passphrase for ssh-add                         
 
-<p>p   ssh-askpass-fullscreen                                         - Under Gnome2, asks user for a passphrase for ssh-add</p>
+p   ssh-askpass-fullscreen                                         - Under Gnome2, asks user for a passphrase for ssh-add                    
 
-<p>p   ssh-askpass-gnome                                              - interactive X program to prompt users for a passphrase for ssh-add</p>
+p   ssh-askpass-gnome                                              - interactive X program to prompt users for a passphrase for ssh-add  
 
-<p>]]&gt;</pre><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p></p>
+]]></pre><p>I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D</p>
 
 <p>After installing this you can just put your ssh-add line in the settings panel called "autostarted Applications" from Xfce and for your next session it will show a nice gtk popup to ask for your password and it works like a charm :)<br />
 

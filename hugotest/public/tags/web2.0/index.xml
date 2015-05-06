@@ -231,7 +231,7 @@ Make sure pdclient.php has the executable flag (x).  If the directory is in your
       <guid>http://localhost:1313/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/</guid>
       <description>&lt;p&gt;You probably already heard of &lt;a href=&#34;www.google.com/analytics&#34;&gt;Google Analytics&lt;/a&gt;.  It&#39;s a pretty nice program that (&lt;em&gt;basically&lt;/em&gt;) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;amp;topic=11012&#34;&gt;events that don&#39;t require page requests!&lt;/a&gt;&lt;br /&gt;
 
-Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).&lt;/p&gt;
+Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function &lt;em&gt;urchinTracker()&lt;/em&gt; you just add &lt;em&gt;onClick=&#34;javascript:urchinTracker(&#39;/this-is-something-i-want-to-track&#39;);&#34;&lt;/em&gt; to your hyperlink.&lt;br /&gt;
 
@@ -279,7 +279,7 @@ During these 6 months a page will score very bad in search results, even if it s
       <guid>http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/</guid>
       <description>&lt;p&gt;In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;DAuth&lt;/a&gt; (written by me), &lt;a href=&#34;http://bakery.cakephp.org/articles/view/99&#34;&gt;OthAuth&lt;/a&gt; (written by &lt;a href=&#34;http://www.devmoz.com/blog&#34;&gt;Crazylegs&lt;/a&gt;) and &lt;a href=&#34;http://bakery.cakephp.org/tags/view/auth&#34;&gt;many others&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.   For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.&lt;br /&gt;
+&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.  &lt;!--more--&gt; For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.&lt;br /&gt;
 
 Disclaimer: not everything I&#39;ll say here will be correct, first of all because I&#39;m not able to fully understand every piece of the source code (yet), secondly because the 1.2 api is still changing.&lt;/p&gt;
 
@@ -347,11 +347,11 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Another callback new in 1.2 is &lt;strong&gt;shutdown(&amp;amp;$controller)&lt;/strong&gt;.  Unlike initialize, this one is mentioned on &lt;a href=&#34;http://cake.insertdesignhere.com/posts/view/17&#34;&gt;Nate&amp;rsquo;s blog&lt;/a&gt;.  It removes &amp;lsquo;Auth.redirect&amp;rsquo; from the session when the user is logged in.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Another callback new in 1.2 is &lt;strong&gt;shutdown(&amp;amp;$controller)&lt;/strong&gt;.  Unlike initialize, this one is mentioned on &lt;a href=&#34;http://cake.insertdesignhere.com/posts/view/17&#34;&gt;Nate&#39;s blog&lt;/a&gt;.  It removes &#39;Auth.redirect&#39; from the session when the user is logged in.&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 
@@ -370,6 +370,8 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
 
 &lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+
+&lt;!--more--&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;This years edition&lt;/a&gt; took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)&lt;/p&gt;
 
@@ -501,9 +503,9 @@ However, due to my lack of time I decided to use the excellent &lt;a href=&#34;h
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Now let&#39;s get started ;-)&lt;/p&gt;
 </description>

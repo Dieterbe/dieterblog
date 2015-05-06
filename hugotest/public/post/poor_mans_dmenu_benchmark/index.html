@@ -125,9 +125,11 @@
 	<div class="entry-content">
 		<p>I wanted to know how responsive <a href="http://tools.suckless.org/dmenu">dmenu</a> and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).</p>
 
+<!--more-->
+
 <p>generate file:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #408080; font-style: italic">#!/bin/bash</span>
 
@@ -155,9 +157,9 @@
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-<p>measure speed:</p></p>
+<p>measure speed:</p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;!<span style="color: #666666">[</span>CDATA<span style="color: #666666">[</span>
 
 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Plain awk &#39;{print \$3}&#39;:&quot;</span>
 
@@ -189,83 +191,93 @@ awk <span style="color: #BA2121">&#39;{print $3}&#39;</span> dummy_history_file 
 
 <span style="color: #666666">]]</span>&gt;
 </pre></div>
-<p></p>
+<p>
 
-<p>Results.<br /></p>
+Results.<br />
 
-<p>I ran the test twice about an half hour after generating the file, so in the first run, the first awk call may have been affected by a no longer complete Linux block cache.<br /></p>
+I ran the test twice about an half hour after generating the file, so in the first run, the first awk call may have been affected by a no longer complete Linux block cache.<br />
 
-<p>(I also edited the output format a bit)<br /></p>
+(I also edited the output format a bit)<br />
 
-<p>Run 1:</p></p>
+Run 1:</p>
 
-<p><pre></p>
+<pre>
 
-<p>Plain awk &lsquo;{print $3}&rsquo;:</p>
+Plain awk '{print $3}':
 
-<p>real    0m1.253s</p>
+real	0m1.253s
 
-<p>user    0m0.907s</p>
+user	0m0.907s
 
-<p>sys 0m0.143s</p>
+sys	0m0.143s
 
-<p>awk + sort:</p>
 
-<p>real    0m3.696s</p>
 
-<p>user    0m1.887s</p>
+awk + sort:
 
-<p>sys 0m0.520s</p>
+real	0m3.696s
 
-<p>awk + sort + uniq:</p>
+user	0m1.887s
 
-<p>real    0m15.768s</p>
+sys	0m0.520s
 
-<p>user    0m12.233s</p>
 
-<p>sys 0m0.820s</p>
 
-<p>Plain dmenu:</p>
+awk + sort + uniq:
 
-<p>awked into dmenu:</p>
+real	0m15.768s
 
-<p>awk + sort + uniq into dmenu:</p>
+user	0m12.233s
 
-<p></pre><p>Run 2</p></p>
+sys	0m0.820s
 
-<p><pre></p>
 
-<p>Plain awk &lsquo;{print $3}&rsquo;:</p>
 
-<p>real    0m1.223s</p>
+Plain dmenu:
 
-<p>user    0m0.923s</p>
+awked into dmenu:
 
-<p>sys 0m0.107s</p>
+awk + sort + uniq into dmenu:
 
-<p>awk + sort:</p>
+</pre><p>Run 2</p>
 
-<p>real    0m2.799s</p>
+<pre>
 
-<p>user    0m1.910s</p>
+Plain awk '{print $3}':
 
-<p>sys 0m0.553s</p>
+real	0m1.223s
 
-<p>awk + sort + uniq:</p>
+user	0m0.923s
 
-<p>real    0m16.387s</p>
+sys	0m0.107s
 
-<p>user    0m12.019s</p>
 
-<p>sys 0m0.787s</p>
 
-<p>Plain dmenu:</p>
+awk + sort:
 
-<p>awked into dmenu:</p>
+real	0m2.799s
 
-<p>awk + sort + uniq into dmenu:</p>
+user	0m1.910s
 
-<p></pre><p>Not too bad.  It&rsquo;s especially uniq who seems to cause a lot of slowdown.  (in this dummy test file, are entries are unique. If there were lots of dupes, the results would probably be different, but I suspect that uniq always needs some time to do its work, dupes or not).  The real bottleneck seems to be raw cpu power.  Not storage bandwidth at all since Linux caches it.  If uncached, I estimate the sequential read would take 1.5 seconds or so. (about 30MB/s on common hard disks)</p></p>
+sys	0m0.553s
+
+
+
+awk + sort + uniq:
+
+real	0m16.387s
+
+user	0m12.019s
+
+sys	0m0.787s
+
+Plain dmenu:
+
+awked into dmenu:
+
+awk + sort + uniq into dmenu:
+
+</pre><p>Not too bad.  It's especially uniq who seems to cause a lot of slowdown.  (in this dummy test file, are entries are unique. If there were lots of dupes, the results would probably be different, but I suspect that uniq always needs some time to do its work, dupes or not).  The real bottleneck seems to be raw cpu power.  Not storage bandwidth at all since Linux caches it.  If uncached, I estimate the sequential read would take 1.5 seconds or so. (about 30MB/s on common hard disks)</p>
 
 <p>Once the stuff gets piped into dmenu, there is a little lag but it's reasonably responsive imho.<br />
 

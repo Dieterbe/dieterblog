@@ -15,19 +15,21 @@
       <pubDate>Tue, 30 Sep 2014 08:37:48 -0400</pubDate>
       
       <guid>http://localhost:1313/post/a-real-whisper-to-influxdb-program/</guid>
-      <description>&lt;p&gt;The &lt;a href=&#34;http://localhost:1313/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;whisper-to-influxdb migration script&lt;/a&gt; I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.&lt;/p&gt;
+      <description>The &lt;a href=&#34;http://localhost:1313/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;whisper-to-influxdb migration script&lt;/a&gt; I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.
 
-&lt;p&gt;I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.&lt;/p&gt;
+I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.
 
-&lt;p&gt;That&amp;rsquo;s what I did now, it&amp;rsquo;s at &lt;a href=&#34;https://github.com/vimeo/whisper-to-influxdb&#34;&gt;github.com/vimeo/whisper-to-influxdb&lt;/a&gt;.&lt;/p&gt;
+That&#39;s what I did now, it&#39;s at &lt;a href=&#34;https://github.com/vimeo/whisper-to-influxdb&#34;&gt;github.com/vimeo/whisper-to-influxdb&lt;/a&gt;.
 
-&lt;p&gt;It uses configurable amounts of workers for both whisper fetches and InfluxDB commits,&lt;/p&gt;
+It uses configurable amounts of workers for both whisper fetches and InfluxDB commits,
 
-&lt;p&gt;but it&amp;rsquo;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.&lt;/p&gt;
+but it&#39;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.
 
-&lt;p&gt;My series, and hence my commits have at most 60k records, and presumably InfluxDB could handle a lot more per commit, so we might leverage better batching later.  Either way, this way I can consistently commit about 100k series every 2.5 hours (or 10/s), where each serie has a few thousand points on average, with peaks up to 60k points. I usually play with 1 to 30 InfluxDB workers.&lt;/p&gt;
+My series, and hence my commits have at most 60k records, and presumably InfluxDB could handle a lot more per commit, so we might leverage better batching later.  Either way, this way I can consistently commit about 100k series every 2.5 hours (or 10/s), where each serie has a few thousand points on average, with peaks up to 60k points. I usually play with 1 to 30 InfluxDB workers. 
 
-&lt;p&gt;Even though I&amp;rsquo;ve hit a few &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/985&#34;&gt;InfluxDB&lt;/a&gt; &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/970&#34;&gt;issues&lt;/a&gt;, this tool has enabled me to fill in gaps after outages and to do a restore from whisper after a complete database wipe.&lt;/p&gt;
+Even though I&#39;ve hit a few &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/985&#34;&gt;InfluxDB&lt;/a&gt; &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/970&#34;&gt;issues&lt;/a&gt;, this tool has enabled me to fill in gaps after outages and to do a restore from whisper after a complete database wipe.
+
+
 </description>
     </item>
     
@@ -37,15 +39,17 @@
       <pubDate>Wed, 24 Sep 2014 07:56:01 -0400</pubDate>
       
       <guid>http://localhost:1313/post/influxdb-as-graphite-backend-part2/</guid>
-      <description>&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+      <description>&lt;br&gt;
 
-&lt;p&gt;&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.&lt;/p&gt;
+&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;The &lt;i&gt;Graphite + InfluxDB&lt;/i&gt; series continues.&lt;/p&gt;
+
+&lt;p&gt;
+
+The &lt;i&gt;Graphite + InfluxDB&lt;/i&gt; series continues.
 
 &lt;ul&gt;
 
@@ -63,6 +67,10 @@ Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graph
 
 &lt;/ul&gt;
 
+&lt;!--more--&gt;
+
+
+
 &lt;h4&gt;Progress made&lt;/h4&gt;
 
 &lt;ul&gt;
@@ -79,23 +87,27 @@ Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graph
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;&lt;a href=&#34;http://graphite-api.readthedocs.org&#34;&gt;graphite-api&lt;/a&gt; received various bug fixes and support for templating, statsd instrumentation and caching.&lt;/p&gt;
+&lt;li&gt;&lt;a href=&#34;http://graphite-api.readthedocs.org&#34;&gt;graphite-api&lt;/a&gt; received various bug fixes and support for templating, statsd instrumentation and caching.
 
-&lt;p&gt;&lt;br/&gt;Much of this was driven by graphite-influxdb: the caching allows us to cache metadata and the statsd integration gives us insights into the performance of the steps it goes through of building a graph (getting metadata from InfluxDB, querying InfluxDB, interacting with cache, post processing data, etc).&lt;/li&gt;&lt;/p&gt;
+&lt;br/&gt;Much of this was driven by graphite-influxdb: the caching allows us to cache metadata and the statsd integration gives us insights into the performance of the steps it goes through of building a graph (getting metadata from InfluxDB, querying InfluxDB, interacting with cache, post processing data, etc).&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;the progress on InfluxDB and graphite-api in turn enabled &lt;a href=&#34;https://github.com/vimeo/graphite-influxdb&#34;&gt;graphite-influxdb&lt;/a&gt; to become faster and simpler (note: graphite-influxdb requires InfluxDB 0.8).  Furthermore you can now configure series resolutions (but different retentions per serie is on the roadmap, see &lt;i&gt;State of affairs and what&amp;rsquo;s coming&lt;/i&gt;), and of course it also got a bunch of bugfixes.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;the progress on InfluxDB and graphite-api in turn enabled &lt;a href=&#34;https://github.com/vimeo/graphite-influxdb&#34;&gt;graphite-influxdb&lt;/a&gt; to become faster and simpler (note: graphite-influxdb requires InfluxDB 0.8).  Furthermore you can now configure series resolutions (but different retentions per serie is on the roadmap, see &lt;i&gt;State of affairs and what&#39;s coming&lt;/i&gt;), and of course it also got a bunch of bugfixes.&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Because of all these improvements, all involved components are now ready for serious use.&lt;/p&gt;
+Because of all these improvements, all involved components are now ready for serious use.
+
+
 
 &lt;h4&gt;Putting it all together, with docker&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://www.docker.com/&#34;&gt;Docker&lt;/a&gt; probably needs no introduction, it&amp;rsquo;s a nifty tool to build an environment with given software installed, and allows to easily deploy it and run it in isolation.&lt;/p&gt;
+&lt;a href=&#34;https://www.docker.com/&#34;&gt;Docker&lt;/a&gt; probably needs no introduction, it&#39;s a nifty tool to build an environment with given software installed, and allows to easily deploy it and run it in isolation.
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/vimeo/graphite-api-influxdb-docker&#34;&gt;graphite-api-influxdb-docker&lt;/a&gt; is a very creatively named project that generates the - also very creatively named - docker image &lt;a href=&#34;https://registry.hub.docker.com/u/vimeo/graphite-api-influxdb/&#34;&gt;graphite-api-influxdb&lt;/a&gt;, which contains graphite-api and graphite-influxdb, making it easy to hook in a customized configuration and get it up and running quickly.  This is the recommended way to set this up, and this is what we run in production.&lt;/p&gt;
+&lt;a href=&#34;https://github.com/vimeo/graphite-api-influxdb-docker&#34;&gt;graphite-api-influxdb-docker&lt;/a&gt; is a very creatively named project that generates the - also very creatively named - docker image &lt;a href=&#34;https://registry.hub.docker.com/u/vimeo/graphite-api-influxdb/&#34;&gt;graphite-api-influxdb&lt;/a&gt;, which contains graphite-api and graphite-influxdb, making it easy to hook in a customized configuration and get it up and running quickly.  This is the recommended way to set this up, and this is what we run in production.
+
+
 
 &lt;h4&gt;The setup&lt;/h4&gt;
 
@@ -147,17 +159,19 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;As you can tell, on both machines RAM is vastly over provisioned, and they have lots of cpu available (the difference in cores should be negligible), but the difference in RAID level is important to note: RAID 5 comes with a write penalty. Even though the whisper machine has more, and faster disks, it probably has a disadvantage for writes.  Maybe.  Haven&amp;rsquo;t done raid stuff in a long time, and I haven&amp;rsquo;t it measured it out.&lt;/p&gt;
+As you can tell, on both machines RAM is vastly over provisioned, and they have lots of cpu available (the difference in cores should be negligible), but the difference in RAID level is important to note: RAID 5 comes with a write penalty. Even though the whisper machine has more, and faster disks, it probably has a disadvantage for writes.  Maybe.  Haven&#39;t done raid stuff in a long time, and I haven&#39;t it measured it out.
 
-&lt;p&gt;&lt;br/&gt;&lt;b&gt;Clearly you&amp;rsquo;ll need to take the results with a grain of salt, as unfortunately I do not have 2 systems available with the same configuration and their baseline (raw) performance is unknown.&lt;/b&gt;.&lt;/p&gt;
+&lt;br/&gt;&lt;b&gt;Clearly you&#39;ll need to take the results with a grain of salt, as unfortunately I do not have 2 systems available with the same configuration and their baseline (raw) performance is unknown.&lt;/b&gt;.
 
-&lt;p&gt;&lt;br/&gt;Note: no InfluxDB clustering, see &lt;i&gt;State of affairs and what&amp;rsquo;s coming&lt;/i&gt;.&lt;/p&gt;
+&lt;br/&gt;Note: no InfluxDB clustering, see &lt;i&gt;State of affairs and what&#39;s coming&lt;/i&gt;.
+
+
 
 &lt;h4&gt;The empirical validation &amp;amp; migration&lt;/h4&gt;
 
-&lt;p&gt;Once everything was setup and I could confidently send 100% of traffic to InfluxDB via carbon-relay-ng, it was trivial to run our dashboards with a flag deciding which server to go to.&lt;/p&gt;
+Once everything was setup and I could confidently send 100% of traffic to InfluxDB via carbon-relay-ng, it was trivial to run our dashboards with a flag deciding which server to go to.
 
-&lt;p&gt;This way I have literally been running our graphite dashboards next to each other, allowing us to compare both stacks on:&lt;/p&gt;
+This way I have literally been running our graphite dashboards next to each other, allowing us to compare both stacks on:
 
 &lt;ul&gt;
 
@@ -167,39 +181,45 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;Soon enough my colleagues started asking to make graphite-api + InfluxDB the default, as it was much faster in all common cases.  I flipped the switch and everybody has been happy.&lt;/p&gt;
+Soon enough my colleagues started asking to make graphite-api + InfluxDB the default, as it was much faster in all common cases.  I flipped the switch and everybody has been happy.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;When loading a page with many dashboards, the InfluxDB machine will occasionally spike up to 500% cpu, though I rarely get to see any iowait (!), even after syncing the block cache (i just realized it&amp;rsquo;ll probably still use the cache for reads after sync?)&lt;/p&gt;
+When loading a page with many dashboards, the InfluxDB machine will occasionally spike up to 500% cpu, though I rarely get to see any iowait (!), even after syncing the block cache (i just realized it&#39;ll probably still use the cache for reads after sync?)
 
-&lt;p&gt;&lt;br/&gt;The carbon/whisper machine, on the other hand, is always fighting iowait, which could be caused by the raid 5 write amplification but the random io due to the whisper format probably has more to do with it.  Via the MAX_UPDATES_PER_SECOND I&amp;rsquo;ve tried to linearize writes, with mixed success.  But I&amp;rsquo;ve never gone to deep into it.  So basically &lt;b&gt;comparing write performance would be unfair in these circumstances, I am only comparing reads in these tests&lt;/b&gt;.  Despite the different storage setups, the Linux block cache should make things fair for reads.   Whisper&amp;rsquo;s iowait will handicap the reads, but I always did successive runs with fully loaded PNGs to make sure the block cache was warm for reads.&lt;/p&gt;
+&lt;br/&gt;The carbon/whisper machine, on the other hand, is always fighting iowait, which could be caused by the raid 5 write amplification but the random io due to the whisper format probably has more to do with it.  Via the MAX_UPDATES_PER_SECOND I&#39;ve tried to linearize writes, with mixed success.  But I&#39;ve never gone to deep into it.  So basically &lt;b&gt;comparing write performance would be unfair in these circumstances, I am only comparing reads in these tests&lt;/b&gt;.  Despite the different storage setups, the Linux block cache should make things fair for reads.   Whisper&#39;s iowait will handicap the reads, but I always did successive runs with fully loaded PNGs to make sure the block cache was warm for reads.
+
+
 
 &lt;h4&gt;A &#34;slightly more professional&#34; benchmark&lt;/h4&gt;
 
-&lt;p&gt;I could have stopped here, but the validation above was not very scientific.  I wanted to do a somewhat more formal benchmark, to measure read speeds (though I did not have much time so it had to be quick and easy).&lt;/p&gt;
+I could have stopped here, but the validation above was not very scientific.  I wanted to do a somewhat more formal benchmark, to measure read speeds (though I did not have much time so it had to be quick and easy).
 
-&lt;p&gt;&lt;br/&gt;I wanted to compare InfluxDB vs whisper, and specifically how performance scales as you play with parameters such as number of series, points per series, and time range fetched (i.e. amount of points).  I &lt;a href=&#34;https://groups.google.com/forum/#!topic/influxdb/0VeUQCqzgVg&#34;&gt;posted the benchmark on the InfluxDB mailing list&lt;/a&gt;.  Look there for all information. I just want to reiterate the conclusion here:  I was surprised.  Because of the results above, I had assumed that InfluxDB would perform reads noticeably quicker than whisper but this is not the case.  (maybe because whisper reads are nicely sequential - it&amp;rsquo;s mostly writes that suffer from the whisper format)&lt;/p&gt;
+&lt;br/&gt;I wanted to compare InfluxDB vs whisper, and specifically how performance scales as you play with parameters such as number of series, points per series, and time range fetched (i.e. amount of points).  I &lt;a href=&#34;https://groups.google.com/forum/#!topic/influxdb/0VeUQCqzgVg&#34;&gt;posted the benchmark on the InfluxDB mailing list&lt;/a&gt;.  Look there for all information. I just want to reiterate the conclusion here:  I was surprised.  Because of the results above, I had assumed that InfluxDB would perform reads noticeably quicker than whisper but this is not the case.  (maybe because whisper reads are nicely sequential - it&#39;s mostly writes that suffer from the whisper format)
 
-&lt;p&gt;&lt;br/&gt;This very much contrasts my earlier findings where the graphite-api+InfluxDB powered dashboards clearly take the lead.  I have yet to figure out why this is.  Maybe something to do with the performance of graphite-web vs graphite-api itself, gunicorn vs apache, worker configuration, or maybe InfluxDB only starts outperforming whisper as concurrency increases.  Some more investigation is definitely needed!&lt;/p&gt;
+&lt;br/&gt;This very much contrasts my earlier findings where the graphite-api+InfluxDB powered dashboards clearly take the lead.  I have yet to figure out why this is.  Maybe something to do with the performance of graphite-web vs graphite-api itself, gunicorn vs apache, worker configuration, or maybe InfluxDB only starts outperforming whisper as concurrency increases.  Some more investigation is definitely needed!
+
+
 
 &lt;h4&gt;Future benchmarks&lt;/h4&gt;
 
-&lt;p&gt;The simple benchmark above was very simple to execute, as it only requires influx-cli and whisper-fetch (so you can easily check for yourself), but clearly there is a need to test more realistic scenarios with concurrent reads, and doing some write benchmarks would be nice too.&lt;/p&gt;
+The simple benchmark above was very simple to execute, as it only requires influx-cli and whisper-fetch (so you can easily check for yourself), but clearly there is a need to test more realistic scenarios with concurrent reads, and doing some write benchmarks would be nice too.
 
-&lt;p&gt;&lt;br/&gt;We should also look into cpu and memory usage.  I have had the luxury of being able to completely ignore memory usage, but others seem to notice excessive InfluxDB memory usage.&lt;/p&gt;
+&lt;br/&gt;We should also look into cpu and memory usage.  I have had the luxury of being able to completely ignore memory usage, but others seem to notice excessive InfluxDB memory usage.
 
-&lt;p&gt;&lt;br/&gt;conclusion: many tests and benchmarks should happen, but I don&amp;rsquo;t really have time to conduct them.  Hopefully other people in the community will take this on.&lt;/p&gt;
+&lt;br/&gt;conclusion: many tests and benchmarks should happen, but I don&#39;t really have time to conduct them.  Hopefully other people in the community will take this on.
+
+
 
 &lt;h4&gt;Disk space efficiency&lt;/h4&gt;
 
-&lt;p&gt;Last time I checked, using LevelDB I was pretty close to 24B per record (which makes sense because time, seq_no and value are all 64bit values, and each record has those 3 fields).  (this was with snappy compression enabled, so it didn&amp;rsquo;t seem to give much benefit).&lt;/p&gt;
+Last time I checked, using LevelDB I was pretty close to 24B per record (which makes sense because time, seq_no and value are all 64bit values, and each record has those 3 fields).  (this was with snappy compression enabled, so it didn&#39;t seem to give much benefit).
 
-&lt;p&gt;&lt;br/&gt;Whisper seems to consume 12 Bytes per record - a 32bit timestamp and a 64bit float value - making it considerably more storage efficient than InfluxDB/levelDB for now.&lt;/p&gt;
+&lt;br/&gt;Whisper seems to consume 12 Bytes per record - a 32bit timestamp and a 64bit float value - making it considerably more storage efficient than InfluxDB/levelDB for now.
 
-&lt;p&gt;&lt;br/&gt;Some notes on this though:&lt;/p&gt;
+&lt;br/&gt;Some notes on this though:
 
 &lt;ul&gt;
 
@@ -215,11 +235,15 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;It would be great if somebody with more Ceres experience could chip in here, as - in the context of space efficiency - it looks like a neat little format.&lt;/p&gt;
+It would be great if somebody with more Ceres experience could chip in here, as - in the context of space efficiency - it looks like a neat little format.
 
-&lt;p&gt;Also, I&amp;rsquo;m probably not making proper use of the compression features that InfluxDB&amp;rsquo;s storage engines support.  This also requires some more looking into.&lt;/p&gt;
+Also, I&#39;m probably not making proper use of the compression features that InfluxDB&#39;s storage engines support.  This also requires some more looking into.
+
+
+
+
 
 &lt;h4&gt;State of affairs and what&#39;s coming&lt;/h4&gt;
 
@@ -237,28 +261,27 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;li&gt;With the 0.8 release out the door, the shard spaces/rollups/retention intervals feature will start stabilizing, so we can start supporting multiple retention intervals per metric&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;With the 0.8 release out the door, the shard spaces/rollups/retention intervals feature will start stabilizing, so we can start supporting multiple retention intervals per metric&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Because InfluxDB clustering is &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/903&#34;&gt;undergoing major changes&lt;/a&gt;, and because clustering is not a high priority for me, I haven&amp;rsquo;t needed to worry about this.  I&amp;rsquo;ll probably only start looking at clustering somewhere in 2015 because I have more pressing issues.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Because InfluxDB clustering is &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/903&#34;&gt;undergoing major changes&lt;/a&gt;, and because clustering is not a high priority for me, I haven&#39;t needed to worry about this.  I&#39;ll probably only start looking at clustering somewhere in 2015 because I have more pressing issues.&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Once the new clustering system and the storage subsystem have matured (sounds like a v1.0 ~ v1.2 to me) we&amp;rsquo;ll get more speed improvements and robustness.  Most of the integration work is done, it&amp;rsquo;s just a matter of doing smaller improvements, bug fixes and waiting for InfluxDB to become better.  Maintaining this stack aside, I personally will start focusing more on:&lt;/p&gt;
+&lt;li&gt;Once the new clustering system and the storage subsystem have matured (sounds like a v1.0 ~ v1.2 to me) we&#39;ll get more speed improvements and robustness.  Most of the integration work is done, it&#39;s just a matter of doing smaller improvements, bug fixes and waiting for InfluxDB to become better.  Maintaining this stack aside, I personally will start focusing more on:
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;ul&amp;gt;
+    &lt;ul&gt;
 
-&amp;lt;li&amp;gt;per-second resolution in our data feeds, and potentially storage&amp;lt;/li&amp;gt;
+    &lt;li&gt;per-second resolution in our data feeds, and potentially storage&lt;/li&gt;
 
-&amp;lt;li&amp;gt;realtime (but basic) anomaly detection, realtime graphs for some key timeseries.  Adrian Cockcroft had an inspirational piece in his &amp;lt;a href=&amp;quot;https://vimeo.com/95064249&amp;quot;&amp;gt;Monitorama keynote&amp;lt;/a&amp;gt; about how alerts from timeseries should trigger within seconds.&amp;lt;/li&amp;gt;
+    &lt;li&gt;realtime (but basic) anomaly detection, realtime graphs for some key timeseries.  Adrian Cockcroft had an inspirational piece in his &lt;a href=&#34;https://vimeo.com/95064249&#34;&gt;Monitorama keynote&lt;/a&gt; about how alerts from timeseries should trigger within seconds.&lt;/li&gt;
 
-&amp;lt;li&amp;gt;Mozilla&#39;s awesome &amp;lt;a href=&amp;quot;http://hekad.readthedocs.org&amp;quot;&amp;gt;heka&amp;lt;/a&amp;gt; project (this &amp;lt;a href=&amp;quot;https://vimeo.com/98689689&amp;quot;&amp;gt;heka video&amp;lt;/a&amp;gt; is great), which should help a lot with the above.  Also looking at &amp;lt;a href=&amp;quot;http://codeascraft.com/2013/06/11/introducing-kale/&amp;quot;&amp;gt;Etsy&#39;s kale stack&amp;lt;/a&amp;gt; for anomaly detection&amp;lt;/li&amp;gt;
+    &lt;li&gt;Mozilla&#39;s awesome &lt;a href=&#34;http://hekad.readthedocs.org&#34;&gt;heka&lt;/a&gt; project (this &lt;a href=&#34;https://vimeo.com/98689689&#34;&gt;heka video&lt;/a&gt; is great), which should help a lot with the above.  Also looking at &lt;a href=&#34;http://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;Etsy&#39;s kale stack&lt;/a&gt; for anomaly detection&lt;/li&gt;
 
-&amp;lt;li&amp;gt;metrics 2.0 and making sure metrics 2.0 works well with InfluxDB.  Up to now I find the series / columns as a data model too limiting and arbitrary, it could be so much more powerful, ditto for the query language.&amp;lt;/li&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;li&gt;metrics 2.0 and making sure metrics 2.0 works well with InfluxDB.  Up to now I find the series / columns as a data model too limiting and arbitrary, it could be so much more powerful, ditto for the query language.&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Can we do anything else to make InfluxDB (+graphite) faster? Yes!&lt;/p&gt;
+&lt;li&gt;Can we do anything else to make InfluxDB (+graphite) faster? Yes!
 
 &lt;ul&gt;
 
@@ -270,9 +293,9 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;li&gt;Another thing to keep in mind when switching to graphite-api + InfluxDB: you loose the graphite composer.  I have a few people relying on this, so I can either patch it to talk to graphite-api (meh), separate it out (meh) or replace it with a nicer dashboard like tessera, grafana or descartes.  (or Graph-Explorer, but it can be a bit too much of a paradigm shift).&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Another thing to keep in mind when switching to graphite-api + InfluxDB: you loose the graphite composer.  I have a few people relying on this, so I can either patch it to talk to graphite-api (meh), separate it out (meh) or replace it with a nicer dashboard like tessera, grafana or descartes.  (or Graph-Explorer, but it can be a bit too much of a paradigm shift).&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;some more InfluxDB stuff I&amp;rsquo;m looking forward to:&lt;/p&gt;
+&lt;li&gt;some more InfluxDB stuff I&#39;m looking forward to:
 
 &lt;ul&gt;
 
@@ -284,37 +307,41 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Tracking exceptions in graphite-api is &lt;a href=&#34;https://github.com/brutasse/graphite-api/search?q=exception&amp;type=Issues&amp;utf8=%E2%9C%93&#34;&gt;much harder than it should be&lt;/a&gt;.  Currently there&amp;rsquo;s no way to display exceptions to the user (in the http response) or to even log them.  So sometimes you&amp;rsquo;ll get http 500 responses and don&amp;rsquo;t know why.  You can use the &lt;a href=&#34;http://graphite-api.readthedocs.org/en/latest/configuration.html#extra-sections&#34;&gt;sentry integration&lt;/a&gt; which works all right, but is clunky.  Hopefully this will be addressed soon.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Tracking exceptions in graphite-api is &lt;a href=&#34;https://github.com/brutasse/graphite-api/search?q=exception&amp;type=Issues&amp;utf8=%E2%9C%93&#34;&gt;much harder than it should be&lt;/a&gt;.  Currently there&#39;s no way to display exceptions to the user (in the http response) or to even log them.  So sometimes you&#39;ll get http 500 responses and don&#39;t know why.  You can use the &lt;a href=&#34;http://graphite-api.readthedocs.org/en/latest/configuration.html#extra-sections&#34;&gt;sentry integration&lt;/a&gt; which works all right, but is clunky.  Hopefully this will be addressed soon.&lt;/li&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
+
+
 
 &lt;h4&gt;Conclusion&lt;/h4&gt;
 
-&lt;p&gt;The graphite-influxdb stack works and is ready for general consumption.  It&amp;rsquo;s easy to install and operate, and performs well.&lt;/p&gt;
+The graphite-influxdb stack works and is ready for general consumption.  It&#39;s easy to install and operate, and performs well.
 
-&lt;p&gt;It is expected that InfluxDB will over time mature and ultimately meet all my &lt;a href=&#34;http://localhost:1313/on-graphite-whisper-and-influxdb.html&#34;&gt;requirements of the ideal backend&lt;/a&gt;.  It definitely has a long way to go.  More benchmarks and tests are needed.  Keep in mind that we&amp;rsquo;re not doing large volumes of metrics. For small/medium shops this solution should work well, but on larger scales you will definitely run into issues.  You might conclude that InfluxDB is not for you (yet) (there are alternative projects, after all).&lt;/p&gt;
+It is expected that InfluxDB will over time mature and ultimately meet all my &lt;a href=&#34;http://localhost:1313/on-graphite-whisper-and-influxdb.html&#34;&gt;requirements of the ideal backend&lt;/a&gt;.  It definitely has a long way to go.  More benchmarks and tests are needed.  Keep in mind that we&#39;re not doing large volumes of metrics. For small/medium shops this solution should work well, but on larger scales you will definitely run into issues.  You might conclude that InfluxDB is not for you (yet) (there are alternative projects, after all).
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Finally, a closing thought:&lt;/p&gt;
+Finally, a closing thought:
 
-&lt;p&gt;&lt;br/&gt;&lt;i&gt;Having graphs and dashboards that look nice and load fast is a good thing to have, but keep in mind that graphs and dashboards should be a last resort.  It&amp;rsquo;s a solution if all else fails.  The fewer graphs you need, the better you&amp;rsquo;re doing.&lt;/p&gt;
+&lt;br/&gt;&lt;i&gt;Having graphs and dashboards that look nice and load fast is a good thing to have, but keep in mind that graphs and dashboards should be a last resort.  It&#39;s a solution if all else fails.  The fewer graphs you need, the better you&#39;re doing.
 
-&lt;p&gt;&lt;br/&gt;How can you avoid needing graphs?  Automatic alerting on your data.&lt;/p&gt;
+&lt;br/&gt;How can you avoid needing graphs?  Automatic alerting on your data.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;I see graphs as a temporary measure: they provide headroom while you develop an understanding of the operational behavior of your infrastructure, conceive a model of it, and implement the alerting you need to do troubleshooting and capacity planning.  Of course, this process consumes more resources (time and otherwise), and these expenses are not always justifiable, but I think this is the ideal case we should be working towards.&lt;/i&gt;&lt;/p&gt;
+&lt;br/&gt;I see graphs as a temporary measure: they provide headroom while you develop an understanding of the operational behavior of your infrastructure, conceive a model of it, and implement the alerting you need to do troubleshooting and capacity planning.  Of course, this process consumes more resources (time and otherwise), and these expenses are not always justifiable, but I think this is the ideal case we should be working towards.&lt;/i&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;Either way, good luck and have fun!&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+Either way, good luck and have fun!
 </description>
     </item>
     
@@ -324,13 +351,21 @@ MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
       <pubDate>Sat, 20 Sep 2014 15:18:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</guid>
-      <description>&lt;h4&gt;Migrating data from whisper into InfluxDB&lt;/h4&gt;
+      <description>&lt;!--more--&gt;
 
-&lt;p&gt;&lt;i&gt;&amp;ldquo;How do i migrate whisper data to influxdb&amp;rdquo;&lt;/i&gt; is a question that comes up regularly, and I&amp;rsquo;ve always replied it should be easy to write a tool&lt;/p&gt;
 
-&lt;p&gt;to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;h4&gt;Migrating data from whisper into InfluxDB&lt;/h4&gt;
+
+
+
+&lt;i&gt;&#34;How do i migrate whisper data to influxdb&#34;&lt;/i&gt; is a question that comes up regularly, and I&#39;ve always replied it should be easy to write a tool
+
+to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:
+
+
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
@@ -368,19 +403,25 @@ influx_updater &amp;amp;
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;
 
-&lt;p&gt;It relies on the recently introduced asynchronous inserts feature of &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt; - which commits inserts in batches to improve the speed - and the whisper-fetch tool.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;You could probably also write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;Maybe it&amp;rsquo;s a bug in my code, I didn&amp;rsquo;t test this much, because I didn&amp;rsquo;t need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.&lt;/p&gt;
+
+It relies on the recently introduced asynchronous inserts feature of &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt; - which commits inserts in batches to improve the speed - and the whisper-fetch tool.
+
+&lt;br/&gt;
+
+You could probably also write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.
+
+&lt;br/&gt;Maybe it&#39;s a bug in my code, I didn&#39;t test this much, because I didn&#39;t need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.
+
+
 
 &lt;h4&gt;A more powerful carbon-relay-ng&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt; received a bunch of love and has been a great help in my graphite+influxdb experiments.&lt;/p&gt;
+&lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt; received a bunch of love and has been a great help in my graphite+influxdb experiments.
 
 &lt;p&gt;
 
@@ -388,7 +429,7 @@ influx_updater &amp;amp;
 
 &lt;/p&gt;
 
-&lt;p&gt;Here&amp;rsquo;s what changed:&lt;/p&gt;
+Here&#39;s what changed:
 
 &lt;ul&gt;
 
@@ -402,27 +443,27 @@ influx_updater &amp;amp;
 
 &lt;/ul&gt;
 
-&lt;p&gt;Beside our metrics storage, I also plan to put our anomaly detection (currently playing with &lt;a href=&#34;http://hekad.readthedocs.org/en/v0.7.1/&#34;&gt;heka&lt;/a&gt; and &lt;a href=&#34;http://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;kale&lt;/a&gt;) and &lt;a href=&#34;https://github.com/vimeo/carbon-tagger&#34;&gt;carbon-tagger&lt;/a&gt; behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.&lt;/p&gt;
+Beside our metrics storage, I also plan to put our anomaly detection (currently playing with &lt;a href=&#34;http://hekad.readthedocs.org/en/v0.7.1/&#34;&gt;heka&lt;/a&gt; and &lt;a href=&#34;http://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;kale&lt;/a&gt;) and &lt;a href=&#34;https://github.com/vimeo/carbon-tagger&#34;&gt;carbon-tagger&lt;/a&gt; behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;I used to think of carbon-relay-ng as the python carbon-relay but on steroids,&lt;/p&gt;
+I used to think of carbon-relay-ng as the python carbon-relay but on steroids,
 
-&lt;p&gt;now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,&lt;/p&gt;
+now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,
 
-&lt;p&gt;&lt;br/&gt;or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.&lt;/p&gt;
+&lt;br/&gt;or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.
 
-&lt;p&gt;&lt;br/&gt;I&amp;rsquo;d like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular &lt;a href=&#34;http://raftconsensus.github.io/&#34;&gt;raft&lt;/a&gt; consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.&lt;/p&gt;
+&lt;br/&gt;I&#39;d like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular &lt;a href=&#34;http://raftconsensus.github.io/&#34;&gt;raft&lt;/a&gt; consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.
 
-&lt;p&gt;(note: InfluxDB &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/859&#34;&gt;might introduce such a component&lt;/a&gt;, so I&amp;rsquo;m also a bit waiting to see what they come up with)&lt;/p&gt;
+(note: InfluxDB &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/859&#34;&gt;might introduce such a component&lt;/a&gt;, so I&#39;m also a bit waiting to see what they come up with)
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in &lt;a href=&#34;http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html&#34;&gt;On Graphite, Whisper and InfluxDB&lt;/a&gt;.  That said, both should be fairly easy to implement in carbon-relay-ng, and I&amp;rsquo;m willing to assist those who want to contribute it.&lt;/p&gt;
+Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in &lt;a href=&#34;http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html&#34;&gt;On Graphite, Whisper and InfluxDB&lt;/a&gt;.  That said, both should be fairly easy to implement in carbon-relay-ng, and I&#39;m willing to assist those who want to contribute it.
 </description>
     </item>
     
@@ -450,7 +491,11 @@ the mysql, pgsql, vsql, etc tools before.
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;!--more--&gt;
+
+&lt;br/&gt;
+
+
 
 &lt;p&gt;
 
@@ -478,6 +523,8 @@ influx&gt; list admin
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 &lt;b&gt;You can change parameters and re-bind with the new values&lt;/b&gt;
@@ -496,6 +543,8 @@ influx&gt; bind
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 &lt;b&gt;Write your variables (user, pass, host, db, ...) to ~/.influxrc&lt;/b&gt;
@@ -507,6 +556,8 @@ influx&gt; writerc
 ]]&gt;&lt;/pre&gt;
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -542,6 +593,8 @@ influx&gt; delete db issue-1234
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 &lt;b&gt;You can send queries on standard input, which is useful in shell commands and scripts.&lt;/b&gt;
@@ -559,6 +612,8 @@ $ influx-cli &lt;&lt;&lt; &#39;list series&#39; | wc -l
 ]]&gt;&lt;/pre&gt;
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -585,6 +640,8 @@ influx&gt; list series &gt; list-series.txt
 (note: the discrepancy of one line is due to &lt;a href=&#34;https://github.com/shavac/readline/issues/2&#34;&gt;the Go readline library echoing the query&lt;/a&gt;.
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -636,6 +693,8 @@ displaying   : 65.712027ms
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 &lt;b&gt;Executing queries and debugging their result data format, works too&lt;/b&gt;
@@ -684,6 +743,8 @@ influx&gt; raw select * from foo limit 1
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 And that&#39;s about it.
@@ -703,6 +764,8 @@ I&#39;ve found this to be a much easier way to interface with InfluxDB then usin
 &lt;li&gt;my gut feeling says that using something like msgpack instead of json, and/or even streaming the resultset as it is being generated (instead of first building the entire result, then serializing it, then sending it over, then having the client deserialize the entire thing) could really help performance, not just here, but basically anywhere you interface with influxdb.  Though I don&#39;t have hard numbers on this yet.&lt;/li&gt;
 
 &lt;/p&gt;
+
+
 </description>
     </item>
     
@@ -722,11 +785,17 @@ Something centralized manages the shared state, the changes to it and the respon
 
 &lt;/p&gt;
 
+&lt;!--more--&gt;
+
+
+
 &lt;p&gt;
 
 This is effectively two things.
 
 &lt;/p&gt;
+
+
 
 &lt;h2&gt;Pattern one: making access to thread-unsafe data structures thread safe&lt;/h2&gt;
 
@@ -740,6 +809,8 @@ I saw this first in &lt;a href=&#34;https://github.com/bitly/statsdaemon/blob/ma
 
 &lt;/p&gt;
 
+
+
 &lt;h2&gt;pattern two: coordinating flow of responses&lt;/h2&gt;
 
 &lt;p&gt;
@@ -747,6 +818,8 @@ I saw this first in &lt;a href=&#34;https://github.com/bitly/statsdaemon/blob/ma
 For the second, after (potentially time consuming) work, returning a response to the invoker, (let&#39;s say in the carbon-relay-ng case where you want to notify whether the route change succeeded) I have so far just passed on references to the admin interface session along with the request, and after completion of the work it would spawn a new goroutine that resumes the session with the given response.  Not the most elegant, but it works.
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -760,7 +833,9 @@ As long as the requesters write a request to the requests channel and then read 
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;![CDATA[
+
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;![CDATA[
 
 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -850,9 +925,13 @@ As long as the requesters write a request to the requests channel and then read 
 
 ]]&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/32BSXT0xhN&#34;&gt;code on Go playground&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;a href=&#34;http://play.golang.org/p/32BSXT0xhN&#34;&gt;code on Go playground&lt;/a&gt;
+
+
 
 &lt;p&gt;
 
@@ -872,6 +951,8 @@ beautiful example of it I&#39;ve come across so far.  The routines are blocked o
 
 &lt;/p&gt;
 
+
+
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;
@@ -883,6 +964,8 @@ But I think as you evolve from go rookie to experienced developer (and often nee
 you will encounter some interesting patterns and also have your &#34;aha!&#34; moments, so I hope this will help someone.
 
 &lt;/p&gt;
+
+
 
 &lt;p&gt;
 
@@ -902,9 +985,13 @@ Take for example this &lt;a href=&#34;https://github.com/graphite-ng/carbon-rela
       <guid>http://localhost:1313/post/on-graphite-whisper-and-influxdb/</guid>
       <description>&lt;h4&gt;Graphite, and the storage Achilles heel&lt;/h4&gt;
 
-&lt;p&gt;Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).&lt;/p&gt;
+
+Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.
+
+&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).
+
+&lt;!--more--&gt;
 
 &lt;ul&gt;
 
@@ -920,15 +1007,15 @@ Take for example this &lt;a href=&#34;https://github.com/graphite-ng/carbon-rela
 
 &lt;/ul&gt;
 
-&lt;p&gt;Common recommendations are to &lt;a href=&#34;http://bitprophet.org/blog/2013/03/07/graphite/&#34;&gt;run multiple carbon agents&lt;/a&gt; and&lt;/p&gt;
+Common recommendations are to &lt;a href=&#34;http://bitprophet.org/blog/2013/03/07/graphite/&#34;&gt;run multiple carbon agents&lt;/a&gt; and
 
-&lt;p&gt;&lt;a href=&#34;http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5&#34;&gt;running graphite on SSD drives&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5&#34;&gt;running graphite on SSD drives&lt;/a&gt;.
 
-&lt;p&gt;&lt;br/&gt;If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though &lt;a href=&#34;https://github.com/jssjr/carbonate/&#34;&gt;carbonate&lt;/a&gt; makes this easier.  This is a path I simply don&amp;rsquo;t want to go down.&lt;/p&gt;
+&lt;br/&gt;If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though &lt;a href=&#34;https://github.com/jssjr/carbonate/&#34;&gt;carbonate&lt;/a&gt; makes this easier.  This is a path I simply don&#39;t want to go down.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
 &lt;p&gt;
 
@@ -938,17 +1025,21 @@ Take for example this &lt;a href=&#34;https://github.com/graphite-ng/carbon-rela
 
 &lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;In particular, &lt;a href=&#34;http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d&#34;&gt;running Ceres instead of whisper&lt;/a&gt;, is only a slight improvement, that suffers from most of the same problems.  I don&amp;rsquo;t see any good reason to keep working on Ceres, other than perhaps that it&amp;rsquo;s a fun exercise.   This probably explains the slow pace of development.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;However, many mistakenly believe Ceres is &amp;ldquo;the future&amp;rdquo;.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;a href=&#34;http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage&#34;&gt;Switching to LevelDB&lt;/a&gt; seems much more sensible but IMHO still doesn&amp;rsquo;t cut it as a general purpose, scalable solution.&lt;/p&gt;
+In particular, &lt;a href=&#34;http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d&#34;&gt;running Ceres instead of whisper&lt;/a&gt;, is only a slight improvement, that suffers from most of the same problems.  I don&#39;t see any good reason to keep working on Ceres, other than perhaps that it&#39;s a fun exercise.   This probably explains the slow pace of development.
+
+&lt;br/&gt;However, many mistakenly believe Ceres is &#34;the future&#34;.
+
+&lt;br/&gt;&lt;a href=&#34;http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage&#34;&gt;Switching to LevelDB&lt;/a&gt; seems much more sensible but IMHO still doesn&#39;t cut it as a general purpose, scalable solution.
+
+
 
 &lt;h4&gt;The ideal backend&lt;/h4&gt;
 
-&lt;p&gt;I believe we can build a backend for graphite that&lt;/p&gt;
+I believe we can build a backend for graphite that
 
 &lt;ul&gt;
 
@@ -968,47 +1059,65 @@ Take for example this &lt;a href=&#34;https://github.com/graphite-ng/carbon-rela
 
 &lt;/ul&gt;
 
-&lt;p&gt;While we&amp;rsquo;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.&lt;/p&gt;
+
+While we&#39;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.
+
+&lt;br/&gt;And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.
+
+
 
 &lt;h4&gt;InfluxDB&lt;/h4&gt;
 
-&lt;p&gt;There&amp;rsquo;s a lot of databases that you could hook up to graphite.&lt;/p&gt;
 
-&lt;p&gt;riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.&lt;/p&gt;
 
-&lt;p&gt;Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.&lt;/p&gt;
+There&#39;s a lot of databases that you could hook up to graphite.
 
-&lt;p&gt;I&amp;rsquo;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.&lt;/p&gt;
+riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.&lt;/p&gt;
+Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.
 
-&lt;p&gt;In particular, installing it is a breeze (no dependencies), it&amp;rsquo;s specifically built for timeseries (not based on a general purpose database),&lt;/p&gt;
+I&#39;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.
 
-&lt;p&gt;which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;And they&amp;rsquo;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&amp;rsquo;m pretty confident that these guys can pull off something big.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+In particular, installing it is a breeze (no dependencies), it&#39;s specifically built for timeseries (not based on a general purpose database),
 
-&lt;p&gt;Technically, InfluxDB is a &amp;ldquo;timeseries, metrics, and analytics&amp;rdquo; databases with use cases well beyond graphite and even technical operations.&lt;/p&gt;
+which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.
 
-&lt;p&gt;Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.&lt;/p&gt;
+And they&#39;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&#39;m pretty confident that these guys can pull off something big.
+
+&lt;br/&gt;
+
+&lt;br/&gt;
+
+Technically, InfluxDB is a &#34;timeseries, metrics, and analytics&#34; databases with use cases well beyond graphite and even technical operations.
+
+Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.
+
+
+
+
 
 &lt;h4&gt;Graphite + InfluxDB&lt;/h4&gt;
 
-&lt;p&gt;InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use &lt;a href=&#34;http://grafana.org/&#34;&gt;Grafana&lt;/a&gt;), which means at some point you could completely swap graphite for InfluxDB.&lt;/p&gt;
 
-&lt;p&gt;However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.&lt;/p&gt;
 
-&lt;p&gt;So here&amp;rsquo;s how my setup currently works:&lt;/p&gt;
+InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use &lt;a href=&#34;http://grafana.org/&#34;&gt;Grafana&lt;/a&gt;), which means at some point you could completely swap graphite for InfluxDB.
+
+
+
+However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.
+
+So here&#39;s how my setup currently works:
+
+
 
 &lt;ul&gt;
 
@@ -1040,21 +1149,27 @@ It should also work with the regular graphite, though I&#39;ve never tried.  (I 
 
 &lt;/ul&gt;
 
-&lt;p&gt;With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.&lt;/p&gt;
 
-&lt;p&gt;Later i might do more extensive benchmarking and acceptance testing.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+Later i might do more extensive benchmarking and acceptance testing.
 
-&lt;p&gt;If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &amp;ldquo;backup&amp;rdquo;.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;We&amp;rsquo;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&amp;rsquo;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &#34;backup&#34;.
 
-&lt;p&gt;&lt;br/&gt;To be continued..&lt;/p&gt;
+We&#39;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&#39;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)
+
+
+
+&lt;br/&gt;
+
+&lt;br/&gt;To be continued..
+
+
 </description>
     </item>
     
@@ -1064,25 +1179,27 @@ It should also work with the regular graphite, though I&#39;ve never tried.  (I 
       <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/pixie/</guid>
-      <description>&lt;p&gt;So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way&lt;/p&gt;
+      <description>So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
 
-&lt;p&gt;that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?&lt;/p&gt;
+that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;!--more--&gt;
 
-&lt;p&gt;&lt;br/&gt;I couldn&amp;rsquo;t find a tool that I liked, so I rolled my own: &lt;a href=&#34;https://github.com/Dieterbe/pixie&#34;&gt;Pixie&lt;/a&gt;.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;I couldn&#39;t find a tool that I liked, so I rolled my own: &lt;a href=&#34;https://github.com/Dieterbe/pixie&#34;&gt;Pixie&lt;/a&gt;.
 
-&lt;p&gt;It gives you vim-like keybindings to navigate pictures, create edits (stored in a &amp;ldquo;mirror directory&amp;rdquo;) and add/remove tags to pictures.  (Because n:m tag relationships are basically a must for organizing things and don&amp;rsquo;t work on any common filesystem)&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;To generate &amp;ldquo;album&amp;rdquo; directories, just define which tags they should(n&amp;rsquo;t) match and run the script that synchronizes an export directory by symlinking (or resizing) the correct files into them.&lt;/p&gt;
+It gives you vim-like keybindings to navigate pictures, create edits (stored in a &#34;mirror directory&#34;) and add/remove tags to pictures.  (Because n:m tag relationships are basically a must for organizing things and don&#39;t work on any common filesystem)
 
-&lt;p&gt;Note the source directory stays unaltered so you can easily keep syncing with devices and/or people.&lt;/p&gt;
+To generate &#34;album&#34; directories, just define which tags they should(n&#39;t) match and run the script that synchronizes an export directory by symlinking (or resizing) the correct files into them.
 
-&lt;p&gt;&lt;br/&gt;What used to be a pain in the butt for me is now a pretty pleasant experience.&lt;/p&gt;
+Note the source directory stays unaltered so you can easily keep syncing with devices and/or people.
 
-&lt;p&gt;&lt;br/&gt;Does this workflow make sense to you? Is this useful to you? Why (not) ?&lt;/p&gt;
+&lt;br/&gt;What used to be a pain in the butt for me is now a pretty pleasant experience.
+
+&lt;br/&gt;Does this workflow make sense to you? Is this useful to you? Why (not) ?
 </description>
     </item>
     
@@ -1102,13 +1219,13 @@ it&#39;s somewhere between an early clone/rewrite, a redesign, and an experiment
 
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;!&lt;/span&gt;[CDATA[
 
 &lt;span style=&#34;color: #BB6688&#34;&gt;/render/&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;?&lt;/span&gt;target&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;sum(scale(stats.web2,&lt;span style=&#34;color: #666666&#34;&gt;5.12&lt;/span&gt;),derivative(stats.web2))
 
 ]]&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 
 &lt;p&gt;
 
@@ -1117,6 +1234,10 @@ I.e. it lets you retrieve your timeseries, processed by function pipelines which
 Currently it only fetches metrics from text files but I&#39;m working on decent metrics storage as well.
 
 &lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
 
 &lt;p&gt;
 
@@ -1164,6 +1285,8 @@ and its performance looks promising.  Leaving out the non-essentials (see below)
 
 &lt;/p&gt;
 
+
+
 &lt;p&gt;
 
 The API server I developed sets up a processing pipeline as directed by your query: every processing function runs in a goroutine
@@ -1192,13 +1315,15 @@ There&#39;s a ton of dashboards out there (&lt;a href=&#34;http://vimeo.github.i
 
 &lt;/p&gt;
 
-&lt;p&gt;For more information, see &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;the Graphite-ng homepage&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br/&gt;PS: props to &lt;a href=&#34;http://felixge.de/&#34;&gt;Felix Geisendorfer&lt;/a&gt; who suggested a graphite clone in Go first,&lt;/p&gt;
+For more information, see &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;the Graphite-ng homepage&lt;/a&gt;.
 
-&lt;p&gt;it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!&lt;/p&gt;
+&lt;br/&gt;
+
+&lt;br/&gt;PS: props to &lt;a href=&#34;http://felixge.de/&#34;&gt;Felix Geisendorfer&lt;/a&gt; who suggested a graphite clone in Go first,
+
+it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!
 </description>
     </item>
     

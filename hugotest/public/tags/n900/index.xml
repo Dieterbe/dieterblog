@@ -21,7 +21,7 @@ The talks were diverse, but interesting (duh?).  I will especially remember the 
 
 The best moment was, of course, when it was announced that &lt;strong&gt;every summit participant would receive a n900.  Uncontrolled hapiness all around. &lt;/strong&gt;&lt;br /&gt;
 
-&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
 
 I had been hoping to buy/preorder the device at the event, with maybe a nice reduction.  But I didn&#39;t dare to hope on getting a device in my hands just like that.&lt;/p&gt;
 
@@ -67,9 +67,9 @@ No warranty or any form of compensation if the device blows up your house, break
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Slight nuisances, mostly with the software:&lt;/p&gt;
+&lt;li&gt;Slight nuisances, mostly with the software:
 
 &lt;ul&gt;
 
@@ -89,7 +89,7 @@ No warranty or any form of compensation if the device blows up your house, break
 
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;/ul&gt;&lt;/p&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;I&#39;m keeping a detailed list of all issues I encounter, which I&#39;ll report on the bugtracker.&lt;br /&gt;
 

@@ -15,25 +15,27 @@
       <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
       
       <guid>http://localhost:1313/post/pixie/</guid>
-      <description>&lt;p&gt;So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way&lt;/p&gt;
+      <description>So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
 
-&lt;p&gt;that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?&lt;/p&gt;
+that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;!--more--&gt;
 
-&lt;p&gt;&lt;br/&gt;I couldn&amp;rsquo;t find a tool that I liked, so I rolled my own: &lt;a href=&#34;https://github.com/Dieterbe/pixie&#34;&gt;Pixie&lt;/a&gt;.&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;I couldn&#39;t find a tool that I liked, so I rolled my own: &lt;a href=&#34;https://github.com/Dieterbe/pixie&#34;&gt;Pixie&lt;/a&gt;.
 
-&lt;p&gt;It gives you vim-like keybindings to navigate pictures, create edits (stored in a &amp;ldquo;mirror directory&amp;rdquo;) and add/remove tags to pictures.  (Because n:m tag relationships are basically a must for organizing things and don&amp;rsquo;t work on any common filesystem)&lt;/p&gt;
+&lt;br/&gt;
 
-&lt;p&gt;To generate &amp;ldquo;album&amp;rdquo; directories, just define which tags they should(n&amp;rsquo;t) match and run the script that synchronizes an export directory by symlinking (or resizing) the correct files into them.&lt;/p&gt;
+It gives you vim-like keybindings to navigate pictures, create edits (stored in a &#34;mirror directory&#34;) and add/remove tags to pictures.  (Because n:m tag relationships are basically a must for organizing things and don&#39;t work on any common filesystem)
 
-&lt;p&gt;Note the source directory stays unaltered so you can easily keep syncing with devices and/or people.&lt;/p&gt;
+To generate &#34;album&#34; directories, just define which tags they should(n&#39;t) match and run the script that synchronizes an export directory by symlinking (or resizing) the correct files into them.
 
-&lt;p&gt;&lt;br/&gt;What used to be a pain in the butt for me is now a pretty pleasant experience.&lt;/p&gt;
+Note the source directory stays unaltered so you can easily keep syncing with devices and/or people.
 
-&lt;p&gt;&lt;br/&gt;Does this workflow make sense to you? Is this useful to you? Why (not) ?&lt;/p&gt;
+&lt;br/&gt;What used to be a pain in the butt for me is now a pretty pleasant experience.
+
+&lt;br/&gt;Does this workflow make sense to you? Is this useful to you? Why (not) ?
 </description>
     </item>
     
@@ -43,19 +45,19 @@
       <pubDate>Sat, 21 Jul 2012 16:50:11 -0400</pubDate>
       
       <guid>http://localhost:1313/post/resigning_arch_linux/</guid>
-      <description>&lt;p&gt;&lt;p&gt;&lt;/p&gt;
+      <description>&lt;p&gt;
 
-&lt;p&gt;A few days ago, I &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2012-July/002628.html&#34;&gt;resigned as Arch Linux developer&lt;/a&gt;.&lt;/p&gt;
+A few days ago, I &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2012-July/002628.html&#34;&gt;resigned as Arch Linux developer&lt;/a&gt;.
 
-&lt;p&gt;&lt;br/&gt;I&amp;rsquo;m sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest.&lt;/p&gt;
+&lt;br/&gt;I&#39;m sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest.
 
-&lt;p&gt;The Releng team we started more than 3 years ago is now dead, but other developers are showing interest in iso building and installer scripts, so as long as they don&amp;rsquo;t burn out, you&amp;rsquo;ll see new isos again.&lt;/p&gt;
+The Releng team we started more than 3 years ago is now dead, but other developers are showing interest in iso building and installer scripts, so as long as they don&#39;t burn out, you&#39;ll see new isos again.
 
-&lt;p&gt;More information in my resignation mail linked above.&lt;/p&gt;
+More information in my resignation mail linked above.
 
-&lt;p&gt;&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;br/&gt;&lt;br/&gt;
 
-&lt;p&gt;Dieter&lt;/p&gt;
+Dieter
 </description>
     </item>
     
@@ -65,11 +67,11 @@
       <pubDate>Sun, 25 Mar 2012 23:05:05 -0400</pubDate>
       
       <guid>http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</guid>
-      <description>&lt;p&gt;On Arch Linux, and probably &lt;a href=&#34;http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html&#34;&gt;many other distros&lt;/a&gt; /run is a new tmpfs, and /var/run symlinks to it.&lt;/p&gt;
+      <description>On Arch Linux, and probably &lt;a href=&#34;http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html&#34;&gt;many other distros&lt;/a&gt; /run is a new tmpfs, and /var/run symlinks to it.
 
-&lt;p&gt;With Lighttpd you might have a fastcgi socket defined something like &amp;ldquo;/var/run/lighttpd/sockets/mywebsite.sock&amp;rdquo;.&lt;/p&gt;
+With Lighttpd you might have a fastcgi socket defined something like &#34;/var/run/lighttpd/sockets/mywebsite.sock&#34;.
 
-&lt;p&gt;This won&amp;rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&amp;rsquo;t start, /var/log/lighttpd/error.log will tell you:&lt;/p&gt;
+This won&#39;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&#39;t start, /var/log/lighttpd/error.log will tell you:
 
 &lt;pre&gt;
 
@@ -83,11 +85,11 @@
 
 &lt;/pre&gt;
 
-&lt;p&gt;That&amp;rsquo;s where this new tool &lt;a href=&#34;https://www.google.be/#hl=nl&amp;q=tmpfiles.d&#34;&gt;tmpfiles.d&lt;/a&gt; comes in.&lt;/p&gt;
+That&#39;s where this new tool &lt;a href=&#34;https://www.google.be/#hl=nl&amp;q=tmpfiles.d&#34;&gt;tmpfiles.d&lt;/a&gt; comes in.
 
-&lt;p&gt;It creates files and directories as described in the configs, and gets invoked on boot.  Like so:&lt;/p&gt;
+It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 &lt;span style=&#34;color: #19177C&#34;&gt;$ &lt;/span&gt;cat /etc/tmpfiles.d/lighttpd.conf 
 
@@ -95,7 +97,7 @@ d /run/lighttpd/sockets &lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/p&gt;
+
 </description>
     </item>
     
@@ -105,7 +107,11 @@ d /run/lighttpd/sockets &lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span
       <pubDate>Tue, 17 May 2011 21:29:58 -0400</pubDate>
       
       <guid>http://localhost:1313/post/where_are_the_new_arch_linux_images/</guid>
-      <description>&lt;p&gt;This is a question I get asked a lot recently.  The latest &lt;a href=&#34;http://www.archlinux.org/download/&#34;&gt;official images&lt;/a&gt; are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I&#39;m not aware of.  Many of these problems can be worked around (with &#39;pacman -Sy mirrorlist&#39; on the install cd for example), but it&#39;s not exactly convenient.&lt;/p&gt;
+      <description>&lt;!--more--&gt;
+
+&lt;p&gt;This is a question I get asked a lot recently.  The latest &lt;a href=&#34;http://www.archlinux.org/download/&#34;&gt;official images&lt;/a&gt; are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I&#39;m not aware of.  Many of these problems can be worked around (with &#39;pacman -Sy mirrorlist&#39; on the install cd for example), but it&#39;s not exactly convenient.&lt;/p&gt;
+
+
 
 &lt;p&gt;Over the past years (the spare time in between &lt;a href=&#34;http://localhost:1313/my_metalband.html&#34;&gt;the band&lt;/a&gt;, my search for an apartment in &lt;a href=&#34;http://en.wikipedia.org/wiki/Ghent&#34;&gt;Ghent&lt;/a&gt; and a bunch of other things) I&#39;ve worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/&#34;&gt;releng build environment repository&lt;/a&gt;.
 
@@ -123,6 +129,8 @@ Every 3 days, the following happens automatically:
 
 Actually things are &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/tree/scripts/releng-build-and-release-testing.sh&#34;&gt;bit more involved&lt;/a&gt; but this is the gist of it.  All of this is now run on a &lt;a href=&#34;https://wiki.archlinux.org/index.php/Category:DeveloperWiki:Server_Configuration#Releng_server_.28alberich.29&#34;&gt;dedicated VPS&lt;/a&gt; donated by &lt;a href=&#34;http://www.airvm.com/&#34;&gt;airVM&lt;/a&gt;.&lt;/p&gt;
 
+
+
 &lt;p&gt;I never really completed the &lt;a href=&#34;http://localhost:1313/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html&#34;&gt;aif automatic test suite&lt;/a&gt;, somewhere along the way I decided to focus on crowdsourcing test results.
 
 The weight of testing images (and all possible combinations of features) has always been huge, and trying to script tasks would either get way complicated or insufficient.
@@ -139,9 +147,13 @@ So the new approach is largely inspired by the core and testing repositories:  w
 
 I don&#39;t think we&#39;ll get to the &lt;a href=&#34;http://www.archlinux.org/news/200902-iso-release/&#34;&gt;original plan&lt;/a&gt; of official archiso releases for each stable kernel version, that seems like a lot of work despite all the above.&lt;/p&gt;
 
+
+
 &lt;p&gt;As for what is new: again too much to list, here is a &lt;a href=&#34;http://releng.archlinux.org/isos/Changelog&#34;&gt;changelog&lt;/a&gt; but I stopped updating it at some point.  I guess the most visible interesting stuff is friendlier package dialogs (with package descriptions), support for nilfs, btrfs and syslinux (thanks &lt;a href=&#34;http://pyther.net/&#34;&gt;Matthew Gyurgyik&lt;/a&gt;), and an issues reporting tool.
 
 Under the hood we refactored quite a bit, mostly blockdevice related stuff, config generation and the &#34;execution plan&#34; (like, how each function calls each other and how failures are tracked) in AIF has been simplified considerably.&lt;/p&gt;
+
+
 
 &lt;!-- I used to be pedantic about details like &#34;all packages installed in the live environment must be available in the official core/extra repositories but i might become a bit less strict.  or maybe not, it&#39;s not hard to switch to official packages. --&gt;
 </description>
@@ -153,13 +165,13 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
       <pubDate>Sun, 06 Feb 2011 23:46:18 -0400</pubDate>
       
       <guid>http://localhost:1313/post/can_we_build_a_simple_cross-distribution_installation_framework/</guid>
-      <description>&lt;p&gt;Today at &lt;a href=&#34;http://www.fosdem.org/2011/&#34;&gt;Fosdem 2011&lt;/a&gt; I did my talk &lt;a href=&#34;http://fosdem.org/2011/schedule/event/distro_crossinstall&#34;&gt;Can we build a simple, cross-distribution installation framework?&lt;/a&gt;&lt;/p&gt;
+      <description>Today at &lt;a href=&#34;http://www.fosdem.org/2011/&#34;&gt;Fosdem 2011&lt;/a&gt; I did my talk &lt;a href=&#34;http://fosdem.org/2011/schedule/event/distro_crossinstall&#34;&gt;Can we build a simple, cross-distribution installation framework?&lt;/a&gt;
 
-&lt;p&gt;Basically, using the &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch&lt;/a&gt; Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check&lt;/p&gt;
+Basically, using the &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch&lt;/a&gt; Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check
 
-&lt;p&gt;if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.&lt;/p&gt;
+if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.
 
-&lt;p&gt;There was some interest, so we&amp;rsquo;ll see what happens.&lt;/p&gt;
+There was some interest, so we&#39;ll see what happens.
 
 &lt;ul&gt;
 
@@ -201,7 +213,7 @@ but I think cooperation could be much better and more efficient.&lt;/p&gt;
 
 &lt;p&gt;Anyway:&lt;br /&gt;
 
-&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
 
 my acronyms for this text:&lt;/p&gt;
 
@@ -445,7 +457,7 @@ Either way, next year both Judd (founder) and Aaron (current overlord) should be
 
 &lt;p&gt;It was an absolute pleasure to meet some more of my fellow devs, and users.&lt;br /&gt;
 
-Here is a pic from the group (unfortunately, a few are missing)&lt;br /&gt;
+Here is a pic from the group (unfortunately, a few are missing)&lt;!--more--&gt;&lt;br /&gt;
 
 &lt;img src=&#34;http://localhost:1313/files/group.jpg&#34;/&gt;&lt;br /&gt;
 
@@ -515,33 +527,33 @@ My slides:&lt;br /&gt;
 
 &lt;p&gt;Some thoughts and notes of what I did and saw around Toronto/Montreal..&lt;/p&gt;
 
-&lt;p&gt;&lt;ul&gt;&lt;/p&gt;
+&lt;ul&gt;
 
-&lt;p&gt;&lt;li&gt;Cities with streets and subways in a grid layout are awesome.  Soo much easier to navigate.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Cities with streets and subways in a grid layout are awesome.  Soo much easier to navigate.&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Red lights with countdown timers (in seconds) are awesome.  Although I&amp;rsquo;m told some places in Europe have them too.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Red lights with countdown timers (in seconds) are awesome.  Although I&#39;m told some places in Europe have them too.&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. &lt;img src=&#34;http://localhost:1313/files/blog/toronto.ca/high_park_004_500.jpg&#34;/&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. &lt;img src=&#34;http://localhost:1313/files/blog/toronto.ca/high_park_004_500.jpg&#34;/&gt;&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Montreal was like a European city: more history, old buildings, more crime, but of course a grid layout.  Some nice views though (ie. from Mont Royal).&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Montreal was like a European city: more history, old buildings, more crime, but of course a grid layout.  Some nice views though (ie. from Mont Royal).&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;The youth hostels I went too were great: never got to meet so many interesting people in such a short timespan.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;The youth hostels I went too were great: never got to meet so many interesting people in such a short timespan.&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;CN tower: I procrastinated visiting until the last day, and when I finally wanted to go in the wheather was perfect, but there was a 2 hour queue, so I skipped it. Anyway there are &lt;a href=&#34;http://en.wikipedia.org/wiki/CN_Tower&#34;&gt;plenty of pictures online&lt;/a&gt;.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;CN tower: I procrastinated visiting until the last day, and when I finally wanted to go in the wheather was perfect, but there was a 2 hour queue, so I skipped it. Anyway there are &lt;a href=&#34;http://en.wikipedia.org/wiki/CN_Tower&#34;&gt;plenty of pictures online&lt;/a&gt;.&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Niagara falls were beautiful.  Maid of the myst tour was worth it.  I made pictures but &lt;a href=&#34;http://en.wikipedia.org/wiki/File:Niagara_falls_panorama.jpg&#34;&gt;those online&lt;/a&gt; are better.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Niagara falls were beautiful.  Maid of the myst tour was worth it.  I made pictures but &lt;a href=&#34;http://en.wikipedia.org/wiki/File:Niagara_falls_panorama.jpg&#34;&gt;those online&lt;/a&gt; are better.&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;I met Kan Johar (founder of &lt;a href=&#34;http://plurk.com&#34;&gt;plurk.com&lt;/a&gt;, amongst others), good times.&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;I met Kan Johar (founder of &lt;a href=&#34;http://plurk.com&#34;&gt;plurk.com&lt;/a&gt;, amongst others), good times.&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.&lt;br&gt; &lt;img src=&#34;http://localhost:1313/files/poutine.jpg&#34;/&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;li&gt;Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.&lt;br&gt; &lt;img src=&#34;http://localhost:1313/files/poutine.jpg&#34;/&gt;&lt;/li&gt;
 
-&lt;p&gt;&lt;li&gt;Dusty and I have been to the &lt;a href=&#34;http://linuxcaffe.ca/&#34;&gt;Linux Caffe.&lt;/a&gt;  The owner is a great guy, he&amp;rsquo;s considering switching to Arch, and he wrote his whole point of sales, accounting and bookkeeping software using shell scripts, perltk and stuff.  He&amp;rsquo;s into suckless.org stuff.   His version 2.0 will probably be based on Xmonad.&lt;br /&gt;&lt;/p&gt;
+&lt;li&gt;Dusty and I have been to the &lt;a href=&#34;http://linuxcaffe.ca/&#34;&gt;Linux Caffe.&lt;/a&gt;  The owner is a great guy, he&#39;s considering switching to Arch, and he wrote his whole point of sales, accounting and bookkeeping software using shell scripts, perltk and stuff.  He&#39;s into suckless.org stuff.   His version 2.0 will probably be based on Xmonad.&lt;br /&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/linuxcaffe-pos1.jpg&#34;/&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;img src=&#34;http://localhost:1313/files/linuxcaffe-pos1.jpg&#34;/&gt;&lt;br /&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/linuxcaffe-pos2.jpg&#34;/&gt;&lt;/p&gt;
+&lt;img src=&#34;http://localhost:1313/files/linuxcaffe-pos2.jpg&#34;/&gt;
 
-&lt;p&gt;&lt;/li&gt;&lt;/p&gt;
+&lt;/li&gt;
 
 &lt;p&gt;Dusty and me, somewhere on our way to the Niagara falls.&lt;br /&gt;
 
@@ -559,7 +571,7 @@ My slides:&lt;br /&gt;
 
 It&#39;s a very small conference, and the first of its kind.  At the &lt;a href=&#34;http://localhost:1313/froscon_2009_afterthoughts&#34;&gt;last FrOSCon&lt;/a&gt; we have been playing with the idea to hold an informal Arch conference in Europe, but those were just ideas.  Dusty and Ricardo beat us with an actual implementation.&lt;br /&gt;
 
-This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.&lt;/p&gt;
+This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=116&#34;&gt;Archcon schedule&lt;/a&gt;.  I&#39;ll be talking about AIF and uzbl.&lt;/p&gt;
 
@@ -613,7 +625,7 @@ This is great, and one of the milestones in Arch Linux history.  Which is why I 
 
 &lt;p&gt;We&#39;re not sure yet if those talks will get videotaped.&lt;br /&gt;
 
-&lt;/p&gt;
+&lt;!--more--&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -631,7 +643,7 @@ This is great, and one of the milestones in Arch Linux history.  Which is why I 
 
 Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guys Roman, JGC, Thomas and me will hang out at the &lt;a href=&#34;http://fosdem.org/2010/schedule/devrooms/distributions&#34;&gt;distro miniconf&lt;/a&gt;.  We might join the &lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_infrastructure&#34;&gt;infrastructure round-table&lt;/a&gt; panel, but there is no concrete information yet.&lt;/p&gt;
 
-&lt;p&gt;More stuff I&#39;m looking forward to:&lt;/p&gt;
+&lt;p&gt;More stuff I&#39;m looking forward to:&lt;!--more--&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -693,7 +705,9 @@ Of all the &lt;a href=&#34;http://www.uzbl.org/wiki/press&#34;&gt;articles&lt;/a
       <pubDate>Fri, 28 Aug 2009 19:00:02 -0400</pubDate>
       
       <guid>http://localhost:1313/post/froscon_2009_afterthoughts/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://froscon.org/&#34;&gt;Froscon&lt;/a&gt; was great.&lt;/p&gt;
+      <description>&lt;!--more--&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://froscon.org/&#34;&gt;Froscon&lt;/a&gt; was great.&lt;/p&gt;
 
 &lt;ul&gt;
 
@@ -757,13 +771,13 @@ First of all, I worked more on the automatic installations.  Now you can easily 
 
 You type this command:&lt;/p&gt;
 
-&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&amp;lt;!&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;CDATA&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;
 
 aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda
 
 &lt;span style=&#34;color: #666666&#34;&gt;]]&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And &lt;strong&gt;bam&lt;/strong&gt; you have a complete working system with LVM, dm_crypt etc all set up.  You just need to change your keymap, hostname, network config and such (or, configure that on the beforehand in the config file for AIF)&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;And &lt;strong&gt;bam&lt;/strong&gt; you have a complete working system with LVM, dm_crypt etc all set up.  You just need to change your keymap, hostname, network config and such (or, configure that on the beforehand in the config file for AIF)&lt;/p&gt;
 
 &lt;p&gt;Another thing I started working on is a very simple test suite.&lt;br /&gt;
 

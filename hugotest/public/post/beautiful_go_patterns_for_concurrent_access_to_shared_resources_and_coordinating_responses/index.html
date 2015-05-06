@@ -133,11 +133,17 @@ Something centralized manages the shared state, the changes to it and the respon
 
 </p>
 
+<!--more-->
+
+
+
 <p>
 
 This is effectively two things.
 
 </p>
+
+
 
 <h2>Pattern one: making access to thread-unsafe data structures thread safe</h2>
 
@@ -151,6 +157,8 @@ I saw this first in <a href="https://github.com/bitly/statsdaemon/blob/master/st
 
 </p>
 
+
+
 <h2>pattern two: coordinating flow of responses</h2>
 
 <p>
@@ -158,6 +166,8 @@ I saw this first in <a href="https://github.com/bitly/statsdaemon/blob/master/st
 For the second, after (potentially time consuming) work, returning a response to the invoker, (let's say in the carbon-relay-ng case where you want to notify whether the route change succeeded) I have so far just passed on references to the admin interface session along with the request, and after completion of the work it would spawn a new goroutine that resumes the session with the given response.  Not the most elegant, but it works.
 
 </p>
+
+
 
 <p>
 
@@ -171,7 +181,9 @@ As long as the requesters write a request to the requests channel and then read 
 
 </p>
 
-<p><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;![CDATA[
+
+
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;![CDATA[
 
 <span style="color: #008000; font-weight: bold">package</span> main
 
@@ -261,9 +273,13 @@ As long as the requesters write a request to the requests channel and then read 
 
 ]]&gt;
 </pre></div>
-</p>
 
-<p><a href="http://play.golang.org/p/32BSXT0xhN">code on Go playground</a></p>
+
+
+
+<a href="http://play.golang.org/p/32BSXT0xhN">code on Go playground</a>
+
+
 
 <p>
 
@@ -283,6 +299,8 @@ beautiful example of it I've come across so far.  The routines are blocked on ch
 
 </p>
 
+
+
 <h2>Conclusion</h2>
 
 <p>
@@ -294,6 +312,8 @@ But I think as you evolve from go rookie to experienced developer (and often nee
 you will encounter some interesting patterns and also have your "aha!" moments, so I hope this will help someone.
 
 </p>
+
+
 
 <p>
 

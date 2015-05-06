@@ -144,7 +144,11 @@
 
 <p>We reuse this stuff for a variety of cases where the data behaves similarly and I suspect that you will be able to apply this to a bunch of your monitoring targets as well.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/practical-fault-detection-on-timeseries-part-2/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -194,7 +198,11 @@
 
 <p>This post covers some common notions around these new approaches, debunks some of the myths that ask for over-complicated solutions, and provides some practical pointers that any programmer or sysadmin can implement that don&rsquo;t require becoming a data scientist.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -237,7 +245,11 @@
 	
 	<div class="entry-content">
 		The discipline of collecting infrastructure &amp; application performance metrics, aggregation, storage, visualizations and alerting has many terms associated with it&hellip; Telemetry. Insights engineering. Operational visibility. I&rsquo;ve seen a bunch of people present their work in advancing the state of the art in this domain: from Anton Lebedevich&rsquo;s statistics for monitoring series, Toufic Boubez&rsquo; talks on anomaly detection and Twitter&rsquo;s work on detecting mean shifts to projects such as flapjack (which aims to offload the alerting responsibility from your monitoring apps), the metrics 2.0 standardization effort or Etsy&rsquo;s Kale stack which tries to bring interesting changes in timeseries to your attention with minimal configuration.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/it-telemetry-google-group-collaboration-operational-insights/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -280,7 +292,11 @@
 	
 	<div class="entry-content">
 		The whisper-to-influxdb migration script I posted earlier is pretty bad. A shell script, without concurrency, and an undiagnosed performance issue. I hinted that one could write a Go program using the unofficial whisper-go bindings and the influxdb Go client library. That&rsquo;s what I did now, it&rsquo;s at github.com/vimeo/whisper-to-influxdb. It uses configurable amounts of workers for both whisper fetches and InfluxDB commits, but it&rsquo;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/a-real-whisper-to-influxdb-program/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -350,7 +366,11 @@ Furthermore, I introduced some tooling: <a href="https://github.com/graphite-ng/
 
 </ul>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/influxdb-as-graphite-backend-part2/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -395,7 +415,11 @@ Furthermore, I introduced some tooling: <a href="https://github.com/graphite-ng/
 	
 	<div class="entry-content">
 		
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -457,7 +481,11 @@ the mysql, pgsql, vsql, etc tools before.
 
 </p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/influx-cli_a_commandline_interface_to_influxdb/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -501,7 +529,11 @@ the mysql, pgsql, vsql, etc tools before.
 	<div class="entry-content">
 		<p>A post about the magnificent <a href="http://darktable.org/">darktable</a> photo manager/editor and why I&rsquo;m abandoning <a href="/pixie.html">pixie</a></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/darktable_magnificent_photo_manager_editor/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -551,7 +583,11 @@ Something centralized manages the shared state, the changes to it and the respon
 
 </p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -605,7 +641,11 @@ Earlier this month we had another iteration of the <a href="http://monitorama.co
 
 </p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/monitorama-pdx-metrics20/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -653,7 +693,11 @@ Earlier this month we had another iteration of the <a href="http://monitorama.co
 
 <p><br/>For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/on-graphite-whisper-and-influxdb/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -701,7 +745,11 @@ Earlier this month we had another iteration of the <a href="http://monitorama.co
 	<div class="entry-content">
 		<p>Metrics 2.0 started as a <a href="http://dieter.plaetinck.be/metrics_2_a_proposal.html">half-formal proposal</a> and an implementation via <a href="http://vimeo.github.io/graph-explorer/">graph-explorer</a>, but is broad enough in scope that it deserves its own website, its own spec, its own community.  That&rsquo;s why I launched <a href="http://metrics20.org/">metrics20.org</a> and a <a href="https://groups.google.com/forum/#!forum/metrics20">discussion group</a>.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/metrics-2-0-own-website/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -749,7 +797,11 @@ Earlier this month we had another iteration of the <a href="http://monitorama.co
 
 <p><a href="http://www.meetup.com/Full-Stack-Engineering-Meetup/">Full-stack engineering meetup</a>.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/introduction_talk_to_metrics2-0_and_graph_explorer/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -795,7 +847,11 @@ Earlier this month we had another iteration of the <a href="http://monitorama.co
 
 <p>that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/pixie/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -851,7 +907,11 @@ We (the <a href="http://vimeo.com/staff">Vimeo Staff</a>) just <a href="https://
 
 <iframe src="//player.vimeo.com/video/82236972?title=0&amp;byline=0&amp;portrait=0&amp;color=33a352" width="500" height="211" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/vimeo_holiday_special_and_other_great_videos/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -917,7 +977,11 @@ OpenTSDB's metrics are shorter, because they move some of the dimensions (server
 
 <p>I think our metrics format is restrictive and we do our self a disservice using it:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/metrics_2_a_proposal/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -985,7 +1049,11 @@ Currently it only fetches metrics from text files but I'm working on decent metr
 
 </p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/graphite-ng_a-next-gen-graphite-server-in-go/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1032,7 +1100,11 @@ Currently it only fetches metrics from text files but I'm working on decent metr
 	
 	<div class="entry-content">
 		
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/a_few_common_graphite_problems_and_how_they_are_already_solved/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1086,7 +1158,11 @@ Currently it only fetches metrics from text files but I'm working on decent metr
 
 <p>I&rsquo;ll mention some earlier posts you might be interested in:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/hi_planet_devops_and_infratalk/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1174,7 +1250,11 @@ Currently it only fetches metrics from text files but I'm working on decent metr
 
 <p><br/>You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1220,7 +1300,11 @@ Currently it only fetches metrics from text files but I'm working on decent metr
 	<div class="entry-content">
 		<p>The above sounds like a marketing phrase and I&rsquo;m just as skeptical of them as you, but I feel it&rsquo;s in place. Not because GE is necessarily better, but it&rsquo;s certainly <i>different</i>.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/graph-explorer-a-graphite-dashboard-unlike-any-other/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1266,7 +1350,11 @@ Currently it only fetches metrics from text files but I'm working on decent metr
 
 <p>allows various interactivity features, such as:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/client-side-rendered-graphite-charts-for-all/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1326,7 +1414,11 @@ as well as allowing visual and numerical analysis of events that have a business
 
 It has a TCP receiver, a database (sqlite3), a http interface to deliver event data in many formats and a simple web frontend for humans.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1406,7 +1498,11 @@ as well as an upper boundary of infinite.
 
 <h4>Plotting histograms.. over time</h4>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/histogram-statsd-graphing-over-time-with-graphite/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1451,7 +1547,11 @@ as well as an upper boundary of infinite.
 	
 	<div class="entry-content">
 		I have a one-way ticket to NYC on Sept. 21st. Vimeo HQ is in Manhattan, and practically the whole team works in the building so it makes sense for me to relocate and join them locally. I'm looking forward to working with the colleagues face to face, but mainly I'm looking forward to the experience of living in such a different place, and exploring the US. In fact, I already have some small trips planned (Hamptons NY, camping in Pennsylvania, skiing in New York this winter) with some friends I met last year in NY.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/moving-to-nyc/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1496,7 +1596,11 @@ as well as an upper boundary of infinite.
 	
 	<div class="entry-content">
 		A few days ago, I resigned as Arch Linux developer. I&rsquo;m sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest. The Releng team we started more than 3 years ago is now dead, but other developers are showing interest in iso building and installer scripts, so as long as they don&rsquo;t burn out, you&rsquo;ll see new isos again.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/resigning_arch_linux/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1538,7 +1642,11 @@ as well as an upper boundary of infinite.
 	<div class="entry-content">
 		<p>Learned about <a href="https://github.com/dellcloudedge/crowbar">Dell Crowbar</a> the other day.  It seems to be (becoming) a tool I&rsquo;ve wanted for quite a while, because it takes automating physical infrastructure to a new level, and is also convenient on virtual.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/dell_crowbar_openstack_swift/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1581,7 +1689,11 @@ as well as an upper boundary of infinite.
 	
 	<div class="entry-content">
 		Working on scalable information retrieval systems at the university of Ghent has been very fun: interesting and challenging work, smart team, and an environment that fosters growth and innovation. I could definitely see myself continuing there&hellip; However, Vimeo got in touch and told me about their plans&hellip; specifically what&rsquo;s going into the new version and what other stuff they have on their roadmap. I can honestly say vimeo is the most beautiful web property I&rsquo;ve ever seen [*], not just that, they also provide a top product/service, and host a great community of passionate people who create some of the most beautiful online videos I&rsquo;ve ever seen.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/joining_vimeo/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1622,7 +1734,11 @@ as well as an upper boundary of infinite.
 	
 	<div class="entry-content">
 		On Arch Linux, and probably many other distros /run is a new tmpfs, and /var/run symlinks to it. With Lighttpd you might have a fastcgi socket defined something like &ldquo;/var/run/lighttpd/sockets/mywebsite.sock&rdquo;. This won&rsquo;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&rsquo;t start, /var/log/lighttpd/error.log will tell you: 2012-03-16 09:21:34: (log.c.166) server started 2012-03-16 09:21:34: (mod_fastcgi.c.977) bind failed for: unix:/var/run/lighttpd/sockets/mywebsite.sock-0 No such file or directory 2012-03-16 09:21:34: (mod_fastcgi.c.1397) [ERROR]: spawning fcgi failed.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1666,7 +1782,11 @@ as well as an upper boundary of infinite.
 	<div class="entry-content">
 		<p><p>I&rsquo;ve been meaning to write about a lot of stuff in separate posts, but they kept getting delayed, so I&rsquo;ll just briefly share everything in one post.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/thailand_berlin_velocity_nyc_ghent_metal/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1720,7 +1840,11 @@ which is much in the same vein, except that all configuration, extensions, event
 
 Now I want to build the "luakit of email clients".  Let me explain what's that all about...</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/luamail_a_mail_client_built_into_luakit/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1774,7 +1898,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 
 <p>Here&rsquo;s why you should try it and why it may make your life more awesome.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/hitchhiking_try_it/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1815,7 +1943,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1860,7 +1992,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/where_are_the_new_arch_linux_images/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1905,7 +2041,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		Since the audience of this blog is largely technical, I don't post much about other topics, but I feel it's time for a short summary about one of my "real life projects". In the spring of 2009 I joined a progressive death metal band. I've been drumming since I was 17, but during the last 2 years I've been practising and rehearsing like never before.[1] When you hear yourself on tape for the first time, it's a bit of disillusionment as you suddenly hear every imperfection, many of which you didn't realise you had (or didn't think were very noticeable).
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/my_metalband/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -1948,7 +2088,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		Google, you get a lot of bad words over you lately. "Evil", "big brother", "dangerous", .... But I just wanted to say: thank you. You provide us some nice services. Google search, Gmail, analytics, google maps, ... All of these products are/were game changers and made the life of people all over the world easier. Many people take them for granted and don't realise what it takes to design, engineer and operate these applications.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/thank_you_google/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2012,7 +2156,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 
 <p>Use cases:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2055,7 +2203,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		This has been on my mind for a while. But now I actually took some time to launch a little project to do something about it. 1024 just ain&rsquo;t 1000. stop abusing SI prefixes!
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/stop-abusing-si-prefixes/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2103,7 +2255,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 
 <p><br/>I&rsquo;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&rsquo;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2146,7 +2302,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		Today at Fosdem 2011 I did my talk Can we build a simple, cross-distribution installation framework? Basically, using the Arch Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/can_we_build_a_simple_cross-distribution_installation_framework/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2191,7 +2351,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		On February 4, I&rsquo;ll be in Amsterdam at DIR 2011, the 11th Dutch-Belgian Information Retrieval Workshop. After that, I&rsquo;m going to the devopsdinner and Fosdem beer event in Brussels. On february 5&frasl;6 of course, Fosdem itself. Looking forward to the systemd talk. On sunday I&rsquo;ll do a talk about simple shell based Gnu/Linux installers, like mentioned earlier I hope devs from other &ldquo;lightweight&rdquo;/kiss-style distro&rsquo;s will be present (Gentoo and other *too&rsquo;s, Crux, *ppix, &hellip; You know who you are) It would be interesting to share some common codebase for distribution independent topics (like filesystems), or at least discuss how feasible it would be.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/dir_fosdem_2011/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2234,7 +2398,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		I started working at IBCN, the research group of the university of Ghent. I was looking to get back to the challenging world of high-performance and large-scale (web) applications, but I also wanted something more conceptual and researchy, rather then the highly hands-on dev- and ops work I've been doing for a few years now. The Bom-vl project is pretty broad: it aims to make the Flemish cultural heritage media more useable by properly digitizing, archiving and making public the (currently mostly analog) archives from providers such as TV stations.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/building_a_search_engine/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2275,7 +2443,11 @@ Now I want to build the "luakit of email clients".  Let me explain what's that a
 	
 	<div class="entry-content">
 		This blog now runs on Pyblosxom on Lighttpd on my new Linode machine. The moving/conversion process wasn&rsquo;t as smooth as I thought it would be as I needed to work quite a bit on pyblosxom and implement some new plugins to get certain features working (like syntax highlighting). Also, my previous hosting provider removed my account before the contract expired. But luckily I managed to restore everything and all should work pretty much as before, in particular: Rss feeds should still be working on the old urls and the same GUID&rsquo;s are used to avoid spamming anyone, syntax highlighting of all old entries and comments works, but not yet posting highlighted code in new comments.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/blog_moved/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2331,7 +2503,11 @@ date/time, integer, ... ?</p>
 
 <p>cli by default, can optionally use ncurses dialogs as well.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/libui-sh_a_library_providing_ui_functions_for_shell_scripts/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2387,7 +2563,11 @@ date/time, integer, ... ?</p>
 
 <p>The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&rsquo;m about halfway, if there&rsquo;s anyone out there with a similar use case, help is welcome ;)</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/migrating_blogs_from_drupal_to_pyblosxom/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2441,7 +2621,11 @@ The script is part of a bigger <a href="https://github.com/Dieterbe/git-scripts/
 
 <p><p>Here are some other scripts I find pretty useful:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/checking_if_a_git_clone_has_any_unique_content__git_and_svn_scripts/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2505,7 +2689,11 @@ but I think cooperation could be much better and more efficient.</p>
 
 <p><p>Anyway:<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/filesystem_code_in_aif/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2551,7 +2739,11 @@ but I think cooperation could be much better and more efficient.</p>
 
 <p>Yesterday I did the <a href="http://www.uzbl.org/news.php?id=30">newspost on uzbl.org</a> which explains the reasoning.  I can add it feels pretty weird &ldquo;giving away&rdquo; and &ldquo;leaving behind&rdquo; a project you spent so much time on and which grew a large (well, for a FOSS side project with a hacker audience) base of users and contributors, and which served as inspiration for various other projects.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/handing_off_uzbl_to_a_new_project_leader/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2625,7 +2817,11 @@ At this point the biggest contenders are <a href="http://linode.com/">Linode</a>
 
 <p><p></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/rsyncbench_an_rsync_benchmarking_tool/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2675,7 +2871,11 @@ Also, this was a nice opportunity for me to improve my python skills :)</p>
 
 <p><p>Here is how it compares:<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/an_rss2email_fork_that_sucks_less/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2725,7 +2925,11 @@ Also, this was a nice opportunity for me to improve my python skills :)</p>
 
 <p><p></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/what_the_open_source_community_can_learn_from_devops/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2768,7 +2972,11 @@ Also, this was a nice opportunity for me to improve my python skills :)</p>
 	
 	<div class="entry-content">
 		The Community contributions subforum of the Arch Linux forums is awesome. It is the birthplace of many applications, most of them not Arch Linux specific. File managers, media players, browsers, window managers, text editors, todo managers, and so on. Many shell scripts, urxvt extensions and dwm patches aswell. Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs. If you like to discover new apps and tools, check it out.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2814,7 +3022,11 @@ Also, this was a nice opportunity for me to improve my python skills :)</p>
 
 <p><p>I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/review_of_python_3_object_oriented_programming/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2872,7 +3084,11 @@ Either way, next year both Judd (founder) and Aaron (current overlord) should be
 
 <p>Here is a pic from the group (unfortunately, a few are missing)</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/back_from_canada_archcon/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2922,7 +3138,11 @@ Either way, next year both Judd (founder) and Aaron (current overlord) should be
 
 <p>This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/off_to_toronto_july_14-28_archcon/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -2965,7 +3185,11 @@ Either way, next year both Judd (founder) and Aaron (current overlord) should be
 	
 	<div class="entry-content">
 		I use pm-utils for hibernation support. It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root. If you want to run stuff as a regular user you could do something like &lt;![CDATA[ su $user -c &lt;command&gt; ]]&gt; ..but these commands have no access to your user environment. In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/restoring_ssh_connections_on_resume/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3029,7 +3253,11 @@ Either way, next year both Judd (founder) and Aaron (current overlord) should be
 
 <p><p>We&rsquo;re not sure yet if those talks will get videotaped.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/uzbl_monitoring_aif_talks/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3078,7 +3306,11 @@ Either way, next year both Judd (founder) and Aaron (current overlord) should be
 	
 	<div class="entry-content">
 		Implementation for Facebook usr bin crash puzzle. (how/why) I haven't touched the code for a few months, but better to put it online then to let it rot. http://github.com/Dieterbe/facebookpuzzles/ 2 branches: master: basically what I submitted to FB, and what just works withpruning: an attempt for futher optimalisation (it only improves the runtime in some cases) but I didn't finish that version and there's a bug in it somewhere In the repo you'll also find various test input files supplied by the community on the forums and a script to benchmark the implementation on all inputfiles.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/facebook_usrbincrash_php_implementation/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3130,7 +3362,11 @@ Either way, next year both Judd (founder) and Aaron (current overlord) should be
 
 <p>teams).</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/not_working_for_facebook/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3180,7 +3416,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 
 <p><p>More stuff I&rsquo;m looking forward to:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/fosdem_2010/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3229,7 +3469,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		Arch Linux team interview @ OSNews Uzbl @ LWN.net Apologies for only informing you about the second article now. I assumed most of you follow LWN (you probably should) or found the article anyway. Of all the articles written about uzbl, no one came close to the quality of Koens work. So even though it's a bit dated it's still worth a read.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/arch_linux_interview_and_uzbl_article/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3273,7 +3517,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	<div class="entry-content">
 		<p>When you use <a href="http://oss.oetiker.ch/rrdtool/">rrdtool</a>, it can happen that you first create your databases, then collect a whole bunch of data and decide later you want more accuracy/longer periods.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/rrdtool_updating_rra_settings_and_keeping_your_collected_data/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3325,7 +3573,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 
 <p>I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/ext3_logical_partition_resizing/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3371,7 +3623,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 
 <p>The best moment was, of course, when it was announced that <strong>every summit participant would receive a n900.  Uncontrolled hapiness all around. </strong><br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/about_the_maemo_summit_2009_and_the_nokia_n900/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3414,7 +3670,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		I have been looking for the "perfect mobile companion device" already for a while. Basically I want a "pocket PC that can do as much as possible over which i have as much control as possible so I can do things my way, but still fits in a pocket and which can do gsm and such" So, something like a netbook, but really portable, and that can also do telephony stuff.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/nokia_n900_and_maemo_summit_2009/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3470,7 +3730,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 
 <p><p>Luckily the fd.o guys have come up with <a href="http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html">.desktop files</a>.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/opening_files_automatically_on_mainstream_linux_desktops/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3516,7 +3780,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 
 <p>It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/snip_a_dead-simple_but_quite_powerful_text_expander_and_more/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3557,7 +3825,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		I'm starting to keep track of some things I want. I've picked Amazon because they have many items in their database. wishlist
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/wishlist/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3598,7 +3870,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/froscon_2009_afterthoughts/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3648,7 +3924,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 
 <p>I quickly hacked this script together which pulls all photo albums from friends on facebook, so I have them available where I want.  (It should also pull your own albums, but I don&rsquo;t have any so I can&rsquo;t check that)</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/a_script_that_pulls_photos_from_facebook/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3689,7 +3969,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		So, the Arch Linux 2009.08 release is now behind us, nicely on schedule. I hope people will like AIF because it was a lot of work and we didn't receive much feedback. I personally like it to apply my fancy backup restoration approach. But I'm sure if more people would look at the code we would find quite some design and implementation things that could be improved. (With uzbl I was amazed how much difference it can make if many people all have ideas and opinions about every little detail) Later this week I'm off to the Counting Cows festival in France, and the week after that (august 22-23) I'm going to FrOSCon in Germany where I will meet some of my Arch Linux colleagues in real life, which I'm really looking forward to.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3734,7 +4018,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		We're working hard on a new Arch release. (should be done by froscon) Amongst the slew of fixes and improvements there are also some cool new things I'm working on. First of all, I worked more on the automatic installations. Now you can easily install an LVM based Arch system on top of dm_crypt for example. You type this command: &lt;![CDATA[ aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda ]]&gt; And bam you have a complete working system with LVM, dm_crypt etc all set up.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/aif_automatic_lvm_dm_crypt_installations_and_test_suite/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3775,7 +4063,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		While setting up Zenoss and reading Mysql documentation about status variables I learned: All select_* variables ("Select statistics" graph in Zenoss) are actually about joins, not (all) selects. This also explains why there is no clear relation to com_select (which shows the amount of selects). ("Command statistics:selects" graph in Zenoss) Com_select does not denote all incoming select commands. If you have a hit on your query cache, com_select is not incremented.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/mysql_status_variables_caveats/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3823,7 +4115,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	<div class="entry-content">
 		<p><p>I&rsquo;ve been playing with <a href="http://www.zenoss.com/">Zenoss</a> (2.4) for the first time.  Here are my thoughts:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/zenoss_and_mysql_monitoring/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3873,7 +4169,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 
 <p>So I started the <a href="http://bbs.archlinux.org/viewtopic.php?id=70700&amp;p=1">uzbl browser</a> project.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/uzbl_a_browser_that_adheres_to_the_unix_philosophy/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3917,7 +4217,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	<div class="entry-content">
 		<p>I wanted to know how responsive <a href="http://tools.suckless.org/dmenu">dmenu</a> and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/poor_mans_dmenu_benchmark/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -3963,7 +4267,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 
 <p>For me personally this means I can start working on the next step towards my goal of having all my systems "metadata" centrally stored (along with my real "data"), and the possibility to reconstruct all my systems in a deployment-meets-backup-restore fashion ( see <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a> )</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/automatic_installations_with_aif/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4004,7 +4312,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		I'm particulary interested in: The out-of-the-box concepts of Exherbo. I hope to see more things like this. Various talks at OpenSuse about distribution development, their build service, etc. tools such as func and puppet. syslinux, upstart, ext4 etc. Some mysql stuff and the filesystem i/o from a db perspective talk.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/fosdem_2009/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4051,7 +4363,11 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 	
 	<div class="entry-content">
 		I don't think I've ever seen so much anxiety/impatience/hope/buzz for a new Arch Linux release. (this is because of 2.6.28 with ext4 support). The last release was 6 months ago, which is not so good.. also the arch-installer project has been slacking for a while. But the Arch devs have been very busy and many things going on. You know how it goes... That's why some new people have stepped up to help out on a new release: Today, we are on the verge of a 2009-01 release (though that has been said so many times lately ;-) and together with Aaron we have started a new project: the Arch Linux Release Engineering team.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/arch_linux_release_engineering/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4115,7 +4431,11 @@ I noticed things such as CLI support and documentation have improved tremendousl
 
 <p>One thing that is pretty neat though, If you update $this-&gt;recursive in a model, the baked views will contain stuff for the associated things.  But so much more could be done&hellip;<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/cakephp_and_a_paradigm_shift_to_a_code_generation_based_approach/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4158,7 +4478,11 @@ I noticed things such as CLI support and documentation have improved tremendousl
 	
 	<div class="entry-content">
 		What better way to launch the new year then starting to work as a System Engineer/Developer for a consulting firm where everyone breathes Linux and Open Source? Next week I'll start at Kangaroot. Woohoo.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/jobhunt_over/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4206,7 +4530,11 @@ I noticed things such as CLI support and documentation have improved tremendousl
 
 <p><p>* Changes since alpha 0.5:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/new_aif_release/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4252,7 +4580,11 @@ I noticed things such as CLI support and documentation have improved tremendousl
 
 <p>Take a shower.  When I&rsquo;m thinking about a problem and I take a shower, the ideas and thoughts just start popping up, one after each other, or sometimes even two at the same time.  It&rsquo;s amazing.  And it works every time.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/number_1_productivity_tip_showers/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4295,7 +4627,11 @@ I noticed things such as CLI support and documentation have improved tremendousl
 	
 	<div class="entry-content">
 		The adventure at Netlog didn't work out entirely, so I'm looking for a new challenge! My new ideal (slightly utopic) job would be: Conceptual engineering while still being close to the technical side as well, most notably system engineering and development. Innovative: go where no one has gone before. Integrated in the open-source world. (Bonus points for companies where open source is key in their business model) To get a detailed overview of my interests and skills, I refer to: My Linkedin profile: http://www.linkedin.com/in/dieterplaetinck My Curriculum Vitae.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/looking_for_a_new_job/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4347,7 +4683,11 @@ Functionality-wise the installer works fine, but I guess the code behind it is t
 
 <p><p>So I started to write <a href="http://github.com/Dieterbe/aif/">AIF: the Arch Linux Installation Framework</a></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/aif_the_brand_new_arch_linux_installation_framework/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4392,7 +4732,11 @@ Functionality-wise the installer works fine, but I guess the code behind it is t
 	
 	<div class="entry-content">
 		I recently had to rename a repo on my Github account. Github has made this very easy but it's just one side of the issue. Obviously you must also update any references to this remote in other clones, otherwise pushes, fetches etc won't work anymore. You can do this in two ways: open .git/config and modify the url for the remote manually git remote rm origin &amp;&amp; git remote add origin git@github.com:$user/$project.git That's it!
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/handling_a_remote_rename_or_move_with_git/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4435,7 +4779,11 @@ Functionality-wise the installer works fine, but I guess the code behind it is t
 	
 	<div class="entry-content">
 		Weird as it might sound, I've never bothered to listen to Muse songs.. until now. Some people have recommended the band to me so I really had to stop ignoring this band someday. And wow.. what have I been missing al that time :/ Songs like Butterflies and Hurricanes and Citizen Erased are among the most beautiful songs I've ever heard now.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/muse...wow/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4483,7 +4831,11 @@ The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://
 
 <p>It&rsquo;s probably not bugfree.  I hacked it together in a few hours (but it works for me :-).   Bugreports welcome!<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/dautostart_a_standalone_freedesktop-compliant_application_starter/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4525,7 +4877,11 @@ The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://
 	<div class="entry-content">
 		<p><p>Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing &lsquo;echo $?&rsquo;, &lsquo; &amp;&amp; echo ok&rsquo;, &lsquo;|| echo failed&rsquo; etc on the command line.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/visual_feedback_of_the_exit_status_of_the_previous_command_in_bash/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4573,7 +4929,11 @@ The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://
 
 <p>I&rsquo;m fine with the fact they do that.  I&rsquo;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg&rsquo;s</a> $XDG_CACHE_HOME directory)</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/im_done_with_gnome_and_gconf/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4619,7 +4979,11 @@ The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://
 
 <p>Since the last release many, many things have been changed/fixed/added.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/ddm_v04_released/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4667,7 +5031,11 @@ The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://
 
 <p>The projects I have migrated to my <a href="https://github.com/Dieterbe">GitHub profile</a> are:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/my_projects_are_on_github_now/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4709,7 +5077,11 @@ The project is at <a href="http://github.com/Dieterbe/dautostart" title="http://
 	<div class="entry-content">
 		<p><p>Often while you&rsquo;re occupied with something, some thought pops into your head.  Something that you want to remember/do something about.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4759,7 +5131,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 
 <p><p>Even though there are probably no applications out there that can do everything I want, I just wanted to share my feature-wishlist.  These are the requirements I find that a really good tool should comply with:<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/requirements_for_the_perfect_gtd_tool/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4805,7 +5181,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 	<div class="entry-content">
 		<p><p>In this post I explain my vision on the concepts of backups and how several common practices are in my opinion suboptimal and become unnecessary or at least can be done more easily by managing data on a higher level by employing other patterns such as versioning important directories and distributed data management.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/rethinking_the_backup_paradigm_a_higher-level_approach/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4851,7 +5231,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 
 <p><p>Ok you got them?  Now look at your keyboard and spot where these characters are.  Now consider where your fingers are most of the time (if you&rsquo;ve never learned to type: the &lsquo;base position&rsquo; for your fingers is on the middle row).  Notice anything strange?</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/dump_your_azerty_and_querty_because_the_only_keyboard_layout_that_makes_sense_is_dvorak/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4892,7 +5276,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 	
 	<div class="entry-content">
 		At work, we've setup the Netlog Developer Pages It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on. We've also launched a group where you can communicate with fellow developers and Netlog employees. The page also features a blog where you can follow what is going on in the Netlog Tech team. PS: We've also updated
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/announcing_the_netlog_developer_pages/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4941,7 +5329,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 	
 	<div class="entry-content">
 		I had to fix a problem at my dad's company... "The network was broken." It was a NetBEUI network connecting some windows stations - it has been running for years - and now suddenly the nodes couldn't find eachother. One of the boxes (windows 2000 iirc) had 2 network cards, one for the network, the other not used for anything (not even connected). Disabling the latter - not even touching the former - fixed half of the network.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/windows_sucks/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -4985,7 +5377,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 
 <p><p>If you&rsquo;re one of the sysadmins of a website with 35M members and 150M hits per day this means you&rsquo;re in for an exciting night &hellip;</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/i_survived_lcl_31_3_2008/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5037,7 +5433,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 
 <p><p>I wanted to keep all my stuff neatly organised in my home directories and I want to create good work flows with as minimum hassle as possible, so I decided to write DDM: the Distributed Data Manager.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/ddm_a_distributed_data_manager/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5083,7 +5483,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 	<div class="entry-content">
 		<p><p>If you serve lots of (small) files with Lighttpd you might notice you&rsquo;re not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn&rsquo;t have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5131,7 +5535,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 
 <p><p><a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2008.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a><br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/im_not_going_to_fosdem_2008/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5179,7 +5587,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 	<div class="entry-content">
 		<p><p>I&rsquo;ve been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/per_directory_bash_history/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5222,7 +5634,11 @@ Having made my home office space into a real <i>Zen</i> I want to start implemen
 	
 	<div class="entry-content">
 		The key to mastering a musical instrument is learning an other.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/the_key_to_mastering_a_musical_instrument/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5270,7 +5686,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 
 <p><p>Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/hacking_into_my_router_by_brute_force_http_authentication/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5312,7 +5732,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 	<div class="entry-content">
 		<p><p>Phew! where to start?  Probably at <a href ="http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively">this blogpost</a>.  It&rsquo;s about making it very easy to work with external encrypted volumes. I&rsquo;m not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5355,7 +5779,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 	
 	<div class="entry-content">
 		I recorded a little drumvideo while practicing. It's just some improvisation... Find the mistakes! ;-) Recorded with 2 shure SM57's, an M-audio mobilepre USB and the iSight cam in my macbook pro. The mic setup had to be close enough to sound direct and focused without too much reverb, and still far enough to allow all instruments too come through. After some experimenting I decided to place the mics behind the kit, next to me ( one each side), just below the height of the hips.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/video_of_me_drumming/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5398,7 +5826,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 	
 	<div class="entry-content">
 		After an app is closed or crashed, the data is still in your RAM and you can very easily get it back by grepping /proc/kcore. thanks Martin for this tip! http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-...
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/simple_command_to_retrieve_stuff_from_ram_after_closing_or_crashing_an_application/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5442,7 +5874,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 
 <p><p>There is a trick that let&rsquo;s you dynamically create variable names.  Using this, you can emulate additional dimensions.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/emulating_two-dimensional_%28or_even_multi-dimensional%29_arrays_in_bash/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5484,7 +5920,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 	<div class="entry-content">
 		<p><p>FOSS is written by users, for users, and what I&rsquo;ve been doing/experiencing this afternoon is a perfect example of that.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5530,7 +5970,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 	<div class="entry-content">
 		<p><p>I just upgraded this site to <a href="http://drupal.org/drupal-5.2">Drupal 5.2</a>.  The package came with upgrading instructions consisting of 11 steps to complete the upgrade proces, but after reading it a few times I realized it could be done easier.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/upgrading_drupal_the_easy_way/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5576,7 +6020,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 
 <p>But .. all the sites I currently work on are all community sites or blogs</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/bye_cakephp_bye_dauth_hello_drupal/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5621,7 +6069,11 @@ Luckily I knew some possible usernames and some patterns that I could have used 
 	
 	<div class="entry-content">
 		I've been using OpenSSH already for a while and although I've seen mentions of "public key authentication" and "RSA encryption" several times in it's config files, I never decided to figure out what it did exactly, and stuck to password authentication. But now the guys at work explained how it works and after reading more about it, I'm totally hooked on it! It's a feature in ssh protocol version 2 (thus it's around for already a while, e.g.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/assymetric_keys_instead_of_passwords_for_ssh_authentication_to_increase_security_and_convenience/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5669,7 +6121,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 <p><p>So, I&rsquo;ve been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/the_perfect_gtk_music_player_can_exaile_replace_amarok/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5714,7 +6170,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 	
 	<div class="entry-content">
 		I don't like pages / articles / blog posts /.. accompanied by "Digg this", "add to Del.icio.us" or "add to Technorati" links. Why not? Because this is meta level functionality. Not functionality of the blog/article/page in question, but on a higher level. And thus this should be handled on a higher level: the web browser. Just like we can create and manage bookmarks (I mean the old fashioned ones, not the delicious ones) in our browser: this is not the task of a web page.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/webpages_should_not_contain_add_to_digg_delicious_technorati_links/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5755,7 +6215,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 	
 	<div class="entry-content">
 		Foreign visitors: yeay I graduated today \o/ Dutchies: joepie, afgestudeerd... Vandaag proclamatie gehad, ben geslaagd met voldoening, zelfs geen enkele buis \o/ En een 12/20 voor de Masterproef :-)
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/afgestudeerd_graduated/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5798,7 +6262,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 	
 	<div class="entry-content">
 		dAuth is a secure authentication system for CakePHP. It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc. Read all about it You can download the files separately on the before mentioned page or get the tarball that somebody was kind enough to create. (damn I'm lazy today) I don't maintain this any more!
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/dauth/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5845,7 +6313,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 	
 	<div class="entry-content">
 		PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts. I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important). You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated: It gets filled with way too many tags.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5892,7 +6364,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 	
 	<div class="entry-content">
 		Introduction PhpDeliciousClient is a CLI program for administering your Delicous account. When you invoke it from the command line you have some methods to administer your tags and your posts. It's written in PHP and uses Ed Eliot's PhpDelicous class to contact the del.icio.us api. (included in download) PhpDeliciousClient is licensed under the GPL v2, while the PhpDelicious class is licensed under the BSD license. Why? The main reason I started developing it is because administering your account on the del.ico.us web interface can be cumbersome.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/php_delicious_client/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5942,7 +6418,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 <p>Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -5987,7 +6467,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 	
 	<div class="entry-content">
 		Today I'm finally out of Google's Sandbox. Google has this system called the sandbox where new pages go into for 6 months, in order to prevent scammers/spammers from resurrecting dummy pages - and scoring well in Google - all the time. During these 6 months a page will score very bad in search results, even if it should rate very well for the specific keywords. Smart people will look at my first post, dated 03/04/2007, but keep in mind that before this blog existed I already had a dummy page with my name on (the keywords I want to score on) as soon as I could because back then I already knew I wanted to put a blog here and I wanted to get out of the sandbox as soon as possible.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/bye_google_sandbox/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6031,7 +6515,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 <p><p>He made some great points about where the (music) industry gets/does it wrong and about some fundamental flaws in our law systems (especially with regards to copyright).  All of which are of course results of the challenges imposed by the &ldquo;information age&rdquo;.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/cory_doctorow_you_cant_make_bits_harder_to_copy/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6079,7 +6567,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 <p>Long story short:  I finally got it working (thanks to Krazylegz and kristofer and possibly others too, it has been a while so I may forget someone ;-), and learned a lot in the process.  I will share what I learned with you guys so that hopefully it's a bit easier for you then what I had to go through.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/drag_n_drop_tutorial_with_cakephp_ajax_prototype_scriptaculous/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6122,7 +6614,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 	
 	<div class="entry-content">
 		Voor school moest ik een ethisch verslag schrijven. Hier moesten 3 elementen in voorkomen: Inleidende tekst / Persoonlijke reflectie over beroeps- en bedrijfsethiek Ethische beschouwingen bij het eindwerk Uitgebreidere verhandeling met ethische beschouwingen over een vraagstuk naar keuze uit het domein van wetenschap, techniek, beroeps- en bedrijfsleven. In mijn geval is dit vraagstuk naar keuze "open source en softwarepatenten" geworden Zoals sommigen onder jullie weten vind ik ethiek een heel belangrijk aspect in het leven en ik ben dan ook blij dat ik het issue van open source en softwarepatenten verder heb kunnen uitdiepen, want dit is iets waar ik in geinteresseerd ben.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/open_source_softwarepatenten_vanuit_ethisch_perspectief/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6170,7 +6666,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 <p>I got my thesis printed and delivered the six books to my school.<br /></p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/thesis_finished/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6220,7 +6720,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 <p>Things I will be doing there is</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/i_just_became_a_system_and_network_architect/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6270,7 +6774,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 <p><p>However, it seems like Debian is taking a route that will make it lose it&rsquo;s advantages over other distributions in the server market:</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/debian_changing_route_the_end_of_the_perfect_server_distribution/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6314,7 +6822,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 <p><p>However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&rsquo;t finished yet but it sure is worth it looking at.  (In fact I&rsquo;m thinking about making a new dAuth version built on cake&rsquo;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6364,7 +6876,11 @@ But .. it uses the QT library, and although there are tricks to make QT applicat
 
 Twee man sterk (Steven en ik) vertegenwoordigden we <a href="http://www.jhsjatoo.org/">jeugdhuis SjaTOo</a>.</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/kwartee_4_2007_verslag/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6410,7 +6926,11 @@ It's that time of the year when many European (and some inter-continental) colle
 
 <a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>
 
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/fosdem_2007_review/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6467,7 +6987,11 @@ It's that time of the year when many European (and some inter-continental) colle
 	
 	<div class="entry-content">
 		Hello everyone. This post is about bash, the shell providing so many users easy access to the underlying power of their system. (not bash the quote database, although i really like that website too ;-) ) Most people know the basics, but getting to know it better can really increase your productivity. And when that happens, you might start loving bash as much as I do ;-) I assume you have a basic knowledge of bash, the history mechanism, and ~/.bash* files.
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/my_favorite_bash_tricks/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		
@@ -6514,7 +7038,11 @@ It's that time of the year when many European (and some inter-continental) colle
 	
 	<div class="entry-content">
 		Finally, my own website... I already wanted to get this up for a long time. My initial idea was writing (and styling) it all from scratch using the marvelous CakePHP framework along with an authentication system i wrote, dAuth. However, due to my lack of time I decided to use the excellent drupal platform, of which I'm quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-) Dries Buytaert's talk on fosdem this year really helped on making that decision ;-) So, what will this site be about?
+        </br>
+        </br>
+        <a href="http://localhost:1313/post/blogpost1_hello_world/">Full article</a>
 	</div>
+    
 
 	<footer class="entry-meta">
 		<span class="tag-links">		

@@ -1,8 +1,10 @@
-
 baseurl = "http://dieter.plaetinck.be"
 languageCode = "en-us"
-title = "Dieter Plaetinck's blog"
+title = "Dieter's blog"
 theme = "dieter"
+buildDrafts = false
+buildFuture = false
+uglyUrls = false
 
 [[menu.main]]
     name = "blog"

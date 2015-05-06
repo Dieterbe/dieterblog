@@ -20,7 +20,7 @@ But ironically, in doing so, they often seem to think that they are now only all
 <br/>
 <br/>For example I've seen several presentations in which authors demonstrate how they try to fine-tune moving average algorithms and try to get a robust base signal to check against but which is also not affected too much by previous outliers, which raise the moving average and might mask subsequent spikes).  
 <br/>
-<img src="http://dieter.plaetinck.be/files/fault-detection-moving-average.png">
+<img src="/files/fault-detection-moving-average.png">
 from <a href="https://speakerdeck.com/astanway/a-deep-dive-into-monitoring-with-skyline">A Deep Dive into Monitoring with Skyline</a>
 <br/>
 <br/>
@@ -38,7 +38,7 @@ Another example: During his <a href="https://coderanger.net/talks/echo/">Monitor
 crontabs cause (by definition) periodic spikes in activity, user activity causes a fairly smooth graph which is characterized by its daily pattern and often some seasonality and a long-term trend.
 <br/>
 <br/>
-<img width="70%" src="http://dieter.plaetinck.be//files/anomaly-detection-cases.png">
+<img width="70%" src="/files/anomaly-detection-cases.png">
 <br/>
 <br/>Because they look differently, anomalies and faults look different too.  In fact, within each category there are multiple problematic scenarios. (e.g. user activity based timeseries should not suddenly drop, but also not be significantly lower than other days, even if the signal stays smooth and follows the daily rhythm)
 <br/>
@@ -87,7 +87,7 @@ So I started asking myself some questions:
 <br/>
 Our most important data falls within the user-driven category from above where various timeseries from across the stack are driven by, and reflect user activity.  And within this category, the most common problem (at least in my experience) is spikes in the data.  I.e. a sudden drop in requests/s or a sudden spike in response time.  As it turned out, this is much easier to detect than one might think:
 <br/>
-<img style="float:left; margin:15px;" src="http://dieter.plaetinck.be/files/poor-mans-fault-detection.png">
+<img style="float:left; margin:15px;" src="/files/poor-mans-fault-detection.png">
 <br/>
 In this example I just track the standard deviation of a moving window of 10 points.  <a href="http://en.wikipedia.org/wiki/Standard_deviation">Standard deviation</a> is simply a measure of how much numerical values differ from each other.  Any sudden spike bumps the standard deviation.   We can then simply set a threshold on the deviation.  Fairly trivial to set up, but has been highly effective for us.
 <br/>
@@ -141,7 +141,7 @@ In my last <a href="https://www.usenix.org/conference/lisa14/conference-program/
 <br/>
 <br/>
 <center>
-<img src="http://dieter.plaetinck.be/files/metrics20-alerting.png" width="50%">
+<img src="/files/metrics20-alerting.png" width="50%">
 </center>
 
 <!--

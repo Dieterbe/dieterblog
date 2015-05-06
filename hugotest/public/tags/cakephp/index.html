@@ -102,20 +102,13 @@
 			</header>
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/cakephp_and_a_paradigm_shift_to_a_code_generation_based_approach/">CakePHP and a paradigm shift to a code generation based approach?</a></h1>
+        <a href="http://localhost:1313/post/cakephp_and_a_paradigm_shift_to_a_code_generation_based_approach/">CakePHP and a paradigm shift to a code generation based approach?</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -128,160 +121,16 @@
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>At my <a href="/jobhunt_over">new job</a>, I'm writing a quite full-featured web application.<br />
-
-I've choosen to use CakePHP.<br />
-
-Why? Well, it may be 2 years since I last used it, but I've followed the project and it's planet, and it seems to have matured and gained even more monumentum.<br />
-
-I want to use something that is widely used so there is plenty of stuff available for it, it's RAD, it's flexible and powerful.<br />
-
-I noticed things such as CLI support and documentation have improved tremendously too.</p>
-
-<p>However, I find that still, the recommended (or at least "most commonly used") practices are not as efficient as they could be, and that emphasis is placed on the wrong aspects.<br />
-
-See, even though the <a href="http://book.cakephp.org/view/113/Code-Generation-with-Bake">bake</a> tool has come a long way since I last used it, it's still used to "generate some standard models/controllers/views" and the developer can take it from there [further editing the resulting files himself].<br />
-
-Finetuning generated code by editing the templates (in fact, only views have templates; the php code of models and controllers is hardcoded in the scripts that generate them), is still an obscure practice...<br />
-
-Also, there are very few commandline switches (Right now you can choose your app dir, whether you want to bake a model,controller or view, and it's name.)<br />
-
-All other things (validation rules, associatons, index/view/edit/add actions/views, which components, overwrite yes/no etc) are all handled interactively.<br />
-
-There are also some smaller enoyances such as when you specify one option like the name of the model, it assumes you don't want interactivity and produces a model containing nothing more then the class definition and the membervariable $name, which is usually worthless.<br />
-
-One thing that is pretty neat though, If you update $this->recursive in a model, the baked views will contain stuff for the associated things.  But so much more could be done...<br />
-
-<!--more--></p>
-
-<p>Ideallistically speaking, the bake tool (and it libraries) should imho become much more advanced:</p>
-
-<ul>
-
-<li>templates for views, models and controllers.</li>
-
-<li>choice of multiple (groups of) templates which you can choose with a commandline argument. (eg I typically have some different kinds of M/V/C's for a certain model, but there are many similarities and they can often even be categorised into groups.)</li>
-
-<li>the ability to control all aspects of the bake process through commandline switches (or config files).  Both the things that are asked now but also $recursive level, behaviors you want to use for models, etc.</li>
-
-<li>proper cmdline arg parsing (getline or something)</li>
-
-</ul>
-
-<p>We could then do a paradigm shift to actually treat your models, views and controllers as uncritical "output" code which can be deterministically regenerated (and hence doesn't need to be versionned), while the templates and the scripts to call bake become your "source", and your key asset to building the application you're working on.</p>
-
-<p>If I had the time (or would use cake for personal projects) I would happily work on such refactorings in a clean way.<br />
-
-For now though,  I've hacked/workarounded/patched the cake code in such a way that it behaves the way I want, while spending as little time on it as possible.<br />
-
-For those interested, the patched code is online at <a href="http://github.com/Dieterbe/cake/tree/master" title="http://github.com/Dieterbe/cake/tree/master">http://github.com/Dieterbe/cake/tree/master</a><br />
-
-The first rev is the original cakephp code, so you can look at the diffs if you want.</p>
-
-<p>Changes until now ( <a href="http://github.com/Dieterbe/cake/commit/9ceb6234164ebc750c8b697a825834ca36097ce7" title="http://github.com/Dieterbe/cake/commit/9ceb6234164ebc750c8b697a825834ca36097ce7">http://github.com/Dieterbe/cake/commit/9ceb6234164ebc750c8b697a825834ca3...</a> ):</p>
-
-<ul>
-
-<li>Do not clear my terminal. (why is that needed anyway :/)</li>
-
-<li>Some echo's that tell me which shells are loaded, tasks executed etc (to understand more how it all works)</li>
-
-<li>always overwrite files.  Hey I use version control!  always bake unit tests, always bake all actions/views, except those for admin routing</li>
-
-<li>never ask me which db to connect to, never use scaffolding, don't use helpers, don't write $useDbConfig to models (it's loaded dynamically in app_model),</li>
-
-<li>agree with all associations except the hasOne's (I can build in exceptions/specific rules if I ever need them)</li>
-
-<li>validation rules are specified as sql comments.  I don't want to re-answer those questions each time I rebake.</li>
-
-</ul>
-
-See this example sql file.  When baking a model, the code will first try to find a specific rule for the model, if not found, it will look for a global rule, and if still not found, ask the question interactively.<br />
-
-[code lang="sql"]<br />
-
--- cake validate ALL id none<br />
-
--- cake validate ALL created none<br />
-
--- cake validate ALL modified none<br />
-
-(...)<br />
-
-CREATE TABLE foos (<br />
-
-    id serial NOT NULL,<br />
-
-    name character varying(255) NOT NULL, --cake validate apc alphanumeric<br />
-
-    type character varying(255) NOT NULL, --cake validate apc notempty<br />
-
-    room_id integer NOT NULL, --cake validate apc numeric<br />
-
-    created timestamp without time zone,<br />
-
-    modified timestamp without time zone<br />
-
-);<br />
-
-[/code]
-
-</ul>
-
-<p>Here is the bash code which I currently use to bake all my models without any interactivity:</p>
-
-<p>[code lang="bash"]<br />
-
-for i in `cake bake model <<< 'q' | awk '/^[[:digit:]]/ {print $2}'` #get a list of all models<br />
-
-do<br />
-
-        if [ $i != Aro ] &amp;& [ $i != Aco ] &amp;& [ $i != ArosAco ]<br />
-
-        then<br />
-
-                echo ">>> doing $i...."<br />
-
-                cake bake model $i<br />
-
-        fi<br />
-
-done<br />
-
-[/code]</p>
-
-<p>I may post later again about this stuff if I have something useful to say.</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/bye_cakephp_bye_dauth_hello_drupal/">Bye CakePHP, bye dAuth... Hello Drupal!</a></h1>
+        <a href="http://localhost:1313/post/bye_cakephp_bye_dauth_hello_drupal/">Bye CakePHP, bye dAuth... Hello Drupal!</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -294,58 +143,16 @@ done<br />
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>I'm afraid the time has come to say goodbye to CakePHP, and to the projects I've been working on for it.<br />
-
-I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don't like but that's not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.<br />
-
-But .. all the sites I currently work on are all community sites or blogs<!--more-->, and although some of them have some specific requirements, in the end it's all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that's becoming easier and easier to do)</p>
-
-<p>I think Drupal is a magnificent CMS because it is plug and play (I need that because my time is getting pretty sparse lately!) but also because it has a pretty active community: there are so many 3rd party modules being developed, and usually you can just upload the module in your modules folder , enable it from your control panel and presto!</p>
-
-<p>Also Drupal seems to have a pretty slick API, this is important for me because I will still need to program some stuff every once in a while because not everything I need is available yet. </p>
-
-<p>If I would ever use Cake again, I would probably abuse it as a console application framework (especially for it's simple datalayer), or of course if I would have to create a very customized web application such as I did <a href="/masterproef">recently</a>, but none is planned in the forseeable future.</p>
-
-<p><em>A special note about dAuth:</em><br />
-
-CakePHP 1.2 will have an auth component included, I don't know the current state but as far as I know it's not (and never will be, judging my talks with a cake dev) as advanced as dAuth.  However, this is not necessarily a bad thing:<br />
-
-The further I've tried to perfect the safeguarding of the confidentiality of the password (trough hashing it, using the challenge response paradigm, etc) the more I've come to realize you can never get a perfect result on plain http using js/php.  Just switch to https and you get great encryption where you don't need to bother about the confidentiality of a password, and it's almost no hassle.  So these are things that shouldn't be in your php/js code, which saves you a lot of efforts and is perfectly secure (at least: the aspect of confidentiality!</p>
-
-<p>But.. another part of the system were the "added bits" of security such as the brute force detection.  I hope the cake guys will include something like that in their auth component because I think this is a must.</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/drupal/index.html" rel="tag">drupal</a>
-            
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/dauth/">dAuth</a></h1>
+        <a href="http://localhost:1313/post/dauth/">dAuth</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -358,52 +165,16 @@ The further I've tried to perfect the safeguarding of the confidentiality of the
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>dAuth is a secure authentication system for CakePHP.</p>
-
-<p>It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc.</p>
-
-<p><a href="http://bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3" onClick="javascript:urchinTracker('bakery.cakephp.org/articles/view/introduction-to-dauth-v0-3');">Read all about it</a></p>
-
-<p>You can download the files separately on the before mentioned page or get the <a href="http://letthemcodecake.com/learning-cakephp/dauth-v03-tarball/" onClick="javascript:urchinTracker('letthemcodecake.com/learning-cakephp/dauth-v03-tarball/');">tarball</a> that somebody was kind enough to create.<br />
-
-(damn I'm lazy today)</p>
-
-<p>I don't maintain this any more!</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/dauth/index.html" rel="tag">dauth</a>
-            
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/">Getting statistics about events that don&#39;t trigger page requests with Google Analytics</a></h1>
+        <a href="http://localhost:1313/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/">Getting statistics about events that don&#39;t trigger page requests with Google Analytics</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -416,60 +187,16 @@ The further I've tried to perfect the safeguarding of the confidentiality of the
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>You probably already heard of <a href="www.google.com/analytics">Google Analytics</a>.  It's a pretty nice program that (<em>basically</em>) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;topic=11012">events that don't require page requests!</a><br />
-
-Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).<!--more--></p>
-
-<p>The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function <em>urchinTracker()</em> you just add <em>onClick="javascript:urchinTracker('/this-is-something-i-want-to-track');"</em> to your hyperlink.<br />
-
-You can even work with subdivisions.  The examples on the help pages for <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55529">download</a> and <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55527">outbound</a> links propose <em> urchinTracker('/downloads/map');</em> and <em><br />
-
-urchinTracker('/outgoing/example_com');</em> respectively.</p>
-
-<p>Now we also know why Google <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=66983#0.1.1_step4">says</a> the "normal" tracking code should be put at the end of the page, right before the <em>&lt;/body&gt;</em> tag.  I always wondered why they recommend this weird location.  This is because calls like the ones above should happen prior to the "normal" one.</p>
-
-<p>If only I had known this earlier.  I would love to have known an accurate number of downloads of my thesis text (and the number of unique downloaders) :-)</p>
-
-<p>For those who don't have Google Analytics setup yet:<br />
-
-<a href="drupal.org/">Drupal</a> users should install the <a href="http://drupal.org/node/49388">Drupal Google Analytics</a> module.<br />
-
-<a href="www.cakephp.org/">CakePHP</a> users can put the <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=66983#0.1.1_step4">Tracking code</a> in the layout file or even in an element.</p>
-
-<p>Have fun tracking all events on your website!</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-                <a href="http://localhost:1313//tags/drupal/index.html" rel="tag">drupal</a>
-            
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/drag_n_drop_tutorial_with_cakephp_ajax_prototype_scriptaculous/">Drag &#39;n drop tutorial with the CakePHP 1.2 Ajax helper, Prototype framework and Scriptaculous library</a></h1>
+        <a href="http://localhost:1313/post/drag_n_drop_tutorial_with_cakephp_ajax_prototype_scriptaculous/">Drag &#39;n drop tutorial with the CakePHP 1.2 Ajax helper, Prototype framework and Scriptaculous library</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -482,220 +209,16 @@ urchinTracker('/outgoing/example_com');</em> respectively.</p>
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<h3>Introduction</h3>
-
-<p>During the development of my <a href="/masterproef">thesis</a> I wanted to create a drag 'n drop interface.  But I never did anything like that, I never used CakePHP's Ajax helper and neither made I ever use of more advanced functionalities of Scriptaculous/Prototype.  Hell I even never touched Ajax before this! </p>
-
-<p>Although there are some basic CakePHP/Ajax tutorials out there, I still had a hard time because some knowledge about Ajax (in CakePHP) was assumed in all of those.  After a lot of googling I even found a tutorial called <a href="http://www.dustinweber.com/blog/_archives/2007/4/4/2859177.html">CakePHP: Sortable AJAX Drag &amp; Drops - The Basics</a>  <br/>"Perfect!" I thought, until after staring at the article for a long while and I started to notice nowhere in the article "$ajax->drag", "$ajax->drop" or "$ajax->dropRemote" is used.  (those are calls on the CakePHP Ajax helper to enhance objects to become draggable, or to become a dropbox where draggables can be dropped into).  So the only more or less suited tutorial about drag 'n drop was actually about sorting and didn't use the drag/drop function calls at all.  Even though it contains very useful information.</p>
-
-<p>Long story short:  I finally got it working (thanks to Krazylegz and kristofer and possibly others too, it has been a while so I may forget someone ;-), and learned a lot in the process.  I will share what I learned with you guys so that hopefully it's a bit easier for you then what I had to go through.</p>
-
-<!--more-->
-
-<h3>Prerequisites</h3>
-
-<p>CakePHP.  I used 1.2 but I think this will work on 1.1 too (because the Ajax helper is in there for a long time.  it's even fully documented in the 1.1 manual)<br />
-
-Scriptaculous &amp; Protoype libraries.  See <a href="http://manual.cakephp.org/chapter/helpers">the cake manual</a> on how to install these.  Don't close this page after installing the libs, because it also explains the possibilities of the Ajax helper and is a reference that you <em>will</em> need!  The <a href="http://api.cakephp.org/1.2/class_ajax_helper.html">api reference</a> reveals even more possibilities, but the former page should do.</p>
-
-<h3>Let's get started!</h3>
-
-<p>Instead of showing a really simple example, I'll give a skeleton example based on a webstore-scenario.  You can have multiple articles (draggables) and 2 droppables: a cart and a thrashbin.  Dropping an article in the cart adds the article to your order (which I usually keep in the session) and updates the view accordingly, dragging it from the cart into the thrashbin removes it from the session and updates the view too.<br />
-
-I've left out the basics such as sql, models and controller business logic, and focused on the Ajax specifics.</p>
-
-<p>The view-code can be combined in different elements but for simplicity let's assume there is only 1 view file.<br />
-
-Keep in mind that each object where you want to assign some functionality to (such as draggable, droppable) must have a unique DOM id.  It doesn't matter if it's a div or span or p or whatever, as long as it has a unique id.</p>
-
-<p>The view looks like this:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">foreach</span>(<span style="color: #19177C">$articles</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #19177C">$article</span>)<span style="color: #666666">:</span> <span style="color: #BC7A00">?&gt;</span>
-
-<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;</span><span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$article</span>[<span style="color: #BA2121">&#39;Article&#39;</span>][<span style="color: #BA2121">&#39;id&#39;</span>]; <span style="color: #BC7A00">?&gt;</span><span style="color: #BA2121">&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
-
-   <span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$article</span>[<span style="color: #BA2121">&#39;Article&#39;</span>][<span style="color: #BA2121">&#39;description&#39;</span>]; <span style="color: #BC7A00">?&gt;</span>
-
-<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
-
-<span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$ajax</span><span style="color: #666666">-&gt;</span><span style="color: #7D9029">drag</span>(<span style="color: #19177C">$article</span>[<span style="color: #BA2121">&#39;Article&#39;</span>][<span style="color: #BA2121">&#39;id&#39;</span>],<span style="color: #008000; font-weight: bold">array</span>(<span style="color: #BA2121">&#39;revert&#39;</span><span style="color: #666666">=&gt;</span><span style="color: #008000; font-weight: bold">true</span>)); <span style="color: #BC7A00">?&gt;</span>
-
-/*
-
-   the revert thing will make the draggable return to it&#39;s original position.  Set this to false and the object will stay where you put it.
-
-   This does not have anything to do with a function call being made btw, that&#39;s the job for the draggables
-
-*/
-
-<span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">endforeach</span>; <span style="color: #BC7A00">?&gt;</span>
-
-
-
-
-
-<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;cart&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
-
-   <span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #7D9029">requestAction</span>(<span style="color: #BA2121">&#39;/controller/showcart&#39;</span>); <span style="color: #BC7A00">?&gt;</span> // this call is not necessary.  You can use it to fill the <span style="color: #008000; font-weight: bold">&lt;div&gt;</span> with some content to start with
-
-<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
-
-
-
-<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;thrashbin&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
-
-<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
-
-
-
-<span style="color: #BC7A00">&lt;?php</span>
-
-   <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$ajax</span><span style="color: #666666">-&gt;</span><span style="color: #7D9029">dropRemote</span>(<span style="color: #BA2121">&#39;cart&#39;</span>,<span style="color: #008000; font-weight: bold">null</span>,<span style="color: #008000; font-weight: bold">array</span>(<span style="color: #BA2121">&#39;url&#39;</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;/controller/addarticle/&#39;</span>,<span style="color: #BA2121">&#39;with&#39;</span><span style="color: #666666">=&gt;</span><span style="color: #BA2121">&#39;{draggedid:element.id}&#39;</span>,<span style="color: #BA2121">&#39;update&#39;</span><span style="color: #666666">=&gt;</span><span style="color: #BA2121">&#39;cart&#39;</span>));
-
-   <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$ajax</span><span style="color: #666666">-&gt;</span><span style="color: #7D9029">dropRemote</span>(<span style="color: #BA2121">&#39;thrashbin&#39;</span>,<span style="color: #008000; font-weight: bold">null</span>,<span style="color: #008000; font-weight: bold">array</span>(<span style="color: #BA2121">&#39;url&#39;</span> <span style="color: #666666">=&gt;</span> <span style="color: #BA2121">&#39;/controller/removearticle/&#39;</span>,<span style="color: #BA2121">&#39;with&#39;</span><span style="color: #666666">=&gt;</span><span style="color: #BA2121">&#39;{draggedid:element.id}&#39;</span>,<span style="color: #BA2121">&#39;update&#39;</span><span style="color: #666666">=&gt;</span><span style="color: #BA2121">&#39;cart&#39;</span>));
-
-<span style="color: #BC7A00">?&gt;</span>
-
-/*
-
-   these two calls make objects with DOM id&#39;s &#39;cart&#39; and &#39;thrashbin&#39; droppable.  When an object is dropped into them, the actions defined by &#39;url&#39; are called.
-
-   The &#39;with&#39;=&gt;&#39;{draggedid:element.id} passes the id of the dropped element to the function that is called (on the background, no page refresh or anything like that!).
-
-   The update thing makes sure that the entire output of the requestAction call is displayed inside the <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;cart&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/div&gt;</span>.
-
-   So that means that the page will update the part of the page which is specified (dom id &#39;cart&#39;) when the output from the requestAction call is received
-
-*/
-</pre></div>
-<p>
-
-The controller would have functions like this:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
-
-
-
-<span style="color: #408080; font-style: italic">// this function can be used to show initial contents of the cart.</span>
-
-<span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">showcart</span>(){
-
-    <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #7D9029">set</span>(<span style="color: #BA2121">&#39;articles&#39;</span>,<span style="color: #008000; font-weight: bold">false</span>); <span style="color: #408080; font-style: italic">/* no articles bought yet */</span>
-
-    <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #7D9029">render</span>(<span style="color: #BA2121">&#39;cart&#39;</span>);
-
-    <span style="color: #408080; font-style: italic">// (read on to find out more about this view)</span>
-
-}
-
-
-
-<span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">addarticle</span>(){
-
-<span style="color: #408080; font-style: italic">/*</span>
-
-<span style="color: #408080; font-style: italic">   The DOM id of the element that has been dragged into here can be found in $this-&gt;params[&#39;form&#39;][&#39;draggedid&#39;].</span>
-
-<span style="color: #408080; font-style: italic">   You can use that id to do something like $this-&gt;Article-&gt;findById() to add the article to the session.</span>
-
-<span style="color: #408080; font-style: italic">   At the end of this function the entire contents of the &lt;strong&gt;view&lt;/strong&gt; file will be returned (and rendered inside the &lt;div&gt; with DOM id &#39;cart&#39;.)</span>
-
-<span style="color: #408080; font-style: italic">   The layout won&#39;t be rendered, only the view, since this is an Ajax call (the difference is autodetected by Cakes RequestHandler) </span>
-
-<span style="color: #408080; font-style: italic">   You could do something like this:</span>
-
-<span style="color: #408080; font-style: italic">*/</span>
-
-   <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #7D9029">set</span>(<span style="color: #BA2121">&#39;articles&#39;</span>, <span style="color: #19177C">$all_bought_articles_from_the_session</span>);
-
-   <span style="color: #19177C">$this</span><span style="color: #666666">-&gt;</span><span style="color: #7D9029">render</span>(<span style="color: #BA2121">&#39;cart&#39;</span>);
-
-}
-
-
-
-<span style="color: #408080; font-style: italic">// this function is similar to the one above but instead removes one article from the session and renders the same view ;-)</span>
-
-<span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">removearticle</span>(){
-
-}
-
-<span style="color: #BC7A00">?&gt;</span>
-</pre></div>
-<p>
-
-The view controller/cart.ctp could look something like this:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;ul&gt;</span>
-
-<span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">foreach</span>(<span style="color: #19177C">$articles</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #19177C">$artikel</span>)<span style="color: #666666">:</span><span style="color: #BC7A00">?&gt;</span>
-
-<span style="color: #008000; font-weight: bold">&lt;li&gt;</span><span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$article</span>[<span style="color: #BA2121">&#39;Article&#39;</span>][<span style="color: #BA2121">&#39;id&#39;</span>]; <span style="color: #BC7A00">?&gt;</span><span style="color: #008000; font-weight: bold">&lt;/li&gt;</span>
-
-<span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">endforeach</span>; <span style="color: #BC7A00">?&gt;</span>
-
-<span style="color: #008000; font-weight: bold">&lt;/ul&gt;</span>
-
-
-
-<span style="color: #BC7A00">&lt;?php</span> <span style="color: #008000; font-weight: bold">if</span>(<span style="color: #666666">!</span><span style="color: #19177C">$articles</span>) <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #BA2121">&quot;No articles in the cart!&quot;</span>; <span style="color: #BC7A00">?&gt;</span>
-</pre></div>
-<p>
-
-There you have it.  All explanations are inside the sources, I hope it's clear enough.  If not, just ask :-)</p>
-
-<h3>Common misconceptions</h3>
-
-<p>From reading many (outdated?) articles about Ajax in cake I noted a lot of information that was not correct.  Here they are:</p>
-
-<ul>
-
-<li>It is <em>not</em> necessary to explicity pass the 'ajax' layout as an argument to the render call.  Eg you don't need to do this:  $this->render('cart', 'ajax');  You can do $this->render('cart'); (or even no explicit render call at all, if the view file is the same as the action name of your controller) Cakes RequestHandler automatically detects when it's dealing with an ajax call, and in that case won't render the layout, only the view.</li>
-
-<li>It is <em>not</em> necessary to declare the UTF-8 character encoding in your layout or view</li>
-
-<li>You <em>don't</em> need $this->autoRender =false; in the controller.  Unless maybe you absolutely don't want to render anything.</li>
-
-</ul>
-
-<h3>The end</h3>
-
-<p>There you have it.  I hope everything is clear.  If not, ask on !</p>
-
-<p>For those who don't have it already, I really recommend <a href="http://www.getfirebug.com/">The firebug firefox extension</a>.  Not only is it a great aid when designing, it's also perfectly suited for debugging Ajax calls.  It can show you exactly what happens when you drag an item in a droppable, what request is being made, what is being returned, etc.<br />
-
-This is explained in this movie:<a href="http://www.youtube.com/watch?v=W4jXAaEMp2M">Introduction to Debugging AJAX Application with Firebug</a></p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/">Figuring out CakePHP&#39;s new AuthComponent</a></h1>
+        <a href="http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/">Figuring out CakePHP&#39;s new AuthComponent</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -708,118 +231,16 @@ This is explained in this movie:<a href="http://www.youtube.com/watch?v=W4jXAaEM
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as <a href="http://bakery.cakephp.org/articles/view/147">DAuth</a> (written by me), <a href="http://bakery.cakephp.org/articles/view/99">OthAuth</a> (written by <a href="http://www.devmoz.com/blog">Crazylegs</a>) and <a href="http://bakery.cakephp.org/tags/view/auth">many others</a>.</p>
-
-<p>However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn't finished yet but it sure is worth it looking at.  (In fact I'm thinking about making a new dAuth version built on cake's own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.  <!--more--> For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.<br />
-
-Disclaimer: not everything I'll say here will be correct, first of all because I'm not able to fully understand every piece of the source code (yet), secondly because the 1.2 api is still changing.</p>
-
-<p>The version i use for this post is svn head. (revision 4758 at time of writing)</p>
-
-<h3>The header</h3>
-
-<p>So let's just open <a href="http://api.cakephp.org/1.2/auth_8php-source.html">cake/libs/controller/components/auth.php</a>.<br />
-
-Reading the first comment we immediately see "Manages user logins and permissions."  This looks very important to me.  Seems like this component handles both authentication and access control.  It seems like the AuthComponent is able to interact with  the <a href="http://manual.cakephp.org/chapter/acl">ACL</a> system that we know from the 1.1 branch.  Multiple uses of the AclComponent ($this->Acl inside the component) confirm this.</p>
-
-<h3>Member variables</h3>
-
-<p>The AuthComponent has quite some member variables, the most important ones seem to me:</p>
-
-<ul>
-
-<li><strong>$userModel</strong> (aro's) &amp; <strong>$objectModel</strong> (aco's)</li>
-
-<li><strong>$loginAction</strong>:  url for login action, null by default but we should set this (to something like 'users/login') when we want to use the component in our application. As usual AppController's beforeFilter() seems like a good place for that.</li>
-
-<li><strong>$validate</strong>:  set to 'actions' or 'objects', depending on what you want to check the access for.  Actually there are more options, read on.  However: on first sight it seems like combinations of objects-actions aren't possible...Anyone knows more about this?</li>
-
-<li><strong>$_loggedIn</strong>:  true/false</li>
-
-<li><strong>$allowedActions</strong>: no user validation on these actions</li>
-
-</ul>
-
-<h3>Functions</h3>
-
-<p>Now, let's move on to the available functions (the most important ones that is) ...</p>
-
-<ul>
-
-<li>
-
-<strong>initialize(&amp;$controller)</strong> seems to be a new ( in 1.2) callback.<br />
-
-Dispatcher calls $controller->_initComponents(), which (controller.php) in turn calls $component->init($this), which calls $tempComponent->initialize($controller).<br />
-
-So this function is called automatically, and when that happens $controller->params are all copied to $this->params (by value).  Some more stuff happens but I don't think it's very important at this time.</li>
-
-<li>The <strong>startup(&amp;$controller)</strong> callback is familiar to 1.1 users.  It is called in the startup-phase of the component, shortly after the initialize callback.  What happens here?
-
-<ul>
-
-<li>The password in $controller->data is hashed by using a call to "Security::hash(CAKE_SESSION_STRING . $password)". (called via $this->hashPasswords() which calls $this->password().<br />
-
-After that $this->data = $controller->data;</li>
-
-<li>A check whether ($this->allowedActions == array('*') || in_array($controller->action, $this->allowedActions)).<br />
-
-In this case no further processing is needed: access is granted, i don't know why we return false here, though</li>
-
-<li>Then we have 2 cases:<br />
-
-Either we are at the login action (defined by $loginAction like mentioned earlier), or we are somewhere else.  I think it will be clear what happens when you study the code, but I do think it's important to mention that the actual login happens at line 274 ($this->login($data), function definition at 470).<br />
-
-The identify function at line 624 is important too.  I guess this one checks the credentials.<br />
-
-If we are somewhere else then $loginAction, access is checked at line 293 (function isAuthorized(), function definition at 332.<br />
-
-Inside this function, $validate is assigned to $type, so it seems like not only 'actions' and 'objects' are valid values, but also 'association' and 'controller'.  I don't really get why this is made so complicated (the __authType() step for example.).</li>
-
-</ul>
-
-</li>
-
-<li>Another callback new in 1.2 is <strong>shutdown(&amp;$controller)</strong>.  Unlike initialize, this one is mentioned on <a href="http://cake.insertdesignhere.com/posts/view/17">Nate's blog</a>.  It removes 'Auth.redirect' from the session when the user is logged in.</li>
-
-</ul>
-
-<h3>Conclusion</h3>
-
-<p>This was only a slight introduction, more research (and thus explanations) will happen later on and you can also expect some sample code.  Give me some time though ;-)</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/fosdem_2007_review/">Fosdem 2007 review</a></h1>
+        <a href="http://localhost:1313/post/fosdem_2007_review/">Fosdem 2007 review</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -832,144 +253,16 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>Every year, during a special weekend in February, the <a href="http://www.ulb.ac.be/">University Libre of Brussels</a> suddenly becomes a little more geeky.<br />
-
-It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
-
-<a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>
-
-<!--more-->
-
-<p><a href="http://www.fosdem.org/2007/">This years edition</a> took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)</p>
-
-<p>Like usual the <a href="http://www.fosdem.org/2007/schedule/days">schedule</a> was pretty full, with lots of things happening at the same time, and only one thing a human being is able to attend at the same time.  Luckily however the 2 biggest rooms (Janson and Chavanne) were videotaped and the <a href="http://www.fosdem.org/2007/media/video">videos</a> are always made available online afterwards.  So knowing that, I could safely follow other rooms if I found those more interesting.</p>
-
-<h3>Saturday</h3>
-
-<p>The first talk started at 10:00h, and it's about an hour drive, if you don't get lost.<br />
-
-But I need my sleep, especially the sparse kind of sleep after Friday evenings.  (same goes for my buddy <a href="http://ghosty.be/">Geert</a> who I could ride along with).  We headed off at 11h, and arrived somewhere around 12:30.  (Let's blame Brussels' bad road signaling for that).  </p>
-
-<p>Missed the opening talks, and the "status of software patents" and "liberating java" talks which I'm was really interested in, but hey they were taped so no problemo ;-). During lunch break I explored the stands a bit, talked with some guys and picked up some reading material.</p>
-
-<p>At the <a href="http://www.gentoo.org/">Gentoo</a> stand there was no merchandise to be found.  I asked whether merch would arrive, but they said they were afraid not.  (and they were right).  No Gentoo merchandise, that was bummer.  I really wanted a t-shirt or something like that.  Gentoo is one of my favorite distros.</p>
-
-<p>At the gnome stand they had made a panel were people could write their favorite things (or things they hate) about gnome on post-its.  There were things like "gnome should use QT" replied by "qt should use gtk" and all kinds of jokes.  Then there was this guy who was repositioning all the post-it's in the shape of letters of kde.  I use neither (I use <a href="http://www.xfce.org/">xfce</a>) but this sure was a cool place to hang out during breaks.  </p>
-
-<p>After that I followed the <a href="http://www.fosdem.org/2007/schedule/events/xorg">X.org talk</a>, <a href="http://www.fosdem.org/2007/schedule/speakers/keith+packard">Keith</a> (the project leader) was a real-funpants and told us all about the developers involved with Xorg.  Where they live, their tasks, favorite beers, and so on.  More of a talk for the community then the developers.</p>
-
-<p>Next was <a href="http://www.fosdem.org/2007/schedule/events/aiglx">the aiglx one</a>.  Actually I preferred attending <a href="http://www.fosdem.org/2007/schedule/events/linuxbios">linuxBIOS</a> which I just find more interesting.  Besides, thanks to my nvidia card i can run GLX_EXT_texture_from_pixmap without aiglx or xgl, but hey, I guess the other guys are less fortunate so I decided to stick with them.  I can always check linuxBIOS later :-).   This talk was pretty advanced.  A real developers-talk you could say.  I certainly couldn't follow ;-)</p>
-
-<p>After that came a talk about the state of <a href="http://www.fosdem.org/2007/schedule/events/linux_kernel"> the Linux kernel</a>.  It was quite interesting, again, this was a talk aimed at developers, which I'm totally not, but I'm a bit familiar with the kernel (running <a href="http://www.gentoo.org/">Gentoo</a> and following <a href="http://kerneltrap.org/">kerneltrap</a> a bit has it advantages) so I could follow, more or less.</p>
-
-<p>Next I followed <a href="http://www.fosdem.org/2007/schedule/events/donators_return">the donators return</a> thing where people who donated (like me) can <a href="http://fosdem.org/2007/support/donate">win prizes</a>.  I didn't win anything but hey, still I felt the money was well spent.  (and I also got a free t-shirt ;-) )  One of <a href="http://www.sun.com/desktop/workstation/ultra20/">these</a> would certainly fit in my room though ;-))</p>
-
-<p>One thing I just had to attend was the Gentoo devroom.  like I said: Gentoo is one of my favorite distributions.  Also, it was our Belgian irc-friend <a href="http://www.fosdem.org/2007/schedule/speakers/dimitry+bradt">Dimitry (aka diox)</a> who gave his talk so I just couldn't miss <a href="http://www.fosdem.org/2007/schedule/events/gentoo_future_discussion">his talk about Gentoo's future</a>.  This was the first devroom I followed and it was totally different then any other talk: it was more of an interactive talk between the devs and the audience.  In the audience were some real devs, but also lot's of "normal" communitypeople.  Next to me there even was a guy who was very new to Gentoo.  I was happy to tell him all about paludis, overlays and other concepts and terms of Gentoo.</p>
-
-<p>After that, there were no more talks to attend, so I went by some stands again (to check if Gentoo merchandise might have arised, among others), met Geert again and, although it was pretty hard to find our way back in the (now darkened) city of Brussels, we managed to drive back home.</p>
-
-<h3>Sunday</h3>
-
-<p>A new day, and wow, so many cool talks to attend: metasploit, drupal, security testing, mozilla, mono, gplv3, the list goes on.  Luckily many of them were in Janson/Chavanne so I could safely skip these and head for...</p>
-
-<p>the Gentoo devroom.  (yeah, sorry, Gentoo here Gentoo there.  My other favorite distro <a href="http://www.archlinux.org/">Arch Linux</a> wasn't featured anywhere, so Gentoo got all the attention)<br />
-
-I missed the "programing with paludis" one (ouch! I would have liked that one) but I was there to hear <a href="http://www.fosdem.org/2007/schedule/speakers/mike+frysinger">Mike</a> talk about <a href="http://www.fosdem.org/2007/schedule/events/gentoo_council">Gentoo's inner workings</a>.  He told us all about Gentoo's history and how (by who) the project is managed.  That Daniel (the founder of Gentoo) left and came back (I found it remarkable he didn't mention <em>why</em> he left (to work at Microsoft).    Guess that wasn't important enough for the community)</p>
-
-<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/chris+gianelloni">Chris</a> talked about <a href="http://www.fosdem.org/2007/schedule/events/gentoo_tinderbox_testing">the process that happens for making releases</a>.  I was impressed.</p>
-
-<p>To fill the gap between 13h and 14h I wanted to follow <a href="http://www.fosdem.org/2007/schedule/events/jabber_oneteam">this</a> talk.  I have no idea what oneteam is, but I like jabber.  The room was stuffed with people though, and when opening the door you literally felt warm air coming out, so I decided to let the jabber guys in their oven :-)</p>
-
-<p>After that some more Gentoo talks: <a href="http://www.fosdem.org/2007/schedule/events/gentoo_community_distro">"what makes Gentoo a community based distribution"</a> by <a href="http://www.fosdem.org/2007/schedule/speakers/christel+dahlksjaer">Christel</a> didn't make me believe Gentoo is any more community based then most other open source Linux distributions, but hey Christel was quite a joker and the community vibe in the room was nice.</p>
-
-<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/marius+mauch">Marius</a> did a <em>great</em> job explaining the ins and outs of portage -especially the new ones- in his talk <a href="http://www.fosdem.org/2007/schedule/events/gentoo_portage">Portage: a look under the surface</a>.</p>
-
-<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/alexander+faeroey">Alexander</a> did a talk called <a href="http://www.fosdem.org/2007/schedule/events/gentoo_bugday">future of the bugday project</a>.  This was pretty much the kind of information you get by reading the forums/newsletters.  Nothing new, but I don't think the talk intended to make groundbreaking revelations either ;-)</p>
-
-<p>17 'o clock.  Damn.. time went fast.. Fosdem pretty much coming to end, luckily there was another nice topic I was really interested in: <a href="http://www.fosdem.org/2007/schedule/events/embedded_security_devices">Linux on embedded security devices</a>.  This talk wasn't very good though:   No kernel revelations.  No open source code.  No in-depth explanations.<br />
-
-Basically a company showing it's product: an embedded device running Linux, running customized code and a presentation showing a scheme showing where they used technologies like SSL, dns or dhcp.  Boring...  And a little demo.<br />
-
-Nice to see, but nothing more then that.</p>
-
-<p>I think it must have been after this talk I went back to the stands to find <a href="http://christophe.vandeplas.com/">Christophe (aka chri)</a>, who I hadn't met yet but I had helped him a bit getting <a href="http://code.google.com/p/weids/">weids, the "Webbased Information Display System"</a> (which was created for fosdem) to work.<br />
-
-After talking some time with chri the <a href="http://www.fsfeurope.org/">Free Software Foundation: Europe</a> got my attention, and I couldn't resist buying one of their lovely t-shirts.  I can't remember how much it cost me, but it was pretty expensive.  No problem though, as I know the money is in very good hands.</p>
-
-<p>After that me and Geert drunk a beer, and then drove home again.</p>
-
-<p>Fosdem was good.</p>
-
-<h2>Did you know...?</h2>
-
-<ul>
-
-<li>I invited the <a href="http://www.cakephp.org/">CakePHP</a> guys to come?  Unfortunately none of them came, but maybe I can convince them next year!</li>
-
-<li>The catering was allright and very, very cheap (and also run by volunteers)</li>
-
-<li>Fosdem is mentioned in this <a href="http://www.gentoo.org/news/en/gwn/20070305-newsletter.xml">Gentoo newsletter</a>.  Including a picture of all the devs, shot by SeJo (sunday afternoon iirc)</li>
-
-<li>You'll find many pictures <a href="http://www.fosdem.org/2007/media/pictures">here</a></li>
-
-</ul>
-
-<h2>Conclusion</h2>
-
-<p>Most of the talks are aimed at developers, and developers certainly are the guys that should come.  Fosdem is the perfect place to meet, discuss (with both developers of your own team, as with devs of other projects that you depend on), learn and hack some code together.</p>
-
-<p>For the community it's another story.  Many of the talks are too hard to follow, and those talks that are aimed at the community usually don't offer more information then what you would find on the websites, forums/mailinglists or newsletters.<br />
-
-The fact that you can download lots of video material is great.  If you stay home you can still make up for it by watching the movies.<br />
-
-It's cool to meet people though.  And if you want to visit stands of different projects (for example to buy merchandise).  That's imho the best reason for non-developers to come to fosdem.  But that's personal of course.</p>
-
-<p>So who's coming with me to fosdem 2008? :-).</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
-            
-                <a href="http://localhost:1313//tags/information-age/index.html" rel="tag">information age</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
-            
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-                <a href="http://localhost:1313//tags/conf/index.html" rel="tag">conf</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/blogpost1_hello_world/">Hello world!</a></h1>
+        <a href="http://localhost:1313/post/blogpost1_hello_world/">Hello world!</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -982,69 +275,6 @@ It's cool to meet people though.  And if you want to visit stands of different p
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>Finally, my own website...<br />
-
-I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous <a href="http://www.cakephp.org">CakePHP</a> framework along with an authentication system i wrote, <a href="http://bakery.cakephp.org/articles/view/147">dAuth</a>.<br />
-
-However, due to my lack of time I decided to use the excellent <a href="http://www.drupal.org">drupal</a> platform, of which I'm quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)<br />
-
-<a href="http://buytaert.net/">Dries Buytaert</a>'s talk on <a href="http://www.fosdem.org/2007/">fosdem</a> this year really helped on making that decision ;-)</p>
-
-<p>So, what will this site be about?</p>
-
-<ul>
-
-<li>me</li>
-
-<li>my interests
-
-<ul>
-
-<li><a href="http://en.wikipedia.org/wiki/FOSS">Free &amp; Opensource software</a>, and the thoughts/ideals behind it</li>
-
-<li>PHP scripting/programming (I like C(++), bash and j2se too but I'm not as good at it as I am at php)</li>
-
-<li>Audio recording/mixing/production</li>
-
-<li>Drumming, one of my greatest hobbies</li>
-
-<li>Music, bands, movies,... I like</li>
-
-<li>productivity (<a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a>, automation scripts, shell/DE tweaks, ...)
-
-<li>ethics and philosophy, these aspects are really important in my life</li>
-
-<li><a href="http://www.jhsjatoo.org/">Jeugdhuis SjaTOo</a>, our local youth club</li>
-
-</ul>
-
-</li>
-
-</ul>
-
-<p>Now let's get started ;-)</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-                <a href="http://localhost:1313//tags/drupal/index.html" rel="tag">drupal</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			

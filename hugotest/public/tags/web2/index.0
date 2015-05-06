@@ -102,20 +102,13 @@
 			</header>
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/announcing_the_netlog_developer_pages/">Announcing the Netlog Developer Pages</a></h1>
+        <a href="http://localhost:1313/post/announcing_the_netlog_developer_pages/">Announcing the Netlog Developer Pages</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -128,52 +121,16 @@
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>At work, we've setup the <a href="http://netlog.com/go/developer">Netlog Developer Pages</a></p>
-
-<p>It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.<br />
-
-We've also launched a <a href="http://en.netlog.com/go/developer/group">group</a> where you can communicate with fellow developers and Netlog employees.<br />
-
-The page also features a <a href="http://en.netlog.com/go/developer/blog">blog</a> where you can follow what is going on in the Netlog Tech team.</p>
-
-<p>PS: We've also updated our <a href="http://en.netlog.com/go/inside/view=jobs">jobs page</a></p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/netlog/index.html" rel="tag">netlog</a>
-            
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/webpages_should_not_contain_add_to_digg_delicious_technorati_links/">Webpages should not contain &#34;add to Digg / Del.icio.us / Technorati /...&#34; links</a></h1>
+        <a href="http://localhost:1313/post/webpages_should_not_contain_add_to_digg_delicious_technorati_links/">Webpages should not contain &#34;add to Digg / Del.icio.us / Technorati /...&#34; links</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -186,44 +143,16 @@ The page also features a <a href="http://en.netlog.com/go/developer/blog">blog</
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>I don't like pages / articles / blog posts /.. accompanied by "Digg this", "add to Del.icio.us" or "add to Technorati" links.<br />
-
-Why not? Because this is meta level functionality.  Not functionality of the blog/article/page in question, but on a higher level.  And thus this should be handled on a higher level: the web browser.  Just like we can create and manage bookmarks (I mean the old fashioned ones, not the delicious ones) in our browser: this is not the task of a web page. (we all know how silly "bookmark this" links look on a page, right?)</p>
-
-<p>Whether you like these kind of services or not is up to you (personally I think the most popular content is often the most subjective,   biased and close minded, not to mention too mainstream for "real" geeks but that's another story) but people who are serious about it should just make sure they can do it for any page they visit (eg use a Firefox extension to enable digging and adding to delicious) so we can get rid of this ugly clutter that is put on some pages.</p>
-
-<p>I know not every browser supports this already (either by default or by extending it with (3rd party) plug-ins) and even if it is, not everyone enables this functionality, so it's a bit a chicken and egg problem.</p>
-
-<p>But then again, most web2.0 people already use a browser that supports it, or will support it in the very near future, so let's get rid of this inappropriately placed meta-functionality !</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/">PhpDeliciousClient, a php cli client to administer del.icio.us accounts</a></h1>
+        <a href="http://localhost:1313/post/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/">PhpDeliciousClient, a php cli client to administer del.icio.us accounts</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -236,56 +165,16 @@ Why not? Because this is meta level functionality.  Not functionality of the blo
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.<br />
-
-I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).</p>
-
-<p>You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated:  It gets filled with way too many tags.  Among those tags several of them mean the same (fun, funny, humor, ...) or include the other (humor, jokes, ...)  You can group them in bundles but even then you need to add all the tags to a post if you want it to appear in the results for that tag.  Not very convenient. Also, if you have your del.icio.us bookmarks available in Firefox, you'd have a menu with several hundreds of entries (one for each tag), each menu containing usually just a few (or worse: just one) entry.</p>
-
-<p>When I got in this situation I tried to fix it, but it was a hell of a task to do this on the Delicious webpage itself, and I although I found some other tools they were far to basic, outdated, dependent on other stuff or just not meant for this kind of task, so I decided to write my own.</p>
-
-<p>The result is a php command line program called <a href="/php_delicious_client">PhpDeliciousClient</a> (as you can see, I added it to the menu on the left too), which uses the <a href="http://www.ejeliot.com/pages/php-delicious">PhpDelicious</a> library to access the Del.icio.us api.</p>
-
-<p>The primary focus of the program is to help you to bring your tags in balance, in an as efficient way as possible.  Other stuff, which can be done just fine on the delicious page (editing single posts, changing your password, ...) is not implemented.  </p>
-
-<p>It's a bit hacky, I don't give any guarantees but I can tell I used it to edit <a href="http://del.icio.us/Dieter_be">my own Del.icio.us page</a>, going from about 400 tags to about 80 without any problems.</p>
-
-<p>That said, head over to <a href="/php_delicious_client">the PhpDeliciousClient project page</a> for some more information, and to download it ;-)</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/php_delicious_client/">PhpDeliciousClient</a></h1>
+        <a href="http://localhost:1313/post/php_delicious_client/">PhpDeliciousClient</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -298,186 +187,16 @@ I wrote it because - to my knowledge - there currently is no good program (inclu
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<h3>Introduction</h3>
-
-<p>PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.</p>
-
-<p>It's written in PHP and uses <a href="http://www.ejeliot.com/">Ed Eliot's</a> <a href="http://www.ejeliot.com/pages/php-delicious">PhpDelicous</a> class to contact the del.icio.us api. (included in download)<br />
-
-PhpDeliciousClient is licensed under the GPL v2, while the PhpDelicious class is licensed under the BSD license.</p>
-
-<h3>Why?</h3>
-
-<p>The main reason I started developing it is because administering your account on the del.ico.us web interface can be cumbersome.<br />
-
-This is especially true in the case of balancing your tags:<br />
-
-After a while, your del.icio.us account can get unbalanced: this is when you have many tags, but most of them only contain a few posts (very often even just one! ).<br />
-
-So you would want to balance them again, by deleting and renaming some very specific tags so that you get a collection consisting of less tags (who are more general) and contain about 10 ~ 30 posts each.  Maybe you even also want to delete or rename some general ones who have way to many associated posts.<br />
-
-If you want to do this via the del.icio.us web interface you could either go to your personal page, click a tag, and delete the tag manually from each associated post.  Or you could go to the delete or rename tag pages.  On these pages you have a form where you can select an existing tag from a dropdown (which usually is huge) and choose to delete or rename it (depending on which page you are on).  Then you would need to go to the form again and do this again for each tag.</p>
-
-<p>With this tool, you can get a list of tags with certain conditions.  Eg "show me all tags who have between 1 and 3 associated posts".  You can then loop through that list and for each tag the tool will present you the option to delete, rename or skip it.</p>
-
-<p>Of course it can do more, but this was my focus: making balancing an account as pleasant as possible.  Other features, such as adding or editing single posts are considered less important as these things can be done just fine on the del.icio.us page.</p>
-
-<h3>Current state</h3>
-
-<p>Currently the tool seems to do what it is intended to (and pretty well, at least for me: I cleaned up my account from about 400 to 80 tags during development of this program).<br />
-
-However I don't give any warranty, the tool is only moderately documented, performs little to no user input checking and isn't very well tested so don't expect any higher quality then that of the average Microsoft product.<br />
-
-This program shouldn't empty your del.icio.us account or blow up your computer but if it does I cannot be held responsible.</p>
-
-<h3>Supported features</h3>
-
-<ul>
-
-<li>[t] View Tag: Based on the name of tag you enter, you can see the associated posts and edit or rename the tag.</li>
-
-<li>[ts]  View Tags: Shows you all tags based on certain criteria:
-
-<ul>
-
-<li>lowerlimit: the minimum amount of times a tag has to be associated to a post</li>
-
-<li>upperlimit: the maximum amount of times a tag has to be associated to a post</li>
-
-<li>hard limit: the maximum number of tags you wish to edit/view at once</li>
-
-</ul>
-
-<p>You can decide to view associated posts for each tag, and you can choose wether to only show the tags, or to present you a menu with options for each one.  I usually use the latter, along with associated posts viewing enabled.</li>
-
-<li>[p] View Post: shows you the first hit based on a tag and url*</li>
-
-<li>[ps] View Posts: shows you all posts based on a tag and url*</li>
-
-<li>[lu] Date of last update: Shows you the time when the data (on the serverside) last changed</li>
-
-</ul>
-
-<p>*: url based searching is still buggy, I'm working on it.</p>
-
-<h3>Plans for the future</h3>
-
-<p>My goals for upcoming releases are (aside from bug fixing) to add features to let you do stuff that you currently can't do or at least not in a productive manner.  </p>
-
-<h4>Known bugs to be fixed</h4>
-
-<ul>
-
-<li>URL-based post querying doesn't work</li>
-
-<li>Timezone not taken into account or something like that, because the "last updated" date has a 2hrs offset for me</li>
-
-<li>During list iteration tags that have been renamed/deleted already still appear in posts for other tags</li>
-
-<li>Issue less load on the Del.icio.us webservice by using the updated date (gonna take a look at Ed's caching system for that)</li>
-
-</ul>
-
-<h4>Features I have on my mind</h4>
-
-<ul>
-
-<li>Try to hide password as it is typed in by user</li>
-
-<li>When a tag has many associated posts, automatically show them more concisely</li>
-
-<li>An "are you sure?" thing when you want to rename to a tag that already has many (say: 40) associated posts</li>
-
-<li>A mode to only show tags that differ one letter, or differ several letters, as long as they have enough in common (say: 2/3, 1/2 or user configurable)</li>
-
-<li>An improved commandline that allows commands/queries like "rm tag1 tag2 tag3"
-
-</ul>
-
-<h3>Prerequisites</h3>
-
-<ul>
-
-<li>A shell (such as bash)</li>
-
-<li>PHP 4 or higher, with php-cli enabled (default)</li>
-
-<li>A del.icio.us account, preferrably a very messy one</li>
-
-</ul>
-
-<h3>Download</h3>
-
-<p><a href="http://users.edpnet.be/dieter/php_delicious_client_v05.zip" onClick="javascript:urchinTracker ('/files/php_delicious_client_v05.zip');">release v0.5 (1-7-2007)</a></p>
-
-<h3>Installation</h3>
-
-<p>Unpack the archive and put the directory somewhere on your system.  On Linux /usr/local/bin/ is usually a good choice.<br />
-
-Make sure pdclient.php has the executable flag (x).  If the directory is in your $PATH, you can just type pdclient.php on your console, otherwise you need to type &lt;path to program&gt;/phpdeliciousclient/pdclient.php or edit your $PATH.</p>
-
-<p>You could also create a symlink in a good directory: <em>ln -s &lt;path to program&gt;/phpdeliciousclient/pdclient.php /usr/local/bin/pdclient</em></p>
-
-<h3>Usage</h3>
-
-<p>I choose a mysql-like syntax for invoking the program.  Valid options are:</p>
-
-<ol>
-
-<li><em>pdclient.php</em></li>
-
-<li><em>pdclient.php --help</em></li>
-
-<li><em>pdclient.php --user &lt;delicious username&gt;</em></li>
-
-<li><em>pdclient.php --user &lt;delicious username&gt; --password</em></li>
-
-<li><em>pdclient.php --user &lt;delicious username&gt; --password &lt;delicious password&gt;</em></li>
-
-</ol>
-
-<p>With method #4, the program will ask your password upon execution.  With the other methods this doesn't happen.  You can always update your account information from the menu. (<em>account setup</em>)</p>
-
-<p>In the program prompt you can always type 'h' to get help.  Aside from that, just try the options, you'll figure it out in no time.</p>
-
-<h3>Bug reports &amp; feature requests</h3>
-
-<p>You can report bugs or file feature requests through the comment system on this page. Choose an appropriate title and prefix it with "Bug: " or "Feature: "</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/">Getting statistics about events that don&#39;t trigger page requests with Google Analytics</a></h1>
+        <a href="http://localhost:1313/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/">Getting statistics about events that don&#39;t trigger page requests with Google Analytics</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -490,60 +209,16 @@ Make sure pdclient.php has the executable flag (x).  If the directory is in your
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>You probably already heard of <a href="www.google.com/analytics">Google Analytics</a>.  It's a pretty nice program that (<em>basically</em>) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;topic=11012">events that don't require page requests!</a><br />
-
-Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).<!--more--></p>
-
-<p>The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function <em>urchinTracker()</em> you just add <em>onClick="javascript:urchinTracker('/this-is-something-i-want-to-track');"</em> to your hyperlink.<br />
-
-You can even work with subdivisions.  The examples on the help pages for <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55529">download</a> and <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=55527">outbound</a> links propose <em> urchinTracker('/downloads/map');</em> and <em><br />
-
-urchinTracker('/outgoing/example_com');</em> respectively.</p>
-
-<p>Now we also know why Google <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=66983#0.1.1_step4">says</a> the "normal" tracking code should be put at the end of the page, right before the <em>&lt;/body&gt;</em> tag.  I always wondered why they recommend this weird location.  This is because calls like the ones above should happen prior to the "normal" one.</p>
-
-<p>If only I had known this earlier.  I would love to have known an accurate number of downloads of my thesis text (and the number of unique downloaders) :-)</p>
-
-<p>For those who don't have Google Analytics setup yet:<br />
-
-<a href="drupal.org/">Drupal</a> users should install the <a href="http://drupal.org/node/49388">Drupal Google Analytics</a> module.<br />
-
-<a href="www.cakephp.org/">CakePHP</a> users can put the <a href="http://www.google.com/support/googleanalytics/bin/answer.py?answer=66983#0.1.1_step4">Tracking code</a> in the layout file or even in an element.</p>
-
-<p>Have fun tracking all events on your website!</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-                <a href="http://localhost:1313//tags/drupal/index.html" rel="tag">drupal</a>
-            
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/bye_google_sandbox/">Bye, Google sandbox!</a></h1>
+        <a href="http://localhost:1313/post/bye_google_sandbox/">Bye, Google sandbox!</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -556,44 +231,16 @@ urchinTracker('/outgoing/example_com');</em> respectively.</p>
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>Today I'm finally out of Google's Sandbox.</p>
-
-<p>Google has this system called the sandbox where new pages go into for 6 months, in order to prevent scammers/spammers from resurrecting dummy pages - and scoring well in Google - all the time.<br />
-
-During these 6 months a page will score very bad in search results, even if it should rate very well for the specific keywords.</p>
-
-<p>Smart people will look at my first post, dated 03/04/2007, but keep in mind that before this blog existed I already had a dummy page with my name on (the keywords I want to score on) as soon as I could because back then I already knew I wanted to put a blog here and I wanted to get out of the sandbox as soon as possible.</p>
-
-<p>I know some people who kept forgetting my URL and didn't find it in Google, well, you will find me now!</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/">Figuring out CakePHP&#39;s new AuthComponent</a></h1>
+        <a href="http://localhost:1313/post/figuring_out_cakephp_new_authcomponent/">Figuring out CakePHP&#39;s new AuthComponent</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -606,118 +253,16 @@ During these 6 months a page will score very bad in search results, even if it s
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as <a href="http://bakery.cakephp.org/articles/view/147">DAuth</a> (written by me), <a href="http://bakery.cakephp.org/articles/view/99">OthAuth</a> (written by <a href="http://www.devmoz.com/blog">Crazylegs</a>) and <a href="http://bakery.cakephp.org/tags/view/auth">many others</a>.</p>
-
-<p>However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn't finished yet but it sure is worth it looking at.  (In fact I'm thinking about making a new dAuth version built on cake's own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.  <!--more--> For this first post it will be more trying to decipher the source code, messing with it will probably for a little later on.<br />
-
-Disclaimer: not everything I'll say here will be correct, first of all because I'm not able to fully understand every piece of the source code (yet), secondly because the 1.2 api is still changing.</p>
-
-<p>The version i use for this post is svn head. (revision 4758 at time of writing)</p>
-
-<h3>The header</h3>
-
-<p>So let's just open <a href="http://api.cakephp.org/1.2/auth_8php-source.html">cake/libs/controller/components/auth.php</a>.<br />
-
-Reading the first comment we immediately see "Manages user logins and permissions."  This looks very important to me.  Seems like this component handles both authentication and access control.  It seems like the AuthComponent is able to interact with  the <a href="http://manual.cakephp.org/chapter/acl">ACL</a> system that we know from the 1.1 branch.  Multiple uses of the AclComponent ($this->Acl inside the component) confirm this.</p>
-
-<h3>Member variables</h3>
-
-<p>The AuthComponent has quite some member variables, the most important ones seem to me:</p>
-
-<ul>
-
-<li><strong>$userModel</strong> (aro's) &amp; <strong>$objectModel</strong> (aco's)</li>
-
-<li><strong>$loginAction</strong>:  url for login action, null by default but we should set this (to something like 'users/login') when we want to use the component in our application. As usual AppController's beforeFilter() seems like a good place for that.</li>
-
-<li><strong>$validate</strong>:  set to 'actions' or 'objects', depending on what you want to check the access for.  Actually there are more options, read on.  However: on first sight it seems like combinations of objects-actions aren't possible...Anyone knows more about this?</li>
-
-<li><strong>$_loggedIn</strong>:  true/false</li>
-
-<li><strong>$allowedActions</strong>: no user validation on these actions</li>
-
-</ul>
-
-<h3>Functions</h3>
-
-<p>Now, let's move on to the available functions (the most important ones that is) ...</p>
-
-<ul>
-
-<li>
-
-<strong>initialize(&amp;$controller)</strong> seems to be a new ( in 1.2) callback.<br />
-
-Dispatcher calls $controller->_initComponents(), which (controller.php) in turn calls $component->init($this), which calls $tempComponent->initialize($controller).<br />
-
-So this function is called automatically, and when that happens $controller->params are all copied to $this->params (by value).  Some more stuff happens but I don't think it's very important at this time.</li>
-
-<li>The <strong>startup(&amp;$controller)</strong> callback is familiar to 1.1 users.  It is called in the startup-phase of the component, shortly after the initialize callback.  What happens here?
-
-<ul>
-
-<li>The password in $controller->data is hashed by using a call to "Security::hash(CAKE_SESSION_STRING . $password)". (called via $this->hashPasswords() which calls $this->password().<br />
-
-After that $this->data = $controller->data;</li>
-
-<li>A check whether ($this->allowedActions == array('*') || in_array($controller->action, $this->allowedActions)).<br />
-
-In this case no further processing is needed: access is granted, i don't know why we return false here, though</li>
-
-<li>Then we have 2 cases:<br />
-
-Either we are at the login action (defined by $loginAction like mentioned earlier), or we are somewhere else.  I think it will be clear what happens when you study the code, but I do think it's important to mention that the actual login happens at line 274 ($this->login($data), function definition at 470).<br />
-
-The identify function at line 624 is important too.  I guess this one checks the credentials.<br />
-
-If we are somewhere else then $loginAction, access is checked at line 293 (function isAuthorized(), function definition at 332.<br />
-
-Inside this function, $validate is assigned to $type, so it seems like not only 'actions' and 'objects' are valid values, but also 'association' and 'controller'.  I don't really get why this is made so complicated (the __authType() step for example.).</li>
-
-</ul>
-
-</li>
-
-<li>Another callback new in 1.2 is <strong>shutdown(&amp;$controller)</strong>.  Unlike initialize, this one is mentioned on <a href="http://cake.insertdesignhere.com/posts/view/17">Nate's blog</a>.  It removes 'Auth.redirect' from the session when the user is logged in.</li>
-
-</ul>
-
-<h3>Conclusion</h3>
-
-<p>This was only a slight introduction, more research (and thus explanations) will happen later on and you can also expect some sample code.  Give me some time though ;-)</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/fosdem_2007_review/">Fosdem 2007 review</a></h1>
+        <a href="http://localhost:1313/post/fosdem_2007_review/">Fosdem 2007 review</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -730,144 +275,16 @@ Inside this function, $validate is assigned to $type, so it seems like not only 
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>Every year, during a special weekend in February, the <a href="http://www.ulb.ac.be/">University Libre of Brussels</a> suddenly becomes a little more geeky.<br />
-
-It's that time of the year when many European (and some inter-continental) colleagues join us at<br />
-
-<a href="http://www.fosdem.org">Fosdem: the Free and Open source Software Developers' European Meeting</a> (more info <a href="http://www.fosdem.org/about/fosdem">here</a>).</p>
-
-<!--more-->
-
-<p><a href="http://www.fosdem.org/2007/">This years edition</a> took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)</p>
-
-<p>Like usual the <a href="http://www.fosdem.org/2007/schedule/days">schedule</a> was pretty full, with lots of things happening at the same time, and only one thing a human being is able to attend at the same time.  Luckily however the 2 biggest rooms (Janson and Chavanne) were videotaped and the <a href="http://www.fosdem.org/2007/media/video">videos</a> are always made available online afterwards.  So knowing that, I could safely follow other rooms if I found those more interesting.</p>
-
-<h3>Saturday</h3>
-
-<p>The first talk started at 10:00h, and it's about an hour drive, if you don't get lost.<br />
-
-But I need my sleep, especially the sparse kind of sleep after Friday evenings.  (same goes for my buddy <a href="http://ghosty.be/">Geert</a> who I could ride along with).  We headed off at 11h, and arrived somewhere around 12:30.  (Let's blame Brussels' bad road signaling for that).  </p>
-
-<p>Missed the opening talks, and the "status of software patents" and "liberating java" talks which I'm was really interested in, but hey they were taped so no problemo ;-). During lunch break I explored the stands a bit, talked with some guys and picked up some reading material.</p>
-
-<p>At the <a href="http://www.gentoo.org/">Gentoo</a> stand there was no merchandise to be found.  I asked whether merch would arrive, but they said they were afraid not.  (and they were right).  No Gentoo merchandise, that was bummer.  I really wanted a t-shirt or something like that.  Gentoo is one of my favorite distros.</p>
-
-<p>At the gnome stand they had made a panel were people could write their favorite things (or things they hate) about gnome on post-its.  There were things like "gnome should use QT" replied by "qt should use gtk" and all kinds of jokes.  Then there was this guy who was repositioning all the post-it's in the shape of letters of kde.  I use neither (I use <a href="http://www.xfce.org/">xfce</a>) but this sure was a cool place to hang out during breaks.  </p>
-
-<p>After that I followed the <a href="http://www.fosdem.org/2007/schedule/events/xorg">X.org talk</a>, <a href="http://www.fosdem.org/2007/schedule/speakers/keith+packard">Keith</a> (the project leader) was a real-funpants and told us all about the developers involved with Xorg.  Where they live, their tasks, favorite beers, and so on.  More of a talk for the community then the developers.</p>
-
-<p>Next was <a href="http://www.fosdem.org/2007/schedule/events/aiglx">the aiglx one</a>.  Actually I preferred attending <a href="http://www.fosdem.org/2007/schedule/events/linuxbios">linuxBIOS</a> which I just find more interesting.  Besides, thanks to my nvidia card i can run GLX_EXT_texture_from_pixmap without aiglx or xgl, but hey, I guess the other guys are less fortunate so I decided to stick with them.  I can always check linuxBIOS later :-).   This talk was pretty advanced.  A real developers-talk you could say.  I certainly couldn't follow ;-)</p>
-
-<p>After that came a talk about the state of <a href="http://www.fosdem.org/2007/schedule/events/linux_kernel"> the Linux kernel</a>.  It was quite interesting, again, this was a talk aimed at developers, which I'm totally not, but I'm a bit familiar with the kernel (running <a href="http://www.gentoo.org/">Gentoo</a> and following <a href="http://kerneltrap.org/">kerneltrap</a> a bit has it advantages) so I could follow, more or less.</p>
-
-<p>Next I followed <a href="http://www.fosdem.org/2007/schedule/events/donators_return">the donators return</a> thing where people who donated (like me) can <a href="http://fosdem.org/2007/support/donate">win prizes</a>.  I didn't win anything but hey, still I felt the money was well spent.  (and I also got a free t-shirt ;-) )  One of <a href="http://www.sun.com/desktop/workstation/ultra20/">these</a> would certainly fit in my room though ;-))</p>
-
-<p>One thing I just had to attend was the Gentoo devroom.  like I said: Gentoo is one of my favorite distributions.  Also, it was our Belgian irc-friend <a href="http://www.fosdem.org/2007/schedule/speakers/dimitry+bradt">Dimitry (aka diox)</a> who gave his talk so I just couldn't miss <a href="http://www.fosdem.org/2007/schedule/events/gentoo_future_discussion">his talk about Gentoo's future</a>.  This was the first devroom I followed and it was totally different then any other talk: it was more of an interactive talk between the devs and the audience.  In the audience were some real devs, but also lot's of "normal" communitypeople.  Next to me there even was a guy who was very new to Gentoo.  I was happy to tell him all about paludis, overlays and other concepts and terms of Gentoo.</p>
-
-<p>After that, there were no more talks to attend, so I went by some stands again (to check if Gentoo merchandise might have arised, among others), met Geert again and, although it was pretty hard to find our way back in the (now darkened) city of Brussels, we managed to drive back home.</p>
-
-<h3>Sunday</h3>
-
-<p>A new day, and wow, so many cool talks to attend: metasploit, drupal, security testing, mozilla, mono, gplv3, the list goes on.  Luckily many of them were in Janson/Chavanne so I could safely skip these and head for...</p>
-
-<p>the Gentoo devroom.  (yeah, sorry, Gentoo here Gentoo there.  My other favorite distro <a href="http://www.archlinux.org/">Arch Linux</a> wasn't featured anywhere, so Gentoo got all the attention)<br />
-
-I missed the "programing with paludis" one (ouch! I would have liked that one) but I was there to hear <a href="http://www.fosdem.org/2007/schedule/speakers/mike+frysinger">Mike</a> talk about <a href="http://www.fosdem.org/2007/schedule/events/gentoo_council">Gentoo's inner workings</a>.  He told us all about Gentoo's history and how (by who) the project is managed.  That Daniel (the founder of Gentoo) left and came back (I found it remarkable he didn't mention <em>why</em> he left (to work at Microsoft).    Guess that wasn't important enough for the community)</p>
-
-<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/chris+gianelloni">Chris</a> talked about <a href="http://www.fosdem.org/2007/schedule/events/gentoo_tinderbox_testing">the process that happens for making releases</a>.  I was impressed.</p>
-
-<p>To fill the gap between 13h and 14h I wanted to follow <a href="http://www.fosdem.org/2007/schedule/events/jabber_oneteam">this</a> talk.  I have no idea what oneteam is, but I like jabber.  The room was stuffed with people though, and when opening the door you literally felt warm air coming out, so I decided to let the jabber guys in their oven :-)</p>
-
-<p>After that some more Gentoo talks: <a href="http://www.fosdem.org/2007/schedule/events/gentoo_community_distro">"what makes Gentoo a community based distribution"</a> by <a href="http://www.fosdem.org/2007/schedule/speakers/christel+dahlksjaer">Christel</a> didn't make me believe Gentoo is any more community based then most other open source Linux distributions, but hey Christel was quite a joker and the community vibe in the room was nice.</p>
-
-<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/marius+mauch">Marius</a> did a <em>great</em> job explaining the ins and outs of portage -especially the new ones- in his talk <a href="http://www.fosdem.org/2007/schedule/events/gentoo_portage">Portage: a look under the surface</a>.</p>
-
-<p>After that <a href="http://www.fosdem.org/2007/schedule/speakers/alexander+faeroey">Alexander</a> did a talk called <a href="http://www.fosdem.org/2007/schedule/events/gentoo_bugday">future of the bugday project</a>.  This was pretty much the kind of information you get by reading the forums/newsletters.  Nothing new, but I don't think the talk intended to make groundbreaking revelations either ;-)</p>
-
-<p>17 'o clock.  Damn.. time went fast.. Fosdem pretty much coming to end, luckily there was another nice topic I was really interested in: <a href="http://www.fosdem.org/2007/schedule/events/embedded_security_devices">Linux on embedded security devices</a>.  This talk wasn't very good though:   No kernel revelations.  No open source code.  No in-depth explanations.<br />
-
-Basically a company showing it's product: an embedded device running Linux, running customized code and a presentation showing a scheme showing where they used technologies like SSL, dns or dhcp.  Boring...  And a little demo.<br />
-
-Nice to see, but nothing more then that.</p>
-
-<p>I think it must have been after this talk I went back to the stands to find <a href="http://christophe.vandeplas.com/">Christophe (aka chri)</a>, who I hadn't met yet but I had helped him a bit getting <a href="http://code.google.com/p/weids/">weids, the "Webbased Information Display System"</a> (which was created for fosdem) to work.<br />
-
-After talking some time with chri the <a href="http://www.fsfeurope.org/">Free Software Foundation: Europe</a> got my attention, and I couldn't resist buying one of their lovely t-shirts.  I can't remember how much it cost me, but it was pretty expensive.  No problem though, as I know the money is in very good hands.</p>
-
-<p>After that me and Geert drunk a beer, and then drove home again.</p>
-
-<p>Fosdem was good.</p>
-
-<h2>Did you know...?</h2>
-
-<ul>
-
-<li>I invited the <a href="http://www.cakephp.org/">CakePHP</a> guys to come?  Unfortunately none of them came, but maybe I can convince them next year!</li>
-
-<li>The catering was allright and very, very cheap (and also run by volunteers)</li>
-
-<li>Fosdem is mentioned in this <a href="http://www.gentoo.org/news/en/gwn/20070305-newsletter.xml">Gentoo newsletter</a>.  Including a picture of all the devs, shot by SeJo (sunday afternoon iirc)</li>
-
-<li>You'll find many pictures <a href="http://www.fosdem.org/2007/media/pictures">here</a></li>
-
-</ul>
-
-<h2>Conclusion</h2>
-
-<p>Most of the talks are aimed at developers, and developers certainly are the guys that should come.  Fosdem is the perfect place to meet, discuss (with both developers of your own team, as with devs of other projects that you depend on), learn and hack some code together.</p>
-
-<p>For the community it's another story.  Many of the talks are too hard to follow, and those talks that are aimed at the community usually don't offer more information then what you would find on the websites, forums/mailinglists or newsletters.<br />
-
-The fact that you can download lots of video material is great.  If you stay home you can still make up for it by watching the movies.<br />
-
-It's cool to meet people though.  And if you want to visit stands of different projects (for example to buy merchandise).  That's imho the best reason for non-developers to come to fosdem.  But that's personal of course.</p>
-
-<p>So who's coming with me to fosdem 2008? :-).</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
-            
-                <a href="http://localhost:1313//tags/information-age/index.html" rel="tag">information age</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
-            
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-                <a href="http://localhost:1313//tags/conf/index.html" rel="tag">conf</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/blogpost1_hello_world/">Hello world!</a></h1>
+        <a href="http://localhost:1313/post/blogpost1_hello_world/">Hello world!</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -880,69 +297,6 @@ It's cool to meet people though.  And if you want to visit stands of different p
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>Finally, my own website...<br />
-
-I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous <a href="http://www.cakephp.org">CakePHP</a> framework along with an authentication system i wrote, <a href="http://bakery.cakephp.org/articles/view/147">dAuth</a>.<br />
-
-However, due to my lack of time I decided to use the excellent <a href="http://www.drupal.org">drupal</a> platform, of which I'm quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)<br />
-
-<a href="http://buytaert.net/">Dries Buytaert</a>'s talk on <a href="http://www.fosdem.org/2007/">fosdem</a> this year really helped on making that decision ;-)</p>
-
-<p>So, what will this site be about?</p>
-
-<ul>
-
-<li>me</li>
-
-<li>my interests
-
-<ul>
-
-<li><a href="http://en.wikipedia.org/wiki/FOSS">Free &amp; Opensource software</a>, and the thoughts/ideals behind it</li>
-
-<li>PHP scripting/programming (I like C(++), bash and j2se too but I'm not as good at it as I am at php)</li>
-
-<li>Audio recording/mixing/production</li>
-
-<li>Drumming, one of my greatest hobbies</li>
-
-<li>Music, bands, movies,... I like</li>
-
-<li>productivity (<a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a>, automation scripts, shell/DE tweaks, ...)
-
-<li>ethics and philosophy, these aspects are really important in my life</li>
-
-<li><a href="http://www.jhsjatoo.org/">Jeugdhuis SjaTOo</a>, our local youth club</li>
-
-</ul>
-
-</li>
-
-</ul>
-
-<p>Now let's get started ;-)</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/cakephp/index.html" rel="tag">cakephp</a>
-            
-                <a href="http://localhost:1313//tags/drupal/index.html" rel="tag">drupal</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
-            
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
-            
-                <a href="http://localhost:1313//tags/web2.0/index.html" rel="tag">web2.0</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			

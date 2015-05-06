@@ -102,20 +102,13 @@
 			</header>
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/pixie/">Pixie: simple photo management using directory layouts and tags.</a></h1>
+        <a href="http://localhost:1313/post/pixie/">Pixie: simple photo management using directory layouts and tags.</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -128,60 +121,16 @@
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
-
-that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
-
-<!--more-->
-
-<br/>
-
-<br/>I couldn't find a tool that I liked, so I rolled my own: <a href="https://github.com/Dieterbe/pixie">Pixie</a>.
-
-<br/>
-
-It gives you vim-like keybindings to navigate pictures, create edits (stored in a "mirror directory") and add/remove tags to pictures.  (Because n:m tag relationships are basically a must for organizing things and don't work on any common filesystem)
-
-To generate "album" directories, just define which tags they should(n't) match and run the script that synchronizes an export directory by symlinking (or resizing) the correct files into them.
-
-Note the source directory stays unaltered so you can easily keep syncing with devices and/or people.
-
-<br/>What used to be a pain in the butt for me is now a pretty pleasant experience.
-
-<br/>Does this workflow make sense to you? Is this useful to you? Why (not) ?
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/golang/index.html" rel="tag">golang</a>
-            
-                <a href="http://localhost:1313//tags/photos/index.html" rel="tag">photos</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/resigning_arch_linux/">Resigning as Arch Linux developer</a></h1>
+        <a href="http://localhost:1313/post/resigning_arch_linux/">Resigning as Arch Linux developer</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -194,48 +143,16 @@ Note the source directory stays unaltered so you can easily keep syncing with de
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>
-
-A few days ago, I <a href="http://mailman.archlinux.org/pipermail/arch-releng/2012-July/002628.html">resigned as Arch Linux developer</a>.
-
-<br/>I'm sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest.
-
-The Releng team we started more than 3 years ago is now dead, but other developers are showing interest in iso building and installer scripts, so as long as they don't burn out, you'll see new isos again.
-
-More information in my resignation mail linked above.
-
-<br/><br/>
-
-Dieter
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/">Lighttpd socket Arch Linux /var/run tmpfs tmpfiles.d</a></h1>
+        <a href="http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/">Lighttpd socket Arch Linux /var/run tmpfs tmpfiles.d</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -248,64 +165,16 @@ Dieter
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		On Arch Linux, and probably <a href="http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html">many other distros</a> /run is a new tmpfs, and /var/run symlinks to it.
-
-With Lighttpd you might have a fastcgi socket defined something like "/var/run/lighttpd/sockets/mywebsite.sock".
-
-This won't work anymore as after each reboot /var/run is an empty directory and lighttpd won't start, /var/log/lighttpd/error.log will tell you:
-
-<pre>
-
-2012-03-16 09:21:34: (log.c.166) server started 
-
-2012-03-16 09:21:34: (mod_fastcgi.c.977) bind failed for: unix:/var/run/lighttpd/sockets/mywebsite.sock-0 No such file or directory 
-
-2012-03-16 09:21:34: (mod_fastcgi.c.1397) [ERROR]: spawning fcgi failed. 
-
-2012-03-16 09:21:34: (server.c.945) Configuration of plugins failed. Going down.
-
-</pre>
-
-That's where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">tmpfiles.d</a> comes in.
-
-It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>cat /etc/tmpfiles.d/lighttpd.conf 
-
-d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
-</pre></div>
-
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/where_are_the_new_arch_linux_images/">Where are the new Arch Linux release images?</a></h1>
+        <a href="http://localhost:1313/post/where_are_the_new_arch_linux_images/">Where are the new Arch Linux release images?</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -318,88 +187,16 @@ d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<!--more-->
-
-<p>This is a question I get asked a lot recently.  The latest <a href="http://www.archlinux.org/download/">official images</a> are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I'm not aware of.  Many of these problems can be worked around (with 'pacman -Sy mirrorlist' on the install cd for example), but it's not exactly convenient.</p>
-
-
-
-<p>Over the past years (the spare time in between <a href="/my_metalband.html">the band</a>, my search for an apartment in <a href="http://en.wikipedia.org/wiki/Ghent">Ghent</a> and a bunch of other things) I've worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the <a href="http://projects.archlinux.org/users/dieter/releng.git/">releng build environment repository</a>.
-
-Every 3 days, the following happens automatically:
-
-<ul>
-
-<li>packages to build images (archiso) and some of which are included <i>on</i> the images (aif and libui-sh) get rebuilt.  They are actually git versions, the latter two have a separate develop branch which is used. Normal packages get updated the normal way.</li>
-
-<li>the images are rebuilt, and the dual images get generated</li>
-
-<li>the images, the packages and their sources are synced to the public on <a href="http://releng.archlinux.org/">http://releng.archlinux.org</a></li>
-
-</ul>
-
-Actually things are <a href="http://projects.archlinux.org/users/dieter/releng.git/tree/scripts/releng-build-and-release-testing.sh">bit more involved</a> but this is the gist of it.  All of this is now run on a <a href="https://wiki.archlinux.org/index.php/Category:DeveloperWiki:Server_Configuration#Releng_server_.28alberich.29">dedicated VPS</a> donated by <a href="http://www.airvm.com/">airVM</a>.</p>
-
-
-
-<p>I never really completed the <a href="/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html">aif automatic test suite</a>, somewhere along the way I decided to focus on crowdsourcing test results.
-
-The weight of testing images (and all possible combinations of features) has always been huge, and trying to script tasks would either get way complicated or insufficient.
-
-So the new approach is largely inspired by the core and testing repositories:  we automatically build testing images, people report feedback, and if there is sufficient feedback for a certain set of images (or a bunch of similar sets of images) that allows us to conclude we have some good material, we can promote the set to official media.
-
-<br/>The latest piece of the puzzle is the new <a href="http://www.archlinux.org/releng/feedback/">releng feedback application</a> which <a href="http://zasshi-slash.blogspot.com/">Tom Willemsen</a> contributed. (again: outsourcing FTW).  It is still fairly basic, but should already be useful enough.  It lists pretty much all features you can use with archiso/AIF based images and automatically updates the list of isos based on what it sees appearing online, so I think it will be a good indicator on what works and what doesn't, and that for each known set of isos.</p>
-
-<p>So there. <b>Bleeding edge images for everyone</b>, and for those who want some quality assurance: <b>the more you contribute, the more likely you'll see official releases</b>.
-
-
-
-<p>While contributing feedback is now certainly very easy, don't think that only providing feedback is sufficient, it takes time to maintain and improve aif and archiso as well and contributions in that department are still very welcome.
-
-I don't think we'll get to the <a href="http://www.archlinux.org/news/200902-iso-release/">original plan</a> of official archiso releases for each stable kernel version, that seems like a lot of work despite all the above.</p>
-
-
-
-<p>As for what is new: again too much to list, here is a <a href="http://releng.archlinux.org/isos/Changelog">changelog</a> but I stopped updating it at some point.  I guess the most visible interesting stuff is friendlier package dialogs (with package descriptions), support for nilfs, btrfs and syslinux (thanks <a href="http://pyther.net/">Matthew Gyurgyik</a>), and an issues reporting tool.
-
-Under the hood we refactored quite a bit, mostly blockdevice related stuff, config generation and the "execution plan" (like, how each function calls each other and how failures are tracked) in AIF has been simplified considerably.</p>
-
-
-
-<!-- I used to be pedantic about details like "all packages installed in the live environment must be available in the official core/extra repositories but i might become a bit less strict.  or maybe not, it's not hard to switch to official packages. -->
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/can_we_build_a_simple_cross-distribution_installation_framework/">Can we build a simple, cross-distribution installation framework?</a></h1>
+        <a href="http://localhost:1313/post/can_we_build_a_simple_cross-distribution_installation_framework/">Can we build a simple, cross-distribution installation framework?</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -412,54 +209,16 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		Today at <a href="http://www.fosdem.org/2011/">Fosdem 2011</a> I did my talk <a href="http://fosdem.org/2011/schedule/event/distro_crossinstall">Can we build a simple, cross-distribution installation framework?</a>
-
-Basically, using the <a href="http://www.archlinux.org/">Arch</a> Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check
-
-if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.
-
-There was some interest, so we'll see what happens.
-
-<ul>
-
-<li><a href="/files/lif.pdf">slides</a></li>
-
-<li><a href="http://www.youtube.com/watch?v=83xBdlbGHdI">video</a></li>
-
-</ul>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/conf/index.html" rel="tag">conf</a>
-            
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/filesystem_code_in_aif/">Filesystem code in AIF</a></h1>
+        <a href="http://localhost:1313/post/filesystem_code_in_aif/">Filesystem code in AIF</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -472,262 +231,16 @@ There was some interest, so we'll see what happens.
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>In light of the work and discussions around supporting Nilfs2 and Btrfs on Arch Linux and its installer AIF,<br />
-
-I've shared some <a href="http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html">AIF filesystem code design insights and experiences</a> on the arch-releng mailing list.<br />
-
-This is some hard to understand code.  Partly because it's in bash (and I've needed to work around some limitations in bash),<br />
-
-partly because there is some complex logic going on.</p>
-
-<p>I think it's very useful material for those who are interested (it can also help understanding the user aspect),<br />
-
-so I wanted to share an improved version here.<br />
-
-On a related topic: I proposed to do a session at <a href="http://www.fosdem.org">Fosdem 2011/"distro miniconf"</a> about simple (console based) installers for Linux,<br />
-
-and how multiple distributions could share efforts maintaining installation tools, because there are a lot of cross-distribution concerns<br />
-
-which are not trivial to get right (mostly filesystems, but I also think about clock adjustments, bootloaders, etc).<br />
-
-Already several distro's use the (or a fork of) the Arch installer, for example <a href="http://pentoo.blogspot.com/2010/10/pentoo-installation-made-easy.html">Pentoo</a>,<br />
-
-but I think cooperation could be much better and more efficient.</p>
-
-<p>Anyway:<br />
-
-<!--more--><br />
-
-my acronyms for this text:</p>
-
-<ul>
-
-<li>LV = lvm2 Logical Volume</li>
-
-<li>VG = lvm2 Volume Group</li>
-
-<li>PV = lvm2 Physical Volume</li>
-
-<li>DM = Device Mapper</li>
-
-<li>BD = Block Device</li>
-
-<li>FS = File System</li>
-
-<li>DF = DeviceFile</li>
-
-</ul>
-
-<p>"Normal" FS'es ("do something on the BD represented by DF /dev/foo, so that you can then call `mount /dev/foo $somedir`") are <em>trivial</em> to add to aif.<br />
-
-Basically you just need to tell aif the name of the filesystem, and which commands and arguments it needs to invoke to create it and add a label to it.<br />
-
-Nilfs2 falls in this category.  So do ext2/3/4, xfs, jfs, reiserfs, etc.  (Nilfs is now supported and new <a href="http://build.archlinux.org/isos/">archiso testbuilds</a> are available)</p>
-
-<p>"Complex" FS'es (which yield a new DF for a DM BD, which can span multiple underlying BD's, etc) are more difficult, and I'll explain why.<br />
-
-Btrfs falls in this category.  So do LVM, dm_crypt and softraid.  In aif terminology anything you put on top of a BD is a FS.  This is not always technically correct, but it's not far-fetched and avoids needless complication.  For example softraid would be a FS you put on top of one or more BD's, and which itself yields a new BD on top of which you can put something else.<br />
-
-In the same way I call a VG a FS being applied on top of a PV BD, which itself results in a new BD which can host multiple LV FS'es, which in return yield new BD's which can host other FS'es.  Currently AIF provides support for lvm and dm_crypt, but not softraid or Btrfs.</p>
-
-<p>How aif works is this: it uses a "model" that represents how your DF/FS structure will look like.<br />
-
-I personally usually configure my hard disk like this:<br />
-
-a boot partition, and a partition on which i do dm_crypt, which results in a DM BD, which I make a PV, then put a VG on<br />
-
-it, which contains multiple LV's, one for swap, and two containing<br />
-
-some FS'es which get mounted as / and /home.</p>
-
-<p>You can see that model on the bottom ($BLOCKDATA) of <a href="https://github.com/Dieterbe/aif/blob/master/examples/fancy-install-on-sda">the example file "fancy-install-on-sda" for automatic installations, included with aif</a>.</p>
-
-<p>You might have noticed in the installer - if you do it interactively - how you first configure all<br />
-
-your filesystems in the dialog interface, but only after confirming, it<br />
-
-does all the required actions, step by step.  Actually the dialog-based configuration helper will just generate a textfile in the same format as $BLOCKDATA and the processing code is the same for interactive and automatic installs.<br />
-
-Since in the config file for an automatic install you could define your FS's in abitrary order, aif<br />
-
-figures out the dependencies and processes things in the right order.<br />
-
-With the example given above aif will parse the text and will figure out the order of creation: first partition (obviously), then create the dm_crypt, then the PV, then the VG,<br />
-
-then the LV's, then the FS'es on those LV's)<br />
-
-then mount all mountpoints in the right order (first /, then /home and /boot)<br />
-
-On rollback (when user changes his mind, an error occured - usually because of misconfiguration like a too big LV) everything I just explained happens in reverse.<br />
-
-This allows users to tune their config (or try something completely different), without the installer breaking with errors like "This device is already marked as encrypted" or "VG already exists"</p>
-
-<p>I choose this model-based approach initially because I wanted to get rid<br />
-
-of the ugly, hacky original installer code, but still provide a lot of<br />
-
-control through the nice dialog interfaces.  And interfaces that work fast (not causing you to wait between every step because it's creating the FS you just defined).<br />
-
-Perhaps most importantly, since my main goal was automautic installs where you could just specify how you wanted your<br />
-
-FS/BD structure to look like (not a series of commands), relatively little extra code was needed.  (this is also what separates AIF from FAI&amp;debian installer.  On Debian the interactive and automatic installers are different projects.  On Arch they are just different extensions for the same codebase)</p>
-
-<p>Advantages:</p>
-
-<ul>
-
-<li>provides some abstraction, it's trivial to support for new (simple) filesystems.</li>
-
-<li>makes dialog-based "configurator" easier, because we can share code with the automated installer</li>
-
-<li>the descriptive style of the config makes it easier (although the actual format could be further improved).<br />
-
- definitely easier then running/writing a series of commands (resp. interactive, automatic install).<br />
-
- if we would make users run/write a series of commands, we also couldn't support automatic rollbacks in case of failures.</i>
-
-</ul>
-
-<p>Disadvantages:</p>
-
-<ul>
-
-<li>the more control you want to give users, the more you're just putting<br />
-
-  effort in wrapping commandline arguments in fancy dialog interfaces<br />
-
-  (although there is also a textbox where you can enter which ever<br />
-
-  additional arguments you want, so this is a compromise)</li>
-
-<li>pretty hard to implement fancier filesystems, you usually need to<br />
-
-  take the common use cases. (see next point)</li>
-
-<li>bash datastructures are very limited. it's not easy to translate this model in a<br />
-
-  datastructure.  If in "FS on top of a BD" the FS is a child, and the BD a parent, it would be like a tree,<br />
-
-  but each node could have multiple children and multiple parents, i.e. a graph.<br />
-
-  For now I choose to ignore the "multiple parents" clause.<br />
-
-  Currently the only implication in aif is that you cannot have a VG which consumes multiple PV's.<br />
-
-  This is rare enough to justify this simplification, but still quite some code is needed to update and parse text files<br />
-
-  to mimic the datastructure, although I do consider using a specific<br />
-
-  optimized text format and an external tool to update/query the data. (yaml?)<br />
-
-  (See <a href="https://bugs.archlinux.org/task/15640">FS 15640</a>).<br />
-
-  Multiple children do need to be supported (a VG can have multiple LV's. line 34 in the example file)<br />
-
-  Implementing Softraid in this model means I need to support multiple parents, i.e. work with a graph structure.<br />
-
-  For Btrfs, the LVM-like restrictiction (no multiple physical volumes for the same FS) might be an acceptable compromise</li>
-
-<li>users cannot do their own stuff outside aif and expect to see the<br />
-
-  results inside aif.  If the installer would execute everything in realtime,<br />
-
-  you could detect changes being made to the system (probably not easy though)</li>
-
-<li>since changes don't happen in realtime, the model needs to update itself to represent how<br />
-
-the actual state <em>would</em> look like.  For example: if you just added a dm_crypt FS on a BD, we must create<br />
-
-a new entry /dev/mapper/$label in the model</li>
-
-<li>for PV's, you need a way to differentiate in the menu between the<br />
-
-  real BD (the one on which you say you want to put a PV FS) and the actual PV (on which you can put VG FS's),<br />
-
-  so aif generates an entry with the same name as the DF, but with a '+' appended to the file.<br />
-
-  (see the example file if unclear).  Although this problem is not specific to the actual model approach,<br />
-
-  it's more caused by my desire to present a "global interface" to the user, and not a series of wizards and dialogs</li>
-
-<li>Rollbacks are cool, but requires some hard to maintain code, and I doubt they are used often.<br />
-
-(also this is not really specific about the model approach taken, but still worth mentioning)</li>
-
-</ul>
-
-<p>Because of all this, I have sweared quite a bit over the last few<br />
-
-years, wondering if bash really was a good choice.  But using an external tool to work with a text-base graph/tree datastructure (where nodes can have some properties) will probably remove the big nuisance.  Also, Because bash v4 has associative arrays (finally), I can clean up a bunch of other code as well.</p>
-
-<p>I've pondered whether we should just let users do everything on the commandline (like Gentoo), or provide a minimal layer of<br />
-
-abstraction, like provide some scripts which they can modify that setup<br />
-
-a system in a certain way. (for example, basically a series of mkfs; mount;pacman; calls)<br />
-
-Another alternative would be to just make the user choose between a series of "common setups" and make them answer some questions for the choosen setup.<br />
-
-This is how the old installer did it, and afaik archboot still does it, but it doesn't scale well with more and more possibilities.<br />
-
-Actually, aif still contains the optional "autoprepare" method, which is in fact a simple wizard for a simple setup.</p>
-
-<p>I guess it's a tradeoff between making it easy for users and not overloading the brain of people who want to hack on the installer.<br />
-
-The approach which afaik has always been taken by Arch is to make the installer hold the hands of the user.<br />
-
-When creating aif, I've choosen to stick to that concept.  And frankly I still like the idea.  It may be hard to maintain,<br />
-
-but as a user you can finish all your installs and have a lot of options, but still use very minimal keystrokes (and mental energy).</p>
-
-<p>Like mentioned earlier, softraid hasn't been implemented yet in aif, nor btrfs.<br />
-
-I would need to know the most common/recommended use cases, and figure out the best way to implement them.<br />
-
-Btrfs might be relatively easy, if i can implement it like i did lvm.  But it seems like a great FS and I don't want to provide only-half-assed support for it.<br />
-
-Either way, refactoring the datastructure is something that will needs to be done at some point, especially for softraid.</p>
-
-<p>I hope this article was a bit understandable.  And if you have any advice, please share :)<br />
-
-The actual blockdevices-filesystems library of AIF is here:<br />
-
-<a href="https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-blockdevices-filesystems.sh">https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-blockdevices-filesystems.sh</a><br />
-
-And the menu's are here:<br />
-
-<a href="https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-ui-interactive.sh">https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-ui-interactive.sh"</a> (the most interesting functions are interactive_filesystems for the main FS menu, and interactive_filesystem which handles definition of a specific FS)</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/bash/index.html" rel="tag">bash</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/">the &#34;Community Contributions&#34; section on the Arch Linux forums is a goldmine</a></h1>
+        <a href="http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/">the &#34;Community Contributions&#34; section on the Arch Linux forums is a goldmine</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -740,46 +253,16 @@ And the menu's are here:<br />
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>The <a href="https://bbs.archlinux.org/viewforum.php?id=27">Community contributions</a> subforum of the Arch Linux forums is awesome.<br />
-
-It is the birthplace of many applications, most of them not Arch Linux specific.<br />
-
-File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.<br />
-
-Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.</p>
-
-<p>If you like to discover new apps and tools, check it out.</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/back_from_canada_archcon/">Back from Canada, Archcon</a></h1>
+        <a href="http://localhost:1313/post/back_from_canada_archcon/">Back from Canada, Archcon</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -792,156 +275,16 @@ Most of the apps are designed after suckless/KISS principles, but there are also
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>I'm back from Canada/Archcon, and it was great. I've been in Toronto for 11 days, and visited Montreal for 3 days.</p>
-
-<h3>Archcon</h3>
-
-<p>Archcon was small (20-ish people).  (That's what you get for doing it in Canada ;), but very nice.<br />
-
-Interesting talks, informal, good vibe, decent logistics and catering.<br />
-
-This year it happened because Dusty and Ricardo actually just wanted to have a conference without worrying too much about the attendance,<br />
-
-next year we should do it again because Arch (conferences) rock(s), and because we need more visitors.  More central locations such as Seattle and Europe have been suggested.<br />
-
-Either way, next year both Judd (founder) and Aaron (current overlord) should be there. (this year they both had lame excuses like family reunions and "almost getting married".  Congrats btw, Aaron!)</p>
-
-<p>It was an absolute pleasure to meet some more of my fellow devs, and users.<br />
-
-Here is a pic from the group (unfortunately, a few are missing)<!--more--><br />
-
-<img src="/files/group.jpg"/><br />
-
-People in bold are Arch (ex-) devs</p>
-
-<ol>
-
-<li>Richard (sokuban) from Toronto (linguistics student)</li>
-
-<li>Chris (Gallow) from Toronto</li>
-
-<li>Alex (alexmat) from Tokyo, Japan (very into NILFS, submitted already some patches)</li>
-
-<li>Sander (GogglesGuy) (Dutch guy living in the states now)</li>
-
-<li>Eric from Seattle, WA</li>
-
-<li>Gregory (gelendir) from Quebec city, Canada (aka dude wearing the kilt and fivefingers and funny accent)</li>
-
-<li><b>Kevin (kpiche)</b> from Ottawa (does perl stuff iirc)</li>
-
-<li><b>Loui (louipc)</b> from Toronto, Canada (AUR guy, git lover.  metalfan.  Shook John Petrucci's hand)</li>
-
-<li>Tim from Annapolis (uses Arch for servers at work with some fancy mass-install scripts)</li>
-
-<li>Dustin (daking) from Stanford, CA (runs most of Stanford university on Arch)</li>
-
-<li><b>me</b> from Belgium (arch-releng/aif, uzbl guy) </li>
-
-<li>Walter from Toronto (very into Uzbl, not actually an Arch user... yet)</li>
-
-<li>David (davekong) from New York City</li>
-
-<li><b>Dan (toofishes)</b> from Chicago (Pacman dev)</li>
-
-<li><b>Dusty</b> from Shaunavon SK (shwag, archcon organizer)</li>
-
-<li>Ricardo (ralvez) from  Toronto (archcon organizer)</li>
-
-<li><b>Jason (Xentac)</b> from Victoria, BC (entrepeneur, used to use Arch for the business)</li>
-
-</ol>
-
-<p>See <a href="https://bbs.archlinux.org/viewtopic.php?id=101692">Archcon thread</a> for more info.</p>
-
-<p>Unfortunately I barely slept the night before my AIF talk, so I feel that one didn't go to well.  Although people told me it was OK.<br />
-
-The Uzbl talk was pretty much what I imagined it to be: like the fosdem talk, but a bit more in depth here and there.<br />
-
-My pc was behaving weirdly, but luckily I could use Dan's.</p>
-
-<p>We've been lucky that Walter and Isaac had proper, respectively videotaping and photocamera equipment.  So there are plenty of pics, and nearly all talks got videotaped.<br />
-
-(I think the "hacking pacman" one was the only one not being videotaped, because 2 other talks were going on at the same time.  Too bad, it was a very interesting talk)</p>
-
-<p><a href="http://archlinux.ca/archcon2010/images/">Archcon pictures</a><br />
-
-<a href="http://archlinux.ca/archcon2010/videos/">Archcon videos</a><br />
-
-My slides:<br />
-
-<a href="/files/aif-archcon2010.pdf">AIF (day 1)</a><br />
-
-<a href="/files/uzbl-archcon2010.pdf">Uzbl (day 2)</a></p>
-
-<h3>Other days</h3>
-
-<p>Some thoughts and notes of what I did and saw around Toronto/Montreal..</p>
-
-<ul>
-
-<li>Cities with streets and subways in a grid layout are awesome.  Soo much easier to navigate.</li>
-
-<li>Red lights with countdown timers (in seconds) are awesome.  Although I'm told some places in Europe have them too.</li>
-
-<li>Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. <img src="/files/blog/toronto.ca/high_park_004_500.jpg"/></li>
-
-<li>Montreal was like a European city: more history, old buildings, more crime, but of course a grid layout.  Some nice views though (ie. from Mont Royal).</li>
-
-<li>The youth hostels I went too were great: never got to meet so many interesting people in such a short timespan.</li>
-
-<li>CN tower: I procrastinated visiting until the last day, and when I finally wanted to go in the wheather was perfect, but there was a 2 hour queue, so I skipped it. Anyway there are <a href="http://en.wikipedia.org/wiki/CN_Tower">plenty of pictures online</a>.</li>
-
-<li>Niagara falls were beautiful.  Maid of the myst tour was worth it.  I made pictures but <a href="http://en.wikipedia.org/wiki/File:Niagara_falls_panorama.jpg">those online</a> are better.</li>
-
-<li>I met Kan Johar (founder of <a href="http://plurk.com">plurk.com</a>, amongst others), good times.</li>
-
-<li>Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.<br> <img src="/files/poutine.jpg"/></li>
-
-<li>Dusty and I have been to the <a href="http://linuxcaffe.ca/">Linux Caffe.</a>  The owner is a great guy, he's considering switching to Arch, and he wrote his whole point of sales, accounting and bookkeeping software using shell scripts, perltk and stuff.  He's into suckless.org stuff.   His version 2.0 will probably be based on Xmonad.<br />
-
-<img src="/files/linuxcaffe-pos1.jpg"/><br />
-
-<img src="/files/linuxcaffe-pos2.jpg"/>
-
-</li>
-
-<p>Dusty and me, somewhere on our way to the Niagara falls.<br />
-
-<img src="/files/dustyandme.jpg"></p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/conf/index.html" rel="tag">conf</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/off_to_toronto_july_14-28_archcon/">Off to Toronto July 14-28, Archcon</a></h1>
+        <a href="http://localhost:1313/post/off_to_toronto_july_14-28_archcon/">Off to Toronto July 14-28, Archcon</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -954,64 +297,16 @@ My slides:<br />
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>As mentioned <a href="/uzbl_monitoring_aif_talks">earlier</a>, I'll be at <a href="http://www.archlinux.ca/archcon2010/">Archcon in Toronto</a> in a few weeks.<br />
-
-It's a very small conference, and the first of its kind.  At the <a href="/froscon_2009_afterthoughts">last FrOSCon</a> we have been playing with the idea to hold an informal Arch conference in Europe, but those were just ideas.  Dusty and Ricardo beat us with an actual implementation.<br />
-
-This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.<!--more--></p>
-
-<p><a href="http://www.archlinux.ca/archcon2010/?p=116">Archcon schedule</a>.  I'll be talking about AIF and uzbl.</p>
-
-<p>My schedule:</p>
-
-<ul>
-
-<li>wed. July 14: departure</li>
-
-<li>July 14 - 21: hanging around in downtown Toronto. Not sure yet where I'll stay. probably some hostel.</li>
-
-<li>July 21 - 28: bed and breakfast pretty close to the conference location, outside the city center</li>
-
-<li>July 22 - 23 are the conference talks days, July 24-25 are the conference tourist days, where we'll do some touristy stuff with the conference participants</li>
-
-<li>wed. July 28: flying back</li>
-
-</ul>
-
-<p>There are <a href="http://wiki.archlinux.org/index.php/Archcon_extra_activities">many things to do</a> in and around Toronto. We still need to make the planning, but the <a href="http://en.wikipedia.org/wiki/Niagara_Falls">Niagara Falls</a> are definitely on the list.</p>
-
-<p>Finally, big thanks to <a href="http://www.elys.com/home/">Elysium Digital</a>, a technology oriented consulting company for legal matters. Apparently they use Arch Linux for many things: on the desktop, in the server room, and in the forensic lab.   They emailed me to propose sponsoring my plane tickets, and they did.</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/uzbl_monitoring_aif_talks/">Uzbl, monitoring, AIF talks</a></h1>
+        <a href="http://localhost:1313/post/uzbl_monitoring_aif_talks/">Uzbl, monitoring, AIF talks</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1024,66 +319,16 @@ This is great, and one of the milestones in Arch Linux history.  Which is why I 
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>I recently did two talks, for which the videos are now online.</p>
-
-<ul>
-
-<li><a href="http://www.uzbl.org/news.php?id=25">Uzbl lightningtalk @ fosdem 2010</a></li>
-
-<li>Open Source Monitoring tools lightning talk @ <a href="http://www.kangaroot-showcase.be/">Kangaroot showcase</a> 2009.  This one is password protected.  If you were a participant, you should have received the pass</li>
-
-</ul>
-
-<p>If all goes well, I'll be at <a href="http://www.archlinux.ca/archcon2010/">ArchCon</a> this summer, where I'll be doing these talks:</p>
-
-<ul>
-
-<li><a href="http://www.archlinux.ca/archcon2010/?p=67">AIF: The Arch Installation Framework</a></li>
-
-<li><a href="http://www.archlinux.ca/archcon2010/?p=73">Uzbl & web interface tools which adhere to the unix philosophy</a>. Whereas in the fosdem talk I had to focus a lot of information into a short timeslot, here I'll elaborate a bit more</li>
-
-</ul>
-
-<p>We're not sure yet if those talks will get videotaped.<br />
-
-<!--more--></p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-                <a href="http://localhost:1313//tags/uzbl/index.html" rel="tag">uzbl</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
-            
-                <a href="http://localhost:1313//tags/conf/index.html" rel="tag">conf</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/fosdem_2010/">Fosdem 2010</a></h1>
+        <a href="http://localhost:1313/post/fosdem_2010/">Fosdem 2010</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1096,84 +341,16 @@ This is great, and one of the milestones in Arch Linux history.  Which is why I 
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>I'll be at fosdem - 10th edition - again this year.<br />
-
-<a href="http://www.fosdem.org"><img src="/files/blog/fosdem/going-to-2010.jpg" alt="I'm going to FOSDEM, the Free and Open Source Software Developers' European Meeting" /></a></p>
-
-<p>I'll be presenting a <a href="http://fosdem.org/2010/schedule/events/uzbl">lightning talk</a> about <a href="http://www.uzbl.org/">uzbl</a>.<br />
-
-Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas and me will hang out at the <a href="http://fosdem.org/2010/schedule/devrooms/distributions">distro miniconf</a>.  We might join the <a href="http://fosdem.org/2010/schedule/events/dist_infrastructure">infrastructure round-table</a> panel, but there is no concrete information yet.</p>
-
-<p>More stuff I'm looking forward to:<!--more--></p>
-
-<ul>
-
-<li><a href="http://fosdem.org/2010/schedule/phone">fosdem maemo application</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/dist_mirrorbrain">mirrorbrain. a topic often discussed at Arch</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/dist_clicfs">clicfs</a></li>
-
-<li><a href="http://fosdem.org/2010/news/fosdem-multiplies-things-10">a 2nd fries van!</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/openpcf">openpcf</a> (how would this compare to puppet et al?)</li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/asterisk">asterisk development</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/csync">csync</a> (reminds me of my own <a href="http://github.com/Dieterbe/ddm">ddm</a>)</li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/nosql_mongodb_intro">mongodb</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/nosql_cassandra">cassandra</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/nosql_mapreduce_couchdb">map/reduce in nosql vs sql on rdms</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/linuxkernelpatch">writing a patch for linux</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/systemtap">systemtap</a></li>
-
-<li><a href="http://fosdem.org/2010/schedule/events/scalingfacebook">scaling facebook</a></li>
-
-</ul>
-
-<p>I'm suprised myself how there are much more topics of interest to me then last year, and I'm not sure if the program is even finished.</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/uzbl/index.html" rel="tag">uzbl</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/conf/index.html" rel="tag">conf</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/arch_linux_interview_and_uzbl_article/">Arch Linux interview and Uzbl article</a></h1>
+        <a href="http://localhost:1313/post/arch_linux_interview_and_uzbl_article/">Arch Linux interview and Uzbl article</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1186,48 +363,16 @@ Also, <a href="http://www.archlinux.org/">Arch Linux</a> guys Roman, JGC, Thomas
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<ul>
-
-<li><a href="http://www.osnews.com/story/22692/Arch_Linux_Team">Arch Linux team interview @ OSNews</a></li>
-
-<li><a href="http://lwn.net/Articles/341245/">Uzbl @ LWN.net</a></li>
-
-</ul>
-
-<p>Apologies for only informing you about the second article now.  I assumed most of you follow LWN (you probably should) or found the article anyway.<br />
-
-Of all the <a href="http://www.uzbl.org/wiki/press">articles</a> written about uzbl, no one came close to the quality of Koens work.  So even though it's a bit dated it's still worth a read.</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/uzbl/index.html" rel="tag">uzbl</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/froscon_2009_afterthoughts/">Froscon 2009 afterthoughts</a></h1>
+        <a href="http://localhost:1313/post/froscon_2009_afterthoughts/">Froscon 2009 afterthoughts</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1240,72 +385,16 @@ Of all the <a href="http://www.uzbl.org/wiki/press">articles</a> written about u
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<!--more-->
-
-<p><a href="http://froscon.org/">Froscon</a> was great.</p>
-
-<ul>
-
-<li>It was smaller then I thought, I especially assumed more activity in the devrooms (I'm too used to <a href="http://fosdem.org/">fosdem</a> which is much bigger), but hey nice conference anyway.</li>
-
-<li>It was great to meet (some of) my Arch Linux colleagues.  Mostly the guys from Germany showed up, and Roman who is from Ukraine.</li>
-
-<li>We all got an Arch t-shirt/polo of which we could pick the color ourselves.  Woohoo.  Thanks donators.</li>
-
-<li>A few people also told me they had tried / were using <a href="http://www.uzbl.org">uzbl</a> (my browser project) so that was really cool.</li>
-
-<li>I had an interesting chat with <a href="http://www.informatik.uni-koeln.de/ls_juenger/people/lange/">Thomas Lange</a>, the author of <a href="http://www.informatik.uni-koeln.de/fai/">FAI</a> (a tool to automatically mass-install systems, mostly Debian).  I've used it in the past, liked it and was somewhat inspired by it when building <a href="/AIF_the_brand_new_Arch_Linux_Installation_Framework">AIF</a>. (but some design goals are different).</li>
-
-</ul>
-
-<p>
-
-Here is a picture of my "Arch releng partner" Gerhard (right) and I (left).  We've done a lot of work together and it was great to talk face to face for once.  Here we're showing (proudly) an Arch Linux Froscon disc (which is a slightly modified version of the <a href="http://www.archlinux.org/news/459/">2009.08 core images</a>):</p>
-
-<p><a href="/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg"><img src="/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg" /></a></p>
-
-<p>Team photo:</p>
-
-<p><a href="/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg"><img src="/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg" /></a></p>
-
-<p><a href="http://users.archlinux.de/~pierre/froscon/2009/">Image gallery</a>
-
-</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-                <a href="http://localhost:1313//tags/uzbl/index.html" rel="tag">uzbl</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-                <a href="http://localhost:1313//tags/conf/index.html" rel="tag">conf</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/">Arch Linux 2009.08 &amp; Froscon 2009</a></h1>
+        <a href="http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/">Arch Linux 2009.08 &amp; Froscon 2009</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1318,48 +407,16 @@ Here is a picture of my "Arch releng partner" Gerhard (right) and I (left).  We'
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>So, the Arch Linux <a href="http://bbs.archlinux.org/viewtopic.php?id=77680">2009.08 release</a> is now behind us, nicely on schedule.<br />
-
-I hope people will like <a href="http://github.com/Dieterbe/aif/">AIF</a> because it was a lot of work and we didn't receive much feedback.  I personally like it to apply my <a href="/rethinking_the_backup_paradigm_a_higher-level_approach">fancy backup restoration</a> approach.<br />
-
-But I'm sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With <a href="/uzbl_a_browser_that_adheres_to_the_unix_philosophy">uzbl</a> I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)</p>
-
-<p>Later this week I'm off to the <a href="http://www.countingcows.be/home.php">Counting Cows festival</a> in France, and the week after that (august 22-23) I'm going to <a href="http://www.froscon.org/">FrOSCon</a> in Germany where I will meet some of my Arch Linux colleagues in real life, which I'm really looking forward to.</p>
-
-<p>If anyone wants a ride to froscon let me know.  But note I'll try to maximize my time there (leave saturday early and come back late on sunday.  I even took a day off on monday so I might stay a day longer if I find more interested people to hang out there)</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/life/index.html" rel="tag">life</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/aif_automatic_lvm_dm_crypt_installations_and_test_suite/">AIF automatic lvm/dm_crypt installations and test suite</a></h1>
+        <a href="http://localhost:1313/post/aif_automatic_lvm_dm_crypt_installations_and_test_suite/">AIF automatic lvm/dm_crypt installations and test suite</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1372,68 +429,16 @@ But I'm sure if more people would look at the code we would find quite some desi
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>We're working hard on a new <a href="http://www.archlinux.org">Arch</a> release. (should be done by <a href="http://froscon.org/">froscon</a>)</p>
-
-<p>Amongst the slew of fixes and improvements there are also some cool new things I'm working on.<br />
-
-First of all, I worked more on the automatic installations.  Now you can easily install an LVM based Arch system on top of dm_crypt for example.<br />
-
-You type this command:</p>
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda
-</pre></div>
-<p>And <strong>bam</strong> you have a complete working system with LVM, dm_crypt etc all set up.  You just need to change your keymap, hostname, network config and such (or, configure that on the beforehand in the config file for AIF)</p>
-
-<p>Another thing I started working on is a very simple test suite.<br />
-
-Basically, when launching a test, the following steps are invoked</p>
-
-<ul>
-
-<li>installation of an arch system with aif's automatic procedure using a certain config file</li>
-
-<li>installation of a verification script onto the target system and configuration of the target to run the script on boot (DAEMONS variable in /etc/rc.conf)</li>
-
-<li> if aif ended succesfully: automatic reboot.. and tada!</li>
-
-</ul>
-
-<p>The verification script will check things like availability (and size) of LVM volumes, amount of swap space, keyboard layout, network and so on.<br />
-
-Here's a picture of a rough first version:</p>
-
-<p><img src="/files/aif-test-suite-wip.png" /></p>
-
-<p>Stay tuned!</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/automatic_installations_with_aif/">Automatic installations with AIF</a></h1>
+        <a href="http://localhost:1313/post/automatic_installations_with_aif/">Automatic installations with AIF</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1446,56 +451,16 @@ Here's a picture of a rough first version:</p>
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>Yesterday I finished the first working version of AIF's <a href="http://github.com/Dieterbe/aif/blob/b6aad22d8c0657d9205314b176e31878ffbc46a4/src/core/procedures/automatic">automatic procedure</a>, along with a <a href="http://github.com/Dieterbe/aif/blob/b6aad22d8c0657d9205314b176e31878ffbc46a4/examples/generic-install-on-sda">sample config for a basic install.</a>.</p>
-
-<p>For me personally this means I can start working on the next step towards my goal of having all my systems "metadata" centrally stored (along with my real "data"), and the possibility to reconstruct all my systems in a deployment-meets-backup-restore fashion ( see <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a> )</p>
-
-<!--more-->
-
-<p>The last few weeks I/we've been quite busy fixing up many things related to aif and the arch release stuff in general.  The kernel guys are now at 2.6.29-rc8, so a stable release won't be long anymore and I want to get as much things fixed before 2.6.29 is out, so we can release soon after. (with /arch/setup and /arch/quickinst replaced by aif)</p>
-
-<p>Misc notes:</p>
-
-<ul>
-
-<li>Working together with Aaron and Gerhard is great.  Our interests and knowledge are diverse, so we each have our place in the releng team, but there is some overlap too.  This works out great.  Input from them (and the other developers) often brings fixes for stupid things that I've spent too much time on and was still looking over.</li>
-
-<li>I'm also a "real" Arch developer (this actually means package maintainer) now: I maintain 1 <a href="http://www.archlinux.org/packages/?q=aif">package</a> :)</li>
-
-<li>The 2009.02 release was a success.  I was suprised by the amount of <a href="http://www.google.be/search?q=Arch+Linux+2009.02+release">attention</a> it got (maybe because we were the first distro to ship a release that supports ext4).  I realised that all those delays to fix some (imho) details was probably the best move after all.</li>
-
-<li>I've been looking at <a href="http://nixos.org/">nixOS</a>, which is a very interesting project. The way I see it, they combine the "functional description" part (which is on many systems handled by puppet/cfengine/kickstart/aif/...) right into their OS core. That, and some other features.  It was a bit too unstable when I tried it though.</li>
-
-</ul>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/arch_linux_release_engineering/">Arch Linux release engineering</a></h1>
+        <a href="http://localhost:1313/post/arch_linux_release_engineering/">Arch Linux release engineering</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1508,72 +473,16 @@ Here's a picture of a rough first version:</p>
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>I don't think I've ever seen so much anxiety/impatience/hope/buzz for a new Arch Linux release. (this is because of 2.6.28 with ext4 support).<br />
-
-The last release was 6 months ago, which is not so good.. also the arch-installer project has been slacking for a while.  But the Arch devs have been very busy and many things going on.  You know how it goes...</p>
-
-<p>That's why some new people have stepped up to help out on a new release:<br />
-
-Today, we are on the verge of a 2009-01 release (though that has been said so many times lately ;-) and together with Aaron we have started a new project: <a href="http://www.archlinux.org/news/430/">the Arch Linux Release Engineering team</a>.<br />
-
-Members of this team are Aaron himself, Gerhard Brauer and me.</p>
-
-<p>Our goals:</p>
-
-<ul>
-
-<li>coordinated releases following the rhythm of kernel releases (that's a release every 2-3 months baby!).</li>
-
-<li>anticipate the availability of the kernel in the testing repo's instead of having to wait for it to go to core before building alpha/beta images</li>
-
-<li>migration to <a href="/AIF_the_brand_new_Arch_Linux_Installation_Framework">AIF</a> as the new Arch installer (woot!)</li>
-
-<li>testing.  Leveraging the possibilities of AIF as an unattended installer, we should be able to script full installations and health checking of the resulting system.</li>
-
-<li>involving the community more? releasing "testing iso's" ? not sure about that. we'll see...</li>
-
-</ul>
-
-<p>We also have:</p>
-
-<ul>
-
-<li><a href="http://www.archlinux.org/mailman/listinfo/arch-releng">arch-releng mailing list</a></li>
-
-<li><a href="http://bugs.archlinux.org/index.php?project=6">Release Engineering bugtracker</a></i>
-
-</ul>
-
-<p>Oh yeah AIF is mirrored @ <a href="http://projects.archlinux.org/" title="http://projects.archlinux.org/">http://projects.archlinux.org/</a> and available packaged in the <a href="http://www.archlinux.org/packages/?q=aif">official repo's</a>!</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/new_aif_release/">new AIF release</a></h1>
+        <a href="http://localhost:1313/post/new_aif_release/">new AIF release</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1586,152 +495,16 @@ Members of this team are Aaron himself, Gerhard Brauer and me.</p>
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>My holidays present for Arch devs and users: AIF alpha-0.6 !</p>
-
-<p>* Changes since alpha 0.5:<!--more--></p>
-
-<ul>
-
-<li>fully reworked disk subsystem:
-
-<ul>
-
-<li>support for lvm and dm_crypt</li>
-
-<li>Autoprepare looks exactly the same (ui-wise) but with much cleaner code</li>
-
-<li>Manual mode UI is entirely reworked and has a general editor (see screens)</li>
-
-<li>Unified, more flexible/reusable backend code for partitioning, making filesystems and mounting them.  Uses structured file formats for defining partitions and filesystems</li>
-
-<li>Rollback functionality: when something failed while processing, or user changes his mind afterwards, you can do a rollback (things like umount, lvremove etc are done automatically in the correct order) and start over/retry</li>
-
-</ul>
-
-</li>
-
-<li>fully decoupled UI (dia/cli):
-
-<ul>
-
-<li>
-
-there are now generic, transparent functions for asking dates,numbers,strings,checklist,.. etc with an implementation in both ncurses (dialog) and cli.</li>
-
-<li>all code now uses these functions, making the codebase much cleaner. (look at the code for autoprepare for instance)</li>
-
-<li>with a simple command line flag you can toggle between running the program in cli or dialog mode.</li>
-
-</ul>
-
-</li>
-
-<li>support for commandline args<br />
-
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">/arch/aif -p interactive -d     <span style="color: #408080; font-style: italic"># runs the interactive profile with debugging enabled</span>
-
-/arch/aif -p interactive -i cli <span style="color: #408080; font-style: italic"># runs the interactive profile in CLI mode.</span>
-</pre></div>
-</li>
-
-<li>updated howto for using AUR packages</li>
-
-<li>replaced all refs to previous name (fifa) to aif.</li>
-
-<li>enabled date/time setting</li>
-
-<li>a massive amount of bugfixes</li>
-
-<li>a lot of code cleanups</li>
-
-</ul>
-
-<p>* Screenshots<br />
-
-- AIF manual filesystems, here showing a setup with /dev/sda3 containing a dm_crypt, containing /, and /dev/sda3 containing an LVM setup with 1 LV for /home<br />
-
-<img src="/files/aif/aif-alpha_0.6-disks-overview-dia.png" /></p>
-
-<p>- Processing the filesystems.  The installer automatically reorders everything<br />
-
-<img src="/files/aif/aif-alpha_0.6-disks-processing-dia.png" /></p>
-
-<p>- Rolling back a "/ and /home on top of LVM on top of dm_crypt" setup<br />
-
-<img src="/files/aif/aif-alpha_0.6-disks-rollback-dia.png" /></p>
-
-<p>- a CLI shot where the partitions/filesystems of the autoprepare just have been processed<br />
-
-<img src="/files/aif/aif-alpha_0.6-autoprepare_processed-cli.png" /></p>
-
-<p>* Usability<br />
-
-I tested the installer personally in virtualbox in different scenarios (ftp &amp; cdrom based, autoprepare, manually with normal disk layout,/ on lvm, dm_crypt,.. ), and all produced working installations.<br />
-
-Although I often need to fix bugs after testing a specific scenario,  I don't re-test all scenarios each time.  YMMV<br />
-
-Note that the installer doesn't automatically add the lvm2/encrypt modules to mkinitcpio yet, and doesn't add the right string for lvm/dm_crypt in grubs menu.lst yet.</p>
-
-<p>There are some known issues (which are not critical, just avoid them or live with them).  Here are the biggest ones (for more, see TODO)</p>
-
-<ul>
-
-<li>keyboard and timezone settings from installer don't go into target systems config</li>
-
-<li>long selections (eg packages) are very cumbersome to do in CLI mode.</li>
-
-</ul>
-
-<p>* How?<br />
-
-<a href="http://github.com/Dieterbe/aif/tree/master/HOWTO" title="http://github.com/Dieterbe/aif/tree/master/HOWTO">http://github.com/Dieterbe/aif/tree/master/HOWTO</a></p>
-
-<p>Use package aif-git from AUR.<br />
-
-Even though I tag releases in git, I don't build packages for them.<br />
-
-I now use the master branch as "stable" branch where I pull in code from the experimental branch after it has been tested.<br />
-
-So the master branch (package aif-git) always contains the latest, stable code.</p>
-
-<p>Use "/arch/aif -p interactive -d" (the interactive procedure is the port of /arch/setup)</p>
-
-<p>Have fun,<br />
-
-Dieter</p>
-
-<p>PS: Thomas Baechler (arch dev) has let me know he wants AIF hosted at <a href="http://projects.archlinux.org/" title="http://projects.archlinux.org/">http://projects.archlinux.org/</a> and he will provide me access to their server so I can push to it. Sweet!!</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			
-				<article class="post type-post status-publish format-standard hentry">
+				<article class="post type-post status-publish format-standard hentry" style="margin-bottom: 5px; padding-top: 0px; border:0px;">
 
 	
 	<header class="entry-header">
 
 	
-
-		<div class="entry-meta">
-			<span class="cat-links">
-                
-			</span>
-		</div>
-
-        <h1 class="entry-title"><a href="http://localhost:1313/post/aif_the_brand_new_arch_linux_installation_framework/">AIF: the brand new Arch Linux Installation Framework</a></h1>
+        <a href="http://localhost:1313/post/aif_the_brand_new_arch_linux_installation_framework/">AIF: the brand new Arch Linux Installation Framework</a>
 
 		<div class="entry-meta">
 			<span class="entry-date">
@@ -1744,75 +517,6 @@ Dieter</p>
 		</div>
 
 	</header>
-	
-	<div class="entry-content">
-		<p>Recently I started thinking about writing my own automatic installer that would set up my system exactly the way I want.<br />
-
-(See <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a>)</p>
-
-<p>I looked at the official Arch install scripts to see if I could reuse parts of their code, but unfortunately the code was just one big chunk of bash code with the main program and "flow control" (you must first do this step, then that), UI-code (dialogs etc) and backend logic (create filesystems, ...) all mangled up and mixed very closely together.<br />
-
-Functionality-wise the installer works fine, but I guess the code behind it is the result of years of adding features and quick fixes without refactoring, making it impossible to reuse any of the code.</p>
-
-<p>So I started to write <a href="http://github.com/Dieterbe/aif/">AIF: the Arch Linux Installation Framework</a><!--more--> (actually it had another name until recently), with these 3 goals in mind:</p>
-
-<ul>
-
-<li>Make all code modular, reusable etc.  Everyone should be able to add/change/remove change certain aspects of an installation procedure easily or build custom installation relying on existing code where appropriate</li>
-
-<li>Port /arch/setup and /arch/quickinst, so you get (almost) the same installer as before, but using totally refactored code.</li>
-
-<li>Write my own automatic procedure for my own custom needs</li>
-
-</ul>
-
-<p>Right now most of the hard work is done and the ported version of /arch/setup seems to work more or less.<br />
-
-I've posted to the arch-general mailing list and the responses I got were very positive.<br />
-
-This is what Aaron Griffin (lead developer of Arch Linux) said:</p>
-
-<blockquote><p>
-
-My honest opinion is that this is awesome. You're the reason I love open source 8)</p>
-
-<p>That said, we haven't release a 2.6.27 ISO just yet, and I need to go<br />
-
-in panic mode and get it out this weekend. But for the next release,<br />
-
-or even a smaller release before then, I'd *love* to incorporate this.</p>
-
-<p>(...)</p>
-
-<p>Just letting you know: I'm not silent because I don't care. I'm silent<br />
-
-because I'm watching and drooling 8)
-
-</p></blockquote>
-
-<p>You can read the whole thread here: <a href="http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-td20256427.html" title="http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-td20256427.html">http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-...</a></p>
-
-<p>I've also built <a href="http://aur.archlinux.org/packages.php?SeB=m&amp;K=Dieter_be">packages</a> to make it easy to install on a current installcd.  The package also comes with a <a href="http://github.com/Dieterbe/aif/tree/master/README">readme</a> and <a href="http://github.com/Dieterbe/aif/tree/master/HOWTO">howto</a> that explain how to install and use AIF.</p>
-
-<p>Right now I encourage people to try it out.  All known bugs are documented in the TODO file, there are probably more that I didn't discover yet.  But it should work pretty well.<br />
-
-I'm very curious for input on the code/design level as well.</p>
-
-<p>Hopefully the Arch guys can set me up with a bugtracker and make some sort of announcement to the community to try it out...</p>
-
-	</div>
-
-	<footer class="entry-meta">
-		<span class="tag-links">		
-			
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
-            
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
-            
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
-            
-		</span>
-	</footer>
 </article> 
 
 			

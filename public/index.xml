@@ -15,26 +15,14 @@
       <pubDate>Sun, 03 May 2015 23:01:07 -0400</pubDate>
       
       <guid>11 at http://dieter.plaetinck.be</guid>
-      <description>&lt;br/&gt;
-
-&lt;br/&gt;
-
-&lt;p&gt;
-
+      <description>&lt;p&gt;
 Hi there, visitor.
-
 My name is Dieter Plaetinck.
-
 &lt;br/&gt;I enjoy backend programming, performance optimisation (in a very broad sense), music, drums, travel, structured data processing, sharing and learning.
-
 &lt;br/&gt;There&#39;s a time and a place for everything in life, so I to be strategic about focusing on one or two things at a time.
-
 &lt;br/&gt;Right now it&#39;s mainly backend programming in Go and python, telemetry (timeseries processing, analytics, visualisation) and that&#39;s what I blog about the most.  But you can find some other things on here too.
 
-
-
 &lt;br/&gt;
-
 &lt;br/&gt;
 
 I had a blast working on &lt;a href=&#34;http://dieter.plaetinck.be/tag/netlog&#34;&gt;netlog&lt;/a&gt;, a large social network in Europe, but we lost the battle against facebook.  Nowadays I work on the backend of &lt;a href=&#34;http://dieter.plaetinck.be/tag/vimeo&#34;&gt;vimeo&lt;/a&gt;, the high quality video sharing website, where I focus on telemetry and big data.
@@ -44,42 +32,20 @@ Some people still know me from the &lt;a href=&#34;http://dieter.plaetinck.be/ta
 &lt;br/&gt;
 
 &lt;br/&gt;Nowadays my open source efforts revolve mostly around &lt;a href=&#34;http://dieter.plaetinck.be/tag/monitoring&#34;&gt;monitoring (telemetry)&lt;/a&gt; projects, and in specific the &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics 2.0&lt;/a&gt; standardisation effort for timeseries metadata.
-
 &lt;/p&gt;
-
-
-
 &lt;p&gt;
-
 You can email me on first-name at last-name dot be.  (i.e just like the domain)
-
 &lt;/p&gt;
-
-
-
 &lt;p&gt;
 
 Here are some links you might find interesting.
-
-
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe&#34;&gt;github.com/Dieterbe&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/Dieter_be&#34;&gt;twitter.com/Dieter_be&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;https://www.linkedin.com/in/dieterplaetinck&#34;&gt;LinkedIn.com/in/dieterplaetinck&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;https://vimeo.com/dieterplaetinck&#34;&gt;vimeo.com/dieterplaetinck&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;/p&gt;
-
-
-
-I use &lt;a href=&#34;http://pyblosxom.github.io/&#34;&gt;pyblosxom&lt;/a&gt; as blogging engine (though looking at &lt;a href=&#34;http://hugo.spf13.com/&#34;&gt;hugo&lt;/a&gt; as a successor).
 </description>
     </item>
     

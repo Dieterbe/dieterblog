@@ -11,14 +11,12 @@ import pathlib
 import html
 import sys
 
-def fixheader(lines, draft=False):
+def fixheader(lines, guid, draft=False):
     date = ""
     time = ""
-    guid = ""
     tags = []
 
     for i, line in enumerate(lines):
-        print("considering", i, line)
         line = line.strip()
         if i == 0:
             # replace entity refs like &amp; to &
@@ -49,6 +47,7 @@ def fixheader(lines, draft=False):
         "title = \"%s\"\n" % title,
         "date = \"%sT%s-04:00\"\n" % (date, time),
         "tags = [%s]\n" % ', '.join(['"%s"' % i for i in tags]),
+        "guid = \"%s\"\n" % guid,
     ]
     if draft:
         newheader.append("draft = true\n")
@@ -92,9 +91,7 @@ def process_entry(entry):
     print(base, "---->", new)
     f = open(entry, "r")
     lines = f.readlines()
-    print("lines before", lines[:20])
-    lines = fixhighlight(fixreadmore(fixheader(lines, draft)))
-    print("lines after", lines[:20])
+    lines = fixhighlight(fixreadmore(fixheader(lines, base[:-4], draft)))
     f.close()
     f = open(new, "w")
     f.write(''.join(lines))
@@ -107,7 +104,7 @@ def process_page(page):
     print(base, "---->", new)
     f = open(page, "r")
     lines = f.readlines()
-    lines = fixheader(lines)
+    lines = fixheader(lines, base[:-4])
     f.close()
     f = open(new, "w")
     f.write("\n".join(lines))

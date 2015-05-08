@@ -10,46 +10,6 @@
     <atom:link href="http://dieter.plaetinck.be/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>About</title>
-      <link>http://dieter.plaetinck.be/about/</link>
-      <pubDate>Sun, 03 May 2015 23:01:07 -0400</pubDate>
-      
-      <guid>11 at http://dieter.plaetinck.be</guid>
-      <description>&lt;p&gt;
-Hi there, visitor.
-My name is Dieter Plaetinck.
-&lt;br/&gt;I enjoy backend programming, performance optimisation (in a very broad sense), music, drums, travel, structured data processing, sharing and learning.
-&lt;br/&gt;There&#39;s a time and a place for everything in life, so I to be strategic about focusing on one or two things at a time.
-&lt;br/&gt;Right now it&#39;s mainly backend programming in Go and python, telemetry (timeseries processing, analytics, visualisation) and that&#39;s what I blog about the most.  But you can find some other things on here too.
-
-&lt;br/&gt;
-&lt;br/&gt;
-
-I had a blast working on &lt;a href=&#34;http://dieter.plaetinck.be/tag/netlog&#34;&gt;netlog&lt;/a&gt;, a large social network in Europe, but we lost the battle against facebook.  Nowadays I work on the backend of &lt;a href=&#34;http://dieter.plaetinck.be/tag/vimeo&#34;&gt;vimeo&lt;/a&gt;, the high quality video sharing website, where I focus on telemetry and big data.
-
-Some people still know me from the &lt;a href=&#34;http://dieter.plaetinck.be/tag/uzbl&#34;&gt;Uzbl&lt;/a&gt; minimalist web browser or my work on the &lt;a href=&#34;http://dieter.plaetinck.be/tag/arch&#34;&gt;Arch Linux installer and releases&lt;/a&gt; or my &lt;a href=&#34;http://stopabusingsiprefixes.org/&#34;&gt;stop abusing SI prefixes&lt;/a&gt; website. (One of my pet peeves is correct application of terminology and concepts, I see this as a requirement for calling yourself an engineer or scientist)
-
-&lt;br/&gt;
-
-&lt;br/&gt;Nowadays my open source efforts revolve mostly around &lt;a href=&#34;http://dieter.plaetinck.be/tag/monitoring&#34;&gt;monitoring (telemetry)&lt;/a&gt; projects, and in specific the &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics 2.0&lt;/a&gt; standardisation effort for timeseries metadata.
-&lt;/p&gt;
-&lt;p&gt;
-You can email me on first-name at last-name dot be.  (i.e just like the domain)
-&lt;/p&gt;
-&lt;p&gt;
-
-Here are some links you might find interesting.
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe&#34;&gt;github.com/Dieterbe&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/Dieter_be&#34;&gt;twitter.com/Dieter_be&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.linkedin.com/in/dieterplaetinck&#34;&gt;LinkedIn.com/in/dieterplaetinck&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://vimeo.com/dieterplaetinck&#34;&gt;vimeo.com/dieterplaetinck&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Talks</title>
       <link>http://dieter.plaetinck.be/talks/</link>
       <pubDate>Sun, 03 May 2015 23:01:07 -0400</pubDate>
@@ -271,13 +231,13 @@ We reuse this stuff for a variety of cases where the data behaves similarly and 
 &lt;h2&gt;Target use case&lt;/h2&gt;
 As in the previous article, we focus on the specific category of timeseries metrics driven by user activity.
 Those series are expected to fluctuate in at least some kind of (usually daily) pattern, but is expected to have a certain smoothness to it. Think web requests per second or uploads per minute.   There are a few characteristics that are considered faulty or at least worth our attention:
-
+&lt;br/&gt;
 &lt;table&gt;
 &lt;tr&gt;
-  &lt;td&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-good.png&#34;/&gt;&lt;/td&gt;
-  &lt;td&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-spikes.png&#34;/&gt;&lt;/td&gt;
-  &lt;td&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-erratic.png&#34;/&gt;&lt;/td&gt;
-  &lt;td&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-timeseries-median-drop.png&#34;/&gt;&lt;/td&gt;
+    &lt;td style=&#34;padding:0px;&#34; width=&#34;160px;&#34;&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-good.png&#34;&gt;&lt;img width=&#34;160px;&#34; src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-good.png&#34;/&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;td style=&#34;padding:0px;&#34; width=&#34;160px;&#34;&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-spikes.png&#34;&gt;&lt;img width=&#34;160px;&#34; src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-spikes.png&#34;/&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;td style=&#34;padding:0px;&#34; width=&#34;160px;&#34;&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-erratic.png&#34;&gt;&lt;img width=&#34;160px;&#34; src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-erratic.png&#34;/&gt;&lt;/a&gt;&lt;/td&gt;
+    &lt;td style=&#34;padding:0px;&#34; width=&#34;160px;&#34;&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-timeseries-median-drop.png&#34;&gt;&lt;img width=&#34;160px;&#34; src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeseries-bad-timeseries-median-drop.png&#34;/&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
   &lt;td&gt;&lt;b style=&#34;color: green;&#34;&gt;looks good&lt;/b&gt;&lt;br/&gt;consistent pattern&lt;br/&gt;consistent smoothness&lt;/td&gt;
@@ -338,13 +298,13 @@ It shows the current past week as red dots, and the past weeks before that as ti
 &lt;br/&gt;
 &lt;br/&gt;
 
-&lt;a href=&#34;http://dieter.plaetinck.be/files/practical-alerting-screenshot-template-timeshift.png&#34;&gt;&lt;img width=&#34;50%&#34; src=&#34;http://dieter.plaetinck.be/files/practical-alerting-screenshot-template-timeshift.png&#34; /&gt;&lt;/a&gt;
+&lt;a href=&#34;http://dieter.plaetinck.be/files/practical-alerting-screenshot-template-timeshift.png&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/practical-alerting-screenshot-template-timeshift.png&#34; /&gt;&lt;/a&gt;
 &lt;br/&gt;
 This allows us to easily spot when traffic becomes too low, overly erratic, etc as this example shows:
 &lt;br/&gt;
 &lt;br/&gt;
 
-&lt;a href=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeshift-use.png&#34;&gt;&lt;img width=&#34;50%&#34; src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeshift-use.png&#34; /&gt;&lt;/a&gt;
+&lt;a href=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeshift-use.png&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/practical-alerting-timeshift-use.png&#34; /&gt;&lt;/a&gt;
 &lt;br/&gt;
 
 &lt;h2&gt;Getting started&lt;/h2&gt;
@@ -376,7 +336,7 @@ We warn if one or more segregated items didn&#39;t meet their median requirement
 &lt;/ul&gt;
 
 &lt;h2&gt;Erraticness formula refinements&lt;/h2&gt;
-&lt;img style=&#34;float: right; margin: 45px;&#34; width=&#34;30%&#34; src=&#34;http://dieter.plaetinck.be/files/practical-alerting-notes-cleaned-small.jpg&#34; /&gt;
+&lt;img style=&#34;float: right; margin: 45px;&#34; width=&#34;40%&#34; src=&#34;http://dieter.plaetinck.be/files/practical-alerting-notes-cleaned-small.jpg&#34; /&gt;
 You may notice that the formula has changed to
 &lt;pre&gt;
 (deviation-now * median-historical) / ( (deviation-historical * median-now) + 0.01)
@@ -1371,6 +1331,26 @@ I would love to do another talk that allows me to dive into more of the underlyi
 &lt;br/&gt;
 Hope you like it!
 &lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Pixie: simple photo management using directory layouts and tags.</title>
+      <link>http://dieter.plaetinck.be/post/pixie/</link>
+      <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
+      
+      <guid>pixie</guid>
+      <description>So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
+that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
+&lt;!--more--&gt;
+&lt;br/&gt;
+&lt;br/&gt;I couldn&#39;t find a tool that I liked, so I rolled my own: &lt;a href=&#34;https://github.com/Dieterbe/pixie&#34;&gt;Pixie&lt;/a&gt;.
+&lt;br/&gt;
+It gives you vim-like keybindings to navigate pictures, create edits (stored in a &#34;mirror directory&#34;) and add/remove tags to pictures.  (Because n:m tag relationships are basically a must for organizing things and don&#39;t work on any common filesystem)
+To generate &#34;album&#34; directories, just define which tags they should(n&#39;t) match and run the script that synchronizes an export directory by symlinking (or resizing) the correct files into them.
+Note the source directory stays unaltered so you can easily keep syncing with devices and/or people.
+&lt;br/&gt;What used to be a pain in the butt for me is now a pretty pleasant experience.
+&lt;br/&gt;Does this workflow make sense to you? Is this useful to you? Why (not) ?
 </description>
     </item>
     

@@ -20,6 +20,16 @@
 	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
 	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1455070-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </head>
 
 <body class="home blog masthead-fixed list-view full-width grid">
@@ -137,13 +147,13 @@ We reuse this stuff for a variety of cases where the data behaves similarly and 
 <h2>Target use case</h2>
 As in the previous article, we focus on the specific category of timeseries metrics driven by user activity.
 Those series are expected to fluctuate in at least some kind of (usually daily) pattern, but is expected to have a certain smoothness to it. Think web requests per second or uploads per minute.   There are a few characteristics that are considered faulty or at least worth our attention:
-
+<br/>
 <table>
 <tr>
-  <td><img src="/files/practical-alerting-timeseries-good.png"/></td>
-  <td><img src="/files/practical-alerting-timeseries-bad-spikes.png"/></td>
-  <td><img src="/files/practical-alerting-timeseries-bad-erratic.png"/></td>
-  <td><img src="/files/practical-alerting-timeseries-bad-timeseries-median-drop.png"/></td>
+    <td style="padding:0px;" width="160px;"><a href="/files/practical-alerting-timeseries-good.png"><img width="160px;" src="/files/practical-alerting-timeseries-good.png"/></a></td>
+    <td style="padding:0px;" width="160px;"><a href="/files/practical-alerting-timeseries-bad-spikes.png"><img width="160px;" src="/files/practical-alerting-timeseries-bad-spikes.png"/></a></td>
+    <td style="padding:0px;" width="160px;"><a href="/files/practical-alerting-timeseries-bad-erratic.png"><img width="160px;" src="/files/practical-alerting-timeseries-bad-erratic.png"/></a></td>
+    <td style="padding:0px;" width="160px;"><a href="/files/practical-alerting-timeseries-bad-timeseries-median-drop.png"><img width="160px;" src="/files/practical-alerting-timeseries-bad-timeseries-median-drop.png"/></a></td>
 </tr>
 <tr>
   <td><b style="color: green;">looks good</b><br/>consistent pattern<br/>consistent smoothness</td>
@@ -204,13 +214,13 @@ It shows the current past week as red dots, and the past weeks before that as ti
 <br/>
 <br/>
 
-<a href="/files/practical-alerting-screenshot-template-timeshift.png"><img width="50%" src="/files/practical-alerting-screenshot-template-timeshift.png" /></a>
+<a href="/files/practical-alerting-screenshot-template-timeshift.png"><img src="/files/practical-alerting-screenshot-template-timeshift.png" /></a>
 <br/>
 This allows us to easily spot when traffic becomes too low, overly erratic, etc as this example shows:
 <br/>
 <br/>
 
-<a href="/files/practical-alerting-timeshift-use.png"><img width="50%" src="/files/practical-alerting-timeshift-use.png" /></a>
+<a href="/files/practical-alerting-timeshift-use.png"><img src="/files/practical-alerting-timeshift-use.png" /></a>
 <br/>
 
 <h2>Getting started</h2>
@@ -242,7 +252,7 @@ We warn if one or more segregated items didn't meet their median requirements, a
 </ul>
 
 <h2>Erraticness formula refinements</h2>
-<img style="float: right; margin: 45px;" width="30%" src="/files/practical-alerting-notes-cleaned-small.jpg" />
+<img style="float: right; margin: 45px;" width="40%" src="/files/practical-alerting-notes-cleaned-small.jpg" />
 You may notice that the formula has changed to
 <pre>
 (deviation-now * median-historical) / ( (deviation-historical * median-now) + 0.01)

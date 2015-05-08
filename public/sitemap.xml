@@ -8,11 +8,6 @@
   </url>
   
   <url>
-    <loc>http://dieter.plaetinck.be/about/</loc>
-    <lastmod>2015-05-03T23:01:07-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://dieter.plaetinck.be/talks/</loc>
     <lastmod>2015-05-03T23:01:07-04:00</lastmod>
   </url>
@@ -680,6 +675,10 @@
   <url>
     <loc>http://dieter.plaetinck.be/post/blogpost1_hello_world/</loc>
     <lastmod>2007-03-04T14:45:36-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://dieter.plaetinck.be/about/</loc>
   </url>
   
 </urlset>

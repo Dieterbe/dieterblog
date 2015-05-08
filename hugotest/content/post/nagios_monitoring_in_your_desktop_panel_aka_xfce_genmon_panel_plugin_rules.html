@@ -2,99 +2,53 @@
 title = "Nagios monitoring in your desktop panel aka Xfce Genmon panel plugin rules!"
 date = "2007-08-05T16:42:46-04:00"
 tags = ["netlog", "foss", "bash"]
+guid = "29 at http://dieter.plaetinck.be"
 +++
 <p>FOSS is written by users, for users, and what I've been doing/experiencing this afternoon is a perfect example of that.<!--more--><br />
-
 First of all take <a href="http://www.xfce.org">Xfce</a>: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the <a href="http://goodies.xfce.org/">Xfce Goodies project</a>, more specifically the <a href="http://goodies.xfce.org/projects/panel-plugins/start">Panel Plugins</a> page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.</p>
-
 <p>Now, for <a href="http://corporate.netlog.com">work</a> I need to keep an eye on <a href="http://www.nagios.org/">Nagios</a>, (Nagios is a great FOSS host/service monitoring web application) but I don't like periodically checking the same webpage over and over again:<br />
-
 news should come to me, not the other way around.</p>
-
 <p>Now, I had already found an excellent <a href="https://addons.mozilla.org/en-US/firefox/addon/3607">Nagios Checker Firefox extension</a> but then I would need to have Firefox open all the time, which I don't.<br />
-
 So at first I wanted to write my own panel plugin that would let me allow seeing the most important Nagios status information but then I came across the coolest Xfce panel plugin of them all: the <a href="http://goodies.xfce.org/projects/panel-plugins/xfce4-genmon-plugin">Genmon plugin</a>.  This is a plugin which you can add as many times to your panel as you want, and for each instance you can configure a script that it should run, and the frequency of it.  Like this you can create your own simple scripts (in php, bash, perl, python,...) which generate content (eg: text and images to be shown on the panel, tooltip, on-click action etc) and the Genmon plugin takes care of the rest.</p>
-
 <p>This is exactly what I've done and in less then an hour everything was working just like I wanted :-)<br />
-
 Well, not exactly: apparently the on-click action is bound to the image you show.  I would rather show no image at all and just show text with an on-click action bound to it, but this seems not possible so I had to use an icon.  This made my panel a bit larger (as text is shown beneath the icon, you can't configure it to place it next to it) Also it would be neat if I could work with colors: red for hosts who are down, green for those who are up etc.  Some details I could achieve if I would make my hands dirty, but for now I don't have time to enhance the Genmon plugin or to write my own, so I just live with it ;-)</p>
-
 <p>Anyways, enough talk.</p>
-
 <p>Here is a screenshot:</p>
-
 <p><img src="/files/xfce_genmon_nagios_script.png"/></p>
-
 <p>The cursor is not on the screenshot but I was obviously hoovering over the panel plugin to show the tooltip.<br />
-
 You can also see at the left the notes plugin and the mail checker plugin and at the right the volume control, trash applet, battery monitor, systray, clock and action button(s) panel plugins.</p>
-
 <p>And here is the source code of my bash script</p>
-
 {{< highlight "bash" "style=default" >}}
-
 #!/bin/bash
 
-
-
 #
-
 # Written by Dieter Plaetinck
-
 # Licensed under the GPL V3
-
 # See gnu.org/licenses/gpl-3.0.html
-
 #
-
 # works for Nagios 2.x No idea about 3.x 
 
 
-
-
-
 URL=https://<yourhost>/nagios/cgi-bin/tac.cgi
-
 USERNAME=username
-
 PASSWORD=password
 
-
-
 PAGE=$(curl -s -k -u $USERNAME:$PASSWORD $URL)
-
 HOSTS_DOWN=$(           echo -e "$PAGE" | grep "hoststatustypes=4' class='hostHeader'" | awk '{print $5}' | cut -c 20-)
-
 HOSTS_UNREACHABLE=$(    echo -e "$PAGE" | grep "hoststatustypes=8' class='hostHeader'" | awk '{print $5}' | cut -c 20-)
-
 HOSTS_UP=$(             echo -e "$PAGE" | grep "hoststatustypes=2' class='hostHeader'" | awk '{print $5}' | cut -c 20-)
-
 HOSTS_PENDING=$(        echo -e "$PAGE" | grep "hoststatustypes=1' class='hostHeader'" | awk '{print $5}' | cut -c 20-)
 
-
-
 SERVICES_CRIT=$(        echo -e "$PAGE" | grep "servicestatustypes=16' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
-
 SERVICES_WARN=$(        echo -e "$PAGE" | grep "servicestatustypes=4' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
-
 SERVICES_UNKNOWN=$(     echo -e "$PAGE" | grep "servicestatustypes=8' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
-
 SERVICES_OK=$(          echo -e "$PAGE" | grep "servicestatustypes=2' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
-
 SERVICES_PENDING=$(     echo -e "$PAGE" | grep "servicestatustypes=1' class='serviceHeader'" | awk '{print $5}' | cut -c 23-)
-
 echo "<img>scripts/nagios.gif</img>"
-
 echo "<txt>$HOSTS_DOWN-$SERVICES_CRIT/$SERVICES_WARN</txt>"
-
 echo "<tool>Hosts: $HOSTS_DOWN down / $HOSTS_UNREACHABLE unreachable / $HOSTS_UP up / $HOSTS_PENDING pending
-
 Services: $SERVICES_CRIT crit / $SERVICES_WARN warn / $SERVICES_UNKNOWN unknown / $SERVICES_OK ok / $SERVICES_PENDING pending</tool>"
-
 echo "<click>firefox https://<yourhost>/nagios</click>"
-
 {{< /highlight >}}<p>At my company we use https, If you use http I don't know if the authentication method is the same. If not check the -d flag for curl.<br />
-
 The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)</p>
-
 <p>PS: does anyone know a good Apple Keychain- like daemon that I can query from other scripts to receive passwords? Preferably GTK ones that do not pull in Gnome deps.  So I don't have to store passwords in cleartext... (and I need this anyway for other purposes :p)</p>

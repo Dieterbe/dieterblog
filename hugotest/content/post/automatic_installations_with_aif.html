@@ -2,25 +2,16 @@
 title = "Automatic installations with AIF"
 date = "2009-03-14T13:15:20-04:00"
 tags = ["arch"]
+guid = "63 at http://dieter.plaetinck.be"
 +++
 <p>Yesterday I finished the first working version of AIF's <a href="http://github.com/Dieterbe/aif/blob/b6aad22d8c0657d9205314b176e31878ffbc46a4/src/core/procedures/automatic">automatic procedure</a>, along with a <a href="http://github.com/Dieterbe/aif/blob/b6aad22d8c0657d9205314b176e31878ffbc46a4/examples/generic-install-on-sda">sample config for a basic install.</a>.</p>
-
 <p>For me personally this means I can start working on the next step towards my goal of having all my systems "metadata" centrally stored (along with my real "data"), and the possibility to reconstruct all my systems in a deployment-meets-backup-restore fashion ( see <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a> )</p>
-
 <!--more-->
-
 <p>The last few weeks I/we've been quite busy fixing up many things related to aif and the arch release stuff in general.  The kernel guys are now at 2.6.29-rc8, so a stable release won't be long anymore and I want to get as much things fixed before 2.6.29 is out, so we can release soon after. (with /arch/setup and /arch/quickinst replaced by aif)</p>
-
 <p>Misc notes:</p>
-
 <ul>
-
 <li>Working together with Aaron and Gerhard is great.  Our interests and knowledge are diverse, so we each have our place in the releng team, but there is some overlap too.  This works out great.  Input from them (and the other developers) often brings fixes for stupid things that I've spent too much time on and was still looking over.</li>
-
 <li>I'm also a "real" Arch developer (this actually means package maintainer) now: I maintain 1 <a href="http://www.archlinux.org/packages/?q=aif">package</a> :)</li>
-
 <li>The 2009.02 release was a success.  I was suprised by the amount of <a href="http://www.google.be/search?q=Arch+Linux+2009.02+release">attention</a> it got (maybe because we were the first distro to ship a release that supports ext4).  I realised that all those delays to fix some (imho) details was probably the best move after all.</li>
-
 <li>I've been looking at <a href="http://nixos.org/">nixOS</a>, which is a very interesting project. The way I see it, they combine the "functional description" part (which is on many systems handled by puppet/cfengine/kickstart/aif/...) right into their OS core. That, and some other features.  It was a bit too unstable when I tried it though.</li>
-
 </ul>

@@ -2,159 +2,83 @@
 title = "Profiling and behavior testing of processes and daemons, and Devopsdays NYC"
 date = "2013-01-21T15:25:14-04:00"
 tags = ["devops", "monitoring", "perf"]
+guid = "profiling_and_behavior_testing_processes_daemons_devopsdays_nyc"
 +++
 <h3>Profiling a process run</h3>
-
 <a href="https://github.com/Dieterbe/profile-process">
-
 <img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/>
-
 </a>
-
 I wanted the ability to run a given process and get
-
 <br/>a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.
-
 <br/>Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.
-
 <br/>Couldn't find a tool for it, so I wrote <a href="https://github.com/Dieterbe/profile-process">profile-process</a>
-
 <br/>which does exactly that in <100 lines of python.
-
 <br/>
-
 <br/>
-
-
 
 <h3>black-box behavior testing processes/daemons</h3>
-
 <a href="https://github.com/vimeo/simple-black-box">
-
 <img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/screenshot-no-pause.png" width="150px" height="100px"/>
-
 </a>
-
 I wrote <a href="https://github.com/vimeo/simple-black-box">simple-black-box</a> to do this.
-
 <br/>It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, ...)
-
 <br/>and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,
-
 <br/>file existence/checksums in the VFS/swift clusters, etc.
-
 <br/>Each test-case is a scenario.
-
 <br/>It also can use <a href="http://logstash.net/">logstash</a> to give a centralized "distributed stack trace" when you need to debug a failure after
-
 multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.
-
 <br/>You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.
-
 <!--more-->
 
-
-
 <h3>Simple-black-box talk @ Devopsdays NYC</h3>
-
 I did a quick <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">5min talk</a>, despite some display/timing issues it was well received.
-
 (in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to
-
 hire me -but being shy about it...- it was quite awkward)
-
 <br/>&rarr; <a href="/files/presentation-simple-black-box/slideshow.html">slides</a>
-
 <br/>&rarr; <a href="http://new.livestream.com/devopsdaysorg/nyc2013/videos/9609498">raw uncut video</a>.  Go to 'New York, January 18th, 2013' from 02:36:25 to 02:41:15
 
-
-
 <h3>More random thoughts about Devopsdays NYC</h3>
-
 <center><a href="http://devopsdays.org/events/2012-newyork/"><img src="/files/blog/devopsdays/workers.png" width="300px" height="300px"/></a></center>
-
 <ul>
-
 <li>I'm getting tired of people on stage making a big revelation out of adding an index to a database column.
-
 This happens too often at web-ops/devops conferences,  it's embarrassing.
-
 But at least it's not like the "how we made our site 1000x faster"-style Velocity talks that should have been named "caching and query optimization for newbies"
-
 </li>
-
 <li>Paperless post confirms again they got their act together and keeps us up to date with their great work.
-
 <a href="http://dev.paperlesspost.com/">Follow them.</a></li>
-
 <li>
-
 <a href="http://devopsdays.org/events/2012-newyork/proposals/KnightsOftheProvisioningRoundTable/">Knights of the Provisioning Round Table - Bare Metal Provisioning</a>
-
 was mostly (to my surprise) 4 individuals presenting their solution instead of a real round-table, but (to my surprise again) they were not as similar/repetitive as I expected
-
 and the pros/cons of all solutions were compared more in depth than I dared to hope.
-
 I <a href="/dell_crowbar_openstack_swift.html">covered dell crowbar before</a> and like it, though I wonder when this thing is actually gonna be reliable.
-
 </li>
-
 <li>Dave Zwieback and John Willis gave hilarious talks</li>
-
 <li>Tried to start an open space discussion around <b>collaboration patterns and anti-patterns</b>, which I think is a very interesting subject,
-
   because <b>how individuals in a team collaborate is crucial to success</b>, but yet very little is written about it (that I could find).
-
   I would hope we can distill the years of aggregate experience of people into concise patterns and anti-patterns and document how (not) well they work
-
   for development styles (such as agile/scrum), team size, company structure/hierarchy, roadmap/technical debt pressure, etc.  And especially in light
-
   of any of these things changing, because I've found <b>people can be very change-resistive</b>.
-
 </li>
-
 <li><a href="http://devopsdays.org/events/2012-newyork/proposals/DevopsAtObamaForAmerica/">DevOps At Obama for America & The Democratic National Committee</a>
-
 was good, I thought it would be a rehash of what was said at <a href="http://codeforward_newyorkcity.eventbrite.com/">Coding Forward New York City: Meet the Developers Behind the Obama Campaign</a>
-
 but there were a bunch of interesting insights about state of the art technology in here (mostly Amazon stuff)</li>
-
 <li>A bunch of talks where the same could have been said in half the time, or less</li>
-
 </ul>
-
 Random thoughts about some sponsors: 
-
 <ul>
-
 <li>Librato is quite cool.
-
 It's basically how my open source tool <a href="https://github.com/vimeo/graph-explorer">graph-explorer</a> would look like after
-
 finishing a bunch of TODO's, combining it with graphite, polishing it all up, and offering it as a hosted solution.
-
 I find it interesting if this is a successful business with only such a limited scope</li>
-
 <li>
-
 Even cooler is <a href="http://www.datadoghq.com/">datadog</a>.  It goes beyond just metrics and doesn't just provide hosted graphing,
-
 it provides a solution for a philosophy that aims for a centralized insight of all your operational data,
-
 related collaboration and prioritized alerts that are to the point.  They get a lot of things right, the open source world has some catching up to do</li>
-
 </ul>
-
 Interesting that both use Cassandra and free-form tags for flexibility, validating the approach I'm taking with graph-explorer.  Now Graphite
-
 could use a distributed metrics storage backend over which one can do map-reduce style jobs to gather intelligence from metrics archives
-
 (maybe based on Cassandra too?), but that's another story.
-
 <br/>
-
 <br/>
-
 Anyway, living in NYC with its vibrant ecosystem of devops people and companies organizing plenty of meet-ups and talks on their own
-
 makes it less pressing to have an event like Devopsdays, though it was certainly a good event, thanks to the sponsors and the volunteers.

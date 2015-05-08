@@ -2,71 +2,39 @@
 title = "Per-directory bash history"
 date = "2008-01-30T21:37:31-04:00"
 tags = ["bash", "productivity"]
+guid = "36 at http://dieter.plaetinck.be"
 +++
 <p>I've been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
-
 <!--more--><br />
-
 Quote from an <a href="http://www.debian-administration.org/articles/543#comment_17">anonymous reply on debian-administration.org</a></p>
-
 <br/>
-
 <cite>
-
 So I use the following bash function:
-
 {{< highlight "bash" "style=default" >}}
-
 #
-
 # Usage: mycd <path>
-
 #
-
 #  Replacement for builtin 'cd', which keeps a separate bash-history
-
 #   for every directory.
-
 function mycd()
-
 {
-
    history -w # write current history file
-
    builtin cd "$@" # do actual cd
-
    local HISTDIR="$HOME/.dir_bash_history$PWD" # use nested folders for history
-
    if  [ ! -d "$HISTDIR" ]; then # create folder if needed
-
       mkdir -p "$HISTDIR"
-
    fi
-
    export HISTFILE="$HISTDIR/bash_history.txt" # set new history file
-
    history -c  # clear memory
-
    history -r # read from current histfile
-
 }
-
 {{< /highlight >}}
-
 <p>and then set it up with the following in my bashrc:</p>
-
 {{< highlight "bash" "style=default" >}}
-
 shopt -s histappend
-
 alias cd="mycd"
-
 export HISTFILE="$HOME/.dir_bash_history$PWD/bash_history.txt"
-
 {{< /highlight >}}</cite>
-
 <p>Great stuff.  It would be nice to be able to use both the global and the directory-specific history by combining with an extra modifier key .<br />
-
 ( eg arrowup/pageup/c^r for global and alt+arrowup/alt+pageup/alt+c^r for the directory-specific one )</p>
-
 <p>If I ever come up with / find something to do this I'll let you know...</p>

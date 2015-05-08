@@ -2,217 +2,143 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Uzbl on Dieter&#39;s blog</title>
-    <link>http://localhost:1313/tags/uzbl/</link>
+    <link>http://dieter.plaetinck.be/tags/uzbl/</link>
     <description>Recent content in Uzbl on Dieter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Nov 2010 15:05:35 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/uzbl/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dieter.plaetinck.be/tags/uzbl/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Handing off uzbl to a new project leader</title>
-      <link>http://localhost:1313/post/handing_off_uzbl_to_a_new_project_leader/</link>
+      <link>http://dieter.plaetinck.be/post/handing_off_uzbl_to_a_new_project_leader/</link>
       <pubDate>Mon, 22 Nov 2010 15:05:35 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/handing_off_uzbl_to_a_new_project_leader/</guid>
+      <guid>93 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;As of yesterday, &lt;a href=&#34;http://necronomicorp.com/lab/&#34;&gt;Brendan &#39;bct&#39; Taylor&lt;/a&gt; is the new Uzbl project leader / maintainer.&lt;br /&gt;
-
 Yesterday I did the &lt;a href=&#34;http://www.uzbl.org/news.php?id=30&#34;&gt;newspost on uzbl.org&lt;/a&gt; which explains the reasoning.  I can add it feels pretty weird &#34;giving away&#34; and &#34;leaving behind&#34; a project you spent so much time on and which grew a large (well, for a FOSS side project with a hacker audience) base of users and contributors, and which served as inspiration for various other projects.&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;But I know this was the right thing to do.  On one hand there were more and more contributions coming in and changes being proposed but on the other hand I disliked being involved so deeply in a &#34;frontend&#34; project.  Early last year, I happened to &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;see some problems with browsing and had some cool ideas to attempt alleviate them&lt;/a&gt;, so it was fun kickstarting the project and making some things working, but I don&#39;t want to be the guy &lt;i&gt;maintaining a browser&lt;/i&gt;.&lt;br /&gt;
-
+&lt;p&gt;But I know this was the right thing to do.  On one hand there were more and more contributions coming in and changes being proposed but on the other hand I disliked being involved so deeply in a &#34;frontend&#34; project.  Early last year, I happened to &lt;a href=&#34;http://dieter.plaetinck.be/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;see some problems with browsing and had some cool ideas to attempt alleviate them&lt;/a&gt;, so it was fun kickstarting the project and making some things working, but I don&#39;t want to be the guy &lt;i&gt;maintaining a browser&lt;/i&gt;.&lt;br /&gt;
 My demotivation has been holding back the progress of the project, but luckily my request for change did not go unanswered.  Brendan stepped up, shared some ideas and because he is well aware of all the work currently going on (including his own) he seems like a good candidate to take uzbl wherever he thinks it should go.&lt;/p&gt;
-
 &lt;p&gt;Also, because of the &#34;I just want something that works completely, damnit!&#34; I&#39;ve never been a full-time Uzbl user.  (I think most uzbl users - and users of &#34;hacker browsers&#34; in general - still keep another browser for some specific sites and whatnot).  And I think some implementation decisions were a bit too radical and caused a bit too much complexity in return of too little flexibility.  Which is very ironic, because clearly plenty of folks love the uzbl architecture, and most say it just needs some finetuning (I.e. some people use the fast C-based cookie daemon rather then the python one, and it seems the problems with the escaping is something most people are okay with working around while waiting for a proper fix, whereas the non-perfect design frustrated me but I wasn&#39;t interested fixing it myself).  I&#39;m getting intrigued in the advantages an integrated, single-language, tightly-coupled programming api can bring (like how &lt;a href=&#34;http://luakit.org/&#34;&gt;luakit&lt;/a&gt; provides lua-bindings to WebkitGtk+), a design like this clearly has its own tradeoffs but at least it seems more easy to build something that works reasonably.  So I could try that and see how that works out.  Although I&#39;m not looking forward to learning yet another language..&lt;br /&gt;
-
 Maybe this is just kind-of a &#34;burnout&#34;, I don&#39;t know, Brendan (and others) have told me I can sound like I&#39;m trying to discourage.  So I&#39;ll stop now.  At least now, everybody is happy ;-)&lt;/p&gt;
-
 &lt;p&gt;Stay tuned for the cool things Brendan will announce shortly, it will make uzbl better for existing and new users.&lt;br /&gt;
-
 Good luck, Uzbl community, although I can&#39;t help but watching closely...&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Uzbl, monitoring, AIF talks</title>
-      <link>http://localhost:1313/post/uzbl_monitoring_aif_talks/</link>
+      <link>http://dieter.plaetinck.be/post/uzbl_monitoring_aif_talks/</link>
       <pubDate>Sun, 07 Mar 2010 12:06:18 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/uzbl_monitoring_aif_talks/</guid>
+      <guid>84 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I recently did two talks, for which the videos are now online.&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.uzbl.org/news.php?id=25&#34;&gt;Uzbl lightningtalk @ fosdem 2010&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;Open Source Monitoring tools lightning talk @ &lt;a href=&#34;http://www.kangaroot-showcase.be/&#34;&gt;Kangaroot showcase&lt;/a&gt; 2009.  This one is password protected.  If you were a participant, you should have received the pass&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;If all goes well, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;ArchCon&lt;/a&gt; this summer, where I&#39;ll be doing these talks:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=67&#34;&gt;AIF: The Arch Installation Framework&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=73&#34;&gt;Uzbl &amp; web interface tools which adhere to the unix philosophy&lt;/a&gt;. Whereas in the fosdem talk I had to focus a lot of information into a short timeslot, here I&#39;ll elaborate a bit more&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;We&#39;re not sure yet if those talks will get videotaped.&lt;br /&gt;
-
 &lt;!--more--&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Fosdem 2010</title>
-      <link>http://localhost:1313/post/fosdem_2010/</link>
+      <link>http://dieter.plaetinck.be/post/fosdem_2010/</link>
       <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/fosdem_2010/</guid>
+      <guid>81 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
-
-&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
-
 Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guys Roman, JGC, Thomas and me will hang out at the &lt;a href=&#34;http://fosdem.org/2010/schedule/devrooms/distributions&#34;&gt;distro miniconf&lt;/a&gt;.  We might join the &lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_infrastructure&#34;&gt;infrastructure round-table&lt;/a&gt; panel, but there is no concrete information yet.&lt;/p&gt;
-
 &lt;p&gt;More stuff I&#39;m looking forward to:&lt;!--more--&gt;&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/phone&#34;&gt;fosdem maemo application&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_mirrorbrain&#34;&gt;mirrorbrain. a topic often discussed at Arch&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_clicfs&#34;&gt;clicfs&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/news/fosdem-multiplies-things-10&#34;&gt;a 2nd fries van!&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/openpcf&#34;&gt;openpcf&lt;/a&gt; (how would this compare to puppet et al?)&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/asterisk&#34;&gt;asterisk development&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/csync&#34;&gt;csync&lt;/a&gt; (reminds me of my own &lt;a href=&#34;http://github.com/Dieterbe/ddm&#34;&gt;ddm&lt;/a&gt;)&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_mongodb_intro&#34;&gt;mongodb&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_cassandra&#34;&gt;cassandra&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_mapreduce_couchdb&#34;&gt;map/reduce in nosql vs sql on rdms&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/linuxkernelpatch&#34;&gt;writing a patch for linux&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/systemtap&#34;&gt;systemtap&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/scalingfacebook&#34;&gt;scaling facebook&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;I&#39;m suprised myself how there are much more topics of interest to me then last year, and I&#39;m not sure if the program is even finished.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Arch Linux interview and Uzbl article</title>
-      <link>http://localhost:1313/post/arch_linux_interview_and_uzbl_article/</link>
+      <link>http://dieter.plaetinck.be/post/arch_linux_interview_and_uzbl_article/</link>
       <pubDate>Mon, 11 Jan 2010 21:30:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/arch_linux_interview_and_uzbl_article/</guid>
+      <guid>80 at http://dieter.plaetinck.be</guid>
       <description>&lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.osnews.com/story/22692/Arch_Linux_Team&#34;&gt;Arch Linux team interview @ OSNews&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://lwn.net/Articles/341245/&#34;&gt;Uzbl @ LWN.net&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Apologies for only informing you about the second article now.  I assumed most of you follow LWN (you probably should) or found the article anyway.&lt;br /&gt;
-
 Of all the &lt;a href=&#34;http://www.uzbl.org/wiki/press&#34;&gt;articles&lt;/a&gt; written about uzbl, no one came close to the quality of Koens work.  So even though it&#39;s a bit dated it&#39;s still worth a read.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Froscon 2009 afterthoughts</title>
-      <link>http://localhost:1313/post/froscon_2009_afterthoughts/</link>
+      <link>http://dieter.plaetinck.be/post/froscon_2009_afterthoughts/</link>
       <pubDate>Fri, 28 Aug 2009 19:00:02 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/froscon_2009_afterthoughts/</guid>
+      <guid>72 at http://dieter.plaetinck.be</guid>
       <description>&lt;!--more--&gt;
-
 &lt;p&gt;&lt;a href=&#34;http://froscon.org/&#34;&gt;Froscon&lt;/a&gt; was great.&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;It was smaller then I thought, I especially assumed more activity in the devrooms (I&#39;m too used to &lt;a href=&#34;http://fosdem.org/&#34;&gt;fosdem&lt;/a&gt; which is much bigger), but hey nice conference anyway.&lt;/li&gt;
-
 &lt;li&gt;It was great to meet (some of) my Arch Linux colleagues.  Mostly the guys from Germany showed up, and Roman who is from Ukraine.&lt;/li&gt;
-
 &lt;li&gt;We all got an Arch t-shirt/polo of which we could pick the color ourselves.  Woohoo.  Thanks donators.&lt;/li&gt;
-
 &lt;li&gt;A few people also told me they had tried / were using &lt;a href=&#34;http://www.uzbl.org&#34;&gt;uzbl&lt;/a&gt; (my browser project) so that was really cool.&lt;/li&gt;
-
-&lt;li&gt;I had an interesting chat with &lt;a href=&#34;http://www.informatik.uni-koeln.de/ls_juenger/people/lange/&#34;&gt;Thomas Lange&lt;/a&gt;, the author of &lt;a href=&#34;http://www.informatik.uni-koeln.de/fai/&#34;&gt;FAI&lt;/a&gt; (a tool to automatically mass-install systems, mostly Debian).  I&#39;ve used it in the past, liked it and was somewhat inspired by it when building &lt;a href=&#34;http://localhost:1313/AIF_the_brand_new_Arch_Linux_Installation_Framework&#34;&gt;AIF&lt;/a&gt;. (but some design goals are different).&lt;/li&gt;
-
+&lt;li&gt;I had an interesting chat with &lt;a href=&#34;http://www.informatik.uni-koeln.de/ls_juenger/people/lange/&#34;&gt;Thomas Lange&lt;/a&gt;, the author of &lt;a href=&#34;http://www.informatik.uni-koeln.de/fai/&#34;&gt;FAI&lt;/a&gt; (a tool to automatically mass-install systems, mostly Debian).  I&#39;ve used it in the past, liked it and was somewhat inspired by it when building &lt;a href=&#34;http://dieter.plaetinck.be/AIF_the_brand_new_Arch_Linux_Installation_Framework&#34;&gt;AIF&lt;/a&gt;. (but some design goals are different).&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;
-
 Here is a picture of my &#34;Arch releng partner&#34; Gerhard (right) and I (left).  We&#39;ve done a lot of work together and it was great to talk face to face for once.  Here we&#39;re showing (proudly) an Arch Linux Froscon disc (which is a slightly modified version of the &lt;a href=&#34;http://www.archlinux.org/news/459/&#34;&gt;2009.08 core images&lt;/a&gt;):&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Team photo:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://users.archlinux.de/~pierre/froscon/2009/&#34;&gt;Image gallery&lt;/a&gt;
-
 &lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Uzbl.  A browser that adheres to the unix philosophy.</title>
-      <link>http://localhost:1313/post/uzbl_a_browser_that_adheres_to_the_unix_philosophy/</link>
+      <link>http://dieter.plaetinck.be/post/uzbl_a_browser_that_adheres_to_the_unix_philosophy/</link>
       <pubDate>Mon, 27 Apr 2009 23:02:37 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/uzbl_a_browser_that_adheres_to_the_unix_philosophy/</guid>
+      <guid>65 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I need a browser that is fast, not bloated, stores my data (bookmarks, history, account settings, preferences, ...) in simple text files that I can keep under version control, something that does not reinvent the wheel, something that I can control.&lt;/p&gt;
-
 &lt;p&gt;Well, I could not find it.&lt;br /&gt;
-
 So I started the &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=70700&amp;amp;p=1&#34;&gt;uzbl browser&lt;/a&gt; project.&lt;!--more--&gt;&lt;br /&gt;
-
 The project is just a few days old, but already some developers joined me and we&#39;re having a lot of fun hacking.  One of them (Mike) was even creazy enough to register a domain for it with a website and all.&lt;br /&gt;
-
 So there you have it: &lt;a href=&#34;http://uzbl.org&#34;&gt;uzbl.org&lt;/a&gt;.&lt;br /&gt;
-
 It is stil very early in the process, but some things already work.&lt;/p&gt;
-
 &lt;p&gt;Here are some of the ideals (not all implemented yet):&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;keyboard controlled: modal with vim-like bindings, or with modifier keys&lt;/li&gt;
-
 &lt;li&gt;very simple ini-style config file&lt;/li&gt;
-
 &lt;li&gt;very minimal interface. No unnecessary interface elements&lt;/li&gt;
-
 &lt;li&gt;Things like url changing, loading/saving of bookmarks, ... are handled through external scripts that you write and call with keyboard shortcuts.  If they want to alter the behavior of uzbl (change url, reload,..) they write a command to a FIFO (spawned by the uzbl process).  Some scripts are also triggered by uzbl (like history logging or when a file needs to be downloaded) &lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;&lt;a href=&#34;http://github.com/Dieterbe/uzbl/tree/master&#34;&gt;more&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;Uzbl follows the UNIX philosophy:&lt;br /&gt;
-
 &lt;quote&gt;&lt;br /&gt;
-
 &lt;i&gt;Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface.&lt;/i&gt;&lt;/quote&gt;&lt;/p&gt;
 </description>
     </item>

@@ -2,95 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Arch on Dieter&#39;s blog</title>
-    <link>http://localhost:1313/tags/arch/</link>
+    <link>http://dieter.plaetinck.be/tags/arch/</link>
     <description>Recent content in Arch on Dieter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Dec 2013 14:46:32 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/arch/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dieter.plaetinck.be/tags/arch/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Pixie: simple photo management using directory layouts and tags.</title>
-      <link>http://localhost:1313/post/pixie/</link>
+      <link>http://dieter.plaetinck.be/post/pixie/</link>
       <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/pixie/</guid>
+      <guid>pixie</guid>
       <description>So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
-
 that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
-
 &lt;!--more--&gt;
-
 &lt;br/&gt;
-
 &lt;br/&gt;I couldn&#39;t find a tool that I liked, so I rolled my own: &lt;a href=&#34;https://github.com/Dieterbe/pixie&#34;&gt;Pixie&lt;/a&gt;.
-
 &lt;br/&gt;
-
 It gives you vim-like keybindings to navigate pictures, create edits (stored in a &#34;mirror directory&#34;) and add/remove tags to pictures.  (Because n:m tag relationships are basically a must for organizing things and don&#39;t work on any common filesystem)
-
 To generate &#34;album&#34; directories, just define which tags they should(n&#39;t) match and run the script that synchronizes an export directory by symlinking (or resizing) the correct files into them.
-
 Note the source directory stays unaltered so you can easily keep syncing with devices and/or people.
-
 &lt;br/&gt;What used to be a pain in the butt for me is now a pretty pleasant experience.
-
 &lt;br/&gt;Does this workflow make sense to you? Is this useful to you? Why (not) ?
 </description>
     </item>
     
     <item>
       <title>Resigning as Arch Linux developer</title>
-      <link>http://localhost:1313/post/resigning_arch_linux/</link>
+      <link>http://dieter.plaetinck.be/post/resigning_arch_linux/</link>
       <pubDate>Sat, 21 Jul 2012 16:50:11 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/resigning_arch_linux/</guid>
+      <guid>resigning_arch_linux</guid>
       <description>&lt;p&gt;
-
 A few days ago, I &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2012-July/002628.html&#34;&gt;resigned as Arch Linux developer&lt;/a&gt;.
-
 &lt;br/&gt;I&#39;m sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest.
-
 The Releng team we started more than 3 years ago is now dead, but other developers are showing interest in iso building and installer scripts, so as long as they don&#39;t burn out, you&#39;ll see new isos again.
-
 More information in my resignation mail linked above.
-
 &lt;br/&gt;&lt;br/&gt;
-
 Dieter
 </description>
     </item>
     
     <item>
       <title>Lighttpd socket Arch Linux /var/run tmpfs tmpfiles.d</title>
-      <link>http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</link>
+      <link>http://dieter.plaetinck.be/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</link>
       <pubDate>Sun, 25 Mar 2012 23:05:05 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</guid>
+      <guid>lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d</guid>
       <description>On Arch Linux, and probably &lt;a href=&#34;http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html&#34;&gt;many other distros&lt;/a&gt; /run is a new tmpfs, and /var/run symlinks to it.
-
 With Lighttpd you might have a fastcgi socket defined something like &#34;/var/run/lighttpd/sockets/mywebsite.sock&#34;.
-
 This won&#39;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&#39;t start, /var/log/lighttpd/error.log will tell you:
-
 &lt;pre&gt;
-
 2012-03-16 09:21:34: (log.c.166) server started 
-
 2012-03-16 09:21:34: (mod_fastcgi.c.977) bind failed for: unix:/var/run/lighttpd/sockets/mywebsite.sock-0 No such file or directory 
-
 2012-03-16 09:21:34: (mod_fastcgi.c.1397) [ERROR]: spawning fcgi failed. 
-
 2012-03-16 09:21:34: (server.c.945) Configuration of plugins failed. Going down.
-
 &lt;/pre&gt;
-
 That&#39;s where this new tool &lt;a href=&#34;https://www.google.be/#hl=nl&amp;q=tmpfiles.d&#34;&gt;tmpfiles.d&lt;/a&gt; comes in.
-
 It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
-
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$ &lt;/span&gt;cat /etc/tmpfiles.d/lighttpd.conf 
-
 d /run/lighttpd/sockets &lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span&gt; http http
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -99,57 +71,33 @@ d /run/lighttpd/sockets &lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span
     
     <item>
       <title>Where are the new Arch Linux release images?</title>
-      <link>http://localhost:1313/post/where_are_the_new_arch_linux_images/</link>
+      <link>http://dieter.plaetinck.be/post/where_are_the_new_arch_linux_images/</link>
       <pubDate>Tue, 17 May 2011 21:29:58 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/where_are_the_new_arch_linux_images/</guid>
+      <guid>where_are_the_new_arch_linux_images</guid>
       <description>&lt;!--more--&gt;
-
 &lt;p&gt;This is a question I get asked a lot recently.  The latest &lt;a href=&#34;http://www.archlinux.org/download/&#34;&gt;official images&lt;/a&gt; are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I&#39;m not aware of.  Many of these problems can be worked around (with &#39;pacman -Sy mirrorlist&#39; on the install cd for example), but it&#39;s not exactly convenient.&lt;/p&gt;
 
-
-
-&lt;p&gt;Over the past years (the spare time in between &lt;a href=&#34;http://localhost:1313/my_metalband.html&#34;&gt;the band&lt;/a&gt;, my search for an apartment in &lt;a href=&#34;http://en.wikipedia.org/wiki/Ghent&#34;&gt;Ghent&lt;/a&gt; and a bunch of other things) I&#39;ve worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/&#34;&gt;releng build environment repository&lt;/a&gt;.
-
+&lt;p&gt;Over the past years (the spare time in between &lt;a href=&#34;http://dieter.plaetinck.be/my_metalband.html&#34;&gt;the band&lt;/a&gt;, my search for an apartment in &lt;a href=&#34;http://en.wikipedia.org/wiki/Ghent&#34;&gt;Ghent&lt;/a&gt; and a bunch of other things) I&#39;ve worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/&#34;&gt;releng build environment repository&lt;/a&gt;.
 Every 3 days, the following happens automatically:
-
 &lt;ul&gt;
-
 &lt;li&gt;packages to build images (archiso) and some of which are included &lt;i&gt;on&lt;/i&gt; the images (aif and libui-sh) get rebuilt.  They are actually git versions, the latter two have a separate develop branch which is used. Normal packages get updated the normal way.&lt;/li&gt;
-
 &lt;li&gt;the images are rebuilt, and the dual images get generated&lt;/li&gt;
-
 &lt;li&gt;the images, the packages and their sources are synced to the public on &lt;a href=&#34;http://releng.archlinux.org/&#34;&gt;http://releng.archlinux.org&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 Actually things are &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/tree/scripts/releng-build-and-release-testing.sh&#34;&gt;bit more involved&lt;/a&gt; but this is the gist of it.  All of this is now run on a &lt;a href=&#34;https://wiki.archlinux.org/index.php/Category:DeveloperWiki:Server_Configuration#Releng_server_.28alberich.29&#34;&gt;dedicated VPS&lt;/a&gt; donated by &lt;a href=&#34;http://www.airvm.com/&#34;&gt;airVM&lt;/a&gt;.&lt;/p&gt;
 
-
-
-&lt;p&gt;I never really completed the &lt;a href=&#34;http://localhost:1313/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html&#34;&gt;aif automatic test suite&lt;/a&gt;, somewhere along the way I decided to focus on crowdsourcing test results.
-
+&lt;p&gt;I never really completed the &lt;a href=&#34;http://dieter.plaetinck.be/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html&#34;&gt;aif automatic test suite&lt;/a&gt;, somewhere along the way I decided to focus on crowdsourcing test results.
 The weight of testing images (and all possible combinations of features) has always been huge, and trying to script tasks would either get way complicated or insufficient.
-
 So the new approach is largely inspired by the core and testing repositories:  we automatically build testing images, people report feedback, and if there is sufficient feedback for a certain set of images (or a bunch of similar sets of images) that allows us to conclude we have some good material, we can promote the set to official media.
-
 &lt;br/&gt;The latest piece of the puzzle is the new &lt;a href=&#34;http://www.archlinux.org/releng/feedback/&#34;&gt;releng feedback application&lt;/a&gt; which &lt;a href=&#34;http://zasshi-slash.blogspot.com/&#34;&gt;Tom Willemsen&lt;/a&gt; contributed. (again: outsourcing FTW).  It is still fairly basic, but should already be useful enough.  It lists pretty much all features you can use with archiso/AIF based images and automatically updates the list of isos based on what it sees appearing online, so I think it will be a good indicator on what works and what doesn&#39;t, and that for each known set of isos.&lt;/p&gt;
-
 &lt;p&gt;So there. &lt;b&gt;Bleeding edge images for everyone&lt;/b&gt;, and for those who want some quality assurance: &lt;b&gt;the more you contribute, the more likely you&#39;ll see official releases&lt;/b&gt;.
 
-
-
 &lt;p&gt;While contributing feedback is now certainly very easy, don&#39;t think that only providing feedback is sufficient, it takes time to maintain and improve aif and archiso as well and contributions in that department are still very welcome.
-
 I don&#39;t think we&#39;ll get to the &lt;a href=&#34;http://www.archlinux.org/news/200902-iso-release/&#34;&gt;original plan&lt;/a&gt; of official archiso releases for each stable kernel version, that seems like a lot of work despite all the above.&lt;/p&gt;
 
-
-
 &lt;p&gt;As for what is new: again too much to list, here is a &lt;a href=&#34;http://releng.archlinux.org/isos/Changelog&#34;&gt;changelog&lt;/a&gt; but I stopped updating it at some point.  I guess the most visible interesting stuff is friendlier package dialogs (with package descriptions), support for nilfs, btrfs and syslinux (thanks &lt;a href=&#34;http://pyther.net/&#34;&gt;Matthew Gyurgyik&lt;/a&gt;), and an issues reporting tool.
-
 Under the hood we refactored quite a bit, mostly blockdevice related stuff, config generation and the &#34;execution plan&#34; (like, how each function calls each other and how failures are tracked) in AIF has been simplified considerably.&lt;/p&gt;
-
-
 
 &lt;!-- I used to be pedantic about details like &#34;all packages installed in the live environment must be available in the official core/extra repositories but i might become a bit less strict.  or maybe not, it&#39;s not hard to switch to official packages. --&gt;
 </description>
@@ -157,640 +105,376 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
     
     <item>
       <title>Can we build a simple, cross-distribution installation framework?</title>
-      <link>http://localhost:1313/post/can_we_build_a_simple_cross-distribution_installation_framework/</link>
+      <link>http://dieter.plaetinck.be/post/can_we_build_a_simple_cross-distribution_installation_framework/</link>
       <pubDate>Sun, 06 Feb 2011 23:46:18 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/can_we_build_a_simple_cross-distribution_installation_framework/</guid>
+      <guid>can_we_build_a_simple_cross-distribution_installation_framework</guid>
       <description>Today at &lt;a href=&#34;http://www.fosdem.org/2011/&#34;&gt;Fosdem 2011&lt;/a&gt; I did my talk &lt;a href=&#34;http://fosdem.org/2011/schedule/event/distro_crossinstall&#34;&gt;Can we build a simple, cross-distribution installation framework?&lt;/a&gt;
-
 Basically, using the &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch&lt;/a&gt; Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check
-
 if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.
-
 There was some interest, so we&#39;ll see what happens.
-
 &lt;ul&gt;
-
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/files/lif.pdf&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
-
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/lif.pdf&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=83xBdlbGHdI&#34;&gt;video&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Filesystem code in AIF</title>
-      <link>http://localhost:1313/post/filesystem_code_in_aif/</link>
+      <link>http://dieter.plaetinck.be/post/filesystem_code_in_aif/</link>
       <pubDate>Wed, 08 Dec 2010 12:24:03 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/filesystem_code_in_aif/</guid>
+      <guid>94 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;In light of the work and discussions around supporting Nilfs2 and Btrfs on Arch Linux and its installer AIF,&lt;br /&gt;
-
 I&#39;ve shared some &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html&#34;&gt;AIF filesystem code design insights and experiences&lt;/a&gt; on the arch-releng mailing list.&lt;br /&gt;
-
 This is some hard to understand code.  Partly because it&#39;s in bash (and I&#39;ve needed to work around some limitations in bash),&lt;br /&gt;
-
 partly because there is some complex logic going on.&lt;/p&gt;
-
 &lt;p&gt;I think it&#39;s very useful material for those who are interested (it can also help understanding the user aspect),&lt;br /&gt;
-
 so I wanted to share an improved version here.&lt;br /&gt;
-
 On a related topic: I proposed to do a session at &lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem 2011/&#34;distro miniconf&#34;&lt;/a&gt; about simple (console based) installers for Linux,&lt;br /&gt;
-
 and how multiple distributions could share efforts maintaining installation tools, because there are a lot of cross-distribution concerns&lt;br /&gt;
-
 which are not trivial to get right (mostly filesystems, but I also think about clock adjustments, bootloaders, etc).&lt;br /&gt;
-
 Already several distro&#39;s use the (or a fork of) the Arch installer, for example &lt;a href=&#34;http://pentoo.blogspot.com/2010/10/pentoo-installation-made-easy.html&#34;&gt;Pentoo&lt;/a&gt;,&lt;br /&gt;
-
 but I think cooperation could be much better and more efficient.&lt;/p&gt;
-
 &lt;p&gt;Anyway:&lt;br /&gt;
-
 &lt;!--more--&gt;&lt;br /&gt;
-
 my acronyms for this text:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;LV = lvm2 Logical Volume&lt;/li&gt;
-
 &lt;li&gt;VG = lvm2 Volume Group&lt;/li&gt;
-
 &lt;li&gt;PV = lvm2 Physical Volume&lt;/li&gt;
-
 &lt;li&gt;DM = Device Mapper&lt;/li&gt;
-
 &lt;li&gt;BD = Block Device&lt;/li&gt;
-
 &lt;li&gt;FS = File System&lt;/li&gt;
-
 &lt;li&gt;DF = DeviceFile&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;&#34;Normal&#34; FS&#39;es (&#34;do something on the BD represented by DF /dev/foo, so that you can then call `mount /dev/foo $somedir`&#34;) are &lt;em&gt;trivial&lt;/em&gt; to add to aif.&lt;br /&gt;
-
 Basically you just need to tell aif the name of the filesystem, and which commands and arguments it needs to invoke to create it and add a label to it.&lt;br /&gt;
-
 Nilfs2 falls in this category.  So do ext2/3/4, xfs, jfs, reiserfs, etc.  (Nilfs is now supported and new &lt;a href=&#34;http://build.archlinux.org/isos/&#34;&gt;archiso testbuilds&lt;/a&gt; are available)&lt;/p&gt;
-
 &lt;p&gt;&#34;Complex&#34; FS&#39;es (which yield a new DF for a DM BD, which can span multiple underlying BD&#39;s, etc) are more difficult, and I&#39;ll explain why.&lt;br /&gt;
-
 Btrfs falls in this category.  So do LVM, dm_crypt and softraid.  In aif terminology anything you put on top of a BD is a FS.  This is not always technically correct, but it&#39;s not far-fetched and avoids needless complication.  For example softraid would be a FS you put on top of one or more BD&#39;s, and which itself yields a new BD on top of which you can put something else.&lt;br /&gt;
-
 In the same way I call a VG a FS being applied on top of a PV BD, which itself results in a new BD which can host multiple LV FS&#39;es, which in return yield new BD&#39;s which can host other FS&#39;es.  Currently AIF provides support for lvm and dm_crypt, but not softraid or Btrfs.&lt;/p&gt;
-
 &lt;p&gt;How aif works is this: it uses a &#34;model&#34; that represents how your DF/FS structure will look like.&lt;br /&gt;
-
 I personally usually configure my hard disk like this:&lt;br /&gt;
-
 a boot partition, and a partition on which i do dm_crypt, which results in a DM BD, which I make a PV, then put a VG on&lt;br /&gt;
-
 it, which contains multiple LV&#39;s, one for swap, and two containing&lt;br /&gt;
-
 some FS&#39;es which get mounted as / and /home.&lt;/p&gt;
-
 &lt;p&gt;You can see that model on the bottom ($BLOCKDATA) of &lt;a href=&#34;https://github.com/Dieterbe/aif/blob/master/examples/fancy-install-on-sda&#34;&gt;the example file &#34;fancy-install-on-sda&#34; for automatic installations, included with aif&lt;/a&gt;.&lt;/p&gt;
-
 &lt;p&gt;You might have noticed in the installer - if you do it interactively - how you first configure all&lt;br /&gt;
-
 your filesystems in the dialog interface, but only after confirming, it&lt;br /&gt;
-
 does all the required actions, step by step.  Actually the dialog-based configuration helper will just generate a textfile in the same format as $BLOCKDATA and the processing code is the same for interactive and automatic installs.&lt;br /&gt;
-
 Since in the config file for an automatic install you could define your FS&#39;s in abitrary order, aif&lt;br /&gt;
-
 figures out the dependencies and processes things in the right order.&lt;br /&gt;
-
 With the example given above aif will parse the text and will figure out the order of creation: first partition (obviously), then create the dm_crypt, then the PV, then the VG,&lt;br /&gt;
-
 then the LV&#39;s, then the FS&#39;es on those LV&#39;s)&lt;br /&gt;
-
 then mount all mountpoints in the right order (first /, then /home and /boot)&lt;br /&gt;
-
 On rollback (when user changes his mind, an error occured - usually because of misconfiguration like a too big LV) everything I just explained happens in reverse.&lt;br /&gt;
-
 This allows users to tune their config (or try something completely different), without the installer breaking with errors like &#34;This device is already marked as encrypted&#34; or &#34;VG already exists&#34;&lt;/p&gt;
-
 &lt;p&gt;I choose this model-based approach initially because I wanted to get rid&lt;br /&gt;
-
 of the ugly, hacky original installer code, but still provide a lot of&lt;br /&gt;
-
 control through the nice dialog interfaces.  And interfaces that work fast (not causing you to wait between every step because it&#39;s creating the FS you just defined).&lt;br /&gt;
-
 Perhaps most importantly, since my main goal was automautic installs where you could just specify how you wanted your&lt;br /&gt;
-
 FS/BD structure to look like (not a series of commands), relatively little extra code was needed.  (this is also what separates AIF from FAI&amp;amp;debian installer.  On Debian the interactive and automatic installers are different projects.  On Arch they are just different extensions for the same codebase)&lt;/p&gt;
-
 &lt;p&gt;Advantages:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;provides some abstraction, it&#39;s trivial to support for new (simple) filesystems.&lt;/li&gt;
-
 &lt;li&gt;makes dialog-based &#34;configurator&#34; easier, because we can share code with the automated installer&lt;/li&gt;
-
 &lt;li&gt;the descriptive style of the config makes it easier (although the actual format could be further improved).&lt;br /&gt;
-
  definitely easier then running/writing a series of commands (resp. interactive, automatic install).&lt;br /&gt;
-
  if we would make users run/write a series of commands, we also couldn&#39;t support automatic rollbacks in case of failures.&lt;/i&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Disadvantages:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;the more control you want to give users, the more you&#39;re just putting&lt;br /&gt;
-
   effort in wrapping commandline arguments in fancy dialog interfaces&lt;br /&gt;
-
   (although there is also a textbox where you can enter which ever&lt;br /&gt;
-
   additional arguments you want, so this is a compromise)&lt;/li&gt;
-
 &lt;li&gt;pretty hard to implement fancier filesystems, you usually need to&lt;br /&gt;
-
   take the common use cases. (see next point)&lt;/li&gt;
-
 &lt;li&gt;bash datastructures are very limited. it&#39;s not easy to translate this model in a&lt;br /&gt;
-
   datastructure.  If in &#34;FS on top of a BD&#34; the FS is a child, and the BD a parent, it would be like a tree,&lt;br /&gt;
-
   but each node could have multiple children and multiple parents, i.e. a graph.&lt;br /&gt;
-
   For now I choose to ignore the &#34;multiple parents&#34; clause.&lt;br /&gt;
-
   Currently the only implication in aif is that you cannot have a VG which consumes multiple PV&#39;s.&lt;br /&gt;
-
   This is rare enough to justify this simplification, but still quite some code is needed to update and parse text files&lt;br /&gt;
-
   to mimic the datastructure, although I do consider using a specific&lt;br /&gt;
-
   optimized text format and an external tool to update/query the data. (yaml?)&lt;br /&gt;
-
   (See &lt;a href=&#34;https://bugs.archlinux.org/task/15640&#34;&gt;FS 15640&lt;/a&gt;).&lt;br /&gt;
-
   Multiple children do need to be supported (a VG can have multiple LV&#39;s. line 34 in the example file)&lt;br /&gt;
-
   Implementing Softraid in this model means I need to support multiple parents, i.e. work with a graph structure.&lt;br /&gt;
-
   For Btrfs, the LVM-like restrictiction (no multiple physical volumes for the same FS) might be an acceptable compromise&lt;/li&gt;
-
 &lt;li&gt;users cannot do their own stuff outside aif and expect to see the&lt;br /&gt;
-
   results inside aif.  If the installer would execute everything in realtime,&lt;br /&gt;
-
   you could detect changes being made to the system (probably not easy though)&lt;/li&gt;
-
 &lt;li&gt;since changes don&#39;t happen in realtime, the model needs to update itself to represent how&lt;br /&gt;
-
 the actual state &lt;em&gt;would&lt;/em&gt; look like.  For example: if you just added a dm_crypt FS on a BD, we must create&lt;br /&gt;
-
 a new entry /dev/mapper/$label in the model&lt;/li&gt;
-
 &lt;li&gt;for PV&#39;s, you need a way to differentiate in the menu between the&lt;br /&gt;
-
   real BD (the one on which you say you want to put a PV FS) and the actual PV (on which you can put VG FS&#39;s),&lt;br /&gt;
-
   so aif generates an entry with the same name as the DF, but with a &#39;+&#39; appended to the file.&lt;br /&gt;
-
   (see the example file if unclear).  Although this problem is not specific to the actual model approach,&lt;br /&gt;
-
   it&#39;s more caused by my desire to present a &#34;global interface&#34; to the user, and not a series of wizards and dialogs&lt;/li&gt;
-
 &lt;li&gt;Rollbacks are cool, but requires some hard to maintain code, and I doubt they are used often.&lt;br /&gt;
-
 (also this is not really specific about the model approach taken, but still worth mentioning)&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Because of all this, I have sweared quite a bit over the last few&lt;br /&gt;
-
 years, wondering if bash really was a good choice.  But using an external tool to work with a text-base graph/tree datastructure (where nodes can have some properties) will probably remove the big nuisance.  Also, Because bash v4 has associative arrays (finally), I can clean up a bunch of other code as well.&lt;/p&gt;
-
 &lt;p&gt;I&#39;ve pondered whether we should just let users do everything on the commandline (like Gentoo), or provide a minimal layer of&lt;br /&gt;
-
 abstraction, like provide some scripts which they can modify that setup&lt;br /&gt;
-
 a system in a certain way. (for example, basically a series of mkfs; mount;pacman; calls)&lt;br /&gt;
-
 Another alternative would be to just make the user choose between a series of &#34;common setups&#34; and make them answer some questions for the choosen setup.&lt;br /&gt;
-
 This is how the old installer did it, and afaik archboot still does it, but it doesn&#39;t scale well with more and more possibilities.&lt;br /&gt;
-
 Actually, aif still contains the optional &#34;autoprepare&#34; method, which is in fact a simple wizard for a simple setup.&lt;/p&gt;
-
 &lt;p&gt;I guess it&#39;s a tradeoff between making it easy for users and not overloading the brain of people who want to hack on the installer.&lt;br /&gt;
-
 The approach which afaik has always been taken by Arch is to make the installer hold the hands of the user.&lt;br /&gt;
-
 When creating aif, I&#39;ve choosen to stick to that concept.  And frankly I still like the idea.  It may be hard to maintain,&lt;br /&gt;
-
 but as a user you can finish all your installs and have a lot of options, but still use very minimal keystrokes (and mental energy).&lt;/p&gt;
-
 &lt;p&gt;Like mentioned earlier, softraid hasn&#39;t been implemented yet in aif, nor btrfs.&lt;br /&gt;
-
 I would need to know the most common/recommended use cases, and figure out the best way to implement them.&lt;br /&gt;
-
 Btrfs might be relatively easy, if i can implement it like i did lvm.  But it seems like a great FS and I don&#39;t want to provide only-half-assed support for it.&lt;br /&gt;
-
 Either way, refactoring the datastructure is something that will needs to be done at some point, especially for softraid.&lt;/p&gt;
-
 &lt;p&gt;I hope this article was a bit understandable.  And if you have any advice, please share :)&lt;br /&gt;
-
 The actual blockdevices-filesystems library of AIF is here:&lt;br /&gt;
-
 &lt;a href=&#34;https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-blockdevices-filesystems.sh&#34;&gt;https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-blockdevices-filesystems.sh&lt;/a&gt;&lt;br /&gt;
-
 And the menu&#39;s are here:&lt;br /&gt;
-
 &lt;a href=&#34;https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-ui-interactive.sh&#34;&gt;https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-ui-interactive.sh&#34;&lt;/a&gt; (the most interesting functions are interactive_filesystems for the main FS menu, and interactive_filesystem which handles definition of a specific FS)&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>the &#34;Community Contributions&#34; section on the Arch Linux forums is a goldmine</title>
-      <link>http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</link>
+      <link>http://dieter.plaetinck.be/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</link>
       <pubDate>Wed, 25 Aug 2010 22:11:58 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</guid>
+      <guid>89 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;https://bbs.archlinux.org/viewforum.php?id=27&#34;&gt;Community contributions&lt;/a&gt; subforum of the Arch Linux forums is awesome.&lt;br /&gt;
-
 It is the birthplace of many applications, most of them not Arch Linux specific.&lt;br /&gt;
-
 File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.&lt;br /&gt;
-
 Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.&lt;/p&gt;
-
 &lt;p&gt;If you like to discover new apps and tools, check it out.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Back from Canada, Archcon</title>
-      <link>http://localhost:1313/post/back_from_canada_archcon/</link>
+      <link>http://dieter.plaetinck.be/post/back_from_canada_archcon/</link>
       <pubDate>Sat, 31 Jul 2010 23:10:36 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/back_from_canada_archcon/</guid>
+      <guid>87 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I&#39;m back from Canada/Archcon, and it was great. I&#39;ve been in Toronto for 11 days, and visited Montreal for 3 days.&lt;/p&gt;
-
 &lt;h3&gt;Archcon&lt;/h3&gt;
-
 &lt;p&gt;Archcon was small (20-ish people).  (That&#39;s what you get for doing it in Canada ;), but very nice.&lt;br /&gt;
-
 Interesting talks, informal, good vibe, decent logistics and catering.&lt;br /&gt;
-
 This year it happened because Dusty and Ricardo actually just wanted to have a conference without worrying too much about the attendance,&lt;br /&gt;
-
 next year we should do it again because Arch (conferences) rock(s), and because we need more visitors.  More central locations such as Seattle and Europe have been suggested.&lt;br /&gt;
-
 Either way, next year both Judd (founder) and Aaron (current overlord) should be there. (this year they both had lame excuses like family reunions and &#34;almost getting married&#34;.  Congrats btw, Aaron!)&lt;/p&gt;
-
 &lt;p&gt;It was an absolute pleasure to meet some more of my fellow devs, and users.&lt;br /&gt;
-
 Here is a pic from the group (unfortunately, a few are missing)&lt;!--more--&gt;&lt;br /&gt;
-
-&lt;img src=&#34;http://localhost:1313/files/group.jpg&#34;/&gt;&lt;br /&gt;
-
+&lt;img src=&#34;http://dieter.plaetinck.be/files/group.jpg&#34;/&gt;&lt;br /&gt;
 People in bold are Arch (ex-) devs&lt;/p&gt;
-
 &lt;ol&gt;
-
 &lt;li&gt;Richard (sokuban) from Toronto (linguistics student)&lt;/li&gt;
-
 &lt;li&gt;Chris (Gallow) from Toronto&lt;/li&gt;
-
 &lt;li&gt;Alex (alexmat) from Tokyo, Japan (very into NILFS, submitted already some patches)&lt;/li&gt;
-
 &lt;li&gt;Sander (GogglesGuy) (Dutch guy living in the states now)&lt;/li&gt;
-
 &lt;li&gt;Eric from Seattle, WA&lt;/li&gt;
-
 &lt;li&gt;Gregory (gelendir) from Quebec city, Canada (aka dude wearing the kilt and fivefingers and funny accent)&lt;/li&gt;
-
 &lt;li&gt;&lt;b&gt;Kevin (kpiche)&lt;/b&gt; from Ottawa (does perl stuff iirc)&lt;/li&gt;
-
 &lt;li&gt;&lt;b&gt;Loui (louipc)&lt;/b&gt; from Toronto, Canada (AUR guy, git lover.  metalfan.  Shook John Petrucci&#39;s hand)&lt;/li&gt;
-
 &lt;li&gt;Tim from Annapolis (uses Arch for servers at work with some fancy mass-install scripts)&lt;/li&gt;
-
 &lt;li&gt;Dustin (daking) from Stanford, CA (runs most of Stanford university on Arch)&lt;/li&gt;
-
 &lt;li&gt;&lt;b&gt;me&lt;/b&gt; from Belgium (arch-releng/aif, uzbl guy) &lt;/li&gt;
-
 &lt;li&gt;Walter from Toronto (very into Uzbl, not actually an Arch user... yet)&lt;/li&gt;
-
 &lt;li&gt;David (davekong) from New York City&lt;/li&gt;
-
 &lt;li&gt;&lt;b&gt;Dan (toofishes)&lt;/b&gt; from Chicago (Pacman dev)&lt;/li&gt;
-
 &lt;li&gt;&lt;b&gt;Dusty&lt;/b&gt; from Shaunavon SK (shwag, archcon organizer)&lt;/li&gt;
-
 &lt;li&gt;Ricardo (ralvez) from  Toronto (archcon organizer)&lt;/li&gt;
-
 &lt;li&gt;&lt;b&gt;Jason (Xentac)&lt;/b&gt; from Victoria, BC (entrepeneur, used to use Arch for the business)&lt;/li&gt;
-
 &lt;/ol&gt;
-
 &lt;p&gt;See &lt;a href=&#34;https://bbs.archlinux.org/viewtopic.php?id=101692&#34;&gt;Archcon thread&lt;/a&gt; for more info.&lt;/p&gt;
-
 &lt;p&gt;Unfortunately I barely slept the night before my AIF talk, so I feel that one didn&#39;t go to well.  Although people told me it was OK.&lt;br /&gt;
-
 The Uzbl talk was pretty much what I imagined it to be: like the fosdem talk, but a bit more in depth here and there.&lt;br /&gt;
-
 My pc was behaving weirdly, but luckily I could use Dan&#39;s.&lt;/p&gt;
-
 &lt;p&gt;We&#39;ve been lucky that Walter and Isaac had proper, respectively videotaping and photocamera equipment.  So there are plenty of pics, and nearly all talks got videotaped.&lt;br /&gt;
-
 (I think the &#34;hacking pacman&#34; one was the only one not being videotaped, because 2 other talks were going on at the same time.  Too bad, it was a very interesting talk)&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;http://archlinux.ca/archcon2010/images/&#34;&gt;Archcon pictures&lt;/a&gt;&lt;br /&gt;
-
 &lt;a href=&#34;http://archlinux.ca/archcon2010/videos/&#34;&gt;Archcon videos&lt;/a&gt;&lt;br /&gt;
-
 My slides:&lt;br /&gt;
-
-&lt;a href=&#34;http://localhost:1313/files/aif-archcon2010.pdf&#34;&gt;AIF (day 1)&lt;/a&gt;&lt;br /&gt;
-
-&lt;a href=&#34;http://localhost:1313/files/uzbl-archcon2010.pdf&#34;&gt;Uzbl (day 2)&lt;/a&gt;&lt;/p&gt;
-
+&lt;a href=&#34;http://dieter.plaetinck.be/files/aif-archcon2010.pdf&#34;&gt;AIF (day 1)&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;http://dieter.plaetinck.be/files/uzbl-archcon2010.pdf&#34;&gt;Uzbl (day 2)&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Other days&lt;/h3&gt;
-
 &lt;p&gt;Some thoughts and notes of what I did and saw around Toronto/Montreal..&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;Cities with streets and subways in a grid layout are awesome.  Soo much easier to navigate.&lt;/li&gt;
-
 &lt;li&gt;Red lights with countdown timers (in seconds) are awesome.  Although I&#39;m told some places in Europe have them too.&lt;/li&gt;
-
-&lt;li&gt;Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. &lt;img src=&#34;http://localhost:1313/files/blog/toronto.ca/high_park_004_500.jpg&#34;/&gt;&lt;/li&gt;
-
+&lt;li&gt;Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. &lt;img src=&#34;http://dieter.plaetinck.be/files/blog/toronto.ca/high_park_004_500.jpg&#34;/&gt;&lt;/li&gt;
 &lt;li&gt;Montreal was like a European city: more history, old buildings, more crime, but of course a grid layout.  Some nice views though (ie. from Mont Royal).&lt;/li&gt;
-
 &lt;li&gt;The youth hostels I went too were great: never got to meet so many interesting people in such a short timespan.&lt;/li&gt;
-
 &lt;li&gt;CN tower: I procrastinated visiting until the last day, and when I finally wanted to go in the wheather was perfect, but there was a 2 hour queue, so I skipped it. Anyway there are &lt;a href=&#34;http://en.wikipedia.org/wiki/CN_Tower&#34;&gt;plenty of pictures online&lt;/a&gt;.&lt;/li&gt;
-
 &lt;li&gt;Niagara falls were beautiful.  Maid of the myst tour was worth it.  I made pictures but &lt;a href=&#34;http://en.wikipedia.org/wiki/File:Niagara_falls_panorama.jpg&#34;&gt;those online&lt;/a&gt; are better.&lt;/li&gt;
-
 &lt;li&gt;I met Kan Johar (founder of &lt;a href=&#34;http://plurk.com&#34;&gt;plurk.com&lt;/a&gt;, amongst others), good times.&lt;/li&gt;
-
-&lt;li&gt;Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.&lt;br&gt; &lt;img src=&#34;http://localhost:1313/files/poutine.jpg&#34;/&gt;&lt;/li&gt;
-
+&lt;li&gt;Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.&lt;br&gt; &lt;img src=&#34;http://dieter.plaetinck.be/files/poutine.jpg&#34;/&gt;&lt;/li&gt;
 &lt;li&gt;Dusty and I have been to the &lt;a href=&#34;http://linuxcaffe.ca/&#34;&gt;Linux Caffe.&lt;/a&gt;  The owner is a great guy, he&#39;s considering switching to Arch, and he wrote his whole point of sales, accounting and bookkeeping software using shell scripts, perltk and stuff.  He&#39;s into suckless.org stuff.   His version 2.0 will probably be based on Xmonad.&lt;br /&gt;
-
-&lt;img src=&#34;http://localhost:1313/files/linuxcaffe-pos1.jpg&#34;/&gt;&lt;br /&gt;
-
-&lt;img src=&#34;http://localhost:1313/files/linuxcaffe-pos2.jpg&#34;/&gt;
-
+&lt;img src=&#34;http://dieter.plaetinck.be/files/linuxcaffe-pos1.jpg&#34;/&gt;&lt;br /&gt;
+&lt;img src=&#34;http://dieter.plaetinck.be/files/linuxcaffe-pos2.jpg&#34;/&gt;
 &lt;/li&gt;
-
 &lt;p&gt;Dusty and me, somewhere on our way to the Niagara falls.&lt;br /&gt;
-
-&lt;img src=&#34;http://localhost:1313/files/dustyandme.jpg&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;http://dieter.plaetinck.be/files/dustyandme.jpg&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Off to Toronto July 14-28, Archcon</title>
-      <link>http://localhost:1313/post/off_to_toronto_july_14-28_archcon/</link>
+      <link>http://dieter.plaetinck.be/post/off_to_toronto_july_14-28_archcon/</link>
       <pubDate>Sun, 04 Jul 2010 11:34:08 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/off_to_toronto_july_14-28_archcon/</guid>
-      <description>&lt;p&gt;As mentioned &lt;a href=&#34;http://localhost:1313/uzbl_monitoring_aif_talks&#34;&gt;earlier&lt;/a&gt;, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;Archcon in Toronto&lt;/a&gt; in a few weeks.&lt;br /&gt;
-
-It&#39;s a very small conference, and the first of its kind.  At the &lt;a href=&#34;http://localhost:1313/froscon_2009_afterthoughts&#34;&gt;last FrOSCon&lt;/a&gt; we have been playing with the idea to hold an informal Arch conference in Europe, but those were just ideas.  Dusty and Ricardo beat us with an actual implementation.&lt;br /&gt;
-
+      <guid>86 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;As mentioned &lt;a href=&#34;http://dieter.plaetinck.be/uzbl_monitoring_aif_talks&#34;&gt;earlier&lt;/a&gt;, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;Archcon in Toronto&lt;/a&gt; in a few weeks.&lt;br /&gt;
+It&#39;s a very small conference, and the first of its kind.  At the &lt;a href=&#34;http://dieter.plaetinck.be/froscon_2009_afterthoughts&#34;&gt;last FrOSCon&lt;/a&gt; we have been playing with the idea to hold an informal Arch conference in Europe, but those were just ideas.  Dusty and Ricardo beat us with an actual implementation.&lt;br /&gt;
 This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.&lt;!--more--&gt;&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=116&#34;&gt;Archcon schedule&lt;/a&gt;.  I&#39;ll be talking about AIF and uzbl.&lt;/p&gt;
-
 &lt;p&gt;My schedule:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;wed. July 14: departure&lt;/li&gt;
-
 &lt;li&gt;July 14 - 21: hanging around in downtown Toronto. Not sure yet where I&#39;ll stay. probably some hostel.&lt;/li&gt;
-
 &lt;li&gt;July 21 - 28: bed and breakfast pretty close to the conference location, outside the city center&lt;/li&gt;
-
 &lt;li&gt;July 22 - 23 are the conference talks days, July 24-25 are the conference tourist days, where we&#39;ll do some touristy stuff with the conference participants&lt;/li&gt;
-
 &lt;li&gt;wed. July 28: flying back&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;There are &lt;a href=&#34;http://wiki.archlinux.org/index.php/Archcon_extra_activities&#34;&gt;many things to do&lt;/a&gt; in and around Toronto. We still need to make the planning, but the &lt;a href=&#34;http://en.wikipedia.org/wiki/Niagara_Falls&#34;&gt;Niagara Falls&lt;/a&gt; are definitely on the list.&lt;/p&gt;
-
 &lt;p&gt;Finally, big thanks to &lt;a href=&#34;http://www.elys.com/home/&#34;&gt;Elysium Digital&lt;/a&gt;, a technology oriented consulting company for legal matters. Apparently they use Arch Linux for many things: on the desktop, in the server room, and in the forensic lab.   They emailed me to propose sponsoring my plane tickets, and they did.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Uzbl, monitoring, AIF talks</title>
-      <link>http://localhost:1313/post/uzbl_monitoring_aif_talks/</link>
+      <link>http://dieter.plaetinck.be/post/uzbl_monitoring_aif_talks/</link>
       <pubDate>Sun, 07 Mar 2010 12:06:18 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/uzbl_monitoring_aif_talks/</guid>
+      <guid>84 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I recently did two talks, for which the videos are now online.&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.uzbl.org/news.php?id=25&#34;&gt;Uzbl lightningtalk @ fosdem 2010&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;Open Source Monitoring tools lightning talk @ &lt;a href=&#34;http://www.kangaroot-showcase.be/&#34;&gt;Kangaroot showcase&lt;/a&gt; 2009.  This one is password protected.  If you were a participant, you should have received the pass&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;If all goes well, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;ArchCon&lt;/a&gt; this summer, where I&#39;ll be doing these talks:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=67&#34;&gt;AIF: The Arch Installation Framework&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=73&#34;&gt;Uzbl &amp; web interface tools which adhere to the unix philosophy&lt;/a&gt;. Whereas in the fosdem talk I had to focus a lot of information into a short timeslot, here I&#39;ll elaborate a bit more&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;We&#39;re not sure yet if those talks will get videotaped.&lt;br /&gt;
-
 &lt;!--more--&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Fosdem 2010</title>
-      <link>http://localhost:1313/post/fosdem_2010/</link>
+      <link>http://dieter.plaetinck.be/post/fosdem_2010/</link>
       <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/fosdem_2010/</guid>
+      <guid>81 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
-
-&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
-
 Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guys Roman, JGC, Thomas and me will hang out at the &lt;a href=&#34;http://fosdem.org/2010/schedule/devrooms/distributions&#34;&gt;distro miniconf&lt;/a&gt;.  We might join the &lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_infrastructure&#34;&gt;infrastructure round-table&lt;/a&gt; panel, but there is no concrete information yet.&lt;/p&gt;
-
 &lt;p&gt;More stuff I&#39;m looking forward to:&lt;!--more--&gt;&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/phone&#34;&gt;fosdem maemo application&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_mirrorbrain&#34;&gt;mirrorbrain. a topic often discussed at Arch&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_clicfs&#34;&gt;clicfs&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/news/fosdem-multiplies-things-10&#34;&gt;a 2nd fries van!&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/openpcf&#34;&gt;openpcf&lt;/a&gt; (how would this compare to puppet et al?)&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/asterisk&#34;&gt;asterisk development&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/csync&#34;&gt;csync&lt;/a&gt; (reminds me of my own &lt;a href=&#34;http://github.com/Dieterbe/ddm&#34;&gt;ddm&lt;/a&gt;)&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_mongodb_intro&#34;&gt;mongodb&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_cassandra&#34;&gt;cassandra&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_mapreduce_couchdb&#34;&gt;map/reduce in nosql vs sql on rdms&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/linuxkernelpatch&#34;&gt;writing a patch for linux&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/systemtap&#34;&gt;systemtap&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/scalingfacebook&#34;&gt;scaling facebook&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;I&#39;m suprised myself how there are much more topics of interest to me then last year, and I&#39;m not sure if the program is even finished.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Arch Linux interview and Uzbl article</title>
-      <link>http://localhost:1313/post/arch_linux_interview_and_uzbl_article/</link>
+      <link>http://dieter.plaetinck.be/post/arch_linux_interview_and_uzbl_article/</link>
       <pubDate>Mon, 11 Jan 2010 21:30:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/arch_linux_interview_and_uzbl_article/</guid>
+      <guid>80 at http://dieter.plaetinck.be</guid>
       <description>&lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.osnews.com/story/22692/Arch_Linux_Team&#34;&gt;Arch Linux team interview @ OSNews&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://lwn.net/Articles/341245/&#34;&gt;Uzbl @ LWN.net&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Apologies for only informing you about the second article now.  I assumed most of you follow LWN (you probably should) or found the article anyway.&lt;br /&gt;
-
 Of all the &lt;a href=&#34;http://www.uzbl.org/wiki/press&#34;&gt;articles&lt;/a&gt; written about uzbl, no one came close to the quality of Koens work.  So even though it&#39;s a bit dated it&#39;s still worth a read.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Froscon 2009 afterthoughts</title>
-      <link>http://localhost:1313/post/froscon_2009_afterthoughts/</link>
+      <link>http://dieter.plaetinck.be/post/froscon_2009_afterthoughts/</link>
       <pubDate>Fri, 28 Aug 2009 19:00:02 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/froscon_2009_afterthoughts/</guid>
+      <guid>72 at http://dieter.plaetinck.be</guid>
       <description>&lt;!--more--&gt;
-
 &lt;p&gt;&lt;a href=&#34;http://froscon.org/&#34;&gt;Froscon&lt;/a&gt; was great.&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;It was smaller then I thought, I especially assumed more activity in the devrooms (I&#39;m too used to &lt;a href=&#34;http://fosdem.org/&#34;&gt;fosdem&lt;/a&gt; which is much bigger), but hey nice conference anyway.&lt;/li&gt;
-
 &lt;li&gt;It was great to meet (some of) my Arch Linux colleagues.  Mostly the guys from Germany showed up, and Roman who is from Ukraine.&lt;/li&gt;
-
 &lt;li&gt;We all got an Arch t-shirt/polo of which we could pick the color ourselves.  Woohoo.  Thanks donators.&lt;/li&gt;
-
 &lt;li&gt;A few people also told me they had tried / were using &lt;a href=&#34;http://www.uzbl.org&#34;&gt;uzbl&lt;/a&gt; (my browser project) so that was really cool.&lt;/li&gt;
-
-&lt;li&gt;I had an interesting chat with &lt;a href=&#34;http://www.informatik.uni-koeln.de/ls_juenger/people/lange/&#34;&gt;Thomas Lange&lt;/a&gt;, the author of &lt;a href=&#34;http://www.informatik.uni-koeln.de/fai/&#34;&gt;FAI&lt;/a&gt; (a tool to automatically mass-install systems, mostly Debian).  I&#39;ve used it in the past, liked it and was somewhat inspired by it when building &lt;a href=&#34;http://localhost:1313/AIF_the_brand_new_Arch_Linux_Installation_Framework&#34;&gt;AIF&lt;/a&gt;. (but some design goals are different).&lt;/li&gt;
-
+&lt;li&gt;I had an interesting chat with &lt;a href=&#34;http://www.informatik.uni-koeln.de/ls_juenger/people/lange/&#34;&gt;Thomas Lange&lt;/a&gt;, the author of &lt;a href=&#34;http://www.informatik.uni-koeln.de/fai/&#34;&gt;FAI&lt;/a&gt; (a tool to automatically mass-install systems, mostly Debian).  I&#39;ve used it in the past, liked it and was somewhat inspired by it when building &lt;a href=&#34;http://dieter.plaetinck.be/AIF_the_brand_new_Arch_Linux_Installation_Framework&#34;&gt;AIF&lt;/a&gt;. (but some design goals are different).&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;
-
 Here is a picture of my &#34;Arch releng partner&#34; Gerhard (right) and I (left).  We&#39;ve done a lot of work together and it was great to talk face to face for once.  Here we&#39;re showing (proudly) an Arch Linux Froscon disc (which is a slightly modified version of the &lt;a href=&#34;http://www.archlinux.org/news/459/&#34;&gt;2009.08 core images&lt;/a&gt;):&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Team photo:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://users.archlinux.de/~pierre/froscon/2009/&#34;&gt;Image gallery&lt;/a&gt;
-
 &lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Arch Linux 2009.08 &amp; Froscon 2009</title>
-      <link>http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/</link>
+      <link>http://dieter.plaetinck.be/post/arch_linux_2009.08_and_froscon_2009/</link>
       <pubDate>Mon, 10 Aug 2009 12:36:48 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/</guid>
+      <guid>70 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;So, the Arch Linux &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=77680&#34;&gt;2009.08 release&lt;/a&gt; is now behind us, nicely on schedule.&lt;br /&gt;
-
-I hope people will like &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF&lt;/a&gt; because it was a lot of work and we didn&#39;t receive much feedback.  I personally like it to apply my &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;fancy backup restoration&lt;/a&gt; approach.&lt;br /&gt;
-
-But I&#39;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt; I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)&lt;/p&gt;
-
+I hope people will like &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF&lt;/a&gt; because it was a lot of work and we didn&#39;t receive much feedback.  I personally like it to apply my &lt;a href=&#34;http://dieter.plaetinck.be/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;fancy backup restoration&lt;/a&gt; approach.&lt;br /&gt;
+But I&#39;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With &lt;a href=&#34;http://dieter.plaetinck.be/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt; I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)&lt;/p&gt;
 &lt;p&gt;Later this week I&#39;m off to the &lt;a href=&#34;http://www.countingcows.be/home.php&#34;&gt;Counting Cows festival&lt;/a&gt; in France, and the week after that (august 22-23) I&#39;m going to &lt;a href=&#34;http://www.froscon.org/&#34;&gt;FrOSCon&lt;/a&gt; in Germany where I will meet some of my Arch Linux colleagues in real life, which I&#39;m really looking forward to.&lt;/p&gt;
-
 &lt;p&gt;If anyone wants a ride to froscon let me know.  But note I&#39;ll try to maximize my time there (leave saturday early and come back late on sunday.  I even took a day off on monday so I might stay a day longer if I find more interested people to hang out there)&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>AIF automatic lvm/dm_crypt installations and test suite</title>
-      <link>http://localhost:1313/post/aif_automatic_lvm_dm_crypt_installations_and_test_suite/</link>
+      <link>http://dieter.plaetinck.be/post/aif_automatic_lvm_dm_crypt_installations_and_test_suite/</link>
       <pubDate>Wed, 22 Jul 2009 22:36:30 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/aif_automatic_lvm_dm_crypt_installations_and_test_suite/</guid>
+      <guid>69 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;We&#39;re working hard on a new &lt;a href=&#34;http://www.archlinux.org&#34;&gt;Arch&lt;/a&gt; release. (should be done by &lt;a href=&#34;http://froscon.org/&#34;&gt;froscon&lt;/a&gt;)&lt;/p&gt;
-
 &lt;p&gt;Amongst the slew of fixes and improvements there are also some cool new things I&#39;m working on.&lt;br /&gt;
-
 First of all, I worked more on the automatic installations.  Now you can easily install an LVM based Arch system on top of dm_crypt for example.&lt;br /&gt;
-
 You type this command:&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sda
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And &lt;strong&gt;bam&lt;/strong&gt; you have a complete working system with LVM, dm_crypt etc all set up.  You just need to change your keymap, hostname, network config and such (or, configure that on the beforehand in the config file for AIF)&lt;/p&gt;
-
 &lt;p&gt;Another thing I started working on is a very simple test suite.&lt;br /&gt;
-
 Basically, when launching a test, the following steps are invoked&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;installation of an arch system with aif&#39;s automatic procedure using a certain config file&lt;/li&gt;
-
 &lt;li&gt;installation of a verification script onto the target system and configuration of the target to run the script on boot (DAEMONS variable in /etc/rc.conf)&lt;/li&gt;
-
 &lt;li&gt; if aif ended succesfully: automatic reboot.. and tada!&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;The verification script will check things like availability (and size) of LVM volumes, amount of swap space, keyboard layout, network and so on.&lt;br /&gt;
-
 Here&#39;s a picture of a rough first version:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/aif-test-suite-wip.png&#34; /&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/aif-test-suite-wip.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Stay tuned!&lt;/p&gt;
 </description>
     </item>

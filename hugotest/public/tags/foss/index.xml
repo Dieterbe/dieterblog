@@ -2,504 +2,266 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Foss on Dieter&#39;s blog</title>
-    <link>http://localhost:1313/tags/foss/</link>
+    <link>http://dieter.plaetinck.be/tags/foss/</link>
     <description>Recent content in Foss on Dieter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 16 Jun 2011 22:32:12 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/foss/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dieter.plaetinck.be/tags/foss/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Poor mans pickle implementations benchmark</title>
-      <link>http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/</link>
+      <link>http://dieter.plaetinck.be/post/poor_mans_pickle_implementations_benchmark/</link>
       <pubDate>Thu, 16 Jun 2011 22:32:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/poor_mans_pickle_implementations_benchmark/</guid>
+      <guid>poor_mans_pickle_implementations_benchmark</guid>
       <description>&lt;!--more--&gt;
-
 &lt;p&gt;&lt;a href=&#34;http://nlp.fi.muni.cz/projekty/gensim/&#34;&gt;Gensim&lt;/a&gt; is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.&lt;/p&gt;
 
-
-
 &lt;p&gt;But anyway we&#39;re having some issues in it with cPickle (it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/31&#34;&gt;breaks when saving large matrices&lt;/a&gt;, it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/30&#34;&gt;breaks with some objects&lt;/a&gt;).
-
 For now I worked around it by using &lt;a href=&#34;http://jsonpickle.github.com/&#34;&gt;jsonpickle&lt;/a&gt; but I wonder how viable this alternative really is.&lt;/p&gt;
 
-
-
 &lt;p&gt;To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - &lt;a href=&#34;https://github.com/Dieterbe/picklebench&#34;&gt;picklebench&lt;/a&gt; - to compare pickle, cPickle and jsonpickle.
-
 The script fills a dictionary which gets bigger and bigger, and for certain sizes of dictionary it is saved to, and loaded from disk again.  We measure some metrics of each step.
-
 We continue until memory is exhausted.&lt;/p&gt;
-
 &lt;!--more--&gt;
-
 limitations of this benchmark:
-
 &lt;ul&gt;
-
 &lt;li&gt;effects of writing a new file, or overwriting existing file, and however the filesystem deals with that (efficiency, allocation of sectors on disk, etc) are ignored&lt;/li&gt;
-
 &lt;li&gt;no explicit flushing or warming of Linux block cache, ignoring writeback caches. (but that should be okay: every write is treated the same way, and reads always benefit from warm block cache)&lt;/li&gt;
-
 &lt;li&gt;I could ignore disk i/o by only doing serializing in memory, but that wouldn&#39;t be very realistic either, and speed is lower than sequential read/write speeds of my hard disk anyway&lt;/li&gt;
-
 &lt;li&gt;other running processes are ignored. (but my pc was pretty much idle otherwise)&lt;/li&gt;
-
 &lt;li&gt;all metrics are crude&lt;/li&gt;
-
 &lt;li&gt;all single runs&lt;/li&gt;
-
 &lt;li&gt;no garbage collection is being run. volatility of datastructures is completely ignored.  Assumes that measuring the RSS difference provides useful information.&lt;/li&gt;
-
 &lt;li&gt;Other than the obvious cPickle, I did not bother to look up if optimized implementations for some things exist (like json decoders)&lt;/li&gt;
-
 &lt;/ul&gt;
-
 You can easily &lt;a href=&#34;https://github.com/Dieterbe/picklebench/blob/master/runall.sh&#34;&gt;run the program&lt;/a&gt; yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.
-
 &lt;pre&gt;
-
 Testing JsonPickle
-
 == 1000 ==
-
 Stored in 0.01s. file size 0.05 MB. Speed 6.56 MB/s. RSS taken 0.23 MB. (4.34 MB per MB in file)
-
 Loaded in 0.01s. Speed 9.30 MB/s. RSS taken 0.04 MB.  (0.71 MB per MB in file)
-
 == 4000 ==
-
 Stored in 0.03s. file size 0.21 MB. Speed 6.93 MB/s. RSS taken 0.45 MB. (2.16 MB per MB in file)
-
 Loaded in 0.02s. Speed 9.54 MB/s. RSS taken 0.47 MB.  (2.23 MB per MB in file)
-
 == 16000 ==
-
 Stored in 0.13s. file size 0.85 MB. Speed 6.80 MB/s. RSS taken 0.86 MB. (1.00 MB per MB in file)
-
 Loaded in 0.09s. Speed 9.55 MB/s. RSS taken 0.88 MB.  (1.04 MB per MB in file)
-
 == 64000 ==
-
 Stored in 0.50s. file size 3.44 MB. Speed 6.87 MB/s. RSS taken 4.02 MB. (1.17 MB per MB in file)
-
 Loaded in 0.36s. Speed 9.44 MB/s. RSS taken 2.52 MB.  (0.73 MB per MB in file)
-
 == 256000 ==
-
 Stored in 2.10s. file size 13.97 MB. Speed 6.64 MB/s. RSS taken 17.24 MB. (1.23 MB per MB in file)
-
 Loaded in 1.53s. Speed 9.15 MB/s. RSS taken 8.49 MB.  (0.61 MB per MB in file)
-
 == 1024000 ==
-
 Stored in 8.60s. file size 56.23 MB. Speed 6.54 MB/s. RSS taken 61.64 MB. (1.10 MB per MB in file)
-
 Loaded in 6.27s. Speed 8.97 MB/s. RSS taken 95.99 MB.  (1.71 MB per MB in file)
-
 == 4096000 ==
-
 Stored in 38.80s. file size 228.26 MB. Speed 5.88 MB/s. RSS taken 181.83 MB. (0.80 MB per MB in file)
-
 Loaded in 25.17s. Speed 9.07 MB/s. RSS taken 170.84 MB.  (0.75 MB per MB in file)
-
 == 16384000 ==
-
 Testing cPickle
-
 Protocol 0
-
 == 1000 ==
-
 Stored in 0.01s. file size 0.01 MB. Speed 0.83 MB/s. RSS taken 0.05 MB. (5.95 MB per MB in file)
-
 Loaded in 0.00s. Speed 9.02 MB/s. RSS taken 0.05 MB.  (5.04 MB per MB in file)
-
 == 4000 ==
-
 Stored in 0.00s. file size 0.04 MB. Speed 8.69 MB/s. RSS taken 0.10 MB. (2.52 MB per MB in file)
-
 Loaded in 0.00s. Speed 15.43 MB/s. RSS taken 0.13 MB.  (3.26 MB per MB in file)
-
 == 16000 ==
-
 Stored in 0.01s. file size 0.17 MB. Speed 11.06 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
-
 Loaded in 0.01s. Speed 16.82 MB/s. RSS taken 0.10 MB.  (0.60 MB per MB in file)
-
 == 64000 ==
-
 Stored in 0.06s. file size 0.69 MB. Speed 12.43 MB/s. RSS taken 0.12 MB. (0.17 MB per MB in file)
-
 Loaded in 0.04s. Speed 17.25 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
-
 == 256000 ==
-
 Stored in 0.22s. file size 2.96 MB. Speed 13.65 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
-
 Loaded in 0.17s. Speed 17.49 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
-
 == 1024000 ==
-
 Stored in 0.88s. file size 12.20 MB. Speed 13.93 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
-
 Loaded in 0.69s. Speed 17.72 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
-
 == 4096000 ==
-
 Stored in 3.52s. file size 52.14 MB. Speed 14.80 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
-
 Loaded in 2.84s. Speed 18.37 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
-
 == 16384000 ==
-
 Stored in 12.68s. file size 218.27 MB. Speed 17.22 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
-
 Loaded in 11.59s. Speed 18.82 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
-
 Testing cPickle
-
 Protocol 1
-
 == 1000 ==
-
 Stored in 0.00s. file size 0.00 MB. Speed 9.65 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
-
 Loaded in 0.00s. Speed 9.31 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
-
 == 4000 ==
-
 Stored in 0.00s. file size 0.02 MB. Speed 10.95 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
-
 Loaded in 0.00s. Speed 11.15 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
-
 == 16000 ==
-
 Stored in 0.02s. file size 0.08 MB. Speed 5.26 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
-
 Loaded in 0.01s. Speed 11.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
-
 == 64000 ==
-
 Stored in 0.03s. file size 0.32 MB. Speed 12.60 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
-
 Loaded in 0.03s. Speed 11.48 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
-
 == 256000 ==
-
 Stored in 0.10s. file size 1.66 MB. Speed 17.00 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
-
 Loaded in 0.11s. Speed 14.50 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
-
 == 1024000 ==
-
 Stored in 0.40s. file size 7.04 MB. Speed 17.76 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
-
 Loaded in 0.45s. Speed 15.54 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
-
 == 4096000 ==
-
 Stored in 1.59s. file size 28.55 MB. Speed 17.95 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
-
 Loaded in 1.88s. Speed 15.20 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
-
 == 16384000 ==
-
 Stored in 6.23s. file size 114.59 MB. Speed 18.40 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
-
 Loaded in 7.18s. Speed 15.96 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
-
 Testing cPickle
-
 Protocol 2
-
 == 1000 ==
-
 Stored in 0.00s. file size 0.00 MB. Speed 9.54 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
-
 Loaded in 0.00s. Speed 8.92 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
-
 == 4000 ==
-
 Stored in 0.00s. file size 0.02 MB. Speed 13.25 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
-
 Loaded in 0.00s. Speed 11.39 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
-
 == 16000 ==
-
 Stored in 0.01s. file size 0.08 MB. Speed 13.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
-
 Loaded in 0.01s. Speed 10.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
-
 == 64000 ==
-
 Stored in 0.02s. file size 0.32 MB. Speed 13.99 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
-
 Loaded in 0.03s. Speed 11.45 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
-
 == 256000 ==
-
 Stored in 0.10s. file size 1.66 MB. Speed 16.81 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
-
 Loaded in 0.12s. Speed 14.31 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
-
 == 1024000 ==
-
 Stored in 0.37s. file size 7.04 MB. Speed 19.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
-
 Loaded in 0.45s. Speed 15.55 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
-
 == 4096000 ==
-
 Stored in 1.58s. file size 28.55 MB. Speed 18.09 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
-
 Loaded in 1.83s. Speed 15.61 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
-
 == 16384000 ==
-
 Stored in 6.02s. file size 114.59 MB. Speed 19.04 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
-
 Loaded in 7.32s. Speed 15.65 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
-
 Testing pickle
-
 Protocol 0
-
 == 1000 ==
-
 Stored in 0.01s. file size 0.01 MB. Speed 1.17 MB/s. RSS taken 0.03 MB. (3.21 MB per MB in file)
-
 Loaded in 0.04s. Speed 0.20 MB/s. RSS taken 0.06 MB.  (6.41 MB per MB in file)
-
 == 4000 ==
-
 Stored in 0.02s. file size 0.04 MB. Speed 1.91 MB/s. RSS taken 0.09 MB. (2.42 MB per MB in file)
-
 Loaded in 0.02s. Speed 2.12 MB/s. RSS taken 0.12 MB.  (3.15 MB per MB in file)
-
 == 16000 ==
-
 Stored in 0.08s. file size 0.17 MB. Speed 2.00 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
-
 Loaded in 0.07s. Speed 2.27 MB/s. RSS taken 0.09 MB.  (0.55 MB per MB in file)
-
 == 64000 ==
-
 Stored in 0.33s. file size 0.69 MB. Speed 2.08 MB/s. RSS taken 0.12 MB. (0.18 MB per MB in file)
-
 Loaded in 0.29s. Speed 2.40 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
-
 == 256000 ==
-
 Stored in 1.34s. file size 2.96 MB. Speed 2.21 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
-
 Loaded in 1.17s. Speed 2.53 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
-
 == 1024000 ==
-
 Stored in 5.33s. file size 12.20 MB. Speed 2.29 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
-
 Loaded in 4.73s. Speed 2.58 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
-
 == 4096000 ==
-
 Stored in 21.23s. file size 52.14 MB. Speed 2.46 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
-
 Loaded in 18.63s. Speed 2.80 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
-
 == 16384000 ==
-
 Stored in 85.09s. file size 218.27 MB. Speed 2.57 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
-
 Loaded in 74.60s. Speed 2.93 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
-
 Testing pickle
-
 Protocol 1
-
 == 1000 ==
-
 Stored in 0.01s. file size 0.00 MB. Speed 0.80 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
-
 Loaded in 0.00s. Speed 1.56 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
-
 == 4000 ==
-
 Stored in 0.02s. file size 0.02 MB. Speed 0.84 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
-
 Loaded in 0.01s. Speed 1.65 MB/s. RSS taken 0.13 MB.  (6.61 MB per MB in file)
-
 == 16000 ==
-
 Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
-
 Loaded in 0.05s. Speed 1.68 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
-
 == 64000 ==
-
 Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.32 MB per MB in file)
-
 Loaded in 0.19s. Speed 1.67 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
-
 == 256000 ==
-
 Stored in 1.49s. file size 1.66 MB. Speed 1.11 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
-
 Loaded in 0.75s. Speed 2.21 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
-
 == 1024000 ==
-
 Stored in 6.11s. file size 7.04 MB. Speed 1.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
-
 Loaded in 2.99s. Speed 2.35 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
-
 == 4096000 ==
-
 Stored in 24.40s. file size 28.55 MB. Speed 1.17 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
-
 Loaded in 11.97s. Speed 2.39 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
-
 == 16384000 ==
-
 Stored in 97.62s. file size 114.59 MB. Speed 1.17 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
-
 Loaded in 48.04s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
-
 Testing pickle
-
 Protocol 2
-
 == 1000 ==
-
 Stored in 0.01s. file size 0.00 MB. Speed 0.78 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
-
 Loaded in 0.00s. Speed 1.57 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
-
 == 4000 ==
-
 Stored in 0.02s. file size 0.02 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
-
 Loaded in 0.01s. Speed 1.52 MB/s. RSS taken 0.13 MB.  (6.60 MB per MB in file)
-
 == 16000 ==
-
 Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
-
 Loaded in 0.05s. Speed 1.66 MB/s. RSS taken 0.09 MB.  (1.18 MB per MB in file)
-
 == 64000 ==
-
 Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.31 MB per MB in file)
-
 Loaded in 0.19s. Speed 1.65 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
-
 == 256000 ==
-
 Stored in 1.52s. file size 1.66 MB. Speed 1.09 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
-
 Loaded in 0.76s. Speed 2.18 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
-
 == 1024000 ==
-
 Stored in 6.19s. file size 7.04 MB. Speed 1.14 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
-
 Loaded in 3.01s. Speed 2.34 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
-
 == 4096000 ==
-
 Stored in 24.60s. file size 28.55 MB. Speed 1.16 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
-
 Loaded in 12.06s. Speed 2.37 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
-
 == 16384000 ==
-
 Stored in 98.38s. file size 114.59 MB. Speed 1.16 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
-
 Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
-
 &lt;/pre&gt;
-
 Paraphrased:
-
 &lt;ul&gt;
-
 &lt;li&gt;JsonPickle needs more RSS then pickle/cPickle, and runs out of memory sooner. all pickle/cPickle runs need the same RSS&lt;/li&gt;
-
 &lt;li&gt;Protocol 1/2 need the same amount of diskspace, protocol 0 needs about the double, JsonPickle about 8 times more&lt;/li&gt;
-
 &lt;li&gt;Protocol 1/2 are as fast, protocol 0 is slower. cPickle is speed king.  Jsonpickle is slow&lt;/li&gt;
-
 &lt;/ul&gt;
-
 Conclusion:
-
 &lt;ul&gt;
-
 &lt;li&gt;Use cPickle or pickle, unless they are broken for your use case(s)&lt;/li&gt;
-
 &lt;li&gt;Consider persisting only your data in appropriate formats (textfile, database, ...). Often you don&#39;t really need to persist entire &lt;i&gt;objects&lt;/i&gt;.  In the case of Gensim, we can also work with numpy&#39;s dataformat.&lt;/li&gt;
-
 &lt;li&gt;If you like json, or want a very simple workaround for cPickle/pickle brokenness, and you cannot use a more appropriate format (see above) consider jsonpickle&lt;/li&gt;
-
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Where are the new Arch Linux release images?</title>
-      <link>http://localhost:1313/post/where_are_the_new_arch_linux_images/</link>
+      <link>http://dieter.plaetinck.be/post/where_are_the_new_arch_linux_images/</link>
       <pubDate>Tue, 17 May 2011 21:29:58 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/where_are_the_new_arch_linux_images/</guid>
+      <guid>where_are_the_new_arch_linux_images</guid>
       <description>&lt;!--more--&gt;
-
 &lt;p&gt;This is a question I get asked a lot recently.  The latest &lt;a href=&#34;http://www.archlinux.org/download/&#34;&gt;official images&lt;/a&gt; are a year old.  This is not inherently bad, unless you pick the wrong mirror from the outdated mirrorlist during a netinstall, or are using hardware which is not supported by the year old kernel/drivers.  A core install will yield a system that needs drastic updating, which is a bit cumbersome.  There are probably some other problems I&#39;m not aware of.  Many of these problems can be worked around (with &#39;pacman -Sy mirrorlist&#39; on the install cd for example), but it&#39;s not exactly convenient.&lt;/p&gt;
 
-
-
-&lt;p&gt;Over the past years (the spare time in between &lt;a href=&#34;http://localhost:1313/my_metalband.html&#34;&gt;the band&lt;/a&gt;, my search for an apartment in &lt;a href=&#34;http://en.wikipedia.org/wiki/Ghent&#34;&gt;Ghent&lt;/a&gt; and a bunch of other things) I&#39;ve worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/&#34;&gt;releng build environment repository&lt;/a&gt;.
-
+&lt;p&gt;Over the past years (the spare time in between &lt;a href=&#34;http://dieter.plaetinck.be/my_metalband.html&#34;&gt;the band&lt;/a&gt;, my search for an apartment in &lt;a href=&#34;http://en.wikipedia.org/wiki/Ghent&#34;&gt;Ghent&lt;/a&gt; and a bunch of other things) I&#39;ve worked towards fully refactoring and overthrowing how releases are being done.  Most of that is visible in the &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/&#34;&gt;releng build environment repository&lt;/a&gt;.
 Every 3 days, the following happens automatically:
-
 &lt;ul&gt;
-
 &lt;li&gt;packages to build images (archiso) and some of which are included &lt;i&gt;on&lt;/i&gt; the images (aif and libui-sh) get rebuilt.  They are actually git versions, the latter two have a separate develop branch which is used. Normal packages get updated the normal way.&lt;/li&gt;
-
 &lt;li&gt;the images are rebuilt, and the dual images get generated&lt;/li&gt;
-
 &lt;li&gt;the images, the packages and their sources are synced to the public on &lt;a href=&#34;http://releng.archlinux.org/&#34;&gt;http://releng.archlinux.org&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 Actually things are &lt;a href=&#34;http://projects.archlinux.org/users/dieter/releng.git/tree/scripts/releng-build-and-release-testing.sh&#34;&gt;bit more involved&lt;/a&gt; but this is the gist of it.  All of this is now run on a &lt;a href=&#34;https://wiki.archlinux.org/index.php/Category:DeveloperWiki:Server_Configuration#Releng_server_.28alberich.29&#34;&gt;dedicated VPS&lt;/a&gt; donated by &lt;a href=&#34;http://www.airvm.com/&#34;&gt;airVM&lt;/a&gt;.&lt;/p&gt;
 
-
-
-&lt;p&gt;I never really completed the &lt;a href=&#34;http://localhost:1313/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html&#34;&gt;aif automatic test suite&lt;/a&gt;, somewhere along the way I decided to focus on crowdsourcing test results.
-
+&lt;p&gt;I never really completed the &lt;a href=&#34;http://dieter.plaetinck.be/aif_automatic_lvm_dm_crypt_installations_and_test_suite.html&#34;&gt;aif automatic test suite&lt;/a&gt;, somewhere along the way I decided to focus on crowdsourcing test results.
 The weight of testing images (and all possible combinations of features) has always been huge, and trying to script tasks would either get way complicated or insufficient.
-
 So the new approach is largely inspired by the core and testing repositories:  we automatically build testing images, people report feedback, and if there is sufficient feedback for a certain set of images (or a bunch of similar sets of images) that allows us to conclude we have some good material, we can promote the set to official media.
-
 &lt;br/&gt;The latest piece of the puzzle is the new &lt;a href=&#34;http://www.archlinux.org/releng/feedback/&#34;&gt;releng feedback application&lt;/a&gt; which &lt;a href=&#34;http://zasshi-slash.blogspot.com/&#34;&gt;Tom Willemsen&lt;/a&gt; contributed. (again: outsourcing FTW).  It is still fairly basic, but should already be useful enough.  It lists pretty much all features you can use with archiso/AIF based images and automatically updates the list of isos based on what it sees appearing online, so I think it will be a good indicator on what works and what doesn&#39;t, and that for each known set of isos.&lt;/p&gt;
-
 &lt;p&gt;So there. &lt;b&gt;Bleeding edge images for everyone&lt;/b&gt;, and for those who want some quality assurance: &lt;b&gt;the more you contribute, the more likely you&#39;ll see official releases&lt;/b&gt;.
 
-
-
 &lt;p&gt;While contributing feedback is now certainly very easy, don&#39;t think that only providing feedback is sufficient, it takes time to maintain and improve aif and archiso as well and contributions in that department are still very welcome.
-
 I don&#39;t think we&#39;ll get to the &lt;a href=&#34;http://www.archlinux.org/news/200902-iso-release/&#34;&gt;original plan&lt;/a&gt; of official archiso releases for each stable kernel version, that seems like a lot of work despite all the above.&lt;/p&gt;
 
-
-
 &lt;p&gt;As for what is new: again too much to list, here is a &lt;a href=&#34;http://releng.archlinux.org/isos/Changelog&#34;&gt;changelog&lt;/a&gt; but I stopped updating it at some point.  I guess the most visible interesting stuff is friendlier package dialogs (with package descriptions), support for nilfs, btrfs and syslinux (thanks &lt;a href=&#34;http://pyther.net/&#34;&gt;Matthew Gyurgyik&lt;/a&gt;), and an issues reporting tool.
-
 Under the hood we refactored quite a bit, mostly blockdevice related stuff, config generation and the &#34;execution plan&#34; (like, how each function calls each other and how failures are tracked) in AIF has been simplified considerably.&lt;/p&gt;
-
-
 
 &lt;!-- I used to be pedantic about details like &#34;all packages installed in the live environment must be available in the official core/extra repositories but i might become a bit less strict.  or maybe not, it&#39;s not hard to switch to official packages. --&gt;
 </description>
@@ -507,828 +269,482 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
     
     <item>
       <title>Dvcs-autosync: An open source dropbox clone... well.. almost</title>
-      <link>http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</link>
+      <link>http://dieter.plaetinck.be/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</link>
       <pubDate>Sat, 26 Mar 2011 21:48:56 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</guid>
+      <guid>dvcs-autosync_an_opensource_dropbox_clone_well_almost</guid>
       <description>I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,
-
 which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.
-
 &lt;br/&gt;In short:
-
 &lt;ul&gt;
-
 &lt;li&gt;simple python tool (600 sloc), works with your dvcs of choice (mainly tested/used with git)&lt;/li&gt;
-
 &lt;li&gt;watches for inotify events, performs commits on changes (coalesces some changes together)&lt;/li&gt;
-
 &lt;li&gt;synchronizes with other clones (remotes), uses xmpp for push notifications&lt;/li&gt;
-
 &lt;li&gt;let&#39;s you know what&#39;s going on through libnotify popups or whatever&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://mayrhofer.eu.org/dvcs-autosync&#34;&gt;home page: http://mayrhofer.eu.org/dvcs-autosync&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://gitorious.org/dvcs-autosync/dvcs-autosync&#34;&gt;dvcs-autosync gitorious repo&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://lists.madduck.net/pipermail/vcs-home/2011-March/000314.html&#34;&gt;initial announcement on vcs-home&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 Use cases:
-
 &lt;!--more--&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;you have one or more trees you want to maintain under a VCS (because you want vcs advantages like history and whatnot) but it&#39;s not worth to spend time comitting manually&lt;/li&gt;
-
 &lt;li&gt;you want to backup some files transparently&lt;/li&gt;
-
 &lt;li&gt;you want to share / work with others easily&lt;/li&gt;
-
 &lt;li&gt;you like the idea of dropbox, but not the closed-source-ness or the vendor dependence&lt;/li&gt;
-
 &lt;li&gt;you work mainly with relatively small files (or.. read on)&lt;/li&gt;
-
 &lt;/ul&gt;
-
 Thoughts:
-
 &lt;ul&gt;
-
 &lt;li&gt;very simple to get started&lt;/li&gt;
-
 &lt;li&gt;simpler (and imho saner) code and implementation in comparison to &lt;a href=&#34;http://sparkleshare.org/&#34;&gt;sparkleshare&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;bound to the limitations of the dvcs. In case of git: no support for ownership, xattrs, and less suited for bigger files (although &lt;a href=&#34;http://git-annex.branchable.com/&#34;&gt;git-annex&lt;/a&gt; might help?)&lt;/li&gt;
-
 &lt;li&gt;You cannot store a git repo inside a git repo, I think (i.e. I don&#39;t think you can keep a -potentially dirty- git clone in dvcs-autosync)&lt;/li&gt;
-
 &lt;li&gt;For a real, filesystem-level dropbox-alike &lt;a href=&#34;http://www.coda.cs.cmu.edu/&#34;&gt;coda&lt;/a&gt; might be a better option, though I&#39;m not sure how useful that project is right now&lt;/li&gt;
-
 &lt;/ul&gt;
-
-
 
 If it sounds like something you need, try it out.  And contributions welcome.
-
 &lt;br/&gt;Next up to the todolist: more clever heuristic for event coalescing, setting up bugtracker.
-
 
 </description>
     </item>
     
     <item>
       <title>Why rewriting git history? And why should commits be in imperative present tense?</title>
-      <link>http://localhost:1313/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/</link>
+      <link>http://dieter.plaetinck.be/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/</link>
       <pubDate>Sat, 05 Mar 2011 18:27:35 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/</guid>
+      <guid>why-rewriting-git-history-and-why-commits-imperative-present-tense</guid>
       <description>&lt;p&gt;
-
 There are tons of articles describing &lt;em&gt;how&lt;/em&gt; you can rewrite history with git, but they do not answer &#34;&lt;em&gt;why&lt;/em&gt; should I do it?&#34;.
-
 A similar question is &#34;what are the tradeoffs / how do I apply this in my distributed workflow?&#34;.
-
 &lt;br/&gt;Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?
-
 &lt;br/&gt;I&#39;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&#39;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
-
 &lt;!--more--&gt;
-
 &lt;h3&gt;Why rewriting git history?&lt;/h3&gt;
-
 &lt;p&gt;
-
 Just like source code git history gets mostly read and relatively infrequently written.
-
 &lt;br/&gt;You read history when you want to see what has changed, when searching a bug, what the difference is between branches, and so on.
-
 &lt;br/&gt;The argument of &#34;I want the history to look like exactly how it really happened&#34; is flawed, because very often your history is suboptimal (you commit a feature, and shortly afterwards you commit a fix for that feature, or a commit that contains separate logical changes/bugfixes)
-
 &lt;br/&gt;This makes history more complicated to read then it should be, so for all the folks who will ever look back at your history (even if you think that will only be yourself) a clean history is more easy to &#34;get&#34;, just like clean source code.
-
 &lt;br/&gt;Also, part of the awesomeness of git is that juggling with features (needed for debugging, trying things out, ..) in your code is so flexible (see the git commit/branch model), but if you have logical changes spread over multiple commits, or one commit containing multiple logical changes, this gets painful very quickly.
-
 &lt;br/&gt;Once you figure out history rewriting (and it&#39;s pretty easy to learn, really!) it only costs a little time to clean up your history, which will pay off in a much greater extent for every time you or somebody else wants to look at, or needs to work &lt;i&gt;with&lt;/i&gt; it. (again, just like source code itself!)
-
 &lt;br/&gt;This also means that you don&#39;t need to spend so much time thinking about your commit messages for commits that are merely fixups or small additions to other logical changes.  Because those will be squashed into the other commits anyway.
-
 I usually commit frequently, but end up squashing many commits together, my commit log easily gets compressed by a factor two or more.  The less history, the better. (just like source code!)
-
 &lt;br/&gt;The commits you actually push (especially when pushing to a master branch) should of course be clean, accuractly described and with correct author information, for obvious reasons such as readability.
-
 &lt;/p&gt;
-
 &lt;p&gt;
-
 Note that there is some kind of &lt;i&gt;paradox&lt;/i&gt;: you can only achieve &#34;perfect history&#34; if your commits are well-tested and every introduced feature has no bugs (has all bugfix commits squashed into it), but at the same time, you can only properly expose new code by making it public, and it only gets widely used and tested if it&#39;s in your main (master) branch.
-
 &lt;br/&gt;This is one of the reasons why a workflow model such as one based on topic branches (aka feature branches) works: you see, git by default doesn&#39;t allow non-fast-forward pushes.
-
 Because you obviously don&#39;t want to break the history of other people following your stable (master branch) development.  So once you push to master, it should usually be there for good.
-
 &lt;br/&gt;As far as I can see, it is accepted in most projects (those run by folks with git expertise?) to push non-fast-forward to topic branches.  The idea being a topic branch is a &#34;work in progress&#34; branch, it is made public so multiple people can review/work on it.  Based on that work/review, its history will often get rewritten through a non-fast-forward push.  And if you&#39;re following/working on such a branch, you should be clever enough to deal with changed history.
-
 &lt;br/&gt;So, a topic branch allows you to make changes public, get feedback, clean up the history of the patchset you (and maybe others) are working on, and when satisfied, you can push to master.
-
 &lt;br/&gt;There is still a chance you&#39;ll later need to push bugfixes to master, but this will happen much more infrequently, so while there is no perfect workflow model that creates perfect history (in master) combined with perfect usability (no need to handle non-fastforward pushes) I find this model brings a quite good compromise.
-
 &lt;/p&gt;
-
-
 
 &lt;p&gt;
-
 To paraphrase, I would say:
-
 &lt;br/&gt;&lt;i&gt;You should care about clean vcs history for the same reasons you should care about clean code&lt;/i&gt;.
-
 &lt;br/&gt;Just like using git is good to progressively help reaching better software, so is git history rewriting good for progressively reaching a better git history.  Version control on top of version control, if you will.  A very crude form of version control but I don&#39;t think it needs to be any more advanced then this.
-
 &lt;/p&gt;
-
-
 
 &lt;h3&gt;Why should I write my commits in imperative present tense (&#39;do foo&#39;) rather then past tense (&#39;did foo&#39;)?&lt;/h3&gt;
-
 &lt;p&gt;
-
 Git developers command doing this (at least for the &lt;a href=&#34;http://repo.or.cz/w/git.git&#34;&gt;git project&lt;/a&gt;), but they did not document &lt;em&gt;why&lt;/em&gt;&#39;s.
-
 Some commonly cited reasons:
-
 &lt;ul&gt;
-
 &lt;li&gt;Consistency.  That&#39;s how it is in many projects (including git itself). Also git tools that generate commits (like git merge or git revert) do it.&lt;/li&gt;
-
 &lt;li&gt;It&#39;s usually shorter&lt;/li&gt;
-
 &lt;li&gt;You can name commits more consistently with titles of tickets in your issue/feature tracker (which don&#39;t use past tense, although sometimes future)&lt;/li&gt;
-
 &lt;/ul&gt;
-
 Another reason I came up with: people not only read history to know &#34;what happened to this codebase&#34;,
-
 but also to answer questions like &#34;what happens when I cherry-pick this commit&#34;, or &#34;what kind of new things will happen to my code base because of these commits I may or may not merge in the future&#34;.
-
 (Note that these are questions about the past,current and future)
-
 This is more a subjective topic, but I feel that the best way to capture this time-independence of a commit is to write down as time-agnostic as possible,
-
 and something like &#39;do foo&#39; (which could be &#39;do foo in the future&#39;, for instance) is more generic then something with a sense of time hardwired in it (&#34;did foo&#34; or &#34;will do foo&#34;)
-
 &lt;/p&gt;
-
 &lt;p&gt;
-
 See also
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://git.kernel.org/?p=git/git.git;a=blob;f=Documentation/SubmittingPatches;h=ece3c77482b3ff006b973f1ed90b708e26556862;hb=HEAD&#34;&gt;Git contributor guidelines&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://progit.org/book/ch5-2.html&#34;&gt;ProGit: contributing to a project&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://en.wikibooks.org/wiki/Git/Introduction#Good_commit_messages&#34;&gt;WikiBooks Git introduction&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Libui-sh: a library providing UI functions for shell scripts</title>
-      <link>http://localhost:1313/post/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</link>
+      <link>http://dieter.plaetinck.be/post/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</link>
       <pubDate>Tue, 28 Dec 2010 22:59:15 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</guid>
+      <guid>97 at http://dieter.plaetinck.be</guid>
       <description>&lt;blockquote&gt;&lt;p&gt;
-
 == A library providing UI functions for shell scripts ==&lt;/p&gt;
-
 &lt;p&gt;When you write bash/shell scripts, do you write your own error/debug/logging/abort functions?&lt;br /&gt;
-
 Logic that requests the user to input a boolean, string, password, selection out of a list,&lt;br /&gt;
-
 date/time, integer, ... ?&lt;/p&gt;
-
 &lt;p&gt;Libui-sh is written to take care of all that.&lt;br /&gt;
-
 libui-sh is meant to a be a general-purpose UI abstraction library for shell scripts.&lt;br /&gt;
-
 Low impact, easy to use, but still flexible.&lt;br /&gt;
-
 cli by default, can optionally use ncurses dialogs as well.&lt;br /&gt;
-
 &lt;!--more--&gt;&lt;/p&gt;
-
 &lt;p&gt;To start using it, you only need to source it and you can start calling its functions.&lt;br /&gt;
-
 To reconfigure it (i.e. to change UI type, debug settings, logfile location),&lt;br /&gt;
-
 just run the command libui_sh_init&lt;/p&gt;
-
 &lt;p&gt;example usage:&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #008000&#34;&gt;source&lt;/span&gt; /usr/lib/libui.sh
-
 ask_yesno &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;do you want to continue?&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt;
-
 libui_sh_init cli /tmp /tmp/yourlogfile
-
 log &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;we just got hassle-free logging&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
-
 The library is not strictly a UI library, it also contains a few useful functions like&lt;br /&gt;
-
 check_is_in (check if an element can be found in a set - usually an array) and&lt;br /&gt;
-
 seteditor (interactive $EDITOR selection)&lt;/p&gt;
-
 &lt;p&gt;Dependencies:&lt;br /&gt;
-
 - bash (for cli interface)&lt;br /&gt;
-
 - optionally: dialog (for ncurses interface)
-
 &lt;/p&gt;&lt;/blockquote&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://github.com/Dieterbe/libui-sh&#34;&gt;https://github.com/Dieterbe/libui-sh&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Rsyncbench, an rsync benchmarking tool</title>
-      <link>http://localhost:1313/post/rsyncbench_an_rsync_benchmarking_tool/</link>
+      <link>http://dieter.plaetinck.be/post/rsyncbench_an_rsync_benchmarking_tool/</link>
       <pubDate>Fri, 15 Oct 2010 09:38:12 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/rsyncbench_an_rsync_benchmarking_tool/</guid>
+      <guid>92 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;Background info:&lt;br /&gt;
-
 I&#39;m currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn&#39;t need much disk space,&lt;br /&gt;
-
 but in the meantime it might be a good idea to look for online backup solutions (oops did I say &#34;online&#34;? I meant &#34;cloud&#34;), like on the (V)PS itself, or maybe as a separate solution.&lt;br /&gt;
-
 But I&#39;ve got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)&lt;br /&gt;
-
 At this point the biggest contenders are &lt;a href=&#34;http://linode.com/&#34;&gt;Linode&lt;/a&gt; (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), &lt;a href=&#34;http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/&#34;&gt;Rackspace backup&lt;/a&gt; gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there&#39;s &lt;a href=&#34;http://www.hetzner.de/&#34;&gt;Hetzner&lt;/a&gt;, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)&lt;/p&gt;
-
 &lt;p&gt;Another issue, given the limited capacity of Belgian internet connections, I needed to figure out how much bandwith rsync really needs, so I can calculate if the duration of a backup run including syncing the full vdi file is still reasonable.&lt;/p&gt;
-
 &lt;p&gt;I couldn&#39;t find an rsync benchmarking tool, so I wrote my own.&lt;/p&gt;
-
 &lt;p&gt;Features:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;simple&lt;/li&gt;
-
 &lt;li&gt;non invasive: you specify the target and destination hosts (just localhost is fine too), and file locations&lt;/li&gt;
-
 &lt;li&gt;measures time spent, bytes sent (measured with tcpdump), and data sent (rsync&#39;s statistics which takes compression into account)&lt;/li&gt;
-
 &lt;li&gt;supports plugins&lt;/li&gt;
-
 &lt;li&gt;generates png graphs using Gnuplot&lt;/li&gt;
-
 &lt;li&gt;two current plugins: one using files of various sizes, both randomly generated (/dev/urandom) and easily compressable (/dev/zero), does some use cases like initial sync, second sync (no-op), and syncing with a data block appended and prepended.  The other plugin collects vdi files from rsnapshot directories and measures the rsyncing from each image to the next&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;&lt;!--more--&gt;&lt;br /&gt;
-
 Non-features:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;no plugins yet for other use cases then my own (no file removal, renaming, working with multiple files, working with small files, ...)&lt;/li&gt;
-
 &lt;li&gt;doesn&#39;t test a lot of different file sizes and such&lt;/li&gt;
-
 &lt;li&gt;not as finished as my other projects (no Makefile, graphs are rough.  but I have no time to go dive further in the gnuplot stuff)
-
 &lt;li&gt;the benchmarking process takes a long time, due to a lot of juggling with big files. some steps can be optimized&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Here is an example graph:&lt;br /&gt;
-
-&lt;img src=&#34;http://localhost:1313/files/rsyncbench_random_images_sent.png&#34;/&gt;&lt;br /&gt;
-
+&lt;img src=&#34;http://dieter.plaetinck.be/files/rsyncbench_random_images_sent.png&#34;/&gt;&lt;br /&gt;
 The first entry on the x-asis is on 1MiB, even though it seems like 0MiB because of the scale.&lt;br /&gt;
-
 Notice how rsync is pretty efficient when it has nothing to do (no-op), and the sizes of transmitted data correspond exactly to what has changed (even if you prepend data in the beginning and all data &#34;moves to the back&#34;, rsync notices this)&lt;br /&gt;
-
 The compressed numbers (reported by rsync) are very close to the real numbers measured with tcpdump.  Which makes sense, random data is not easy to compress.  OTOH, if i take the graph of the case where I sync images which are built from /dev/zero, the story similar so either rsyncs compression sucks (which I find hard to believe), or the guy on #rsync who told me those numbers are about the compressed data was wrong (maybe) or I just messed up something (likely)&lt;/p&gt;
-
 &lt;p&gt;So, I hope this is useful to someone, and maybe others can clone the project and improve it further.  I found it weird that I couldn&#39;t find an rsync benchmarking tool, because rsync&#39;s algorithm is non-obvious and it can be really interesting to understand all its characteristics in various use cases.&lt;/p&gt;
-
 &lt;p&gt;Project page: &lt;a href=&#34;http://github.com/Dieterbe/rsyncbench&#34;&gt;rsyncbench on Github&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;Oh and about my backups? Rsyncing the different vdi files takes upto a few hundreds of MB&#39;s, not an ideal solution given the upload speeds in Belgium.&lt;br /&gt;
-
 I&#39;ll figure out something else.  Like backing up from inside windows (maybe using the rackspace service), or mounting the vdi and rsyncing the data from there.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>An rss2email fork that sucks less</title>
-      <link>http://localhost:1313/post/an_rss2email_fork_that_sucks_less/</link>
+      <link>http://dieter.plaetinck.be/post/an_rss2email_fork_that_sucks_less/</link>
       <pubDate>Sat, 25 Sep 2010 20:33:08 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/an_rss2email_fork_that_sucks_less/</guid>
+      <guid>91 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.allthingsrss.com/rss2email/&#34;&gt;Rss2email&lt;/a&gt; is a great tool.  I like getting all my news messages in my mailbox and using smtp to make the &#34;news delivery&#34; process more robust makes sense.&lt;br /&gt;
-
 However, there are some things I didn&#39;t like about it so I made a &lt;a href=&#34;http://github.com/Dieterbe/rss2email/&#34;&gt;github repo&lt;/a&gt; where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.&lt;br /&gt;
-
 Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt;
-
 &lt;p&gt;Here is how it compares:&lt;br /&gt;
-
 &lt;!--more--&gt;&lt;br /&gt;
-
 (most of the changes are only in the xdg branch, which is the one I use and test)&lt;/p&gt;
-
 &lt;table&gt;
-
 &lt;tr&gt;
-
 &lt;th&gt;criterion&lt;/th&gt;
-
 &lt;th&gt;official version&lt;/th&gt;
-
 &lt;th&gt;my fork&lt;/th&gt;
-
 &lt;/tr&gt;
-
 &lt;tr&gt;
-
 &lt;td&gt;code hosting/release process&lt;/td&gt;
-
 &lt;td&gt;&#34;release&#34; = tarball containing updated code corresponding to various fixes, and snapshots of other projects (dependencies).  no version control, not even separate patches.  no bug tracker.&lt;/td&gt;
-
 &lt;td&gt;git. upstream tracking branch, master branch (basic &#34;good stuff&#34; patches), XDG topic branch (my favorite).  Does not include code from other projects, rather list dependencies.  Github issue tracker&lt;/td&gt;
-
 &lt;/tr&gt;
-
 &lt;tr&gt;
-
 &lt;td&gt;code style&lt;/td&gt;
-
 &lt;td&gt;dirty (extraneous whitespace, ^M characters, incorrect permissions, loads of bogus [whitespace] changes, ..).  The python code itself seems nice though&lt;/td&gt;
-
 &lt;td&gt;clean&lt;/td&gt;
-
 &lt;/tr&gt;
-
 &lt;tr&gt;
-
 &lt;td&gt;file storage &amp;amp; config&lt;/td&gt;
-
 &lt;td&gt;all in ~/.rss2email, list of feeds, email address and feeds state go into pickle file. commands like &#39;r2e add&#39;, &#39;r2e delete&#39;, &#39;r2e list&#39; to manage feeds. feed ids change when feeds get deleted.  &#39;r2e email&#39; to manage email adress.&lt;/td&gt;
-
 &lt;td&gt;adherence to xdg basedir spec. list of feeds goes into plaintext file, so does email address.  state in separate pickle file.  removed all the [now pointless] commands.&lt;/td&gt;
-
 &lt;/tr&gt;
-
 &lt;tr&gt;
-
 &lt;td&gt;Temporary disabling of feeds&lt;/td&gt;
-
 &lt;td&gt;no (if you remove a feed, you loose the state info)&lt;/td&gt;
-
 &lt;td&gt;yes.  comment it out or remove it.  state info won&#39;t be lost&lt;/td&gt;
-
 &lt;/tr&gt;
-
 &lt;tr&gt;
-
 &lt;td&gt;installation/runtime&lt;/td&gt;
-
 &lt;td&gt;no Makefile.  no reliance on $PATH, locking code in python.  Distros are applying patches and/or using custom wrapper scripts&lt;/td&gt;
-
 &lt;td&gt;smarter wrapperscript that prevents multiple runs, so removed locking code from python.  Has Makefile.  Easy to package&lt;/td&gt;
-
 &lt;/tr&gt;
-
 &lt;tr&gt;
-
 &lt;td&gt;logging/debugging&lt;/td&gt;
-
 &lt;td&gt;useful info messages hidden by default, &#34;verbose mode&#34; and error messages using print calls all over the place&lt;/td&gt;
-
 &lt;td&gt;useful messages on stdout.  additional (info/warn/error/..) logging and debuglogging use python module (xdg compliant)&lt;/td&gt;
-
 &lt;/tr&gt;
-
 &lt;tr&gt;
-
 &lt;td&gt;web ui&lt;/td&gt;
-
 &lt;td&gt;yes&lt;/td&gt;
-
 &lt;td&gt;no (I don&#39;t need it)&lt;/td&gt;
-
 &lt;/tr&gt;
-
 &lt;tr&gt;
-
 &lt;td&gt;windows support&lt;/td&gt;
-
 &lt;td&gt;yes&lt;/td&gt;
-
 &lt;td&gt;no (unless somebody ports xdg to windows and updates the wrapper script)&lt;/td&gt;
-
 &lt;/tr&gt;
-
 &lt;/table&gt;
-
 &lt;p&gt;Other then that, there are also some smaller fixes in various places.&lt;/p&gt;
-
 &lt;p&gt;I&#39;m using my version &#34;in production&#34; and it works great for me so far.&lt;br /&gt;
-
 I have contacted the author and told her about my changes, but no response yet.&lt;br /&gt;
-
 For now, you can treat this as an alternative version that stands on it&#39;s own.  I made an Arch &lt;a href=&#34;http://aur.archlinux.org/packages.php?ID=41136&#34;&gt;rss2email-xdg-git&lt;/a&gt; package in the AUR.&lt;/p&gt;
-
 &lt;p&gt;Oh, and I&#39;m liking python :)  Pretty nice and powerful language.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>What the open source community can learn from Devops</title>
-      <link>http://localhost:1313/post/what_the_open_source_community_can_learn_from_devops/</link>
+      <link>http://dieter.plaetinck.be/post/what_the_open_source_community_can_learn_from_devops/</link>
       <pubDate>Fri, 03 Sep 2010 22:26:22 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/what_the_open_source_community_can_learn_from_devops/</guid>
+      <guid>90 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;Being active as both a developer and ops person in the professional life, and both an open source developer and packager in my spare time, I noticed some common ground between both worlds, and I think the open source community can learn from the Devops movement which is solving problems in the professional tech world.&lt;/p&gt;
-
 &lt;p&gt;For the sake of getting a point across, I&#39;ll simplify some things.&lt;/p&gt;
-
 &lt;h3&gt;First, a crash course on Devops...&lt;/h3&gt;
-
 &lt;p&gt;&lt;!--more--&gt;&lt;br /&gt;
-
 A commonly used organisatorial idiom used in tech companies is that of developers and operations.&lt;/p&gt;
-
 &lt;p&gt;Developers:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;develop a product&lt;/li&gt;
-
 &lt;li&gt;improve their product based on feedback from production usage&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Operations:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;put the product in production, making it available for users/customers&lt;/li&gt;
-
 &lt;li&gt;give feedback to devs&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Experience shows this model often falls short.  &#39;Dev&#39; and &#39;Ops&#39; being too artificially separated from each other, resulting in improper communication, clashing procedures and tools,&lt;br /&gt;
-
 resulting in devs disliking ops (&#34;we need to push this out to users, ops are holding us back&#34;), and the other way around (&#34;again new code that will cause trouble, and we will have to figure it out&#34;)&lt;br /&gt;
-
 It doesn&#39;t take a genius to see this is pretty ineffective.  There&#39;s a better way: integrating and reconciling dev and ops, so that all involved know the hard parts of each others&#39; jobs, and in fact letting each other do the others&#39; job.  (developers being responsible for their own checkouts, ops working on the code, etc).  Most of all it&#39;s about culture over processes.  About being smart and nice human beings.&lt;br /&gt;
-
 The exact methods are still being experimented with and preached about, and has recently gotten the name &#34;Devops&#34;.&lt;br /&gt;
-
 There is a really good &lt;a href=&#34;http://www.jedi.be/blog/2010/02/12/what-is-this-devops-thing-anyway/&#34;&gt;Devops explanation&lt;/a&gt; online, with more details.  Read it.&lt;/p&gt;
-
 &lt;p&gt;Often enough we&#39;re talking about teams working for the same company, usually under the same roof, so it isn&#39;t too terribly hard to implement these ideas.&lt;/p&gt;
-
 &lt;h3&gt;Now, let&#39;s look at the open source community&lt;/h3&gt;
-
 &lt;p&gt;Open source developers (&#34;upstream&#34;):&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;develop stuff&lt;/li&gt;
-
 &lt;li&gt;improve their stuff based on feedback from end users&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Distributions (&#34;downstream&#34;):&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;package stuff and make it available to end users&lt;/li&gt;
-
 &lt;li&gt;get bugreports, which often get forwarded to upstream&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Looks familiar?&lt;/p&gt;
-
 &lt;h4&gt;The problems are similar too...&lt;/h4&gt;
-
 &lt;p&gt;Like above, the problems stem from both parties not working together enough, and doing things on their own.&lt;/p&gt;
-
 &lt;p&gt;Some upstreams:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;like to use &#34;weird&#34; (home grown) build systems&lt;/li&gt;
-
 &lt;li&gt;violate FHS&lt;/li&gt;
-
 &lt;li&gt;use home grown packaging systems. Languages and applications with plugins like to do this&lt;/li&gt;
-
 &lt;li&gt;mix bugfixes, security patches and feature additions in the same code branch (often there is not enough manpower to maintain them in separation, and the need for it is dependent on how/when downstreams ship it anyway)&lt;/li&gt;
-
 &lt;li&gt;run into the chicken/egg problem:  they need to release software to have it shipped and tested, but it should only be released after being properly tested.  (&#34;Release early, release often&#34; alleviates this, but it&#39;s not always that easy)
-
 &lt;/ul&gt;
-
 &lt;p&gt;..making it hard for downstreams.&lt;br /&gt;
-
 Even for each other: unannounced/frequent API changes come to mind.&lt;/p&gt;
-
 &lt;p&gt;Dowstreams, often:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;Lack discipline and/or tools to properly report back to upstream.  Users don&#39;t like te report the same issue on two bugtrackers&lt;/li&gt;
-
 &lt;li&gt;Have to make hard choices.  Not shipping software at all or patching beyond recognition, often enough without knowing how the software really works or is implemented.&lt;/li&gt;
-
 &lt;li&gt;Don&#39;t contribute patches back to upstream.  Posting them on some obscure albeit &#34;public&#34; mailing list or code archive isn&#39;t the most effective either.  Patches that are sent back often don&#39;t get merged, making it hard for other downstreams to find them. (and hence, they work on their own patches)&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Nothing pleases an upstream more then complaints from end users running into problems that only happen witch patches applied by the distributor (patches that are deemed necessary to make the app work properly in the distro.  The irony..)&lt;/p&gt;
-
 &lt;p&gt;Some distributions focus on shipping &#34;only stable software&#34;, causing them to be obsolete by definition. (Time to production often extends in the order of years), and are forced to apply so many patches that they are essentially forking their upstreams.  Add poor feedback loops to the list and the situation is about as ineffecient as it can get.&lt;br /&gt;
-
 Other distributions limit their role to giving you the real open source software experience in it&#39;s current state, and that state is not always pretty.&lt;/p&gt;
-
 &lt;h4&gt;but they are much harder to solve&lt;/h4&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;Upstream and downstream are separated much more, resulting in very little communication between both parties.  So the incompatibilities manifest themselves even harder.&lt;/li&gt;
-
 &lt;li&gt;Among distributions, there are very different visions on and implementations of tools and processes.  Pretty much each distro has a vision which separates it from the others.&lt;br /&gt;
-
 Among upstreams, there are as well some different ideas on how things should be done.  Luckily enough upstream developers agree on some things.  But there are some &#34;clusters&#34; doing things their - often radically different - way (freedesktop.org and suckless.org come to mind)&lt;br /&gt;
-
 The amount of incompatibilities is pretty much the carthesian product of the amount of distributions with the amount of &#34;different visions&#34; among upstreams&lt;/li&gt;
-
 &lt;li&gt;Despite their differences, some upstreams and downstreams actually do have some common ground, but as they don&#39;t involve each other in tools nor processes, they hardly benefit from each other&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;So, in contrast to popular belief, &lt;b&gt;open source is not a magical wonderland where everyone works nicely together.&lt;/b&gt;&lt;/p&gt;
-
 &lt;p&gt;Tech companies are usually on their way if they understand and can introduce agile and devops, but I think in the open source ecosystem it&#39;s much harder to bring unity.&lt;/p&gt;
-
 &lt;p&gt;Luckily, some smart people are already working on bridging the gap between up- and downstream, and between each other.&lt;br /&gt;
-
 some examples:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://www.transifex.net/&#34;&gt;transifex.net&lt;/a&gt; provides a common translation infrastructure and service&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;https://launchpad.net/&#34;&gt;launchpad.net&lt;/a&gt; provides code hosting and cross-project issue tracking (from what I heard, tickets reported for downstreams can easily be linked to the relevant upstream project.  But I never tried it)&lt;/li&gt;
-
 &lt;p&gt;&lt;!-- kde distro mailing list --&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;I also think about Fosdem&#39;s cross-distro miniconf and the freedesktop.org project, which encourage closer cooperation between different downstreams and desktop projects, respectively.&lt;/p&gt;
-
 &lt;p&gt;So, how can we solve this?  How can we maximize the end-user experience with more efficient communication and tools?&lt;br /&gt;
-
 Some ideas I have:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;upstreams should definitely abandon cvs and svn.  And avoid using no version control.  Use a version control system that makes forking and contributing more easy, like git.  Downstreams can then fork all the repos and apply the patches in a separate branch.  It will improve cooperation between up- and downstream&lt;/li&gt;
-
 &lt;li&gt;upstreams: try to be compatible with how your downstreams and end-users want to use your software.  Accept patches that add configure flags to enable/disable support for the xdg basedir spec, for example.  You don&#39;t need to put them in your master branch.&lt;/li&gt;
-
 &lt;li&gt;Provide the source for each release so that it can easily be fetched and checksummed&lt;/li&gt;
-
 &lt;li&gt;upstreams should definitely avoid coming up with their own &#34;package management&#34; or &#34;self upgrade&#34; solutions.  Let downstream do their job and make your software compatible with existing packaging solutions&lt;/li&gt;
-
 &lt;li&gt;use common build systems.  Provide makefiles with an install and uninstall target.  Don&#39;t violate FHS.  Make sure your Makefile and software easily allows using a different prefix.  I even do this for repo&#39;s that contain 1 or 2 shell scripts. (&lt;a href=&#34;http://github.com/Dieterbe/libui-sh/blob/master/Makefile&#34;&gt;example&lt;/a&gt;)
-
 &lt;li&gt;Ideally, we would have something like git, but for issue tracking.  Everyone could still host their own issue tracker, but integration between up- and downstream could become much more efficient&lt;/li&gt;
-
 &lt;li&gt;talk to each other, brainstorm.  we can make everyone&#39;s life easier&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;I don&#39;t think we should try to go much beyond some common infrastructure/tools and some best practices.  People will always have different opinions on how things should be done.  And that&#39;s a good thing, it&#39;s the very definiton of the open source community: scratch your own itch.&lt;/p&gt;
-
 &lt;p&gt;What do you think?&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>the &#34;Community Contributions&#34; section on the Arch Linux forums is a goldmine</title>
-      <link>http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</link>
+      <link>http://dieter.plaetinck.be/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</link>
       <pubDate>Wed, 25 Aug 2010 22:11:58 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</guid>
+      <guid>89 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;The &lt;a href=&#34;https://bbs.archlinux.org/viewforum.php?id=27&#34;&gt;Community contributions&lt;/a&gt; subforum of the Arch Linux forums is awesome.&lt;br /&gt;
-
 It is the birthplace of many applications, most of them not Arch Linux specific.&lt;br /&gt;
-
 File managers, media players, browsers, window managers, text editors, todo managers, and so on.  Many shell scripts, urxvt extensions and dwm patches aswell.&lt;br /&gt;
-
 Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.&lt;/p&gt;
-
 &lt;p&gt;If you like to discover new apps and tools, check it out.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Restoring ssh connections on resume</title>
-      <link>http://localhost:1313/post/restoring_ssh_connections_on_resume/</link>
+      <link>http://dieter.plaetinck.be/post/restoring_ssh_connections_on_resume/</link>
       <pubDate>Wed, 16 Jun 2010 18:11:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/restoring_ssh_connections_on_resume/</guid>
+      <guid>85 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I use &lt;a href=&#34;http://wiki.archlinux.org/index.php/Pm-utils&#34;&gt;pm-utils&lt;/a&gt; for hibernation support.&lt;br /&gt;
-
 It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.&lt;br /&gt;
-
 If you want to run stuff as a regular user you could do something like&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;su &lt;span style=&#34;color: #19177C&#34;&gt;$user&lt;/span&gt; -c &amp;lt;&lt;span style=&#34;color: #008000&#34;&gt;command&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;..but these commands have no access to your user environment.&lt;br /&gt;
-
 In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&#39;t want to reenter your ssh key passwords everytime you resume.&lt;br /&gt;
-
 (In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)&lt;/p&gt;
-
 &lt;p&gt;The solution is very simple. Use this:&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;sudo pm-hibernate &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;-my-stuff.sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.&lt;br /&gt;
-
 Ideal to kill old ssh processes, and setup tunnels and ssh connections again.&lt;br /&gt;
-
 I&#39;m probably gonna integrate this into my &lt;a href=&#34;http://github.com/Dieterbe/microde&#34;&gt;microDE&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Fosdem 2010</title>
-      <link>http://localhost:1313/post/fosdem_2010/</link>
+      <link>http://dieter.plaetinck.be/post/fosdem_2010/</link>
       <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/fosdem_2010/</guid>
+      <guid>81 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
-
-&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
-
 Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guys Roman, JGC, Thomas and me will hang out at the &lt;a href=&#34;http://fosdem.org/2010/schedule/devrooms/distributions&#34;&gt;distro miniconf&lt;/a&gt;.  We might join the &lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_infrastructure&#34;&gt;infrastructure round-table&lt;/a&gt; panel, but there is no concrete information yet.&lt;/p&gt;
-
 &lt;p&gt;More stuff I&#39;m looking forward to:&lt;!--more--&gt;&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/phone&#34;&gt;fosdem maemo application&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_mirrorbrain&#34;&gt;mirrorbrain. a topic often discussed at Arch&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_clicfs&#34;&gt;clicfs&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/news/fosdem-multiplies-things-10&#34;&gt;a 2nd fries van!&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/openpcf&#34;&gt;openpcf&lt;/a&gt; (how would this compare to puppet et al?)&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/asterisk&#34;&gt;asterisk development&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/csync&#34;&gt;csync&lt;/a&gt; (reminds me of my own &lt;a href=&#34;http://github.com/Dieterbe/ddm&#34;&gt;ddm&lt;/a&gt;)&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_mongodb_intro&#34;&gt;mongodb&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_cassandra&#34;&gt;cassandra&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_mapreduce_couchdb&#34;&gt;map/reduce in nosql vs sql on rdms&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/linuxkernelpatch&#34;&gt;writing a patch for linux&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/systemtap&#34;&gt;systemtap&lt;/a&gt;&lt;/li&gt;
-
 &lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/scalingfacebook&#34;&gt;scaling facebook&lt;/a&gt;&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;I&#39;m suprised myself how there are much more topics of interest to me then last year, and I&#39;m not sure if the program is even finished.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Opening files automatically on mainstream Linux desktops</title>
-      <link>http://localhost:1313/post/opening_files_automatically_on_mainstream_linux_desktops/</link>
+      <link>http://dieter.plaetinck.be/post/opening_files_automatically_on_mainstream_linux_desktops/</link>
       <pubDate>Tue, 22 Sep 2009 19:43:17 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/opening_files_automatically_on_mainstream_linux_desktops/</guid>
+      <guid>75 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;Xfce/Gnu/Linux works amazingly well on my moms workstation, with one exception: opening files automatically with the correct program.&lt;/p&gt;
-
 &lt;p&gt;The two biggest culprits are:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;Gtk&#39;s &#34;open file with&#34; dialog: if any Gtk program doesn&#39;t know how to open a file it brings up this dialog that is horrible to use.  You can search through your entire VFS for the right executable.  No thumbnails, no usage of .desktop files, $PATH, autocompletion and not even limiting the scope to directories such as /usr/bin&lt;/li&gt;
-
 &lt;li&gt;Mozilla software such as Firefox and Thunderbird: they only seem to differentiate files by their mimetype, not by extension.  There are add-ons to make it easier to edit these preferences, but eventually you&#39;re in a dead end because you get files with correct extensions but unuseful mimetimes (application/octet-stream)&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;Luckily the fd.o guys have come up with &lt;a href=&#34;http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html&#34;&gt;.desktop files&lt;/a&gt;.&lt;!--more--&gt;&lt;br /&gt;
-
 In $XDG_DATA_HOME/applications/defaults.list you can define which applications to use for which mime type.&lt;br /&gt;
-
 So the only thing you need to do is call &lt;a href=&#34;http://portland.freedesktop.org/xdg-utils-1.0/xdg-open.html&#34;&gt;xdg-open&lt;/a&gt; to open a file with the application you want.&lt;br /&gt;
-
 And that&#39;s exactly what I did. For now I just configure everything to use xdg-open and that seems to work just fine.  Oddly enough, even though the defaults.list is also based on mimetypes, files that are marked as octet-stream in Thunderbird seem to be properly recognized by xdg-open and opened with the correct program.  Or maybe this is because at the time of testing I only had octet-stream .doc files.  Anyway, we&#39;ll see.  But for now it&#39;s looking pretty good. &lt;/p&gt;
-
 &lt;p&gt;Note: somewhat related and also not very pleasant: epdfview used to say &#39;encrypted document.. please enter password&#39; whenever you tried to open a non-existent file, a directory,.. basically anything else then a pdf file.  But this seems to be fixed since &lt;a href=&#34;http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=508969&#34;&gt;5 days ago&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Snip: a dead-simple but quite powerful text expander and more</title>
-      <link>http://localhost:1313/post/snip_a_dead-simple_but_quite_powerful_text_expander_and_more/</link>
+      <link>http://dieter.plaetinck.be/post/snip_a_dead-simple_but_quite_powerful_text_expander_and_more/</link>
       <pubDate>Mon, 14 Sep 2009 20:22:00 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/snip_a_dead-simple_but_quite_powerful_text_expander_and_more/</guid>
+      <guid>74 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;Inspired by &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=71938&#34;&gt;Snippy&lt;/a&gt; and &lt;a href=&#34;http://lifehacker.com/351285/automate-repetitive-typing-with-snippits&#34;&gt;snippits&lt;/a&gt;, I wrote a simple tool called &lt;a href=&#34;http://github.com/Dieterbe/snip&#34;&gt;snip&lt;/a&gt;.&lt;br /&gt;
-
 It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.&lt;br /&gt;
-
 &lt;!--more--&gt;&lt;br /&gt;
-
 It works like this: you bind a key (in your WM or with &lt;a href=&#34;http://freshmeat.net/projects/xbindkeys/&#34;&gt;xbindkeys&lt;/a&gt;) to launch `snip` with the `load` or `save` argument.&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;`load` will look in a folder in your $HOME for snips (small text files) and present them through &lt;a href=&#34;http://tools.suckless.org/dmenu&#34;&gt;dmenu&lt;/a&gt;.  If your snip has the executable flag it will be executed, otherwise the literal contents of the file are taken.  &lt;a href=&#34;http://www.semicomplete.com/projects/xdotool/&#34;&gt;xdotool&lt;/a&gt; is used to type the output (which gets entered where your cursor is).  &lt;/li&gt;
-
 &lt;li&gt;`save` is just a convenience wrapper that uses &lt;a href=&#34;http://freshmeat.net/projects/zenity&#34;&gt;zenity&lt;/a&gt; to quickly create new snips&lt;/li&gt;
-
 &lt;/ul&gt;
-
 &lt;p&gt;While comparable to snippits, I find it better because it presents the options with dmenu (you don&#39;t need to type the name on the beforehand manually), it uses the &lt;a href=&#34;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&#34;&gt;xdg basedir spec&lt;/a&gt; and since it uses several great, tried &amp;amp; proven existing utilities, it does its job in less then 50 lines of shellscript.&lt;/p&gt;
-
 &lt;p&gt;I wrote some some &lt;a href=&#34;http://github.com/Dieterbe/snip/tree/master/examples/snips/&#34;&gt;example snips&lt;/a&gt; which demonstrate entering static chunks of text, using xdotool for automating keypresses, aspell for automatic spell checking (and word replacing), inserting url&#39;s from your &lt;a href=&#34;http://www.uzbl.org&#34;&gt;uzbl&lt;/a&gt; bookmarks/history, and some dynamic output based on current time, $USER and zenity input.&lt;br /&gt;
-
 I&#39;m sure a lot of people will come up with more cool things :)&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Arch Linux 2009.08 &amp; Froscon 2009</title>
-      <link>http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/</link>
+      <link>http://dieter.plaetinck.be/post/arch_linux_2009.08_and_froscon_2009/</link>
       <pubDate>Mon, 10 Aug 2009 12:36:48 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/arch_linux_2009.08_and_froscon_2009/</guid>
+      <guid>70 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;So, the Arch Linux &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=77680&#34;&gt;2009.08 release&lt;/a&gt; is now behind us, nicely on schedule.&lt;br /&gt;
-
-I hope people will like &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF&lt;/a&gt; because it was a lot of work and we didn&#39;t receive much feedback.  I personally like it to apply my &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;fancy backup restoration&lt;/a&gt; approach.&lt;br /&gt;
-
-But I&#39;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt; I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)&lt;/p&gt;
-
+I hope people will like &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF&lt;/a&gt; because it was a lot of work and we didn&#39;t receive much feedback.  I personally like it to apply my &lt;a href=&#34;http://dieter.plaetinck.be/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;fancy backup restoration&lt;/a&gt; approach.&lt;br /&gt;
+But I&#39;m sure if more people would look at the code we would find quite some design and implementation things that could be improved.  (With &lt;a href=&#34;http://dieter.plaetinck.be/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt; I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)&lt;/p&gt;
 &lt;p&gt;Later this week I&#39;m off to the &lt;a href=&#34;http://www.countingcows.be/home.php&#34;&gt;Counting Cows festival&lt;/a&gt; in France, and the week after that (august 22-23) I&#39;m going to &lt;a href=&#34;http://www.froscon.org/&#34;&gt;FrOSCon&lt;/a&gt; in Germany where I will meet some of my Arch Linux colleagues in real life, which I&#39;m really looking forward to.&lt;/p&gt;
-
 &lt;p&gt;If anyone wants a ride to froscon let me know.  But note I&#39;ll try to maximize my time there (leave saturday early and come back late on sunday.  I even took a day off on monday so I might stay a day longer if I find more interested people to hang out there)&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Mysql status variables caveats</title>
-      <link>http://localhost:1313/post/mysql_status_variables_caveats/</link>
+      <link>http://dieter.plaetinck.be/post/mysql_status_variables_caveats/</link>
       <pubDate>Sat, 06 Jun 2009 11:33:34 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/mysql_status_variables_caveats/</guid>
+      <guid>67 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;While setting up Zenoss and reading &lt;a href=&#34;http://dev.mysql.com/doc/refman/5.0/en/server-status-variables.html&#34;&gt;Mysql documentation about status variables&lt;/a&gt; I learned:&lt;/p&gt;
-
 &lt;ul&gt;
-
 &lt;li&gt;All select_* variables (&#34;Select statistics&#34; graph in Zenoss) are actually about joins, not (all) selects.  This also explains why there is no clear relation to com_select (which shows the amount of selects).  (&#34;Command statistics:selects&#34; graph in Zenoss)&lt;/li&gt;
-
 &lt;li&gt;Com_select does not denote all incoming select commands.  If you have a hit on your query cache, com_select is &lt;em&gt;not&lt;/em&gt; incremented.  So I thought we were doing less qps while in fact we were just getting more cache hits. Qcache_hits gets incremented on cache hits (but is not monitored by Zenoss)&lt;/li&gt;
-
 &lt;/ul&gt;
 </description>
     </item>

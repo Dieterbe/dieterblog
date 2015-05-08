@@ -7,18 +7,18 @@
 	<title>Anthracite, an event database to enrich monitoring dashboards and to allow visual and numerical analysis of events that have a business impact &middot; Dieter&#39;s blog</title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<!--[if lt IE 9]>
-	<script src="http://localhost:1313//js/html5.js"></script>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
 	<![endif]-->
     
-    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 
     <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
 	
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 
@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter&#39;s blog</a></h1>
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text">Search</a>
@@ -108,11 +108,11 @@
 			</span>
 		</div>
 
-        <h1 class="entry-title"><a href="http://localhost:1313/post/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact/">Anthracite, an event database to enrich monitoring dashboards and to allow visual and numerical analysis of events that have a business impact</a></h1>
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact/">Anthracite, an event database to enrich monitoring dashboards and to allow visual and numerical analysis of events that have a business impact</a></h1>
 
 		<div class="entry-meta">
 			<span class="entry-date">
-				<a href="http://localhost:1313/post/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact/" rel="bookmark">
+				<a href="http://dieter.plaetinck.be/post/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact/" rel="bookmark">
 					<time class="entry-date" datetime="2012-11-12 08:49:56 -0400 -0400">
 						November 12, 2012
 					</time>
@@ -124,183 +124,94 @@
 	
 	<div class="entry-content">
 		<h4>Introduction</h4>
-
 <p>Graphite can show events such as <a href="http://codeascraft.etsy.com/2010/12/08/track-every-release/">code deploys</a> and
-
 <a href="https://github.com/joemiller/puppet-graphite_event">puppet changes</a> as vertical markers on your graph.
-
 With the advent of new graphite dashboards and interfaces where we can have popups and annotations to show metadata for each event (by means of client-side rendering),
-
 it's time we have a database to track all events along with categorisation and text descriptions (which can include rich text and hyperlinks).
-
 Graphite is meant for time series (metrics over time), Anthracite aims to be the companion for annotated events.<br>
-
 More precisely, <strong>Anthracite aims to be a database of "relevant events"</strong> (see further down), <strong>for the purpose of enriching monitoring dashboards,
-
 as well as allowing visual and numerical analysis of events that have a business impact</strong> (for the latter, see "<i>Thoughts on incident nomenclature, severity levels and incident analysis</i>" below)<br>
-
 It has a TCP receiver, a database (sqlite3), a http interface to deliver event data in many formats and a simple web frontend for humans.</p>
-
 <!--more-->
-
-
 
 <p>design goals:</p>
 
-
-
 <ul>
-
     <li>do one thing and do it well.  aim for integration.</li>
-
     <li>take inspiration from graphite:
-
         <ul>
-
         <li>simple TCP protocol</li>
-
         <li>automatically create new event types as they are used</li>
-
         <li>run on port 2005 by default (carbon is 2003,2004)</li>
-
         <li>deliver events in various formats (html, raw, json, sqlite,...)</li>
-
         <li>stay out of the way</li>
-
         </ul>
-
     </li>
-
     <li>super easy to install and run: install dependencies, clone repo. <i>the app is ready to run</i></li>
-
 </ul>
-
-
 
 I have a working prototype on <a href="https://github.com/Dieterbe/anthracite">github.com/Dieterbe/anthracite</a>
 
-
-
 <h4>About "relevant events"</h4>
-
 <p>I recommend you submit any event that <strong>has</strong> or <strong>might have</strong> a <strong>relevant</strong> effect on:</p>
 
-
-
 <ul>
-
     <li>your application behavior</li>
-
     <li>monitoring itself (for example you fixed a bug in metrics reporting. it shouldn't look like the app behavior changed)</li>
-
     <li>the business (press coverage, viral videos, etc), because this also affects your app usage and metrics.</li>
-
 </ul>
 
-
-
 <h4>Formats and conventions</h4>
-
 <p>The TCP receiver listens for lines in this format:</p>
 
-
-
 <pre>
-
 <unix_timestamp> <type> <description>
-
 </pre>
-
-
 
 <p>There are no restrictions for type and description, other than that they must be non-empty strings.
-
 <br/>I do have some suggestions which I'll demonstrate through fictive examples;
-
 <br/>but note that there's room for improvement, see the section below)</p>
 
-
-
 <pre>
-
 # a deploy_* type for each project
-
 ts deploy_vimeo.com "deploy e8e5e4 initiated by Nicolas -- github.com/Vimeo/main/compare/foobar..e8e5e4"
-
 ts puppet "all nodes of class web_cluster_1: modified apache.conf; restart service apache"
-
 ts incident_sev2_start "mysql2 crashed, site degraded"
-
 ts incident_sev2_resolved "replaced db server"
-
 ts incident "hurricane Sandy, systems unaffected but power outages among users, expect lower site usage"
-
 # in those exceptional cases of manual production changes, try to not forget adding your event
-
 ts manual_dieter "i have to try this firewall thing on the LB"
-
 ts backup "backup from database slave vimeomysql22"
-
 </pre>
 
-
-
 <h4>Thoughts on incident nomenclature, severity levels and incident analysis</h4>
-
 Because there are so many unique and often subtle pieces of information pertaining to each individual incident, it's often hard to map an incident to
-
 a simple severity level or keyword.
-
 When displaying events as popups on graphs I think no severity levels are needed, the graphs and event descriptions are much more clear than any
-
 severity level could convey.<br>
-
 However, I do think these levels are very useful for reporting and numerical analysis.<br>
-
 On slide 53 of <a href="http://www.slideshare.net/jallspaw/ops-metametrics-the-currency-you-pay-for-change">the metametrics slidedeck</a> Allspaw
-
 mentions severity levels, which can be paraphrased in terms of service degradation for the end user:
-
 1 (full), 2 (major), 3 (minor), 4 (no).<br>
-
 I would like to extend this notion into the opposite spectrum, and have similar levels on the positivie scale,
-
 so that they represent positive incidents (like viral videos, press mentions, ...) as opposed to problematic ones (outages).
-
 <br/>For incident analysis we need a rich nomenclature and schema:
-
 <b>incidents can (presumably) have a positive or negative impact, can be self-induced or not, and can be categorized with severity levels</b>;
-
 <b>they can also be planned for (maintenance, release announcements) or not</b>.  While we're at it,
-
 how about events to mark point in time where the cause was detected, as well as resolved, so we can calculate TTD and TTR (see Allspaw slidedeck)?
-
 <br/>Since basically any event can have a positive or negative impact, an option is to leave out the type 'incident' and give a severity field for every
-
 event type.
-
 <br/>I'm thinking of a good nomenclature and a schema to express all this.
-
 (btw, notice how in common ops literature the word incident is usually associated with outages and bad things;
-
 while actually an incident can just as well be a positive event) as well as UI features to support this analysis.
 
-
-
 <h4>I need your help</h4>
-
 The tcp receiver works, the backend works, i have a crude (but functional) web app, and a simple http api to retrieve the events in all kinds of formats.
-
 Next up are:
-
 <ul>
-
 <li>monitoring dashboard for graphite that gathers events from anthracite, can show metadata, and can mark a timeframe between start and stop events</li>
-
 <li>plugings for puppet, chef to automatically submit their relevant events</li>
-
 <li>a better web UI and actually provide features to do statistics on events and analysis such as TTD, TTR, with colors for severity levels etc</li>
-
 </ul>
 
 	</div>
@@ -308,9 +219,9 @@ Next up are:
 	<footer class="entry-meta">
 		<span class="tag-links">		
 			
-                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+                <a href="http://dieter.plaetinck.be/tags/devops/index.html" rel="tag">devops</a>
             
-                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+                <a href="http://dieter.plaetinck.be/tags/monitoring/index.html" rel="tag">monitoring</a>
             
 		</span>
 	</footer>
@@ -342,13 +253,13 @@ Next up are:
     <br/>
 	<h1 class="widget-title">Popular tags</h1>
 
-    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
     24
     <br/>
-    <a href="http://localhost:1313/tags/devops">devops</a>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
     22
     <br/>
-    <a href="http://localhost:1313/tags/golang">golang</a>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
     8
     <br/>
     <br/>
@@ -358,31 +269,31 @@ Next up are:
 
     
         
-            <a href="http://localhost:1313/tags/arch">arch</a>
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
             19
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/bash">bash</a>
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
             15
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
             8
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/conf">conf</a>
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
             9
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
             1
             <br/>
         
@@ -391,25 +302,25 @@ Next up are:
         
     
         
-            <a href="http://localhost:1313/tags/drums">drums</a>
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/foss">foss</a>
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
             45
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/git">git</a>
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
             3
             <br/>
         
@@ -418,31 +329,31 @@ Next up are:
         
     
         
-            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/life">life</a>
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
             32
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/linux">linux</a>
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
             20
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/lua">lua</a>
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mail">mail</a>
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
             1
             <br/>
         
@@ -451,97 +362,97 @@ Next up are:
         
     
         
-            <a href="http://localhost:1313/tags/music">music</a>
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/n900">n900</a>
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/perf">perf</a>
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
             10
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/photos">photos</a>
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/php">php</a>
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
             11
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/python">python</a>
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/travel">travel</a>
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
             9
             <br/>
         
@@ -565,9 +476,6 @@ Next up are:
 		</footer>
 	</div>
 
-	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
 </html>

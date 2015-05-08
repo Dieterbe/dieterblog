@@ -7,18 +7,18 @@
 	<title>Upgrading Drupal the easy way &middot; Dieter&#39;s blog</title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<!--[if lt IE 9]>
-	<script src="http://localhost:1313//js/html5.js"></script>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
 	<![endif]-->
     
-    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 
     <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
 	
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 
@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter&#39;s blog</a></h1>
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text">Search</a>
@@ -108,11 +108,11 @@
 			</span>
 		</div>
 
-        <h1 class="entry-title"><a href="http://localhost:1313/post/upgrading_drupal_the_easy_way/">Upgrading Drupal the easy way</a></h1>
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/upgrading_drupal_the_easy_way/">Upgrading Drupal the easy way</a></h1>
 
 		<div class="entry-meta">
 			<span class="entry-date">
-				<a href="http://localhost:1313/post/upgrading_drupal_the_easy_way/" rel="bookmark">
+				<a href="http://dieter.plaetinck.be/post/upgrading_drupal_the_easy_way/" rel="bookmark">
 					<time class="entry-date" datetime="2007-07-29 15:57:23 -0400 EDT">
 						July 29, 2007
 					</time>
@@ -124,61 +124,33 @@
 	
 	<div class="entry-content">
 		<p>I just upgraded this site to <a href="http://drupal.org/drupal-5.2">Drupal 5.2</a>.  The package came with upgrading instructions consisting of 11 steps to complete the upgrade proces, but after reading it a few times I realized it could be done easier.<!--more--></p>
-
 <p>Here is a synthesized version of the upgrade instructions that came with the package:</p>
-
 <ol>
-
 <li>Backup your database and Drupal directory.  Especially your site settings, custom modules and themes, and files folder.</li>
-
 <li>Log on as the user with user ID 1.  User ID 1 needs to be logged in so that you can access update.php (step 9) which can only be run by user ID 1.  Do not close your browser until step 10 is complete.</li>
-
 <li>Place the site in "Off-line" mode, to mask any errors from site visitors.</li>
-
 <li>Disable contributed modules and switch to a core theme</li>
-
 <li>Remove all of the old files and directories from the Drupal installation directory.</li>
-
 <li>Unpack the new Drupal files and directories into the Drupal installation directory.</li>
-
 <li>Copy the backed up files/directories from step 1 to the Drupal installation directory.</li>
-
 <li>Verify the new configuration file to make sure it has the latest and correct information.</li>
-
 <li>Re-install contributed modules.   Check if they are compatible with the new version</li>
-
 <li>Run update.php by visiting <a href="http://www.example.com/update.php" title="http://www.example.com/update.php">http://www.example.com/update.php</a></li>
-
 <li>Finally, return site to "Online" mode</li>
-
 </ol>
-
 <p>Now, the thing is you don't have to do things like disabling contributed modules and themes if you install them right away instead of later on.</p>
-
 <p>So, here are my simplified instructions:</p>
-
 <ol>
-
 <li>Unpack the drupal 5.2 folder on your local system</li>
-
 <li>Copy all your specific folders/files (files, themes, modules and settings.ini) to the right place in this folder</li>
-
 <li>Login as user 1</li>
-
 <li>Enable offline mode</li>
-
 <li>Delete all files of your Drupal installation on the webhost</li>
-
 <li>Upload the files from the drupal 5.2 folder to your webhost</li>
-
 <li>go to <a href="http://www.example.com/?q=user" title="http://www.example.com/?q=user">http://www.example.com/?q=user</a> and login again</li>
-
 <li>Run <a href="http://www.example.com/update.php" title="http://www.example.com/update.php">http://www.example.com/update.php</a></li>
-
 <li>Enable online mode</li>
-
 </ol>
-
 <p>These instructions worked fine for upgrading from 5.1 to 5.2.  If you do are more drastic upgrade (e.g. from 4 to 5) you should only follow this method if you don't have any contributed themes/modules because otherwise you need to upgrade your modules.</p>
 
 	</div>
@@ -186,7 +158,7 @@
 	<footer class="entry-meta">
 		<span class="tag-links">		
 			
-                <a href="http://localhost:1313//tags/drupal/index.html" rel="tag">drupal</a>
+                <a href="http://dieter.plaetinck.be/tags/drupal/index.html" rel="tag">drupal</a>
             
 		</span>
 	</footer>
@@ -218,13 +190,13 @@
     <br/>
 	<h1 class="widget-title">Popular tags</h1>
 
-    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
     24
     <br/>
-    <a href="http://localhost:1313/tags/devops">devops</a>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
     22
     <br/>
-    <a href="http://localhost:1313/tags/golang">golang</a>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
     8
     <br/>
     <br/>
@@ -234,31 +206,31 @@
 
     
         
-            <a href="http://localhost:1313/tags/arch">arch</a>
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
             19
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/bash">bash</a>
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
             15
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
             8
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/conf">conf</a>
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
             9
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
             1
             <br/>
         
@@ -267,25 +239,25 @@
         
     
         
-            <a href="http://localhost:1313/tags/drums">drums</a>
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/foss">foss</a>
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
             45
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/git">git</a>
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
             3
             <br/>
         
@@ -294,31 +266,31 @@
         
     
         
-            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/life">life</a>
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
             32
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/linux">linux</a>
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
             20
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/lua">lua</a>
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mail">mail</a>
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
             1
             <br/>
         
@@ -327,97 +299,97 @@
         
     
         
-            <a href="http://localhost:1313/tags/music">music</a>
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/n900">n900</a>
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/perf">perf</a>
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
             10
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/photos">photos</a>
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/php">php</a>
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
             11
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/python">python</a>
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/travel">travel</a>
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
             9
             <br/>
         
@@ -441,9 +413,6 @@
 		</footer>
 	</div>
 
-	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
 </html>

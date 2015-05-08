@@ -2,405 +2,222 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Netlog on Dieter&#39;s blog</title>
-    <link>http://localhost:1313/tags/netlog/</link>
+    <link>http://dieter.plaetinck.be/tags/netlog/</link>
     <description>Recent content in Netlog on Dieter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 24 May 2008 12:39:28 -0400</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/netlog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://dieter.plaetinck.be/tags/netlog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Announcing the Netlog Developer Pages</title>
-      <link>http://localhost:1313/post/announcing_the_netlog_developer_pages/</link>
+      <link>http://dieter.plaetinck.be/post/announcing_the_netlog_developer_pages/</link>
       <pubDate>Sat, 24 May 2008 12:39:28 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/announcing_the_netlog_developer_pages/</guid>
+      <guid>43 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;At work, we&#39;ve setup the &lt;a href=&#34;http://netlog.com/go/developer&#34;&gt;Netlog Developer Pages&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.&lt;br /&gt;
-
 We&#39;ve also launched a &lt;a href=&#34;http://en.netlog.com/go/developer/group&#34;&gt;group&lt;/a&gt; where you can communicate with fellow developers and Netlog employees.&lt;br /&gt;
-
 The page also features a &lt;a href=&#34;http://en.netlog.com/go/developer/blog&#34;&gt;blog&lt;/a&gt; where you can follow what is going on in the Netlog Tech team.&lt;/p&gt;
-
 &lt;p&gt;PS: We&#39;ve also updated our &lt;a href=&#34;http://en.netlog.com/go/inside/view=jobs&#34;&gt;jobs page&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>I survived LCL 31-3-2008</title>
-      <link>http://localhost:1313/post/i_survived_lcl_31_3_2008/</link>
+      <link>http://dieter.plaetinck.be/post/i_survived_lcl_31_3_2008/</link>
       <pubDate>Sat, 19 Apr 2008 12:10:11 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/i_survived_lcl_31_3_2008/</guid>
+      <guid>41 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;On 31-3-2008 &lt;a href=&#34;http://www.lcl.be&#34;&gt;LCL&lt;/a&gt;, one of the most used datacenters in Belgium - and the only one with a 0% downtime record in Belgium - had major power issues with their datacenter in Diegem, bringing lots of Belgian parties offline.  (more specifics &lt;a href=&#34;http://www.google.be/search?q=lcl+diegem+power+failure&#34;&gt;on the net&lt;/a&gt;).&lt;/p&gt;
-
 &lt;p&gt;If you&#39;re one of the sysadmins of a website with 35M members and 150M hits per day this means you&#39;re in for an exciting night ...&lt;!--more--&gt;&lt;/p&gt;
-
 &lt;p&gt;Long story short: LCL couldn&#39;t bring the power back up fast enough so we rented our own generator.  After rushing to Brussels we ( The Netlog ITS-team) could sit in the offices upstairs.  But after a while they had to close it down but we could stay in a room nearby (without furniture).   After that we went to Steven&#39;s appartment in Machelen.  We worked about 30 hours in a row, getting our sites back up and running (mostly fixing corrupted databases).  Our friends from the devteam also did some great achievements the next day, by using the redundancy of denormalized database layouts they could restore nearly all missing content that had vanished because of table repairs.&lt;/p&gt;
-
 &lt;p&gt;Here is some footage:&lt;/p&gt;
-
 &lt;h3&gt;Netlog homepage&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&#39;http://localhost:1313/files/blog/netlog/23296980.jpg&#39;&gt;&lt;br /&gt;
-
-&lt;a href=&#34;http://localhost:1313/files/blog/flickr/2378844832_7163d9b28b_o.png&#34;&gt;hi-res version&lt;/a&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;img src=&#39;http://dieter.plaetinck.be/files/blog/netlog/23296980.jpg&#39;&gt;&lt;br /&gt;
+&lt;a href=&#34;http://dieter.plaetinck.be/files/blog/flickr/2378844832_7163d9b28b_o.png&#34;&gt;hi-res version&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;At LCL&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&#39;http://localhost:1313/files/blog/netlog/22103670_10474680_23396287.jpg&#39;&gt;&lt;br /&gt;
-
+&lt;p&gt;&lt;img src=&#39;http://dieter.plaetinck.be/files/blog/netlog/22103670_10474680_23396287.jpg&#39;&gt;&lt;br /&gt;
 Toon &amp;amp; Nicolas&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#39;http://localhost:1313/files/blog/netlog/22103670_3331347_23396512.jpg&#39;&gt;&lt;br /&gt;
-
+&lt;p&gt;&lt;img src=&#39;http://dieter.plaetinck.be/files/blog/netlog/22103670_3331347_23396512.jpg&#39;&gt;&lt;br /&gt;
 Kenny&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#39;http://localhost:1313/files/blog/netlog/22103670_7040556_23396414.jpg&#39;&gt;&lt;br /&gt;
-
+&lt;p&gt;&lt;img src=&#39;http://dieter.plaetinck.be/files/blog/netlog/22103670_7040556_23396414.jpg&#39;&gt;&lt;br /&gt;
 Steven - Jakob - Lorenz&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#39;http://localhost:1313/files/blog/netlog/22103670_15039122_24732436.jpg&#39;&gt;&lt;br /&gt;
-
+&lt;p&gt;&lt;img src=&#39;http://dieter.plaetinck.be/files/blog/netlog/22103670_15039122_24732436.jpg&#39;&gt;&lt;br /&gt;
 Jakob - Steven - me - Kenny&lt;/p&gt;
-
 &lt;h3&gt;At Steven&#39;s appartment&lt;/h3&gt;
-
 &lt;p&gt;No pics made here, just a silly video ;)&lt;/p&gt;
-
 &lt;p&gt;&lt;object width=&#34;425&#34; height=&#34;355&#34;&gt;&lt;br /&gt;
-
 &lt;param name=&#34;movie&#34; value=&#34;http://www.youtube.com/v/pnsCiypcBPk&amp;amp;hl=en&#34;&gt;&lt;/param&gt;
-
 &lt;param name=&#34;wmode&#34; value=&#34;transparent&#34;&gt;&lt;/param&gt;&lt;embed src=&#34;http://www.youtube.com/v/pnsCiypcBPk&amp;amp;hl=en&#34; type=&#34;application/x-shockwave-flash&#34; wmode=&#34;transparent&#34; width=&#34;425&#34; height=&#34;355&#34;&gt;&lt;/embed&gt;&lt;/object&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Tweaking Lighttpd stat() performance with fcgi-stat-accel</title>
-      <link>http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/</link>
+      <link>http://dieter.plaetinck.be/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/</link>
       <pubDate>Mon, 03 Mar 2008 21:12:42 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/</guid>
+      <guid>38 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;If you serve lots of (small) files with Lighttpd you might notice you&#39;re not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn&#39;t have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
-
 &lt;!--more--&gt;&lt;br/&gt;
-
 (in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)&lt;/p&gt;
-
 &lt;p&gt;This is explained on the &lt;a href=&#34;http://trac.lighttpd.net/trac/wiki/HowtoSpeedUpStatWithFastcgi&#34;&gt; HowtoSpeedUpStatWithFastcgi&lt;/a&gt; page on the &lt;a href=&#34;http://trac.lighttpd.net/trac/&#34;&gt; Lighty wiki&lt;/a&gt;.&lt;/p&gt;
-
 &lt;p&gt;Now, for &lt;a href=&#34;http://www.netlog.com&#34;&gt;Netlog&lt;/a&gt; we needed to add some http headers ( Cache-Control: max-age, ETag, Expires and Last-Modified ) so we patched up the code a bit to do that, and a bit of other stuff.&lt;/p&gt;
-
 &lt;p&gt;Ofcourse this is documented on &lt;a href=&#34;http://trac.lighttpd.net/trac/wiki/FcgiStatAccelWithMoreHttpHeaders&#34;&gt;the FcgiStatAccelWithMoreHttpHeaders page on the Lighty wiki&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;Have fun !&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;/*&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  Originally written by Fobax.&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  Edited by darix to support controlling thread count at runtime. &lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  Edited by poison and Dieter_be to support some http headers derived from the files.&lt;/span&gt;
 
-
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  Please do not remove any of the above.&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  &lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  compile with: &lt;/span&gt;
-
-
 
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel&lt;/span&gt;
 
-
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.&lt;/span&gt;
 
-
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;  The default value, if spawned from lighttpd, is 20.&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;*/&lt;/span&gt;
-
-
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;quot;fcgi_config.h&amp;quot;&lt;/span&gt;
 
-
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;lt;pthread.h&amp;gt;&lt;/span&gt;
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;/span&gt;
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;lt;unistd.h&amp;gt;   &lt;/span&gt;
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;quot;fcgiapp.h&amp;quot;  &lt;/span&gt;
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;lt;string.h&amp;gt;   &lt;/span&gt;
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;lt;sys/types.h&amp;gt;&lt;/span&gt;
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;lt;sys/stat.h&amp;gt; &lt;/span&gt;
 
-
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;lt;stdio.h&amp;gt; &lt;/span&gt;
 
-
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;quot;etag.h&amp;quot;&lt;/span&gt;
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#include &amp;quot;buffer.h&amp;quot;&lt;/span&gt;
-
-
-
 
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#define THREAD_COUNT 20&lt;/span&gt;
 
 
-
-
-
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#define FORBIDDEN(stream) \&lt;/span&gt;
-
-        FCGX_FPrintF(stream, &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Status: 403 Forbidden&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;Content-Type: text/html&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;lt;h1&amp;gt;403 Forbidden&amp;lt;/h1&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;);
-
+&lt;span style=&#34;color: #BC7A00&#34;&gt;        FCGX_FPrintF(stream, &amp;quot;Status: 403 Forbidden\r\nContent-Type: text/html\r\n\r\n&amp;lt;h1&amp;gt;403 Forbidden&amp;lt;/h1&amp;gt;\n&amp;quot;);&lt;/span&gt;
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#define NOTFOUND(stream, filename) \&lt;/span&gt;
-
-        FCGX_FPrintF(stream, &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Status: 404 Not Found&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;Content-Type: text/html&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;lt;h1&amp;gt;404 Not Found&amp;lt;/h1&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;%s&amp;quot;&lt;/span&gt;, filename);
-
+&lt;span style=&#34;color: #BC7A00&#34;&gt;        FCGX_FPrintF(stream, &amp;quot;Status: 404 Not Found\r\nContent-Type: text/html\r\n\r\n&amp;lt;h1&amp;gt;404 Not Found&amp;lt;/h1&amp;gt;\r\n%s&amp;quot;, filename);&lt;/span&gt;
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#define SENDFILE(stream, filename, headers) \&lt;/span&gt;
-
-        FCGX_FPrintF(stream, &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;%sX-LIGHTTPD-send-file: %s&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;, headers, filename);
-
-
+&lt;span style=&#34;color: #BC7A00&#34;&gt;        FCGX_FPrintF(stream, &amp;quot;%sX-LIGHTTPD-send-file: %s\r\n\r\n&amp;quot;, headers, filename);&lt;/span&gt;
 
 &lt;span style=&#34;color: #BC7A00&#34;&gt;#define EXPIRATION_TIME (int) 60*60*24*30&lt;/span&gt;
 
 
-
-
-
 &lt;span style=&#34;color: #B00040&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color: #0000FF&#34;&gt;genheaders&lt;/span&gt; (&lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt; mybuffer, &lt;span style=&#34;color: #B00040&#34;&gt;size_t&lt;/span&gt; bufferlen, &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt; file)
-
 {
-
         &lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt; timebuf[&lt;span style=&#34;color: #666666&#34;&gt;32&lt;/span&gt;]; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//possibly unsafe   &lt;/span&gt;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt; lastmodbuf[&lt;span style=&#34;color: #666666&#34;&gt;32&lt;/span&gt;]; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//possibly unsafe&lt;/span&gt;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt; etag[&lt;span style=&#34;color: #666666&#34;&gt;128&lt;/span&gt;]; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//possibly unsafe&lt;/span&gt;
-
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;struct&lt;/span&gt; stat statbuf;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;time_t&lt;/span&gt; exp;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;time_t&lt;/span&gt; lastmod;  
-
         buffer &lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;etag_raw;
-
         buffer &lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;etag_ok ;
-
  
-
         &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//create buffers for Etag&lt;/span&gt;
-
         etag_raw &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; buffer_init();
-
         etag_ok &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; buffer_init();
-
                 
-
         &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;// Stat the file&lt;/span&gt;
-
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt; (stat (file, &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;statbuf) &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;)
-
         {
-
                 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;-1&lt;/span&gt;;
-
         }
 
-
-
         &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;// Clear the buffer&lt;/span&gt;
-
         memset (mybuffer, &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;, bufferlen);
 
-
-
         &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;// Get the local time&lt;/span&gt;
-
         exp &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; time (&lt;span style=&#34;color: #008000&#34;&gt;NULL&lt;/span&gt;) &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; EXPIRATION_TIME;
-
         lastmod &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; statbuf.st_mtime;
 
-
-
         strftime (timebuf, (&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;sizeof&lt;/span&gt; (timebuf) &lt;span style=&#34;color: #666666&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;sizeof&lt;/span&gt; (&lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt;)) &lt;span style=&#34;color: #666666&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;%a, %d %b %Y %H:%M:%S GMT&amp;quot;&lt;/span&gt;, gmtime (&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;(exp)));
-
         strftime (lastmodbuf, (&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;sizeof&lt;/span&gt; (lastmodbuf) &lt;span style=&#34;color: #666666&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;sizeof&lt;/span&gt; (&lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt;)) &lt;span style=&#34;color: #666666&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;%a, %d %b %Y %H:%M:%S GMT&amp;quot;&lt;/span&gt;, gmtime (&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;(lastmod)));
 
-
-
         etag_create(etag_raw, &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;statbuf, ETAG_USE_SIZE);
-
         etag_mutate(etag_ok, etag_raw);
-
-
 
         buffer_free(etag_raw);
 
-
-
         snprintf (mybuffer, bufferlen, &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Cache-Control: max-age=%d&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;ETag: \%s&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;Expires: %s&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;Last-Modified: %s&lt;/span&gt;&lt;span style=&#34;color: #BB6622; font-weight: bold&#34;&gt;\r\n&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;, EXPIRATION_TIME, etag_ok&lt;span style=&#34;color: #666666&#34;&gt;-&amp;gt;&lt;/span&gt;ptr, timebuf , lastmodbuf);
-
-
 
         buffer_free(etag_ok);
 
-
-
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;;
-
 }
-
  
-
 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color: #B00040&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color: #0000FF&#34;&gt;doit&lt;/span&gt;(&lt;span style=&#34;color: #B00040&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;a){
-
         FCGX_Request request;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;int&lt;/span&gt; rc;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;filename;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt; extraheaders[&lt;span style=&#34;color: #666666&#34;&gt;192&lt;/span&gt;];
-
         &lt;span style=&#34;color: #B00040&#34;&gt;int&lt;/span&gt; r;
-
-
 
         FCGX_InitRequest(&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;request, &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;, FCGI_FAIL_ACCEPT_ON_INTR);
 
-
-
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;while&lt;/span&gt;(&lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;){
-
                 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//Some platforms require accept() serialization, some don&amp;#39;t. The documentation claims it to be thread safe&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//              pthread_mutex_lock(&amp;amp;accept_mutex);&lt;/span&gt;
-
                 rc &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; FCGX_Accept_r(&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;request);
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//              pthread_mutex_unlock(&amp;amp;accept_mutex);&lt;/span&gt;
 
-
-
                 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;(rc &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;)
-
                         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;break&lt;/span&gt;;
 
-
-
         &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//get the filename&lt;/span&gt;
-
                 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;((filename &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; FCGX_GetParam(&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;SCRIPT_FILENAME&amp;quot;&lt;/span&gt;, request.envp)) &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #008000&#34;&gt;NULL&lt;/span&gt;){
-
                         FORBIDDEN(request.out);
-
         &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//don&amp;#39;t try to open directories&lt;/span&gt;
-
                 }&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;(filename[strlen(filename)&lt;span style=&#34;color: #666666&#34;&gt;-1&lt;/span&gt;] &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;){
-
                         FORBIDDEN(request.out);
-
         &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//open the file&lt;/span&gt;
-
                 }&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;((r &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; genheaders (extraheaders, &lt;span style=&#34;color: #666666&#34;&gt;191&lt;/span&gt;, filename)) &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;){
-
                         NOTFOUND(request.out, filename);
-
         &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;//no error, serve it&lt;/span&gt;
-
                 }&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;else&lt;/span&gt;{
-
                         SENDFILE(request.out, filename, extraheaders);
-
                 }
 
-
-
                 FCGX_Finish_r(&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;request);
-
         }
-
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #008000&#34;&gt;NULL&lt;/span&gt;;
-
 }
 
-
-
 &lt;span style=&#34;color: #B00040&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color: #0000FF&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color: #B00040&#34;&gt;void&lt;/span&gt;){
-
         &lt;span style=&#34;color: #B00040&#34;&gt;int&lt;/span&gt; i,j,thread_count;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;pthread_t&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt; id;
-
         &lt;span style=&#34;color: #B00040&#34;&gt;char&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt; env_val;
-
-
 
         FCGX_Init();
 
-
-
         thread_count &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; THREAD_COUNT;
-
         env_val &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; getenv(&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;PHP_FCGI_CHILDREN&amp;quot;&lt;/span&gt;);
-
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt; (env_val &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #008000&#34;&gt;NULL&lt;/span&gt;) {
-
                 j &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; atoi(env_val);
-
                 &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt; (j &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;) {
-
                         thread_count &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; j;
-
                 };
-
         };
-
-
 
         id &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; malloc(&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;sizeof&lt;/span&gt;(&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;id) &lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt; thread_count);
 
-
-
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;for&lt;/span&gt; (i &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; thread_count; i&lt;span style=&#34;color: #666666&#34;&gt;++&lt;/span&gt;) {
-
                 pthread_create(&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;id[i], &lt;span style=&#34;color: #008000&#34;&gt;NULL&lt;/span&gt;, doit, &lt;span style=&#34;color: #008000&#34;&gt;NULL&lt;/span&gt;);
-
         }
 
-
-
         doit(&lt;span style=&#34;color: #008000&#34;&gt;NULL&lt;/span&gt;);
-
         free(id);  
-
         &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;;  
-
 }
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -409,150 +226,91 @@ Jakob - Steven - me - Kenny&lt;/p&gt;
     
     <item>
       <title>I&#39;m not going to Fosdem 2008</title>
-      <link>http://localhost:1313/post/im_not_going_to_fosdem_2008/</link>
+      <link>http://dieter.plaetinck.be/post/im_not_going_to_fosdem_2008/</link>
       <pubDate>Tue, 12 Feb 2008 20:37:50 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/im_not_going_to_fosdem_2008/</guid>
+      <guid>37 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I wish I could put this on my webpage :&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
-
+&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
 &lt;!--more--&gt;&lt;br /&gt;
-
 Fosdem looks interesting again : talks about iogrind , scons , cakephp , virtualbox , openAFS , ...&lt;br /&gt;
-
 No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms would have interested me too ( mostly gtk/glib for the latter )&lt;/p&gt;
-
 &lt;p&gt;Oh and about the reason I&#39;m not going?  The &lt;a href=&#34;http://corporate.netlog.com&#34;&gt;company&lt;/a&gt; is taking us to &lt;a href=&#34;http://www.valdisole.it/&#34;&gt;Val di Sole&lt;/a&gt; where we will ski, snowboard and apres-ski for 4 days !  w00t ! This kicks even more ass then Fosdem :P&lt;/p&gt;
-
 &lt;p&gt;PS : I&#39;m considering going to &lt;a href=&#34;http://lac.linuxaudio.org/&#34;&gt;LAC 2008&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Nagios monitoring in your desktop panel aka Xfce Genmon panel plugin rules!</title>
-      <link>http://localhost:1313/post/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</link>
+      <link>http://dieter.plaetinck.be/post/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</link>
       <pubDate>Sun, 05 Aug 2007 16:42:46 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</guid>
+      <guid>29 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;FOSS is written by users, for users, and what I&#39;ve been doing/experiencing this afternoon is a perfect example of that.&lt;!--more--&gt;&lt;br /&gt;
-
 First of all take &lt;a href=&#34;http://www.xfce.org&#34;&gt;Xfce&lt;/a&gt;: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the &lt;a href=&#34;http://goodies.xfce.org/&#34;&gt;Xfce Goodies project&lt;/a&gt;, more specifically the &lt;a href=&#34;http://goodies.xfce.org/projects/panel-plugins/start&#34;&gt;Panel Plugins&lt;/a&gt; page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.&lt;/p&gt;
-
 &lt;p&gt;Now, for &lt;a href=&#34;http://corporate.netlog.com&#34;&gt;work&lt;/a&gt; I need to keep an eye on &lt;a href=&#34;http://www.nagios.org/&#34;&gt;Nagios&lt;/a&gt;, (Nagios is a great FOSS host/service monitoring web application) but I don&#39;t like periodically checking the same webpage over and over again:&lt;br /&gt;
-
 news should come to me, not the other way around.&lt;/p&gt;
-
 &lt;p&gt;Now, I had already found an excellent &lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/3607&#34;&gt;Nagios Checker Firefox extension&lt;/a&gt; but then I would need to have Firefox open all the time, which I don&#39;t.&lt;br /&gt;
-
 So at first I wanted to write my own panel plugin that would let me allow seeing the most important Nagios status information but then I came across the coolest Xfce panel plugin of them all: the &lt;a href=&#34;http://goodies.xfce.org/projects/panel-plugins/xfce4-genmon-plugin&#34;&gt;Genmon plugin&lt;/a&gt;.  This is a plugin which you can add as many times to your panel as you want, and for each instance you can configure a script that it should run, and the frequency of it.  Like this you can create your own simple scripts (in php, bash, perl, python,...) which generate content (eg: text and images to be shown on the panel, tooltip, on-click action etc) and the Genmon plugin takes care of the rest.&lt;/p&gt;
-
 &lt;p&gt;This is exactly what I&#39;ve done and in less then an hour everything was working just like I wanted :-)&lt;br /&gt;
-
 Well, not exactly: apparently the on-click action is bound to the image you show.  I would rather show no image at all and just show text with an on-click action bound to it, but this seems not possible so I had to use an icon.  This made my panel a bit larger (as text is shown beneath the icon, you can&#39;t configure it to place it next to it) Also it would be neat if I could work with colors: red for hosts who are down, green for those who are up etc.  Some details I could achieve if I would make my hands dirty, but for now I don&#39;t have time to enhance the Genmon plugin or to write my own, so I just live with it ;-)&lt;/p&gt;
-
 &lt;p&gt;Anyways, enough talk.&lt;/p&gt;
-
 &lt;p&gt;Here is a screenshot:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/files/xfce_genmon_nagios_script.png&#34;/&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/xfce_genmon_nagios_script.png&#34;/&gt;&lt;/p&gt;
 &lt;p&gt;The cursor is not on the screenshot but I was obviously hoovering over the panel plugin to show the tooltip.&lt;br /&gt;
-
 You can also see at the left the notes plugin and the mail checker plugin and at the right the volume control, trash applet, battery monitor, systray, clock and action button(s) panel plugins.&lt;/p&gt;
-
 &lt;p&gt;And here is the source code of my bash script&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
 
-
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# Written by Dieter Plaetinck&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# Licensed under the GPL V3&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# See gnu.org/licenses/gpl-3.0.html&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
-
 &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# works for Nagios 2.x No idea about 3.x &lt;/span&gt;
 
 
-
-
-
 &lt;span style=&#34;color: #19177C&#34;&gt;URL&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;https://&amp;lt;yourhost&amp;gt;/nagios/cgi-bin/tac.cgi
-
 &lt;span style=&#34;color: #19177C&#34;&gt;USERNAME&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;username
-
 &lt;span style=&#34;color: #19177C&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;password
 
-
-
 &lt;span style=&#34;color: #19177C&#34;&gt;PAGE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;curl -s -k -u &lt;span style=&#34;color: #19177C&#34;&gt;$USERNAME&lt;/span&gt;:&lt;span style=&#34;color: #19177C&#34;&gt;$PASSWORD&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$URL&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #19177C&#34;&gt;HOSTS_DOWN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;           &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;hoststatustypes=4&amp;#39; class=&amp;#39;hostHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 20-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #19177C&#34;&gt;HOSTS_UNREACHABLE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;    &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;hoststatustypes=8&amp;#39; class=&amp;#39;hostHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 20-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #19177C&#34;&gt;HOSTS_UP&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;             &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;hoststatustypes=2&amp;#39; class=&amp;#39;hostHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 20-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #19177C&#34;&gt;HOSTS_PENDING&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;        &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;hoststatustypes=1&amp;#39; class=&amp;#39;hostHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 20-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
 
-
-
 &lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_CRIT&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;        &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=16&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 23-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_WARN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;        &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=4&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 23-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_UNKNOWN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;     &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=8&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 23-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_OK&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;          &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=2&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 23-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_PENDING&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;     &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; | grep &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=1&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt; | awk &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt; | cut -c 23-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
 &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;img&amp;gt;scripts/nagios.gif&amp;lt;/img&amp;gt;&amp;quot;&lt;/span&gt;
-
 &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;txt&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_DOWN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_CRIT&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_WARN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;lt;/txt&amp;gt;&amp;quot;&lt;/span&gt;
-
 &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;tool&amp;gt;Hosts: &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_DOWN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; down / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_UNREACHABLE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; unreachable / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_UP&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; up / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_PENDING&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; pending&lt;/span&gt;
-
 &lt;span style=&#34;color: #BA2121&#34;&gt;Services: &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_CRIT&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; crit / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_WARN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; warn / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_UNKNOWN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; unknown / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_OK&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; ok / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_PENDING&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; pending&amp;lt;/tool&amp;gt;&amp;quot;&lt;/span&gt;
-
 &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;click&amp;gt;firefox https://&amp;lt;yourhost&amp;gt;/nagios&amp;lt;/click&amp;gt;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;At my company we use https, If you use http I don&#39;t know if the authentication method is the same. If not check the -d flag for curl.&lt;br /&gt;
-
 The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)&lt;/p&gt;
-
 &lt;p&gt;PS: does anyone know a good Apple Keychain- like daemon that I can query from other scripts to receive passwords? Preferably GTK ones that do not pull in Gnome deps.  So I don&#39;t have to store passwords in cleartext... (and I need this anyway for other purposes :p)&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>I just became a &#34;System &amp; Network Architect&#34;</title>
-      <link>http://localhost:1313/post/i_just_became_a_system_and_network_architect/</link>
+      <link>http://dieter.plaetinck.be/post/i_just_became_a_system_and_network_architect/</link>
       <pubDate>Tue, 17 Apr 2007 20:11:07 -0400</pubDate>
       
-      <guid>http://localhost:1313/post/i_just_became_a_system_and_network_architect/</guid>
+      <guid>12 at http://dieter.plaetinck.be</guid>
       <description>&lt;p&gt;I just signed my contract at &lt;a href=&#34;http://incrowd.be/&#34;&gt;Incrowd&lt;/a&gt;, the company behind sites such as &lt;a href=&#34;http://redbox.be/&#34;&gt;redbox&lt;/a&gt; and &lt;a href=&#34;http://www.facebox.com/&#34;&gt;facebox&lt;/a&gt;.&lt;/p&gt;
-
 &lt;p&gt;I will be working there in a team of all young, enthusiastic people.  Among those, some people are already familiar to me:  my old friend &lt;a href=&#34;http://www.lievendekeyser.net/&#34;&gt;Lieven&lt;/a&gt; (we&#39;ve played in a band together but kept in touch afterwards) and my ex-classmate &lt;a href=&#34;http://www.jurriaanpersyn.com/&#34;&gt;Jurriaan&lt;/a&gt;.  Both of them love their jobs btw :-).&lt;/p&gt;
-
 &lt;p&gt;My official title is &#34;System &amp;amp; Network architect&#34;.&lt;br /&gt;
-
 Things I will be doing there is &lt;!--more--&gt; keeping the &#34;lower level&#34; (hardware, network, databases) secure, stable and performing well.&lt;br /&gt;
-
 There will be quite some variety: working together with the dev-team, optimizing where possible, but also testing fancy hardware and software setups, hacking some code, deciding which routes we&#39;ll take and administering the systems.&lt;br /&gt;
-
 Of course it will be in a &lt;a href=&#34;http://en.wikipedia.org/wiki/Free_software&#34;&gt;sane&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Open_standard&#34;&gt;environment&lt;/a&gt; :-)  Otherwise I would never have signed.&lt;/p&gt;
-
-&lt;p&gt;Those who know me well will see that all this stuff is actually the kind of things I&#39;m messing with in my spare time (among others of course), so these are things that I&#39;m really interested in.  I&#39;m anxious to start, I even already have a few ideas in my head for stuff I want to check/propose, but of course I&#39;ll have to wait a bit:  I have to finish my &lt;a href=&#34;http://localhost:1313/masterproef&#34;&gt;thesis&lt;/a&gt;, then exams, then (hopefully ;-) ) graduate and after a small vacation my term starts.&lt;/p&gt;
-
+&lt;p&gt;Those who know me well will see that all this stuff is actually the kind of things I&#39;m messing with in my spare time (among others of course), so these are things that I&#39;m really interested in.  I&#39;m anxious to start, I even already have a few ideas in my head for stuff I want to check/propose, but of course I&#39;ll have to wait a bit:  I have to finish my &lt;a href=&#34;http://dieter.plaetinck.be/masterproef&#34;&gt;thesis&lt;/a&gt;, then exams, then (hopefully ;-) ) graduate and after a small vacation my term starts.&lt;/p&gt;
 &lt;p&gt;PS: We (I can say this now ;-) are still hiring, check our &lt;a href=&#34;http://incrowd.be/jobs.html&#34;&gt;jobs&lt;/a&gt; page.&lt;/p&gt;
-
 &lt;p&gt;UPDATE: Incrowd &lt;a href=&#34;http://corporate.netlog.com/blog/2007/04/facebox-becomes-netlog/&#34;&gt;has become&lt;/a&gt; &lt;a href=&#34;http://nl.netlog.com/&#34;&gt;Netlog&lt;/a&gt; &lt;/p&gt;
 </description>
     </item>

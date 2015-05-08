@@ -7,18 +7,18 @@
 	<title>Darktable: a magnificent photo manager and editor &middot; Dieter&#39;s blog</title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<!--[if lt IE 9]>
-	<script src="http://localhost:1313//js/html5.js"></script>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
 	<![endif]-->
     
-    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 
     <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
 	
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 
@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter&#39;s blog</a></h1>
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text">Search</a>
@@ -108,11 +108,11 @@
 			</span>
 		</div>
 
-        <h1 class="entry-title"><a href="http://localhost:1313/post/darktable_magnificent_photo_manager_editor/">Darktable: a magnificent photo manager and editor</a></h1>
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/darktable_magnificent_photo_manager_editor/">Darktable: a magnificent photo manager and editor</a></h1>
 
 		<div class="entry-meta">
 			<span class="entry-date">
-				<a href="http://localhost:1313/post/darktable_magnificent_photo_manager_editor/" rel="bookmark">
+				<a href="http://dieter.plaetinck.be/post/darktable_magnificent_photo_manager_editor/" rel="bookmark">
 					<time class="entry-date" datetime="2014-08-12 08:36:36 -0400 EDT">
 						August 12, 2014
 					</time>
@@ -125,116 +125,60 @@
 	<div class="entry-content">
 		A post about the magnificent <a href="http://darktable.org/">darktable</a> photo manager/editor and why I'm abandoning <a href="/pixie.html">pixie</a>
 
-
-
 <!--more-->
-
 <br/>
-
 <br/>
-
-
 
 <p>
-
 When I wrote <a href="/pixie.html">pixie</a>, I was aware of <a href="http://darktable.org/">darktable</a>.
-
 It looked like a neat application with potential to be pretty much what I was looking for, although it
-
 also looked complicated, mainly due to terminology like "darkroom" and "lighttable", which was a bit off-putting to me
-
 and made me feel like the application was meant for photo professionals and probably wouldn't work well with
-
 the ideals of a techie with some purist views on how to manage files and keep my filesystems clean.
-
 </p> 
-
 <p> 
-
 Basically I didn't want to give the application a proper chance and then rationalized the decision after I made it.
-
 I'm sure psychologists have a term for this behavior.  I try to be aware of these cases and not to fall in the trap,
-
 but this time I was very aware of it and still proceeded, but I think I had a reasonable excuse.
-
 I wanted an app that behaves exactly how I like, I wanted to play with angularjs, it seemed like a fun learning exercise to implement a full-stack program backed by a Go api server and an angularjs interface, with some keybind features and vim-like navigation sprinkled on top.
-
 </p>
-
 <p>
-
 Pixie ended up working, but I got fed up with some angularjs issues, slow js performance and a list of to-do's i would need to address before i
-
 would consider pixie feature complete, so only as of a few days ago I started giving darktable the chance it had deserved from the beginning.
-
 <br/>
-
 As it turns out, darktable is actually a fantastic application, and despite some imperfections, the difference is clear enough for me to abandon pixie.</p>
-
 <center>
-
 <a href="/files/darktable-lighttable.png">
-
 <img src="/files/darktable-lighttable.png" width="30%"/>
-
 </a>
-
 </center>
-
 <p>
-
 Here's why I like it:
-
 <ol>
-
 <li>
-
 It stays true to my ideals:  It doesn't modify your files at all, this is a must for easily synchronizing photo archives with each other and with devices.
-
 You can tag, assign metadata, create edits, etc. and re-size on export.  It stores metadata in a simple sqlite database, and also in xmp files which it puts along with the original files, but luckily you can easily ignore those while syncing.  (I have yet to verify whether you can adjust dates or set GPS info without modifying the actual files, but I had no solution for that either)
-
 </li>
-
 <li>basically, it's just well thought out and works well.  the terminology thing is a non-issue.  Just realize that lighttable means the set of pictures in your collection you want to work with, darkroom is the editor where you edit the image, and film roll is a directory with imported images.   Everything else is intuitive</li>
-
 <li>It has decent tag editing features, and a powerful mechanism to build a selection of images using a variety of criteria using exif data, tags, GPS info, labels, etc. You can make duplicates of an image and make different edits, and treat them as images of their own</li>
-
 <li>It has <a href="http://www.darktable.org/usermanual/ch06s03.html.php">pretty extensive key binding options</a>, and even provides a <a href="http://darktable.org/redmine/projects/darktable/wiki/LuaUsage">lua api</a> so you can hook in your own plugins.  People are working on a bunch of <a href="http://darktable.org/redmine/projects/darktable/wiki/LuaScripts">scripts</a> already.</li>
-
 <li>It's fast. Navigating a 33k file archive, adjusting thumbnail sizes on the fly, iterating fast, works well</li>
-
 <li>It has good support for non-destructive editing.  It has a variety of editing possibilities, as if it was commercial software</li>
-
 <li>It has <a href="http://www.darktable.org/usermanual/index.html.php">complete documentation</a>, a <a href="http://www.darktable.org/category/blog/">great blog</a> with plenty of <a href="http://www.darktable.org/tag/tutorial/">tutorial articles</a>, and <a href="https://www.youtube.com/playlist?list=PLmvlUro_Up1NBX7VK8UUuyWo1B468zEA0">tutorial videos</a></li>
-
 </ol>
-
 </p>
-
 <center>
-
 <a href="/files/darktable-darkroom.png">
-
 <img src="/files/darktable-darkroom.png" width="30%"/>
-
 </a>
-
 </center>
-
 <p>
-
 I did notice some bugs (including a few crashes), but there's always a few developers and community members active, on IRC and the bug tracker, so it's pretty active project and I'm confident/hopeful my issues will be resolved soon.
-
 <!--
-
 Finally I'd love to declare all my exports in a config file (collect files with these tags, export re-sized versions to directory X, etc) rather then this being manual, explicit actions. -->
-
 <br/>I also have a few more ideas for features that would make it closer to my ideals, but as it stands, darktable is already a great application and I'm happy I can deprecate pixie at this point.
-
 I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a> that automatically does all tag assignments in darktable based on the pixie information in tmsu, to make the transition friction free.
-
 </p>
-
 
 
 	</div>
@@ -242,7 +186,7 @@ I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a
 	<footer class="entry-meta">
 		<span class="tag-links">		
 			
-                <a href="http://localhost:1313//tags/photos/index.html" rel="tag">photos</a>
+                <a href="http://dieter.plaetinck.be/tags/photos/index.html" rel="tag">photos</a>
             
 		</span>
 	</footer>
@@ -274,13 +218,13 @@ I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a
     <br/>
 	<h1 class="widget-title">Popular tags</h1>
 
-    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
     24
     <br/>
-    <a href="http://localhost:1313/tags/devops">devops</a>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
     22
     <br/>
-    <a href="http://localhost:1313/tags/golang">golang</a>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
     8
     <br/>
     <br/>
@@ -290,31 +234,31 @@ I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a
 
     
         
-            <a href="http://localhost:1313/tags/arch">arch</a>
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
             19
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/bash">bash</a>
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
             15
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
             8
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/conf">conf</a>
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
             9
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
             1
             <br/>
         
@@ -323,25 +267,25 @@ I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a
         
     
         
-            <a href="http://localhost:1313/tags/drums">drums</a>
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/foss">foss</a>
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
             45
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/git">git</a>
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
             3
             <br/>
         
@@ -350,31 +294,31 @@ I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a
         
     
         
-            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/life">life</a>
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
             32
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/linux">linux</a>
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
             20
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/lua">lua</a>
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mail">mail</a>
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
             1
             <br/>
         
@@ -383,97 +327,97 @@ I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a
         
     
         
-            <a href="http://localhost:1313/tags/music">music</a>
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/n900">n900</a>
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/perf">perf</a>
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
             10
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/photos">photos</a>
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/php">php</a>
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
             11
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/python">python</a>
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/travel">travel</a>
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
             9
             <br/>
         
@@ -497,9 +441,6 @@ I even <a href="https://github.com/Dieterbe/tmsu-to-darktable">wrote a script</a
 		</footer>
 	</div>
 
-	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
 </html>

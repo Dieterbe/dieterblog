@@ -7,18 +7,18 @@
 	<title>Graph-Explorer: A graphite dashboard unlike any other &middot; Dieter&#39;s blog</title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<!--[if lt IE 9]>
-	<script src="http://localhost:1313//js/html5.js"></script>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
 	<![endif]-->
     
-    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 
     <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
 	
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 
@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter&#39;s blog</a></h1>
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text">Search</a>
@@ -108,11 +108,11 @@
 			</span>
 		</div>
 
-        <h1 class="entry-title"><a href="http://localhost:1313/post/graph-explorer-a-graphite-dashboard-unlike-any-other/">Graph-Explorer: A graphite dashboard unlike any other</a></h1>
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/graph-explorer-a-graphite-dashboard-unlike-any-other/">Graph-Explorer: A graphite dashboard unlike any other</a></h1>
 
 		<div class="entry-meta">
 			<span class="entry-date">
-				<a href="http://localhost:1313/post/graph-explorer-a-graphite-dashboard-unlike-any-other/" rel="bookmark">
+				<a href="http://dieter.plaetinck.be/post/graph-explorer-a-graphite-dashboard-unlike-any-other/" rel="bookmark">
 					<time class="entry-date" datetime="2013-01-09 09:25:36 -0400 -0400">
 						January 9, 2013
 					</time>
@@ -124,76 +124,40 @@
 	
 	<div class="entry-content">
 		The above sounds like a marketing phrase and I'm just as skeptical of them as you, but I feel it's in place. Not because GE is necessarily better, but it's certainly <i>different</i>.
-
 <!--more-->
-
 <br/>
-
 <p>
-
 In web operations, mostly when troubleshooting but also for capacity planning,
-
 I often find myself having very specific information needs from my time-series, and these information needs vary a lot over time.
-
 This usually means I need to correlate or compare things that no one anticipated.  Things that relate to specific machines, specific services across machines,
-
 or a few specific metrics of which only the ops team knows how they are related and cross various scopes (application, network, system, etc).
-
 <br/>I should have an easy way to filter metrics by any information in the metric's name or values.
-
 <br/>I should be able to group metrics into graphs the way I want. (example: when viewing filesystem usage of servers,
-
 I should be able to group by server (one graph per server listing the filesystems, but also by mountpoint to compare servers on one graph).
-
 <br/>I should be able -with minimal effort- to view metrics by their gauge/count value,
-
 but also by their rate of change and where appropriate, as a percentage of a maximum (like diskspace used).
-
 <br/>It should be trivial to manipulate the graph interactively (toggling things on/off, switching between lines/stacked mode, inspecting datapoints, zooming, ...).
-
 <br/>It should show me all events, colorcoded by type, with text description, and interactive so that it can use hyperlinks.
-
 <br/>And most of all, the code should be as simple as possible and it should be easy to get running.
-
 </p>
-
 <a href="https://github.com/vimeo/graph-explorer"><img width="50%" height="50%" src="/files/blog/github/vimeo/graph-explorer/screenshot.png"/></a>
-
 <p>
-
 Dashboards which show specific predefined KPI's (this covers most graphite dashboards) are clearly unsuitable for this use case.
-
 Template-based "metric exploration" dashboards like cacti and ganglia are in my experience way too limited.
-
 Graph composing dashboards (like the stock graphite one, or graphiti) require much manual work to get the graph you want.
-
 I couldn't find anything even close to what I wanted, so I started <a href="https://github.com/vimeo/graph-explorer">Graph-Explorer</a>.
-
 </p>
-
 <p>
-
 The approach I'm taking is using plugins which add metadata to metrics (tags for server, service, mountpoint, interface name, ...),
-
 having them define how to render as a count, as a rate, as a percent of some max allowed value (or a metric containing the max),
-
 and providing a query language which allow you to match/filter metrics, group them into graphs by tag, and render them how you want them.
-
 The plugins promote standardized metric naming and reuse across organisations, not in the least because most correspond to plugins for the
-
 <a href="https://github.com/BrightcoveOS/Diamond">Diamond monitoring agent</a>.
-
 </p>
-
 <p>Furthermore, because it uses <a href="/client-side-rendered-graphite-charts-for-all.html">my graphitejs plugin</a> (which now btw supports flot as a backend for
-
 fast canvas-based graphs and annotated events from <a href="/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact.html">anthracite</a>)
-
  the manual interactions mentioned earlier are supported or at least on the roadmap.
-
 </p>
-
-
 
 <a href="https://github.com/vimeo/graph-explorer">Graph Explorer</a> is not yet where I want it, but it's already a very useful tool at Vimeo.
 
@@ -202,9 +166,9 @@ fast canvas-based graphs and annotated events from <a href="/anthracite-event-da
 	<footer class="entry-meta">
 		<span class="tag-links">		
 			
-                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+                <a href="http://dieter.plaetinck.be/tags/devops/index.html" rel="tag">devops</a>
             
-                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+                <a href="http://dieter.plaetinck.be/tags/monitoring/index.html" rel="tag">monitoring</a>
             
 		</span>
 	</footer>
@@ -236,13 +200,13 @@ fast canvas-based graphs and annotated events from <a href="/anthracite-event-da
     <br/>
 	<h1 class="widget-title">Popular tags</h1>
 
-    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
     24
     <br/>
-    <a href="http://localhost:1313/tags/devops">devops</a>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
     22
     <br/>
-    <a href="http://localhost:1313/tags/golang">golang</a>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
     8
     <br/>
     <br/>
@@ -252,31 +216,31 @@ fast canvas-based graphs and annotated events from <a href="/anthracite-event-da
 
     
         
-            <a href="http://localhost:1313/tags/arch">arch</a>
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
             19
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/bash">bash</a>
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
             15
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
             8
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/conf">conf</a>
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
             9
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
             1
             <br/>
         
@@ -285,25 +249,25 @@ fast canvas-based graphs and annotated events from <a href="/anthracite-event-da
         
     
         
-            <a href="http://localhost:1313/tags/drums">drums</a>
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/foss">foss</a>
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
             45
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/git">git</a>
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
             3
             <br/>
         
@@ -312,31 +276,31 @@ fast canvas-based graphs and annotated events from <a href="/anthracite-event-da
         
     
         
-            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/life">life</a>
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
             32
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/linux">linux</a>
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
             20
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/lua">lua</a>
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mail">mail</a>
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
             1
             <br/>
         
@@ -345,97 +309,97 @@ fast canvas-based graphs and annotated events from <a href="/anthracite-event-da
         
     
         
-            <a href="http://localhost:1313/tags/music">music</a>
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/n900">n900</a>
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/perf">perf</a>
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
             10
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/photos">photos</a>
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/php">php</a>
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
             11
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/python">python</a>
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/travel">travel</a>
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
             9
             <br/>
         
@@ -459,9 +423,6 @@ fast canvas-based graphs and annotated events from <a href="/anthracite-event-da
 		</footer>
 	</div>
 
-	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
 </html>

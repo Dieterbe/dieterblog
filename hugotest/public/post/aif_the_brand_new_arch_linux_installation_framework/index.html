@@ -7,18 +7,18 @@
 	<title>AIF: the brand new Arch Linux Installation Framework &middot; Dieter&#39;s blog</title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<!--[if lt IE 9]>
-	<script src="http://localhost:1313//js/html5.js"></script>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
 	<![endif]-->
     
-    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 
     <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
 	
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 
@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter&#39;s blog</a></h1>
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text">Search</a>
@@ -108,11 +108,11 @@
 			</span>
 		</div>
 
-        <h1 class="entry-title"><a href="http://localhost:1313/post/aif_the_brand_new_arch_linux_installation_framework/">AIF: the brand new Arch Linux Installation Framework</a></h1>
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/aif_the_brand_new_arch_linux_installation_framework/">AIF: the brand new Arch Linux Installation Framework</a></h1>
 
 		<div class="entry-meta">
 			<span class="entry-date">
-				<a href="http://localhost:1313/post/aif_the_brand_new_arch_linux_installation_framework/" rel="bookmark">
+				<a href="http://dieter.plaetinck.be/post/aif_the_brand_new_arch_linux_installation_framework/" rel="bookmark">
 					<time class="entry-date" datetime="2008-11-17 11:45:25 -0400 -0400">
 						November 17, 2008
 					</time>
@@ -124,57 +124,31 @@
 	
 	<div class="entry-content">
 		<p>Recently I started thinking about writing my own automatic installer that would set up my system exactly the way I want.<br />
-
 (See <a href="/rethinking_the_backup_paradigm_a_higher-level_approach" title="/rethinking_the_backup_paradigm_a_higher-level_approach">rethinking_the_backup_paradigm_a_higher-level...</a>)</p>
-
 <p>I looked at the official Arch install scripts to see if I could reuse parts of their code, but unfortunately the code was just one big chunk of bash code with the main program and "flow control" (you must first do this step, then that), UI-code (dialogs etc) and backend logic (create filesystems, ...) all mangled up and mixed very closely together.<br />
-
 Functionality-wise the installer works fine, but I guess the code behind it is the result of years of adding features and quick fixes without refactoring, making it impossible to reuse any of the code.</p>
-
 <p>So I started to write <a href="http://github.com/Dieterbe/aif/">AIF: the Arch Linux Installation Framework</a><!--more--> (actually it had another name until recently), with these 3 goals in mind:</p>
-
 <ul>
-
 <li>Make all code modular, reusable etc.  Everyone should be able to add/change/remove change certain aspects of an installation procedure easily or build custom installation relying on existing code where appropriate</li>
-
 <li>Port /arch/setup and /arch/quickinst, so you get (almost) the same installer as before, but using totally refactored code.</li>
-
 <li>Write my own automatic procedure for my own custom needs</li>
-
 </ul>
-
 <p>Right now most of the hard work is done and the ported version of /arch/setup seems to work more or less.<br />
-
 I've posted to the arch-general mailing list and the responses I got were very positive.<br />
-
 This is what Aaron Griffin (lead developer of Arch Linux) said:</p>
-
 <blockquote><p>
-
 My honest opinion is that this is awesome. You're the reason I love open source 8)</p>
-
 <p>That said, we haven't release a 2.6.27 ISO just yet, and I need to go<br />
-
 in panic mode and get it out this weekend. But for the next release,<br />
-
 or even a smaller release before then, I'd *love* to incorporate this.</p>
-
 <p>(...)</p>
-
 <p>Just letting you know: I'm not silent because I don't care. I'm silent<br />
-
 because I'm watching and drooling 8)
-
 </p></blockquote>
-
 <p>You can read the whole thread here: <a href="http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-td20256427.html" title="http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-td20256427.html">http://www.nabble.com/Fifa:-Flexible-Installer-Framework-for-Arch-linux-...</a></p>
-
 <p>I've also built <a href="http://aur.archlinux.org/packages.php?SeB=m&amp;K=Dieter_be">packages</a> to make it easy to install on a current installcd.  The package also comes with a <a href="http://github.com/Dieterbe/aif/tree/master/README">readme</a> and <a href="http://github.com/Dieterbe/aif/tree/master/HOWTO">howto</a> that explain how to install and use AIF.</p>
-
 <p>Right now I encourage people to try it out.  All known bugs are documented in the TODO file, there are probably more that I didn't discover yet.  But it should work pretty well.<br />
-
 I'm very curious for input on the code/design level as well.</p>
-
 <p>Hopefully the Arch guys can set me up with a bugtracker and make some sort of announcement to the community to try it out...</p>
 
 	</div>
@@ -182,11 +156,11 @@ I'm very curious for input on the code/design level as well.</p>
 	<footer class="entry-meta">
 		<span class="tag-links">		
 			
-                <a href="http://localhost:1313//tags/linux/index.html" rel="tag">linux</a>
+                <a href="http://dieter.plaetinck.be/tags/linux/index.html" rel="tag">linux</a>
             
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+                <a href="http://dieter.plaetinck.be/tags/foss/index.html" rel="tag">foss</a>
             
-                <a href="http://localhost:1313//tags/arch/index.html" rel="tag">arch</a>
+                <a href="http://dieter.plaetinck.be/tags/arch/index.html" rel="tag">arch</a>
             
 		</span>
 	</footer>
@@ -218,13 +192,13 @@ I'm very curious for input on the code/design level as well.</p>
     <br/>
 	<h1 class="widget-title">Popular tags</h1>
 
-    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
     24
     <br/>
-    <a href="http://localhost:1313/tags/devops">devops</a>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
     22
     <br/>
-    <a href="http://localhost:1313/tags/golang">golang</a>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
     8
     <br/>
     <br/>
@@ -234,31 +208,31 @@ I'm very curious for input on the code/design level as well.</p>
 
     
         
-            <a href="http://localhost:1313/tags/arch">arch</a>
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
             19
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/bash">bash</a>
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
             15
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
             8
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/conf">conf</a>
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
             9
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
             1
             <br/>
         
@@ -267,25 +241,25 @@ I'm very curious for input on the code/design level as well.</p>
         
     
         
-            <a href="http://localhost:1313/tags/drums">drums</a>
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/foss">foss</a>
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
             45
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/git">git</a>
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
             3
             <br/>
         
@@ -294,31 +268,31 @@ I'm very curious for input on the code/design level as well.</p>
         
     
         
-            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/life">life</a>
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
             32
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/linux">linux</a>
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
             20
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/lua">lua</a>
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mail">mail</a>
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
             1
             <br/>
         
@@ -327,97 +301,97 @@ I'm very curious for input on the code/design level as well.</p>
         
     
         
-            <a href="http://localhost:1313/tags/music">music</a>
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/n900">n900</a>
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/perf">perf</a>
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
             10
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/photos">photos</a>
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/php">php</a>
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
             11
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/python">python</a>
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/travel">travel</a>
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
             9
             <br/>
         
@@ -441,9 +415,6 @@ I'm very curious for input on the code/design level as well.</p>
 		</footer>
 	</div>
 
-	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
 </html>

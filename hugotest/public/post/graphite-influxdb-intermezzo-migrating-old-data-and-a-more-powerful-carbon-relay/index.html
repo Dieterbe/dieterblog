@@ -7,18 +7,18 @@
 	<title>Graphite &amp; Influxdb intermezzo: migrating old data and a more powerful carbon relay &middot; Dieter&#39;s blog</title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<!--[if lt IE 9]>
-	<script src="http://localhost:1313//js/html5.js"></script>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
 	<![endif]-->
     
-    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 
     <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
 	
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 
@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter&#39;s blog</a></h1>
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text">Search</a>
@@ -108,11 +108,11 @@
 			</span>
 		</div>
 
-        <h1 class="entry-title"><a href="http://localhost:1313/post/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/">Graphite &amp; Influxdb intermezzo: migrating old data and a more powerful carbon relay</a></h1>
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/">Graphite &amp; Influxdb intermezzo: migrating old data and a more powerful carbon relay</a></h1>
 
 		<div class="entry-meta">
 			<span class="entry-date">
-				<a href="http://localhost:1313/post/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/" rel="bookmark">
+				<a href="http://dieter.plaetinck.be/post/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/" rel="bookmark">
 					<time class="entry-date" datetime="2014-09-20 15:18:32 -0400 EDT">
 						September 20, 2014
 					</time>
@@ -125,112 +125,59 @@
 	<div class="entry-content">
 		<!--more-->
 
-
-
 <h4>Migrating data from whisper into InfluxDB</h4>
 
-
-
 <i>"How do i migrate whisper data to influxdb"</i> is a question that comes up regularly, and I've always replied it should be easy to write a tool
-
 to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:
 
-
-
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">#!/bin/bash</span>
-
 <span style="color: #408080; font-style: italic"># whisper dir without trailing slash.</span>
-
 <span style="color: #19177C">wsp_dir</span><span style="color: #666666">=</span>/opt/graphite/storage/whisper
-
 <span style="color: #19177C">start</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>date -d <span style="color: #BA2121">&#39;sep 17 6am&#39;</span> +%s<span style="color: #008000; font-weight: bold">)</span>
-
 <span style="color: #19177C">end</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>date -d <span style="color: #BA2121">&#39;sep 17 12pm&#39;</span> +%s<span style="color: #008000; font-weight: bold">)</span>
-
 <span style="color: #19177C">db</span><span style="color: #666666">=</span>graphite
-
 <span style="color: #19177C">pipe_path</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>mktemp -u<span style="color: #008000; font-weight: bold">)</span>
-
 mkfifo <span style="color: #19177C">$pipe_path</span>
-
 <span style="color: #008000; font-weight: bold">function</span> influx_updater<span style="color: #666666">()</span> <span style="color: #666666">{</span>
-
     influx-cli -db <span style="color: #19177C">$db</span> -async &lt; <span style="color: #19177C">$pipe_path</span>
-
 <span style="color: #666666">}</span>
-
 influx_updater &amp;
-
 <span style="color: #008000; font-weight: bold">while</span> <span style="color: #008000">read </span>wsp; <span style="color: #008000; font-weight: bold">do</span>
-
   <span style="color: #19177C">series</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>basename <span style="color: #BB6688; font-weight: bold">${</span><span style="color: #19177C">wsp</span>//<span style="color: #BB6622; font-weight: bold">\/</span>/.<span style="color: #BB6688; font-weight: bold">}</span> .wsp<span style="color: #008000; font-weight: bold">)</span>
-
   <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;updating </span><span style="color: #19177C">$series</span><span style="color: #BA2121"> ...&quot;</span>
-
   whisper-fetch.py --from<span style="color: #666666">=</span><span style="color: #19177C">$start</span> --until<span style="color: #666666">=</span><span style="color: #19177C">$end</span> <span style="color: #19177C">$wsp_dir</span>/<span style="color: #19177C">$wsp</span>.wsp | grep -v <span style="color: #BA2121">&#39;None$&#39;</span> | awk <span style="color: #BA2121">&#39;{print &quot;insert into \&quot;&#39;</span><span style="color: #19177C">$series</span><span style="color: #BA2121">&#39;\&quot; values (&quot;$1&quot;000,1,&quot;$2&quot;)&quot;}&#39;</span> &gt; <span style="color: #19177C">$pipe_path</span>
-
 <span style="color: #008000; font-weight: bold">done</span> &lt; &lt;<span style="color: #666666">(</span>find <span style="color: #19177C">$wsp_dir</span> -name <span style="color: #BA2121">&#39;*.wsp&#39;</span> | sed -e <span style="color: #BA2121">&quot;s#</span><span style="color: #19177C">$wsp_dir</span><span style="color: #BA2121">/##&quot;</span> -e <span style="color: #BA2121">&quot;s/.wsp</span><span style="color: #19177C">$/</span><span style="color: #BA2121">/&quot;</span><span style="color: #666666">)</span>
 </pre></div>
 <p>
 
 
-
-
-
 It relies on the recently introduced asynchronous inserts feature of <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a> - which commits inserts in batches to improve the speed - and the whisper-fetch tool.
-
 <br/>
-
 You could probably also write a Go program using the unofficial <a href="https://github.com/kisielk/whisper-go">whisper-go</a> bindings and the <a href="https://github.com/influxdb/influxdb/tree/master/client">influxdb Go client library</a>.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.
-
 <br/>Maybe it's a bug in my code, I didn't test this much, because I didn't need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.
 
-
-
 <h4>A more powerful carbon-relay-ng</h4>
-
 <a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> received a bunch of love and has been a great help in my graphite+influxdb experiments.
-
 <p>
-
 <a href="/files/carbon-relay-web-ui.png"><img width="441" src="/files/carbon-relay-web-ui.png" /></a>
-
 </p>
-
 Here's what changed:
-
 <ul>
-
 <li>First I made it so that you can adjust routes at runtime while data is flowing through, via a telnet interface.</li>
-
 <li>Then <a href="https://github.com/pauloconnor">Paul O'Connor</a> built an embedded web interface to manage your routes in an easier and prettier way (pictured above)</li>
-
 <li>The relay now also emits performance metrics via statsd (I want to make this better by using <a href="https://github.com/rcrowley/go-metrics">go-metrics</a> which will hopefully get <a href="https://github.com/rcrowley/go-metrics/issues/68">expvar support</a> at some point - any takers?).</li>
-
 <li>Last but not least, I borrowed <a href="https://github.com/graphite-ng/carbon-relay-ng/tree/master/nsqd">the diskqueue</a> code from <a href="http://nsq.io/">NSQ</a> so now we can also spool to disk to bridge downtime of endpoints and re-fill them when they come back up</li>
-
 </ul>
-
 Beside our metrics storage, I also plan to put our anomaly detection (currently playing with <a href="http://hekad.readthedocs.org/en/v0.7.1/">heka</a> and <a href="http://codeascraft.com/2013/06/11/introducing-kale/">kale</a>) and <a href="https://github.com/vimeo/carbon-tagger">carbon-tagger</a> behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.
-
 <br/>
-
 <br/>
-
 I used to think of carbon-relay-ng as the python carbon-relay but on steroids,
-
 now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,
-
 <br/>or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.
-
 <br/>I'd like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular <a href="http://raftconsensus.github.io/">raft</a> consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.
-
 (note: InfluxDB <a href="https://github.com/influxdb/influxdb/pull/859">might introduce such a component</a>, so I'm also a bit waiting to see what they come up with)
-
 <br/>
-
 <br/>
-
 Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in <a href="http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html">On Graphite, Whisper and InfluxDB</a>.  That said, both should be fairly easy to implement in carbon-relay-ng, and I'm willing to assist those who want to contribute it.
 
 	</div>
@@ -238,11 +185,11 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
 	<footer class="entry-meta">
 		<span class="tag-links">		
 			
-                <a href="http://localhost:1313//tags/devops/index.html" rel="tag">devops</a>
+                <a href="http://dieter.plaetinck.be/tags/devops/index.html" rel="tag">devops</a>
             
-                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+                <a href="http://dieter.plaetinck.be/tags/monitoring/index.html" rel="tag">monitoring</a>
             
-                <a href="http://localhost:1313//tags/golang/index.html" rel="tag">golang</a>
+                <a href="http://dieter.plaetinck.be/tags/golang/index.html" rel="tag">golang</a>
             
 		</span>
 	</footer>
@@ -274,13 +221,13 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
     <br/>
 	<h1 class="widget-title">Popular tags</h1>
 
-    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
     24
     <br/>
-    <a href="http://localhost:1313/tags/devops">devops</a>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
     22
     <br/>
-    <a href="http://localhost:1313/tags/golang">golang</a>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
     8
     <br/>
     <br/>
@@ -290,31 +237,31 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
 
     
         
-            <a href="http://localhost:1313/tags/arch">arch</a>
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
             19
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/bash">bash</a>
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
             15
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
             8
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/conf">conf</a>
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
             9
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
             1
             <br/>
         
@@ -323,25 +270,25 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
         
     
         
-            <a href="http://localhost:1313/tags/drums">drums</a>
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/foss">foss</a>
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
             45
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/git">git</a>
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
             3
             <br/>
         
@@ -350,31 +297,31 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
         
     
         
-            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/life">life</a>
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
             32
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/linux">linux</a>
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
             20
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/lua">lua</a>
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mail">mail</a>
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
             1
             <br/>
         
@@ -383,97 +330,97 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
         
     
         
-            <a href="http://localhost:1313/tags/music">music</a>
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/n900">n900</a>
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/perf">perf</a>
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
             10
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/photos">photos</a>
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/php">php</a>
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
             11
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/python">python</a>
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/travel">travel</a>
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
             9
             <br/>
         
@@ -497,9 +444,6 @@ Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I b
 		</footer>
 	</div>
 
-	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
 </html>

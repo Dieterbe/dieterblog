@@ -7,18 +7,18 @@
 	<title>Zenoss &amp; Mysql monitoring &middot; Dieter&#39;s blog</title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<!--[if lt IE 9]>
-	<script src="http://localhost:1313//js/html5.js"></script>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
 	<![endif]-->
     
-    <link href="http://localhost:1313//index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 
     <link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 
-    <link rel='stylesheet' id='genericons-css' href='http://localhost:1313//genericons/genericons.css' type='text/css' media='all' />
-	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://localhost:1313//css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
 	
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery.js'></script>
-	<script type='text/javascript' src='http://localhost:1313//js/jquery/jquery-migrate.min.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery.js'></script>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/jquery/jquery-migrate.min.js'></script>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 </head>
 
@@ -26,7 +26,7 @@
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
 		<div class="header-main">
-			<h1 class="site-title"><a href="http://localhost:1313//index.html" rel="home">Dieter&#39;s blog</a></h1>
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
 
 			<div class="search-toggle">
 				<a href="#search-container" class="screen-reader-text">Search</a>
@@ -108,11 +108,11 @@
 			</span>
 		</div>
 
-        <h1 class="entry-title"><a href="http://localhost:1313/post/zenoss_and_mysql_monitoring/">Zenoss &amp; Mysql monitoring</a></h1>
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/zenoss_and_mysql_monitoring/">Zenoss &amp; Mysql monitoring</a></h1>
 
 		<div class="entry-meta">
 			<span class="entry-date">
-				<a href="http://localhost:1313/post/zenoss_and_mysql_monitoring/" rel="bookmark">
+				<a href="http://dieter.plaetinck.be/post/zenoss_and_mysql_monitoring/" rel="bookmark">
 					<time class="entry-date" datetime="2009-06-06 10:35:40 -0400 EDT">
 						June 6, 2009
 					</time>
@@ -124,51 +124,28 @@
 	
 	<div class="entry-content">
 		<p>I've been playing with <a href="http://www.zenoss.com/">Zenoss</a> (2.4) for the first time.  Here are my thoughts:<!--more--></p>
-
 <ul>
-
 <li>One big package that installs itself in /usr/local and copies an initscript to /etc/init.d .  Contains a mysql instance, rrdtool, python and several more binaries. (all in all about 500MB installed).  Not the cleanest way to do things but definitely easy to install/deploy.  This is also where your data will end up</li>
-
 <li>Configuration is in a Zope-specific database (ZODB).  I prefer text files for this (easy to edit, easy to generate, version control etc). Mysql is used for the events, RRD files for measurement data.  Two fine choices there</li>
-
 <li>When you add a host, it does a lot of things automatically (monitoring various things through snmp and even ssh.  Even crontabs and their results are tracked).  I'm sure people will have various opinions about this</li>
-
 <li>It uses Adobe flash for interface...I mean, seriously</li>
-
 <li>It checks for updates itself.  Very useful if you don't like package managers</li>
-
 <li>Most stuff just works by default (eg basic snmp monitoring).  to monitor things like mysql/apache you just install a zenpack, restart zenoss, configure one or two settings and it should work.  No need to write the commands, variable replacements etc like in Nagios</li>
-
 <li>Nice overview page per host with its current state (it shows the host' properties and other information, not just servicecheck outputs like Nagios)</li>
-
 <li>I did have several issues about rrd files not being generated and such (even once where a manual 'python check_foo args' worked) for which I did not get human-friendly errors or in fact, no errors at all ( even in event log), but this is obviously the kind of stuff they will iron out.  Usually some other people have had the same issues and in IRC they are also quite helpful.</li>
-
 </ul>
-
 <p>I also tried the mysqlmonitor zenpack, which is quite nice.  You can find out what it can do at various places (<a href="http://www.zenoss.com/community/docs">extended monitoring guide</a>,  <a href="http://www.krisbuytaert.be/blog/monitoring-mysql">mysql monitoring shootout</a> etc), but here is what it does <strong>not</strong> monitor/graph:</p>
-
 <ul>
-
 <li>query cache (hits, inserts, lowmem_prunes, queries in cache,..)</li>
-
 <li>query durations / #slow queries</li>
-
 <li>returned rows /dataset sizes</li>
-
 <li>open tables</li>
-
 <li>replication stats</li>
-
 <li>thread states</li>
-
 <li>temp tables (tmp tables on disk!)</li>
-
 <li>com_* variables other then com_select/insert/update/delete. no com_alter/commit/flush/lock_tables etc
-
 </ul>
-
 <p>I don't see why you can't track such things, as afaik you can easily/cheaply get them all with a 'show global status'.  (though storing them all in rrd files will take quite some space).  Imho it would be very usefull it you had more control over what (not) to monitor, maybe through zPropperties or whatever.<br />
-
 Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
 
 	</div>
@@ -176,11 +153,11 @@ Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
 	<footer class="entry-meta">
 		<span class="tag-links">		
 			
-                <a href="http://localhost:1313//tags/foss/index.html" rel="tag">foss</a>
+                <a href="http://dieter.plaetinck.be/tags/foss/index.html" rel="tag">foss</a>
             
-                <a href="http://localhost:1313//tags/monitoring/index.html" rel="tag">monitoring</a>
+                <a href="http://dieter.plaetinck.be/tags/monitoring/index.html" rel="tag">monitoring</a>
             
-                <a href="http://localhost:1313//tags/mysql/index.html" rel="tag">mysql</a>
+                <a href="http://dieter.plaetinck.be/tags/mysql/index.html" rel="tag">mysql</a>
             
 		</span>
 	</footer>
@@ -212,13 +189,13 @@ Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
     <br/>
 	<h1 class="widget-title">Popular tags</h1>
 
-    <a href="http://localhost:1313/tags/monitoring">monitoring</a>
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
     24
     <br/>
-    <a href="http://localhost:1313/tags/devops">devops</a>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
     22
     <br/>
-    <a href="http://localhost:1313/tags/golang">golang</a>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
     8
     <br/>
     <br/>
@@ -228,31 +205,31 @@ Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
 
     
         
-            <a href="http://localhost:1313/tags/arch">arch</a>
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
             19
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/bash">bash</a>
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
             15
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/cakephp">cakephp</a>
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
             8
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/conf">conf</a>
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
             9
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/dauth">dauth</a>
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
             1
             <br/>
         
@@ -261,25 +238,25 @@ Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
         
     
         
-            <a href="http://localhost:1313/tags/drums">drums</a>
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/drupal">drupal</a>
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/foss">foss</a>
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
             45
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/git">git</a>
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
             3
             <br/>
         
@@ -288,31 +265,31 @@ Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
         
     
         
-            <a href="http://localhost:1313/tags/information-age">information-age</a>
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/life">life</a>
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
             32
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/linux">linux</a>
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
             20
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/lua">lua</a>
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mail">mail</a>
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
             1
             <br/>
         
@@ -321,97 +298,97 @@ Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
         
     
         
-            <a href="http://localhost:1313/tags/music">music</a>
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/mysql">mysql</a>
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/n900">n900</a>
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/netlog">netlog</a>
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/openstack">openstack</a>
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
             1
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/perf">perf</a>
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
             10
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/photos">photos</a>
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/php">php</a>
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
             11
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/productivity">productivity</a>
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/python">python</a>
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
             5
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/real-life">real-life</a>
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/thesis">thesis</a>
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/travel">travel</a>
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
             2
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/uzbl">uzbl</a>
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
             6
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/vimeo">vimeo</a>
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
             3
             <br/>
         
     
         
-            <a href="http://localhost:1313/tags/web2.0">web2.0</a>
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
             9
             <br/>
         
@@ -435,9 +412,6 @@ Though it doesn't look too hard to adapt the Zenpack, so it can be done.</p>
 		</footer>
 	</div>
 
-	<script type='text/javascript' src='http://localhost:1313//js/functions.js'></script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
 </html>

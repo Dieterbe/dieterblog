@@ -123,11 +123,12 @@ We warn if one or more segregated items didn't meet their median requirements, a
 </ul>
 
 <h2>Erraticness formula refinements</h2>
-<img style="float: right; margin: 45px;" width="40%" src="/files/practical-alerting-notes-cleaned-small.jpg" />
 You may notice that the formula has changed to
 <pre>
-(deviation-now * median-historical) / ( (deviation-historical * median-now) + 0.01)
+(deviation-now * median-historical) /
+((deviation-historical * median-now) + 0.01)
 </pre>
+<img style="float: right; margin: 45px;" width="40%" src="/files/practical-alerting-notes-cleaned-small.jpg" />
 <ul>
 <li>Current deviation is compared to an automatically chosen historical deviation value (so no more need to manually set this)</li>
 <li>Accounts for difference in volume: for example if traffic at any point is much higher, we can also expect the deviation to be higher.  With the previous formula we would have cases where in the past the numbers were very low, and naturally the deviation then was low and not a reasonable standard to be held against when traffic is higher, resulting in trigger happy alerting with false positives.
@@ -159,6 +160,6 @@ While this has been very helpful to us, I want to highlight a few things that co
 
 <h2>In conclusion</h2>
 I know many people are struggling with poor alerting rules (static thresholds?)
-<br/>As I explained in the previous article I fondly believe that the commonly cited solutions (anomaly detection via machine learning) are a very difficult endeavor and results can be achieved much quicker and more simpler.
+<br/>As I explained in the previous article I fondly believe that the commonly cited solutions (anomaly detection via machine learning) are a very difficult endeavor and results can be achieved much quicker and simpler.
 <br/>While this only focuses on one class of timeseries (it won't work on diskspace metrics for example) I found this class to be in the most dire need of better fault detection.  Hopefully this is useful to you. Good luck and let me know how it goes!
 

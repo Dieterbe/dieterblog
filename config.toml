@@ -6,6 +6,9 @@ buildDrafts = false
 buildFuture = false
 uglyUrls = false
 
+[params]
+  commentServer = "http://localhost:5888/comments"
+
 [[menu.main]]
     name = "blog"
     url = "/"

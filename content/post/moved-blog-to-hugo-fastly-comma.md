@@ -4,10 +4,10 @@ date = "2015-07-02T16:35:02-07:00"
 tags = ["golang"]
 +++
 * I noticed what a disservice I was doing my readers when I started monitoring my site using [litmus](http://www.raintank.io/litmus/).
-  A dynamic website in python on a cheap linode... What do you expect?  So I decided to serve through fastly and use a static site generator.
+  A dynamic website in python on a cheap linode... What do you expect?  So I now serve through [fastly](https://www.fastly.com/) and use a static site generator.
 * [pyblosxom](http://pyblosxom.github.io/) was decent while it lasted.
   It can generate sites statically, but the project never got a lot of traction and is slowly fading out.  There were a bit too many moving parts, so ...
-* I now use the [hugo](http://gohugo.io/) static site generator, which is powerfull, quite complete and gaining momentum.
+* I now use the [hugo](http://gohugo.io/) static site generator, which is powerful, quite complete and gaining momentum.
   Fast and simple to use.
 * Should also keep an eye on the [caddy](https://caddyserver.com/) webserver since it has some nice things such as [git integration](https://caddyserver.com/docs/git) which should work well with hugo.
 * Trying to get disqus going was frustrating.

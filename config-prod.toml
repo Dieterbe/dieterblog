@@ -7,7 +7,7 @@ buildFuture = false
 uglyUrls = false
 
 [params]
-  commentServer = "http://localhost:5888/comments"
+  commentServer = "http://plaetinck.be:5888/comments"
 
 [[menu.main]]
     name = "blog"

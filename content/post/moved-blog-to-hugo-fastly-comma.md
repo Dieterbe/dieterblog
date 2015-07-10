@@ -2,9 +2,13 @@
 title = "Moved blog to hugo, fastly and comma"
 date = "2015-07-02T16:35:02-07:00"
 tags = ["golang"]
+summary = """
+From a slow, hard to maintain, python dynamic website on Linode, to a fast, statically generated site using the powerful [hugo](http://gohugo.io/).
+Served through the fastly CDN and using the [comma](https://github.com/Dieterbe/comma) comment server to simply add comments to static blogs"""
 +++
 * I noticed what a disservice I was doing my readers when I started monitoring my site using [litmus](http://www.raintank.io/litmus/).
   A dynamic website in python on a cheap linode... What do you expect?  So I now serve through [fastly](https://www.fastly.com/) and use a static site generator.
+<!--more-->
 * [pyblosxom](http://pyblosxom.github.io/) was decent while it lasted.
   It can generate sites statically, but the project never got a lot of traction and is slowly fading out.  There were a bit too many moving parts, so ...
 * I now use the [hugo](http://gohugo.io/) static site generator, which is powerful, quite complete and gaining momentum.

@@ -1,4 +1,4 @@
-baseurl = "http://dietertest.plaetinck.be"
+baseurl = "http://localhost:1313"
 languageCode = "en-us"
 title = "Dieter's blog"
 theme = "dieter"
@@ -7,7 +7,7 @@ buildFuture = false
 uglyUrls = false
 
 [params]
-  commentServer = "http://dietertest.plaetinck.be:5888/comments"
+  commentServer = "http://localhost:5888/comments"
 
 [[menu.main]]
     name = "blog"

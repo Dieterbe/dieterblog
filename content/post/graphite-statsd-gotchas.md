@@ -72,7 +72,8 @@ The storage-aggregation.conf configuration is only used for storage-level aggreg
 <li>if graphite performs any runtime consolidation (e.g. there are more points than pixels for your graph, or more points than your maxDataPoints option), it will always use
 average unless told otherwise through consolidateBy.  This means it's easy to run into cases where data is rolled up (in whisper) using, say, max or count, but then
 accidentally with average while creating your visualization, resulting in incorrect information.  It's easy to make mistakes and applying the wrong function for rollups or
-runtime consolidation.  It would be nice if the roll-up configuration would also apply here (the function choice as well as xFilesFactor, see above), but for now, just be careful :)
+runtime consolidation.  It would be nice if the roll-up configuration would also apply here (the function choice as well as xFilesFactor, see above), but for now, just be careful :)</li>
+</ul>
 
 (side note: only having 1 option to consolidate data can be restricting.  Many systems consolidate <a href="http://blog.librato.com/posts/time-series-data"> data into a few summary stats</a> so that you can later get the flavor you want.)
 
@@ -85,9 +86,11 @@ If you're trying to spot issues, alert on outliers, you get quite far with avera
 6) deriving &amp; integration in graphite.
 
 The graphite documentation for derivative() hints at it already ("This function does not normalize for periods of time, as a true derivative would."), but to be entirely clear:
-* graphite's derivative is not a derivative. (a <a href="https://en.wikipedia.org/wiki/Derivative">derivative</a> divides difference in value by difference in time.  Graphite's derivative just returns the value delta's. Similar for nonNegativeDerivative).  If you want an actual derivative, use the somewhat awkwardly named perSecond() function.
-* graphite's integral is not an integral either. (an <a href="https://en.wikipedia.org/wiki/Integral">integral adds the multiplications of the value difference with the time span</a>.  Graphite's integral just adds up the value differences).  To my knowledge there's no proper way to do an actual integral, but luckily this is an uncommon operation anyway.
- Note also that graphite's integral just skips null values, so a value at each point in time can be lower than it should, due to nulls that preceded it.
+<ul>
+<li>graphite's derivative is not a derivative. (a <a href="https://en.wikipedia.org/wiki/Derivative">derivative</a> divides difference in value by difference in time.  Graphite's derivative just returns the value delta's. Similar for nonNegativeDerivative).  If you want an actual derivative, use the somewhat awkwardly named perSecond() function.</li>
+<li>graphite's integral is not an integral either. (an <a href="https://en.wikipedia.org/wiki/Integral">integral adds the multiplications of the value difference with the time span</a>.  Graphite's integral just adds up the value differences).  To my knowledge there's no proper way to do an actual integral, but luckily this is an uncommon operation anyway.
+ Note also that graphite's integral just skips null values, so a value at each point in time can be lower than it should, due to nulls that preceded it.</li>
+ </ul>
 
 Maybe for a future stable graphite release this can be reworked.  for now, just something to be aware of.
 

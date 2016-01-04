@@ -74,7 +74,7 @@ average unless told otherwise through consolidateBy.  This means it's easy to ru
 accidentally with average while creating your visualization, resulting in incorrect information.  It's easy to make mistakes and applying the wrong function for rollups or
 runtime consolidation.  It would be nice if the roll-up configuration would also apply here (the function choice as well as xFilesFactor, see above), but for now, just be careful :)
 
-(side note: only having 1 option to consolidate data can be restricting.  Many systems consolidate < href="http://blog.librato.com/posts/time-series-data"> data into a few summary stats</a> so that you can later get the flavor you want.)
+(side note: only having 1 option to consolidate data can be restricting.  Many systems consolidate <a href="http://blog.librato.com/posts/time-series-data"> data into a few summary stats</a> so that you can later get the flavor you want.)
 
 5) aggregating percentiles.
 The pet peeve of many, it has been written about a lot: if you have percentiles, such as those collected by statsd, - e.g. 95th percentile response time for each server - there is in theory
@@ -141,8 +141,7 @@ Takeaway: don't send the same key to multiple statsd servers
 
 12) statsd is "fire and forget" &amp; udp sends "have no overhead".
 
-This probably stems from this snippet in the original statsd announcement
-https://codeascraft.com/2011/02/15/measure-anything-measure-everything/
+This probably stems from this snippet in the <a href="https://codeascraft.com/2011/02/15/measure-anything-measure-everything/">original statsd announcement</a>.
 <quote>
 [UDP is] fast — you don’t want to slow your application down in order to track its performance — but also sending a UDP packet is fire-and-forget.
 </quote>
@@ -275,5 +274,5 @@ Closing thoughts:
 Graphite and statsd are great tools, but there's some things to watch out for.
 When setting them up, make sure you configure graphite and statsd to play well together.
 Make sure to set your roll-up functions and data retentions properly, and whichever statsd version you decide to use, make sure it flushes at the same interval as your graphite schema's.
-see https://github.com/etsy/statsd/blob/master/docs/graphite.md for more details.
+see <a href="https://github.com/etsy/statsd/blob/master/docs/graphite.md">this</a> for more details.
 

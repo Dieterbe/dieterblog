@@ -77,8 +77,11 @@ But a low number of nulls in a large sum is usually not a big deal and having a
 result with the nulls counted as 0 can be more useful than no result at all.
 Especially when averaging, since those points can typically be safely excluded 
 without impact on the output.
-When Graphite performs storage aggregation (rollups), it allows allowing a 
-certain fraction of null values, configured through xFilesFactor,
+Graphite has the xFilesFactor option in storage-aggregation.conf, which lets you
+configure the minimum fraction of non-null values, which it uses during
+storage aggregation (rollups) to determine whether the input is sufficiently
+known for output to be known, otherwise the output value will be null.
+
 It would be nice if these on-demand math requests would take an xFilesFactor 
 argument to do the same thing.
 But for now, just be aware of it, not using the last point is usually all you 
@@ -101,8 +104,8 @@ looks for throughput drops, it would trigger here.
 
 For some functions like avg, a missing value amongst several valid values is 
 usually not a big deal, but the likeliness of it becoming a big deal increases 
-with the amount of nulls,
-so I think here we should also implement an xFilesFactor.
+with the amount of nulls. So for query point consolidation graphite needs
+something similar to the xFilesFactor setting it uses for rollups.
 
 
 4) consolidation &amp; aggregation confusion
@@ -242,8 +245,8 @@ including graphite, premark.
 We saw above that any data received by graphite for a point in between an 
 interval is adjusted to get the timestamp at the beginning of the interval.
 Furthermore, during aggregation (say, aggregating 10 minutely points into 10min 
-points), each 10 minutes taken together get assigned the timestamp that precedes 
-those 10 intervals.
+points), each 10 minutes taken together get assigned the timestamp that precedes
+those 10 intervals. (i.e. the timestamp of the first point)
 So essentially, graphite likes to show metric values before they actually 
 happened, especially after aggregation, whereas other tools rather use a 
 timestamp that is too late rather than too soon.  As a monitoring community, we 
@@ -267,10 +270,15 @@ However, if multiple statsd servers receive the same metric, they will do their
 own,
 independent computations, and emit the same output metric, overwriting each 
 other.
-So if you run a statsd server per host, you should include the host in your 
-keys.
+So if you run a statsd server per host, you should include the host in the
+metrics you're sending into statsd, or into the prefixStats (or similar option)
+for your statsd server.
 
-Takeaway: don't send the same key to multiple statsd servers
+Takeaway: don't send the same key to multiple statsd servers that have the same
+prefix configured.
+
+(note: there's some other statsd options to diversify metrics but the global
+prefix is the most simple and common one used)
 
 12) statsd is "fire and forget" &amp; udp sends "have no overhead".
 

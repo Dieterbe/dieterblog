@@ -509,6 +509,20 @@ received, while having a separate alerting rule to make sure my service is up
 and running, based on a different metric.
 while using null as null for visualization. 
 
+17)
+Statsd supports a syntax to <a href="
+https://github.com/etsy/statsd/blob/master/docs/metric_types.md#gauges">
+increment and decrement gauges</a>.
+However, as we've seen, any message can be lost. If you do this, and a message
+gets dropped, your gauge value will be incorrect for ever.
+Also by sending increment/decrement values you can confuse a statsd server if
+it was just started.
+For this reason, I highly recommend not using this particular feature, and
+always setting gauge values explicitly.  In fact, some statsd servers don't
+support this syntax for this reason.
+
+
+
 
 Closing thoughts:
 Graphite and statsd are great tools, but there's some things to watch out for.
@@ -520,4 +534,5 @@ interval as your graphite schema's.
 see <a 
 href="https://github.com/etsy/statsd/blob/master/docs/graphite.md">this</a> for 
 more details.
-
+Futhermore, I hope this is an extensive list of gotcha's and will serve to
+improve our practices at first, and our tools themselves, down to road.

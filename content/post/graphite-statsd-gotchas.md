@@ -46,6 +46,7 @@ keepLastValue in graphite
 , or plotting until a few seconds ago instead of now.
 See below for some other related issues.
 
+
 2) null handling in math functions.
 Graphite functions don't exactly follow the rules of logic (by design)
 When you request something like `sumSeries(diskspace.server_*.bytes_free)` 
@@ -149,6 +150,7 @@ systems consolidate <a href="http://blog.librato.com/posts/time-series-data">
 data into a few summary stats</a> so that you can later get the flavor you 
 want.)
 
+
 5) aggregating percentiles.
 The pet peeve of many, it has been written about a lot: if you have percentiles, 
 such as those collected by statsd, - e.g. 95th percentile response time for each 
@@ -168,6 +170,7 @@ a separate alerting rule for unbalanced servers or drops in throughput.  As
 we'll see in some of these other points, sometimes taking sensible shortcuts 
 instead of obsessing over math is the better way to get your work done operating 
 your infrastructure or software.
+
 
 6) deriving &amp; integration in graphite.
 
@@ -190,7 +193,8 @@ actual integral, but luckily this is an uncommon operation anyway.
  </ul>
 
 Maybe for a future stable graphite release this can be reworked.  for now, just 
-something to be aware of.
+something to be aware of.  
+
 
 7) graphite quantization
 We already saw in the consolidation paragraph that for multiple points per 
@@ -202,6 +206,7 @@ at 10:02:59, in graphite this will be stored at 10:02:50.
 So it's important that you make sure to submit points at consistent intervals, 
 aligned to your graphite retention intervals (e.g. every 10s, submit on 
 timestamps divisible by 10)
+
 
 8) statsd flush offset depends on when statsd was started
 Statsd lets you configure a flushInterval, i.e. how often it should compute the 
@@ -221,6 +226,7 @@ Note: <a href="https://github.com/vimeo/statsdaemon">vimeo/statsdaemon</a> (and
 possibly other servers as well) will always submit values at quantized intervals 
 so that it's guaranteed to map exactly to graphite's timestamps as long as the 
 interval is correct.
+
 
 9) improperly time-attributed metrics.
 You don't tell statsd the timestamps of when things happened.  Statsd applies its 
@@ -247,6 +253,7 @@ to get a more accurate
 picture.
 Note that many instrumentation libraries have similar issues.
 
+
 10) the relation between timestamps and the intervals they describe.
 When I look at a point at a graph that represents a spike in latency, a drop in 
 throughput, or anything interesting really, I always wonder whether it describes 
@@ -271,7 +278,8 @@ timestamp in the future of the event than in the past.
 As a monitoring community, we 
 should probably standardize on an approach.
 
-10) the statsd timing type is only for timings.
+
+11) the statsd timing type is only for timings.
 The naming is a bit confusing, but anything you want to compute summary 
 statistics (min, max, mean, percentiles, etc) for
 (for example message or packet sizes) can be submitted as a timing metric.
@@ -282,6 +290,7 @@ common) use case.
 Note that if you want to time an operation that happens at consistent intervals, 
 you may just as well simply use a statsd gauge for it. (or write directly to
 graphite)
+
 
 11) the choice of metric keys you can use depends on how you deployed your 
 statsd's
@@ -300,6 +309,7 @@ prefix configured.
 
 (note: there's some other statsd options to diversify metrics but the global
 prefix is the most simple and common one used)
+
 
 12) statsd is "fire and forget", "non-blocking" &amp; udp sends "have no overhead".
 
@@ -431,6 +441,7 @@ on every single machine so I could sample as gently as possible.
 
 Takeaway: sampling can be used to lower load, but be aware of the trade offs.
 
+
 14) as long as my network doesn't saturate, statsd graphs should be accurate.
 we all know that graphs from statsd are not guaranteed to be accurate, because 
 it uses UDP,
@@ -488,6 +499,7 @@ JavaScript), but some come with additional interesting features.
 My favorites include <a href="https://github.com/armon/statsite">statsite</a>, 
 <a href="http://githubengineering.com/brubeck/">brubeck</a> and of course
 <a href="https://github.com/vimeo/statsdaemon">vimeo's statsdaemon version</a>
+
 
 15)Incrementing/decrementing gauges
 Statsd supports a syntax to <a href="

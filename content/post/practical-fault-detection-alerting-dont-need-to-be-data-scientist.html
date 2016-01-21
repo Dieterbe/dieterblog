@@ -17,9 +17,9 @@ This post covers some common notions around these new approaches, debunks some o
 I've seen smart people who are good programmers decide to tackle anomaly detection on their timeseries metrics.
 (anomaly detection is about building algorithms which spot "unusual" values in data, via statistical frameworks).  This is a good reason to brush up on statistics, so you can apply some of those concepts.
 But ironically, in doing so, they often seem to think that they are now only allowed to implement algebraic mathematical formulas. No more if/else, only standard deviations of numbers.  No more for loops, only moving averages. And so on.
-<br/>When going from thresholds to something (<i>anything</i>) more advanced, suddenly people only want to work with mathematical formula's.  Meanwhile we have entire Turing-complete programming languages available, which allow us to execute any logic, as simple or as rich as we can imagine.  Using only math massively reduces our options in implementing an algorithm. 
+<br/>When going from thresholds to something (<i>anything</i>) more advanced, suddenly people only want to work with mathematical formula's.  Meanwhile we have entire Turing-complete programming languages available, which allow us to execute any logic, as simple or as rich as we can imagine.  Using only math massively reduces our options in implementing an algorithm.
 <br/>
-<br/>For example I've seen several presentations in which authors demonstrate how they try to fine-tune moving average algorithms and try to get a robust base signal to check against but which is also not affected too much by previous outliers, which raise the moving average and might mask subsequent spikes).  
+<br/>For example I've seen several presentations in which authors demonstrate how they try to fine-tune moving average algorithms and try to get a robust base signal to check against but which is also not affected too much by previous outliers, which raise the moving average and might mask subsequent spikes).
 <br/>
 <img src="/files/fault-detection-moving-average.png">
 from <a href="https://speakerdeck.com/astanway/a-deep-dive-into-monitoring-with-skyline">A Deep Dive into Monitoring with Skyline</a>
@@ -48,8 +48,8 @@ crontabs cause (by definition) periodic spikes in activity, user activity causes
 <br/>
 Instead, something like <a href="http://bosun.org/">Bosun</a> (see further down) where you can visualize your series, experiment with algorithms and see the results in place on current and historical data, to manage alerting rules seems more practical.
 <br/>
-<br/>Some companies (all proprietary) take it a step further and pay tens of engineers to work on algorithms that inspect all of your series, classify them into categories, "learn" them and automatically configure algorithms that will do anomaly detection, so it can alert anytime something looks unusual (though not necessarily faulty). 
-This probably works fairly well, but has a high cost, still can't know everything there is to know about your timeseries, is of no help of your timeseries is behaving faulty from the start and still alerts on anomalous, but irrelevant outliers.
+<br/>Some companies (all proprietary) take it a step further and pay tens of engineers to work on algorithms that inspect all of your series, classify them into categories, "learn" them and automatically configure algorithms that will do anomaly detection, so it can alert anytime something looks unusual (though not necessarily faulty).
+This probably works fairly well, but has a high cost, still can't know everything there is to know about your timeseries, is of no help if your timeseries is behaving faulty from the start and still alerts on anomalous, but irrelevant outliers.
 <br/>
 <br/>
 
@@ -103,7 +103,7 @@ So without requiring fancy anomaly detection, machine learning, advanced math, o
 <br/>
 <br/>
 <br/>
-  
+
 <!--
 divideSeries(stdev(avg(keepLastValue(collectd.dfvimeopweb*.cpu.*.cpu.idle)),10),avg(keepLastValue(collectd.dfvimeopweb*.cpu.*.cpu.idle)))
 

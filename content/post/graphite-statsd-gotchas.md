@@ -8,6 +8,8 @@ draft = true
 For several years now, I've worked with Graphite and statsd on a daily basis.
 Over the years, I ran into many subtle issues and today I want to share some 
 gotchas and insights I've gathered over the years.
+I hope this will prove useful to users, while we monitoring developers
+work on ruling out these kinks.
 
 First of all, whenever you're trying to debug what's going on with your metrics 
 going in or out of either of these tools,
@@ -578,7 +580,7 @@ keepLastValue</a>, which causes null values to be represented by the last
 known value that precedes them.
 However, that known value must be included in the requested
 time range.  This is probably a rare case that you may never encounter, but
-if you have scripts that infrequently updates a metric and you use this
+if you have scripts that infrequently update a metric and you use this
 function, it may result in a graph sometimes showing no data at all, if the
 last known value becomes too old.  Which is especially confusing to newcomers
 if the graph does "work" at other times.
@@ -595,7 +597,7 @@ of data.  Let's say your statsd server has trouble flushing some data to
 Graphite and some data gets lost.  If it were using a traditional counter,
 you could still derive the data and average out the gap across the nulls.
 In this case however this is not possible and you have no idea what the numbers
-were.  In practice this rarely happens though.  Many statsd implementations
+were.  In practice this doesn't happen ofter hough.  Many statsd implementations
 can buffer a writequeue or use something like <a href="https://github.com/graphite-ng/carbon-relay-ng">
 carbon-relay-ng</a> as a write queue.
 Another disadvantage of this approach is the rounding that happens when
@@ -614,14 +616,15 @@ project for more details.
 
 As for what characters can be included in the metric keys.  
 Generally, graphite is fairly forgiving and may alter your metric keys: it
-converts slashes to dots, subsequent dots become single dots, prefix dots get
+converts slashes to dots (which can be confusing though),
+subsequent dots become single dots, prefix dots get
 removed, postfix dots will get it confused a bit though and create an extra
-hierarchy with an empty node at the end.
+hierarchy with an empty node at the end, if you're using whisper.
 See also <a href="https://github.com/graphite-project/carbon/issues/417">this issue</a>.
 Also note that
 <a href="https://github.com/brutasse/graphite-api/issues/57">
 equals signs don't work due to a parsing bug</a>.
-and graphite as a policy does not go far in validating incoming data, citing
+Graphite as a policy does not go far in validating incoming data, citing
 performance in large-throughput systems as the major reason.
 It's up to the senders to send data in proper form, with non-empty nodes
 (words between dots) separated by single dots.  You can use alphanumeric

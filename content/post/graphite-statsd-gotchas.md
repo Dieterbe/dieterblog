@@ -362,7 +362,7 @@ all Go statsd clients I'm aware of,
 vary anywhere between 15microseconds to 0.4 microseconds.
 
 When I saw this, <a href="https://github.com/alexcesaro/statsd">
-alexcesaro's statsd client</a>promptly became my
+Alex Cesaro's statsd client</a>promptly became my
 favorite statsd library for Go.  It has zero-allocation logic and various
 performance tweaks, such as the much needed client side buffering.
 Another interesting one is <a href="https://github.com/quipo/statsd">quipo's</a>,
@@ -434,7 +434,7 @@ was a feedback mechanism where the server would maintain counts
 of received messages for each key, and based on preferences and standard 
 deviation measurements, would periodically update "recommended sampling rates"
 for every single key, which then could be fed back into the clients (by 
-compiling into a php config file for example, or over a tcp connection).  
+compiling into a PHP config file for example, or over a TCP connection).  
 Ultimately I decided it was just too complicated and deployed a statsdaemon 
 server
 on every single machine so I could sample as gently as possible.
@@ -575,9 +575,9 @@ while using null as null for visualization.
 Another Graphite function to change the semantics of nulls is
 <a href="http://graphite.readthedocs.org/en/latest/functions.html#graphite.render.functions.keepLastValue">
 keepLastValue</a>, which causes null values to be represented by the last
-known value that preceeds them.
+known value that precedes them.
 However, that known value must be included in the requested
-timerange.  This is probably a rare case that you may never encounter, but
+time range.  This is probably a rare case that you may never encounter, but
 if you have scripts that infrequently updates a metric and you use this
 function, it may result in a graph sometimes showing no data at all, if the
 last known value becomes too old.  Which is especially confusing to newcomers
@@ -613,7 +613,7 @@ For statsd, see the <a href"https://github.com/b/statsd_spec">statsd_spec</a>
 project for more details.
 
 As for what characters can be included in the metric keys.  
-Generaly, graphite is fairly forgiving and may alter your metric keys: it
+Generally, graphite is fairly forgiving and may alter your metric keys: it
 converts slashes to dots, subsequent dots become single dots, prefix dots get
 removed, postfix dots will get it confused a bit though and create an extra
 hierarchy with an empty node at the end.
@@ -629,7 +629,7 @@ characters, hyphens and underscores, but not much more.
 You may want to use <a href="https://github.com/graphite-ng/carbon-relay-ng">
 carbon-relay-ng</a> which provides metric validation.
 
-Finally a common gotcha is hostnames, especially fqdns, that due to their
+Finally a common gotcha is hostnames, especially FQDN's, that due to their
 dots are interpreted as multiple nodes.  Typically, people will replace
 all dots with hyphens or underscores to combat this.
 
@@ -648,9 +648,9 @@ When setting them up, make sure you configure graphite and statsd to play well
 together.
 Make sure to set your roll-up functions and data retentions properly, and 
 whichever statsd version you decide to use, make sure it flushes at the same 
-interval as your graphite schema's.
+interval as your graphite schema configuration.
 see <a 
 href="https://github.com/etsy/statsd/blob/master/docs/graphite.md">this</a> for 
 more details.
-Futhermore, I hope this is an extensive list of gotcha's and will serve to
+Furthermore, I hope this is an extensive list of gotchas and will serve to
 improve our practices at first, and our tools themselves, down to road.

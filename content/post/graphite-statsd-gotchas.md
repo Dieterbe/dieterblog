@@ -25,7 +25,7 @@ Getting the json output from Graphite (just append `&format=json`) can be very
 helpful as well.
 Many dashboards, including <a href="http://www.grafana.org">Grafana</a> already 
 do this, so you can use the browser network inspector to analyze requests.
-For the whisper files, graphite comes with various useful utilities such as 
+For the whisper files, Graphite comes with various useful utilities such as 
 whisper-info, whisper-dump, whisper-fetch, etc.
 
 
@@ -37,15 +37,15 @@ Graphite will return data up until the current time, according to your data
 schema.
 E.g. if your data is stored at 10s resolution, then at say 10:02:35 it will show 
 data up until 10:02:30, but once the clock hits 10:02:40, it will also include 
-that point (10:02:40),
-but it typically takes some time for your services to send data for that 
-timestamp, and for it to be processed by graphite, so graphite will typically 
+that point (10:02:40) in its response.
+It typically takes some time for your services to send data for that 
+timestamp, and for it to be processed by Graphite, so Graphite will typically 
 return a null here for that timestamp
 and depending on how you visualize (see for example the "null as null/zero" 
 option in grafana) or if you use a function such as sumSeries (see below)
 it may look like a drop in your graph, and cause panic.
 You can work around this with "null as null" in Grafana, transformNull() or
-keepLastValue in graphite
+keepLastValue() in Graphite
 , or plotting until a few seconds ago instead of now.
 See below for some other related issues.
 
@@ -53,7 +53,7 @@ See below for some other related issues.
 2) null handling in math functions.
 Graphite functions don't exactly follow the rules of logic (by design)
 When you request something like `sumSeries(diskspace.server_*.bytes_free)` 
-graphite returns the sum of all bytes_free's for all your servers, at each point 
+Graphite returns the sum of all bytes_free's for all your servers, at each point 
 in time.
 If all of the servers have a null for a given timestamp, the result will be null 
 as well for that time.
@@ -70,7 +70,7 @@ Now let's say you work for a major video sharing website that runs many upload
 And let's say you build this really cool traffic routing system that sends user 
 video uploads to the most appropriate cluster, by taking into account network 
 speeds, transcoding queue wait times, storage cluster capacity (summed over all 
-servers), infrastructure cost and so forth.  Building this on top of graphite 
+servers), infrastructure cost and so forth.  Building this on top of Graphite 
 would make a lot of sense, and in all testing everything works fine, but in 
 production the decisions made by the algorithm seem nonsensical, because the 
 storage capacity seems to fluctuate all over the place.   Let's just say that's 
@@ -93,14 +93,29 @@ It would be nice if these on-demand math requests would take an xFilesFactor
 argument to do the same thing.
 But for now, just be aware of it, not using the last point is usually all you 
 need if you're only looking at the most recent data.
-Or get the timing of your agents tighter and only request data from graphite 
+Or get the timing of your agents tighter and only request data from Graphite 
 until now=-5s or so.
 
 
 INTERMEZZO: consolidation storage vs runtime vs grafana?
-2 gotchas fit in here: storage != runtime described below
-, and grafana != runtime. http://play.grafana.org/dashboard/db/ultimate-graphite-query-guide
-also statsd consolidation
+There's many forms of consolidation.
+* storage consolidation, aka rollups: data aggregated to optimize the cost of historical archives
+and make it faster to return large timeframes of data. Driven by storage-aggregation.conf
+* runtime consolidation: when you want to render a graph but there are more
+datapoints than pixels for the graph, or more than the maxDataPoints setting.
+Graphite will reduce the data in the http response. Driven by consolidateBy()
+(defaults to average)
+* Grafana consolidation: Grafana can visualize stats such as min/max/avg which it
+  computes on the data returned by your timeseries system, which can already be
+  consolidated (at runtime or from storage), so these results may not be always accurate.
+  We will make this mechanism more powerful and accurate.
+* statsd consolidation: statsd is also commonly used to consolidate usually very high rates
+of irregular incoming data in properly spaced timeframes, before it goes into Graphite.
+
+* Unlike all above mechanisms, the sumSeries(), averageSeries(), groupByNode() Graphite functions work
+  across series. They merge multiple series into a single or fewer series by aggregating points
+  from different series at each point in time.
+
 
 
 3) null handling during runtime consolidation
@@ -118,7 +133,7 @@ even though there probably was none.
 For some functions like avg, a missing value amongst several valid values is 
 usually not a big deal, but the likeliness of it becoming a big deal increases 
 with the amount of nulls, especially with sums.
-So for runtime point consolidation graphite needs
+So for runtime point consolidation Graphite needs
 something similar to the xFilesFactor setting it uses for rollups.
 
 
@@ -127,13 +142,13 @@ something similar to the xFilesFactor setting it uses for rollups.
 The storage-aggregation.conf configuration is only used for storage-level 
 aggregation (aka rollups), not any runtime consolidation.
 <ul>
-<li>if you submit multiple values into graphite for the same interval, the last 
+<li>if you submit multiple values into Graphite for the same interval, the last 
 one overwrites any previous values, no consolidation/aggregation happens in this 
 scenario.
 (note that carbon-aggregator and carbon-relay-ng can aggregate multiple series 
 together, as well as multiple points per series into a single point, so you can 
 use that). But otherwise, never send multiple values for the same interval.</li>
-<li>if graphite performs any runtime consolidation (e.g. there are more points 
+<li>if Graphite performs any runtime consolidation (e.g. there are more points 
 than pixels for your graph, or more points than your maxDataPoints option), it 
 will always use
 average unless told otherwise through consolidateBy.  This means it's easy to 
@@ -175,39 +190,39 @@ instead of obsessing over math is the better way to get your work done operating
 your infrastructure or software.
 
 
-6) deriving &amp; integration in graphite.
+6) deriving &amp; integration in Graphite.
 
-The graphite documentation for derivative() hints at it already ("This function 
+The Graphite documentation for derivative() hints at it already ("This function 
 does not normalize for periods of time, as a true derivative would."), but to be 
 entirely clear:
 <ul>
-<li>graphite's derivative is not a derivative. A <a 
+<li>Graphite's derivative is not a derivative. A <a 
 href="https://en.wikipedia.org/wiki/Derivative">derivative</a> divides 
 difference in value by difference in time.  Graphite's derivative just returns 
 the value delta's. Similar for nonNegativeDerivative.  If you want an actual 
 derivative, use the somewhat awkwardly named perSecond() function.</li>
-<li>graphite's integral is not an integral either. An <a 
+<li>Graphite's integral is not an integral either. An <a 
 href="https://en.wikipedia.org/wiki/Integral">integral adds the multiplications 
 of the value difference with the time span</a>.  Graphite's integral just adds 
 up the value differences.  To my knowledge there's no proper way to do an 
 actual integral, but luckily this is an uncommon operation anyway.
- Note also that graphite's integral just skips null values, so a value at each 
+ Note also that Graphite's integral just skips null values, so a value at each 
  point in time can be lower than it should, due to nulls that preceded it.</li>
  </ul>
 
-Maybe for a future stable graphite release this can be reworked.  for now, just 
+Maybe for a future stable Graphite release this can be reworked.  for now, just 
 something to be aware of.  
 
 
-7) graphite quantization
+7) Graphite quantization
 We already saw in the consolidation paragraph that for multiple points per 
 interval, last write wins.
 But you should also know that any data point submitted gets the timestamp 
 rounded down.
 Let's say you record points every 10 seconds but submit a point with timestamp 
-at 10:02:59, in graphite this will be stored at 10:02:50.
+at 10:02:59, in Graphite this will be stored at 10:02:50.
 So it's important that you make sure to submit points at consistent intervals, 
-aligned to your graphite retention intervals (e.g. every 10s, submit on 
+aligned to your Graphite retention intervals (e.g. every 10s, submit on 
 timestamps divisible by 10)
 
 
@@ -220,14 +235,14 @@ For example, if you start statsd at 10:02:00 with a flushInterval of 10, then it
 will emit values with timestamps at 10:02:10, 10:02:20, etc (this is what you 
 want), but if you happened
 to start it at 10:02:09 then it will submit values with timestamps 10:02:19, 
-10:02:29, etc. So typically, the values sent by statsd are subject to graphite's 
+10:02:29, etc. So typically, the values sent by statsd are subject to Graphite's 
 quantization and are moved into the past.  In the latter example, by 9 seconds. 
 This can make troubleshooting harder, especially when comparing statsd metrics 
 to metrics from a different service.
 
 Note: <a href="https://github.com/vimeo/statsdaemon">vimeo/statsdaemon</a> (and 
 possibly other servers as well) will always submit values at quantized intervals 
-so that it's guaranteed to map exactly to graphite's timestamps as long as the 
+so that it's guaranteed to map exactly to Graphite's timestamps as long as the 
 interval is correct.
 
 
@@ -272,9 +287,9 @@ I don't know if a terminology for this exists already, but I'm going to call the
 former premarking (data described by a timestamp that precedes the observation 
 period) and the latter postmarking (data described by a timestamp at the end).  
 As we already saw statsd postmarks, and many tools seem to do this, but some, 
-including graphite, premark.
+including Graphite, premark.
 
-We saw above that any data received by graphite for a point in between an 
+We saw above that any data received by Graphite for a point in between an 
 interval is adjusted to get the timestamp at the beginning of the interval.
 Furthermore, during aggregation (say, aggregating sets of 10 minutely points into 10min 
 points), each 10 minutes taken together get assigned the timestamp that precedes
@@ -296,7 +311,7 @@ The type is just named "timing" because that was the original (and still most
 common) use case.
 Note that if you want to time an operation that happens at consistent intervals, 
 you may just as well simply use a statsd gauge for it. (or write directly to
-graphite)
+Graphite)
 
 
 11) the choice of metric keys you can use depends on how you deployed your 
@@ -569,7 +584,7 @@ it configurable.
 
 To visualize it, make sure in Grafana to set the "null as null" option, though 
 "null as zero" can make sense for counters.
-You can also the transformNull or drawNullAsZero options in graphite for those 
+You can also the transformNull or drawNullAsZero options in Graphite for those 
 cases where you want to explicitly get 0's instead of nulls, which I typically 
 do in some of my bosun alerting rules, so I can treat null counts as no traffic 
 received, while having a separate alerting rule to make sure my service is up 
@@ -615,12 +630,12 @@ Graphite</a>, nor <a href="https://github.com/etsy/statsd/blob/master/docs/metri
 statsd</a> does a great job specifying exactly what they allow as input, which can
 be frustrating.  
 Graphite timestamps are 32bit unix timestamp integers, while values for
-both graphite and statsd can be integers or floats, up to float 64bit precision.
+both Graphite and statsd can be integers or floats, up to float 64bit precision.
 For statsd, see the <a href"https://github.com/b/statsd_spec">statsd_spec</a>
 project for more details.
 
 As for what characters can be included in the metric keys.  
-Generally, graphite is somewhat forgiving and may alter your metric keys: it
+Generally, Graphite is somewhat forgiving and may alter your metric keys: it
 converts slashes to dots (which can be confusing),
 subsequent dots become single dots, prefix dots get
 removed, postfix dots will get it confused a bit though and create an extra
@@ -657,11 +672,11 @@ all dots with hyphens or underscores to combat this.
 
 Closing thoughts:
 Graphite and statsd are great tools, but there's some things to watch out for.
-When setting them up, make sure you configure graphite and statsd to play well 
+When setting them up, make sure you configure Graphite and statsd to play well 
 together.
 Make sure to set your roll-up functions and data retentions properly, and 
 whichever statsd version you decide to use, make sure it flushes at the same 
-interval as your graphite schema configuration.
+interval as your Graphite schema configuration.
 see <a 
 href="https://github.com/etsy/statsd/blob/master/docs/graphite.md">this</a> for 
 more details.

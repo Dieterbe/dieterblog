@@ -202,7 +202,7 @@ the data in the storage layer, as well when doing runtime consolidation, or when
 trying to combine the data for all servers (multiple series) together.
 There is real math behind this, and I'm not going into it because in practice it 
 actually doesn't seem to matter much.
-If you're trying to spot issues, alert on outliers, you get quite far with 
+If you're trying to spot issues or alert on outliers you'll get quite far with 
 averaging the data together or taking the max value seen, especially when the 
 amount of requests represented by each latency measurement is in the same order 
 of magnitude,  e.g. you're averaging per-server latency percentiles and your 
@@ -226,7 +226,7 @@ difference in value by difference in time.  Graphite's derivative just returns
 the value delta's. Similar for nonNegativeDerivative.  If you want an actual 
 derivative, use the somewhat awkwardly named perSecond() function.</li>
 <li>Graphite's integral is not an integral either. An <a 
-href="https://en.wikipedia.org/wiki/Integral">integral adds the multiplications 
+href="https://en.wikipedia.org/wiki/Integral">integral sums the multiplications 
 of the value difference with the time span</a>.  Graphite's integral just adds 
 up the value differences.  To my knowledge there's no proper way to do an 
 actual integral, but luckily this is an uncommon operation anyway.
@@ -380,9 +380,9 @@ Udp write calls from userspace will block until the kernel has moved the data
 through the networking stack, firewall rules, through the network driver, onto 
 the network.
 I found this out the hard way once when an application I was testing on my 
-laptop ran much slower than expected, due to my consumer grade WiFi adapter, 
+laptop ran much slower than expected due to my consumer grade WiFi adapter which was
 holding back my program which was hanging on statsd calls.
-Using this simple go program http://play.golang.org/p/1YOZ1oxB-d I found that I 
+Using this <a href"http://play.golang.org/p/1YOZ1oxB-d">simple go program</a> I found that I 
 could do 115 k/s UDP sends to localhost (where the kernel can bypass some of the 
 network stack), but only 2k/s to a remote host (where it needs to go through all 
 layers, including your NIC).
@@ -401,7 +401,7 @@ and send batches of data to statsd, reducing the UDP writes,
 which is a lot more efficient.
 (see below).
 You can also use sampling to lower the volume. This does come with some problems 
-however, see the paragraph below.</li>
+however, see the gotcha below.</li>
 <li>The performance of client code itself can wildly vary as well.
 Besides how it maps metric updates to UDP writes (see above)
 the invocations themselves can carry an overhead, which as you can see through
@@ -470,8 +470,8 @@ will be too drastically sampled down,
 resulting in an inaccurate view of those cases, and worst case, not seeing any 
 data over the course over a longer time period, even though there were points at 
 every interval.
-You can add some code to use different invocations based with different sample 
-rates on the values of the variables, but that can get kludgy.
+You can add some code to use different invocations with different sample 
+rates based on the values of the variables, but that can get kludgy.
 3) volumes of metric calls tend to constantly evolve over time.  It's simply not 
 feasible to be constantly manually adjusting sample rates.  And given the above, 
 it's not a good solution anyway.
@@ -479,7 +479,7 @@ it's not a good solution anyway.
 <p>
 one of the ideas I wanted to implement in https://github.com/vimeo/statsdaemon 
 was a feedback mechanism where the server would maintain counts
-of received messages for each key, and based on preferences and standard 
+of received messages for each key, and based on performance criteria and standard 
 deviation measurements, would periodically update "recommended sampling rates"
 for every single key, which then could be fed back into the clients (by 
 compiling into a PHP config file for example, or over a TCP connection).  
@@ -499,12 +499,13 @@ graphs is UDP data loss on the network.
 In my experience, I've seen a lot more message loss due to the UDP buffer 
 overflowing on the statsd server.
 
-A typical statsd server is constantly receiving a flood of metrics at all times.
+A typical statsd server is constantly receiving a flood of metrics.
 For a network socket, the Linux kernel maintains a buffer in which it stores 
 newly received network packets, while the listening application (statsd) reads 
-them out of the buffer.
-But a statsd server will flush and compute all summary statistics, each 
-configured flushInterval.
+them out of the buffer.  But if for any reason the application can't read from
+the buffer fast enough and it fills up, the kernel has to drop incoming traffic.
+The most common case are the statsd flushes, which compute all summary statistics
+and submit them, each flushInterval.
 Typically this operation takes between 50ms and a few seconds, depending mostly 
 on how many timing metrics were received, cause those are the most 
 computationally expensive.
@@ -517,8 +518,8 @@ common for the UDP buffer to rapidly fill up with new packets, at which point
 the Linux kernel is forced to drop incoming network packets for the UDP socket.
 In my experience this is very common and often even goes undetected, because 
 only a portion of the metrics are lost, and the graphs are not obviously wrong.
-Needless to say, there's also plenty of other scenarios for data to get lost
-outside of statsd flushing.
+Needless to say, there's also plenty of other scenarios for the buffer to fill up
+and causing traffic drops other than statsd flushing.
 
 There's two things to be done here:
 <ol>

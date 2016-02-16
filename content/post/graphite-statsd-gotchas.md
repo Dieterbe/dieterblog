@@ -18,8 +18,8 @@ They are often invaluable in understanding what's up.
 
 For network sniffing, I almost always use these commands:
 <code>
-ngrep -d any -W byline port 2003
-ngrep -d any -W byline port 8125
+ngrep -d any -W byline port 2003 # carbon traffic
+ngrep -d any -W byline port 8125 # statsd traffic
 </code>
 Getting the json output from Graphite (just append `&format=json`) can be very 
 helpful as well.
@@ -42,7 +42,8 @@ but it typically takes some time for your services to send data for that
 timestamp, and for it to be processed by graphite, so graphite will typically 
 return a null here for that timestamp
 and depending on how you visualize (see for example the "null as null/zero" 
-option in grafana) it may look like a drop in your graph, and cause panic.
+option in grafana) or if you use a function such as sumSeries (see below)
+it may look like a drop in your graph, and cause panic.
 You can work around this with "null as null" in Grafana, transformNull() or
 keepLastValue in graphite
 , or plotting until a few seconds ago instead of now.
@@ -167,7 +168,7 @@ averaging the data together or taking the max value seen, especially when the
 amount of requests represented by each latency measurement is in the same order 
 of magnitude,  e.g. your averaging per-server latency percentiles and your 
 servers get a similar load or multiple points in time for one server, but there 
-was a similar load at each point then you'll be fine.  And you can always set up 
+was a similar load at each point then you'll be fine.  You can always set up 
 a separate alerting rule for unbalanced servers or drops in throughput.  As 
 we'll see in some of these other points, sometimes taking sensible shortcuts 
 instead of obsessing over math is the better way to get your work done operating 

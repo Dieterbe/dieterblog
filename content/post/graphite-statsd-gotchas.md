@@ -237,19 +237,23 @@ own timestamp when it flushes the data.
 So this is prone to various (mostly network) delays.
 This could result in a metric being generated in a certain interval only 
 arriving in statsd after the next interval has started.
-But it can get worse.  Let's say you measure how long it takes to connect to a 
-database server.
-Typically it takes 100ms but let's say now many requests are taking 60s.
+But it can get worse.  Let's say you measure how long it takes to execute a
+query on a database server.
+Typically it takes 100ms but let's say now many queries are taking 60s,
+and you have a flushInterval of 10s.
 Note that the metric 
-message is only sent after the full request has completed.
-So during the full minute where requests were slow and busy, there are no 
+message is only sent after the full query has completed.
+So during the full minute where queries were slow, there are no 
 metrics (or only some metrics that look good, they came through cause they
-were part of a group of requests that managed to execute timely),
-and only after a minute do you get the stats that reflect requests 
-spawned a minute ago, and issues that were live several intervals before being 
-reported.
-The higher a timing value, the more into the past the values it represents.
-But watch out for the request aborting all together, causing the metrics never
+were part of a group of queries that managed to execute timely),
+and only after a minute do you get the stats that reflect queries 
+spawned a minute ago.
+The higher a timing value, the higher the attribution error, the
+more into the past the values it represents and the longer the issue will go
+undetected or invisible.
+Keep in mind that other things, such as garbage collection cycles or
+paused goroutines under cpu saturation may delay your metrics reporting.
+Also watch out for the queries aborting all together, causing the metrics never
 to be sent!  Make sure you properly monitor throughput and the functioning
 (timeouts, errors, etc) of the service from the client perspective,
 to get a more accurate
@@ -272,7 +276,7 @@ including graphite, premark.
 
 We saw above that any data received by graphite for a point in between an 
 interval is adjusted to get the timestamp at the beginning of the interval.
-Furthermore, during aggregation (say, aggregating 10 minutely points into 10min 
+Furthermore, during aggregation (say, aggregating sets of 10 minutely points into 10min 
 points), each 10 minutes taken together get assigned the timestamp that precedes
 those 10 intervals. (i.e. the timestamp of the first point)
 So essentially, graphite likes to show metric values before they actually 
@@ -616,22 +620,27 @@ For statsd, see the <a href"https://github.com/b/statsd_spec">statsd_spec</a>
 project for more details.
 
 As for what characters can be included in the metric keys.  
-Generally, graphite is fairly forgiving and may alter your metric keys: it
-converts slashes to dots (which can be confusing though),
+Generally, graphite is somewhat forgiving and may alter your metric keys: it
+converts slashes to dots (which can be confusing),
 subsequent dots become single dots, prefix dots get
 removed, postfix dots will get it confused a bit though and create an extra
 hierarchy with an empty node at the end, if you're using whisper.
-See also <a href="https://github.com/graphite-project/carbon/issues/417">this issue</a>.
-Also note that
+Non-alphanumeric characters such as 
+<a href="https://github.com/graphite-project/graphite-web/issues/242">parenthesis</a>,
+<a href="https://github.com/graphite-project/graphite-web/issues/604">colons</a>, or
 <a href="https://github.com/brutasse/graphite-api/issues/57">
-equals signs don't work due to a parsing bug</a>.
+equals signs</a> often don't work well or at all.
+
 Graphite as a policy does not go far in validating incoming data, citing
 performance in large-throughput systems as the major reason.
 It's up to the senders to send data in proper form, with non-empty nodes
 (words between dots) separated by single dots.  You can use alphanumeric
-characters, hyphens and underscores, but not much more.
+characters, hyphens and underscores, but straying from that will probably not work well.
 You may want to use <a href="https://github.com/graphite-ng/carbon-relay-ng">
 carbon-relay-ng</a> which provides metric validation.
+See also <a href="https://github.com/graphite-project/carbon/issues/417">this issue</a>
+which aims to formalize what is, and isn't allowed.
+
 
 Finally a common gotcha is hostnames, especially FQDN's, that due to their
 dots are interpreted as multiple nodes.  Typically, people will replace

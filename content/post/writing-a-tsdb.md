@@ -30,7 +30,7 @@ I also want the system to be free / open source, and scale from running some loc
 Spoiler alert: I haven't seen a system that checks all the boxes.  Most can get about 4 out of 6.
 There's also no way that I (or we, at raintank) have the resources to build a better general purpose TSDB.  Nor do we want to. We want to build a great monitoring system and reuse existing technology where possible.  We don't want to reinvent what already exists and introduce yet another system that scatters the ecosystem and confuses things.
 
-So we didn't want to build yet another TSDB, than why did we?
+# So we didn't want to build yet another TSDB, than why did we?
 
 While with Grafana, we have the interests of a broad group of people at heart, for the hosted metrics platform specifically our requirements are actually fairly narrow:
 
@@ -51,12 +51,12 @@ It needs to ingest data, compresses it using go-tsz and store the chunks in Cass
 we also wanted to run several versions for redundancy and loadbalancing and to do hot upgrades.
 
 
-So that's what we built.
-A simple system that solves our need for a scalable, performant timeseries storage system. Nothing more, nothing less.
+**So that's what we built**: A simple system that solves our need for a scalable, performant timeseries storage system. Nothing more, nothing less.
 
 Later we also added:
-*) runtime consolidation (to offload graphite)
-*) support for rollup bands (while loading raw data from cassandra and runtime consolidation is fast enough, decoding the points was a bottleneck)
+
+* runtime consolidation (to offload graphite)
+* support for rollup bands (while loading raw data from cassandra and runtime consolidation is fast enough, decoding the points was a bottleneck)
 
 In particular, we store several bands per metric, so you can choose your view (min/max/avg etc) 
 https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/#limited.aggregation
@@ -71,7 +71,8 @@ Cassandra has actually proven the most reliable piece of the stack (we've done s
 
 
 
-Limitations & future plans:
+# Limitations & future plans:
+
 * only deals with float64 and uint32 unix timestamps in second resolution. No ints, bools, text, etc. Some type optimisations may come, but it's all numeric for now.
 * Doesn't use tags for querying or searching. This may come.
 * no sharding/partitioning. Our instances currently take about 15GB of RAM, withjust over 500k active metrics and 400 million points. We have to work on a solution to split data across instances or we'll run in trouble once we hit the RAM ceiling on a server.
@@ -83,10 +84,19 @@ Limitations & future plans:
 * we use NSQ as our transport, and that's the only ingest method for now.  A carbon listener would be easy to add.  We want to transition to kafka because it has strong ordering guarantees, NSQ does not. And we need orderderd ingest for compression & rollups.
 * We lose about 100ms each request to retrieve the metadata from ES.
 
-
-scratch our itch, if you're having the same itch: feel free to use our scratcher. But be aware that if a better scratcher comes along, we may start using and recommending that.
+# Bottom line
 Remember: we want you to use the TSDB that works best for you (and in fact, many of you run multiple) as we do ourselves.
-While we are pretty happy with our current stack and will be for the foreseeable future; as the landscape evolves, our preference will evolve as well
+While we are pretty happy with our current stack and probably will be for the foreseeable future, and will keep investing in metric-tank; as the landscape evolves, our preference will evolve as well.  If a solid, well-run tsdb project comes along that clearly is a better choice, then we will switch. 
+In other words: we need to scratch our itch, if you're having the same itch: feel free to use our scratcher. But be aware that if a better scratcher comes along (or our itch changes in nature) we may switch scratchers.
+
+# Get it here
+
+* [Finder plugin for graphite](https://github.com/raintank/graphite-raintank)
+* [Custom graphite-api server](https://github.com/raintank/graphite-api)
+* [Metric-tank](https://github.com/raintank/raintank-metric/tree/master/metric_tank)
+* [Grafana dashboard for metric-tank](https://github.com/raintank/raintank-docker/blob/master/grafana-dev/dashboards/metric-tank.json)
+
+
 
 <!--
 Experiences so far:
@@ -96,9 +106,5 @@ profiling, performance. allocations.
 
 -->
 
-
-https://github.com/raintank/graphite-raintank
-https://github.com/raintank/raintank-metric/tree/master/metric_tank
-https://github.com/raintank/raintank-docker/blob/master/grafana-dev/dashboards/metric-tank.json Grafana dashboard to monitor it
 
 

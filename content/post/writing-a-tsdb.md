@@ -6,8 +6,8 @@ draft = true
 +++
 
 There's a lot of TSDB's (timeseries databases) out there.
-From the more commonly known ones such as Graphite's whisper, OpenTSDB, Elasticsearch, KairosDB, InfluxDB, blueflood, prometheus to the more obscure ones such as
-[cyanite](http://cyanite.io/), [riak-ts](http://basho.com/products/riak-ts/),[druid](druid.io),[dalmatiner](dalmatiner.io), [akumuli](http://akumuli.org/) and [openNMS' newTS](https://github.com/OpenNMS/newts ).
+From the more commonly known ones such as Graphite's whisper, OpenTSDB, Elasticsearch, KairosDB, InfluxDB, [cyanite](http://cyanite.io/), prometheus to the more obscure ones such as
+[riak-ts](http://basho.com/products/riak-ts/),[druid](druid.io), blueflood, [dalmatiner](dalmatiner.io), [akumuli](http://akumuli.org/) and [openNMS' newTS](https://github.com/OpenNMS/newts ).
 I'm sure I've seen about another dozen, ranging from 1-person pet projects to systems supporting the production monitoring of various large companies.
 
 Graphite, despite its limited storage system and its lack of support for tags (and party because of it) has a tremendously powerful yet simple data processing api.
@@ -34,15 +34,15 @@ So we didn't want to build yet another TSDB, than why did we?
 
 While with Grafana, we have the interests of a broad group of people at heart, for the hosted metrics platform specifically our requirements are actually fairly narrow:
 
-1) the main concern was resource efficiency, in particular data store required: we needed good data compression.  Kairosdb+cassandra needed too many resources, in particular disk space.
-2) Since we run a multi-tenant SaaS platform, we only need to worry about medium to large scale.  But we needed solid clustering.  Luckily there is proven technology to build upon (like cassandra)
-3) Whatever we use must be fully free/open source (a must for our business model)
+1. the main concern was resource efficiency, in particular data store required: we needed good data compression.  Kairosdb+cassandra needed too many resources, in particular disk space.
+2. Since we run a multi-tenant SaaS platform, we only need to worry about medium to large scale.  But we needed solid clustering.  Luckily there is proven technology to build upon (like cassandra)
+3. Whatever we use must be fully free/open source (a must for our business model)
 
 We're also not trying to sell you a product, so ego, branding or business interests don't get in the way.  We can be pragmatic:
-1) graphite-api already has a great api and alleviates the API concern mostly
-2) we need performant storage and solid clustering.  Cassandra has this pretty well covered.
-3) Elasticsearch does text/tags searching very well.  Using it as metadata store can take us far
-4) When I read Facebook's float compression paper www.vldb.org/pvldb/vol8/p1816-teller.pdf I got very excited. Especially because somebody implemented it in Go
+1. graphite-api already has a great api and alleviates the API concern mostly
+2. we need performant storage and solid clustering.  Cassandra has this pretty well covered.
+3. Elasticsearch does text/tags searching very well.  Using it as metadata store can take us far
+4. When I read Facebook's float compression paper www.vldb.org/pvldb/vol8/p1816-teller.pdf I got very excited. Especially because somebody implemented it in Go
 https://github.com/dgryski/go-tsz  Data compression was very important to us and I felt this could be the key to a good solution. (in retrospect this turned out true.  About a dozen projects are based on this library, including the new InfluxDB TSM storage engine)
 
 
@@ -72,16 +72,16 @@ Cassandra has actually proven the most reliable piece of the stack (we've done s
 
 
 Limitations & future plans:
-*) only deals with float64 and uint32 unix timestamps in second resolution. No ints, bools, text, etc. Some type optimisations may come, but it's all numeric for now.
-*) Doesn't use tags for querying or searching. This may come.
-*) no sharding/partitioning. Our instances currently take about 15GB of RAM, withjust over 500k active metrics and 400 million points. We have to work on a solution to split data across instances or we'll run in trouble once we hit the RAM ceiling on a server.
-*) each instance can ingest up to about 100~150k metrics/s, after that CPU starts maxing out (8 core Xeon 2.3 GHz)
-*) no long term support / endorsement.  If something better comes along that meets all our criteria, we may jump ship.
-*) no computation locality: we pull in all the raw data first from cassandra, then consolidate it. Series are only aggregated together in graphite.  At a certain scale you need to move the computation to the data, but we don't have that problem yet.
-*) no data locality: we don't have anything that puts related series together.  Cassandra has been stellar so far though.
-*) tied to the rest of the raintank stack (for now). We had to make some changes to https://github.com/raintank/graphite-api and use a message format that is almost metrics2.0 compatible, but not quite yet. http://metrics20.org/
-*) we use NSQ as our transport, and that's the only ingest method for now.  A carbon listener would be easy to add.  We want to transition to kafka because it has strong ordering guarantees, NSQ does not. And we need orderderd ingest for compression & rollups.
-*) We lose about 100ms each request to retrieve the metadata from ES.
+* only deals with float64 and uint32 unix timestamps in second resolution. No ints, bools, text, etc. Some type optimisations may come, but it's all numeric for now.
+* Doesn't use tags for querying or searching. This may come.
+* no sharding/partitioning. Our instances currently take about 15GB of RAM, withjust over 500k active metrics and 400 million points. We have to work on a solution to split data across instances or we'll run in trouble once we hit the RAM ceiling on a server.
+* each instance can ingest up to about 100~150k metrics/s, after that CPU starts maxing out (8 core Xeon 2.3 GHz)
+* no long term support / endorsement.  If something better comes along that meets all our criteria, we may jump ship.
+* no computation locality: we pull in all the raw data first from cassandra, then consolidate it. Series are only aggregated together in graphite.  At a certain scale you need to move the computation to the data, but we don't have that problem yet.
+* no data locality: we don't have anything that puts related series together.  Cassandra has been stellar so far though.
+* tied to the rest of the raintank stack (for now). We had to make some changes to https://github.com/raintank/graphite-api and use a message format that is almost metrics2.0 compatible, but not quite yet. http://metrics20.org/
+* we use NSQ as our transport, and that's the only ingest method for now.  A carbon listener would be easy to add.  We want to transition to kafka because it has strong ordering guarantees, NSQ does not. And we need orderderd ingest for compression & rollups.
+* We lose about 100ms each request to retrieve the metadata from ES.
 
 
 scratch our itch, if you're having the same itch: feel free to use our scratcher. But be aware that if a better scratcher comes along, we may start using and recommending that.

@@ -6,52 +6,40 @@ draft = true
 +++
 
 There's a lot of TSDB's (timeseries databases) out there.
-From the more commonly known ones such as Graphite's whisper, OpenTSDB, Elasticsearch, KairosDB, InfluxDB, [cyanite](http://cyanite.io/), prometheus to the more obscure ones such as
-[riak-ts](http://basho.com/products/riak-ts/),[druid](druid.io), blueflood, [dalmatiner](dalmatiner.io), [akumuli](http://akumuli.org/) and [openNMS' newTS](https://github.com/OpenNMS/newts ).
-I'm sure I've seen about another dozen, ranging from 1-person pet projects to systems supporting the production monitoring of various large companies.
 
-Graphite, despite its limited storage system and its lack of support for tags (and party because of it) has a tremendously powerful yet simple data processing api.
-Despite its age, it's api is mostly unrivaled.
-though two others spring to my mind:
-Elasticsearch is no longer just for log searching. It's getting quite good for timeseries metrics https://www.elastic.co/blog/elasticsearch-as-a-time-series-data-store
-(CERN, the guys who run the Large Hydron Collider, use it to monitor their jobs! http://cds.cern.ch/record/2011172/files/LHCb-TALK-2015-060.pdf)
-and I find druid also quite interesting http://druid.io/docs/0.8.3/querying/querying.html
-Neither of these two sufficiently solve our needs though.
+Grafana started out with [Graphite](http://graphite.readthedocs.org/en/latest/), but has grown to support mainy popuar TSDBs such as [OpenTSDB](http://www.opentsdb.net), [Prometheus](http://www.prometheus.io) and [InfluxDB](www.influxdb.com). There is also support for lesser known projects such as  [KairosDB](https://kairosdb.github.io/), [Cyanite](http://cyanite.io/), [Druid](druid.io),  [Newt](https://github.com/OpenNMS/newts), [Dalmatiner](dalmatiner.io), [Akumuli](http://akumuli.org/).
 
-For those who don't know, in both http://graphite.readthedocs.org/en/latest/storage-backends.html and http://graphite-api.readthedocs.org/en/latest/finders.html you can plug
-in custom data storage system and still enjoy the great api.
+We're also talking with [Basho re: Riak-TS](http://basho.com/products/riak-ts/) and [Rackspace re: Blueflood](http://blueflood.io) about adding support for their offerings.
 
-we were actually running on graphite+kairosdb for a while. But that only took us so far.
+Plus, I'm sure I've seen about another dozen, ranging from 1-person pet projects to systems supporting the production monitoring of various large companies.
 
+It seems the last thing the world needs is another TSDB.
 
-Some key properties I look for in a TSDB are resource efficiency, performance, a powerful / flexible API and operational simplicity.
-I also want the system to be free / open source, and scale from running some local metrics on my laptop to serving thousands of customer in the datacenter.
+Graphite, despite some well understood limitation and its age, has a tremendously powerful yet simple data processing API. In many ways, its unrivaled. It's the complete package, and it just works. At raintank, we're big fans of Graphite, and it offers a great experience when coupled with Grafana. 
 
-Spoiler alert: I haven't seen a system that checks all the boxes.  Most can get about 4 out of 6.
-There's also no way that I (or we, at raintank) have the resources to build a better general purpose TSDB.  Nor do we want to. We want to build a great monitoring system and reuse existing technology where possible.  We don't want to reinvent what already exists and introduce yet another system that scatters the ecosystem and confuses things.
+Elasticsearch also deseves a spot on the list now. It's no longer just for log searching and events: it's getting [quite good for timeseries metrics](https://www.elastic.co/blog/elasticsearch-as-a-time-series-data-store). CERN, the guys who run the Large Hydron Collider, use it to [monitor their jobs!](http://cds.cern.ch/record/2011172/files/LHCb-TALK-2015-060.pdf)
+
+SPOILER ALERT: Nothing we've mentioned here meets our needs for a hosted TSDB. We want something that (1) is performant and resource efficient (2) completely open source (3) have a powerful API, ideally similar to Graphite (4) extremely stable (5) didn't have a lot of dependencies we weren't comfortable with. No system we've found can check all the boxes. 
+
+We were running KairosDB for a while. We even wrote a [Graphite Finder](http://www.github.com/raintank/) for it. There is now full support for KairosDB in Grafana. At our scale though, it only got us so far. We liked what we saw in Cassandra.
+
+There's no way that we have the resources or the interest to build a better general purpose TSDB from the ground up. Nor do we want to. We want to build a great OpenSaaS platform, and stand on the shoulders of open source giants where possible. If it already exists, we should use it.
 
 # So we didn't want to build yet another TSDB, than why did we?
 
-While with Grafana, we have the interests of a broad group of people at heart, for the hosted metrics platform specifically our requirements are actually fairly narrow:
+As with most things, it starts as a prototype.
 
-1. the main concern was resource efficiency, in particular data store required: we needed good data compression.  Kairosdb+cassandra needed too many resources, in particular disk space.
-2. Since we run a multi-tenant SaaS platform, we only need to worry about medium to large scale.  But we needed solid clustering.  Luckily there is proven technology to build upon (like cassandra)
-3. Whatever we use must be fully free/open source (a must for our business model)
+When I read Facebook's float compression paper www.vldb.org/pvldb/vol8/p1816-teller.pdf I got very excited. Especially because our friend Damian Gryskisomebody implemented the [algorithm in Go](https://github.com/dgryski/go-tsz). Data compression was very important to us, and I felt that this could be a game changer. 
 
-We're also not trying to sell you a product, so ego, branding or business interests don't get in the way.  We can be pragmatic:
-1. graphite-api already has a great api and alleviates the API concern mostly
-2. we need performant storage and solid clustering.  Cassandra has this pretty well covered.
-3. Elasticsearch does text/tags searching very well.  Using it as metadata store can take us far
-4. When I read Facebook's float compression paper www.vldb.org/pvldb/vol8/p1816-teller.pdf I got very excited. Especially because somebody implemented it in Go
-https://github.com/dgryski/go-tsz  Data compression was very important to us and I felt this could be the key to a good solution. (in retrospect this turned out true.  About a dozen projects are based on this library, including the new InfluxDB TSM storage engine)
+Being able to swap out [Backends](http://graphite.readthedocs.org/en/latest/storage-backends.html) and [Finders](http://graphite-api.readthedocs.org/en/latest/finders.html) in the Graphite API code turns out to be pretty useful. The idea and power of Graphite can easily transcend a particular implementation.
 
+We decided to prototype a small project: metrictank. Implementing the Facebook algorithm, it would things we were pretty comfortable with: Cassandra, Elasticsearch, and the Graphite API. 
 
-So we could solve our problem by building a solution that is uses Graphite (and Grafana) as frontend and uses ElasticSearch for metadata indexing, 
-It needs to ingest data, compresses it using go-tsz and store the chunks in Cassandra.  And it would be nice if it could keep a configurable amount of data in RAM for fast retrievals.
-we also wanted to run several versions for redundancy and loadbalancing and to do hot upgrades.
+It's job was simple: to ingest data, compress it, and store the chunks into Cassandra for long term storage. We also decided that it'd be nice if it could keep recent data in RAM, and do double duty as a cache and retrieval layer. The value of this became even more evident as we prototyped alerting features in Grafana.
 
+The Facebook paper was indeed quite a big deal. Several projects ended up being based on this library, including the new InfluxDB TSM storage engine. 
 
-**So that's what we built**: A simple system that solves our need for a scalable, performant timeseries storage system. Nothing more, nothing less.
+**So that's what we built**: A simple system that solves our need for a scalable, performant timeseries storage system. Standing on the shoulders of giants.
 
 Later we also added:
 
@@ -65,29 +53,28 @@ https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/#runtime.consoli
 and so that Grafana can show more accurate data
 https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/#grafana.consolidation
 
-
-we switched from kairosdb to metric-tank in production in early january.  We were able to lower our disk usage by about 10x and significantly shrink our cassandra cluster.
-Cassandra has actually proven the most reliable piece of the stack (we've done some tests with killing instances etc), which feels pretty reassuring
+We cut over to metric-tank just a few months ago. So far the results are very promising. We've seen compression improvements in the order of 10x. Data storage requirements were on the order of 2bytes. 
 
 
+# There are many limitations:
 
-# Limitations & future plans:
-
-* only deals with float64 and uint32 unix timestamps in second resolution. No ints, bools, text, etc. Some type optimisations may come, but it's all numeric for now.
-* Doesn't use tags for querying or searching. This may come.
-* no sharding/partitioning. Our instances currently take about 15GB of RAM, withjust over 500k active metrics and 400 million points. We have to work on a solution to split data across instances or we'll run in trouble once we hit the RAM ceiling on a server.
-* each instance can ingest up to about 100~150k metrics/s, after that CPU starts maxing out (8 core Xeon 2.3 GHz)
-* no long term support / endorsement.  If something better comes along that meets all our criteria, we may jump ship.
-* no computation locality: we pull in all the raw data first from cassandra, then consolidate it. Series are only aggregated together in graphite.  At a certain scale you need to move the computation to the data, but we don't have that problem yet.
-* no data locality: we don't have anything that puts related series together.  Cassandra has been stellar so far though.
-* tied to the rest of the raintank stack (for now). We had to make some changes to https://github.com/raintank/graphite-api and use a message format that is almost metrics2.0 compatible, but not quite yet. http://metrics20.org/
-* we use NSQ as our transport, and that's the only ingest method for now.  A carbon listener would be easy to add.  We want to transition to kafka because it has strong ordering guarantees, NSQ does not. And we need orderderd ingest for compression & rollups.
-* We lose about 100ms each request to retrieve the metadata from ES.
+* Unknown future: We make no commitments to the future of this project currently. We may jump or join ship if something better comes along. It is currently powering the raintank hosted TSDB early access, but if that changes the commitment to this project will likely change.
+* Limited data types: raintank-metric only supports float64 and uint32 unix timestamps in second resolution. No ints, bools, text, etc. Some type optimisations may come, but it's all numeric for now.
+* Performance: Testing has shown that we can cache almost 1Billion datapoints, and ingest well over 100,000 data points per second, on a single commodity server with 8 physical cores and 32GB of RAM. These could be optimized, but represent an order of magnitude improvement for us.
+* Redundancy: There is no redundancy with metric-tank, and sharding is "manual". We do get full redundancy for long term storage thanks to Cassandra. The only data at risk is what has not been flushed to Cassandra from metrictank. 
+* No computatational locality: We pull in all the raw data first from cassandra, then consolidate it. Series are only aggregated together in gGraphite.  At a certain scale you need to move the computation to the data, but we don't have that problem yet.
+* No data locality: We don't have anything that puts related series together.  Cassandra has been stellar so far though.
+* Tied to the rest of the raintank stack (for now). We had to make some changes to https://github.com/raintank/graphite-api and use a message format that is almost metrics2.0 compatible, but not quite yet. http://metrics20.org/
+* We use NSQ as our transport, and that's the only ingest method for now.  A carbon listener would be easy to add.  We want to transition to kafka because it has strong ordering guarantees, NSQ does not. And we need orderderd ingest for compression & rollups.
+* Useless metadata: We lose time in each request to retrieve the metadata from ES, but currently provide no way to query or search on that metadata currently (our goal was Graphite compatability).
 
 # Bottom line
-Remember: we want you to use the TSDB that works best for you (and in fact, many of you run multiple) as we do ourselves.
-While we are pretty happy with our current stack and probably will be for the foreseeable future, and will keep investing in metric-tank; as the landscape evolves, our preference will evolve as well.  If a solid, well-run tsdb project comes along that clearly is a better choice, then we will switch. 
-In other words: we need to scratch our itch, if you're having the same itch: feel free to use our scratcher. But be aware that if a better scratcher comes along (or our itch changes in nature) we may switch scratchers.
+
+At raintank, we want you to use the TSDB that works best for you. Grafana is all about bringing your data together, no matter where it lives or what format it is. 
+
+But, for our hosted TSDB, we're pretty happy with where the prototype has taken us. 
+
+In other words: we need to scratch our itch, if you're having the same itch: feel free to use our scratcher.
 
 # Get it here
 

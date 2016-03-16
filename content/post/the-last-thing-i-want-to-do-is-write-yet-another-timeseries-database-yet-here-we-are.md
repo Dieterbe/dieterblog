@@ -103,12 +103,20 @@ It's important to keep an eye on the evolving landscape and changing needs.
 If a solid, well-run open source TSDB project comes along that clearly is a better choice, then we will probably switch.
 However, we are happy with our current metric-tank stack and for the forseeable future we will keep investing in metric-tank.  
 
-# Get it here
+# Get started!
+
+If you want to run metric-tank, you'll need:
 
 * [Finder plugin for graphite](https://github.com/raintank/graphite-raintank)
 * [Custom graphite-api server](https://github.com/raintank/graphite-api)
 * [Metric-tank](https://github.com/raintank/raintank-metric/tree/master/metric_tank)
-* [Grafana dashboard for metric-tank](https://github.com/raintank/raintank-docker/blob/master/grafana-dev/dashboards/metric-tank.json)
+* [Grafana dashboard to monitor metric-tank](https://github.com/raintank/raintank-docker/blob/master/grafana-dev/dashboards/metric-tank.json)
+
+An easy way to see how the pieces fit together and get everything up and running is the <a href="https://github.com/raintank/raintank-docker">raintank-docker</a> stack.
+It spins up the worldping fork of grafana (which will be deprecated after grafana 3.0) and runs a worldping probe, so an easy way to test data ingest is just adding some worldping
+endpoints or use <a href="https://github.com/raintank/raintank-metric/tree/master/fake_metrics_to_nsq">fake_metrics_to_nsq</a> which uses the right format to ingest metrics into NSQ.
+
+If you need any help <a href="http://slack.raintank.io/">join our public slack</a>
 
 
 

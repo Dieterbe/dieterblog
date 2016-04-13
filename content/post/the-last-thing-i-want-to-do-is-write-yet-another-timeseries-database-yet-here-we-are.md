@@ -17,30 +17,30 @@ Despite its age, its query api is mostly unrivaled except maybe for these two:
 
 It's an interesting exercise to study all these projects and uncovering their varying pro's and cons.
 
-At raintank (Grafana OpenSaaS), and with Grafana, we try to build a stellar open source monitoring stack (and also offer it hosted). The open source ecosystem is already very rich.  There's many projects out there and some them are very good.  So it makes a lot of sense to us to work with the existing communities and projects, and integrate with them where possible.  That's why we integrate with [several TSDB's](http://docs.grafana.org/datasources/overview/) and soon will do something similar for [alerting](https://github.com/grafana/grafana/issues/2209) (I also did a [talk](http://dieter.plaetinck.be/talks/) on this)
+At raintank (Grafana OpenSaaS), and with Grafana, we try to build a stellar open source monitoring stack (and also offer it hosted). The open source ecosystem is already very rich.  There's many projects out there and some them are very good.  So it makes a lot of sense to us to work with the existing communities and projects, and integrate with them where possible.  That's why we integrate with [several TSDB's](http://docs.grafana.org/datasources/overview/) (the upcoming Grafana 3 will take this concept to all kinds of integrations such as
+[alerting](https://github.com/grafana/grafana/issues/2209) and online services)
 In fact there's so many [TSDB] projects, the last thing we want to do is write another.
 
 # So we didn't want to build yet another TSDB, than why did we?
 
 Driven by different contexts and requirements, people use different datasources in Grafana (and often combine several).  Likewise, our requirements are also fairly unique.
-Until recently were were running on Kairosdb but our main problem with Kairosdb was how it works with cassandra: it used too many resources, in particular disk space and cpu. So it was too expensive to run.  
-Here are our main requirements:
+We carefully considered all the projects we could find and matched them against our list of requirements:
 
 1. resource efficiency, in particular disk space: we needed good data compression to reduce cost
 2. support growth from small to medium-scale multi-tenant SaaS.  We needed solid clustering for availability and load balancing.
 3. whatever we use must be fully free/open source (a must for our business model)
 4. operational simplicity
-5. a powerful / flexible querying API, preferrably graphite compatible
+5. a powerful / flexible querying API, preferrably graphite compatible (I could write the adapter, see below)
 
-Unfortunately, none of the projects we've found so far adresses this particular combination of needs.  
+This was surprisingly unfruitful.  While many of the systems can check off most of the list, I couldn't find anything that could do all 5.
 
-There's no way that I (or we, at raintank) have the resources to build a better general purpose TSDB.
-However, we can be very pragmatic!
+There's no way that I (or we, at raintank) have the resources to build a better general purpose TSDB that solves everything for everyone;
+however, we can be very pragmatic!
 We're not trying to sell you a product so ego, branding or business interests don't get in the way.  We can stand on the shoulders of giants:
 
 1. graphite already has a great api and alleviates the API concern mostly.
 2. we need performant storage and solid clustering.  Cassandra has this pretty well covered.
-3. Elasticsearch does text/tags searching quite well.  Using it as metadata store can take us far
+3. Elasticsearch does text/tags searching quite well.  Using it as metadata store can take us pretty far.
 4. When I read [Facebook's "Gorilla" float compression paper](www.vldb.org/pvldb/vol8/p1816-teller.pdf) I got very excited. These data compression numbers were looking great.  Then [Damian Gryski implemented it in Go](
 https://github.com/dgryski/go-tsz).  Data compression was very important to us and I felt this could be the key to a good solution. In retrospect this was confirmed: about a dozen projects are based on this library, including the new InfluxDB TSM storage engine. <a href="https://raw.githubusercontent.com/dgryski/go-tsz/master/eval/eval-results.png">We're seeing space usage of a few bytes per point</a>, which is easily 10x less than uncompressed storage such as whisper or Kairosdb.
 

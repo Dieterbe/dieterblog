@@ -33,7 +33,7 @@ Driven by different goals and requirements, people use different datasources in 
 2. support growth from small to medium-scale multi-tenant SaaS.  We need solid clustering for availability and load balancing.
 3. whatever we use must be fully free/open source (a must for our business model. Everyone must be able to run the stack)
 4. operational simplicity
-5. a powerful / flexible querying API, preferrably graphite compatible because it has a great data processing / querying API that a lot of people already know and love.
+5. a powerful / flexible querying API, preferably graphite compatible because it has a great data processing / querying API that a lot of people already know and love.
 
 <div class="intermezzo"><strong>Intermezzo:</strong> Both the Graphite and its alternative Graphite-api projects support plugging in 3rd party databases through a plugin api.  
 (docs for <a href="http://graphite.readthedocs.org/en/latest/storage-backends.html">Graphite</a> and <a href="http://graphite-api.readthedocs.org/en/latest/finders.html">Graphite-api</a>).  
@@ -67,7 +67,7 @@ Later we also added:
 
 * basic clustering so we can run several instances for redundancy and load balancing and to do hot upgrades.
 * runtime consolidation (to offload graphite)
-* support for rollup bands (while loading raw data from cassandra and runtime consolidation is fast enough, decoding the points was a bottleneck)
+* support for rollup bands (while loading raw data from Cassandra and runtime consolidation is fast enough, decoding the points was a bottleneck)
 
 While we're at it, we can also fix some of <a href="/25-graphite-grafana-statsd-gotchas/">Graphite's shortcomings</a>.
 In particular we store several rollup bands per metric (min/max/avg, etc) so that:
@@ -76,8 +76,8 @@ In particular we store several rollup bands per metric (min/max/avg, etc) so tha
 * runtime consolidation works in concert with the rollup so that [the data is correct in all circumstances](https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/#runtime.consolidation)
 * and so that Grafana [can show accurate data in its own statistical summaries](https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/#grafana.consolidation)
 
- We were able to lower our disk usage by about 10x and significantly shrink our cassandra cluster.
-we've done tests where we kill cassandra instances and everything just seems to work and recover fine.
+ We were able to lower our disk usage by about 10x and significantly shrink our Cassandra cluster.
+we've done tests where we kill Cassandra instances and everything just seems to work and recover fine.
 
 
 # If you want to try it out
@@ -93,11 +93,11 @@ It is currently not for the faint of heart.  If you want to run it, you'll need:
 It takes in messagepack encoded [metrics2.0 style data](https://github.com/raintank/raintank-metric/blob/master/schema/metric.go#L15) via [NSQ](http://nsq.io/)
 
 An easy way to see how the pieces fit together and get everything up and running is the <a href="https://github.com/raintank/raintank-docker">raintank-docker</a> stack.
-It spins up our entire stack, including Grafana 3 beta and [worldping](https://grafana.net/plugins/raintank-worldping-app), so an easy way to test data ingest is just adding some worldping
+It spins up our entire stack, including Grafana 3 beta and [Worldping](https://grafana.net/plugins/raintank-worldping-app), so an easy way to test data ingest is just adding some Worldping
 endpoints or use <a href="https://github.com/raintank/raintank-metric/tree/master/fake_metrics_to_nsq">fake_metrics_to_nsq</a> which uses the right format to ingest metrics into NSQ.
 
 If you need any help <a href="http://slack.raintank.io/">join our public slack</a>
 
-We plan to make installation easier, support consuming from kafka and of course a carbon input listener.
+We plan to make installation easier, support consuming from Kafka and of course a carbon input listener.
 Over time I'ld also like to take out more python code and replace it by Go, which is faster and much easier to install.
 

@@ -65,7 +65,7 @@ It also keeps a configurable amount of data in RAM for fast retrievals of hot da
 
 Later we also added:
 
-* basic clustering so we can run several instances for redundancy and load balancing and to do hot upgrades.
+* basic clustering so we can run several instances for redundancy, to do hot upgrades and for read load balancing. (no write sharding yet, though)
 * runtime consolidation (to offload graphite)
 * support for rollup bands (while loading raw data from Cassandra and runtime consolidation is fast enough, decoding the points was a bottleneck)
 

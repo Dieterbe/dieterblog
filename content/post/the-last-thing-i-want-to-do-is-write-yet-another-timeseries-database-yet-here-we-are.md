@@ -51,8 +51,7 @@ I've used this in the past to write a <a href="https://github.com/vimeo/graphite
 <br/>
 <br/>
 
-There's also projects that aim to make running a Graphite compatible stack simpler and more performant by rewriting it in Go:  <a href="https://github.com/graphite-ng">Graphite-NG</a> and 
-<a href="https://github.com/dgryski/carbonapi">carbonapi</a>.  We have started to invest in these but don't have anything to show yet</div>
+</div>
 <br/>
 
 So we could solve our problem by building a solution that uses Graphite (and Grafana) as frontend and uses ElasticSearch for metadata indexing.

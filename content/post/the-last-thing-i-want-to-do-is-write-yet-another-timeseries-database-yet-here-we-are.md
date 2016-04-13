@@ -75,33 +75,11 @@ In particular we store several rollup bands per metric (min/max/avg, etc) so tha
 * runtime consolidation works in concert with the rollup so that [the data is correct in all circumstances](https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/#runtime.consolidation)
 * and so that Grafana [can show accurate data in its own statistical summaries](https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/#grafana.consolidation)
 
-We switched from Kairosdb to metric-tank in production in early january.  We were able to lower our disk usage by about 10x and significantly shrink our cassandra cluster.
+ We were able to lower our disk usage by about 10x and significantly shrink our cassandra cluster.
 we've done tests where we kill cassandra instances and everything just seems to work and recover fine.
 
-
-
-# Limitations & future plans:
-
-* Unknown future:  while currently metric-tank powers our hosted TSDB, if something better comes along that meets all our criteria, we may jump or join ship.
-So we can't make commitments to the future of this project at this time. 
-* only deals with float64 values. No ints, bools, text, etc. Some type optimisations may come, though using the float type for ints and bools works quite well.
-In fact compression works best if the number has no decimals anyway.  But for the forseeable future it only supports numeric data.
-* only uint32 unix timestamps in second resolution. Higher-resolution will probably be added later.
-* No tags support for querying yet. The metrics are tagged but we still need to update the query language to make use of it. 
-* no sharding/partitioning. Our instances currently take about 15GB of RAM, with just over 500k active metrics and 400 million points in RAM. We have to work on a solution to split data across instances or we'll run in trouble once we hit the RAM ceiling on a server.
-* around 400k metrics/s CPU starts maxing out (8 core Xeon 2.3 GHz). We're also seeing ES blocking due to the metadata indexing around the 100k/s mark.  Both can and will be optimized more.
-* no computation locality: we pull in all the raw data first from cassandra, then process/consolidate it in metric-tank. Further processing/aggregation happens in Graphite.  At a certain scale you need to move the computation to the data, but we don't have that problem yet, though we do plan to move more of the graphite logic into metric-tank and further develop graphite-ng.
-* no data locality: we don't have anything that puts related series together.  Often this helps with read performance but we haven't needed to look into this yet.
-* tied to the rest of the raintank stack (for now). We run a <a href="https://github.com/raintank/graphite-api">custom version of graphite-api</a> and use a message format that is almost <a href="http://metrics20.org">metrics2.0</a> compatible, but not quite yet.
-* we use <a href="http://nsq.io">NSQ</a> as our transport, and that's the only ingest method for now.  A carbon listener would be easy to add.  We want to transition to kafka because it has strong ordering guarantees, NSQ does not. And we need orderderd ingest for compression & rollups.
-* We lose about 100ms each request to retrieve the metadata from ES.
-* While it does block off requests for too much data / too large time frames, there is no resource isolation between tenants  (other than what's needed for security).  Rate limiting still has to be implemented.
-
-# Bottom line
-We want you to use the TSDB that works best for you, as we do ourselves.
-It's important to keep an eye on the evolving landscape and changing needs.
-If a solid, well-run open source TSDB project comes along that clearly is a better choice, then we will probably switch.
-However, we are happy with our current metric-tank stack and for the forseeable future we will keep investing in metric-tank.  
+There are some obvious limitations (no data locality, only numeric values, second resolution, etc) but we can address those as we go along.
+We also plan to support consuming from kafka and of course a carbon input listener.
 
 # Get started!
 
@@ -116,17 +94,6 @@ An easy way to see how the pieces fit together and get everything up and running
 It spins up the worldping fork of grafana (which will be deprecated after grafana 3.0) and runs a worldping probe, so an easy way to test data ingest is just adding some worldping
 endpoints or use <a href="https://github.com/raintank/raintank-metric/tree/master/fake_metrics_to_nsq">fake_metrics_to_nsq</a> which uses the right format to ingest metrics into NSQ.
 
-If you need any help <a href="http://slack.raintank.io/">join our public slack</a>
-
-
-
-<!--
-Experiences so far:
-So far it has been an interesting learning experience, so I'ld like to share a few things:
-*) When dealing with large requests / no rollups, i thought data i/o would be slowest. nope
-profiling, performance. allocations.
-
--->
 
 
 

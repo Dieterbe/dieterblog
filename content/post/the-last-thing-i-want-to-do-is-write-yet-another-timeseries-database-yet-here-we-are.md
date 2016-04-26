@@ -2,6 +2,7 @@
 title = "The last thing i want to do is write yet another timeseries database. Yet here we are"
 date = "2016-03-15T10:25:02+02:00"
 tags = ["golang", "monitoring"]
+draft = true
 +++
 
 There's a lot of TSDB's (timeseries databases) out there.

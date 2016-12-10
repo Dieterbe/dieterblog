@@ -30,10 +30,12 @@ I figured the commit is probably still in the GitHub repo (either cause it's dan
 The first obstacle is that GitHub wouldn't recognize this abbreviated hash anymore: going to 
 `https://github.com/raintank/metrictank/commit/92a817d` resulted in a 404 commit not found. 
 
-Now, I was lucky I guess in that we use CircleCI, so I could see what had been the full commit hash in the CI build log.
-**This a must for this approach to work: you need to figure out somehow what was the full commit hash**
-
+Now, we use CircleCI, so I could see what had been the full commit hash in the CI build log.
 Once I had it, I could see that `https://github.com/raintank/metrictank/commit/92a817d2ba0b38d3f18b19457f5fe0a706c77370` showed it.
+An alternative way of opening a view of the dangling commit we need, is using the reflog syntax.
+[Git reflog](https://git-scm.com/docs/git-reflog) is a pretty sweet tool that often comes in handy when you made a bit too much of a mess on your local repository,
+but also on GitHub it works:  if you navigate to `https://github.com/raintank/metrictank/tree/httpRefactor@{1}` you will be presented with the commit
+that the branch head was at before the last change, i.e. the missing commit, 92a817d in my case.
 
 
 Then follows the problem of re-attaching a branch to it.
@@ -80,4 +82,4 @@ To github.com:raintank/metrictank.git
  - [deleted]         recover
 ```
 
-And that was that... I don't forsee many people being in this same situation (where you don't have anyone who can do the force push again, but you do know somehow what the full commit hash was supposed to be), but if you are, this should help you out.
+And that was that... If you're ever in this situation and you don't have anyone who can do the force push again, this should help you out.

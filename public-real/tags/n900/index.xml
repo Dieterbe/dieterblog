@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>N900 on Dieter&#39;s blog</title>
+    <link>http://dieter.plaetinck.be/tags/n900/</link>
+    <description>Recent content in N900 on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Oct 2009 21:20:39 -0400</lastBuildDate>
+    <atom:link href="http://dieter.plaetinck.be/tags/n900/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About the maemo summit 2009 and the nokia n900</title>
+      <link>http://dieter.plaetinck.be/post/about_the_maemo_summit_2009_and_the_nokia_n900/</link>
+      <pubDate>Mon, 12 Oct 2009 21:20:39 -0400</pubDate>
+      
+      <guid>77 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;So I&#39;m back from the 3-day &lt;a href=&#34;http://wiki.maemo.org/Maemo_Summit_2009&#34;&gt;maemo summit&lt;/a&gt; in Amsterdam.  It was very nice.  Very well organized, and Nokia definitely invested enough in catering, fancy-suited people and such to please all 400 of us.  I met several interesting people, both from the community, as well as Nokia guys.&lt;br /&gt;
+The talks were diverse, but interesting (duh?).  I will especially remember the kickoff with its fancy visual effects and loud music that set the mood straight for the entire weekend.&lt;br /&gt;
+The best moment was, of course, when it was announced that &lt;strong&gt;every summit participant would receive a n900.  Uncontrolled hapiness all around. &lt;/strong&gt;&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
+I had been hoping to buy/preorder the device at the event, with maybe a nice reduction.  But I didn&#39;t dare to hope on getting a device in my hands just like that.&lt;/p&gt;
+&lt;p&gt;So how does this work?&lt;br /&gt;
+Basically, all summit attendees were offered the following deal (I don&#39;t think anyone passed it).  I paraphrase:&lt;/p&gt;
+&lt;p&gt;&lt;cite&gt;User gets to use n900 preproduction model until end of April 2010 or earlier if Nokia wants so.&lt;br /&gt;
+User provides feedback to Nokia in any form, which Nokia gets ownership of.&lt;br /&gt;
+User may not copy/reverse engineer/decompile device/material/software.  But other then that he can fully use it, hack (on) it and share information about it.&lt;br /&gt;
+No warranty or any form of compensation if the device blows up your house, breaks your arm, or submits your personal data to pastebin.com&lt;br /&gt;
+&lt;/cite&gt;&lt;/p&gt;
+&lt;p&gt;Definitely fair enough I would say.  I&#39;ll surely stick to my end of the deal and provide them a good dose of feedback.&lt;/p&gt;
+&lt;p&gt;My first experiences?  Here are the main things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I think the hardware is definitive, the software probably isn&#39;t.&lt;/li&gt;
+&lt;li&gt;Meets all expectations:
+&lt;ul&gt;
+&lt;li&gt;Complete debian-based mini-pc which fits in pocket easily.  A screen (800x480) which shows normal webpages just fine, no need for smaller pages.  Typing on keyboard is a lot slower then on a netbook.  For me the device could have been bigger so I could do 10-finger typing (I would call using a headset anyway), but I&#39;m sure many people like the small formfactor&lt;/li&gt;
+&lt;li&gt;A userland we are used to: glibc, sysvinit, dbus, gstreamer, bluez, gtk, HAL, apt, and so on&lt;/li&gt;
+&lt;li&gt;Very nice and easy UI, high performance multitasking, 3D, many nice details seem to be implemented just when you need them, ...&lt;/li&gt;
+&lt;li&gt;Not just a &#34;OS + apps&#34; but everything can be (and usually is) integrated: i.e. contact book with the various means to reach a contact (jabber/sms/skype/cellular call/..).  when you call someone it will choose skype or cellular, whichever is best. (this probably expands to SIP and whichever means more applications will bring).  Contacts with birthdays show up in the calendar, etc.&lt;/li&gt;
+&lt;li&gt;Quite smooth UI. Sometimes a bit of stutter in multitask view when closing or switching apps (but hey, nothing my real PC doesn&#39;t do)&lt;/li&gt;
+&lt;li&gt;Many features for such a small form factor.  The hardware feels &#34;done&#34;&lt;/li&gt;
+&lt;li&gt;Battery lasts long enough.   About 30 hours for light to medium use on a new device&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Slight nuisances, mostly with the software:
+&lt;ul&gt;
+&lt;li&gt;The microB browser needs some polishing.  It hangs when the wifi goes away&lt;/li&gt;
+&lt;li&gt;Some lack of consistency in UI across maemo interface and various apps (scrolling behaviour is sometimes different, &#34;just start typing to initiate search&#34; doesn&#39;t apply everywhere) &lt;/li&gt;
+&lt;li&gt;Hard to open back cover and to remove battery &lt;/li&gt;
+&lt;li&gt;Shell (ash) history does not (always?) get saved&lt;/li&gt;
+&lt;li&gt;No tools such as less, sed, curl, awk, ... by default.  No packages for them yet&lt;/li&gt;
+&lt;li&gt;Maps application feels incomplete.  It&#39;s not a navigation system like Tomtom (and a Nokia guy told me they aren&#39;t aiming for that)&lt;/li&gt;
+&lt;li&gt;It continously tries looking for network when it can&#39;t find any, even though I keep saying no&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&#39;m keeping a detailed list of all issues I encounter, which I&#39;ll report on the bugtracker.&lt;br /&gt;
+Until now all issues I found are small, and most are fixable in a short timespan so I think the &#34;real&#34; devices will be there soon.&lt;br /&gt;
+I&#39;m definitely looking forward playing more with it and hacking it.&lt;br /&gt;
+And most of all, I think I will actually begin trusting this device enough to maintain my contacts, calendar, .. and to actually use the features it brings (instead of for example ssh&#39;ing to home and chatting from there)&lt;/p&gt;
+&lt;p&gt;Great work Nokia, you guys rock.&lt;/p&gt;
+&lt;p&gt;** update: 13-10-2009: updated the battery uptime number to 30 hours.  I measured it for real this time.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nokia n900 &amp; maemo summit 2009</title>
+      <link>http://dieter.plaetinck.be/post/nokia_n900_and_maemo_summit_2009/</link>
+      <pubDate>Fri, 02 Oct 2009 17:40:14 -0400</pubDate>
+      
+      <guid>76 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I have been looking for the &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?pid=580045&#34;&gt;&#34;perfect mobile companion device&#34;&lt;/a&gt; already for a while.  Basically I want a &#34;pocket PC that can do as much as possible over which i have as much control as possible so I can do things my way, but still fits in a pocket and which can do gsm and such&#34;&lt;br /&gt;
+So, something like a netbook, but really portable, and that can also do telephony stuff.&lt;br /&gt;
+Nokia&#39;s recently announced &lt;a href=&#34;http://maemo.nokia.com/n900/&#34;&gt;n900&lt;/a&gt; seems to be very close to what I&#39;m looking for.&lt;br /&gt;
+It could have been a tad bigger (to make typing easier) but other then that it looks perfect: powerful, high resolution display, Linux with a &#34;usual&#34; userspace (unlike Android) to give me all freedom I&#39;m looking for, keyboard, plenty of space and many goodies such as wifi, a-gps, fm receiver/transmitter, IR, bluetooth, digital camera, tv-out and so on.&lt;/p&gt;
+&lt;p&gt;This device has ignited my interest in Maemo and all things related so I&#39;ll be in Amsterdam on October 9-10-11, at the &lt;a href=&#34;http://wiki.maemo.org/Maemo_Summit_2009&#34;&gt;Maemo summit 2009&lt;/a&gt;.  I was lucky enough to score a place in the &lt;a href=&#34;http://www.ibishotel.com/gb/hotel-1556-ibis-amsterdam-centre/index.shtml&#34;&gt;ibis hotel Amsterdam&lt;/a&gt;, as Nokia has reserved more rooms then they could fill with invited speakers and own personnel ;-)&lt;br /&gt;
+I&#39;m hoping it will be possible to buy a device at the conference.  The timing would be perfect.  Nokia seems to be a really cool company and so far, they haven&#39;t disappointed yet...&lt;/p&gt;
+&lt;p&gt;Somewhat related: a &lt;a href=&#34;http://wiki.maemo.org/Mer&#34;&gt;Mer (maemo alternative)&lt;/a&gt; &lt;a href=&#34;http://gitorious.org/~lbt&#34;&gt;developer&lt;/a&gt; told me he was very interested in making &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt; available on Mer, so he did just that. I&#39;m curious myself how usable uzbl will be on the n900. Only one way to find out :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

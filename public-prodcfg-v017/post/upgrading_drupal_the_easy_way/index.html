@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Upgrading Drupal the easy way &middot; Dieter&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
+	<![endif]-->
+
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='http://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1455070-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item">
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="/about">about</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="/talks">talks</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/upgrading_drupal_the_easy_way/">Upgrading Drupal the easy way</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://dieter.plaetinck.be/post/upgrading_drupal_the_easy_way/" rel="bookmark">
+					<time class="entry-date" datetime="2007-07-29T15:57:23-04:00">
+						July 29, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+
+	<div class="entry-content">
+		<p>I just upgraded this site to <a href="http://drupal.org/drupal-5.2">Drupal 5.2</a>.  The package came with upgrading instructions consisting of 11 steps to complete the upgrade proces, but after reading it a few times I realized it could be done easier.<!--more--></p>
+<p>Here is a synthesized version of the upgrade instructions that came with the package:</p>
+<ol>
+<li>Backup your database and Drupal directory.  Especially your site settings, custom modules and themes, and files folder.</li>
+<li>Log on as the user with user ID 1.  User ID 1 needs to be logged in so that you can access update.php (step 9) which can only be run by user ID 1.  Do not close your browser until step 10 is complete.</li>
+<li>Place the site in "Off-line" mode, to mask any errors from site visitors.</li>
+<li>Disable contributed modules and switch to a core theme</li>
+<li>Remove all of the old files and directories from the Drupal installation directory.</li>
+<li>Unpack the new Drupal files and directories into the Drupal installation directory.</li>
+<li>Copy the backed up files/directories from step 1 to the Drupal installation directory.</li>
+<li>Verify the new configuration file to make sure it has the latest and correct information.</li>
+<li>Re-install contributed modules.   Check if they are compatible with the new version</li>
+<li>Run update.php by visiting <a href="http://www.example.com/update.php" title="http://www.example.com/update.php">http://www.example.com/update.php</a></li>
+<li>Finally, return site to "Online" mode</li>
+</ol>
+<p>Now, the thing is you don't have to do things like disabling contributed modules and themes if you install them right away instead of later on.</p>
+<p>So, here are my simplified instructions:</p>
+<ol>
+<li>Unpack the drupal 5.2 folder on your local system</li>
+<li>Copy all your specific folders/files (files, themes, modules and settings.ini) to the right place in this folder</li>
+<li>Login as user 1</li>
+<li>Enable offline mode</li>
+<li>Delete all files of your Drupal installation on the webhost</li>
+<li>Upload the files from the drupal 5.2 folder to your webhost</li>
+<li>go to <a href="http://www.example.com/?q=user" title="http://www.example.com/?q=user">http://www.example.com/?q=user</a> and login again</li>
+<li>Run <a href="http://www.example.com/update.php" title="http://www.example.com/update.php">http://www.example.com/update.php</a></li>
+<li>Enable online mode</li>
+</ol>
+<p>These instructions worked fine for upgrading from 5.1 to 5.2.  If you do are more drastic upgrade (e.g. from 4 to 5) you should only follow this method if you don't have any contributed themes/modules because otherwise you need to upgrade your modules.</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">
+			
+                <a href="http://dieter.plaetinck.be/tags/drupal" rel="tag">drupal</a>
+            
+		</span>
+		
+		<style>
+.honey {
+display: none;
+}
+</style>
+
+<form id="comments-form" class="comments__new" action="http://plaetinck.be:5888/comments">
+    <input type="hidden" name="post" value="upgrading_drupal_the_easy_way">
+    <input type="text" name="company" class="honey">
+    <br/><input type="text" name="name" placeholder="Name" required/>
+    <br/><input type="email" name="email" placeholder="Email address (will not be public)" required/>
+    <br/><input type="url" name="url" placeholder="Website (optional)"/>
+    <textarea rows="10" name="message" placeholder="Comment" required></textarea>
+    <input type="submit" value="Send" />
+</form>
+
+<script type="text/template" id="template--new-comment">
+	<article id="comment" class="comment">
+		<img class="commentAvatar" src="https://www.gravatar.com/avatar/@hash?d=mm&s=80">
+		<div class="commentRight">
+			<p class="commentAuthor"><a href="@url" class="commentAuthor">@name</a></p>
+			<time class="entry-date" datetime="2007-07-29T15:57:23-04:00">@date</time>
+			<div class="commentMessage">@message</div>
+		</div>
+	</article>
+</script>
+
+<script language="javascript">
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+var addComment = function (data) {
+     var template = document.getElementById('template--new-comment').innerHTML;
+     var d = new Date(data.Ts);
+     var date = d.getDate() + " " + monthNames[d.getMonth()] + ", " + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+     template = template.replace('@hash', data.Hash)
+                        .replace('@date', date)
+                        .replace('@name', data.Author)
+                        .replace('@message', data.Message)
+                        .replace('@url', data.Link)
+     $(template).insertBefore('.comments__new');
+};
+
+var addComments = function(data) {
+	$.each(data, function(i, c) {
+		addComment(c);
+	});
+};
+
+$( document ).ready(function() {
+     $.ajax({
+         method: "GET",
+         url: "http:\/\/plaetinck.be:5888\/comments/upgrading_drupal_the_easy_way",
+         success: addComments,
+				 error: function(jqXHR, status, err) {
+					 e = "<div><b>Could not load comments</b></br>" + status + " " + err +
+						 "<br/>Disabling commenting feature.<br/>Pretty sure Dieter monitors his site using <a href='https://grafana.net/plugins/raintank-worldping-app'>WorldPing</a> but maybe this is a transient error.</div>";
+					$(e).insertBefore('.comments__new');
+					 $("#comments-form").hide();
+				 }
+     });
+			$('#comments-form').submit(function (event) {
+					var url = $(this).attr('action');
+					var data = $(this).serialize();
+					var formName = $(this).find('[name="name"]').val().trim();
+					var formUrl = $(this).find('[name="url"]').val().trim();
+					var formEmail = $(this).find('[name="email"]').val().trim();
+
+					$.ajax({
+							method: "POST",
+							url: url,
+							data: data,
+							success: addComment,
+							error: function(jqXHR, status, err) {
+								alert("sorry: "+ status + " " + err +", would you be so kind to let me know about this error?")
+							}
+					});
+					return false;
+			});
+});
+
+</script>
+
+		
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
+    27
+    <br/>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
+    24
+    <br/>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
+    11
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
+            4
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/programming">programming</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
+</html>

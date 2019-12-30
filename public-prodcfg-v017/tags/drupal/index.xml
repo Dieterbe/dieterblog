@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dieter&#39;s blog</title>
+    <link>http://dieter.plaetinck.be/tags/drupal/index.xml</link>
+    <description>Recent content on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/drupal/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Migrating blogs from Drupal to Pyblosxom</title>
+      <link>http://dieter.plaetinck.be/post/migrating_blogs_from_drupal_to_pyblosxom/</link>
+      <pubDate>Sun, 19 Dec 2010 19:54:07 -0400</pubDate>
+      
+      <guid>96 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://pyblosxom.bluesock.org/&#34;&gt;pyblosxom&lt;/a&gt; is a pretty cool blogging platform written in python.&lt;br /&gt;
+Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.&lt;br /&gt;
+The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn&#39;t just rely on an external service like disqus, but stores comments as plaintext files as well.&lt;br /&gt;
+Some features seem a bit overengineered (like, multiple possible locations to store themes (known as &#34;flavours&#34;) and templates; I&#39;m a fan of convention over configuration and keeping things simple), but discussing this with the maintainer revealed this is because pyblosxom is meant as a reimplementation of the original perl-based bloxsom project.  Over time features could be simplified and/or redesigned.&lt;br /&gt;
+So I plan to migrate this blog from drupal to pyblosxom.&lt;br /&gt;
+To do this, I&#39;m building the tool &lt;a href=&#34;https://github.com/Dieterbe/drupal-to-pyblosxom&#34;&gt;drupal-to-pyblosxom&lt;/a&gt;.&lt;br /&gt;
+The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)&lt;!--more--&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Upgrading Drupal the easy way</title>
+      <link>http://dieter.plaetinck.be/post/upgrading_drupal_the_easy_way/</link>
+      <pubDate>Sun, 29 Jul 2007 15:57:23 -0400</pubDate>
+      
+      <guid>28 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I just upgraded this site to &lt;a href=&#34;http://drupal.org/drupal-5.2&#34;&gt;Drupal 5.2&lt;/a&gt;.  The package came with upgrading instructions consisting of 11 steps to complete the upgrade proces, but after reading it a few times I realized it could be done easier.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Here is a synthesized version of the upgrade instructions that came with the package:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Backup your database and Drupal directory.  Especially your site settings, custom modules and themes, and files folder.&lt;/li&gt;
+&lt;li&gt;Log on as the user with user ID 1.  User ID 1 needs to be logged in so that you can access update.php (step 9) which can only be run by user ID 1.  Do not close your browser until step 10 is complete.&lt;/li&gt;
+&lt;li&gt;Place the site in &#34;Off-line&#34; mode, to mask any errors from site visitors.&lt;/li&gt;
+&lt;li&gt;Disable contributed modules and switch to a core theme&lt;/li&gt;
+&lt;li&gt;Remove all of the old files and directories from the Drupal installation directory.&lt;/li&gt;
+&lt;li&gt;Unpack the new Drupal files and directories into the Drupal installation directory.&lt;/li&gt;
+&lt;li&gt;Copy the backed up files/directories from step 1 to the Drupal installation directory.&lt;/li&gt;
+&lt;li&gt;Verify the new configuration file to make sure it has the latest and correct information.&lt;/li&gt;
+&lt;li&gt;Re-install contributed modules.   Check if they are compatible with the new version&lt;/li&gt;
+&lt;li&gt;Run update.php by visiting &lt;a href=&#34;http://www.example.com/update.php&#34; title=&#34;http://www.example.com/update.php&#34;&gt;http://www.example.com/update.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Finally, return site to &#34;Online&#34; mode&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now, the thing is you don&#39;t have to do things like disabling contributed modules and themes if you install them right away instead of later on.&lt;/p&gt;
+&lt;p&gt;So, here are my simplified instructions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Unpack the drupal 5.2 folder on your local system&lt;/li&gt;
+&lt;li&gt;Copy all your specific folders/files (files, themes, modules and settings.ini) to the right place in this folder&lt;/li&gt;
+&lt;li&gt;Login as user 1&lt;/li&gt;
+&lt;li&gt;Enable offline mode&lt;/li&gt;
+&lt;li&gt;Delete all files of your Drupal installation on the webhost&lt;/li&gt;
+&lt;li&gt;Upload the files from the drupal 5.2 folder to your webhost&lt;/li&gt;
+&lt;li&gt;go to &lt;a href=&#34;http://www.example.com/?q=user&#34; title=&#34;http://www.example.com/?q=user&#34;&gt;http://www.example.com/?q=user&lt;/a&gt; and login again&lt;/li&gt;
+&lt;li&gt;Run &lt;a href=&#34;http://www.example.com/update.php&#34; title=&#34;http://www.example.com/update.php&#34;&gt;http://www.example.com/update.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Enable online mode&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These instructions worked fine for upgrading from 5.1 to 5.2.  If you do are more drastic upgrade (e.g. from 4 to 5) you should only follow this method if you don&#39;t have any contributed themes/modules because otherwise you need to upgrade your modules.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bye CakePHP, bye dAuth... Hello Drupal!</title>
+      <link>http://dieter.plaetinck.be/post/bye_cakephp_bye_dauth_hello_drupal/</link>
+      <pubDate>Thu, 19 Jul 2007 00:34:51 -0400</pubDate>
+      
+      <guid>19 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I&#39;m afraid the time has come to say goodbye to CakePHP, and to the projects I&#39;ve been working on for it.&lt;br /&gt;
+I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don&#39;t like but that&#39;s not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.&lt;br /&gt;
+But .. all the sites I currently work on are all community sites or blogs&lt;!--more--&gt;, and although some of them have some specific requirements, in the end it&#39;s all very generic and a full blown content management system like Drupal proves much more useful and feature full then developing my own application in a web application framework such as Cake. (even if that&#39;s becoming easier and easier to do)&lt;/p&gt;
+&lt;p&gt;I think Drupal is a magnificent CMS because it is plug and play (I need that because my time is getting pretty sparse lately!) but also because it has a pretty active community: there are so many 3rd party modules being developed, and usually you can just upload the module in your modules folder , enable it from your control panel and presto!&lt;/p&gt;
+&lt;p&gt;Also Drupal seems to have a pretty slick API, this is important for me because I will still need to program some stuff every once in a while because not everything I need is available yet. &lt;/p&gt;
+&lt;p&gt;If I would ever use Cake again, I would probably abuse it as a console application framework (especially for it&#39;s simple datalayer), or of course if I would have to create a very customized web application such as I did &lt;a href=&#34;http://dieter.plaetinck.be/masterproef&#34;&gt;recently&lt;/a&gt;, but none is planned in the forseeable future.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;A special note about dAuth:&lt;/em&gt;&lt;br /&gt;
+CakePHP 1.2 will have an auth component included, I don&#39;t know the current state but as far as I know it&#39;s not (and never will be, judging my talks with a cake dev) as advanced as dAuth.  However, this is not necessarily a bad thing:&lt;br /&gt;
+The further I&#39;ve tried to perfect the safeguarding of the confidentiality of the password (trough hashing it, using the challenge response paradigm, etc) the more I&#39;ve come to realize you can never get a perfect result on plain http using js/php.  Just switch to https and you get great encryption where you don&#39;t need to bother about the confidentiality of a password, and it&#39;s almost no hassle.  So these are things that shouldn&#39;t be in your php/js code, which saves you a lot of efforts and is perfectly secure (at least: the aspect of confidentiality!&lt;/p&gt;
+&lt;p&gt;But.. another part of the system were the &#34;added bits&#34; of security such as the brute force detection.  I hope the cake guys will include something like that in their auth component because I think this is a must.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting statistics about events that don&#39;t trigger page requests with Google Analytics</title>
+      <link>http://dieter.plaetinck.be/post/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/</link>
+      <pubDate>Sun, 24 Jun 2007 19:27:42 -0400</pubDate>
+      
+      <guid>18 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;You probably already heard of &lt;a href=&#34;www.google.com/analytics&#34;&gt;Google Analytics&lt;/a&gt;.  It&#39;s a pretty nice program that (&lt;em&gt;basically&lt;/em&gt;) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;amp;topic=11012&#34;&gt;events that don&#39;t require page requests!&lt;/a&gt;&lt;br /&gt;
+Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;The principle is very easy: similar to normal page loads which trigger a call of the JavaScript function &lt;em&gt;urchinTracker()&lt;/em&gt; you just add &lt;em&gt;onClick=&#34;javascript:urchinTracker(&#39;/this-is-something-i-want-to-track&#39;);&#34;&lt;/em&gt; to your hyperlink.&lt;br /&gt;
+You can even work with subdivisions.  The examples on the help pages for &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=55529&#34;&gt;download&lt;/a&gt; and &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=55527&#34;&gt;outbound&lt;/a&gt; links propose &lt;em&gt; urchinTracker(&#39;/downloads/map&#39;);&lt;/em&gt; and &lt;em&gt;&lt;br /&gt;
+urchinTracker(&#39;/outgoing/example_com&#39;);&lt;/em&gt; respectively.&lt;/p&gt;
+&lt;p&gt;Now we also know why Google &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=66983#0.1.1_step4&#34;&gt;says&lt;/a&gt; the &#34;normal&#34; tracking code should be put at the end of the page, right before the &lt;em&gt;&amp;lt;/body&amp;gt;&lt;/em&gt; tag.  I always wondered why they recommend this weird location.  This is because calls like the ones above should happen prior to the &#34;normal&#34; one.&lt;/p&gt;
+&lt;p&gt;If only I had known this earlier.  I would love to have known an accurate number of downloads of my thesis text (and the number of unique downloaders) :-)&lt;/p&gt;
+&lt;p&gt;For those who don&#39;t have Google Analytics setup yet:&lt;br /&gt;
+&lt;a href=&#34;drupal.org/&#34;&gt;Drupal&lt;/a&gt; users should install the &lt;a href=&#34;http://drupal.org/node/49388&#34;&gt;Drupal Google Analytics&lt;/a&gt; module.&lt;br /&gt;
+&lt;a href=&#34;www.cakephp.org/&#34;&gt;CakePHP&lt;/a&gt; users can put the &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=66983#0.1.1_step4&#34;&gt;Tracking code&lt;/a&gt; in the layout file or even in an element.&lt;/p&gt;
+&lt;p&gt;Have fun tracking all events on your website!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello world!</title>
+      <link>http://dieter.plaetinck.be/post/blogpost1_hello_world/</link>
+      <pubDate>Sun, 04 Mar 2007 14:45:36 -0400</pubDate>
+      
+      <guid>1 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;Finally, my own website...&lt;br /&gt;
+I already wanted to get this up for a long time.  My initial idea was writing (and styling) it all from scratch using the marvelous &lt;a href=&#34;http://www.cakephp.org&#34;&gt;CakePHP&lt;/a&gt; framework along with an authentication system i wrote, &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;dAuth&lt;/a&gt;.&lt;br /&gt;
+However, due to my lack of time I decided to use the excellent &lt;a href=&#34;http://www.drupal.org&#34;&gt;drupal&lt;/a&gt; platform, of which I&#39;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)&lt;br /&gt;
+&lt;a href=&#34;http://buytaert.net/&#34;&gt;Dries Buytaert&lt;/a&gt;&#39;s talk on &lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;fosdem&lt;/a&gt; this year really helped on making that decision ;-)&lt;/p&gt;
+&lt;p&gt;So, what will this site be about?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;me&lt;/li&gt;
+&lt;li&gt;my interests
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/FOSS&#34;&gt;Free &amp;amp; Opensource software&lt;/a&gt;, and the thoughts/ideals behind it&lt;/li&gt;
+&lt;li&gt;PHP scripting/programming (I like C(++), bash and j2se too but I&#39;m not as good at it as I am at php)&lt;/li&gt;
+&lt;li&gt;Audio recording/mixing/production&lt;/li&gt;
+&lt;li&gt;Drumming, one of my greatest hobbies&lt;/li&gt;
+&lt;li&gt;Music, bands, movies,... I like&lt;/li&gt;
+&lt;li&gt;productivity (&lt;a href=&#34;http://en.wikipedia.org/wiki/Test-driven_development&#34;&gt;TDD&lt;/a&gt;, automation scripts, shell/DE tweaks, ...)
+&lt;li&gt;ethics and philosophy, these aspects are really important in my life&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.jhsjatoo.org/&#34;&gt;Jeugdhuis SjaTOo&lt;/a&gt;, our local youth club&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now let&#39;s get started ;-)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Requirements for the perfect GTD tool &middot; Dieter&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
+	<![endif]-->
+
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='http://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1455070-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item">
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="/about">about</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="/talks">talks</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/requirements_for_the_perfect_gtd_tool/">Requirements for the perfect GTD tool</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://dieter.plaetinck.be/post/requirements_for_the_perfect_gtd_tool/" rel="bookmark">
+					<time class="entry-date" datetime="2008-08-09T16:04:45-04:00">
+						August 9, 2008
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+
+	<div class="entry-content">
+		<p>I've been reading <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> lately and it's absolutely a great and inspiring book.<br />
+Having made my home office space into a real <i>Zen</i> I want to start implementing GTD in my digital life but it seems very hard to find a good GTD tool that fully implements GTD. (even though there are a lot of tools out there)</p>
+<p>The most interesting ones (each for different reasons) I've looked at so far are <a href="http://www.thinkingrock.com.au/index.php">Thinkingrock</a>, <a href="http://www.rousette.org.uk/projects/">tracks</a> and <a href="https://gna.org/projects/yagtd/">yagtd</a> (the latter requiring most work before it does everything I need, but it's also the most easy to dive into the code base). I'm keeping my eyes open because there are certainly more things to discover.</p>
+<p>Even though there are probably no applications out there that can do everything I want, I just wanted to share my feature-wishlist.  These are the requirements I find that a really good tool should comply with:<br />
+<!--more--><br />
+In order of importance (sort of):</p>
+<ul>
+<li><i>I want to have control over both my data and application.</i><br />
+ At least half of the GTD apps out there are websites ran by an external party.  I want to run the application myself, I must have access to the source code, and I want to have my data myself.</li>
+<li><i>Rapid idea collection and processing.</i><br />
+  David Allen mentions the importance of this several times.  Sometimes you are doing something but come up with something else which you want to write down to continue your other stuff as quickly as you can.  Later on - in 'processing mode' - these notes must be handled one by one, and it must be easy to choose whether you want to create a new task from this note, throw it away, file/further edit as a note for something else and so on.  For some reason many GTD applications skip these very important collection and processing steps and assume their users will enter actions right away.  For now I've only seen Thingkingrock handling this nicely (or at all).  A workaround could be to use a notes-taking application such as tomboy as collection bucket, and process that every once in a while but then you'll need to copy-paste stuff from one application into another etc.  Doable but cumbersome and avoidable.</li>
+<li><i>Context / project editors</i><br />
+Context and projects are entities on their own. I don't want any of them disappearing/non-existing just because there are no actions that 'link to them' anymore/yet.  (which seems to be the case with yagtd).  Tracks handles this really nicely.</li>
+<li><i>Advanced reference system.</i><br />
+Notes/documentation (with documentation I don't mean physical files such as *.pdf or *.odt but just textual data) must be able to get filed and easily be retrieved by itself or by associated item.  A note should be able to be linked to an action or project but must also be able to stand on it's own through it's title and/or a tagging system.  Some notes can even be related to multiple projects/actions (from different projects).  In many cases I find it useful to link a project to one or more notes who are already general reference material or linked to something else.  So this goes <i>way</i> beyond the simple 'description' fields that most tools offer.  Support for holding not only text, but also hyperlinks, images, movie clips, would be a plus. (not the most important though)</li>
+<li><i>File format</i><br />
+An easily accessible file format is a plus for a variety of reasons.  Plaintext is the winner here (yagtd).  Tracks does not seem to support a plaintext backend but it does support an api/rss/.. and an export feature so that counts too.  ThinkingRock uses xml. (mixed feelings about that)
+</li>
+<li><i>action/project dependencies</i><br />
+Some actions or projects can't be done at all as long as another project or action is not finished.  If you can specify this in your program, than the program can put the action/project in the 'waitingfor' section and move it  to 'next actions' when the dependencies are fulfilled. (after asking confirmation maybe)</li>
+<li><i>Calendar integration</i><br />
+A full featured calender does not belong in a GTD tool, ( because on a calender you also want to put non-actionable stuff like certain events, birthdays,...) but there does need to be support for exporting everything with a date on it (actions with due dates or that can only happen on specific moments each week/day/...) to a calendar.  Ical is probably the most common for this, but with an rss feed or rest api I can help myself too. (by converting it into ical or whatever)</li>
+<li><i>project planning on the beforehand</i><br />
+When planning a project you already know more action steps then just the next one for a project.  If you can specify these in a good way (e.g. not by abusing the project description field) the program can open the next action when you complete the current one.</li>
+<li><i>Reminders</i><br />
+I want to be informed automatically of stuff that *needs* to happen.  Gtk or libnotify popups are great, e-mail will do too.  Being able to respond to the notification to say 'inform me again at $foo' or 'i just did this, close the action!' are a plus.
+</li>
+<li><i>History</i><br />
+When did I do this? What happened to item X at this date?  Questions that sometimes need an answer and it's frustrating if you don't have them.</li>
+<li><i>GTD on the road</i><br />
+I can use a paper notebook for collecting ideas and for quickly writing some reminders down before closing the laptop but having access to my GTD data on my phone would be really nice. (preferably by syncing the phone with my laptop to be not dependent on a network at all times) (I will be having an iphone soon)
+</li>
+<li><i>Integration with email</i><br />
+How great would be to specify in your GTD tool 'this action is waiting for John Doe' and later, when you receive a mail from John Doe you can say 'this closes this action' ?  Or for each mail in your inbox you have some options to import the contents into your collection bucket, into a new task or into the filing system?  Practically how this could work is through an api like what tracks offers, or by dbus for desktop programs.
+</li>
+</ul>
+<h3>About the book</h3>
+<p>GTD has received a lot of hype, which made me sceptical at first but while reading the book it became clear the praise is deserved.<br />
+Right from the beginning you start learning many things, and throughout the book the 'eureka' moments keep coming.  Even I who have been thinking quite a lot on how to organize my todo's, ideas and reference material am surprised by how much can be improved.  There are some points that are not new and are also mentioned in other time management books (such as 'getting a clear head') but the great part is that GTD is not only about action management, but also about project planning, personal organisation, how to manage those ideas/questions/reminders that you come up with randomly, office organisation and so on. I was afraid that some things I do/need would not be handled in the book but it's definitely not the case.  And everything is handled both in theory and in practice with a lot of thoughts, ideas and practical recommendations.  David's advice after more then 20 years of productivity consulting/training/research is something that no-one should miss.<br />
+From a writers perspective: I find it also amazing how stuff that is so hard to explain is so well organized and explained in a easy to understand phrasing throughout the entire book.  Not that I know much about this field but it's clear that this part of the book also has gotten a lot of work.  In a few rare cases I found that some recommendations were not backed up enough but those were just details.</p>
+<p>While reading the book (I haven't finished it yet btw) I spent several days cleaning up my room.  I started using a filing cabinet for my reference material (placed very accessibly!), organized supplies and equipment on my desk etc etc.  There is still some work to do but on the short term I want to have gotten rid of everything I don't need, and keep what I need in the places that make most sense for them, and in the end I want to know where everything is (so I never need to search) and there should be nothing where it doesn't belong...</p>
+<p>My parents had to stop me from starting to clean up our entire attic...  This book definitely has changed me.  (those who know how I used to leave my stuff will understand ;-)</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">
+			
+                <a href="http://dieter.plaetinck.be/tags/life" rel="tag">life</a>
+            
+                <a href="http://dieter.plaetinck.be/tags/productivity" rel="tag">productivity</a>
+            
+                <a href="http://dieter.plaetinck.be/tags/foss" rel="tag">foss</a>
+            
+		</span>
+		
+		<style>
+.honey {
+display: none;
+}
+</style>
+
+<form id="comments-form" class="comments__new" action="http://plaetinck.be:5888/comments">
+    <input type="hidden" name="post" value="requirements_for_the_perfect_gtd_tool">
+    <input type="text" name="company" class="honey">
+    <br/><input type="text" name="name" placeholder="Name" required/>
+    <br/><input type="email" name="email" placeholder="Email address (will not be public)" required/>
+    <br/><input type="url" name="url" placeholder="Website (optional)"/>
+    <textarea rows="10" name="message" placeholder="Comment" required></textarea>
+    <input type="submit" value="Send" />
+</form>
+
+<script type="text/template" id="template--new-comment">
+	<article id="comment" class="comment">
+		<img class="commentAvatar" src="https://www.gravatar.com/avatar/@hash?d=mm&s=80">
+		<div class="commentRight">
+			<p class="commentAuthor"><a href="@url" class="commentAuthor">@name</a></p>
+			<time class="entry-date" datetime="2008-08-09T16:04:45-04:00">@date</time>
+			<div class="commentMessage">@message</div>
+		</div>
+	</article>
+</script>
+
+<script language="javascript">
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+var addComment = function (data) {
+     var template = document.getElementById('template--new-comment').innerHTML;
+     var d = new Date(data.Ts);
+     var date = d.getDate() + " " + monthNames[d.getMonth()] + ", " + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+     template = template.replace('@hash', data.Hash)
+                        .replace('@date', date)
+                        .replace('@name', data.Author)
+                        .replace('@message', data.Message)
+                        .replace('@url', data.Link)
+     $(template).insertBefore('.comments__new');
+};
+
+var addComments = function(data) {
+	$.each(data, function(i, c) {
+		addComment(c);
+	});
+};
+
+$( document ).ready(function() {
+     $.ajax({
+         method: "GET",
+         url: "http:\/\/plaetinck.be:5888\/comments/requirements_for_the_perfect_gtd_tool",
+         success: addComments,
+				 error: function(jqXHR, status, err) {
+					 e = "<div><b>Could not load comments</b></br>" + status + " " + err +
+						 "<br/>Disabling commenting feature.<br/>Pretty sure Dieter monitors his site using <a href='https://grafana.net/plugins/raintank-worldping-app'>WorldPing</a> but maybe this is a transient error.</div>";
+					$(e).insertBefore('.comments__new');
+					 $("#comments-form").hide();
+				 }
+     });
+			$('#comments-form').submit(function (event) {
+					var url = $(this).attr('action');
+					var data = $(this).serialize();
+					var formName = $(this).find('[name="name"]').val().trim();
+					var formUrl = $(this).find('[name="url"]').val().trim();
+					var formEmail = $(this).find('[name="email"]').val().trim();
+
+					$.ajax({
+							method: "POST",
+							url: url,
+							data: data,
+							success: addComment,
+							error: function(jqXHR, status, err) {
+								alert("sorry: "+ status + " " + err +", would you be so kind to let me know about this error?")
+							}
+					});
+					return false;
+			});
+});
+
+</script>
+
+		
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
+    27
+    <br/>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
+    24
+    <br/>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
+    11
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
+            4
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/programming">programming</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
+</html>

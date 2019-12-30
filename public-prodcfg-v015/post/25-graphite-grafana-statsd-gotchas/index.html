@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>25 Graphite, Grafana and statsd gotchas &middot; Dieter&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
+	<![endif]-->
+
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='http://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1455070-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item">
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="/about/">about</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="/talks/">talks</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/25-graphite-grafana-statsd-gotchas/">25 Graphite, Grafana and statsd gotchas</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://dieter.plaetinck.be/post/25-graphite-grafana-statsd-gotchas/" rel="bookmark">
+					<time class="entry-date" datetime="2016-03-15T16:22:03&#43;10:00">
+						March 15, 2016
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+
+	<div class="entry-content">
+		
+
+<p>This is a crosspost of <a href="https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/">an article I wrote on the raintank.io blog</a><br />
+For several years I&rsquo;ve worked with Graphite, Grafana and statsd on a daily basis and have been participating in the community.  All three are fantastic tools and solve very real problems.  Hence my continued use and recommendation.  However, between colleagues, random folks on irc, and personal experience, I&rsquo;ve seen a plethora of often subtle issues, gotchas and insights, which today I&rsquo;d like to share.</p>
+
+<p>I hope this will prove useful to users while we, open source monitoring developers, work on ironing out these kinks.  At raintank we&rsquo;re addressing a bunch of these as well but we have a long road ahead of us.
+<br>
+Before we begin, when trying to debug what&rsquo;s going on with your metrics (whether they&rsquo;re going in or out of these tools), don&rsquo;t be afraid to dive into the network or the whisper files. They can often be invaluable in understanding what&rsquo;s up.</p>
+
+<p>For network sniffing, I almost always use these commands:<br />
+<code>ngrep -d any -W byline port 2003 # carbon traffic
+ngrep -d any -W byline port 8125 # statsd traffic</code></p>
+
+<p>Getting the json output from Graphite (just append <code>&amp;format=json</code>) can be very helpful as well. Many dashboards, including <a href="http://www.grafana.org">Grafana</a> already do this, so you can use the browser network inspector to analyze requests. For the whisper files, Graphite comes with various useful utilities such as whisper-info, whisper-dump, whisper-fetch, etc.</p>
+
+<p><em>here we go:</em></p>
+
+<p><a href="#traffic.drop">1. OMG! Did all our traffic just drop?</a><br />
+<a href="#null.math.func">2. Null handling in math functions.</a><br />
+<a href="#null.runtime">3. Null handling during runtime consolidation.</a><br />
+<a href="#consolidation.aggregation">4. No consolidation or aggregation for incoming data.</a><br />
+<a href="#limited.aggregation">5. Limited storage aggregation options.</a><br />
+<a href="#runtime.consolidation">6. Runtime consolidation is detached from storage aggregation.</a><br />
+<a href="#grafana.consolidation">7. Grafana consolidation is detached from storage aggregation and runtime consolidation.</a><br />
+<a href="#aggregating.percentiles">8. Aggregating percentiles.</a><br />
+<a href="#deriving.integration">9. Deriving and integration in Graphite.</a><br />
+<a href="#graphite.quantization">10. Graphite quantization.</a><br />
+<a href="#statsd.flush.offset">11. statsd flush offset depends on when statsd was started.</a><br />
+<a href="#time-attributed.metrics">12. Improperly time-attributed metrics.</a><br />
+<a href="#timestamps">13. The relation between timestamps and the intervals they describe.</a><br />
+<a href="#statsd.timing">14. The statsd timing type is not only for timings.</a><br />
+<a href="#metric.keys">15. The choice of metric keys depends on how you deployed statsd.</a><br />
+<a href="#non-blocking.udp.sends">16. statsd is &ldquo;fire and forget&rdquo;, &ldquo;non-blocking&rdquo; &amp; UDP sends &ldquo;have no overhead&rdquo;.</a><br />
+<a href="#statsd.sampling">17. statsd sampling.</a><br />
+<a href="#saturate">18. As long as my network doesn&rsquo;t saturate, statsd graphs should be accurate.</a><br />
+<a href="#gauges">19. Incrementing/decrementing gauges.</a><br />
+<a href="#cant.graph.what.you.havent.seen">20. You can&rsquo;t graph what you haven&rsquo;t seen</a><br />
+<a href="#nulls.deleteIdleStats">21. Don&rsquo;t let the data fool you: nulls and deleteIdleStats options.</a><br />
+<a href="#keeplastvalue">22. keepLastValue works&hellip; almost always.</a><br />
+<a href="#statsd.counters">23. statsd counters are not counters in the traditional sense.</a><br />
+<a href="#input">24. What can I send as input? </a><br />
+<a href="#hostnames.ip.addresses">25. Hostnames and ip addresses in metric keys.</a></p>
+
+<p><span id="traffic.drop"></span>
+1) <a href="#traffic.drop" class="anchor-link"><strong>OMG! Did all our traffic just drop?</strong></a><br />
+Probably the most common gotcha, and one i run into periodically. Graphite will return data up until the current time, according to your data schema.</p>
+
+<blockquote>
+<p><strong>Example:</strong> if your data is stored at 10s resolution, then at 10:02:35, it will show
+data up until 10:02:30. Once the clock hits 10:02:40, it will also include that point (10:02:40) in its response.</p>
+
+<p>It typically takes some time for your services to send data for that timestamp, and for it to be processed by Graphite, so Graphite will typically return a null here for that timestamp. Depending on how you visualize (see for example the &ldquo;null as null/zero&rdquo; option in grafana), or if you use a function such as sumSeries (see below) it may look like a drop in your graph, and cause panic.</p>
+</blockquote>
+
+<p>You can work around this with &ldquo;null as null&rdquo; in Grafana, transformNull() or keepLastValue() in Graphite, or plotting until a few seconds ago instead of now. See below for some other related issues.</p>
+
+<p><span id="null.math.func"></span>
+2) <a href="#null.math.func" class="anchor-link"><strong>Null handling in math functions.</strong></a><br />
+Graphite functions don&rsquo;t exactly follow the rules of logic (by design). When you request something like <code>sumSeries(diskspace.server_*.bytes_free)</code> Graphite returns the sum of all bytes_free&rsquo;s for all your servers, at each point in time. If all of the servers have a null for a given timestamp, the result will be null as well for that time. However, if only some - but not all - of the terms are null, they are counted as 0.</p>
+
+<blockquote>
+<p><strong>Example:</strong> The sum for a given point in time, 100 + 150 + null + null = 250.</p>
+
+<p>So when some of the series have the
+occasional null, it may look like a drop in the summed series. This especially commonly happens for the last point at each point in time, when your servers don&rsquo;t submit their metrics at the exact same time.</p>
+</blockquote>
+
+<p>Now let&rsquo;s say you work for a major video sharing website that runs many upload and transcoding clusters around the world. And let&rsquo;s also say you build this really cool traffic routing system that sends user video uploads to the most appropriate cluster, by taking into account network speeds, transcoding queue wait times, storage cluster capacity (summed over all servers), infrastructure cost and so forth.  Building this on top of Graphite would make a lot of sense, and in all testing everything works fine, but in production the decisions made by the algorithm seem nonsensical, because the storage capacity seems to fluctuate all over the place.   Let&rsquo;s just say that&rsquo;s  how a certain Belgian engineer became intimately familiar with Graphite&rsquo;s implementation of functions such as sumSeries.  Lesson learned.  No videos were hurt.</p>
+
+<p>Graphite could be changed to strictly follow the rules of logic, meaning as soon as there&rsquo;s a null in an equation, emit a null as output. But a low number of nulls in a large sum is usually not a big deal and having a  result with the nulls counted as 0 can be more useful than no result at all. Especially when averaging, since those points can typically be safely excluded  without impact on the output. Graphite has the xFilesFactor option in storage-aggregation.conf, which lets you configure the minimum fraction of non-null values, which it uses during storage aggregation (rollups) to determine whether the input is sufficiently known for output to be known, otherwise the output value will be null.</p>
+
+<p>It would be nice if these on-demand math requests would take an xFilesFactor argument to do the same thing. But for now, just be aware of it, not using the last point is usually all you need if you&rsquo;re only looking at the most recent data. Or get the timing of your agents tighter and only request data from Graphite until now=-5s or so.</p>
+
+<div class="intermezzo">
+<strong>INTERMEZZO:</strong>
+At this point we should describe the many forms of consolidation; a good understanding of this is required for the next points.
+<br/><br/>
+<ul>
+<li><strong>storage consolidation aka aggregation, aka rollups</strong>: data aggregated to optimize the cost of historical archives and make it faster to return large timeframes of data. Driven by storage-aggregation.conf</li>
+<br/>
+<li><strong>runtime consolidation</strong>: when you want to render a graph but there are more datapoints than pixels for the graph, or more than the maxDataPoints setting. Graphite will reduce the data in the http response. Averages by default, but can be overridden through consolidateBy()</li>
+<br/>
+<li><strong>Grafana consolidation</strong>: Grafana can visualize stats such as min/max/avg which it computes on the data returned by your timeseries system.</li>
+<br/>
+<li><strong>statsd consolidation</strong>: statsd is also commonly used to consolidate usually very high rates of irregular incoming data in properly spaced timeframes, before it goes into Graphite.</li>
+<br/>
+<li>Unlike all above mechanisms which work per series,
+the <a href="http://graphite.readthedocs.org/en/1.0/functions.html#graphite.render.functions.sumSeries">sumSeries()</a>, <a href="http://graphite.readthedocs.org/en/1.0/functions.html#graphite.render.functions.averageSeries">saverageSeries()</a>, <a href="http://graphite.readthedocs.org/en/1.0/functions.html#graphite.render.functions.groupByNode">groupByNode()</a> Graphite functions work
+across series. They merge multiple series into a single or fewer series by aggregating  
+points from different series at each point in time.</li>
+<br/>
+<li>And then there's <a href="http://graphite.readthedocs.org/en/latest/carbon-daemons.html#carbon-aggregator-py">carbon-aggregator</a> and <a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> which operate on your metrics stream and can aggregate on per-series level, as well as across series, as well as a combination thereof.</li>
+
+</ul>
+</div>
+
+<p><span id="null.runtime"></span>
+3) <a href="#null.runtime" class="anchor-link"><strong>Null handling during runtime consolidation</strong></a><br />
+Similar to above, when Graphite performs runtime consolidation it simply ignores null values. Imagine a series that measures throughput with points 10, 12, 11, null, null, 10, 11, 12, 10. Let&rsquo;s say it needs to aggregate every 3 points with sum. this would return 33, 10, 33. This will visually look like a drop in throughput, even though there probably was none.</p>
+
+<p>For some functions like avg, a missing value amongst several valid values is usually not a big deal, but the likeliness of it becoming a big deal increases with the amount of nulls, especially with sums. For runtime consolidation, Graphite needs something similar to the xFilesFactor setting for rollups.</p>
+
+<p><span id="consolidation.aggregation"></span>
+4) <a href="#consolidation.aggregation" class="anchor-link"><strong>No consolidation or aggregation for incoming data.</strong></a><br />
+If you submit multiple values into Graphite for the same interval, the last one overwrites any previous values, no consolidation/aggregation happens in this scenario.</p>
+
+<p>Never send multiple values for the same interval. However, carbon-aggregator or carbon-relay-ng may be of help (see above)</p>
+
+<p><span id="limited.aggregation"></span>
+5) <a href="#limited.aggregation" class="anchor-link"><strong>Limited storage aggregation options.</strong></a><br />
+In storage-aggregation.conf you configure which function to use for historical rollups. It can be limiting that you can only choose one. Often you may want to retain both the max values as well as the averages for example.(very useful for throughput). This feature exists in <a href="http://oss.oetiker.ch/rrdtool/">RRDtool</a>.</p>
+
+<p>Another issue with this is that often these functions will be misconfigured. Make sure to think about all the possible metrics you&rsquo;ll be sending (e.g. min and max values through statsd) and set up the right configuration for them.</p>
+
+<p><a href="http://blog.librato.com/posts/time-series-data">Proprietary systems tend to be more flexible</a> and I&rsquo;m sure it will make a come back in the Graphite stack as well. (more on that later)</p>
+
+<p><span id="runtime.consolidation"></span>
+6) <a href="#runtime.consolidation" class="anchor-link"><strong>Runtime consolidation is detached from storage aggregation.</strong></a><br />
+The function chosen in storage-aggregation.conf is only used for rollups.</p>
+
+<p>If Graphite performs any runtime consolidation it will always use average unless told otherwise through consolidateBy.  This means it&rsquo;s easy to run into cases where data is rolled up (in whisper) using, say, max or count,  but then accidentally with average while creating your visualization, resulting in incorrect information and nonsensical charts. Beware!</p>
+
+<p>It would be nice if the configured roll-up function would also apply here (and also the xFilesFactor, as above),
+For now, just be careful :)</p>
+
+<p><span id="grafana.consolidation"></span>
+7) <a href="#grafana.consolidation" class="anchor-link"><strong>Grafana consolidation is detached from storage aggregation and runtime consolidation.</strong></a><br />
+Like mentioned earlier, Grafana can provide min/max/avg/&hellip; values from the received data. For now, it just computes these from the received data, which may already have been consolidated (twice: in storage and in runtime) using different functions, so these results may not be always representative. (<a href="http://play.grafana.org/dashboard/db/ultimate-graphite-query-guide">more info</a>) We will make this mechanism more powerful and accurate.</p>
+
+<p><span id="aggregating.percentiles"></span>
+8) <a href="#aggregating.percentiles" class="anchor-link"><strong>Aggregating percentiles.</strong></a><br />
+The pet peeve of many, it has been written about a lot: If you have percentiles, such as those collected by statsd, (e.g. 95th percentile response time for each server) there is in theory no proper way to aggregate those numbers.</p>
+
+<p>This issue appears when rolling up the data in the storage layer, as well when doing runtime consolidation, or when  trying to combine the data for all servers (multiple series) together. There is real math behind this, and I&rsquo;m not going into it because in practice it actually doesn&rsquo;t seem to matter much. If you&rsquo;re trying to spot issues or alert on outliers you&rsquo;ll get quite far with averaging the data together or taking the max value seen. This is especially true when the amount of requests, represented by each latency measurement, is in the same order of magnitude.  E.g. You&rsquo;re averaging per-server latency percentiles and your servers get a similar load or you&rsquo;re averaging multiple points in time for one server, but there was a similar load at each point.  You can always set up a separate alerting rule for unbalanced servers or drops in throughput.  As we&rsquo;ll see in some of the other points, taking sensible shortcuts instead of obsessing over math is often the better way to accomplish your job of operating your infrastructure or software.</p>
+
+<p><span id="deriving.integration"></span>
+9) <a href="#deriving.integration" class="anchor-link"><strong>Deriving and integration in Graphite.</strong></a><br />
+The Graphite documentation for <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.derivative">derivative()</a> hints at this already (&ldquo;This function does not normalize for periods of time, as a true derivative would.&rdquo;), but to be  entirely clear:
+<ul>
+<li>Graphite&rsquo;s <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.derivative">derivative</a> is not a derivative. A <a href="https://en.wikipedia.org/wiki/Derivative">derivative</a> divides difference in value by difference in time.  Graphite&rsquo;s derivative just returns the value deltas. Similar for <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.nonNegativeDerivative">nonNegativeDerivative()</a>.  If you want an actual derivative, use the somewhat awkwardly named <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.perSecond">perSecond()</a> function.</li>
+<li>Graphite&rsquo;s integral is not an integral either. An <a href="https://en.wikipedia.org/wiki/Integral">integral sums the multiplications of the value difference with the time span</a>.  <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.integral">Graphite&rsquo;s integral</a> just adds up the value differences.  To my knowledge there&rsquo;s no proper way to do an actual integral, but luckily this is an uncommon operation anyway. Note also that Graphite&rsquo;s integral just skips null values, so a value at each  point in time can be lower than it should, due to nulls that preceded it.</li>
+</ul>
+Maybe for a future stable Graphite release this can be reworked.  for now, just something to be aware of.</p>
+
+<p><span id="graphite.quantization"></span>
+10) <a href="#graphite.quantization" class="anchor-link"><strong>Graphite quantization.</strong></a><br />
+We already saw in the consolidation paragraph that for multiple points per interval, last write wins. But you should also know that any data point submitted gets the timestamp rounded down.</p>
+
+<blockquote>
+<p><strong>Example</strong>: You record points every 10 seconds but submit a point with timestamp at 10:02:59, in Graphite this will be stored at 10:02:50. To be more precise if you submit points at 10:02:52, 10:02:55 and 10:02:59, and have 10s resolution, Graphite will pick the point from 10:02:59 but store it at 10:02:50. So it&rsquo;s important that you make sure to submit points at consistent intervals, aligned to your Graphite retention intervals (e.g. if every 10s, submit on timestamps divisible by 10)</p>
+</blockquote>
+
+<p><span id="statsd.flush.offset"></span>
+11) <a href="#statsd.flush.offset" class="anchor-link"><strong>statsd flush offset depends on when statsd was started.</strong></a><br />
+Statsd lets you configure a flushInterval, i.e. how often it should compute the output stats and submit them to your backend. However, the exact timing is pretty arbitrary and depends on when statsd is  started.</p>
+
+<blockquote>
+<p><strong>Example</strong>: If you start statsd at 10:02:00 with a flushInterval of 10, then it
+will emit values with timestamps at 10:02:10, 10:02:20, etc (this is what you want), but if you happened to start it at 10:02:09 then it will submit values with timestamps 10:02:19, 10:02:29, etc. So typically, the values sent by statsd are subject to Graphite&rsquo;s quantization and are moved into the past.  In the latter example, by 9 seconds.  This can make troubleshooting harder, especially when comparing statsd metrics to metrics from a different service.</p>
+</blockquote>
+
+<p><em>Note: <a href="https://github.com/vimeo/statsdaemon">vimeo/statsdaemon</a> (and possibly other servers as well) will always submit values at quantized intervals  so that it&rsquo;s guaranteed to map exactly to Graphite&rsquo;s timestamps as long as the interval is correct.</em></p>
+
+<p><span id="time-attributed.metrics"></span>
+12) <a href="#time-attributed.metrics" class="anchor-link"><strong>Improperly time-attributed metrics.</strong></a><br />
+You don&rsquo;t tell statsd the timestamps of when things happened.  Statsd applies its own timestamp when it flushes the data. So this is prone to various (mostly network) delays. This could result in a metric being generated in a certain interval only arriving in statsd after the next interval has started. But it can get worse.  Let&rsquo;s say you measure how long it takes to execute a query on a database server. Typically it takes 100ms but let&rsquo;s say now many queries are taking 60s, and you have a flushInterval of 10s. Note that the metric is only sent after the full query has completed. So during the full minute where queries were slow, there are no  metrics (or only some metrics that look good, they came through cause they were part of a group of queries that managed to execute timely), and only after a minute do you get the stats that reflect queries  spawned a minute ago. The higher a timing value, the higher the attribution error, the more into the past the values it represents and the longer the issue will go undetected or invisible.</p>
+
+<p>Keep in mind that other things, such as garbage collection cycles or paused goroutines under cpu saturation may also delay your metrics reporting. Also watch out for the queries aborting all together, causing the metrics never to be sent and these faults to be invisble! Make sure you properly monitor throughput and the functioning (timeouts, errors, etc) of the service from the client perspective, to get a more accurate picture.</p>
+
+<p><em>Note that many instrumentation libraries have similar issues.</em></p>
+
+<p><span id="timestamps"></span>
+13) <a href="#timestamps" class="anchor-link"><strong>The relation between timestamps and the intervals they describe.</strong></a><br />
+When I look at a point at a graph that represents a spike in latency, a drop in throughput, or anything interesting really, I always wonder whether it describes the timeframe before, or after it.</p>
+
+<blockquote>
+<p><strong>Example</strong>: With points every minute, and a spike at 10:17:00, does it mean the spike happened in the timeframe between 10:16 and 10:17, or between 10:17 and 10:18?</p>
+</blockquote>
+
+<p>I don&rsquo;t know if a terminology for this exists already, but I&rsquo;m going to call the former <strong><em>premarking</em></strong> (data described by a timestamp that precedes the observation period) and the latter <strong><em>postmarking</em></strong> (data described by a timestamp at the end). As we already saw statsd postmarks, and many tools seem to do this, but some, including Graphite, premark.</p>
+
+<p>We saw above that any data received by Graphite for a point in between an interval is adjusted to get the timestamp at the beginning of the interval. Furthermore, during aggregation (say, aggregating sets of 10 minutely points into 10min points), each 10 minutes taken together get assigned the timestamp that precedes those 10 intervals. (i.e. the timestamp of the first point)</p>
+
+<p>So essentially, Graphite likes to show metric values before they actually happened, especially after aggregation, whereas other tools rather use a timestamp in the future of the event than in the past. As a monitoring community, we should probably standardize on an approach. I personally favor postmarking because measurements being late is fairly intuitive, predicting the future not so much.</p>
+
+<p><span id="statsd.timing"></span>
+14) <a href="#statsd.timing" class="anchor-link"><strong>The statsd timing type is not only for timings.</strong></a><br />
+The naming is a bit confusing, but anything you want to compute summary statistics (min, max, mean, percentiles, etc) for (for example message or packet sizes) can be submitted as a timing metric. You&rsquo;ll get your  summary stats just fine. The type is just named &ldquo;timing&rdquo; because that was the original (and still most  common) use case. Note that if you want to time an operation that happens at consistent intervals,  you may just as well simply use a statsd gauge for it. (or write directly to Graphite)</p>
+
+<p><span id="metric.keys"></span>
+15) <a href="#metric.keys" class="anchor-link"><strong>The choice of metric keys depends on how you deployed statsd.</strong></a><br />
+It&rsquo;s common to deploy a statsd server per machine or per cluster. This is a convenient way to assure you have a lot of processing capacity. However, if multiple statsd servers receive the same metric, they will do their own independent computations and emit the same output metric, overwriting each other. So if you run a statsd server per host, you should include the host in the metrics you&rsquo;re sending into statsd, or into the prefixStats (or similar option) for your statsd server, so that statsd itself differentiates the metrics.</p>
+
+<p><em>Note: there&rsquo;s some other statsd options to diversify metrics but the global
+prefix is the most simple and common one used.</em></p>
+
+<p><span id="non-blocking.udp.sends"></span>
+16) <a href="#non-blocking.udp.sends" class="anchor-link"><strong>statsd is &ldquo;fire and forget&rdquo;, &ldquo;non-blocking&rdquo; &amp; UDP sends &ldquo;have no overhead&rdquo;.</strong></a></p>
+
+<p>This probably stems from this snippet in the <a href="https://codeascraft.com/2011/02/15/measure-anything-measure-everything/">original statsd announcement</a>.</p>
+
+<p><q class="cite">&ldquo;[UDP is] fast — you don’t want to slow your application down in order to track its performance — but also sending a UDP packet is fire-and-forget.&rdquo;</q></p>
+
+<p>UDP sends do have an overhead that can slow your application down. I think a more accurate description is that the overhead is insignificant either if you&rsquo;re lucky, or if you&rsquo;ve spent a lot of attention to the details. In specific, it depends on the following factors:</p>
+
+<ul>
+<li><p><strong>Your network stack.</strong>  UDP sends are not asynchronous, which is a common assumption.  (i.e. they are not &ldquo;non-blocking&rdquo;) Udp write calls from userspace will block until the kernel has moved the data  through the networking stack, firewall rules, through the network driver, onto the network.
+I found this out the hard way once when an application I was testing on my laptop ran much slower than expected due to my consumer grade WiFi adapter, which was holding back my program by hanging on statsd calls. Using this <a href"http://play.golang.org/p/1YOZ1oxB-d">simple go program</a> I found that I could do 115 k/s UDP sends to localhost (where the kernel can bypass some of the network stack), but only 2k/s to a remote host (where it needs to go through all layers, including your NIC).</p></li>
+
+<li><p><strong>other code running, and its performance.</strong>  If you have a PHP code base with some statsd calls amongst slow / data-intensive code to generate complex pages, there won&rsquo;t be much difference. This is a common, and the original setting, for statsd instrumentation calls. But I have conducted cpu profiling of high-performance Golang
+applications, both at Vimeo and raintank, and when statsd was used, the apps were often spending most of their time in UDP writes caused by statsd invocations. Typically they were using a simple statsd client, where each statsd call  corresponds to a UDP write.  There are some statsd clients that buffer messages and send batches of data to statsd, reducing the UDP writes, which is a lot more efficient. (see below). You can also use sampling to lower the volume.  This does come with some problems however, see the gotcha below.</p></li>
+
+<li><p><strong>The performance of client code itself can wildly vary as well.</strong> Besides how it maps metric updates to UDP writes (see above) the invocations themselves can carry an overhead, which as you can see through <a href="https://github.com/Dieterbe/statsdbench">these benchmarks</a> of  all Go statsd clients I&rsquo;m aware of, vary anywhere between 15 microseconds to 0.4 microseconds. <br /><br/>
+When I saw this, <a href="https://github.com/alexcesaro/statsd"> Alex Cesaro&rsquo;s statsd client</a> promptly became my favorite statsd library for Go.  It has zero-allocation logic and various performance tweaks, such as the much needed client side buffering. Another interesting one is <a href="https://github.com/quipo/statsd">quipo&rsquo;s</a>, which offloads some of the computations into the client to reduce traffic and workload for the server.</p></li>
+
+<li><p><strong>Finally, it should be noted that sending to non-listening destinations may
+make your application slower.</strong>
+This is because destination hosts receiving UDP traffic for a closed socket, will return ICMP rejects to the sender, which the sender then has to process. I&rsquo;ve not seen this with my own eyes, but the people on the #go-nuts channel who  were helping me out definitely seemed to know what they&rsquo;re talking about. Sometimes &ldquo;disabling&rdquo; statsd sends is implemented by pointing to a random host or port that&rsquo;s not listening (been there done that) and is hence not the best idea!</p></li>
+</ul>
+
+<p><em>Takeaway: If you use statsd in high-performance situations, use optimized client libraries . Or use client libraries such as go-metrics, but be prepared to pay a processing tax on all of your servers. Be aware that slow NICs and sending to non-listening destinations will slow your app down.</em></p>
+
+<p><span id="statsd.sampling"></span>
+17) <a href="#statsd.sampling" class="anchor-link"><strong>statsd sampling.</strong></a><br />
+The sampling feature was part of the original statsd, so it can be seen in pretty much every client and server alternative.  The idea sounds simple enough: If a certain statsd invocation causes too much statsd network traffic or  overloads the server, sample down the messages. However, there&rsquo;s several gotchas with this.  A common invocation with a typical  statsd client looks something like:</p>
+
+<pre><code>statsd.Increment(&quot;requests.$backend.$http_response&quot;)
+</code></pre>
+
+<p>In this code, we have 1 statement, and it increments a counter to track http response codes for different backends.  It works for different values of backend and http_response, tracking the counts for each. However, let&rsquo;s say the backend &ldquo;default&rdquo; and http_response 200 are causing too much statsd traffic. It&rsquo;s easy to just sample down and change the line to:</p>
+
+<pre><code>statsd.Increment(&quot;requests.$backend.$http_response&quot;, 0.1)
+</code></pre>
+
+<p>There&rsquo;s 3 problems here though:</p>
+
+<ol>
+<li><p>How do you select a good sampling ratio? It&rsquo;s usually based on a gut feeling or some very quick math at best to come up with a reasonable number, without any attention to the impact on statistical significance, so you may be hurting the quality of your data.</p></li>
+
+<li><p>While you mainly wanted to target the highest volume metric (something like &ldquo;requests.default.200&rdquo;), your sampling setting affects the metrics for all values of backend and http_response.  Those variable combinations that are less  frequent (for a backend that&rsquo;s rarely used or a response code not commonly seen)  will be too drastically sampled down, resulting in an inaccurate view of those cases. Worst case, you won&rsquo;t see any data over the course over a longer time period, even though there were points at every interval. You can add some code to use different invocations with different sample rates based on the values of the variables, but that can get kludgy.</p></li>
+
+<li><p>Volumes of metric calls tend to constantly evolve over time.  It&rsquo;s simply not feasible to be constantly manually adjusting sample rates.  And given the above, it&rsquo;s not a good solution anyway.</p></li>
+</ol>
+
+<p>One of the ideas I wanted to implement in <a href="https://github.com/vimeo/statsdaemon">https://github.com/vimeo/statsdaemon</a> was a feedback mechanism where the server would maintain counts of received messages for each key. Based on performance criteria and standard deviation measurements, it would periodically update &ldquo;recommended sampling rates&rdquo; for every single key, which then could be fed back to the clients (by compiling into a PHP config file for example, or over a TCP connection).   Ultimately I decided it was just too complicated and deployed a statsdaemon server on every single machine so I could sample as gently as possible.</p>
+
+<p><em>Takeaway: Sampling can be used to lower load, but be aware of the trade offs.</em></p>
+
+<p><span id="saturate"></span>
+18) <a href="#saturate" class="anchor-link"><strong>As long as my network doesn&rsquo;t saturate, statsd graphs should be accurate.</strong></a><br />
+We all know that graphs from statsd are not guaranteed to be accurate, because it uses UDP, so is prone to data loss and inaccurate graphs. And we&rsquo;re OK with that trade  off, because the convenience is worth the loss in accuracy. However, it&rsquo;s commonly believed that the only, or main reason of inaccurate  graphs is UDP data loss on the network. In my experience, I&rsquo;ve seen a lot more message loss due to the UDP buffer overflowing on the statsd server.</p>
+
+<p>A typical statsd server is constantly receiving a flood of metrics. For a network socket, the Linux kernel maintains a buffer in which it stores newly received network packets, while the listening application (statsd) reads  them out of the buffer.  But if for any reason the application can&rsquo;t read from the buffer fast enough and it fills up, the kernel has to drop incoming traffic. The most common case are the statsd flushes, which compute all summary statistics and submit them each flushInterval. Typically this operation takes between 50ms and a few seconds, depending mostly on how many timing metrics were received, because those are the most computationally expensive.  Usually statsd&rsquo;s cpu is maxed out during this operation, but you won&rsquo;t see it on  your cpu graphs because your cpu measurements are averages taken at intervals that typically don&rsquo;t exactly coincide with the statsd flush-induced spikes. During this time, it temporarily cannot read from the UDP buffer, and it is very  common for the UDP buffer to rapidly fill up with new packets, at which point the Linux kernel is forced to drop incoming network packets for the UDP socket. In my experience this is very common and often even goes undetected, because  only a portion of the metrics are lost, and the graphs are not obviously wrong. Needless to say, there&rsquo;s also plenty of other scenarios for the buffer to fill up and cause traffic drops other than statsd flushing.</p>
+
+<p>There&rsquo;s two things to be done here:</p>
+
+<ol>
+<li><p>Luckily we can tune the size of the incoming UDP buffer with the net.core.rmem_max and net.core.rmem_default sysctl&rsquo;s. I recommend setting it to the <a href="http://stackoverflow.com/questions/2090850/specifying-udp-receive-buffer-size-at-runtime-in-linux">max values</a></p></li>
+
+<li><p>The kernel increments a counter every time it drops a UDP packet. You can see UDP packet drops with <code>netstat -s &ndash;udp</code> on the command  line. I highly encourage you to monitor this with something like collectd, visualize  it over time, and make sure to set an alert on it.</p></li>
+</ol>
+
+<p><em>Note also that the larger of a buffer you need, the more delay between receiving a metric and including it in the output data, possibly skewing data into the future.</em></p>
+
+<div class="intermezzo">
+<strong>INTERMEZZO:</strong>
+There's a lot of good statsd servers out there with various feature  sets. Most of them provide improved performance (upstream statsd is single threaded JavaScript), but some come with additional interesting features. My favorites include <a href="https://github.com/armon/statsite">statsite</a>, <a href="http://githubengineering.com/brubeck/">brubeck</a> and of course <a href="https://github.com/vimeo/statsdaemon">vimeo's statsdaemon version</a>
+</div>
+
+<p><span id="gauges"></span>
+19) <a href="#gauges" class="anchor-link"><strong>Incrementing/decrementing gauges.</strong></a><br />
+Statsd supports a syntax to <a href="https://github.com/etsy/statsd/blob/master/docs/metric_types.md#gauges"> increment and decrement gauges</a>. However, as we&rsquo;ve seen, any message can be lost. If you do this and a message gets dropped, your gauge value will be incorrect forever (or until you set it explicitly again). Also by sending increment/decrement values you can confuse a statsd server if it was just started. For this reason, I highly recommend not using this particular feature, and always setting gauge values explicitly.  In fact, some statsd servers don&rsquo;t support this syntax for this reason.</p>
+
+<p><span id="cant.graph.what.you.havent.seen"></span>
+20) <a href="#cant.graph.what.you.havent.seen" class="anchor-link"><strong>You can&rsquo;t graph what you haven&rsquo;t seen</strong></a><br />
+Taking the earlier example again:</p>
+
+<pre><code>statsd.Increment(&quot;requests.$backend.$http_response&quot;)
+</code></pre>
+
+<p>The metrics will only be created after the values have been sent. Sounds obvious, but this can get surprisingly annoying. Let&rsquo;s say you want to make a graph of http 500&rsquo;s, but they haven&rsquo;t happened yet. The metrics won&rsquo;t exist and with many  dashboarding tools, you won&rsquo;t be able to create the graph yet, or at least need extra  work.</p>
+
+<p>I see this very commonly with all kinds of error metrics.  I think with Grafana it will become easier to deal with this over time,  but for now I write code to just send each metric once at startup.  For counts you can just send a 0, for gauges and timers it&rsquo;s of course harder/weirder to come up with a fake value but it&rsquo;s still a  reasonable approach.</p>
+
+<p><span id="nulls.deleteIdleStats"></span>
+21) <a href="#nulls.deleteIdleStats" class="anchor-link"><strong>Don&rsquo;t let the data fool you: nulls and deleteIdleStats options.</strong></a><br />
+statsd has the deleteIdleStats, deleteGauges, and similar options. By default they are disabled, meaning statsd will keep sending data for metrics it&rsquo;s no longer seeing. So for example, it&rsquo;ll keep sending the last gauge value even if it didn&rsquo;t get an update. I have three issues with this:</p>
+
+<ul>
+<li><p><strong>Your graphs are misleading.</strong> Your service may be dead but you can&rsquo;t tell from
+the gauge graphs cause they will still &ldquo;look good&rdquo;. If you have something like  counters for requests handled, you can&rsquo;t tell the difference between your  service being dead or it being up but not getting incoming requests.  I rather have no data show up if there is none, combined with something else (alerting, different graph) to deduce whether the service is up or not</p></li>
+
+<li><p><strong>Any alerting rules defined on the metrics have the same fate as humans and
+can&rsquo;t reliably do their work</strong></p></li>
+
+<li><p><strong>Tougher to phase out metrics.</strong>  If you decommission servers or services, it&rsquo;s nice that the metrics stop updating so you can clean them up later</li></p></li>
+</ul>
+
+<p>My recommendation is, enable deleteIdleStats.  I went as far as hard coding that behavior into <a  href="https://github.com/vimeo/statsdaemon">vimeo/statsdaemon</a> and not making it configurable.</p>
+
+<p>To visualize it, make sure in Grafana to set the &ldquo;null as null&rdquo; option, though &ldquo;null as zero&rdquo; can make sense for counters. You can also use the <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.transformNull">transformNull()</a> or <a href="http://graphite.readthedocs.org/en/0.9.15/render_api.html#drawnullaszero">drawNullAsZero</a> options in Graphite for those  cases where you want to explicitly get 0&rsquo;s instead of nulls, which I typically  do in some of my bosun alerting rules, so I can treat null counts as no traffic received, while having a separate alerting rule to make sure my service is up  and running, based on a different metric, while using null as null for visualization.</p>
+
+<p><span id="keeplastvalue"></span>
+22) <a href="#keeplastvalue" class="anchor-link"><strong>keepLastValue works&hellip; almost always.</strong></a><br />
+Another Graphite function to change the semantics of nulls is <a href="http://graphite.readthedocs.org/en/latest/functions.html#graphite.render.functions.keepLastValue"> keepLastValue</a>, which causes null values to be represented by the last known value that precedes them. However, that known value must be included in the requested time range.  This is probably a rare case that you may never encounter, but if you have scripts that infrequently update a metric and you use this function, it may result in a graph sometimes showing no data at all if the last known value becomes too old.  Especially confusing to newcomers, if the graph does &ldquo;work&rdquo; at other times.</p>
+
+<p><span id="statsd.counters"></span>
+23) <a href="#statsd.counters" class="anchor-link"><strong>statsd counters are not counters in the traditional sense.</strong></a><br />
+You may know counters such as switch traffic/packet counters, that just keep increasing over time. You can see their rates per second by deriving the data. Statsd counters however, are typically either stored as the number of hits per flushInterval, or per second, or both (perhaps because of Graphite&rsquo;s derivative issue?). This in itself is not a huge problem, however this is more vulnerable to loss of data.  If your statsd server has trouble flushing some data to Graphite and some data gets lost.  If it were using a traditional counter, you could still derive the data and average out the gap across the nulls. In this case however this is not possible and you have no idea what the numbers were.  In practice this doesn&rsquo;t happen often though.  Many statsd implementations can buffer a writequeue or use something like <a href="https://github.com/graphite-ng/carbon-relay-ng"> carbon-relay-ng</a> as a write queue.
+Other disadvantages of this approach is that you need to know the flushInterval
+value to make sense of the count values, and the rounding that happens when
+computing the rates per second, which is also slightly lossy.</p>
+
+<p><span id="input"></span>
+24) <a href="#input" class="anchor-link"><strong>What can I send as input?</strong></a><br />
+Neither <a href="http://graphite.readthedocs.org/en/latest/feeding-carbon.html">Graphite</a>, nor <a href="https://github.com/etsy/statsd/blob/master/docs/metric_types.md">statsd</a> does a great job specifying exactly what they allow as input, which can be frustrating.  Graphite timestamps are 32bit unix timestamp integers, while values for both Graphite and statsd can be integers or floats, up to float 64bit precision. For statsd, see the <a href"https://github.com/b/statsd_spec">statsd_spec</a> project for more details.</p>
+
+<p>As for what characters can be included in the metric keys. Generally, Graphite is somewhat forgiving and may alter your metric keys: it converts slashes to dots (which can be confusing), subsequent dots become single dots, prefix dots get removed, postfix dots will get it confused a bit though and create an extra hierarchy with an empty node at the end if you&rsquo;re using whisper. Non-alphanumeric characters such as <a href="https://github.com/graphite-project/graphite-web/issues/242">parenthesis</a>, <a href="https://github.com/graphite-project/graphite web/issues/604">colons</a>, or <a href="https://github.com/brutasse/graphite-api/issues/57"> equals signs</a> often don&rsquo;t work well or at all.</p>
+
+<p>Graphite as a policy does not go far in validating incoming data, citing performance in large-throughput systems as the major reason. It&rsquo;s up to the senders to send data in proper form, with non-empty nodes (words between dots) separated by single dots.  You can use alphanumeric characters, hyphens and underscores, but straying from that will probably not work well. You may want to use <a href="https://github.com/graphite-ng/carbon-relay-ng"> carbon-relay-ng</a> which provides metric validation. See also <a href="https://github.com/graphite-project/carbon/issues/417">this issue</a> which aims to formalize what is, and isn&rsquo;t allowed.</p>
+
+<p><span id="hostnames.ip.addresses"></span>
+25) <a href="#hostnames.ip.addresses" class="anchor-link"><strong>Hostnames and ip addresses in metric keys.</strong></a><br />
+The last gotcha relates to the previous one but is so common it deserves its own spot. Hostnames, especially FQDN&rsquo;s, and IP addresses (due to their dots), when included in metric keys, will be interpreted by Graphite as separate pieces. Typically, people replace all dots in hostnames and IP addresses with hyphens or underscores to combat this.</p>
+
+<h3 id="closing-thoughts:9fd49bfdcdceff682bf4c8ac36dce687">Closing thoughts:</h3>
+
+<p>Graphite, Grafana and statsd are great tools, but there&rsquo;s some things to watch out for. When setting them up, make sure you configure Graphite and statsd to play well together. Make sure to set your roll-up functions and data retentions properly, and  whichever statsd version you decide to use, make sure it flushes at the same  interval as your Graphite schema configuration. <a  href="https://github.com/etsy/statsd/blob/master/docs/graphite.md">More tips if you use the nodejs version</a>. Furthermore, I hope this is an extensive list of gotchas and will serve to improve our practices at first, and our tools themselves, down to road. We are definitely working on making things better and have some announcements coming up&hellip;</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">
+			
+                <a href="http://dieter.plaetinck.be/tags/monitoring" rel="tag">monitoring</a>
+            
+		</span>
+		
+		<style>
+.honey {
+display: none;
+}
+</style>
+
+<form id="comments-form" class="comments__new" action="http://plaetinck.be:5888/comments">
+    <input type="hidden" name="post" value="25-graphite-grafana-statsd-gotchas">
+    <input type="text" name="company" class="honey">
+    <br/><input type="text" name="name" placeholder="Name" required/>
+    <br/><input type="email" name="email" placeholder="Email address (will not be public)" required/>
+    <br/><input type="url" name="url" placeholder="Website (optional)"/>
+    <textarea rows="10" name="message" placeholder="Comment" required></textarea>
+    <input type="submit" value="Send" />
+</form>
+
+<script type="text/template" id="template--new-comment">
+	<article id="comment" class="comment">
+		<img class="commentAvatar" src="https://www.gravatar.com/avatar/@hash?d=mm&s=80">
+		<div class="commentRight">
+			<p class="commentAuthor"><a href="@url" class="commentAuthor">@name</a></p>
+			<time class="entry-date" datetime="2016-03-15T16:22:03\x2b10:00">@date</time>
+			<div class="commentMessage">@message</div>
+		</div>
+	</article>
+</script>
+
+<script language="javascript">
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+var addComment = function (data) {
+     var template = document.getElementById('template--new-comment').innerHTML;
+     var d = new Date(data.Ts);
+     var date = d.getDate() + " " + monthNames[d.getMonth()] + ", " + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+     template = template.replace('@hash', data.Hash)
+                        .replace('@date', date)
+                        .replace('@name', data.Author)
+                        .replace('@message', data.Message)
+                        .replace('@url', data.Link)
+     $(template).insertBefore('.comments__new');
+};
+
+var addComments = function(data) {
+	$.each(data, function(i, c) {
+		addComment(c);
+	});
+};
+
+$( document ).ready(function() {
+     $.ajax({
+         method: "GET",
+         url: "http:\/\/plaetinck.be:5888\/comments/25-graphite-grafana-statsd-gotchas",
+         success: addComments,
+				 error: function(jqXHR, status, err) {
+					 e = "<div><b>Could not load comments</b></br>" + status + " " + err +
+						 "<br/>Disabling commenting feature.<br/>Pretty sure Dieter monitors his site using <a href='https://grafana.net/plugins/raintank-worldping-app'>WorldPing</a> but maybe this is a transient error.</div>";
+					$(e).insertBefore('.comments__new');
+					 $("#comments-form").hide();
+				 }
+     });
+			$('#comments-form').submit(function (event) {
+					var url = $(this).attr('action');
+					var data = $(this).serialize();
+					var formName = $(this).find('[name="name"]').val().trim();
+					var formUrl = $(this).find('[name="url"]').val().trim();
+					var formEmail = $(this).find('[name="email"]').val().trim();
+
+					$.ajax({
+							method: "POST",
+							url: url,
+							data: data,
+							success: addComment,
+							error: function(jqXHR, status, err) {
+								alert("sorry: "+ status + " " + err +", would you be so kind to let me know about this error?")
+							}
+					});
+					return false;
+			});
+});
+
+</script>
+
+		
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
+    27
+    <br/>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
+    24
+    <br/>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
+    11
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
+            4
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/programming">programming</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
+</html>

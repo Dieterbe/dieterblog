@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on Dieter&#39;s blog</title>
+    <link>http://dieter.plaetinck.be/tags/git/</link>
+    <description>Recent content in Git on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Nov 2016 11:33:03 +0200</lastBuildDate>
+    <atom:link href="http://dieter.plaetinck.be/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Restoring accidental git force push overwrite on GitHub if you don&#39;t have the needed commits locally</title>
+      <link>http://dieter.plaetinck.be/post/restoring-accidental-git-force-push-overwrite-on-github-if-dont-have-needed-commits-locally/</link>
+      <pubDate>Mon, 14 Nov 2016 11:33:03 +0200</pubDate>
+      
+      <guid>http://dieter.plaetinck.be/post/restoring-accidental-git-force-push-overwrite-on-github-if-dont-have-needed-commits-locally/</guid>
+      <description>&lt;p&gt;I &lt;a href=&#34;http://dieter.plaetinck.be/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/&#34;&gt;like cleaning git history&lt;/a&gt;, in feature branches, at least.
+The goal is a set of logical commits without other cruft, that can be cleanly merged into master.  This can be easily achieved with git rebase and force pushing to the feature branch on GitHub.&lt;/p&gt;
+
+&lt;p&gt;Today I had a little accident and found myself in this situation:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I accidentally ran &lt;code&gt;git push origin -f&lt;/code&gt; instead of my usual &lt;code&gt;git push origin -f branchname&lt;/code&gt; or &lt;code&gt;git push origin -f HEAD&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;This meant that I not only overwrote the branch I wanted to update, but also by accident a feature branch (called &lt;code&gt;httpRefactor&lt;/code&gt; in this case) to which a colleague had been force pushing various improvements which I did not have on my computer.  And my colleague is on the other side of the world so I didn&amp;rsquo;t want to wait until he wakes up. (if you can talk to someone who has the commits just have him/her re-force-push, that&amp;rsquo;s quite a bit easier than this)
+It looked something like so:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git push origin -f
+  &amp;lt;here was the force push that succeeded as desired&amp;gt;
++ 92a817d...065bf68 httpRefactor -&amp;gt; httpRefactor (forced update)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Oops!&lt;/strong&gt;
+So I wanted to reset the branch on GitHub to what it should be, and also it would be nice to update the local copy on my computer while we&amp;rsquo;re at it.
+Note that the commit (or rather the abbreviated hash) on the left refers to the commit that was the latest version in GitHub, i.e. the one I did not have on my computer.
+A little strange if you&amp;rsquo;re to accustomed to &lt;code&gt;git diff&lt;/code&gt; and &lt;code&gt;git log&lt;/code&gt; output showing hashes you have in your local repository.&lt;/p&gt;
+
+&lt;p&gt;Normally in a git repository, the objects dangle around until &lt;code&gt;git gc&lt;/code&gt; is run, which clears any commits except those reachable by any branches or tags.
+I figured the commit is probably still in the GitHub repo (either cause it&amp;rsquo;s dangling, or perhaps there&amp;rsquo;s a reference to it that&amp;rsquo;s not public such as a remote branch), I just need a way to attach a regular branch to it (either on GitHub, or fetch it somehow to my computer, attach the branch there and re-force-push), so step one is finding it on GitHub.&lt;/p&gt;
+
+&lt;p&gt;The first obstacle is that GitHub wouldn&amp;rsquo;t recognize this abbreviated hash anymore: going to
+&lt;code&gt;https://github.com/raintank/metrictank/commit/92a817d&lt;/code&gt; resulted in a 404 commit not found.&lt;/p&gt;
+
+&lt;p&gt;Now, we use CircleCI, so I could see what had been the full commit hash in the CI build log.
+Once I had it, I could see that &lt;code&gt;https://github.com/raintank/metrictank/commit/92a817d2ba0b38d3f18b19457f5fe0a706c77370&lt;/code&gt; showed it.
+An alternative way of opening a view of the dangling commit we need, is using the reflog syntax.
+&lt;a href=&#34;https://git-scm.com/docs/git-reflog&#34;&gt;Git reflog&lt;/a&gt; is a pretty sweet tool that often comes in handy when you made a bit too much of a mess on your local repository,
+but also on GitHub it works:  if you navigate to &lt;code&gt;https://github.com/raintank/metrictank/tree/httpRefactor@{1}&lt;/code&gt; you will be presented with the commit
+that the branch head was at before the last change, i.e. the missing commit, 92a817d in my case.&lt;/p&gt;
+
+&lt;p&gt;Then follows the problem of re-attaching a branch to it.
+Running on my laptop &lt;code&gt;git fetch --all&lt;/code&gt; doesn&amp;rsquo;t seem to fetch dangling objects, so I couldn&amp;rsquo;t bring the object in.&lt;/p&gt;
+
+&lt;p&gt;Then I tried to create a tag for the non-existant object.  I figured, the tag may not reference an object in my repo, but it will on GitHub, so if only I can create the tag, manually if needed (it seems to be just a file containing a commit hash), and push it, I should be good.
+So:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/g/s/g/r/metrictank ❯❯❯ git tag recover 92a817d2ba0b38d3f18b19457f5fe0a706c77370
+fatal: cannot update ref &#39;refs/tags/recover&#39;: trying to write ref &#39;refs/tags/recover&#39; with nonexistent object 92a817d2ba0b38d3f18b19457f5fe0a706c77370
+~/g/s/g/r/metrictank ❯❯❯ echo 92a817d2ba0b38d3f18b19457f5fe0a706c77370 &amp;gt; .git/refs/tags/recover
+~/g/s/g/r/metrictank ❯❯❯ git push origin --tags
+error: refs/tags/recover does not point to a valid object!
+Everything up-to-date
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So this approach won&amp;rsquo;t work.  I can create the tag, but not push it, even though the object exists on the remote.&lt;/p&gt;
+
+&lt;p&gt;So I was looking for a way to attach a tag or branch to the commit on GitHub, and then I found a way.
+While having the view of the needed commit open, click the branch dropdown, which you typically use to switch the view to another branch or tag.
+If you type any word in there that does not match any existing branch, it will let you create a branch with that name. So I created &lt;code&gt;recover&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;From then on, it&amp;rsquo;s easy.. on my computer I went into &lt;code&gt;httpRefactor&lt;/code&gt;, backed my version up as httpRefactor-old (so I could diff against my colleague&amp;rsquo;s recent work), deleted httpRefactor, and set it to
+the same commit as what origin/recover is pointing to, pushed it out again, and removed the recover branch on GitHub:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/g/s/g/r/metrictank ❯❯❯ git fetch --all
+(...)
+~/g/s/g/r/metrictank ❯❯❯ git checkout httpRefactor
+~/g/s/g/r/metrictank ❯❯❯ git checkout -b httpRefactor-old
+Switched to a new branch &#39;httpRefactor-old&#39;
+~/g/s/g/r/metrictank ❯❯❯ git branch -D httpRefactor
+Deleted branch httpRefactor (was 065bf68).
+~/g/s/g/r/metrictank ❯❯❯ git checkout recover
+HEAD is now at 92a817d... include response text in error message
+~/g/s/g/r/metrictank ❯❯❯ git checkout -b httpRefactor
+Switched to a new branch &#39;httpRefactor&#39;
+~/g/s/g/r/metrictank ❯❯❯ git push -f origin httpRefactor
+Total 0 (delta 0), reused 0 (delta 0)
+To github.com:raintank/metrictank.git
+ + 065bf68...92a817d httpRefactor -&amp;gt; httpRefactor (forced update)
+~/g/s/g/r/metrictank ❯❯❯ git push origin :recover                                                                                                                                            ⏎
+To github.com:raintank/metrictank.git
+ - [deleted]         recover
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that was that&amp;hellip; If you&amp;rsquo;re ever in this situation and you don&amp;rsquo;t have anyone who can do the force push again, this should help you out.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Why rewriting git history? And why should commits be in imperative present tense?</title>
+      <link>http://dieter.plaetinck.be/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/</link>
+      <pubDate>Sat, 05 Mar 2011 18:27:35 -0400</pubDate>
+      
+      <guid>why-rewriting-git-history-and-why-commits-imperative-present-tense</guid>
+      <description>&lt;p&gt;
+There are tons of articles describing &lt;em&gt;how&lt;/em&gt; you can rewrite history with git, but they do not answer &#34;&lt;em&gt;why&lt;/em&gt; should I do it?&#34;.
+A similar question is &#34;what are the tradeoffs / how do I apply this in my distributed workflow?&#34;.
+&lt;br/&gt;Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?
+&lt;br/&gt;I&#39;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&#39;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
+&lt;!--more--&gt;
+&lt;h3&gt;Why rewriting git history?&lt;/h3&gt;
+&lt;p&gt;
+Just like source code git history gets mostly read and relatively infrequently written.
+&lt;br/&gt;You read history when you want to see what has changed, when searching a bug, what the difference is between branches, and so on.
+&lt;br/&gt;The argument of &#34;I want the history to look like exactly how it really happened&#34; is flawed, because very often your history is suboptimal (you commit a feature, and shortly afterwards you commit a fix for that feature, or a commit that contains separate logical changes/bugfixes)
+&lt;br/&gt;This makes history more complicated to read then it should be, so for all the folks who will ever look back at your history (even if you think that will only be yourself) a clean history is more easy to &#34;get&#34;, just like clean source code.
+&lt;br/&gt;Also, part of the awesomeness of git is that juggling with features (needed for debugging, trying things out, ..) in your code is so flexible (see the git commit/branch model), but if you have logical changes spread over multiple commits, or one commit containing multiple logical changes, this gets painful very quickly.
+&lt;br/&gt;Once you figure out history rewriting (and it&#39;s pretty easy to learn, really!) it only costs a little time to clean up your history, which will pay off in a much greater extent for every time you or somebody else wants to look at, or needs to work &lt;i&gt;with&lt;/i&gt; it. (again, just like source code itself!)
+&lt;br/&gt;This also means that you don&#39;t need to spend so much time thinking about your commit messages for commits that are merely fixups or small additions to other logical changes.  Because those will be squashed into the other commits anyway.
+I usually commit frequently, but end up squashing many commits together, my commit log easily gets compressed by a factor two or more.  The less history, the better. (just like source code!)
+&lt;br/&gt;The commits you actually push (especially when pushing to a master branch) should of course be clean, accuractly described and with correct author information, for obvious reasons such as readability.
+&lt;/p&gt;
+&lt;p&gt;
+Note that there is some kind of &lt;i&gt;paradox&lt;/i&gt;: you can only achieve &#34;perfect history&#34; if your commits are well-tested and every introduced feature has no bugs (has all bugfix commits squashed into it), but at the same time, you can only properly expose new code by making it public, and it only gets widely used and tested if it&#39;s in your main (master) branch.
+&lt;br/&gt;This is one of the reasons why a workflow model such as one based on topic branches (aka feature branches) works: you see, git by default doesn&#39;t allow non-fast-forward pushes.
+Because you obviously don&#39;t want to break the history of other people following your stable (master branch) development.  So once you push to master, it should usually be there for good.
+&lt;br/&gt;As far as I can see, it is accepted in most projects (those run by folks with git expertise?) to push non-fast-forward to topic branches.  The idea being a topic branch is a &#34;work in progress&#34; branch, it is made public so multiple people can review/work on it.  Based on that work/review, its history will often get rewritten through a non-fast-forward push.  And if you&#39;re following/working on such a branch, you should be clever enough to deal with changed history.
+&lt;br/&gt;So, a topic branch allows you to make changes public, get feedback, clean up the history of the patchset you (and maybe others) are working on, and when satisfied, you can push to master.
+&lt;br/&gt;There is still a chance you&#39;ll later need to push bugfixes to master, but this will happen much more infrequently, so while there is no perfect workflow model that creates perfect history (in master) combined with perfect usability (no need to handle non-fastforward pushes) I find this model brings a quite good compromise.
+&lt;/p&gt;
+
+&lt;p&gt;
+To paraphrase, I would say:
+&lt;br/&gt;&lt;i&gt;You should care about clean vcs history for the same reasons you should care about clean code&lt;/i&gt;.
+&lt;br/&gt;Just like using git is good to progressively help reaching better software, so is git history rewriting good for progressively reaching a better git history.  Version control on top of version control, if you will.  A very crude form of version control but I don&#39;t think it needs to be any more advanced then this.
+&lt;/p&gt;
+
+&lt;h3&gt;Why should I write my commits in imperative present tense (&#39;do foo&#39;) rather then past tense (&#39;did foo&#39;)?&lt;/h3&gt;
+&lt;p&gt;
+Git developers command doing this (at least for the &lt;a href=&#34;http://repo.or.cz/w/git.git&#34;&gt;git project&lt;/a&gt;), but they did not document &lt;em&gt;why&lt;/em&gt;&#39;s.
+Some commonly cited reasons:
+&lt;ul&gt;
+&lt;li&gt;Consistency.  That&#39;s how it is in many projects (including git itself). Also git tools that generate commits (like git merge or git revert) do it.&lt;/li&gt;
+&lt;li&gt;It&#39;s usually shorter&lt;/li&gt;
+&lt;li&gt;You can name commits more consistently with titles of tickets in your issue/feature tracker (which don&#39;t use past tense, although sometimes future)&lt;/li&gt;
+&lt;/ul&gt;
+Another reason I came up with: people not only read history to know &#34;what happened to this codebase&#34;,
+but also to answer questions like &#34;what happens when I cherry-pick this commit&#34;, or &#34;what kind of new things will happen to my code base because of these commits I may or may not merge in the future&#34;.
+(Note that these are questions about the past,current and future)
+This is more a subjective topic, but I feel that the best way to capture this time-independence of a commit is to write down as time-agnostic as possible,
+and something like &#39;do foo&#39; (which could be &#39;do foo in the future&#39;, for instance) is more generic then something with a sense of time hardwired in it (&#34;did foo&#34; or &#34;will do foo&#34;)
+&lt;/p&gt;
+&lt;p&gt;
+See also
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://git.kernel.org/?p=git/git.git;a=blob;f=Documentation/SubmittingPatches;h=ece3c77482b3ff006b973f1ed90b708e26556862;hb=HEAD&#34;&gt;Git contributor guidelines&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://progit.org/book/ch5-2.html&#34;&gt;ProGit: contributing to a project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikibooks.org/wiki/Git/Introduction#Good_commit_messages&#34;&gt;WikiBooks Git introduction&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Checking if a git clone has any unique content, git/svn scripts</title>
+      <link>http://dieter.plaetinck.be/post/checking_if_a_git_clone_has_any_unique_content__git_and_svn_scripts/</link>
+      <pubDate>Thu, 16 Dec 2010 18:06:23 -0400</pubDate>
+      
+      <guid>95 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;When cleaning up a system and going over git repositories I often wonder if a git repo contains any interesting, but unpushed work. (i.e. &#34;unique&#34; content)&lt;br /&gt;
+I heard bzr (or was it hg...) can do it out-of-the-box, but I couldn&#39;t find any existing solution for git.&lt;br /&gt;
+So I wrote a script to do this.  It checks a repo for unique commits, tags, branches, dirty files/index, added files, or stashed states.  In comparison to a specific remote, or all of them, and uses an appropriate exitcode.&lt;br /&gt;
+&lt;a href=&#34;https://github.com/Dieterbe/git-scripts/blob/master/git-remote-in-sync.sh&#34;&gt;git-remote-in-sync.sh&lt;/a&gt;&lt;br /&gt;
+The script is part of a bigger &lt;a href=&#34;https://github.com/Dieterbe/git-scripts/&#34;&gt;git-scripts&lt;/a&gt; repo (most of the scripts written by random people).  Although the original repo creator hasn&#39;t gotten back to me this seems like a good starting point to have some sense of order in the wildspread of git scripts.&lt;/p&gt;
+&lt;p&gt;Here are some other scripts I find pretty useful:&lt;!--more--&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe/git-scripts/blob/master/git-ignore-wizard&#34;&gt;git-ignore-wizard&lt;/a&gt;: dmenu-file-selector for adding ignore rules because I always forget which file to use for which use-case.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe/git-scripts/blob/master/git-root&#34;&gt;git-root&lt;/a&gt;: get the path of the git root&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe/git-scripts/blob/master/git-merge-repo&#34;&gt;git-merge-repo&lt;/a&gt;: haven&#39;t tried this, but looks neat&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On the topic of scripts for VCS&#39;es, I also have one for svn.&lt;br /&gt;
+This one is for those occasions where you have a directory tree in svn, and you want to replace the entire tree by another tree.  The structure can be completely different (files, directories added/renamed,removed, etc) and it becomes painful to do it manually, if you even manage to keep svn from going berzerk on you.&lt;br /&gt;
+&lt;a href=&#34;https://github.com/Dieterbe/svn-scripts/blob/master/svn-replace-subtree&#34;&gt;svn-replace-subtree&lt;/a&gt; takes care of it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Handling a remote rename/move with Git</title>
+      <link>http://dieter.plaetinck.be/post/handling_a_remote_rename_or_move_with_git/</link>
+      <pubDate>Mon, 17 Nov 2008 11:29:36 -0400</pubDate>
+      
+      <guid>55 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I recently had to rename a repo on my Github account.  Github has made this &lt;a href=&#34;http://github.com/blog/128-let-there-be-renaming&#34;&gt;very easy&lt;/a&gt; but it&#39;s just one side of the issue.  Obviously you must also update any references to this remote in other clones, otherwise pushes, fetches etc won&#39;t work anymore.&lt;/p&gt;
+&lt;p&gt;You can do this in two ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;open .git/config and modify the url for the remote manually&lt;/li&gt;
+&lt;li&gt;git remote rm origin &amp;amp;&amp;amp; git remote add origin git@github.com:$user/$project.git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That&#39;s it! All will work fine again.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

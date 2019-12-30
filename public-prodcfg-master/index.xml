@@ -1,0 +1,352 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dieter&#39;s blog on Dieter&#39;s blog</title>
+    <link>http://dieter.plaetinck.be/</link>
+    <description>Recent content in Dieter&#39;s blog on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Dec 2016 19:13:03 +0000</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Posts</title>
+      <link>http://dieter.plaetinck.be/post/</link>
+      <pubDate>Sat, 10 Dec 2016 19:13:03 +0000</pubDate>
+      
+      <guid>http://dieter.plaetinck.be/post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Talks</title>
+      <link>http://dieter.plaetinck.be/talks/</link>
+      <pubDate>Sun, 03 May 2015 23:01:07 -0400</pubDate>
+      
+      <guid>11 at http://dieter.plaetinck.be</guid>
+      <description>
+&lt;h2&gt;Talks&lt;/h2&gt;
+
+&lt;table&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+
+    &lt;td&gt;July 12, 2016&lt;/td&gt;
+    &lt;td&gt;Next-generation alerting and fault detection&lt;/td&gt;
+    &lt;td&gt;SRECon Europe&lt;/td&gt;
+    &lt;td&gt;Dublin&lt;/td&gt;
+    &lt;td&gt;
+				&lt;a href=&#34;https://www.usenix.org/conference/srecon16europe/program/presentation/plaetinck&#34;&gt;details and video&lt;/a&gt;
+				&lt;a href=&#34;http://www.slideshare.net/Dieterbe/next-generation-alerting-and-fault-detection-srecon-europe-2016&#34;&gt;slides&lt;/a&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;June 6, 2016&lt;/td&gt;
+    &lt;td&gt;Next-generation alerting and fault detection&lt;/td&gt;
+    &lt;td&gt;Velocity&lt;/td&gt;
+    &lt;td&gt;Santa Clara&lt;/td&gt;
+    &lt;td&gt;
+				&lt;a href=&#34;http://conferences.oreilly.com/velocity/vl-ca-2016/public/schedule/detail/49335&#34;&gt;details&lt;/a&gt;
+				See talk above for updated version
+    &lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Oct 15, 2015&lt;/td&gt;
+    &lt;td&gt;Alerting in Grafana&lt;/td&gt;
+    &lt;td&gt;GrafanaCon 2015&lt;/td&gt;
+		&lt;td&gt;NYC&lt;/td&gt;
+    &lt;td&gt;
+				&lt;a href=&#34;https://www.youtube.com/watch?v=C_H2ew8e5OM&#34;&gt;video (with embedded slides)&lt;/a&gt;
+				&lt;a href=&#34;http://www.slideshare.net/Dieterbe/alerting-in-grafana-grafanacon-2015&#34;&gt;slides&lt;/a&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Nov 12, 2014&lt;/td&gt;
+
+    &lt;td&gt;Rethinking Metrics: Metrics 2.0&lt;/td&gt;
+
+    &lt;td&gt;LISA 2014&lt;/td&gt;
+
+    &lt;td&gt;Seattle, Washington&lt;/td&gt;
+
+    &lt;td&gt;
+
+        &lt;a href=&#34;https://www.usenix.org/conference/lisa14/conference-program/presentation/plaetinck&#34;&gt;slides, audio, video&lt;/a&gt;
+
+    &lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Nov 04, 2014&lt;/td&gt;
+
+    &lt;td&gt;Rethinking Metrics: Metrics 2.0&lt;/td&gt;
+
+    &lt;td&gt;Monitoring NYC&lt;/td&gt;
+
+    &lt;td&gt;NYC&lt;/td&gt;
+
+    &lt;td&gt;
+
+        &lt;a href=&#34;http://www.meetup.com/Monitoring-NYC/events/214589632/&#34;&gt;details&lt;/a&gt;
+        &lt;a href=&#34;http://www.slideshare.net/Dieterbe/rethinking-metrics-metrics-20&#34;&gt;slides&lt;/a&gt;
+
+    &lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;May 5, 2014&lt;/td&gt;
+
+    &lt;td&gt;Metrics 2.0&lt;/td&gt;
+
+    &lt;td&gt;Monitorama&lt;/td&gt;
+
+    &lt;td&gt;Portland, Oregon&lt;/td&gt;
+
+    &lt;td&gt;
+
+        &lt;a href=&#34;http://metrics20.org/media/&#34;&gt;slides, video&lt;/a&gt;,
+
+        &lt;a href=&#34;http://dietertest.plaetinck.be/monitorama-pdx-metrics20.html&#34;&gt;blogpost&lt;/a&gt;
+
+    &lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Apr 3, 2014&lt;/td&gt;
+
+    &lt;td&gt;Metrics stack 2.0&lt;/td&gt;
+
+    &lt;td&gt;nycdevops meetup&lt;/td&gt;
+
+    &lt;td&gt;NYC&lt;/td&gt;
+
+    &lt;td&gt;&lt;a href=&#34;http://metrics20.org/media/&#34;&gt;slides&lt;/a&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Feb 18, 2014&lt;/td&gt;
+
+    &lt;td&gt;Metrics 2.0 &amp; Graph-Explorer&lt;/td&gt;
+
+    &lt;td&gt;FullStack engineering meetup&lt;/td&gt;
+
+    &lt;td&gt;NYC&lt;/td&gt;
+
+    &lt;td&gt;&lt;a href=&#34;http://metrics20.org/media/&#34;&gt;slides, video&lt;/a&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Jan 18, 2013&lt;/td&gt;
+
+    &lt;td&gt;Simple Black Box&lt;/td&gt;
+
+    &lt;td&gt;Devopsdays&lt;/td&gt;
+
+    &lt;td&gt;NYC&lt;/td&gt;
+
+    &lt;td&gt;
+
+        &lt;a href=&#34;http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/&#34;&gt;devopsdays page&lt;/a&gt;,
+
+        &lt;a href=&#34;http://dieter.plaetinck.be/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc.html&#34;&gt;blog&lt;/a&gt;,
+
+        &lt;a href=&#34;https://twitter.com/Dieter_be/status/293377294679027713&#34;&gt;slides&lt;/a&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Feb 6, 2011&lt;/td&gt;
+
+    &lt;td&gt;Can we build a simple, cross-distribution installation framework?&lt;/td&gt;
+
+    &lt;td&gt;Fosdem&lt;/td&gt;
+
+    &lt;td&gt;Brussels, Belgium&lt;/td&gt;
+
+    &lt;td&gt;
+
+        &lt;a href=&#34;https://archive.fosdem.org/2011/schedule/event/distro_crossinstall&#34;&gt;fosdem page&lt;/a&gt;,
+
+        &lt;a href=&#34;http://dieter.plaetinck.be/can_we_build_a_simple_cross-distribution_installation_framework.html&#34;&gt;blog, slides, video&lt;/a&gt;
+
+    &lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Jul 23, 2010&lt;/td&gt;
+
+    &lt;td&gt;Uzbl - web interface tools which adhere to the unix philosophy&lt;/td&gt;
+
+    &lt;td&gt;Archcon&lt;/td&gt;
+
+    &lt;td&gt;Toronto, Canada&lt;/td&gt;
+
+    &lt;td&gt;&lt;a href=&#34;http://dieter.plaetinck.be/back_from_canada_archcon.html&#34;&gt;archcon blogpost, slides, video&lt;/a&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Jul 22, 2010&lt;/td&gt;
+
+    &lt;td&gt;AIF: The Arch Installation Framework&lt;/td&gt;
+
+    &lt;td&gt;Archcon&lt;/td&gt;
+
+    &lt;td&gt;Toronto, Canada&lt;/td&gt;
+
+    &lt;td&gt;&lt;a href=&#34;http://dieter.plaetinck.be/back_from_canada_archcon.html&#34;&gt;archcon blogpost, slides, video&lt;/a&gt;&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;Feb 6, 2010&lt;/td&gt;
+
+    &lt;td&gt;Uzbl lightning talk&lt;/td&gt;
+
+    &lt;td&gt;Fosdem&lt;/td&gt;
+
+    &lt;td&gt;Brussels, Belgium&lt;/td&gt;
+
+    &lt;td&gt;
+
+        &lt;a href=&#34;https://archive.fosdem.org/2010/schedule/events/uzbl&#34;&gt;fosdem page&lt;/a&gt;,
+
+        &lt;a href=&#34;http://dieter.plaetinck.be/uzbl_monitoring_aif_talks.html&#34;&gt;blog post&lt;/a&gt;
+
+    &lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;tr&gt;
+
+    &lt;td&gt;???, 2009&lt;/td&gt;
+
+    &lt;td&gt;Overview of monitoring software&lt;/td&gt;
+
+    &lt;td&gt;Kangaroot showcase&lt;/td&gt;
+
+    &lt;td&gt;Vilvoorde, Belgium&lt;/td&gt;
+
+    &lt;td&gt;&lt;a href=&#34;http://dieter.plaetinck.be/uzbl_monitoring_aif_talks.html&#34;&gt;blog post&lt;/a&gt;. video/slides unavailable&lt;/td&gt;
+
+&lt;/tr&gt;
+
+&lt;/tbody&gt;
+
+&lt;/table&gt;
+
+
+
+&lt;h2&gt;Other fun public performances&lt;/h2&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/vimeo_holiday_special_and_other_great_videos.html&#34;&gt;Vimeo holiday special 2013&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;https://vimeo.com/59629623&#34;&gt;trailer&lt;/a&gt; and &lt;a href=&#34;https://vimeo.com/59740798&#34;&gt;full version&lt;/a&gt; of a live metal show with me on drums.  Summer of 2012&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;https://vimeo.com/89865779&#34;&gt;another metal music video&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://www.osnews.com/story/22692/Arch_Linux_Team&#34;&gt;Arch Linux team interview&lt;/a&gt;. Jan 11, 2010&lt;/li&gt;
+
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Masterproef</title>
+      <link>http://dieter.plaetinck.be/masterproef/</link>
+      <pubDate>Tue, 17 Apr 2007 16:01:07 -0400</pubDate>
+      
+      <guid>11 at http://dieter.plaetinck.be</guid>
+      <description>
+&lt;p&gt;Op deze pagina verschijnen enkele gegevens, documenten en toevoegingen in het algemeen in het kader van mijn masterproef.  (ook wel bekend als eindwerk of thesis).&lt;/p&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt;Titel (nl):  Geautomatiseerde webwinkel en orderverwerking&lt;/li&gt;
+
+&lt;li&gt;Title (en):  Automated webstore and order processing&lt;/li&gt;
+
+&lt;li&gt;School:  &lt;a href=&#34;http://www.kahosl.be/&#34;&gt;Katholieke Hogeschool Sint - Lieven&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_abstract(nl-en).odt&#34;&gt;Abstract&lt;/a&gt; (nl + en)&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_poster(en).pdf&#34;&gt;Poster&lt;/a&gt; (en)&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_paper(en).pdf&#34;&gt;Paper&lt;/a&gt; (en, 5 blz)&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_scriptie(nl).pdf&#34;&gt;Scriptie&lt;/a&gt; (nl, 79 blz)&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_presentatie_proefverdediging(nl).pdf&#34;&gt;Presentatie proefverdediging&lt;/a&gt; (niet de &lt;em&gt;echte&lt;/em&gt; verdediging) (nl, 23 slides)&lt;/li&gt;
+
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/thesis_dieter_plaetinck_presentatie_verdediging(nl).pdf&#34;&gt;Presentatie verdediging&lt;/a&gt; (nl, 25 slides)&lt;/li&gt;
+
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://dieter.plaetinck.be/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://dieter.plaetinck.be/about/</guid>
+      <description>
+&lt;p&gt;
+Hi there, visitor.
+My name is Dieter Plaetinck.
+&lt;br/&gt;I enjoy backend programming, performance optimisation (in a very broad sense), music, drums, travel, structured data processing, sharing and learning.
+&lt;br/&gt;There&#39;s a time and a place for everything in life, so I to be strategic about focusing on one or two things at a time.
+&lt;br/&gt;Right now it&#39;s mainly backend programming in Go and python, telemetry (timeseries processing, analytics, visualisation) and that&#39;s what I blog about the most.  But you can find some other things on here too.
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+I had a blast working on &lt;a href=&#34;http://dieter.plaetinck.be/tag/netlog&#34;&gt;netlog&lt;/a&gt;, a large social network in Europe, but we lost the battle against facebook.  Nowadays I work on the backend of &lt;a href=&#34;http://dieter.plaetinck.be/tag/vimeo&#34;&gt;vimeo&lt;/a&gt;, the high quality video sharing website, where I focus on telemetry and big data.
+
+Some people still know me from the &lt;a href=&#34;http://dieter.plaetinck.be/tag/uzbl&#34;&gt;Uzbl&lt;/a&gt; minimalist web browser or my work on the &lt;a href=&#34;http://dieter.plaetinck.be/tag/arch&#34;&gt;Arch Linux installer and releases&lt;/a&gt; or my &lt;a href=&#34;http://stopabusingsiprefixes.org/&#34;&gt;stop abusing SI prefixes&lt;/a&gt; website. (One of my pet peeves is correct application of terminology and concepts, I see this as a requirement for calling yourself an engineer or scientist)
+
+&lt;br/&gt;
+
+&lt;br/&gt;Nowadays my open source efforts revolve mostly around &lt;a href=&#34;http://dieter.plaetinck.be/tag/monitoring&#34;&gt;monitoring (telemetry)&lt;/a&gt; projects, and in specific the &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics 2.0&lt;/a&gt; standardisation effort for timeseries metadata.
+&lt;/p&gt;
+&lt;p&gt;
+You can email me on first-name at last-name dot be.  (i.e just like the domain)
+&lt;/p&gt;
+&lt;p&gt;
+
+Here are some links you might find interesting.
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe&#34;&gt;github.com/Dieterbe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/Dieter_be&#34;&gt;twitter.com/Dieter_be&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.linkedin.com/in/dieterplaetinck&#34;&gt;LinkedIn.com/in/dieterplaetinck&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://vimeo.com/dieterplaetinck&#34;&gt;vimeo.com/dieterplaetinck&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

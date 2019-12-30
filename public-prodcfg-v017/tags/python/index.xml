@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dieter&#39;s blog</title>
+    <link>http://dieter.plaetinck.be/tags/python/index.xml</link>
+    <description>Recent content on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Poor mans pickle implementations benchmark</title>
+      <link>http://dieter.plaetinck.be/post/poor_mans_pickle_implementations_benchmark/</link>
+      <pubDate>Thu, 16 Jun 2011 22:32:12 -0400</pubDate>
+      
+      <guid>poor_mans_pickle_implementations_benchmark</guid>
+      <description>&lt;!--more--&gt;
+&lt;p&gt;&lt;a href=&#34;http://nlp.fi.muni.cz/projekty/gensim/&#34;&gt;Gensim&lt;/a&gt; is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.&lt;/p&gt;
+
+&lt;p&gt;But anyway we&#39;re having some issues in it with cPickle (it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/31&#34;&gt;breaks when saving large matrices&lt;/a&gt;, it &lt;a href=&#34;https://github.com/piskvorky/gensim/issues/30&#34;&gt;breaks with some objects&lt;/a&gt;).
+For now I worked around it by using &lt;a href=&#34;http://jsonpickle.github.com/&#34;&gt;jsonpickle&lt;/a&gt; but I wonder how viable this alternative really is.&lt;/p&gt;
+
+&lt;p&gt;To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - &lt;a href=&#34;https://github.com/Dieterbe/picklebench&#34;&gt;picklebench&lt;/a&gt; - to compare pickle, cPickle and jsonpickle.
+The script fills a dictionary which gets bigger and bigger, and for certain sizes of dictionary it is saved to, and loaded from disk again.  We measure some metrics of each step.
+We continue until memory is exhausted.&lt;/p&gt;
+&lt;!--more--&gt;
+limitations of this benchmark:
+&lt;ul&gt;
+&lt;li&gt;effects of writing a new file, or overwriting existing file, and however the filesystem deals with that (efficiency, allocation of sectors on disk, etc) are ignored&lt;/li&gt;
+&lt;li&gt;no explicit flushing or warming of Linux block cache, ignoring writeback caches. (but that should be okay: every write is treated the same way, and reads always benefit from warm block cache)&lt;/li&gt;
+&lt;li&gt;I could ignore disk i/o by only doing serializing in memory, but that wouldn&#39;t be very realistic either, and speed is lower than sequential read/write speeds of my hard disk anyway&lt;/li&gt;
+&lt;li&gt;other running processes are ignored. (but my pc was pretty much idle otherwise)&lt;/li&gt;
+&lt;li&gt;all metrics are crude&lt;/li&gt;
+&lt;li&gt;all single runs&lt;/li&gt;
+&lt;li&gt;no garbage collection is being run. volatility of datastructures is completely ignored.  Assumes that measuring the RSS difference provides useful information.&lt;/li&gt;
+&lt;li&gt;Other than the obvious cPickle, I did not bother to look up if optimized implementations for some things exist (like json decoders)&lt;/li&gt;
+&lt;/ul&gt;
+You can easily &lt;a href=&#34;https://github.com/Dieterbe/picklebench/blob/master/runall.sh&#34;&gt;run the program&lt;/a&gt; yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.
+&lt;pre&gt;
+Testing JsonPickle
+== 1000 ==
+Stored in 0.01s. file size 0.05 MB. Speed 6.56 MB/s. RSS taken 0.23 MB. (4.34 MB per MB in file)
+Loaded in 0.01s. Speed 9.30 MB/s. RSS taken 0.04 MB.  (0.71 MB per MB in file)
+== 4000 ==
+Stored in 0.03s. file size 0.21 MB. Speed 6.93 MB/s. RSS taken 0.45 MB. (2.16 MB per MB in file)
+Loaded in 0.02s. Speed 9.54 MB/s. RSS taken 0.47 MB.  (2.23 MB per MB in file)
+== 16000 ==
+Stored in 0.13s. file size 0.85 MB. Speed 6.80 MB/s. RSS taken 0.86 MB. (1.00 MB per MB in file)
+Loaded in 0.09s. Speed 9.55 MB/s. RSS taken 0.88 MB.  (1.04 MB per MB in file)
+== 64000 ==
+Stored in 0.50s. file size 3.44 MB. Speed 6.87 MB/s. RSS taken 4.02 MB. (1.17 MB per MB in file)
+Loaded in 0.36s. Speed 9.44 MB/s. RSS taken 2.52 MB.  (0.73 MB per MB in file)
+== 256000 ==
+Stored in 2.10s. file size 13.97 MB. Speed 6.64 MB/s. RSS taken 17.24 MB. (1.23 MB per MB in file)
+Loaded in 1.53s. Speed 9.15 MB/s. RSS taken 8.49 MB.  (0.61 MB per MB in file)
+== 1024000 ==
+Stored in 8.60s. file size 56.23 MB. Speed 6.54 MB/s. RSS taken 61.64 MB. (1.10 MB per MB in file)
+Loaded in 6.27s. Speed 8.97 MB/s. RSS taken 95.99 MB.  (1.71 MB per MB in file)
+== 4096000 ==
+Stored in 38.80s. file size 228.26 MB. Speed 5.88 MB/s. RSS taken 181.83 MB. (0.80 MB per MB in file)
+Loaded in 25.17s. Speed 9.07 MB/s. RSS taken 170.84 MB.  (0.75 MB per MB in file)
+== 16384000 ==
+Testing cPickle
+Protocol 0
+== 1000 ==
+Stored in 0.01s. file size 0.01 MB. Speed 0.83 MB/s. RSS taken 0.05 MB. (5.95 MB per MB in file)
+Loaded in 0.00s. Speed 9.02 MB/s. RSS taken 0.05 MB.  (5.04 MB per MB in file)
+== 4000 ==
+Stored in 0.00s. file size 0.04 MB. Speed 8.69 MB/s. RSS taken 0.10 MB. (2.52 MB per MB in file)
+Loaded in 0.00s. Speed 15.43 MB/s. RSS taken 0.13 MB.  (3.26 MB per MB in file)
+== 16000 ==
+Stored in 0.01s. file size 0.17 MB. Speed 11.06 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
+Loaded in 0.01s. Speed 16.82 MB/s. RSS taken 0.10 MB.  (0.60 MB per MB in file)
+== 64000 ==
+Stored in 0.06s. file size 0.69 MB. Speed 12.43 MB/s. RSS taken 0.12 MB. (0.17 MB per MB in file)
+Loaded in 0.04s. Speed 17.25 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
+== 256000 ==
+Stored in 0.22s. file size 2.96 MB. Speed 13.65 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
+Loaded in 0.17s. Speed 17.49 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
+== 1024000 ==
+Stored in 0.88s. file size 12.20 MB. Speed 13.93 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
+Loaded in 0.69s. Speed 17.72 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
+== 4096000 ==
+Stored in 3.52s. file size 52.14 MB. Speed 14.80 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+Loaded in 2.84s. Speed 18.37 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
+== 16384000 ==
+Stored in 12.68s. file size 218.27 MB. Speed 17.22 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 11.59s. Speed 18.82 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
+Testing cPickle
+Protocol 1
+== 1000 ==
+Stored in 0.00s. file size 0.00 MB. Speed 9.65 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
+Loaded in 0.00s. Speed 9.31 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
+== 4000 ==
+Stored in 0.00s. file size 0.02 MB. Speed 10.95 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+Loaded in 0.00s. Speed 11.15 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
+== 16000 ==
+Stored in 0.02s. file size 0.08 MB. Speed 5.26 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+Loaded in 0.01s. Speed 11.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+== 64000 ==
+Stored in 0.03s. file size 0.32 MB. Speed 12.60 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
+Loaded in 0.03s. Speed 11.48 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
+== 256000 ==
+Stored in 0.10s. file size 1.66 MB. Speed 17.00 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
+Loaded in 0.11s. Speed 14.50 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
+== 1024000 ==
+Stored in 0.40s. file size 7.04 MB. Speed 17.76 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+Loaded in 0.45s. Speed 15.54 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
+== 4096000 ==
+Stored in 1.59s. file size 28.55 MB. Speed 17.95 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+Loaded in 1.88s. Speed 15.20 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
+== 16384000 ==
+Stored in 6.23s. file size 114.59 MB. Speed 18.40 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 7.18s. Speed 15.96 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
+Testing cPickle
+Protocol 2
+== 1000 ==
+Stored in 0.00s. file size 0.00 MB. Speed 9.54 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
+Loaded in 0.00s. Speed 8.92 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
+== 4000 ==
+Stored in 0.00s. file size 0.02 MB. Speed 13.25 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+Loaded in 0.00s. Speed 11.39 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
+== 16000 ==
+Stored in 0.01s. file size 0.08 MB. Speed 13.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+Loaded in 0.01s. Speed 10.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+== 64000 ==
+Stored in 0.02s. file size 0.32 MB. Speed 13.99 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
+Loaded in 0.03s. Speed 11.45 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
+== 256000 ==
+Stored in 0.10s. file size 1.66 MB. Speed 16.81 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
+Loaded in 0.12s. Speed 14.31 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
+== 1024000 ==
+Stored in 0.37s. file size 7.04 MB. Speed 19.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+Loaded in 0.45s. Speed 15.55 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
+== 4096000 ==
+Stored in 1.58s. file size 28.55 MB. Speed 18.09 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+Loaded in 1.83s. Speed 15.61 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
+== 16384000 ==
+Stored in 6.02s. file size 114.59 MB. Speed 19.04 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 7.32s. Speed 15.65 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
+Testing pickle
+Protocol 0
+== 1000 ==
+Stored in 0.01s. file size 0.01 MB. Speed 1.17 MB/s. RSS taken 0.03 MB. (3.21 MB per MB in file)
+Loaded in 0.04s. Speed 0.20 MB/s. RSS taken 0.06 MB.  (6.41 MB per MB in file)
+== 4000 ==
+Stored in 0.02s. file size 0.04 MB. Speed 1.91 MB/s. RSS taken 0.09 MB. (2.42 MB per MB in file)
+Loaded in 0.02s. Speed 2.12 MB/s. RSS taken 0.12 MB.  (3.15 MB per MB in file)
+== 16000 ==
+Stored in 0.08s. file size 0.17 MB. Speed 2.00 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
+Loaded in 0.07s. Speed 2.27 MB/s. RSS taken 0.09 MB.  (0.55 MB per MB in file)
+== 64000 ==
+Stored in 0.33s. file size 0.69 MB. Speed 2.08 MB/s. RSS taken 0.12 MB. (0.18 MB per MB in file)
+Loaded in 0.29s. Speed 2.40 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
+== 256000 ==
+Stored in 1.34s. file size 2.96 MB. Speed 2.21 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
+Loaded in 1.17s. Speed 2.53 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
+== 1024000 ==
+Stored in 5.33s. file size 12.20 MB. Speed 2.29 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
+Loaded in 4.73s. Speed 2.58 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
+== 4096000 ==
+Stored in 21.23s. file size 52.14 MB. Speed 2.46 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+Loaded in 18.63s. Speed 2.80 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
+== 16384000 ==
+Stored in 85.09s. file size 218.27 MB. Speed 2.57 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 74.60s. Speed 2.93 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
+Testing pickle
+Protocol 1
+== 1000 ==
+Stored in 0.01s. file size 0.00 MB. Speed 0.80 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
+Loaded in 0.00s. Speed 1.56 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
+== 4000 ==
+Stored in 0.02s. file size 0.02 MB. Speed 0.84 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+Loaded in 0.01s. Speed 1.65 MB/s. RSS taken 0.13 MB.  (6.61 MB per MB in file)
+== 16000 ==
+Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+Loaded in 0.05s. Speed 1.68 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+== 64000 ==
+Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.32 MB per MB in file)
+Loaded in 0.19s. Speed 1.67 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
+== 256000 ==
+Stored in 1.49s. file size 1.66 MB. Speed 1.11 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
+Loaded in 0.75s. Speed 2.21 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
+== 1024000 ==
+Stored in 6.11s. file size 7.04 MB. Speed 1.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+Loaded in 2.99s. Speed 2.35 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
+== 4096000 ==
+Stored in 24.40s. file size 28.55 MB. Speed 1.17 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
+Loaded in 11.97s. Speed 2.39 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
+== 16384000 ==
+Stored in 97.62s. file size 114.59 MB. Speed 1.17 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 48.04s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
+Testing pickle
+Protocol 2
+== 1000 ==
+Stored in 0.01s. file size 0.00 MB. Speed 0.78 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
+Loaded in 0.00s. Speed 1.57 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
+== 4000 ==
+Stored in 0.02s. file size 0.02 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+Loaded in 0.01s. Speed 1.52 MB/s. RSS taken 0.13 MB.  (6.60 MB per MB in file)
+== 16000 ==
+Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+Loaded in 0.05s. Speed 1.66 MB/s. RSS taken 0.09 MB.  (1.18 MB per MB in file)
+== 64000 ==
+Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.31 MB per MB in file)
+Loaded in 0.19s. Speed 1.65 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
+== 256000 ==
+Stored in 1.52s. file size 1.66 MB. Speed 1.09 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
+Loaded in 0.76s. Speed 2.18 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
+== 1024000 ==
+Stored in 6.19s. file size 7.04 MB. Speed 1.14 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+Loaded in 3.01s. Speed 2.34 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
+== 4096000 ==
+Stored in 24.60s. file size 28.55 MB. Speed 1.16 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
+Loaded in 12.06s. Speed 2.37 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
+== 16384000 ==
+Stored in 98.38s. file size 114.59 MB. Speed 1.16 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
+&lt;/pre&gt;
+Paraphrased:
+&lt;ul&gt;
+&lt;li&gt;JsonPickle needs more RSS then pickle/cPickle, and runs out of memory sooner. all pickle/cPickle runs need the same RSS&lt;/li&gt;
+&lt;li&gt;Protocol 1/2 need the same amount of diskspace, protocol 0 needs about the double, JsonPickle about 8 times more&lt;/li&gt;
+&lt;li&gt;Protocol 1/2 are as fast, protocol 0 is slower. cPickle is speed king.  Jsonpickle is slow&lt;/li&gt;
+&lt;/ul&gt;
+Conclusion:
+&lt;ul&gt;
+&lt;li&gt;Use cPickle or pickle, unless they are broken for your use case(s)&lt;/li&gt;
+&lt;li&gt;Consider persisting only your data in appropriate formats (textfile, database, ...). Often you don&#39;t really need to persist entire &lt;i&gt;objects&lt;/i&gt;.  In the case of Gensim, we can also work with numpy&#39;s dataformat.&lt;/li&gt;
+&lt;li&gt;If you like json, or want a very simple workaround for cPickle/pickle brokenness, and you cannot use a more appropriate format (see above) consider jsonpickle&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dvcs-autosync: An open source dropbox clone... well.. almost</title>
+      <link>http://dieter.plaetinck.be/post/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</link>
+      <pubDate>Sat, 26 Mar 2011 21:48:56 -0400</pubDate>
+      
+      <guid>dvcs-autosync_an_opensource_dropbox_clone_well_almost</guid>
+      <description>I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,
+which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.
+&lt;br/&gt;In short:
+&lt;ul&gt;
+&lt;li&gt;simple python tool (600 sloc), works with your dvcs of choice (mainly tested/used with git)&lt;/li&gt;
+&lt;li&gt;watches for inotify events, performs commits on changes (coalesces some changes together)&lt;/li&gt;
+&lt;li&gt;synchronizes with other clones (remotes), uses xmpp for push notifications&lt;/li&gt;
+&lt;li&gt;let&#39;s you know what&#39;s going on through libnotify popups or whatever&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mayrhofer.eu.org/dvcs-autosync&#34;&gt;home page: http://mayrhofer.eu.org/dvcs-autosync&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://gitorious.org/dvcs-autosync/dvcs-autosync&#34;&gt;dvcs-autosync gitorious repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://lists.madduck.net/pipermail/vcs-home/2011-March/000314.html&#34;&gt;initial announcement on vcs-home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+Use cases:
+&lt;!--more--&gt;
+&lt;ul&gt;
+&lt;li&gt;you have one or more trees you want to maintain under a VCS (because you want vcs advantages like history and whatnot) but it&#39;s not worth to spend time comitting manually&lt;/li&gt;
+&lt;li&gt;you want to backup some files transparently&lt;/li&gt;
+&lt;li&gt;you want to share / work with others easily&lt;/li&gt;
+&lt;li&gt;you like the idea of dropbox, but not the closed-source-ness or the vendor dependence&lt;/li&gt;
+&lt;li&gt;you work mainly with relatively small files (or.. read on)&lt;/li&gt;
+&lt;/ul&gt;
+Thoughts:
+&lt;ul&gt;
+&lt;li&gt;very simple to get started&lt;/li&gt;
+&lt;li&gt;simpler (and imho saner) code and implementation in comparison to &lt;a href=&#34;http://sparkleshare.org/&#34;&gt;sparkleshare&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;bound to the limitations of the dvcs. In case of git: no support for ownership, xattrs, and less suited for bigger files (although &lt;a href=&#34;http://git-annex.branchable.com/&#34;&gt;git-annex&lt;/a&gt; might help?)&lt;/li&gt;
+&lt;li&gt;You cannot store a git repo inside a git repo, I think (i.e. I don&#39;t think you can keep a -potentially dirty- git clone in dvcs-autosync)&lt;/li&gt;
+&lt;li&gt;For a real, filesystem-level dropbox-alike &lt;a href=&#34;http://www.coda.cs.cmu.edu/&#34;&gt;coda&lt;/a&gt; might be a better option, though I&#39;m not sure how useful that project is right now&lt;/li&gt;
+&lt;/ul&gt;
+
+If it sounds like something you need, try it out.  And contributions welcome.
+&lt;br/&gt;Next up to the todolist: more clever heuristic for event coalescing, setting up bugtracker.
+
+</description>
+    </item>
+    
+    <item>
+      <title>Migrating blogs from Drupal to Pyblosxom</title>
+      <link>http://dieter.plaetinck.be/post/migrating_blogs_from_drupal_to_pyblosxom/</link>
+      <pubDate>Sun, 19 Dec 2010 19:54:07 -0400</pubDate>
+      
+      <guid>96 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://pyblosxom.bluesock.org/&#34;&gt;pyblosxom&lt;/a&gt; is a pretty cool blogging platform written in python.&lt;br /&gt;
+Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.&lt;br /&gt;
+The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn&#39;t just rely on an external service like disqus, but stores comments as plaintext files as well.&lt;br /&gt;
+Some features seem a bit overengineered (like, multiple possible locations to store themes (known as &#34;flavours&#34;) and templates; I&#39;m a fan of convention over configuration and keeping things simple), but discussing this with the maintainer revealed this is because pyblosxom is meant as a reimplementation of the original perl-based bloxsom project.  Over time features could be simplified and/or redesigned.&lt;br /&gt;
+So I plan to migrate this blog from drupal to pyblosxom.&lt;br /&gt;
+To do this, I&#39;m building the tool &lt;a href=&#34;https://github.com/Dieterbe/drupal-to-pyblosxom&#34;&gt;drupal-to-pyblosxom&lt;/a&gt;.&lt;br /&gt;
+The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)&lt;!--more--&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An rss2email fork that sucks less</title>
+      <link>http://dieter.plaetinck.be/post/an_rss2email_fork_that_sucks_less/</link>
+      <pubDate>Sat, 25 Sep 2010 20:33:08 -0400</pubDate>
+      
+      <guid>91 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.allthingsrss.com/rss2email/&#34;&gt;Rss2email&lt;/a&gt; is a great tool.  I like getting all my news messages in my mailbox and using smtp to make the &#34;news delivery&#34; process more robust makes sense.&lt;br /&gt;
+However, there are some things I didn&#39;t like about it so I made a &lt;a href=&#34;http://github.com/Dieterbe/rss2email/&#34;&gt;github repo&lt;/a&gt; where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.&lt;br /&gt;
+Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt;
+&lt;p&gt;Here is how it compares:&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
+(most of the changes are only in the xdg branch, which is the one I use and test)&lt;/p&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;criterion&lt;/th&gt;
+&lt;th&gt;official version&lt;/th&gt;
+&lt;th&gt;my fork&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;code hosting/release process&lt;/td&gt;
+&lt;td&gt;&#34;release&#34; = tarball containing updated code corresponding to various fixes, and snapshots of other projects (dependencies).  no version control, not even separate patches.  no bug tracker.&lt;/td&gt;
+&lt;td&gt;git. upstream tracking branch, master branch (basic &#34;good stuff&#34; patches), XDG topic branch (my favorite).  Does not include code from other projects, rather list dependencies.  Github issue tracker&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;code style&lt;/td&gt;
+&lt;td&gt;dirty (extraneous whitespace, ^M characters, incorrect permissions, loads of bogus [whitespace] changes, ..).  The python code itself seems nice though&lt;/td&gt;
+&lt;td&gt;clean&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;file storage &amp;amp; config&lt;/td&gt;
+&lt;td&gt;all in ~/.rss2email, list of feeds, email address and feeds state go into pickle file. commands like &#39;r2e add&#39;, &#39;r2e delete&#39;, &#39;r2e list&#39; to manage feeds. feed ids change when feeds get deleted.  &#39;r2e email&#39; to manage email adress.&lt;/td&gt;
+&lt;td&gt;adherence to xdg basedir spec. list of feeds goes into plaintext file, so does email address.  state in separate pickle file.  removed all the [now pointless] commands.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Temporary disabling of feeds&lt;/td&gt;
+&lt;td&gt;no (if you remove a feed, you loose the state info)&lt;/td&gt;
+&lt;td&gt;yes.  comment it out or remove it.  state info won&#39;t be lost&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;installation/runtime&lt;/td&gt;
+&lt;td&gt;no Makefile.  no reliance on $PATH, locking code in python.  Distros are applying patches and/or using custom wrapper scripts&lt;/td&gt;
+&lt;td&gt;smarter wrapperscript that prevents multiple runs, so removed locking code from python.  Has Makefile.  Easy to package&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;logging/debugging&lt;/td&gt;
+&lt;td&gt;useful info messages hidden by default, &#34;verbose mode&#34; and error messages using print calls all over the place&lt;/td&gt;
+&lt;td&gt;useful messages on stdout.  additional (info/warn/error/..) logging and debuglogging use python module (xdg compliant)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;web ui&lt;/td&gt;
+&lt;td&gt;yes&lt;/td&gt;
+&lt;td&gt;no (I don&#39;t need it)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;windows support&lt;/td&gt;
+&lt;td&gt;yes&lt;/td&gt;
+&lt;td&gt;no (unless somebody ports xdg to windows and updates the wrapper script)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Other then that, there are also some smaller fixes in various places.&lt;/p&gt;
+&lt;p&gt;I&#39;m using my version &#34;in production&#34; and it works great for me so far.&lt;br /&gt;
+I have contacted the author and told her about my changes, but no response yet.&lt;br /&gt;
+For now, you can treat this as an alternative version that stands on it&#39;s own.  I made an Arch &lt;a href=&#34;http://aur.archlinux.org/packages.php?ID=41136&#34;&gt;rss2email-xdg-git&lt;/a&gt; package in the AUR.&lt;/p&gt;
+&lt;p&gt;Oh, and I&#39;m liking python :)  Pretty nice and powerful language.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Review of &#34;Python 3 Object Oriented Programming&#34;</title>
+      <link>http://dieter.plaetinck.be/post/review_of_python_3_object_oriented_programming/</link>
+      <pubDate>Mon, 23 Aug 2010 19:01:09 -0400</pubDate>
+      
+      <guid>88 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://archlinux.me/dusty/&#34;&gt;Dusty Phillips&lt;/a&gt;, Arch Linux shwag guy, Archcon co-organizer, (python) consultant and since recently &lt;a href=&#34;http://dieter.plaetinck.be/back_from_canada_archcon&#34;&gt;buddy of mine&lt;/a&gt; wrote his first &lt;a href=&#34;https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;amp;utm_medium=bookrev&amp;amp;utm_content=blog&amp;amp;utm_campaign=mdb_004281&#34;&gt;book: Python 3 Object Oriented Programming&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.&lt;br /&gt;
+&lt;!--more--&gt;
+Mind you, my Python knowledge is very limited.  I have done some python programming, and I once read (most of) &lt;a href=&#34;http://diveintopython.org/&#34;&gt;Dive into python&lt;/a&gt;, but over the years that experience has vanished from my memory.  Dusty&#39;s book has had many proofreads/reviews by python-aficionado&#39;s, now it gets a fresh perspective from an amateur, and for me this was a good opportunity to work on my python skills.&lt;/p&gt;
+&lt;p&gt;To paraphrase the &#34;who this book is for&#34; paragraph, which is in the beginning of the book and in &lt;a href=&#34;https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;amp;utm_medium=bookrev&amp;amp;utm_content=blog&amp;amp;utm_campaign=mdb_004281&#34;&gt;online advertisements&lt;/a&gt; for the book:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;people new to OO programming and people with basic python skills who want to improve their python OO.&lt;/li&gt;
+&lt;li&gt;OO programmers experienced in other languages who want to get into python.&lt;/li&gt;
+&lt;li&gt;python 2 programmers interested in learning python 3, although this is not the target audience.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Good, that includes me (category 2)&lt;/p&gt;
+&lt;p&gt;Pro&#39;s:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;seems very accurate&lt;/li&gt;
+&lt;li&gt;OO focused.   But not in a college/university-ish way.  Real experience, nuanced, real examples and exercises.  Tells you when *not* to use OO.  Teaches you the difference between object orientation, OO programming and OO design, and makes you understand that in the end everything are just means to end, and thanks to the versatility of Python, teaches you various tricks to implement certain designs in less then obvious ways.&lt;/li&gt;
+&lt;li&gt;Chapters about design patterns (there sure are many of them), testing, libraries, and some other topics not directly related to OO.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Con&#39;s:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Not an introduction to Python.  Assumes some basic knowledge about Python. (like data structures and loops). There is a chapter about (some of the) datatypes later on in the book but it focuses more on their OO nature, and to get to know the basics, you&#39;re referred to &lt;a href=&#34;http://docs.python.org/py3k/tutorial/&#34;&gt;the official python tutorial&lt;/a&gt;.
+&lt;li&gt;Does not cover *everything*.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I should clarify my last point.  Here and there I found some information to be lacking.  Especially  static class methods (they are only mentioned very briefly in a case study somewhere) and static properties/variables.&lt;br /&gt;
+Other then that, sometimes an example or explanation was not entirely clear to me.  This didn&#39;t happen often, but there were moments where I thought 95% of what you need to know is explained, but the other 5% you have to google up yourself.&lt;br /&gt;
+It is quite convenient however, to have the author of a book available in your jabber client.&lt;br /&gt;
+So FWIW here are the things I asked him about and which responses I got, with some comments added by me afterwards.&lt;/p&gt;
+&lt;pre&gt;
+&lt;Dieterbe&gt; hmm you mention that methods *need* a self param, but why is this?
+           can&#39;t python automatically make a variable self available in the scope of the function, when calling it?
+&lt;Dusty&gt;    no, they are always explicit
+&lt;Dieterbe&gt; but why?
+&lt;Dusty&gt;    it&#39;s part of the python philosophy, I guess. &#34;explicit is better than implicit&#34; is in the zen of python poem.
+           Basically, if you are accessing a variable in any namespace, that variable has to be have been made explicitly available in that 
+           namespace. The one exception is the from X import * syntax, which 98% of python programmers avoid exactly because of the namespace issues.
+&lt;Dieterbe&gt; right
+
+# good to know.  Too bad this isn&#39;t really mentioned anywhere.
+
+
+&lt;Dieterbe&gt; i don&#39;t quite get why - in your notebook example of chap 2 - you iterate over the list to find the correct note based on its id.
+           can&#39;t you just get the element based on it&#39;s index in the list? (ie keep the node id in sync with the index in the list)
+&lt;Dusty&gt;    I don&#39;t have the code in front of me, but I suspect that it&#39;s because if a note is deleted, that id should not be recycled and applied to another note.
+&lt;Dieterbe&gt; but still, since you keep the last used id, and keep increasing it, you won&#39;t recycle id&#39;s.
+&lt;Dusty&gt;    yeah, but the index in the list will change
+&lt;Dusty&gt;    when you delete #4
+&lt;Dieterbe&gt; oh
+&lt;Dusty&gt;    the object with ID 5 becomes the object at #4
+&lt;Dieterbe&gt; thanks buddy
+&lt;Dusty&gt;    no problem. :)
+
+# again, makes perfect sense.  But if you don&#39;t know the ins and outs of the datatypes, you&#39;re on your own.
+
+&lt;Dieterbe&gt; i had a question about your example for the decorator pattern.
+           you use a socket and then you have 2 decorators that implement a send function which do some stuff (logging and what not)
+           but also the actual sending on the socket
+&lt;Dieterbe&gt; and you mention you can have multiple decorators on the same object.  but since each decorator also does the sending on the socket,
+           doesn&#39;t that mean the sending happens multiple times?
+&lt;Dusty&gt;    no, because the first decorator is decorating the second decorator
+&lt;Dusty&gt;    which is decorating the socket
+&lt;Dieterbe&gt; ah yes you&#39;re right. and although you did not specify it like this in the explanation text, it should be clear from the code.
+
+# If I would have looked better at the code I would have figured it out.
+# I just assumed something had to be wrong, I&#39;m too used to the way &#39;behaviors&#39; are implemented in CakePHP.
+
+&lt;Dieterbe&gt; one last remark i have about the book: i couldn&#39;t find an explanation of static variables/properties.
+           i did see a very short mention of static methods in the case study at the end of chap 3, i would have expected to have that info a bit more 
+           prominent, in it&#39;s own subsection or something
+&lt;Dieterbe&gt; especially because you use static class methods a few times throughout the book
+&lt;Dusty&gt;    I had a long section on them and ended up removing it because the chapter was too long and one of my reviewers suggested that they aren&#39;t very good form in Python.
+&lt;Dieterbe&gt; hmm. i see
+&lt;/pre&gt;&lt;p&gt;
+The writing is pretty informal, and here and there you&#39;ll find a subtle reference or joke.  But of course that&#39;s not what you buy this book for.&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;I would say the &#34;who this book is for&#34; part is a bit too optimistic.  You won&#39;t learn Python (3) from scratch by only using this book.  It&#39;s not a book restricted to mere OO subjects (in python), but neither does it cover all basics of the Python language.&lt;/p&gt;
+&lt;p&gt;So if you are a python newbie, I would probably recommend you &#39;Dive into python&#39;.  It&#39;s free, covers the basics, but doesn&#39;t contain so many real life examples.&lt;/p&gt;
+&lt;p&gt;If you want to know more about OO in python, design patterns, some real life examples and techniques, or advice from a pro, then I definitely recommend this book.&lt;/p&gt;
+&lt;p&gt;Free chapter: &lt;a href=&#34;https://www.packtpub.com/sites/default/files/1261-chapter-7-Python%20object-oriented-shortcuts.pdf&#34;&gt;Chapter No. 7 : Python Object-oriented Shortcuts&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

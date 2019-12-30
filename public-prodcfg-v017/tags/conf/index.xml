@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dieter&#39;s blog</title>
+    <link>http://dieter.plaetinck.be/tags/conf/index.xml</link>
+    <description>Recent content on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/conf/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Can we build a simple, cross-distribution installation framework?</title>
+      <link>http://dieter.plaetinck.be/post/can_we_build_a_simple_cross-distribution_installation_framework/</link>
+      <pubDate>Sun, 06 Feb 2011 23:46:18 -0400</pubDate>
+      
+      <guid>can_we_build_a_simple_cross-distribution_installation_framework</guid>
+      <description>Today at &lt;a href=&#34;http://www.fosdem.org/2011/&#34;&gt;Fosdem 2011&lt;/a&gt; I did my talk &lt;a href=&#34;http://fosdem.org/2011/schedule/event/distro_crossinstall&#34;&gt;Can we build a simple, cross-distribution installation framework?&lt;/a&gt;
+Basically, using the &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch&lt;/a&gt; Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check
+if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.
+There was some interest, so we&#39;ll see what happens.
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/lif.pdf&#34;&gt;slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=83xBdlbGHdI&#34;&gt;video&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dir 2011, Fosdem 2011</title>
+      <link>http://dieter.plaetinck.be/post/dir_fosdem_2011/</link>
+      <pubDate>Tue, 25 Jan 2011 23:15:45 -0400</pubDate>
+      
+      <guid>dir_fosdem_2011</guid>
+      <description>On February 4, I&#39;ll be in Amsterdam at &lt;a href=&#34;http://ilps.science.uva.nl/dir2011/cfp.html&#34;&gt;DIR 2011&lt;/a&gt;, the 11th Dutch-Belgian Information Retrieval Workshop.
+After that, I&#39;m going to the devopsdinner and Fosdem beer event in Brussels.
+On february 5/6 of course, Fosdem itself.  Looking forward to the systemd talk.
+On sunday I&#39;ll do a talk about &lt;a href=&#34;http://www.fosdem.org/2011/schedule/event/distro_crossinstall&#34;&gt;simple shell based Gnu/Linux installers&lt;/a&gt;,
+like mentioned earlier I hope devs from other &#34;lightweight&#34;/kiss-style distro&#39;s will be present (Gentoo and other *too&#39;s, Crux, *ppix, ... You know who you are)
+It would be interesting to share some common codebase for distribution independent topics (like filesystems), or at least discuss how feasible it would be.
+</description>
+    </item>
+    
+    <item>
+      <title>Back from Canada, Archcon</title>
+      <link>http://dieter.plaetinck.be/post/back_from_canada_archcon/</link>
+      <pubDate>Sat, 31 Jul 2010 23:10:36 -0400</pubDate>
+      
+      <guid>87 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I&#39;m back from Canada/Archcon, and it was great. I&#39;ve been in Toronto for 11 days, and visited Montreal for 3 days.&lt;/p&gt;
+&lt;h3&gt;Archcon&lt;/h3&gt;
+&lt;p&gt;Archcon was small (20-ish people).  (That&#39;s what you get for doing it in Canada ;), but very nice.&lt;br /&gt;
+Interesting talks, informal, good vibe, decent logistics and catering.&lt;br /&gt;
+This year it happened because Dusty and Ricardo actually just wanted to have a conference without worrying too much about the attendance,&lt;br /&gt;
+next year we should do it again because Arch (conferences) rock(s), and because we need more visitors.  More central locations such as Seattle and Europe have been suggested.&lt;br /&gt;
+Either way, next year both Judd (founder) and Aaron (current overlord) should be there. (this year they both had lame excuses like family reunions and &#34;almost getting married&#34;.  Congrats btw, Aaron!)&lt;/p&gt;
+&lt;p&gt;It was an absolute pleasure to meet some more of my fellow devs, and users.&lt;br /&gt;
+Here is a pic from the group (unfortunately, a few are missing)&lt;!--more--&gt;&lt;br /&gt;
+&lt;img src=&#34;http://dieter.plaetinck.be/files/group.jpg&#34;/&gt;&lt;br /&gt;
+People in bold are Arch (ex-) devs&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Richard (sokuban) from Toronto (linguistics student)&lt;/li&gt;
+&lt;li&gt;Chris (Gallow) from Toronto&lt;/li&gt;
+&lt;li&gt;Alex (alexmat) from Tokyo, Japan (very into NILFS, submitted already some patches)&lt;/li&gt;
+&lt;li&gt;Sander (GogglesGuy) (Dutch guy living in the states now)&lt;/li&gt;
+&lt;li&gt;Eric from Seattle, WA&lt;/li&gt;
+&lt;li&gt;Gregory (gelendir) from Quebec city, Canada (aka dude wearing the kilt and fivefingers and funny accent)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Kevin (kpiche)&lt;/b&gt; from Ottawa (does perl stuff iirc)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Loui (louipc)&lt;/b&gt; from Toronto, Canada (AUR guy, git lover.  metalfan.  Shook John Petrucci&#39;s hand)&lt;/li&gt;
+&lt;li&gt;Tim from Annapolis (uses Arch for servers at work with some fancy mass-install scripts)&lt;/li&gt;
+&lt;li&gt;Dustin (daking) from Stanford, CA (runs most of Stanford university on Arch)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;me&lt;/b&gt; from Belgium (arch-releng/aif, uzbl guy) &lt;/li&gt;
+&lt;li&gt;Walter from Toronto (very into Uzbl, not actually an Arch user... yet)&lt;/li&gt;
+&lt;li&gt;David (davekong) from New York City&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Dan (toofishes)&lt;/b&gt; from Chicago (Pacman dev)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Dusty&lt;/b&gt; from Shaunavon SK (shwag, archcon organizer)&lt;/li&gt;
+&lt;li&gt;Ricardo (ralvez) from  Toronto (archcon organizer)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Jason (Xentac)&lt;/b&gt; from Victoria, BC (entrepeneur, used to use Arch for the business)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;See &lt;a href=&#34;https://bbs.archlinux.org/viewtopic.php?id=101692&#34;&gt;Archcon thread&lt;/a&gt; for more info.&lt;/p&gt;
+&lt;p&gt;Unfortunately I barely slept the night before my AIF talk, so I feel that one didn&#39;t go to well.  Although people told me it was OK.&lt;br /&gt;
+The Uzbl talk was pretty much what I imagined it to be: like the fosdem talk, but a bit more in depth here and there.&lt;br /&gt;
+My pc was behaving weirdly, but luckily I could use Dan&#39;s.&lt;/p&gt;
+&lt;p&gt;We&#39;ve been lucky that Walter and Isaac had proper, respectively videotaping and photocamera equipment.  So there are plenty of pics, and nearly all talks got videotaped.&lt;br /&gt;
+(I think the &#34;hacking pacman&#34; one was the only one not being videotaped, because 2 other talks were going on at the same time.  Too bad, it was a very interesting talk)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://archlinux.ca/archcon2010/images/&#34;&gt;Archcon pictures&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;http://archlinux.ca/archcon2010/videos/&#34;&gt;Archcon videos&lt;/a&gt;&lt;br /&gt;
+My slides:&lt;br /&gt;
+&lt;a href=&#34;http://dieter.plaetinck.be/files/aif-archcon2010.pdf&#34;&gt;AIF (day 1)&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;http://dieter.plaetinck.be/files/uzbl-archcon2010.pdf&#34;&gt;Uzbl (day 2)&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Other days&lt;/h3&gt;
+&lt;p&gt;Some thoughts and notes of what I did and saw around Toronto/Montreal..&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cities with streets and subways in a grid layout are awesome.  Soo much easier to navigate.&lt;/li&gt;
+&lt;li&gt;Red lights with countdown timers (in seconds) are awesome.  Although I&#39;m told some places in Europe have them too.&lt;/li&gt;
+&lt;li&gt;Toronto was awesome: huge city, many friendly people, low crime rate, many different cultures, very short history.  High park was very nice. &lt;img src=&#34;http://dieter.plaetinck.be/files/blog/toronto.ca/high_park_004_500.jpg&#34;/&gt;&lt;/li&gt;
+&lt;li&gt;Montreal was like a European city: more history, old buildings, more crime, but of course a grid layout.  Some nice views though (ie. from Mont Royal).&lt;/li&gt;
+&lt;li&gt;The youth hostels I went too were great: never got to meet so many interesting people in such a short timespan.&lt;/li&gt;
+&lt;li&gt;CN tower: I procrastinated visiting until the last day, and when I finally wanted to go in the wheather was perfect, but there was a 2 hour queue, so I skipped it. Anyway there are &lt;a href=&#34;http://en.wikipedia.org/wiki/CN_Tower&#34;&gt;plenty of pictures online&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Niagara falls were beautiful.  Maid of the myst tour was worth it.  I made pictures but &lt;a href=&#34;http://en.wikipedia.org/wiki/File:Niagara_falls_panorama.jpg&#34;&gt;those online&lt;/a&gt; are better.&lt;/li&gt;
+&lt;li&gt;I met Kan Johar (founder of &lt;a href=&#34;http://plurk.com&#34;&gt;plurk.com&lt;/a&gt;, amongst others), good times.&lt;/li&gt;
+&lt;li&gt;Dusty introduced me to poutine.  I found it disgusting.  I guess you need to be a Canadian before you can like it.&lt;br&gt; &lt;img src=&#34;http://dieter.plaetinck.be/files/poutine.jpg&#34;/&gt;&lt;/li&gt;
+&lt;li&gt;Dusty and I have been to the &lt;a href=&#34;http://linuxcaffe.ca/&#34;&gt;Linux Caffe.&lt;/a&gt;  The owner is a great guy, he&#39;s considering switching to Arch, and he wrote his whole point of sales, accounting and bookkeeping software using shell scripts, perltk and stuff.  He&#39;s into suckless.org stuff.   His version 2.0 will probably be based on Xmonad.&lt;br /&gt;
+&lt;img src=&#34;http://dieter.plaetinck.be/files/linuxcaffe-pos1.jpg&#34;/&gt;&lt;br /&gt;
+&lt;img src=&#34;http://dieter.plaetinck.be/files/linuxcaffe-pos2.jpg&#34;/&gt;
+&lt;/li&gt;
+&lt;p&gt;Dusty and me, somewhere on our way to the Niagara falls.&lt;br /&gt;
+&lt;img src=&#34;http://dieter.plaetinck.be/files/dustyandme.jpg&#34;&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Uzbl, monitoring, AIF talks</title>
+      <link>http://dieter.plaetinck.be/post/uzbl_monitoring_aif_talks/</link>
+      <pubDate>Sun, 07 Mar 2010 12:06:18 -0400</pubDate>
+      
+      <guid>84 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I recently did two talks, for which the videos are now online.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.uzbl.org/news.php?id=25&#34;&gt;Uzbl lightningtalk @ fosdem 2010&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Source Monitoring tools lightning talk @ &lt;a href=&#34;http://www.kangaroot-showcase.be/&#34;&gt;Kangaroot showcase&lt;/a&gt; 2009.  This one is password protected.  If you were a participant, you should have received the pass&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If all goes well, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;ArchCon&lt;/a&gt; this summer, where I&#39;ll be doing these talks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=67&#34;&gt;AIF: The Arch Installation Framework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=73&#34;&gt;Uzbl &amp; web interface tools which adhere to the unix philosophy&lt;/a&gt;. Whereas in the fosdem talk I had to focus a lot of information into a short timeslot, here I&#39;ll elaborate a bit more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&#39;re not sure yet if those talks will get videotaped.&lt;br /&gt;
+&lt;!--more--&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fosdem 2010</title>
+      <link>http://dieter.plaetinck.be/post/fosdem_2010/</link>
+      <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
+      
+      <guid>81 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
+Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guys Roman, JGC, Thomas and me will hang out at the &lt;a href=&#34;http://fosdem.org/2010/schedule/devrooms/distributions&#34;&gt;distro miniconf&lt;/a&gt;.  We might join the &lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_infrastructure&#34;&gt;infrastructure round-table&lt;/a&gt; panel, but there is no concrete information yet.&lt;/p&gt;
+&lt;p&gt;More stuff I&#39;m looking forward to:&lt;!--more--&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/phone&#34;&gt;fosdem maemo application&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_mirrorbrain&#34;&gt;mirrorbrain. a topic often discussed at Arch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_clicfs&#34;&gt;clicfs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/news/fosdem-multiplies-things-10&#34;&gt;a 2nd fries van!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/openpcf&#34;&gt;openpcf&lt;/a&gt; (how would this compare to puppet et al?)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/asterisk&#34;&gt;asterisk development&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/csync&#34;&gt;csync&lt;/a&gt; (reminds me of my own &lt;a href=&#34;http://github.com/Dieterbe/ddm&#34;&gt;ddm&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_mongodb_intro&#34;&gt;mongodb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_cassandra&#34;&gt;cassandra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/nosql_mapreduce_couchdb&#34;&gt;map/reduce in nosql vs sql on rdms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/linuxkernelpatch&#34;&gt;writing a patch for linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/systemtap&#34;&gt;systemtap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fosdem.org/2010/schedule/events/scalingfacebook&#34;&gt;scaling facebook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&#39;m suprised myself how there are much more topics of interest to me then last year, and I&#39;m not sure if the program is even finished.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Froscon 2009 afterthoughts</title>
+      <link>http://dieter.plaetinck.be/post/froscon_2009_afterthoughts/</link>
+      <pubDate>Fri, 28 Aug 2009 19:00:02 -0400</pubDate>
+      
+      <guid>72 at http://dieter.plaetinck.be</guid>
+      <description>&lt;!--more--&gt;
+&lt;p&gt;&lt;a href=&#34;http://froscon.org/&#34;&gt;Froscon&lt;/a&gt; was great.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It was smaller then I thought, I especially assumed more activity in the devrooms (I&#39;m too used to &lt;a href=&#34;http://fosdem.org/&#34;&gt;fosdem&lt;/a&gt; which is much bigger), but hey nice conference anyway.&lt;/li&gt;
+&lt;li&gt;It was great to meet (some of) my Arch Linux colleagues.  Mostly the guys from Germany showed up, and Roman who is from Ukraine.&lt;/li&gt;
+&lt;li&gt;We all got an Arch t-shirt/polo of which we could pick the color ourselves.  Woohoo.  Thanks donators.&lt;/li&gt;
+&lt;li&gt;A few people also told me they had tried / were using &lt;a href=&#34;http://www.uzbl.org&#34;&gt;uzbl&lt;/a&gt; (my browser project) so that was really cool.&lt;/li&gt;
+&lt;li&gt;I had an interesting chat with &lt;a href=&#34;http://www.informatik.uni-koeln.de/ls_juenger/people/lange/&#34;&gt;Thomas Lange&lt;/a&gt;, the author of &lt;a href=&#34;http://www.informatik.uni-koeln.de/fai/&#34;&gt;FAI&lt;/a&gt; (a tool to automatically mass-install systems, mostly Debian).  I&#39;ve used it in the past, liked it and was somewhat inspired by it when building &lt;a href=&#34;http://dieter.plaetinck.be/AIF_the_brand_new_Arch_Linux_Installation_Framework&#34;&gt;AIF&lt;/a&gt;. (but some design goals are different).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+Here is a picture of my &#34;Arch releng partner&#34; Gerhard (right) and I (left).  We&#39;ve done a lot of work together and it was great to talk face to face for once.  Here we&#39;re showing (proudly) an Arch Linux Froscon disc (which is a slightly modified version of the &lt;a href=&#34;http://www.archlinux.org/news/459/&#34;&gt;2009.08 core images&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_11-18-57.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Team photo:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/archlinux-pierre/2009-08-22_12-53-07.jpg&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://users.archlinux.de/~pierre/froscon/2009/&#34;&gt;Image gallery&lt;/a&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fosdem 2009</title>
+      <link>http://dieter.plaetinck.be/post/fosdem_2009/</link>
+      <pubDate>Thu, 05 Feb 2009 21:20:15 -0400</pubDate>
+      
+      <guid>62 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/fosdem/going-to-2009.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I&#39;m particulary interested in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The out-of-the-box concepts of &lt;a href=&#34;http://www.fosdem.org/2009/schedule/events/644&#34;&gt;Exherbo&lt;/a&gt;. I hope to see more things like &lt;a href=&#34;http://ciaranm.wordpress.com/2009/01/26/managing-accounts-with-the-package-manager/&#34;&gt;this&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Various talks at &lt;a href=&#34;http://www.fosdem.org/2009/schedule/devrooms/opensuse&#34;&gt;OpenSuse&lt;/a&gt; about distribution development, their build service, etc.&lt;/li&gt;
+&lt;li&gt;tools such as &lt;a href=&#34;http://www.fosdem.org/2009/schedule/events/fedora_func_symbolic&#34;&gt;func&lt;/a&gt; and &lt;a href=&#34;http://www.fosdem.org/2009/schedule/events/puppet&#34;&gt;puppet&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.fosdem.org/2009/schedule/events/syslinux&#34;&gt;syslinux&lt;/a&gt;, &lt;a href=&#34;http://fosdem.org/2009/schedule/events/upstart&#34;&gt;upstart&lt;/a&gt;, &lt;a href=&#34;http://fosdem.org/2009/schedule/events/ext4&#34;&gt;ext4&lt;/a&gt; etc.&lt;/li&gt;
+&lt;li&gt;Some &lt;a href=&#34;http://www.fosdem.org/2009/schedule/devrooms/mysql&#34;&gt;mysql&lt;/a&gt; stuff and the &lt;a href=&#34;http://www.fosdem.org/2009/schedule/events/pg_fs_io_db_perspective&#34;&gt;filesystem i/o from a db perspective&lt;/a&gt; talk.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>I&#39;m not going to Fosdem 2008</title>
+      <link>http://dieter.plaetinck.be/post/im_not_going_to_fosdem_2008/</link>
+      <pubDate>Tue, 12 Feb 2008 20:37:50 -0400</pubDate>
+      
+      <guid>37 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I wish I could put this on my webpage :&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
+Fosdem looks interesting again : talks about iogrind , scons , cakephp , virtualbox , openAFS , ...&lt;br /&gt;
+No Gentoo devroom this year but drupal , debian , embedded , X , gnome rooms would have interested me too ( mostly gtk/glib for the latter )&lt;/p&gt;
+&lt;p&gt;Oh and about the reason I&#39;m not going?  The &lt;a href=&#34;http://corporate.netlog.com&#34;&gt;company&lt;/a&gt; is taking us to &lt;a href=&#34;http://www.valdisole.it/&#34;&gt;Val di Sole&lt;/a&gt; where we will ski, snowboard and apres-ski for 4 days !  w00t ! This kicks even more ass then Fosdem :P&lt;/p&gt;
+&lt;p&gt;PS : I&#39;m considering going to &lt;a href=&#34;http://lac.linuxaudio.org/&#34;&gt;LAC 2008&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fosdem 2007 review</title>
+      <link>http://dieter.plaetinck.be/post/fosdem_2007_review/</link>
+      <pubDate>Thu, 15 Mar 2007 21:02:41 -0400</pubDate>
+      
+      <guid>6 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;Every year, during a special weekend in February, the &lt;a href=&#34;http://www.ulb.ac.be/&#34;&gt;University Libre of Brussels&lt;/a&gt; suddenly becomes a little more geeky.&lt;br /&gt;
+It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;This years edition&lt;/a&gt; took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)&lt;/p&gt;
+&lt;p&gt;Like usual the &lt;a href=&#34;http://www.fosdem.org/2007/schedule/days&#34;&gt;schedule&lt;/a&gt; was pretty full, with lots of things happening at the same time, and only one thing a human being is able to attend at the same time.  Luckily however the 2 biggest rooms (Janson and Chavanne) were videotaped and the &lt;a href=&#34;http://www.fosdem.org/2007/media/video&#34;&gt;videos&lt;/a&gt; are always made available online afterwards.  So knowing that, I could safely follow other rooms if I found those more interesting.&lt;/p&gt;
+&lt;h3&gt;Saturday&lt;/h3&gt;
+&lt;p&gt;The first talk started at 10:00h, and it&#39;s about an hour drive, if you don&#39;t get lost.&lt;br /&gt;
+But I need my sleep, especially the sparse kind of sleep after Friday evenings.  (same goes for my buddy &lt;a href=&#34;http://ghosty.be/&#34;&gt;Geert&lt;/a&gt; who I could ride along with).  We headed off at 11h, and arrived somewhere around 12:30.  (Let&#39;s blame Brussels&#39; bad road signaling for that).  &lt;/p&gt;
+&lt;p&gt;Missed the opening talks, and the &#34;status of software patents&#34; and &#34;liberating java&#34; talks which I&#39;m was really interested in, but hey they were taped so no problemo ;-). During lunch break I explored the stands a bit, talked with some guys and picked up some reading material.&lt;/p&gt;
+&lt;p&gt;At the &lt;a href=&#34;http://www.gentoo.org/&#34;&gt;Gentoo&lt;/a&gt; stand there was no merchandise to be found.  I asked whether merch would arrive, but they said they were afraid not.  (and they were right).  No Gentoo merchandise, that was bummer.  I really wanted a t-shirt or something like that.  Gentoo is one of my favorite distros.&lt;/p&gt;
+&lt;p&gt;At the gnome stand they had made a panel were people could write their favorite things (or things they hate) about gnome on post-its.  There were things like &#34;gnome should use QT&#34; replied by &#34;qt should use gtk&#34; and all kinds of jokes.  Then there was this guy who was repositioning all the post-it&#39;s in the shape of letters of kde.  I use neither (I use &lt;a href=&#34;http://www.xfce.org/&#34;&gt;xfce&lt;/a&gt;) but this sure was a cool place to hang out during breaks.  &lt;/p&gt;
+&lt;p&gt;After that I followed the &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/xorg&#34;&gt;X.org talk&lt;/a&gt;, &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/keith+packard&#34;&gt;Keith&lt;/a&gt; (the project leader) was a real-funpants and told us all about the developers involved with Xorg.  Where they live, their tasks, favorite beers, and so on.  More of a talk for the community then the developers.&lt;/p&gt;
+&lt;p&gt;Next was &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/aiglx&#34;&gt;the aiglx one&lt;/a&gt;.  Actually I preferred attending &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/linuxbios&#34;&gt;linuxBIOS&lt;/a&gt; which I just find more interesting.  Besides, thanks to my nvidia card i can run GLX_EXT_texture_from_pixmap without aiglx or xgl, but hey, I guess the other guys are less fortunate so I decided to stick with them.  I can always check linuxBIOS later :-).   This talk was pretty advanced.  A real developers-talk you could say.  I certainly couldn&#39;t follow ;-)&lt;/p&gt;
+&lt;p&gt;After that came a talk about the state of &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/linux_kernel&#34;&gt; the Linux kernel&lt;/a&gt;.  It was quite interesting, again, this was a talk aimed at developers, which I&#39;m totally not, but I&#39;m a bit familiar with the kernel (running &lt;a href=&#34;http://www.gentoo.org/&#34;&gt;Gentoo&lt;/a&gt; and following &lt;a href=&#34;http://kerneltrap.org/&#34;&gt;kerneltrap&lt;/a&gt; a bit has it advantages) so I could follow, more or less.&lt;/p&gt;
+&lt;p&gt;Next I followed &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/donators_return&#34;&gt;the donators return&lt;/a&gt; thing where people who donated (like me) can &lt;a href=&#34;http://fosdem.org/2007/support/donate&#34;&gt;win prizes&lt;/a&gt;.  I didn&#39;t win anything but hey, still I felt the money was well spent.  (and I also got a free t-shirt ;-) )  One of &lt;a href=&#34;http://www.sun.com/desktop/workstation/ultra20/&#34;&gt;these&lt;/a&gt; would certainly fit in my room though ;-))&lt;/p&gt;
+&lt;p&gt;One thing I just had to attend was the Gentoo devroom.  like I said: Gentoo is one of my favorite distributions.  Also, it was our Belgian irc-friend &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/dimitry+bradt&#34;&gt;Dimitry (aka diox)&lt;/a&gt; who gave his talk so I just couldn&#39;t miss &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_future_discussion&#34;&gt;his talk about Gentoo&#39;s future&lt;/a&gt;.  This was the first devroom I followed and it was totally different then any other talk: it was more of an interactive talk between the devs and the audience.  In the audience were some real devs, but also lot&#39;s of &#34;normal&#34; communitypeople.  Next to me there even was a guy who was very new to Gentoo.  I was happy to tell him all about paludis, overlays and other concepts and terms of Gentoo.&lt;/p&gt;
+&lt;p&gt;After that, there were no more talks to attend, so I went by some stands again (to check if Gentoo merchandise might have arised, among others), met Geert again and, although it was pretty hard to find our way back in the (now darkened) city of Brussels, we managed to drive back home.&lt;/p&gt;
+&lt;h3&gt;Sunday&lt;/h3&gt;
+&lt;p&gt;A new day, and wow, so many cool talks to attend: metasploit, drupal, security testing, mozilla, mono, gplv3, the list goes on.  Luckily many of them were in Janson/Chavanne so I could safely skip these and head for...&lt;/p&gt;
+&lt;p&gt;the Gentoo devroom.  (yeah, sorry, Gentoo here Gentoo there.  My other favorite distro &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; wasn&#39;t featured anywhere, so Gentoo got all the attention)&lt;br /&gt;
+I missed the &#34;programing with paludis&#34; one (ouch! I would have liked that one) but I was there to hear &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/mike+frysinger&#34;&gt;Mike&lt;/a&gt; talk about &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_council&#34;&gt;Gentoo&#39;s inner workings&lt;/a&gt;.  He told us all about Gentoo&#39;s history and how (by who) the project is managed.  That Daniel (the founder of Gentoo) left and came back (I found it remarkable he didn&#39;t mention &lt;em&gt;why&lt;/em&gt; he left (to work at Microsoft).    Guess that wasn&#39;t important enough for the community)&lt;/p&gt;
+&lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/chris+gianelloni&#34;&gt;Chris&lt;/a&gt; talked about &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_tinderbox_testing&#34;&gt;the process that happens for making releases&lt;/a&gt;.  I was impressed.&lt;/p&gt;
+&lt;p&gt;To fill the gap between 13h and 14h I wanted to follow &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/jabber_oneteam&#34;&gt;this&lt;/a&gt; talk.  I have no idea what oneteam is, but I like jabber.  The room was stuffed with people though, and when opening the door you literally felt warm air coming out, so I decided to let the jabber guys in their oven :-)&lt;/p&gt;
+&lt;p&gt;After that some more Gentoo talks: &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_community_distro&#34;&gt;&#34;what makes Gentoo a community based distribution&#34;&lt;/a&gt; by &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/christel+dahlksjaer&#34;&gt;Christel&lt;/a&gt; didn&#39;t make me believe Gentoo is any more community based then most other open source Linux distributions, but hey Christel was quite a joker and the community vibe in the room was nice.&lt;/p&gt;
+&lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/marius+mauch&#34;&gt;Marius&lt;/a&gt; did a &lt;em&gt;great&lt;/em&gt; job explaining the ins and outs of portage -especially the new ones- in his talk &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_portage&#34;&gt;Portage: a look under the surface&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/alexander+faeroey&#34;&gt;Alexander&lt;/a&gt; did a talk called &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_bugday&#34;&gt;future of the bugday project&lt;/a&gt;.  This was pretty much the kind of information you get by reading the forums/newsletters.  Nothing new, but I don&#39;t think the talk intended to make groundbreaking revelations either ;-)&lt;/p&gt;
+&lt;p&gt;17 &#39;o clock.  Damn.. time went fast.. Fosdem pretty much coming to end, luckily there was another nice topic I was really interested in: &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/embedded_security_devices&#34;&gt;Linux on embedded security devices&lt;/a&gt;.  This talk wasn&#39;t very good though:   No kernel revelations.  No open source code.  No in-depth explanations.&lt;br /&gt;
+Basically a company showing it&#39;s product: an embedded device running Linux, running customized code and a presentation showing a scheme showing where they used technologies like SSL, dns or dhcp.  Boring...  And a little demo.&lt;br /&gt;
+Nice to see, but nothing more then that.&lt;/p&gt;
+&lt;p&gt;I think it must have been after this talk I went back to the stands to find &lt;a href=&#34;http://christophe.vandeplas.com/&#34;&gt;Christophe (aka chri)&lt;/a&gt;, who I hadn&#39;t met yet but I had helped him a bit getting &lt;a href=&#34;http://code.google.com/p/weids/&#34;&gt;weids, the &#34;Webbased Information Display System&#34;&lt;/a&gt; (which was created for fosdem) to work.&lt;br /&gt;
+After talking some time with chri the &lt;a href=&#34;http://www.fsfeurope.org/&#34;&gt;Free Software Foundation: Europe&lt;/a&gt; got my attention, and I couldn&#39;t resist buying one of their lovely t-shirts.  I can&#39;t remember how much it cost me, but it was pretty expensive.  No problem though, as I know the money is in very good hands.&lt;/p&gt;
+&lt;p&gt;After that me and Geert drunk a beer, and then drove home again.&lt;/p&gt;
+&lt;p&gt;Fosdem was good.&lt;/p&gt;
+&lt;h2&gt;Did you know...?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;I invited the &lt;a href=&#34;http://www.cakephp.org/&#34;&gt;CakePHP&lt;/a&gt; guys to come?  Unfortunately none of them came, but maybe I can convince them next year!&lt;/li&gt;
+&lt;li&gt;The catering was allright and very, very cheap (and also run by volunteers)&lt;/li&gt;
+&lt;li&gt;Fosdem is mentioned in this &lt;a href=&#34;http://www.gentoo.org/news/en/gwn/20070305-newsletter.xml&#34;&gt;Gentoo newsletter&lt;/a&gt;.  Including a picture of all the devs, shot by SeJo (sunday afternoon iirc)&lt;/li&gt;
+&lt;li&gt;You&#39;ll find many pictures &lt;a href=&#34;http://www.fosdem.org/2007/media/pictures&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Most of the talks are aimed at developers, and developers certainly are the guys that should come.  Fosdem is the perfect place to meet, discuss (with both developers of your own team, as with devs of other projects that you depend on), learn and hack some code together.&lt;/p&gt;
+&lt;p&gt;For the community it&#39;s another story.  Many of the talks are too hard to follow, and those talks that are aimed at the community usually don&#39;t offer more information then what you would find on the websites, forums/mailinglists or newsletters.&lt;br /&gt;
+The fact that you can download lots of video material is great.  If you stay home you can still make up for it by watching the movies.&lt;br /&gt;
+It&#39;s cool to meet people though.  And if you want to visit stands of different projects (for example to buy merchandise).  That&#39;s imho the best reason for non-developers to come to fosdem.  But that&#39;s personal of course.&lt;/p&gt;
+&lt;p&gt;So who&#39;s coming with me to fosdem 2008? :-).&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

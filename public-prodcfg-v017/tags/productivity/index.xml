@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dieter&#39;s blog</title>
+    <link>http://dieter.plaetinck.be/tags/productivity/index.xml</link>
+    <description>Recent content on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/productivity/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>#1 productivity tip: showers</title>
+      <link>http://dieter.plaetinck.be/post/number_1_productivity_tip_showers/</link>
+      <pubDate>Sat, 13 Dec 2008 17:43:02 -0400</pubDate>
+      
+      <guid>57 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;When you&#39;re stuck on a problem, or not even stuck but you just want to boost your creative/out-of-the-box thinking...&lt;br /&gt;
+Take a shower.  When I&#39;m thinking about a problem and I take a shower, the ideas and thoughts just start popping up, one after each other, or sometimes even two at the same time.  It&#39;s amazing.  And it works every time.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes the amount of thoughts and ideas is so much that I need a piece of paper to write everything down immediately when I come out, otherwise I&#39;ll forget stuff before I leave the bathrooom.&lt;/p&gt;
+&lt;p&gt;If you work from home, it can be beneficial to not shower in the morning (because then the mind is fresh enough to be creative), but rather doing it somewhere before noon or in the afternoon. (of course this depends on what you&#39;re working on)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A fast way to get stuff out of your head and into your GTD inbox</title>
+      <link>http://dieter.plaetinck.be/post/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/</link>
+      <pubDate>Wed, 13 Aug 2008 20:42:51 -0400</pubDate>
+      
+      <guid>47 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;Often while you&#39;re occupied with something, some thought pops into your head.  Something that you want to remember/do something about.&lt;!--more--&gt;&lt;br /&gt;
+One of the key factors of a successful &lt;a href=&#34;http://en.wikipedia.org/wiki/Getting_Things_Done&#34;&gt;GTD&lt;/a&gt; implementation is having the tools in place to get that stuff out of your head and into something you can trust, so you can continue your work with the smallest interruption possible.  Many GTD tools I&#39;ve checked out focus on the &#39;action management&#39; part of GTD, leaving out the collection and processing phases (&lt;a href=&#34;http://www.thinkingrock.com.au/&#34;&gt;Thinkingrock&lt;/a&gt; is a notable exception here) and often some other things (reference system etc).&lt;/p&gt;
+&lt;p&gt;This is not necessarily a bad thing:  The whole GTD system is built around so many different actions and systems that some stuff can be divided into separate programs.  The only thing that matters is the global workflow, whether inside 1 program or across multiple.&lt;/p&gt;
+&lt;p&gt;If you use a program that does not implement the collection/processing phases, one thing thing you should &lt;strong&gt;not&lt;/strong&gt; do, is skip them. You should not try to make out what an idea is, how to implement it, how to file it, which context/project/tag to assign etc on the moment it pops into your head, because it makes you loose your focus, distracts you and generally makes you less efficient.&lt;/p&gt;
+&lt;p&gt;I&#39;m now trying out the &lt;a href=&#34;http://www.rousette.org.uk/projects&#34;&gt;Tracks&lt;/a&gt; gtd program, which does not implement collection/processing.  The official explanation is that they try to make tracks customizable and flexible to allow you to use it the way you want, but I don&#39;t see how I could use it effectively for this.  &lt;/p&gt;
+&lt;p&gt;What I did is write a simple shell script, one that I trigger via a quick keyboard shortcut (ctrl+i), it pops up a Gtk input dialog box - using &lt;a href=&#34;http://live.gnome.org/Zenity&#34;&gt;zenity&lt;/a&gt;, which i &lt;a href=&#34;http://dieter.plaetinck.be/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add&#34;&gt;blogged about earlier.&lt;/a&gt;.  When you sumbit the form (by pressing enter) it just appends your text to a textfile.  That&#39;s it !&lt;br /&gt;
+If something goes wrong (and only then!) it will show a popup with &lt;a href=&#34;http://www.galago-project.org&#34;&gt;libnotify&lt;/a&gt; so if you see nothing after submitting, you can be assured that it saved fine.&lt;br /&gt;
+  &lt;i&gt;Less is more.&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;When you are ready for processing mode (eg the &#39;weekly review&#39; in gtd speak) you can then process entry by entry and enter stuff into your GTD program as necessary.&lt;/p&gt;
+&lt;p&gt;Dependencies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bash&lt;/li&gt;
+&lt;li&gt;zenity&lt;/li&gt;
+&lt;li&gt;notify-send (package libnotify-bin on ubuntu)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is the file, save it as gtdinbox.sh&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# A very simple script to implement the Collecting part of GTD.&lt;/span&gt;
+&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# The only thing this script does is getting something out of head as quickly as possible, into a file you can trust&lt;/span&gt;
+&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# See http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox&lt;/span&gt;
+
+&lt;span style=&#34;color: #19177C&#34;&gt;program&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;basename &lt;span style=&#34;color: #19177C&#34;&gt;$0&lt;/span&gt; .sh&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;
+&lt;span style=&#34;color: #19177C&#34;&gt;datadir&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BB6688; font-weight: bold&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;XDG_DATA_HOME&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;:-&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;/.local/share&lt;span style=&#34;color: #BB6688; font-weight: bold&#34;&gt;}&lt;/span&gt;/&lt;span style=&#34;color: #19177C&#34;&gt;$program&lt;/span&gt;
+&lt;span style=&#34;color: #19177C&#34;&gt;inboxfile&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt;/inbox.txt
+
+die_error &lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$1&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; &amp;gt;&amp;amp;&lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;
+        notify-send &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Gtd Inbox&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$1&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; -i gtk-dialog-info -t &lt;span style=&#34;color: #666666&#34;&gt;5000&lt;/span&gt; -u critical
+        &lt;span style=&#34;color: #008000&#34;&gt;exit&lt;/span&gt; &lt;span style=&#34;color: #BB6688; font-weight: bold&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;:-&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #BB6688; font-weight: bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt; ! -d &lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt;
+        mkdir -p &lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;&amp;gt; /dev/null &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod &lt;span style=&#34;color: #666666&#34;&gt;700&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;&amp;gt; /dev/null &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; die_error &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Could not create/chmod &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
+
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;input&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;zenity --entry --title &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;GTD Inbox&amp;quot;&lt;/span&gt; --text &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Enter text for gtd inbox&amp;quot;`&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt; -n &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$input&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt;
+        &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$input&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; &lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Entered &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$input&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; into &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
+                &lt;span style=&#34;color: #008000&#34;&gt;exit&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        die_error &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Something failed while entering &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$input&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; into &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;3&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;else&lt;/span&gt;
+        &lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Cancelled input into &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Requirements for the perfect GTD tool</title>
+      <link>http://dieter.plaetinck.be/post/requirements_for_the_perfect_gtd_tool/</link>
+      <pubDate>Sat, 09 Aug 2008 16:04:45 -0400</pubDate>
+      
+      <guid>46 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I&#39;ve been reading &lt;a href=&#34;http://en.wikipedia.org/wiki/Getting_Things_Done&#34;&gt;GTD&lt;/a&gt; lately and it&#39;s absolutely a great and inspiring book.&lt;br /&gt;
+Having made my home office space into a real &lt;i&gt;Zen&lt;/i&gt; I want to start implementing GTD in my digital life but it seems very hard to find a good GTD tool that fully implements GTD. (even though there are a lot of tools out there)&lt;/p&gt;
+&lt;p&gt;The most interesting ones (each for different reasons) I&#39;ve looked at so far are &lt;a href=&#34;http://www.thinkingrock.com.au/index.php&#34;&gt;Thinkingrock&lt;/a&gt;, &lt;a href=&#34;http://www.rousette.org.uk/projects/&#34;&gt;tracks&lt;/a&gt; and &lt;a href=&#34;https://gna.org/projects/yagtd/&#34;&gt;yagtd&lt;/a&gt; (the latter requiring most work before it does everything I need, but it&#39;s also the most easy to dive into the code base). I&#39;m keeping my eyes open because there are certainly more things to discover.&lt;/p&gt;
+&lt;p&gt;Even though there are probably no applications out there that can do everything I want, I just wanted to share my feature-wishlist.  These are the requirements I find that a really good tool should comply with:&lt;br /&gt;
+&lt;!--more--&gt;&lt;br /&gt;
+In order of importance (sort of):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i&gt;I want to have control over both my data and application.&lt;/i&gt;&lt;br /&gt;
+ At least half of the GTD apps out there are websites ran by an external party.  I want to run the application myself, I must have access to the source code, and I want to have my data myself.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;Rapid idea collection and processing.&lt;/i&gt;&lt;br /&gt;
+  David Allen mentions the importance of this several times.  Sometimes you are doing something but come up with something else which you want to write down to continue your other stuff as quickly as you can.  Later on - in &#39;processing mode&#39; - these notes must be handled one by one, and it must be easy to choose whether you want to create a new task from this note, throw it away, file/further edit as a note for something else and so on.  For some reason many GTD applications skip these very important collection and processing steps and assume their users will enter actions right away.  For now I&#39;ve only seen Thingkingrock handling this nicely (or at all).  A workaround could be to use a notes-taking application such as tomboy as collection bucket, and process that every once in a while but then you&#39;ll need to copy-paste stuff from one application into another etc.  Doable but cumbersome and avoidable.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;Context / project editors&lt;/i&gt;&lt;br /&gt;
+Context and projects are entities on their own. I don&#39;t want any of them disappearing/non-existing just because there are no actions that &#39;link to them&#39; anymore/yet.  (which seems to be the case with yagtd).  Tracks handles this really nicely.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;Advanced reference system.&lt;/i&gt;&lt;br /&gt;
+Notes/documentation (with documentation I don&#39;t mean physical files such as *.pdf or *.odt but just textual data) must be able to get filed and easily be retrieved by itself or by associated item.  A note should be able to be linked to an action or project but must also be able to stand on it&#39;s own through it&#39;s title and/or a tagging system.  Some notes can even be related to multiple projects/actions (from different projects).  In many cases I find it useful to link a project to one or more notes who are already general reference material or linked to something else.  So this goes &lt;i&gt;way&lt;/i&gt; beyond the simple &#39;description&#39; fields that most tools offer.  Support for holding not only text, but also hyperlinks, images, movie clips, would be a plus. (not the most important though)&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;File format&lt;/i&gt;&lt;br /&gt;
+An easily accessible file format is a plus for a variety of reasons.  Plaintext is the winner here (yagtd).  Tracks does not seem to support a plaintext backend but it does support an api/rss/.. and an export feature so that counts too.  ThinkingRock uses xml. (mixed feelings about that)
+&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;action/project dependencies&lt;/i&gt;&lt;br /&gt;
+Some actions or projects can&#39;t be done at all as long as another project or action is not finished.  If you can specify this in your program, than the program can put the action/project in the &#39;waitingfor&#39; section and move it  to &#39;next actions&#39; when the dependencies are fulfilled. (after asking confirmation maybe)&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;Calendar integration&lt;/i&gt;&lt;br /&gt;
+A full featured calender does not belong in a GTD tool, ( because on a calender you also want to put non-actionable stuff like certain events, birthdays,...) but there does need to be support for exporting everything with a date on it (actions with due dates or that can only happen on specific moments each week/day/...) to a calendar.  Ical is probably the most common for this, but with an rss feed or rest api I can help myself too. (by converting it into ical or whatever)&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;project planning on the beforehand&lt;/i&gt;&lt;br /&gt;
+When planning a project you already know more action steps then just the next one for a project.  If you can specify these in a good way (e.g. not by abusing the project description field) the program can open the next action when you complete the current one.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;Reminders&lt;/i&gt;&lt;br /&gt;
+I want to be informed automatically of stuff that *needs* to happen.  Gtk or libnotify popups are great, e-mail will do too.  Being able to respond to the notification to say &#39;inform me again at $foo&#39; or &#39;i just did this, close the action!&#39; are a plus.
+&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;History&lt;/i&gt;&lt;br /&gt;
+When did I do this? What happened to item X at this date?  Questions that sometimes need an answer and it&#39;s frustrating if you don&#39;t have them.&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;GTD on the road&lt;/i&gt;&lt;br /&gt;
+I can use a paper notebook for collecting ideas and for quickly writing some reminders down before closing the laptop but having access to my GTD data on my phone would be really nice. (preferably by syncing the phone with my laptop to be not dependent on a network at all times) (I will be having an iphone soon)
+&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;Integration with email&lt;/i&gt;&lt;br /&gt;
+How great would be to specify in your GTD tool &#39;this action is waiting for John Doe&#39; and later, when you receive a mail from John Doe you can say &#39;this closes this action&#39; ?  Or for each mail in your inbox you have some options to import the contents into your collection bucket, into a new task or into the filing system?  Practically how this could work is through an api like what tracks offers, or by dbus for desktop programs.
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;About the book&lt;/h3&gt;
+&lt;p&gt;GTD has received a lot of hype, which made me sceptical at first but while reading the book it became clear the praise is deserved.&lt;br /&gt;
+Right from the beginning you start learning many things, and throughout the book the &#39;eureka&#39; moments keep coming.  Even I who have been thinking quite a lot on how to organize my todo&#39;s, ideas and reference material am surprised by how much can be improved.  There are some points that are not new and are also mentioned in other time management books (such as &#39;getting a clear head&#39;) but the great part is that GTD is not only about action management, but also about project planning, personal organisation, how to manage those ideas/questions/reminders that you come up with randomly, office organisation and so on. I was afraid that some things I do/need would not be handled in the book but it&#39;s definitely not the case.  And everything is handled both in theory and in practice with a lot of thoughts, ideas and practical recommendations.  David&#39;s advice after more then 20 years of productivity consulting/training/research is something that no-one should miss.&lt;br /&gt;
+From a writers perspective: I find it also amazing how stuff that is so hard to explain is so well organized and explained in a easy to understand phrasing throughout the entire book.  Not that I know much about this field but it&#39;s clear that this part of the book also has gotten a lot of work.  In a few rare cases I found that some recommendations were not backed up enough but those were just details.&lt;/p&gt;
+&lt;p&gt;While reading the book (I haven&#39;t finished it yet btw) I spent several days cleaning up my room.  I started using a filing cabinet for my reference material (placed very accessibly!), organized supplies and equipment on my desk etc etc.  There is still some work to do but on the short term I want to have gotten rid of everything I don&#39;t need, and keep what I need in the places that make most sense for them, and in the end I want to know where everything is (so I never need to search) and there should be nothing where it doesn&#39;t belong...&lt;/p&gt;
+&lt;p&gt;My parents had to stop me from starting to clean up our entire attic...  This book definitely has changed me.  (those who know how I used to leave my stuff will understand ;-)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dump your azerty and querty because the only keyboard layout that makes sense is Dvorak!</title>
+      <link>http://dieter.plaetinck.be/post/dump_your_azerty_and_querty_because_the_only_keyboard_layout_that_makes_sense_is_dvorak/</link>
+      <pubDate>Sun, 15 Jun 2008 21:20:00 -0400</pubDate>
+      
+      <guid>40 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;For a while now I am typing using solely the Dvorak keyboard layout.  I roughly estimate it has been 4 or 5 months now - with the first month being a pain in the ass because i had to relearn typing pretty much from scratch - but now my typing speed is starting to exceed what it used to be in querty, and I still have much headroom to improve.&lt;/p&gt;
+&lt;p&gt;For those who have no clue what I&#39;m talking about: think for 30 seconds which characters you type the most and which the least (eg: which characters occur the most/least in the language you type?).&lt;/p&gt;
+&lt;p&gt;Ok you got them?  Now look at your keyboard and spot where these characters are.  Now consider where your fingers are most of the time (if you&#39;ve never learned to type: the &#39;base position&#39; for your fingers is on the middle row).  Notice anything strange?&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Now how take a look at this picture:&lt;br /&gt;
+&lt;img src=&#34;http://dieter.plaetinck.be/files/blog/netlog/22103670_7137111_15223282.jpg&#34; /&gt;&lt;br /&gt;
+Definitely quite unconventional, but doesn&#39;t it make sense?&lt;/p&gt;
+&lt;p&gt;Dvoraks benefits are both technical (faster typing speed) and physical (less strain on your fingers, less chance for injuries such as &lt;a href=&#34;http://en.wikipedia.org/wiki/Repetitive_strain_injury&#34;&gt;rsi&lt;/a&gt;)&lt;br /&gt;
+If you would like more information, I highly recommend &lt;a href=&#34;http://dvzine.org&#34;&gt;dvzine.org&lt;/a&gt;.  They have a &lt;a href=&#34;http://dvzine.org/zine/01-toc.html&#34;&gt;web comic&lt;/a&gt; that tells you all you want to know and helps you start using Dvorak&lt;/p&gt;
+&lt;p&gt;Sure, learning a new keyboard layout is not easy.  The first weeks are a pain.  And it takes a few months to get back up to speed.  But I&#39;m 23 years old and I hope I will be typing for about 50 more years.  Considering that I find it well worth switching!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Per-directory bash history</title>
+      <link>http://dieter.plaetinck.be/post/per_directory_bash_history/</link>
+      <pubDate>Wed, 30 Jan 2008 21:37:31 -0400</pubDate>
+      
+      <guid>36 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;I&#39;ve been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
+&lt;!--more--&gt;&lt;br /&gt;
+Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#comment_17&#34;&gt;anonymous reply on debian-administration.org&lt;/a&gt;&lt;/p&gt;
+&lt;br/&gt;
+&lt;cite&gt;
+So I use the following bash function:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# Usage: mycd &amp;lt;path&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#&lt;/span&gt;
+&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#  Replacement for builtin &amp;#39;cd&amp;#39;, which keeps a separate bash-history&lt;/span&gt;
+&lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;#   for every directory.&lt;/span&gt;
+&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;function&lt;/span&gt; mycd&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+   &lt;span style=&#34;color: #008000&#34;&gt;history&lt;/span&gt; -w &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# write current history file&lt;/span&gt;
+   &lt;span style=&#34;color: #008000&#34;&gt;builtin&lt;/span&gt; &lt;span style=&#34;color: #008000&#34;&gt;cd&lt;/span&gt; &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$@&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# do actual cd&lt;/span&gt;
+   &lt;span style=&#34;color: #008000&#34;&gt;local&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;HISTDIR&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/.dir_bash_history&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PWD&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# use nested folders for history&lt;/span&gt;
+   &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;  &lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt; ! -d &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HISTDIR&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# create folder if needed&lt;/span&gt;
+      mkdir -p &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HISTDIR&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
+   &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
+   &lt;span style=&#34;color: #008000&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;HISTFILE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HISTDIR&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/bash_history.txt&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# set new history file&lt;/span&gt;
+   &lt;span style=&#34;color: #008000&#34;&gt;history&lt;/span&gt; -c  &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# clear memory&lt;/span&gt;
+   &lt;span style=&#34;color: #008000&#34;&gt;history&lt;/span&gt; -r &lt;span style=&#34;color: #408080; font-style: italic&#34;&gt;# read from current histfile&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and then set it up with the following in my bashrc:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;shopt&lt;/span&gt; -s histappend
+&lt;span style=&#34;color: #008000&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;cd&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;mycd&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #008000&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #19177C&#34;&gt;HISTFILE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/.dir_bash_history&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PWD&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/bash_history.txt&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/cite&gt;
+&lt;p&gt;Great stuff.  It would be nice to be able to use both the global and the directory-specific history by combining with an extra modifier key .&lt;br /&gt;
+( eg arrowup/pageup/c^r for global and alt+arrowup/alt+pageup/alt+c^r for the directory-specific one )&lt;/p&gt;
+&lt;p&gt;If I ever come up with / find something to do this I&#39;ll let you know...&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My favorite bash tricks</title>
+      <link>http://dieter.plaetinck.be/post/my_favorite_bash_tricks/</link>
+      <pubDate>Wed, 14 Mar 2007 23:38:54 -0400</pubDate>
+      
+      <guid>5 at http://dieter.plaetinck.be</guid>
+      <description>&lt;p&gt;Hello everyone.&lt;br /&gt;
+This post is about &lt;a href=&#34;http://www.gnu.org/software/bash/&#34;&gt;bash&lt;/a&gt;, the shell providing so many users easy access to the underlying power of their system.&lt;br /&gt;
+(not &lt;a href=&#34;http://www.bash.org/&#34;&gt;bash&lt;/a&gt; the quote database, although i really like that website too ;-) )&lt;br /&gt;
+Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)&lt;/p&gt;
+&lt;p&gt;I assume you have a basic knowledge of bash, the history mechanism, and  ~/.bash* files.&lt;br /&gt;
+So here they are, my favorite tricks, key combo&#39;s and some bonus stuff:&lt;/p&gt;
+&lt;h3&gt;Tricks&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&#34;cd -&#34; takes you back to the previous directory, wherever that was.  Press again to cycle back.&lt;/li&gt;
+&lt;li&gt;putting arguments between braces {like,so} will execute the command multiple times, once for each &#34;argument&#34;.  Bash will make the cartesian product when doing it multiple times in 1 expression.  Some less-obvious tricks with this method are mentioned &lt;a href=&#34;http://www.bhaskarvk.info/technology/bash-tricks.html&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HISTIGNORE : with this variable you have control over which things are being saved in your history.  &lt;a href=&#34;http://www.talug.org/events/20030709/cmdline_history.html&#34;&gt;Here&lt;/a&gt; is a nice explication.  Especially the space trick is very useful imho.&lt;/li&gt;
+&lt;li&gt;CD_PATH : &lt;a href=&#34;http://www.caliban.org/bash/&#34;&gt;Here&lt;/a&gt; is a great explanation ;-)&lt;/li&gt;
+&lt;li&gt;readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :&lt;br /&gt;
+&lt;pre&gt;
+&#34;\e[5~&#34;: history-search-backward
+&#34;\e[6~&#34;: history-search-forward
+&lt;/pre&gt;&lt;p&gt;This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*&lt;br /&gt;
+You can use the up/down arrows too, their codes are &#34;\e[A&#34; and &#34;\e[B&#34;
+&lt;/li&gt;
+&lt;li&gt;for more &#34;natural&#34; history saving behavior (when having several terminals open): put this in .bash_profile: &lt;br/&gt;&lt;br /&gt;
+&lt;pre&gt;PROMPT_COMMAND=&#39;history -a&#39;&lt;/pre&gt;&lt;p&gt; (write each command separately in a new entry, instead of all at shell exit).&lt;br /&gt;
+And type &lt;/p&gt;
+&lt;pre&gt;shopt -s histappend&lt;/pre&gt;&lt;p&gt; to append instead of overwrite. (this might be default on some distro&#39;s.  I think it was on Gentoo)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Shortcuts/keycombos&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ctrl+r : search through your history.  Repeatedly press ctrl+r to cycle through hits.&lt;/li&gt;
+&lt;li&gt;ctrl-u : cut everything on the current line before the cursor.&lt;/li&gt;
+&lt;li&gt;ctrl-y : paste text that was cut using ctrl-u. (starting at the cursor)&lt;/li&gt;
+&lt;li&gt;!$: equals the last word of the previous command. (great when performing several operations on the same file)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Bonus material&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.caliban.org/bash/index.shtml#completion&#34;&gt;Bash completion&lt;/a&gt;, an add-on for bash which adds completion for arguments of your commands.  It&#39;s pretty smart and configurable.  (it&#39;s in portage, and probably in repos of all popular distros out there)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://n01se.net/agriffis/nopaste/&#34;&gt;This script&lt;/a&gt; provides you an interface to the &lt;a href=&#34;http://rafb.net/paste/&#34;&gt;rafb pastebin&lt;/a&gt;!&lt;/li&gt;
+&lt;li&gt;Recursively delete all .svn folders in this folder, and in folders below. &#34;find . -name .svn -print0 | xargs -0 rm -rf&#34;&lt;/li&gt;
+&lt;li&gt;Recursively count number of files in a directory: &#34;find -not -type d | wc -l&#34;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Those were all important tricks I&#39;m currently using.  On the web you&#39;ll find lots more useful tips :-).&lt;br /&gt;
+If that still isn&#39;t enough, there is also &lt;a href=&#34;http://www.gnu.org/software/bash/manual/bashref.html&#34;&gt;man bash&lt;/a&gt; :o&lt;/p&gt;
+&lt;p&gt;With aliases and scripts (and involving tools like sed or awk) the possibilities become pretty much endless.  But for that I refer to &lt;a href=&#34;http://tldp.org/LDP/abs/html/&#34;&gt;tldp.org&lt;/a&gt; and your favorite web search engine.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

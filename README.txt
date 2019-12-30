@@ -67,16 +67,44 @@ post/practical-fault-detection-redux-next-generation-alerting/index.html
 
 I'm pretty sure in the past i've noticed problems around the "more" content divider
 
-### other hugo versions
-I have done some experiments in the past trying to build using a variety of hugo versions:
+### 0.15
+Probably too old of a hugo version
 ```
-	public-prodcfg-v015/
-	public-prodcfg-v016/
-	public-prodcfg-v017/
-	public-prodcfg-v050/
-	public-prodcfg-v054/
+mkdir hugo-0.15 && cd hugo-0.15
+wget https://github.com/gohugoio/hugo/releases/download/v0.15/hugo_0.15_linux_amd64.tar.gz
+tar xzf hugo_0.15_linux_amd64.tar.gz
+cd ..
+./hugo-0.15/hugo_0.15_linux_amd64/hugo_0.15_linux_amd64 --config config-prod.toml -d public-prodcfg-v015
 ```
-and all of them showed big diffs with "public-real"
+```
+$ diff -r public-real public-prodcfg-v015 | wc -l
+1856
+```
 
-I haven't included these results yet because i need to validate them to see if they were generated from a pristine content directory, and i'm not sure how useful they will be. 
-but I can go through this again if it helps at all.
+### 0.16
+With hugo 0.16 I get quite close to public-real, but there is still a bunch of differences in the generated output.
+```
+mkdir hugo-0.16 && cd hugo-0.16
+wget https://github.com/gohugoio/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz
+tar xzf hugo_0.16_linux-64bit.tgz
+cd ..
+./hugo-0.16/hugo --config config-prod.toml -d public-prodcfg-v016
+```
+```
+$ diff -r public-real public-prodcfg-v016 | wc -l
+193
+```
+
+### 0.17
+Bigger diff again. so this confirms we probably used 0.16 3 years ago.
+```
+mkdir hugo-0.17 && cd hugo-0.17
+wget https://github.com/gohugoio/hugo/releases/download/v0.17/hugo_0.17_Linux-64bit.tar.gz
+tar xzf hugo_0.17_Linux-64bit.tar.gz
+cd ..
+./hugo-0.17/hugo_0.17_linux_amd64/hugo_0.17_linux_amd64 --config config-prod.toml -d public-prodcfg-v017
+```
+```
+$ diff -r public-real public-prodcfg-v017 | wc -l
+2072
+```

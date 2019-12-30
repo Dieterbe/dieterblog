@@ -159,23 +159,23 @@ If something goes wrong (and only then!) it will show a popup with <a href="http
 
 die_error <span style="color: #666666">()</span>
 <span style="color: #666666">{</span>
-        <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$1</span><span style="color: #BA2121">&quot;</span> &gt;&amp;2
+        <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$1</span><span style="color: #BA2121">&quot;</span> &gt;&amp;<span style="color: #666666">2</span>
         notify-send <span style="color: #BA2121">&#39;Gtd Inbox&#39;</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$1</span><span style="color: #BA2121">&quot;</span> -i gtk-dialog-info -t <span style="color: #666666">5000</span> -u critical
         <span style="color: #008000">exit</span> <span style="color: #BB6688; font-weight: bold">${</span><span style="color: #19177C">2</span><span style="color: #008000; font-weight: bold">:-</span><span style="color: #19177C">2</span><span style="color: #BB6688; font-weight: bold">}</span>
 <span style="color: #666666">}</span>
 
 <span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[</span> ! -d <span style="color: #19177C">$datadir</span> <span style="color: #666666">]</span>
 <span style="color: #008000; font-weight: bold">then</span>
-        mkdir -p <span style="color: #19177C">$datadir</span> 2&gt; /dev/null <span style="color: #666666">&amp;&amp;</span> chmod <span style="color: #666666">700</span> <span style="color: #19177C">$datadir</span> 2&gt; /dev/null <span style="color: #666666">||</span> die_error <span style="color: #BA2121">&quot;Could not create/chmod </span><span style="color: #19177C">$datadir</span><span style="color: #BA2121">&quot;</span> 1
+        mkdir -p <span style="color: #19177C">$datadir</span> <span style="color: #666666">2</span>&gt; /dev/null <span style="color: #666666">&amp;&amp;</span> chmod <span style="color: #666666">700</span> <span style="color: #19177C">$datadir</span> <span style="color: #666666">2</span>&gt; /dev/null <span style="color: #666666">||</span> die_error <span style="color: #BA2121">&quot;Could not create/chmod </span><span style="color: #19177C">$datadir</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">1</span>
 <span style="color: #008000; font-weight: bold">fi</span>
 
 <span style="color: #008000; font-weight: bold">if</span> <span style="color: #19177C">input</span><span style="color: #666666">=</span><span style="color: #BA2121">`</span>zenity --entry --title <span style="color: #BA2121">&quot;GTD Inbox&quot;</span> --text <span style="color: #BA2121">&quot;Enter text for gtd inbox&quot;`</span> <span style="color: #666666">&amp;&amp;</span> <span style="color: #666666">[</span> -n <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$input</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">]</span>
 <span style="color: #008000; font-weight: bold">then</span>
         <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$input</span><span style="color: #BA2121">&quot;</span> &gt;&gt; <span style="color: #19177C">$inboxfile</span> <span style="color: #666666">&amp;&amp;</span> <span style="color: #666666">{</span>
                 <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Entered </span><span style="color: #19177C">$input</span><span style="color: #BA2121"> into </span><span style="color: #19177C">$inboxfile</span><span style="color: #BA2121">&quot;</span>
-                <span style="color: #008000">exit</span> 0
+                <span style="color: #008000">exit</span> <span style="color: #666666">0</span>
         <span style="color: #666666">}</span>
-        die_error <span style="color: #BA2121">&quot;Something failed while entering </span><span style="color: #19177C">$input</span><span style="color: #BA2121"> into </span><span style="color: #19177C">$inboxfile</span><span style="color: #BA2121">&quot;</span> 3
+        die_error <span style="color: #BA2121">&quot;Something failed while entering </span><span style="color: #19177C">$input</span><span style="color: #BA2121"> into </span><span style="color: #19177C">$inboxfile</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">3</span>
 <span style="color: #008000; font-weight: bold">else</span>
         <span style="color: #008000">echo</span> <span style="color: #BA2121">&quot;Cancelled input into </span><span style="color: #19177C">$inboxfile</span><span style="color: #BA2121">&quot;</span>
 <span style="color: #008000; font-weight: bold">fi</span>

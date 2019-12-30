@@ -133,8 +133,8 @@
 	<div class="entry-content">
 		<p>Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing 'echo $?', ' &amp;& echo ok', '|| echo failed' etc on the command line.<!--more--></p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">if</span> <span style="color: #666666">[</span> <span style="color: #008000; font-weight: bold">$(</span>tput colors<span style="color: #008000; font-weight: bold">)</span> -gt <span style="color: #666666">0</span> <span style="color: #666666">]</span> ; <span style="color: #008000; font-weight: bold">then</span>
-    <span style="color: #19177C">RED</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>tput setaf 1<span style="color: #008000; font-weight: bold">)</span>
-    <span style="color: #19177C">GREEN</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>tput setaf 2<span style="color: #008000; font-weight: bold">)</span>
+    <span style="color: #19177C">RED</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>tput setaf <span style="color: #666666">1</span><span style="color: #008000; font-weight: bold">)</span>
+    <span style="color: #19177C">GREEN</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>tput setaf <span style="color: #666666">2</span><span style="color: #008000; font-weight: bold">)</span>
     <span style="color: #19177C">RST</span><span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">$(</span>tput op<span style="color: #008000; font-weight: bold">)</span>
 <span style="color: #008000; font-weight: bold">fi</span>
 

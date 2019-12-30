@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>PhpDeliciousClient &middot; Dieter&#39;s blog</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<!--[if lt IE 9]>
+	<script src="http://dieter.plaetinck.be/js/html5.js"></script>
+	<![endif]-->
+
+    <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
+
+    <link rel='stylesheet' id='twentyfourteen-lato-css'  href='http://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='genericons-css' href='http://dieter.plaetinck.be/genericons/genericons.css' type='text/css' media='all' />
+	<link rel='stylesheet' id='twentyfourteen-style-css' href='http://dieter.plaetinck.be/css/style.css' type='text/css' media='all' />
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1455070-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+
+<body class="home blog masthead-fixed list-view full-width grid">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://dieter.plaetinck.be" rel="home">Dieter&#39;s blog</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="nav-menu">
+					<ul>
+						
+						<li class="page_item">
+							<a href="/">blog</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="/about">about</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="/talks">talks</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="https://twitter.com/Dieter_be">tweets</a>
+						</li>
+						
+						<li class="page_item">
+							<a href="https://github.com/Dieterbe">Github</a>
+						</li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+                <script type="text/javascript">
+    function site_search(obj) {
+    	var host = window.location.host;
+        obj.q.value = "site:" + host + " " + obj.ss_q.value;
+    }
+</script>
+
+<aside id="search-3" class="widget widget_search">
+	<form role="search" class="search-form" action="//www.google.com/search" method="get" onSubmit="site_search(this)">
+
+	<input name="q" type="hidden" />
+	    <label>
+	        <span class="screen-reader-text">Search for:</span>
+	        <input name="ss_q" type="text" placeholder="Search ..." class="search-field" />
+	    </label>
+	    <input type="submit" value="Search" class="search-submit" />
+	</form>
+</aside>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="site-main">
+
+
+<div id="main-content" class="main-content">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+			<article class="post type-post status-publish format-standard hentry">
+
+	
+	<header class="entry-header">
+
+	
+
+		<div class="entry-meta">
+			<span class="cat-links">
+                
+			</span>
+		</div>
+
+        <h1 class="entry-title"><a href="http://dieter.plaetinck.be/post/php_delicious_client/">PhpDeliciousClient</a></h1>
+
+		<div class="entry-meta">
+			<span class="entry-date">
+				<a href="http://dieter.plaetinck.be/post/php_delicious_client/" rel="bookmark">
+					<time class="entry-date" datetime="2007-06-29T13:52:21-04:00">
+						June 29, 2007
+					</time>
+				</a>
+			</span>
+		</div>
+
+	</header>
+
+	<div class="entry-content">
+		<h3>Introduction</h3>
+<p>PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.</p>
+<p>It's written in PHP and uses <a href="http://www.ejeliot.com/">Ed Eliot's</a> <a href="http://www.ejeliot.com/pages/php-delicious">PhpDelicous</a> class to contact the del.icio.us api. (included in download)<br />
+PhpDeliciousClient is licensed under the GPL v2, while the PhpDelicious class is licensed under the BSD license.</p>
+<h3>Why?</h3>
+<p>The main reason I started developing it is because administering your account on the del.ico.us web interface can be cumbersome.<br />
+This is especially true in the case of balancing your tags:<br />
+After a while, your del.icio.us account can get unbalanced: this is when you have many tags, but most of them only contain a few posts (very often even just one! ).<br />
+So you would want to balance them again, by deleting and renaming some very specific tags so that you get a collection consisting of less tags (who are more general) and contain about 10 ~ 30 posts each.  Maybe you even also want to delete or rename some general ones who have way to many associated posts.<br />
+If you want to do this via the del.icio.us web interface you could either go to your personal page, click a tag, and delete the tag manually from each associated post.  Or you could go to the delete or rename tag pages.  On these pages you have a form where you can select an existing tag from a dropdown (which usually is huge) and choose to delete or rename it (depending on which page you are on).  Then you would need to go to the form again and do this again for each tag.</p>
+<p>With this tool, you can get a list of tags with certain conditions.  Eg "show me all tags who have between 1 and 3 associated posts".  You can then loop through that list and for each tag the tool will present you the option to delete, rename or skip it.</p>
+<p>Of course it can do more, but this was my focus: making balancing an account as pleasant as possible.  Other features, such as adding or editing single posts are considered less important as these things can be done just fine on the del.icio.us page.</p>
+<h3>Current state</h3>
+<p>Currently the tool seems to do what it is intended to (and pretty well, at least for me: I cleaned up my account from about 400 to 80 tags during development of this program).<br />
+However I don't give any warranty, the tool is only moderately documented, performs little to no user input checking and isn't very well tested so don't expect any higher quality then that of the average Microsoft product.<br />
+This program shouldn't empty your del.icio.us account or blow up your computer but if it does I cannot be held responsible.</p>
+<h3>Supported features</h3>
+<ul>
+<li>[t] View Tag: Based on the name of tag you enter, you can see the associated posts and edit or rename the tag.</li>
+<li>[ts]  View Tags: Shows you all tags based on certain criteria:
+<ul>
+<li>lowerlimit: the minimum amount of times a tag has to be associated to a post</li>
+<li>upperlimit: the maximum amount of times a tag has to be associated to a post</li>
+<li>hard limit: the maximum number of tags you wish to edit/view at once</li>
+</ul>
+<p>You can decide to view associated posts for each tag, and you can choose wether to only show the tags, or to present you a menu with options for each one.  I usually use the latter, along with associated posts viewing enabled.</li>
+<li>[p] View Post: shows you the first hit based on a tag and url*</li>
+<li>[ps] View Posts: shows you all posts based on a tag and url*</li>
+<li>[lu] Date of last update: Shows you the time when the data (on the serverside) last changed</li>
+</ul>
+<p>*: url based searching is still buggy, I'm working on it.</p>
+<h3>Plans for the future</h3>
+<p>My goals for upcoming releases are (aside from bug fixing) to add features to let you do stuff that you currently can't do or at least not in a productive manner.  </p>
+<h4>Known bugs to be fixed</h4>
+<ul>
+<li>URL-based post querying doesn't work</li>
+<li>Timezone not taken into account or something like that, because the "last updated" date has a 2hrs offset for me</li>
+<li>During list iteration tags that have been renamed/deleted already still appear in posts for other tags</li>
+<li>Issue less load on the Del.icio.us webservice by using the updated date (gonna take a look at Ed's caching system for that)</li>
+</ul>
+<h4>Features I have on my mind</h4>
+<ul>
+<li>Try to hide password as it is typed in by user</li>
+<li>When a tag has many associated posts, automatically show them more concisely</li>
+<li>An "are you sure?" thing when you want to rename to a tag that already has many (say: 40) associated posts</li>
+<li>A mode to only show tags that differ one letter, or differ several letters, as long as they have enough in common (say: 2/3, 1/2 or user configurable)</li>
+<li>An improved commandline that allows commands/queries like "rm tag1 tag2 tag3"
+</ul>
+<h3>Prerequisites</h3>
+<ul>
+<li>A shell (such as bash)</li>
+<li>PHP 4 or higher, with php-cli enabled (default)</li>
+<li>A del.icio.us account, preferrably a very messy one</li>
+</ul>
+<h3>Download</h3>
+<p><a href="http://users.edpnet.be/dieter/php_delicious_client_v05.zip" onClick="javascript:urchinTracker ('/files/php_delicious_client_v05.zip');">release v0.5 (1-7-2007)</a></p>
+<h3>Installation</h3>
+<p>Unpack the archive and put the directory somewhere on your system.  On Linux /usr/local/bin/ is usually a good choice.<br />
+Make sure pdclient.php has the executable flag (x).  If the directory is in your $PATH, you can just type pdclient.php on your console, otherwise you need to type &lt;path to program&gt;/phpdeliciousclient/pdclient.php or edit your $PATH.</p>
+<p>You could also create a symlink in a good directory: <em>ln -s &lt;path to program&gt;/phpdeliciousclient/pdclient.php /usr/local/bin/pdclient</em></p>
+<h3>Usage</h3>
+<p>I choose a mysql-like syntax for invoking the program.  Valid options are:</p>
+<ol>
+<li><em>pdclient.php</em></li>
+<li><em>pdclient.php --help</em></li>
+<li><em>pdclient.php --user &lt;delicious username&gt;</em></li>
+<li><em>pdclient.php --user &lt;delicious username&gt; --password</em></li>
+<li><em>pdclient.php --user &lt;delicious username&gt; --password &lt;delicious password&gt;</em></li>
+</ol>
+<p>With method #4, the program will ask your password upon execution.  With the other methods this doesn't happen.  You can always update your account information from the menu. (<em>account setup</em>)</p>
+<p>In the program prompt you can always type 'h' to get help.  Aside from that, just try the options, you'll figure it out in no time.</p>
+<h3>Bug reports &amp; feature requests</h3>
+<p>You can report bugs or file feature requests through the comment system on this page. Choose an appropriate title and prefix it with "Bug: " or "Feature: "</p>
+
+	</div>
+
+	<footer class="entry-meta">
+		<span class="tag-links">
+			
+                <a href="http://dieter.plaetinck.be/tags/web2.0" rel="tag">web2.0</a>
+            
+                <a href="http://dieter.plaetinck.be/tags/php" rel="tag">php</a>
+            
+                <a href="http://dieter.plaetinck.be/tags/foss" rel="tag">foss</a>
+            
+                <a href="http://dieter.plaetinck.be/tags/bash" rel="tag">bash</a>
+            
+		</span>
+		
+		<style>
+.honey {
+display: none;
+}
+</style>
+
+<form id="comments-form" class="comments__new" action="http://plaetinck.be:5888/comments">
+    <input type="hidden" name="post" value="php_delicious_client">
+    <input type="text" name="company" class="honey">
+    <br/><input type="text" name="name" placeholder="Name" required/>
+    <br/><input type="email" name="email" placeholder="Email address (will not be public)" required/>
+    <br/><input type="url" name="url" placeholder="Website (optional)"/>
+    <textarea rows="10" name="message" placeholder="Comment" required></textarea>
+    <input type="submit" value="Send" />
+</form>
+
+<script type="text/template" id="template--new-comment">
+	<article id="comment" class="comment">
+		<img class="commentAvatar" src="https://www.gravatar.com/avatar/@hash?d=mm&s=80">
+		<div class="commentRight">
+			<p class="commentAuthor"><a href="@url" class="commentAuthor">@name</a></p>
+			<time class="entry-date" datetime="2007-06-29T13:52:21-04:00">@date</time>
+			<div class="commentMessage">@message</div>
+		</div>
+	</article>
+</script>
+
+<script language="javascript">
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+var addComment = function (data) {
+     var template = document.getElementById('template--new-comment').innerHTML;
+     var d = new Date(data.Ts);
+     var date = d.getDate() + " " + monthNames[d.getMonth()] + ", " + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+     template = template.replace('@hash', data.Hash)
+                        .replace('@date', date)
+                        .replace('@name', data.Author)
+                        .replace('@message', data.Message)
+                        .replace('@url', data.Link)
+     $(template).insertBefore('.comments__new');
+};
+
+var addComments = function(data) {
+	$.each(data, function(i, c) {
+		addComment(c);
+	});
+};
+
+$( document ).ready(function() {
+     $.ajax({
+         method: "GET",
+         url: "http:\/\/plaetinck.be:5888\/comments/php_delicious_client",
+         success: addComments,
+				 error: function(jqXHR, status, err) {
+					 e = "<div><b>Could not load comments</b></br>" + status + " " + err +
+						 "<br/>Disabling commenting feature.<br/>Pretty sure Dieter monitors his site using <a href='https://grafana.net/plugins/raintank-worldping-app'>WorldPing</a> but maybe this is a transient error.</div>";
+					$(e).insertBefore('.comments__new');
+					 $("#comments-form").hide();
+				 }
+     });
+			$('#comments-form').submit(function (event) {
+					var url = $(this).attr('action');
+					var data = $(this).serialize();
+					var formName = $(this).find('[name="name"]').val().trim();
+					var formUrl = $(this).find('[name="url"]').val().trim();
+					var formEmail = $(this).find('[name="email"]').val().trim();
+
+					$.ajax({
+							method: "POST",
+							url: url,
+							data: data,
+							success: addComment,
+							error: function(jqXHR, status, err) {
+								alert("sorry: "+ status + " " + err +", would you be so kind to let me know about this error?")
+							}
+					});
+					return false;
+			});
+});
+
+</script>
+
+		
+	</footer>
+</article> 
+
+
+			
+		
+		</div>
+
+	</div>
+	<div id="secondary">
+
+	
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+
+        
+
+        
+
+		<aside id="categories-3" class="widget widget_categories">
+
+
+    
+     
+
+
+    <br/>
+	<h1 class="widget-title">Popular tags</h1>
+
+    <a href="http://dieter.plaetinck.be/tags/monitoring">monitoring</a>
+    27
+    <br/>
+    <a href="http://dieter.plaetinck.be/tags/devops">devops</a>
+    24
+    <br/>
+    <a href="http://dieter.plaetinck.be/tags/golang">golang</a>
+    11
+    <br/>
+    <br/>
+    <br/>
+
+	<h1 class="widget-title">Other tags</h1>
+
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/arch">arch</a>
+            19
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/bash">bash</a>
+            15
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/cakephp">cakephp</a>
+            8
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/conf">conf</a>
+            9
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/dauth">dauth</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/drums">drums</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/drupal">drupal</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/foss">foss</a>
+            45
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/git">git</a>
+            4
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/information-age">information-age</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/life">life</a>
+            33
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/linux">linux</a>
+            20
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/lua">lua</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/mail">mail</a>
+            1
+            <br/>
+        
+    
+        
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/music">music</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/mysql">mysql</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/n900">n900</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/netlog">netlog</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/openstack">openstack</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/perf">perf</a>
+            10
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/photos">photos</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/php">php</a>
+            11
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/productivity">productivity</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/programming">programming</a>
+            1
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/python">python</a>
+            5
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/real-life">real-life</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/thesis">thesis</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/travel">travel</a>
+            2
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/uzbl">uzbl</a>
+            6
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/vimeo">vimeo</a>
+            3
+            <br/>
+        
+    
+        
+            <a href="http://dieter.plaetinck.be/tags/web2.0">web2.0</a>
+            9
+            <br/>
+        
+    
+</aside>
+
+
+	</div>
+
+</div>
+
+</div>
+
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			<div class="site-info">
+				<a href="http://gohugo.io">Proudly powered by Hugo</a>
+			</div>
+		</footer>
+	</div>
+
+	<script type='text/javascript' src='http://dieter.plaetinck.be/js/functions.js'></script>
+</body>
+</html>

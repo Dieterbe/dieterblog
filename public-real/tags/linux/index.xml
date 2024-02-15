@@ -26,8 +26,8 @@ This won&#39;t work anymore as after each reboot /var/run is an empty directory 
 &lt;/pre&gt;
 That&#39;s where this new tool &lt;a href=&#34;https://www.google.be/#hl=nl&amp;q=tmpfiles.d&#34;&gt;tmpfiles.d&lt;/a&gt; comes in.
 It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ cat /etc/tmpfiles.d/lighttpd.conf 
-d /run/lighttpd/sockets &lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span&gt; http http
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;$&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cat&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/etc/tmpfiles.d/lighttpd.conf&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;
+d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/run/lighttpd/sockets&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;0700&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;http&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;http
 &lt;/pre&gt;&lt;/div&gt;
 
 </description>
@@ -76,13 +76,13 @@ Under the hood we refactored quite a bit, mostly blockdevice related stuff, conf
       <description>&lt;p&gt;I use &lt;a href=&#34;http://wiki.archlinux.org/index.php/Pm-utils&#34;&gt;pm-utils&lt;/a&gt; for hibernation support.&lt;br /&gt;
 It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.&lt;br /&gt;
 If you want to run stuff as a regular user you could do something like&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;su &lt;span style=&#34;color: #19177C&#34;&gt;$user&lt;/span&gt; -c &amp;lt;command&amp;gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;su&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$user&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;lt;command&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;..but these commands have no access to your user environment.&lt;br /&gt;
 In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&#39;t want to reenter your ssh key passwords everytime you resume.&lt;br /&gt;
 (In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)&lt;/p&gt;
 &lt;p&gt;The solution is very simple. Use this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo pm-hibernate &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;-my-stuff.sh
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;pm-hibernate&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;-my-stuff.sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.&lt;br /&gt;
 Ideal to kill old ssh processes, and setup tunnels and ssh connections again.&lt;br /&gt;

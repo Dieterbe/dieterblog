@@ -137,29 +137,29 @@ Quote from an <a href="http://www.debian-administration.org/articles/543#comment
 <br/>
 <cite>
 So I use the following bash function:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#</span>
-<span style="color: #408080; font-style: italic"># Usage: mycd &lt;path&gt;</span>
-<span style="color: #408080; font-style: italic">#</span>
-<span style="color: #408080; font-style: italic">#  Replacement for builtin &#39;cd&#39;, which keeps a separate bash-history</span>
-<span style="color: #408080; font-style: italic">#   for every directory.</span>
-<span style="color: #008000; font-weight: bold">function</span> mycd<span style="color: #666666">()</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #3D7B7B; font-style: italic">#</span>
+<span style="color: #3D7B7B; font-style: italic"># Usage: mycd &lt;path&gt;</span>
+<span style="color: #3D7B7B; font-style: italic">#</span>
+<span style="color: #3D7B7B; font-style: italic">#  Replacement for builtin &#39;cd&#39;, which keeps a separate bash-history</span>
+<span style="color: #3D7B7B; font-style: italic">#   for every directory.</span>
+<span style="color: #008000; font-weight: bold">function</span><span style="color: #bbbbbb"> </span>mycd<span style="color: #666666">()</span>
 <span style="color: #666666">{</span>
-   <span style="color: #008000">history</span> -w <span style="color: #408080; font-style: italic"># write current history file</span>
-   <span style="color: #008000">builtin</span> <span style="color: #008000">cd</span> <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$@</span><span style="color: #BA2121">&quot;</span> <span style="color: #408080; font-style: italic"># do actual cd</span>
-   <span style="color: #008000">local</span> <span style="color: #19177C">HISTDIR</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HOME</span><span style="color: #BA2121">/.dir_bash_history</span><span style="color: #19177C">$PWD</span><span style="color: #BA2121">&quot;</span> <span style="color: #408080; font-style: italic"># use nested folders for history</span>
-   <span style="color: #008000; font-weight: bold">if</span>  <span style="color: #666666">[</span> ! -d <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HISTDIR</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">]</span>; <span style="color: #008000; font-weight: bold">then</span> <span style="color: #408080; font-style: italic"># create folder if needed</span>
-      mkdir -p <span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HISTDIR</span><span style="color: #BA2121">&quot;</span>
-   <span style="color: #008000; font-weight: bold">fi</span>
-   <span style="color: #008000">export</span> <span style="color: #19177C">HISTFILE</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HISTDIR</span><span style="color: #BA2121">/bash_history.txt&quot;</span> <span style="color: #408080; font-style: italic"># set new history file</span>
-   <span style="color: #008000">history</span> -c  <span style="color: #408080; font-style: italic"># clear memory</span>
-   <span style="color: #008000">history</span> -r <span style="color: #408080; font-style: italic"># read from current histfile</span>
+<span style="color: #bbbbbb">   </span><span style="color: #008000">history</span><span style="color: #bbbbbb"> </span>-w<span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic"># write current history file</span>
+<span style="color: #bbbbbb">   </span><span style="color: #008000">builtin</span><span style="color: #bbbbbb"> </span><span style="color: #008000">cd</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$@</span><span style="color: #BA2121">&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic"># do actual cd</span>
+<span style="color: #bbbbbb">   </span><span style="color: #008000">local</span><span style="color: #bbbbbb"> </span><span style="color: #19177C">HISTDIR</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HOME</span><span style="color: #BA2121">/.dir_bash_history</span><span style="color: #19177C">$PWD</span><span style="color: #BA2121">&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic"># use nested folders for history</span>
+<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">if</span><span style="color: #bbbbbb">  </span><span style="color: #666666">[</span><span style="color: #bbbbbb"> </span>!<span style="color: #bbbbbb"> </span>-d<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HISTDIR</span><span style="color: #BA2121">&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #666666">]</span>;<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">then</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic"># create folder if needed</span>
+<span style="color: #bbbbbb">      </span>mkdir<span style="color: #bbbbbb"> </span>-p<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HISTDIR</span><span style="color: #BA2121">&quot;</span>
+<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">fi</span>
+<span style="color: #bbbbbb">   </span><span style="color: #008000">export</span><span style="color: #bbbbbb"> </span><span style="color: #19177C">HISTFILE</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HISTDIR</span><span style="color: #BA2121">/bash_history.txt&quot;</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic"># set new history file</span>
+<span style="color: #bbbbbb">   </span><span style="color: #008000">history</span><span style="color: #bbbbbb"> </span>-c<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># clear memory</span>
+<span style="color: #bbbbbb">   </span><span style="color: #008000">history</span><span style="color: #bbbbbb"> </span>-r<span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic"># read from current histfile</span>
 <span style="color: #666666">}</span>
 </pre></div>
 
 <p>and then set it up with the following in my bashrc:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000">shopt</span> -s histappend
-<span style="color: #008000">alias</span> <span style="color: #19177C">cd</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;mycd&quot;</span>
-<span style="color: #008000">export</span> <span style="color: #19177C">HISTFILE</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HOME</span><span style="color: #BA2121">/.dir_bash_history</span><span style="color: #19177C">$PWD</span><span style="color: #BA2121">/bash_history.txt&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000">shopt</span><span style="color: #bbbbbb"> </span>-s<span style="color: #bbbbbb"> </span>histappend
+<span style="color: #008000">alias</span><span style="color: #bbbbbb"> </span><span style="color: #19177C">cd</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;mycd&quot;</span>
+<span style="color: #008000">export</span><span style="color: #bbbbbb"> </span><span style="color: #19177C">HISTFILE</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;</span><span style="color: #19177C">$HOME</span><span style="color: #BA2121">/.dir_bash_history</span><span style="color: #19177C">$PWD</span><span style="color: #BA2121">/bash_history.txt&quot;</span>
 </pre></div>
 </cite>
 <p>Great stuff.  It would be nice to be able to use both the global and the directory-specific history by combining with an extra modifier key .<br />

@@ -135,17 +135,17 @@
 <p>There is a trick that let's you dynamically create variable names.  Using this, you can emulate additional dimensions.<br />
 <!--more--></p>
 <p>Here's a simple example for an array with 2 dimensions:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#set the value of my_array[i][j] where i = 25 and j = 10 to &quot;value&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #3D7B7B; font-style: italic">#set the value of my_array[i][j] where i = 25 and j = 10 to &quot;value&quot;</span>
 
 <span style="color: #19177C">var</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;my_array25-10&quot;</span>
-<span style="color: #408080; font-style: italic">#or like this: I=25;J=10;var=&quot;my_array$I-$J&quot;</span>
+<span style="color: #3D7B7B; font-style: italic">#or like this: I=25;J=10;var=&quot;my_array$I-$J&quot;</span>
 
-<span style="color: #008000">declare</span> <span style="color: #19177C">$var</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;value&quot;</span>
+<span style="color: #008000">declare</span><span style="color: #bbbbbb"> </span><span style="color: #19177C">$var</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;value&quot;</span>
 </pre></div>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#retrieve the value of my_array[i][j] where i = 5 and j = 10</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #3D7B7B; font-style: italic">#retrieve the value of my_array[i][j] where i = 5 and j = 10</span>
 <span style="color: #19177C">var</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;my_array5-10&quot;</span>
-<span style="color: #408080; font-style: italic">#or like this: I=5;J=10;var=&quot;my_array$I-$J&quot;</span>
-<span style="color: #008000">echo</span> <span style="color: #BB6688; font-weight: bold">${</span>!var<span style="color: #BB6688; font-weight: bold">}</span>
+<span style="color: #3D7B7B; font-style: italic">#or like this: I=5;J=10;var=&quot;my_array$I-$J&quot;</span>
+<span style="color: #008000">echo</span><span style="color: #bbbbbb"> </span><span style="color: #A45A77; font-weight: bold">${</span>!var<span style="color: #A45A77; font-weight: bold">}</span>
 </pre></div>
 <p>
 Thanks to the guys from #bash on freenode for their help and their excellent <a href="http://wooledge.org/mywiki/BashFAQ">bash faq</a></p>

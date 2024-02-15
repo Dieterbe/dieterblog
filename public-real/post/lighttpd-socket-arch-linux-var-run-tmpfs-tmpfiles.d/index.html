@@ -142,8 +142,8 @@ This won't work anymore as after each reboot /var/run is an empty directory and 
 </pre>
 That's where this new tool <a href="https://www.google.be/#hl=nl&q=tmpfiles.d">tmpfiles.d</a> comes in.
 It creates files and directories as described in the configs, and gets invoked on boot.  Like so:
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>$ cat /etc/tmpfiles.d/lighttpd.conf 
-d /run/lighttpd/sockets <span style="color: #666666">0700</span> http http
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span>$<span style="color: #bbbbbb"> </span>cat<span style="color: #bbbbbb"> </span>/etc/tmpfiles.d/lighttpd.conf<span style="color: #bbbbbb"> </span>
+d<span style="color: #bbbbbb"> </span>/run/lighttpd/sockets<span style="color: #bbbbbb"> </span><span style="color: #666666">0700</span><span style="color: #bbbbbb"> </span>http<span style="color: #bbbbbb"> </span>http
 </pre></div>
 
 

@@ -394,10 +394,10 @@ cli by default, can optionally use ncurses dialogs as well.&lt;br /&gt;
 To reconfigure it (i.e. to change UI type, debug settings, logfile location),&lt;br /&gt;
 just run the command libui_sh_init&lt;/p&gt;
 &lt;p&gt;example usage:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;source&lt;/span&gt; /usr/lib/libui.sh
-ask_yesno &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;do you want to continue?&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt;
-libui_sh_init cli /tmp /tmp/yourlogfile
-log &lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;we just got hassle-free logging&amp;#39;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;source&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/usr/lib/libui.sh
+ask_yesno&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;do you want to continue?&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt;
+libui_sh_init&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cli&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/tmp&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/tmp/yourlogfile
+log&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;we just got hassle-free logging&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;
 The library is not strictly a UI library, it also contains a few useful functions like&lt;br /&gt;
@@ -637,13 +637,13 @@ Most of the apps are designed after suckless/KISS principles, but there are also
       <description>&lt;p&gt;I use &lt;a href=&#34;http://wiki.archlinux.org/index.php/Pm-utils&#34;&gt;pm-utils&lt;/a&gt; for hibernation support.&lt;br /&gt;
 It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.&lt;br /&gt;
 If you want to run stuff as a regular user you could do something like&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;su &lt;span style=&#34;color: #19177C&#34;&gt;$user&lt;/span&gt; -c &amp;lt;command&amp;gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;su&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$user&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;lt;command&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;..but these commands have no access to your user environment.&lt;br /&gt;
 In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.  Obviously you don&#39;t want to reenter your ssh key passwords everytime you resume.&lt;br /&gt;
 (In fact, I started using hibernate/resume because I got tired of having to enter 4 passwords on boot. - 1 for dm_crypt, 1 for login, 2 for ssh keys, not because it is much faster)&lt;/p&gt;
 &lt;p&gt;The solution is very simple. Use this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo pm-hibernate &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;-my-stuff.sh
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;sudo&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;pm-hibernate&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;-my-stuff.sh
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This way, do-my-stuff.sh will be executed when you resume, after the complete environment has been restored.&lt;br /&gt;
 Ideal to kill old ssh processes, and setup tunnels and ssh connections again.&lt;br /&gt;

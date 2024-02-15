@@ -138,158 +138,158 @@
 <p>Now, for <a href="http://www.netlog.com">Netlog</a> we needed to add some http headers ( Cache-Control: max-age, ETag, Expires and Last-Modified ) so we patched up the code a bit to do that, and a bit of other stuff.</p>
 <p>Ofcourse this is documented on <a href="http://trac.lighttpd.net/trac/wiki/FcgiStatAccelWithMoreHttpHeaders">the FcgiStatAccelWithMoreHttpHeaders page on the Lighty wiki</a></p>
 <p>Have fun !</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/*</span>
-<span style="color: #408080; font-style: italic">  Originally written by Fobax.</span>
-<span style="color: #408080; font-style: italic">  Edited by darix to support controlling thread count at runtime. </span>
-<span style="color: #408080; font-style: italic">  Edited by poison and Dieter_be to support some http headers derived from the files.</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #3D7B7B; font-style: italic">/*</span>
+<span style="color: #3D7B7B; font-style: italic">  Originally written by Fobax.</span>
+<span style="color: #3D7B7B; font-style: italic">  Edited by darix to support controlling thread count at runtime. </span>
+<span style="color: #3D7B7B; font-style: italic">  Edited by poison and Dieter_be to support some http headers derived from the files.</span>
 
-<span style="color: #408080; font-style: italic">  Please do not remove any of the above.</span>
-<span style="color: #408080; font-style: italic">  </span>
-<span style="color: #408080; font-style: italic">  compile with: </span>
+<span style="color: #3D7B7B; font-style: italic">  Please do not remove any of the above.</span>
+<span style="color: #3D7B7B; font-style: italic">  </span>
+<span style="color: #3D7B7B; font-style: italic">  compile with: </span>
 
-<span style="color: #408080; font-style: italic">  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel</span>
+<span style="color: #3D7B7B; font-style: italic">  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel</span>
 
-<span style="color: #408080; font-style: italic">  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.</span>
+<span style="color: #3D7B7B; font-style: italic">  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.</span>
 
-<span style="color: #408080; font-style: italic">  The default value, if spawned from lighttpd, is 20.</span>
-<span style="color: #408080; font-style: italic">*/</span>
+<span style="color: #3D7B7B; font-style: italic">  The default value, if spawned from lighttpd, is 20.</span>
+<span style="color: #3D7B7B; font-style: italic">*/</span>
 
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;fcgi_config.h&quot;</span><span style="color: #BC7A00"></span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&quot;fcgi_config.h&quot;</span>
 
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;pthread.h&gt;</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;sys/types.h&gt;</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;unistd.h&gt;   </span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;fcgiapp.h&quot;  </span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;string.h&gt;   </span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;sys/types.h&gt;</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;sys/stat.h&gt; </span><span style="color: #BC7A00"></span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&lt;pthread.h&gt;</span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&lt;sys/types.h&gt;</span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&lt;unistd.h&gt;   </span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&quot;fcgiapp.h&quot;  </span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&lt;string.h&gt;   </span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&lt;sys/types.h&gt;</span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&lt;sys/stat.h&gt; </span>
 
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;stdlib.h&gt;</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;stdio.h&gt; </span><span style="color: #BC7A00"></span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&lt;stdlib.h&gt;</span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&lt;stdio.h&gt; </span>
 
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;etag.h&quot;</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;buffer.h&quot;</span><span style="color: #BC7A00"></span>
-
-
-<span style="color: #BC7A00">#define THREAD_COUNT 20</span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&quot;etag.h&quot;</span>
+<span style="color: #9C6500">#include</span><span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">&quot;buffer.h&quot;</span>
 
 
-<span style="color: #BC7A00">#define FORBIDDEN(stream) \</span>
-<span style="color: #BC7A00">        FCGX_FPrintF(stream, &quot;Status: 403 Forbidden\r\nContent-Type: text/html\r\n\r\n&lt;h1&gt;403 Forbidden&lt;/h1&gt;\n&quot;);</span>
-<span style="color: #BC7A00">#define NOTFOUND(stream, filename) \</span>
-<span style="color: #BC7A00">        FCGX_FPrintF(stream, &quot;Status: 404 Not Found\r\nContent-Type: text/html\r\n\r\n&lt;h1&gt;404 Not Found&lt;/h1&gt;\r\n%s&quot;, filename);</span>
-<span style="color: #BC7A00">#define SENDFILE(stream, filename, headers) \</span>
-<span style="color: #BC7A00">        FCGX_FPrintF(stream, &quot;%sX-LIGHTTPD-send-file: %s\r\n\r\n&quot;, headers, filename);</span>
-
-<span style="color: #BC7A00">#define EXPIRATION_TIME (int) 60*60*24*30</span>
+<span style="color: #9C6500">#define THREAD_COUNT 20</span>
 
 
-<span style="color: #B00040">int</span> <span style="color: #0000FF">genheaders</span> (<span style="color: #B00040">char</span><span style="color: #666666">*</span> mybuffer, <span style="color: #B00040">size_t</span> bufferlen, <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">char</span><span style="color: #666666">*</span> file)
+<span style="color: #9C6500">#define FORBIDDEN(stream) \</span>
+<span style="color: #9C6500">        FCGX_FPrintF(stream, &quot;Status: 403 Forbidden\r\nContent-Type: text/html\r\n\r\n&lt;h1&gt;403 Forbidden&lt;/h1&gt;\n&quot;);</span>
+<span style="color: #9C6500">#define NOTFOUND(stream, filename) \</span>
+<span style="color: #9C6500">        FCGX_FPrintF(stream, &quot;Status: 404 Not Found\r\nContent-Type: text/html\r\n\r\n&lt;h1&gt;404 Not Found&lt;/h1&gt;\r\n%s&quot;, filename);</span>
+<span style="color: #9C6500">#define SENDFILE(stream, filename, headers) \</span>
+<span style="color: #9C6500">        FCGX_FPrintF(stream, &quot;%sX-LIGHTTPD-send-file: %s\r\n\r\n&quot;, headers, filename);</span>
+
+<span style="color: #9C6500">#define EXPIRATION_TIME (int) 60*60*24*30</span>
+
+
+<span style="color: #B00040">int</span><span style="color: #bbbbbb"> </span><span style="color: #0000FF">genheaders</span><span style="color: #bbbbbb"> </span>(<span style="color: #B00040">char</span><span style="color: #666666">*</span><span style="color: #bbbbbb"> </span>mybuffer,<span style="color: #bbbbbb"> </span><span style="color: #B00040">size_t</span><span style="color: #bbbbbb"> </span>bufferlen,<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">const</span><span style="color: #bbbbbb"> </span><span style="color: #B00040">char</span><span style="color: #666666">*</span><span style="color: #bbbbbb"> </span>file)
 {
-        <span style="color: #B00040">char</span> timebuf[<span style="color: #666666">32</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe   </span>
-        <span style="color: #B00040">char</span> lastmodbuf[<span style="color: #666666">32</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe</span>
-        <span style="color: #B00040">char</span> etag[<span style="color: #666666">128</span>]; <span style="color: #408080; font-style: italic">//possibly unsafe</span>
-        <span style="color: #008000; font-weight: bold">struct</span> stat statbuf;
-        <span style="color: #B00040">time_t</span> exp;
-        <span style="color: #B00040">time_t</span> lastmod;  
-        buffer <span style="color: #666666">*</span>etag_raw;
-        buffer <span style="color: #666666">*</span>etag_ok ;
- 
-        <span style="color: #408080; font-style: italic">//create buffers for Etag</span>
-        etag_raw <span style="color: #666666">=</span> buffer_init();
-        etag_ok <span style="color: #666666">=</span> buffer_init();
-                
-        <span style="color: #408080; font-style: italic">// Stat the file</span>
-        <span style="color: #008000; font-weight: bold">if</span> (stat (file, <span style="color: #666666">&amp;</span>statbuf) <span style="color: #666666">!=</span> <span style="color: #666666">0</span>)
-        {
-                <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-1</span>;
-        }
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">char</span><span style="color: #bbbbbb"> </span>timebuf[<span style="color: #666666">32</span>];<span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">//possibly unsafe   </span>
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">char</span><span style="color: #bbbbbb"> </span>lastmodbuf[<span style="color: #666666">32</span>];<span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">//possibly unsafe</span>
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">char</span><span style="color: #bbbbbb"> </span>etag[<span style="color: #666666">128</span>];<span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">//possibly unsafe</span>
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">struct</span><span style="color: #bbbbbb"> </span><span style="color: #0000FF; font-weight: bold">stat</span><span style="color: #bbbbbb"> </span>statbuf;
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">time_t</span><span style="color: #bbbbbb"> </span>exp;
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">time_t</span><span style="color: #bbbbbb"> </span>lastmod;<span style="color: #bbbbbb">  </span>
+<span style="color: #bbbbbb">        </span>buffer<span style="color: #bbbbbb"> </span><span style="color: #666666">*</span>etag_raw;
+<span style="color: #bbbbbb">        </span>buffer<span style="color: #bbbbbb"> </span><span style="color: #666666">*</span>etag_ok<span style="color: #bbbbbb"> </span>;
+<span style="color: #bbbbbb"> </span>
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">//create buffers for Etag</span>
+<span style="color: #bbbbbb">        </span>etag_raw<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>buffer_init();
+<span style="color: #bbbbbb">        </span>etag_ok<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>buffer_init();
+<span style="color: #bbbbbb">                </span>
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">// Stat the file</span>
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(stat<span style="color: #bbbbbb"> </span>(file,<span style="color: #bbbbbb"> </span><span style="color: #666666">&amp;</span>statbuf)<span style="color: #bbbbbb"> </span><span style="color: #666666">!=</span><span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>)
+<span style="color: #bbbbbb">        </span>{
+<span style="color: #bbbbbb">                </span><span style="color: #008000; font-weight: bold">return</span><span style="color: #bbbbbb"> </span><span style="color: #666666">-1</span>;
+<span style="color: #bbbbbb">        </span>}
 
-        <span style="color: #408080; font-style: italic">// Clear the buffer</span>
-        memset (mybuffer, <span style="color: #666666">0</span>, bufferlen);
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">// Clear the buffer</span>
+<span style="color: #bbbbbb">        </span>memset<span style="color: #bbbbbb"> </span>(mybuffer,<span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>,<span style="color: #bbbbbb"> </span>bufferlen);
 
-        <span style="color: #408080; font-style: italic">// Get the local time</span>
-        exp <span style="color: #666666">=</span> time (<span style="color: #008000">NULL</span>) <span style="color: #666666">+</span> EXPIRATION_TIME;
-        lastmod <span style="color: #666666">=</span> statbuf.st_mtime;
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">// Get the local time</span>
+<span style="color: #bbbbbb">        </span>exp<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>time<span style="color: #bbbbbb"> </span>(<span style="color: #008000">NULL</span>)<span style="color: #bbbbbb"> </span><span style="color: #666666">+</span><span style="color: #bbbbbb"> </span>EXPIRATION_TIME;
+<span style="color: #bbbbbb">        </span>lastmod<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>statbuf.st_mtime;
 
-        strftime (timebuf, (<span style="color: #008000; font-weight: bold">sizeof</span> (timebuf) <span style="color: #666666">/</span> <span style="color: #008000; font-weight: bold">sizeof</span> (<span style="color: #B00040">char</span>)) <span style="color: #666666">-</span> <span style="color: #666666">1</span>, <span style="color: #BA2121">&quot;%a, %d %b %Y %H:%M:%S GMT&quot;</span>, gmtime (<span style="color: #666666">&amp;</span>(exp)));
-        strftime (lastmodbuf, (<span style="color: #008000; font-weight: bold">sizeof</span> (lastmodbuf) <span style="color: #666666">/</span> <span style="color: #008000; font-weight: bold">sizeof</span> (<span style="color: #B00040">char</span>)) <span style="color: #666666">-</span> <span style="color: #666666">1</span>, <span style="color: #BA2121">&quot;%a, %d %b %Y %H:%M:%S GMT&quot;</span>, gmtime (<span style="color: #666666">&amp;</span>(lastmod)));
+<span style="color: #bbbbbb">        </span>strftime<span style="color: #bbbbbb"> </span>(timebuf,<span style="color: #bbbbbb"> </span>(<span style="color: #008000; font-weight: bold">sizeof</span><span style="color: #bbbbbb"> </span>(timebuf)<span style="color: #bbbbbb"> </span><span style="color: #666666">/</span><span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">sizeof</span><span style="color: #bbbbbb"> </span>(<span style="color: #B00040">char</span>))<span style="color: #bbbbbb"> </span><span style="color: #666666">-</span><span style="color: #bbbbbb"> </span><span style="color: #666666">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;%a, %d %b %Y %H:%M:%S GMT&quot;</span>,<span style="color: #bbbbbb"> </span>gmtime<span style="color: #bbbbbb"> </span>(<span style="color: #666666">&amp;</span>(exp)));
+<span style="color: #bbbbbb">        </span>strftime<span style="color: #bbbbbb"> </span>(lastmodbuf,<span style="color: #bbbbbb"> </span>(<span style="color: #008000; font-weight: bold">sizeof</span><span style="color: #bbbbbb"> </span>(lastmodbuf)<span style="color: #bbbbbb"> </span><span style="color: #666666">/</span><span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">sizeof</span><span style="color: #bbbbbb"> </span>(<span style="color: #B00040">char</span>))<span style="color: #bbbbbb"> </span><span style="color: #666666">-</span><span style="color: #bbbbbb"> </span><span style="color: #666666">1</span>,<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;%a, %d %b %Y %H:%M:%S GMT&quot;</span>,<span style="color: #bbbbbb"> </span>gmtime<span style="color: #bbbbbb"> </span>(<span style="color: #666666">&amp;</span>(lastmod)));
 
-        etag_create(etag_raw, <span style="color: #666666">&amp;</span>statbuf, ETAG_USE_SIZE);
-        etag_mutate(etag_ok, etag_raw);
+<span style="color: #bbbbbb">        </span>etag_create(etag_raw,<span style="color: #bbbbbb"> </span><span style="color: #666666">&amp;</span>statbuf,<span style="color: #bbbbbb"> </span>ETAG_USE_SIZE);
+<span style="color: #bbbbbb">        </span>etag_mutate(etag_ok,<span style="color: #bbbbbb"> </span>etag_raw);
 
-        buffer_free(etag_raw);
+<span style="color: #bbbbbb">        </span>buffer_free(etag_raw);
 
-        snprintf (mybuffer, bufferlen, <span style="color: #BA2121">&quot;Cache-Control: max-age=%d</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">ETag: \%s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Expires: %s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">Last-Modified: %s</span><span style="color: #BB6622; font-weight: bold">\r\n</span><span style="color: #BA2121">&quot;</span>, EXPIRATION_TIME, etag_ok<span style="color: #666666">-&gt;</span>ptr, timebuf , lastmodbuf);
+<span style="color: #bbbbbb">        </span>snprintf<span style="color: #bbbbbb"> </span>(mybuffer,<span style="color: #bbbbbb"> </span>bufferlen,<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;Cache-Control: max-age=%d</span><span style="color: #AA5D1F; font-weight: bold">\r\n</span><span style="color: #BA2121">ETag: \%s</span><span style="color: #AA5D1F; font-weight: bold">\r\n</span><span style="color: #BA2121">Expires: %s</span><span style="color: #AA5D1F; font-weight: bold">\r\n</span><span style="color: #BA2121">Last-Modified: %s</span><span style="color: #AA5D1F; font-weight: bold">\r\n</span><span style="color: #BA2121">&quot;</span>,<span style="color: #bbbbbb"> </span>EXPIRATION_TIME,<span style="color: #bbbbbb"> </span>etag_ok<span style="color: #666666">-&gt;</span>ptr,<span style="color: #bbbbbb"> </span>timebuf<span style="color: #bbbbbb"> </span>,<span style="color: #bbbbbb"> </span>lastmodbuf);
 
-        buffer_free(etag_ok);
+<span style="color: #bbbbbb">        </span>buffer_free(etag_ok);
 
-        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">return</span><span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>;
 }
- 
-<span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">void</span> <span style="color: #666666">*</span><span style="color: #0000FF">doit</span>(<span style="color: #B00040">void</span> <span style="color: #666666">*</span>a){
-        FCGX_Request request;
-        <span style="color: #B00040">int</span> rc;
-        <span style="color: #B00040">char</span> <span style="color: #666666">*</span>filename;
-        <span style="color: #B00040">char</span> extraheaders[<span style="color: #666666">192</span>];
-        <span style="color: #B00040">int</span> r;
+<span style="color: #bbbbbb"> </span>
+<span style="color: #008000; font-weight: bold">static</span><span style="color: #bbbbbb"> </span><span style="color: #B00040">void</span><span style="color: #bbbbbb"> </span><span style="color: #666666">*</span><span style="color: #0000FF">doit</span>(<span style="color: #B00040">void</span><span style="color: #bbbbbb"> </span><span style="color: #666666">*</span>a){
+<span style="color: #bbbbbb">        </span>FCGX_Request<span style="color: #bbbbbb"> </span>request;
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">int</span><span style="color: #bbbbbb"> </span>rc;
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">char</span><span style="color: #bbbbbb"> </span><span style="color: #666666">*</span>filename;
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">char</span><span style="color: #bbbbbb"> </span>extraheaders[<span style="color: #666666">192</span>];
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">int</span><span style="color: #bbbbbb"> </span>r;
 
-        FCGX_InitRequest(<span style="color: #666666">&amp;</span>request, <span style="color: #666666">0</span>, FCGI_FAIL_ACCEPT_ON_INTR);
+<span style="color: #bbbbbb">        </span>FCGX_InitRequest(<span style="color: #666666">&amp;</span>request,<span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>,<span style="color: #bbbbbb"> </span>FCGI_FAIL_ACCEPT_ON_INTR);
 
-        <span style="color: #008000; font-weight: bold">while</span>(<span style="color: #666666">1</span>){
-                <span style="color: #408080; font-style: italic">//Some platforms require accept() serialization, some don&#39;t. The documentation claims it to be thread safe</span>
-<span style="color: #408080; font-style: italic">//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;</span>
-<span style="color: #408080; font-style: italic">//              pthread_mutex_lock(&amp;accept_mutex);</span>
-                rc <span style="color: #666666">=</span> FCGX_Accept_r(<span style="color: #666666">&amp;</span>request);
-<span style="color: #408080; font-style: italic">//              pthread_mutex_unlock(&amp;accept_mutex);</span>
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">while</span>(<span style="color: #666666">1</span>){
+<span style="color: #bbbbbb">                </span><span style="color: #3D7B7B; font-style: italic">//Some platforms require accept() serialization, some don&#39;t. The documentation claims it to be thread safe</span>
+<span style="color: #3D7B7B; font-style: italic">//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;</span>
+<span style="color: #3D7B7B; font-style: italic">//              pthread_mutex_lock(&amp;accept_mutex);</span>
+<span style="color: #bbbbbb">                </span>rc<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>FCGX_Accept_r(<span style="color: #666666">&amp;</span>request);
+<span style="color: #3D7B7B; font-style: italic">//              pthread_mutex_unlock(&amp;accept_mutex);</span>
 
-                <span style="color: #008000; font-weight: bold">if</span>(rc <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>)
-                        <span style="color: #008000; font-weight: bold">break</span>;
+<span style="color: #bbbbbb">                </span><span style="color: #008000; font-weight: bold">if</span>(rc<span style="color: #bbbbbb"> </span><span style="color: #666666">&lt;</span><span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>)
+<span style="color: #bbbbbb">                        </span><span style="color: #008000; font-weight: bold">break</span>;
 
-        <span style="color: #408080; font-style: italic">//get the filename</span>
-                <span style="color: #008000; font-weight: bold">if</span>((filename <span style="color: #666666">=</span> FCGX_GetParam(<span style="color: #BA2121">&quot;SCRIPT_FILENAME&quot;</span>, request.envp)) <span style="color: #666666">==</span> <span style="color: #008000">NULL</span>){
-                        FORBIDDEN(request.out);
-        <span style="color: #408080; font-style: italic">//don&#39;t try to open directories</span>
-                }<span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span>(filename[strlen(filename)<span style="color: #666666">-1</span>] <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;/&#39;</span>){
-                        FORBIDDEN(request.out);
-        <span style="color: #408080; font-style: italic">//open the file</span>
-                }<span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span>((r <span style="color: #666666">=</span> genheaders (extraheaders, <span style="color: #666666">191</span>, filename)) <span style="color: #666666">!=</span> <span style="color: #666666">0</span>){
-                        NOTFOUND(request.out, filename);
-        <span style="color: #408080; font-style: italic">//no error, serve it</span>
-                }<span style="color: #008000; font-weight: bold">else</span>{
-                        SENDFILE(request.out, filename, extraheaders);
-                }
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">//get the filename</span>
+<span style="color: #bbbbbb">                </span><span style="color: #008000; font-weight: bold">if</span>((filename<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>FCGX_GetParam(<span style="color: #BA2121">&quot;SCRIPT_FILENAME&quot;</span>,<span style="color: #bbbbbb"> </span>request.envp))<span style="color: #bbbbbb"> </span><span style="color: #666666">==</span><span style="color: #bbbbbb"> </span><span style="color: #008000">NULL</span>){
+<span style="color: #bbbbbb">                        </span>FORBIDDEN(request.out);
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">//don&#39;t try to open directories</span>
+<span style="color: #bbbbbb">                </span>}<span style="color: #008000; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">if</span>(filename[strlen(filename)<span style="color: #666666">-1</span>]<span style="color: #bbbbbb"> </span><span style="color: #666666">==</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;/&#39;</span>){
+<span style="color: #bbbbbb">                        </span>FORBIDDEN(request.out);
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">//open the file</span>
+<span style="color: #bbbbbb">                </span>}<span style="color: #008000; font-weight: bold">else</span><span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">if</span>((r<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>genheaders<span style="color: #bbbbbb"> </span>(extraheaders,<span style="color: #bbbbbb"> </span><span style="color: #666666">191</span>,<span style="color: #bbbbbb"> </span>filename))<span style="color: #bbbbbb"> </span><span style="color: #666666">!=</span><span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>){
+<span style="color: #bbbbbb">                        </span>NOTFOUND(request.out,<span style="color: #bbbbbb"> </span>filename);
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">//no error, serve it</span>
+<span style="color: #bbbbbb">                </span>}<span style="color: #008000; font-weight: bold">else</span>{
+<span style="color: #bbbbbb">                        </span>SENDFILE(request.out,<span style="color: #bbbbbb"> </span>filename,<span style="color: #bbbbbb"> </span>extraheaders);
+<span style="color: #bbbbbb">                </span>}
 
-                FCGX_Finish_r(<span style="color: #666666">&amp;</span>request);
-        }
-        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000">NULL</span>;
+<span style="color: #bbbbbb">                </span>FCGX_Finish_r(<span style="color: #666666">&amp;</span>request);
+<span style="color: #bbbbbb">        </span>}
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">return</span><span style="color: #bbbbbb"> </span><span style="color: #008000">NULL</span>;
 }
 
-<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">void</span>){
-        <span style="color: #B00040">int</span> i,j,thread_count;
-        pthread_t<span style="color: #666666">*</span> id;
-        <span style="color: #B00040">char</span><span style="color: #666666">*</span> env_val;
+<span style="color: #B00040">int</span><span style="color: #bbbbbb"> </span><span style="color: #0000FF">main</span>(<span style="color: #B00040">void</span>){
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">int</span><span style="color: #bbbbbb"> </span>i,j,thread_count;
+<span style="color: #bbbbbb">        </span>pthread_t<span style="color: #666666">*</span><span style="color: #bbbbbb"> </span>id;
+<span style="color: #bbbbbb">        </span><span style="color: #B00040">char</span><span style="color: #666666">*</span><span style="color: #bbbbbb"> </span>env_val;
 
-        FCGX_Init();
+<span style="color: #bbbbbb">        </span>FCGX_Init();
 
-        thread_count <span style="color: #666666">=</span> THREAD_COUNT;
-        env_val <span style="color: #666666">=</span> getenv(<span style="color: #BA2121">&quot;PHP_FCGI_CHILDREN&quot;</span>);
-        <span style="color: #008000; font-weight: bold">if</span> (env_val <span style="color: #666666">!=</span> <span style="color: #008000">NULL</span>) {
-                j <span style="color: #666666">=</span> atoi(env_val);
-                <span style="color: #008000; font-weight: bold">if</span> (j <span style="color: #666666">!=</span> <span style="color: #666666">0</span>) {
-                        thread_count <span style="color: #666666">=</span> j;
-                };
-        };
+<span style="color: #bbbbbb">        </span>thread_count<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>THREAD_COUNT;
+<span style="color: #bbbbbb">        </span>env_val<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>getenv(<span style="color: #BA2121">&quot;PHP_FCGI_CHILDREN&quot;</span>);
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(env_val<span style="color: #bbbbbb"> </span><span style="color: #666666">!=</span><span style="color: #bbbbbb"> </span><span style="color: #008000">NULL</span>)<span style="color: #bbbbbb"> </span>{
+<span style="color: #bbbbbb">                </span>j<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>atoi(env_val);
+<span style="color: #bbbbbb">                </span><span style="color: #008000; font-weight: bold">if</span><span style="color: #bbbbbb"> </span>(j<span style="color: #bbbbbb"> </span><span style="color: #666666">!=</span><span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>)<span style="color: #bbbbbb"> </span>{
+<span style="color: #bbbbbb">                        </span>thread_count<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>j;
+<span style="color: #bbbbbb">                </span>};
+<span style="color: #bbbbbb">        </span>};
 
-        id <span style="color: #666666">=</span> malloc(<span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #666666">*</span>id) <span style="color: #666666">*</span> thread_count);
+<span style="color: #bbbbbb">        </span>id<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span>malloc(<span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #666666">*</span>id)<span style="color: #bbbbbb"> </span><span style="color: #666666">*</span><span style="color: #bbbbbb"> </span>thread_count);
 
-        <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> thread_count; i<span style="color: #666666">++</span>) {
-                pthread_create(<span style="color: #666666">&amp;</span>id[i], <span style="color: #008000">NULL</span>, doit, <span style="color: #008000">NULL</span>);
-        }
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>(i<span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #666666">&lt;</span><span style="color: #bbbbbb"> </span>thread_count;<span style="color: #bbbbbb"> </span>i<span style="color: #666666">++</span>)<span style="color: #bbbbbb"> </span>{
+<span style="color: #bbbbbb">                </span>pthread_create(<span style="color: #666666">&amp;</span>id[i],<span style="color: #bbbbbb"> </span><span style="color: #008000">NULL</span>,<span style="color: #bbbbbb"> </span>doit,<span style="color: #bbbbbb"> </span><span style="color: #008000">NULL</span>);
+<span style="color: #bbbbbb">        </span>}
 
-        doit(<span style="color: #008000">NULL</span>);
-        free(id);  
-        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;  
+<span style="color: #bbbbbb">        </span>doit(<span style="color: #008000">NULL</span>);
+<span style="color: #bbbbbb">        </span>free(id);<span style="color: #bbbbbb">  </span>
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">return</span><span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>;<span style="color: #bbbbbb">  </span>
 }
 </pre></div>
 

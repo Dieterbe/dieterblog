@@ -145,10 +145,10 @@ cli by default, can optionally use ncurses dialogs as well.<br />
 To reconfigure it (i.e. to change UI type, debug settings, logfile location),<br />
 just run the command libui_sh_init</p>
 <p>example usage:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000">source</span> /usr/lib/libui.sh
-ask_yesno <span style="color: #BA2121">&#39;do you want to continue?&#39;</span> <span style="color: #666666">||</span> <span style="color: #008000; font-weight: bold">return</span>
-libui_sh_init cli /tmp /tmp/yourlogfile
-log <span style="color: #BA2121">&#39;we just got hassle-free logging&#39;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000">source</span><span style="color: #bbbbbb"> </span>/usr/lib/libui.sh
+ask_yesno<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;do you want to continue?&#39;</span><span style="color: #bbbbbb"> </span><span style="color: #666666">||</span><span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">return</span>
+libui_sh_init<span style="color: #bbbbbb"> </span>cli<span style="color: #bbbbbb"> </span>/tmp<span style="color: #bbbbbb"> </span>/tmp/yourlogfile
+log<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;we just got hassle-free logging&#39;</span>
 </pre></div>
 <p>
 The library is not strictly a UI library, it also contains a few useful functions like<br />

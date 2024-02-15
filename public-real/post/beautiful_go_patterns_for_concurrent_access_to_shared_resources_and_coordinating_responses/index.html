@@ -161,48 +161,48 @@ But the idea is you can simply use one shared channel for all requests, and one 
 As long as the requesters write a request to the requests channel and then read a response from the other channel, and the coordinator first reads a request and then writes the response, no further synchronization is needed.  Here's a demo program:
 </p>
 
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">package</span> main
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><span style="color: #008000; font-weight: bold">package</span><span style="color: #bbbbbb"> </span>main
 
-<span style="color: #408080; font-style: italic">// demo the fact that we can just use one shared req and one resp channel.</span>
-<span style="color: #408080; font-style: italic">// as long as they are unbuffered, the synchronization works just fine.</span>
+<span style="color: #3D7B7B; font-style: italic">// demo the fact that we can just use one shared req and one resp channel.</span>
+<span style="color: #3D7B7B; font-style: italic">// as long as they are unbuffered, the synchronization works just fine.</span>
 
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #BA2121">&quot;fmt&quot;</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #BA2121">&quot;sync&quot;</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #BA2121">&quot;math/rand&quot;</span>
-<span style="color: #008000; font-weight: bold">import</span> <span style="color: #BA2121">&quot;time&quot;</span>
+<span style="color: #008000; font-weight: bold">import</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;fmt&quot;</span>
+<span style="color: #008000; font-weight: bold">import</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;sync&quot;</span>
+<span style="color: #008000; font-weight: bold">import</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;math/rand&quot;</span>
+<span style="color: #008000; font-weight: bold">import</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;time&quot;</span>
 
-<span style="color: #008000; font-weight: bold">var</span> requests = <span style="color: #008000">make</span>(<span style="color: #008000; font-weight: bold">chan</span> <span style="color: #B00040">int</span>)
-<span style="color: #008000; font-weight: bold">var</span> responses = <span style="color: #008000">make</span>(<span style="color: #008000; font-weight: bold">chan</span> <span style="color: #B00040">string</span>)
+<span style="color: #008000; font-weight: bold">var</span><span style="color: #bbbbbb"> </span>requests<span style="color: #bbbbbb"> </span>=<span style="color: #bbbbbb"> </span><span style="color: #008000">make</span>(<span style="color: #008000; font-weight: bold">chan</span><span style="color: #bbbbbb"> </span><span style="color: #B00040">int</span>)
+<span style="color: #008000; font-weight: bold">var</span><span style="color: #bbbbbb"> </span>responses<span style="color: #bbbbbb"> </span>=<span style="color: #bbbbbb"> </span><span style="color: #008000">make</span>(<span style="color: #008000; font-weight: bold">chan</span><span style="color: #bbbbbb"> </span><span style="color: #B00040">string</span>)
 
-<span style="color: #008000; font-weight: bold">func</span> routine(num <span style="color: #B00040">int</span>, wg <span style="color: #666666">*</span>sync.WaitGroup) {
-    <span style="color: #408080; font-style: italic">// pretend this is a routine that&#39;s doing something, like serving a user session</span>
-    <span style="color: #408080; font-style: italic">// but then we need to modify some shared state</span>
-    time.Sleep(time.Duration(rand.Intn(<span style="color: #666666">100</span>)) <span style="color: #666666">*</span> time.Millisecond)
-    requests <span style="color: #666666">&lt;-</span> num
-    resp <span style="color: #666666">:=</span> <span style="color: #666666">&lt;-</span>responses
-    fmt.Printf(<span style="color: #BA2121">&quot;routine %d gets response: %s\n&quot;</span>, num, resp)
-    wg.Done()
+<span style="color: #008000; font-weight: bold">func</span><span style="color: #bbbbbb"> </span>routine(num<span style="color: #bbbbbb"> </span><span style="color: #B00040">int</span>,<span style="color: #bbbbbb"> </span>wg<span style="color: #bbbbbb"> </span><span style="color: #666666">*</span>sync.WaitGroup)<span style="color: #bbbbbb"> </span>{
+<span style="color: #bbbbbb">    </span><span style="color: #3D7B7B; font-style: italic">// pretend this is a routine that&#39;s doing something, like serving a user session</span>
+<span style="color: #bbbbbb">    </span><span style="color: #3D7B7B; font-style: italic">// but then we need to modify some shared state</span>
+<span style="color: #bbbbbb">    </span>time.Sleep(time.Duration(rand.Intn(<span style="color: #666666">100</span>))<span style="color: #bbbbbb"> </span><span style="color: #666666">*</span><span style="color: #bbbbbb"> </span>time.Millisecond)
+<span style="color: #bbbbbb">    </span>requests<span style="color: #bbbbbb"> </span><span style="color: #666666">&lt;-</span><span style="color: #bbbbbb"> </span>num
+<span style="color: #bbbbbb">    </span>resp<span style="color: #bbbbbb"> </span><span style="color: #666666">:=</span><span style="color: #bbbbbb"> </span><span style="color: #666666">&lt;-</span>responses
+<span style="color: #bbbbbb">    </span>fmt.Printf(<span style="color: #BA2121">&quot;routine %d gets response: %s\n&quot;</span>,<span style="color: #bbbbbb"> </span>num,<span style="color: #bbbbbb"> </span>resp)
+<span style="color: #bbbbbb">    </span>wg.Done()
 }
 
-<span style="color: #008000; font-weight: bold">func</span> coordinator() {
-    <span style="color: #008000; font-weight: bold">for</span> {
-        req <span style="color: #666666">:=</span> <span style="color: #666666">&lt;-</span>requests
-        <span style="color: #408080; font-style: italic">// in here, you can do whatever modifications to shared state you need.</span>
-        time.Sleep(time.Duration(rand.Intn(<span style="color: #666666">100</span>)) <span style="color: #666666">*</span> time.Millisecond) <span style="color: #408080; font-style: italic">// simulate some heavy lifting</span>
-        responses <span style="color: #666666">&lt;-</span> fmt.Sprintf(<span style="color: #BA2121">&quot;this return value is meant for routine %d&quot;</span>, req)
-    }
+<span style="color: #008000; font-weight: bold">func</span><span style="color: #bbbbbb"> </span>coordinator()<span style="color: #bbbbbb"> </span>{
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>{
+<span style="color: #bbbbbb">        </span>req<span style="color: #bbbbbb"> </span><span style="color: #666666">:=</span><span style="color: #bbbbbb"> </span><span style="color: #666666">&lt;-</span>requests
+<span style="color: #bbbbbb">        </span><span style="color: #3D7B7B; font-style: italic">// in here, you can do whatever modifications to shared state you need.</span>
+<span style="color: #bbbbbb">        </span>time.Sleep(time.Duration(rand.Intn(<span style="color: #666666">100</span>))<span style="color: #bbbbbb"> </span><span style="color: #666666">*</span><span style="color: #bbbbbb"> </span>time.Millisecond)<span style="color: #bbbbbb"> </span><span style="color: #3D7B7B; font-style: italic">// simulate some heavy lifting</span>
+<span style="color: #bbbbbb">        </span>responses<span style="color: #bbbbbb"> </span><span style="color: #666666">&lt;-</span><span style="color: #bbbbbb"> </span>fmt.Sprintf(<span style="color: #BA2121">&quot;this return value is meant for routine %d&quot;</span>,<span style="color: #bbbbbb"> </span>req)
+<span style="color: #bbbbbb">    </span>}
 }
 
-<span style="color: #008000; font-weight: bold">func</span> main() {
-    <span style="color: #008000; font-weight: bold">go</span> coordinator()
+<span style="color: #008000; font-weight: bold">func</span><span style="color: #bbbbbb"> </span>main()<span style="color: #bbbbbb"> </span>{
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">go</span><span style="color: #bbbbbb"> </span>coordinator()
 
-    <span style="color: #008000; font-weight: bold">var</span> wg sync.WaitGroup
-    <span style="color: #008000; font-weight: bold">for</span> i <span style="color: #666666">:=</span> <span style="color: #666666">0</span>; i &lt; <span style="color: #666666">10</span>; i<span style="color: #666666">++</span> {
-        wg.Add(<span style="color: #666666">1</span>)
-        <span style="color: #008000; font-weight: bold">go</span> routine(i, <span style="color: #666666">&amp;</span>wg)
-    }
-    wg.Wait()
-    <span style="color: #008000">close</span>(requests)
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">var</span><span style="color: #bbbbbb"> </span>wg<span style="color: #bbbbbb"> </span>sync.WaitGroup
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">for</span><span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span><span style="color: #666666">:=</span><span style="color: #bbbbbb"> </span><span style="color: #666666">0</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #bbbbbb"> </span>&lt;<span style="color: #bbbbbb"> </span><span style="color: #666666">10</span>;<span style="color: #bbbbbb"> </span>i<span style="color: #666666">++</span><span style="color: #bbbbbb"> </span>{
+<span style="color: #bbbbbb">        </span>wg.Add(<span style="color: #666666">1</span>)
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">go</span><span style="color: #bbbbbb"> </span>routine(i,<span style="color: #bbbbbb"> </span><span style="color: #666666">&amp;</span>wg)
+<span style="color: #bbbbbb">    </span>}
+<span style="color: #bbbbbb">    </span>wg.Wait()
+<span style="color: #bbbbbb">    </span><span style="color: #008000">close</span>(requests)
 }
 </pre></div>
 

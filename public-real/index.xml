@@ -751,8 +751,27 @@ Everything I need in 100 lines of Go and 50 lines of javascript! Let me know if 
       <description>&lt;h2&gt;Talks&lt;/h2&gt;
 
 &lt;table&gt;
-
 &lt;tbody&gt;
+&lt;tr&gt;
+    &lt;td&gt;March 1, 2018&lt;/td&gt;
+    &lt;td&gt;Anthony Woods on Grafanacloud, Misha Brukman on Bigtable, myself on Metrictank, and Anko Duizer on CosmosDB&lt;/td&gt;
+    &lt;td&gt;Grafanacon&lt;/td&gt;
+    &lt;td&gt;Amsterdam&lt;/td&gt;
+    &lt;td&gt;
+	&lt;a href=&#34;https://www.youtube.com/watch?v=jy4ZWyxkdw0&#34;&gt;video&lt;/a&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+
+    &lt;td&gt;Nov 30, 2016&lt;/td&gt;
+    &lt;td&gt;Panel: The future of metrics (with Brian Brazil, Paul Dix, Jason Dixon. moderated by Raj Dutt)&lt;/td&gt;
+    &lt;td&gt;Grafanacon&lt;/td&gt;
+    &lt;td&gt;NYC&lt;/td&gt;
+    &lt;td&gt;
+	&lt;a href=&#34;https://www.youtube.com/watch?v=HOSPqjYd7AU&#34;&gt;video&lt;/a&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+
 &lt;tr&gt;
 
     &lt;td&gt;July 12, 2016&lt;/td&gt;
@@ -760,8 +779,8 @@ Everything I need in 100 lines of Go and 50 lines of javascript! Let me know if 
     &lt;td&gt;SRECon Europe&lt;/td&gt;
     &lt;td&gt;Dublin&lt;/td&gt;
     &lt;td&gt;
-				&lt;a href=&#34;https://www.usenix.org/conference/srecon16europe/program/presentation/plaetinck&#34;&gt;details and video&lt;/a&gt;
-				&lt;a href=&#34;http://www.slideshare.net/Dieterbe/next-generation-alerting-and-fault-detection-srecon-europe-2016&#34;&gt;slides&lt;/a&gt;
+	&lt;a href=&#34;https://www.usenix.org/conference/srecon16europe/program/presentation/plaetinck&#34;&gt;details and video&lt;/a&gt;
+	&lt;a href=&#34;http://www.slideshare.net/Dieterbe/next-generation-alerting-and-fault-detection-srecon-europe-2016&#34;&gt;slides&lt;/a&gt;
     &lt;/td&gt;
 &lt;/tr&gt;
 
@@ -772,8 +791,8 @@ Everything I need in 100 lines of Go and 50 lines of javascript! Let me know if 
     &lt;td&gt;Velocity&lt;/td&gt;
     &lt;td&gt;Santa Clara&lt;/td&gt;
     &lt;td&gt;
-				&lt;a href=&#34;http://conferences.oreilly.com/velocity/vl-ca-2016/public/schedule/detail/49335&#34;&gt;details&lt;/a&gt;
-				See talk above for updated version
+	&lt;a href=&#34;http://conferences.oreilly.com/velocity/vl-ca-2016/public/schedule/detail/49335&#34;&gt;details&lt;/a&gt;
+	See talk above for updated version
     &lt;/td&gt;
 &lt;/tr&gt;
 
@@ -784,8 +803,8 @@ Everything I need in 100 lines of Go and 50 lines of javascript! Let me know if 
     &lt;td&gt;GrafanaCon 2015&lt;/td&gt;
 		&lt;td&gt;NYC&lt;/td&gt;
     &lt;td&gt;
-				&lt;a href=&#34;https://www.youtube.com/watch?v=C_H2ew8e5OM&#34;&gt;video (with embedded slides)&lt;/a&gt;
-				&lt;a href=&#34;http://www.slideshare.net/Dieterbe/alerting-in-grafana-grafanacon-2015&#34;&gt;slides&lt;/a&gt;
+	&lt;a href=&#34;https://www.youtube.com/watch?v=C_H2ew8e5OM&#34;&gt;video (with embedded slides)&lt;/a&gt;
+	&lt;a href=&#34;http://www.slideshare.net/Dieterbe/alerting-in-grafana-grafanacon-2015&#34;&gt;slides&lt;/a&gt;
     &lt;/td&gt;
 &lt;/tr&gt;
 

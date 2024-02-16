@@ -4,7 +4,7 @@ date = "2008-10-14T21:56:50-04:00"
 tags = ["bash"]
 guid = "51 at http://dieter.plaetinck.be"
 +++
-<p>Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing 'echo $?', ' &amp;& echo ok', '|| echo failed' etc on the command line.<!--more--></p>
+<p>Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing 'echo $?', ' &amp;& echo ok', '|| echo failed' etc on the command line.</p>
 {{< highlight "bash" "style=default" >}}
 if [ $(tput colors) -gt 0 ] ; then
     RED=$(tput setaf 1)

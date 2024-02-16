@@ -5,7 +5,7 @@ tags = ["devops", "openstack"]
 guid = "dell_crowbar_openstack_swift"
 +++
 Learned about <a href="https://github.com/dellcloudedge/crowbar">Dell Crowbar</a> the other day.  It seems to be (becoming) a tool I've wanted for quite a while, because it takes automating physical infrastructure to a new level, and is also convenient on virtual.
-<!--more-->
+
 <p>
 It provides a central management interface which leverages chef, but extends it to a broader scope: it takes care of configuring the bios and raid firmware, BMC/IPMI, doing a PXE autoinstall and setting up chef, which of course does everything else you might need.
 <br/>The crowbar admin machine also runs Nagios and Ganglia and the configuration is automatically kept in sync with the roles you apply to your nodes. (adding support for a different monitoring/alerting solution is probably not too hard.  I'm thinking about graphite support or even integrating with an existing graphite setup)

@@ -8,7 +8,7 @@ guid = "on-graphite-whisper-and-influxdb"
 
 Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of <a href="http://graphite.readthedocs.org/en/latest/functions.html">available processing functions</a>.
 <br/>For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).
-<!--more-->
+
 <ul>
 <li>It can't keep all file descriptors in memory so there's a lot of overhead in constantly opening, seeking, and closing files, especially since usually one write comes in for all metrics at the same time.
 </li>

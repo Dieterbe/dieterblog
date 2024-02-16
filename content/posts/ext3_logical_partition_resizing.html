@@ -9,7 +9,7 @@ But what about logical partitions?  A while back I had to resize an ext3 logical
 <strong>Do not expect a nice tutorial here, it's more of a commented dump of my scratch notes and some vague memories.<br />
 The information in this post is not 100% accurate</strong><br />
 I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.<br />
-<!--more--></p>
+</p>
 <p>I did find various places where they said parted could "handle all partition and filesystem resizing at once".<br />
 <a href="http://www.jumpingbean.co.za/blogs/mark/parted_resize_ext3_partition">this post</a> was quite useful, but he was more lucky then me I guess.<br />
 In the parted documentation I couldn't find any restriction other then that xattrs don't work.<br />

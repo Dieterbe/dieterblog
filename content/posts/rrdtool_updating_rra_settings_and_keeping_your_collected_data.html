@@ -5,7 +5,7 @@ tags = ["devops", "monitoring"]
 guid = "79 at http://dieter.plaetinck.be"
 +++
 When you use <a href="http://oss.oetiker.ch/rrdtool/">rrdtool</a>, it can happen that you first create your databases, then collect a whole bunch of data and decide later you want more accuracy/longer periods.<br />
-<!--more-->
+
 Especially when using <a href="community.zenoss.org">zenoss</a> (the monitoring solution I mostly work with at <a href="http://www.kangaroot.net/">Kangaroot</a>), which uses very conservative RRD settings by default (i.e. 5-minute intervals for only the first 50 hours).  Zenoss provides a way for you to change the way RRD's are created, but not to apply those settings to already existing RRD files, which I found out *after* I started monitoring everything ;)</p>
 <p><a href="http://oss.oetiker.ch/rrdtool/doc/rrdresize.en.html">rrdresize</a> can help: it (just) adds or removes locations for rows.<br />
 In my case it was not good enough because zenoss uses a variety of resolutions (step sizes), and so if you add rows to all of them rrdtool - when graphing - will often pick a higher resolution RRA that just had rows added (and hence contain unknown values), even though you have the values, albeit at a lower resolution.</p>

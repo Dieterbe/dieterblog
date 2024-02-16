@@ -12,7 +12,7 @@ For now I worked around it by using <a href="http://jsonpickle.github.com/">json
 <p>To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - <a href="https://github.com/Dieterbe/picklebench">picklebench</a> - to compare pickle, cPickle and jsonpickle.
 The script fills a dictionary which gets bigger and bigger, and for certain sizes of dictionary it is saved to, and loaded from disk again.  We measure some metrics of each step.
 We continue until memory is exhausted.</p>
-<!--more-->
+
 limitations of this benchmark:
 <ul>
 <li>effects of writing a new file, or overwriting existing file, and however the filesystem deals with that (efficiency, allocation of sectors on disk, etc) are ignored</li>

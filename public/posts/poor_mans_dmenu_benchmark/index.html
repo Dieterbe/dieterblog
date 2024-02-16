@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">Poor mans dmenu benchmark | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="Poor mans dmenu benchmark | Dieter&#39;s blog" />
+<meta name="twitter:title" content="Poor mans dmenu benchmark | Dieter&#39;s blog" />
+<meta itemprop="name" content="Poor mans dmenu benchmark | Dieter&#39;s blog" />
+<meta name="application-name" content="Poor mans dmenu benchmark | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2009-04-25T11:25:26-0400 />
+    <meta property="article:published_time" content=2009-04-25T11:25:26-0400 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Poor mans dmenu benchmark",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2009-04-25",
+        "description": "",
+        "wordCount":  417 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2009-04-25",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/poor_mans_dmenu_benchmark/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Poor mans dmenu benchmark</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2009-04-25T11:25:26-04:00" itemprop="datePublished"> 25 Apr 2009 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>generate file:</p>
+{{< highlight "bash" "style=default" >}}
+#!/bin/bash
+echo "Creating dummy file of 50MB in size (625000 entries of 80chars)"
+echo "Note: this takes about an hour and a half"
+entries_per_iteration=1000
+for i in `seq 1 625`
+do
+        echo "Iteration $i of 625 ( $entries_per_iteration each )"
+        for j in `seq 1 $entries_per_iteration`
+        do
+                echo "`date +'%Y-%m-%d %H:%M:%S'` `date +%s`abcdefhijklmno`date +%s | md5sum`" >> ./dummy_history_file
+        done
+done
+{{< /highlight >}}<p>measure speed:</p>
+{{< highlight "bash" "style=default" >}}
+echo "Plain awk '{print \$3}':"
+time awk '{print $3}' dummy_history_file >/dev/null
+
+echo "awk + sort"
+time awk '{print $3}' dummy_history_file | sort >/dev/null
+echo "awk + sort + uniq"
+time awk '{print $3}' dummy_history_file | sort | uniq >/dev/null
+
+echo "Plain dmenu:"
+dmenu < dummy_history_file
+echo "awked into dmenu:"
+awk '{print $3}' dummy_history_file | dmenu
+echo "awk + sort + uniq into dmenu:"
+awk '{print $3}' dummy_history_file | sort | uniq | dmenu
+{{< /highlight >}}<p>
+Results.<br />
+I ran the test twice about an half hour after generating the file, so in the first run, the first awk call may have been affected by a no longer complete Linux block cache.<br />
+(I also edited the output format a bit)<br />
+Run 1:</p>
+<pre>
+Plain awk '{print $3}':
+real	0m1.253s
+user	0m0.907s
+sys	0m0.143s
+
+awk + sort:
+real	0m3.696s
+user	0m1.887s
+sys	0m0.520s
+
+awk + sort + uniq:
+real	0m15.768s
+user	0m12.233s
+sys	0m0.820s
+
+Plain dmenu:
+awked into dmenu:
+awk + sort + uniq into dmenu:
+</pre><p>Run 2</p>
+<pre>
+Plain awk '{print $3}':
+real	0m1.223s
+user	0m0.923s
+sys	0m0.107s
+
+awk + sort:
+real	0m2.799s
+user	0m1.910s
+sys	0m0.553s
+
+awk + sort + uniq:
+real	0m16.387s
+user	0m12.019s
+sys	0m0.787s
+Plain dmenu:
+awked into dmenu:
+awk + sort + uniq into dmenu:
+</pre><p>Not too bad.  It's especially uniq who seems to cause a lot of slowdown.  (in this dummy test file, are entries are unique. If there were lots of dupes, the results would probably be different, but I suspect that uniq always needs some time to do its work, dupes or not).  The real bottleneck seems to be raw cpu power.  Not storage bandwidth at all since Linux caches it.  If uncached, I estimate the sequential read would take 1.5 seconds or so. (about 30MB/s on common hard disks)</p>
+<p>Once the stuff gets piped into dmenu, there is a little lag but it's reasonably responsive imho.<br />
+Test performed on an athlon xp @ 2GHz.  1 GB of memory.  There were some other apps running, not a very professional benchmark but you get the idea :)</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

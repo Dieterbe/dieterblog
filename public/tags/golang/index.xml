@@ -1,171 +1,69 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Golang on Dieter&#39;s blog</title>
-    <link>http://dieter.plaetinck.be/tags/golang/</link>
-    <description>Recent content in Golang on Dieter&#39;s blog</description>
+    <title>golang on Dieter&#39;s blog</title>
+    <link>http://localhost:1313/tags/golang/</link>
+    <description>Recent content in golang on Dieter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Oct 2015 10:25:02 +0200</lastBuildDate>
-    <atom:link href="http://dieter.plaetinck.be/tags/golang/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Fri, 02 Oct 2015 10:25:02 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Interview with Matt Reiferson, creator of NSQ</title>
-      <link>http://dieter.plaetinck.be/post/interview-matt-reiferson-nsq/</link>
+      <link>http://localhost:1313/posts/interview-matt-reiferson-nsq/</link>
       <pubDate>Fri, 02 Oct 2015 10:25:02 +0200</pubDate>
       
-      <guid>http://dieter.plaetinck.be/post/interview-matt-reiferson-nsq/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m a fan of the &lt;a href=&#34;http://nsq.io/&#34;&gt;NSQ&lt;/a&gt; message processing system written in golang.
-I&amp;rsquo;ve studied the code, &lt;a href=&#34;http://dieter.plaetinck.be/post/transplanting-go-packages-for-fun-and-profit/&#34;&gt;transplanted its diskqueue code&lt;/a&gt; into another project, and have used NSQ by itself.
-The code is well thought out, organized and written.&lt;/p&gt;
-
-&lt;p&gt;Inspired by the book &lt;a href=&#34;http://codersatwork.com/&#34;&gt;coders at work&lt;/a&gt; and the &lt;a href=&#34;http://systemslive.org/&#34;&gt;systems live&lt;/a&gt; podcast,
-I wanted to try something I&amp;rsquo;ve never done before: spend an hour talking to &lt;a href=&#34;https://github.com/mreiferson&#34;&gt;Matt Reiferson&lt;/a&gt; - the main author of NSQ - about software design and Go programming patterns,
-and post the video online for whomever might be interested.&lt;/p&gt;
-
-&lt;p&gt;We talked about Matt&amp;rsquo;s background, starting the NSQ project at Bitly as his first (!) Go project,
-(code) design patterns in NSQ and the nsqd diskqueue in particular and the new &lt;a href=&#34;https://github.com/nsqio/nsq/pull/625&#34;&gt;WAL&lt;/a&gt; (write-ahead-log) approach in terms of design and functionality.&lt;/p&gt;
-
-&lt;p&gt;&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/-X73gfrt8Qk&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-You can watch it &lt;a href=&#34;https://www.youtube.com/watch?v=-X73gfrt8Qk&#34;&gt;on youtube&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, the video got cut a bit short.
-But basically in the cut off part i asked about the new go internals convention that prevents importing packages that are in an internals subdirectory.
-Matt wants to make it very clear that certain implementation details are not supported (by the NSQ team) and may change, whereas my take was that it&amp;rsquo;s annoying
-when i want to reuse code some I find in a project.
-We ultimately both agreed that while a bit clunky, it gets the job done, and is probably a bit crude because there is also no proper package management yet.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ld like to occasionally interview other programmers in a similar way and post on my site later.&lt;/p&gt;
-</description>
+      <guid>http://localhost:1313/posts/interview-matt-reiferson-nsq/</guid>
+      
+      <description>I&amp;rsquo;m a fan of the NSQ message processing system written in golang. I&amp;rsquo;ve studied the code, transplanted its diskqueue code into another project, and have used NSQ by itself. The code is well thought out, organized and written.
+Inspired by the book coders at work and the systems live podcast, I wanted to try something I&amp;rsquo;ve never done before: spend an hour talking to Matt Reiferson - the main author of NSQ - about software design and Go programming patterns, and post the video online for whomever might be interested.</description>
+      
     </item>
     
     <item>
       <title>Transplanting Go packages for fun and profit</title>
-      <link>http://dieter.plaetinck.be/post/transplanting-go-packages-for-fun-and-profit/</link>
+      <link>http://localhost:1313/posts/transplanting-go-packages-for-fun-and-profit/</link>
       <pubDate>Wed, 02 Sep 2015 19:25:02 +0300</pubDate>
       
-      <guid>http://dieter.plaetinck.be/post/transplanting-go-packages-for-fun-and-profit/</guid>
-      <description>
-
-&lt;p&gt;&lt;img src=&#34;https://blog.raintank.io/content/images/2015/09/transplant_blog.jpg&#34; alt=&#34;crazy Gopher scientist&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;A while back I read &lt;a href=&#34;http://codersatwork.com/&#34;&gt;coders at work&lt;/a&gt;, which is a book of interviews with some great computer scientists who earned their stripes, the questions just as thoughtful as the answers.
-For one thing, it re-ignited my interest in functional programming, for another I got interested in &lt;a href=&#34;https://en.wikipedia.org/wiki/Literate_programming&#34;&gt;literate programming&lt;/a&gt; but most of all, it struck me how common of a recommendation it was to read other people&amp;rsquo;s code as a means to become a better programmer.
-(It also has a good section of &lt;a href=&#34;http://bradfitz.com&#34;&gt;Brad Fitzpatrick&lt;/a&gt; describing his dislike for programming languages, and dreaming about his ideal language. This must have been shortly before Go came about and he became a maintainer.)&lt;/p&gt;
-
-&lt;p&gt;I hadn&amp;rsquo;t been doing a good job reading/studying other code out of fear that inferior patterns/style would rub off on me.  But I soon realized that was an irrational, perhaps slightly absurd excuse. So I made the decision to change. Contrary to my presumption I found that by reading code that looks bad you can challenge and re-evaluate your mindset and get out with a more nuanced understanding and awareness of the pros and cons of various approaches.&lt;/p&gt;
-
-&lt;p&gt;I also realized if code is proving too hard to get into or is of too low quality, you can switch to another code base with negligible effort and end up spending almost all of your time reading code that is worthwhile and has plenty of learnings to offer.  There is a lot of high quality Go code, easy to find through sites like Github or &lt;a href=&#34;http://golangweekly.com/&#34;&gt;Golang weekly&lt;/a&gt;, just follow your interests and pick a project to start reading.&lt;/p&gt;
-
-&lt;p&gt;It gets really interesting though once you find bodies of code that are not only a nice learning resource, but can be transplanted into your code with minimal work to solve a problem you&amp;rsquo;re having, but in a different context then the author of the code originally designed it for.  Components often grow and mature in the context of an application without being promoted as reusable libraries, but you can often use them as if they were.  I would like to share 2 such success cases below.&lt;/p&gt;
-
-&lt;h1 id=&#34;nsq-s-diskqueue-code&#34;&gt;Nsq&amp;rsquo;s diskqueue code&lt;/h1&gt;
-
-&lt;p&gt;I&amp;rsquo;ve always had an interest in code that manages the same binary data both in memory and on a block device.  Think filesystems, databases, etc.  There&amp;rsquo;s some interesting concerns like robustness in light of failures combined with optimizing for performance (infrequent syncs to disk, maintaining the hot subset of data in memory, etc), combined with optimizing for various access patterns, this can be a daunting topic to get into.&lt;/p&gt;
-
-&lt;p&gt;Luckily there&amp;rsquo;s a use case that I see all the time in my domain (telemetry systems) and that covers just enough of the problems to be interesting and fun, but not enough to be overwhelming.  And that is: for each step in a monitoring data pipeline, you want to be able to buffer data if the endpoint goes down, in memory and to disk if the amount of data gets too much. Especially to disk if you&amp;rsquo;re also concerned with your software crashing or the machine power cycling.&lt;/p&gt;
-
-&lt;p&gt;This is such a common problem that applies to all metrics agents, relays, etc that I was longing for a library that just takes care of spooling data to disk for you without really affecting much of the rest of your software.  All it needs to do is sequentially write pieces of data to disk and have a sequential reader catching up and read newer data as it finishes processing the older.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://nsq.io/&#34;&gt;NSQ&lt;/a&gt; is a messaging platform from bitly, and it has &lt;a href=&#34;https://github.com/bitly/nsq/blob/master/nsqd/diskqueue.go&#34;&gt;diskqueue code&lt;/a&gt; that does exactly that. And it does so oh so elegantly.
-I had previously found a beautiful pattern in bitly&amp;rsquo;s go code that I &lt;a href=&#34;http://dieter.plaetinck.be/post/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/&#34;&gt;blogged about&lt;/a&gt; and again I found a nice and elegant design that builds further on this pattern, with concurrent access to data protected via a single instance of a for loop running a select block which assures only one piece of code can make changes to data at the same time (see bottom of the file), not unlike ioloops in other languages.  And method calls such as &lt;a href=&#34;https://github.com/bitly/nsq/blob/fe4198b648499375651b7fece0b8489ea07d029f/nsqd/diskqueue.go#L120-L130&#34;&gt;Put()&lt;/a&gt; provide a clean external interface, though their implementation simply hooks into the internal select loop that runs the code that does the bulk of the work.  Genius.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func (d *diskQueue) Put(data []byte) error {
-  // some details
-  d.writeChan &amp;lt;- data
-  return &amp;lt;-d.writeResponseChan
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In addition the package came with &lt;a href=&#34;https://github.com/bitly/nsq/blob/master/nsqd/diskqueue_test.go&#34;&gt;extensive tests and benchmarks&lt;/a&gt; out of the box.&lt;/p&gt;
-
-&lt;p&gt;After finding and familiarizing myself with this diskqueue code about a year ago I had an easy time introducing disk spooling to &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;Carbon-relay-ng&lt;/a&gt;, by transplanting the code into it. The only change I had to make was &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng/commit/4d6ebb37451ce6e05b606ea4ba6221611d367f71&#34;&gt;capitalizing the Diskqueue type to export it outside of the package&lt;/a&gt;.  It has proven a great fit, enabling a critical feature through little work of transplanting mature, battle-tested code into a context that original authors probably never thought of.&lt;/p&gt;
-
-&lt;p&gt;Note also how the data unit here is the &lt;code&gt;[]byte&lt;/code&gt;, the queue does not deal with the higher level &lt;code&gt;nsq.Message&lt;/code&gt; (!).  The authors had the foresight of keeping this generic, enabling code reuse and rightfully shot down &lt;a href=&#34;https://github.com/bitly/nsq/pull/626&#34;&gt;a PR of mine&lt;/a&gt; that had a side effect of making the queue aware of the Message type.   In NSQ you&amp;rsquo;ll find thoughtful and deliberate api design and pretty sound code all around. Also, they went pretty far in &lt;a href=&#34;http://nsq.io/overview/internals.html&#34;&gt;detailing some lessons learned and providing concrete advice&lt;/a&gt;, a very interesting read, especially around managing goroutines &amp;amp; synchronizing their exits, and performance optimizations.  At Raintank, we had a need for a messaging solution for metrics so we will so be rolling out &lt;a href=&#34;https://github.com/raintank/raintank-metric/issues/11&#34;&gt;NSQ as part of the raintank stack&lt;/a&gt;.  This is an interesting case where my past experience with the NSQ code and ideas helped to adopt the full solution.&lt;/p&gt;
-
-&lt;h1 id=&#34;bosun-expression-package&#34;&gt;Bosun expression package&lt;/h1&gt;
-
-&lt;p&gt;I&amp;rsquo;m a &lt;a href=&#34;http://dieter.plaetinck.be/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/&#34;&gt;fan of the bosun alerting system&lt;/a&gt; which came out of Stack Exchange.  It&amp;rsquo;s a full-featured alerting system that solves a few problems like no other tool I&amp;rsquo;ve seen does (see my linked post), and timeseries data storage aside, comes with basically everything built in to the one program.  I&amp;rsquo;ve used it with success. However, for &lt;a href=&#34;http://www.raintank.io/litmus/&#34;&gt;litmus&lt;/a&gt; I needed an alerting handler that integrated well into the Grafana backend.   I needed the ability to do arbitrarily complex computations. Graphite&amp;rsquo;s api only takes you so far. We also needed (desired) reduction functions, boolean logic, etc.  This is where &lt;a href=&#34;http://bosun.org/expressions.html&#34;&gt;bosun&amp;rsquo;s expression language&lt;/a&gt; is really strong.  I found the &lt;a href=&#34;https://github.com/bosun-monitor/bosun/tree/master/cmd/bosun/expr&#34;&gt;expression package&lt;/a&gt; quite interesting, they basically built their own DSL for metrics processing.  so it deals with expression parsing, constructing AST&amp;rsquo;s, executing them, dealing with types (potentially mixed types in the same expression), etc.&lt;/p&gt;
-
-&lt;p&gt;But bosun also has incident management, contacts, escalations, etc.  Stuff that we either already had in place, or didn&amp;rsquo;t want to worry about just yet.  So we could run bosun standalone and talk to it as a service via its API which I found too loosely coupled and risky, hook all its code into our binary at once - which seemed overkill - or the strategy I chose: gradually familiarize ourself and adopt pieces of Bosun on a case by case basis, making sure there&amp;rsquo;s a tight fit and without ever building up so much technical debt that it would become a pain to move away from the transplanted code if it becomes clear it&amp;rsquo;s not/no longer well suited. For the foreseeable future we only need one piece, the expression package. Potentially ultimately we&amp;rsquo;ll adopt the entire thing, but without the upfront commitment and investment.&lt;/p&gt;
-
-&lt;p&gt;So practically, our code now simply has &lt;a href=&#34;https://github.com/raintank/grafana/blob/9cfa14a2a6ea079b9dd5bc0164aced942190a33a/pkg/alerting/eval.go#L47&#34;&gt;one line&lt;/a&gt; where we create a bosun expression object from a string, and &lt;a href=&#34;https://github.com/raintank/grafana/blob/9cfa14a2a6ea079b9dd5bc0164aced942190a33a/pkg/alerting/eval.go#L77&#34;&gt;another&lt;/a&gt; where we ask bosun to execute the expression for us, which takes care of parsing the expression, querying for the data, evaluating and processing the results and distilling everything down into a final result.  We get all the language features (reduction functions, boolean logic, nested expressions, &amp;hellip;) for free.&lt;/p&gt;
-
-&lt;p&gt;This transplantation was again probably not something the bosun authors expected, but for us it was tremendously liberating.  We got a lot of power for free.  The only thing I had to do was spend some time reading code, and learning in the process.  And I knew the code was well tested so we had zero issues using it.&lt;/p&gt;
-
-&lt;p&gt;Much akin to the NSQ example above, there was another reason the transplantation went so smoothly: the expression package is not tangled into other stuff.  It just needs  a string expression and a graphite instance.  To be precise, any struct instance that satisfies the &lt;a href=&#34;https://github.com/bosun-monitor/bosun/blob/master/graphite/graphite.go#L124&#34;&gt;graphiteContext interface&lt;/a&gt; that is handily defined in the bosun code. While the bosun design aims to make its various clients (graphite, opentsdb, &amp;hellip;) applicable for other projects, it also happens to let us do opposite: reuse some of its core code - the expression package - and pass in a custom graphite Context, such as &lt;a href=&#34;https://github.com/raintank/grafana/blob/12d42c9715bbbd62063df37e37e89bfc77f64626/pkg/graphite/graphite.go#L113-L129&#34;&gt;our implementation&lt;/a&gt; which has extensive instrumentation. This lets us use the bosun expression package as a &amp;ldquo;black box&amp;rdquo; and still inject our own custom logic into the part that queries data from graphite.  Of course, once we want to change the logic of anything else in the black box, we will need come up with something else, perhaps fork the package, but it doesn&amp;rsquo;t seem like we&amp;rsquo;ll need that any time soon.&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;If you want to become a better programmer I highly recommend you go read some code.  There&amp;rsquo;s plenty of good code out there.  Pick something that deals with a topic that is of interest to you and looks mature.  You typically won&amp;rsquo;t know if code is good before you start reading but you&amp;rsquo;ll find out really fast, and you might be pleasantly surprised, as was I, several times.  You will learn a bunch, possibly pretty fast.  However, don&amp;rsquo;t go for the most advanced, complex code straight away.  Pick projects and topics that are out of your comfort zone and do things that are new to you, but nothing too crazy.  Once you truly grok those, proceed to other, possibly more advanced stuff.&lt;/p&gt;
-
-&lt;p&gt;Often you&amp;rsquo;ll read reusable libraries that are built to be reused, or you might find ways to transplant smaller portions of code into your own projects.  Either way is a great way to tinker and learn, and solve real problems.  Just make sure the code actually fits in so you don&amp;rsquo;t end up with the software version of Frankenstein&amp;rsquo;s monster.  It is also helpful to have the authors available to chat if you need help or have issues understanding something, though they might be surprised if you&amp;rsquo;re using their code in a way they didn&amp;rsquo;t envision and might not be very inclined to provide support to what they consider internal implementation details.  So that could be a hit or miss.  Luckily the people behind both nsq and bosun were supportive of my endeavors but I also made sure to try to figure out things by myself before bothering them.  Another reason why it&amp;rsquo;s good to pick mature, documented projects.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://blog.raintank.io/content/images/2015/09/gopher_frank_monst-1.jpg&#34; alt=&#34;Gopher frankenstein&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Part of the original meaning of hacking, extended into open source, is a mindset and practice of seeing how others solve a problem, discussion and building on top of it.  We&amp;rsquo;ve gotten used to - and fairly good at - doing this on a project and library level but forgot about it on the level of code, &lt;a href=&#34;nil&#34; title=&#34;We do share and discuss code patterns but typically via blog posts which use contrived/theoretical examples.  Not in their natural setting of the real code where they are used.&#34;&gt;code patterns&lt;/a&gt; and ideas.  I want to see these practices come back to life.&lt;/p&gt;
-
-&lt;p&gt;We also apply this at &lt;a href=&#34;http://raintank.io&#34;&gt;Raintank&lt;/a&gt;: not only are we trying to build the best open source monitoring platform by reusing (and often contributing to) existing open source tools and working with different communities, we realize it&amp;rsquo;s vital to work on a more granular level, get to know the people and practice cross-pollination of ideas and code.&lt;/p&gt;
-
-&lt;p&gt;Next stuff I want to read and possibly implement or transplant parts of: &lt;a href=&#34;https://github.com/dgryski/go-trigram&#34;&gt;dgryski/go-trigram&lt;/a&gt;, &lt;a href=&#34;github.com/armon/go-radix&#34;&gt;armon/go-radix&lt;/a&gt;, especially as used in the &lt;a href=&#34;https://github.com/dgryski/carbonmem&#34;&gt;dgryski/carbonmem&lt;/a&gt; server to search through Graphite metrics.  Other fun stuff by dgryski: an implementation of the &lt;a href=&#34;https://github.com/dgryski/go-arc/&#34;&gt;ARC caching algorithm&lt;/a&gt; and &lt;a href=&#34;https://github.com/dgryski/go-bloomf&#34;&gt;bloom filters&lt;/a&gt;. (you might want to get used to reading Wikipedia pages also). And &lt;a href=&#34;https://github.com/mreiferson/wal&#34;&gt;mreiferson/wal&lt;/a&gt;, a write ahead log by one of the nsqd authors, which looks like it&amp;rsquo;ll become the successor of the beloved diskqueue code.&lt;/p&gt;
-
-&lt;p&gt;Go forth and transplant!&lt;/p&gt;
-
-&lt;p&gt;Also posted on the &lt;a href=&#34;https://blog.raintank.io/transplanting-go-packages-for-fun-and-profit/&#34;&gt;Raintank blog&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>http://localhost:1313/posts/transplanting-go-packages-for-fun-and-profit/</guid>
+      
+      <description>How I hunt for high quality Go code to transplant for fun and profit&amp;hellip;
+This article is about learning and discussing ideas and code on a more fine grained level rather than the project/library level we&amp;rsquo;re used to.
+Some anecdotes of successfully transplanting (taking components from one project and using them in another) Go code from &lt;a href=&#34;http://nsq.io&#34;&gt;NSQ&lt;/a&gt; and &lt;a href=&#34;http://bosun.org&#34;&gt;bosun&lt;/a&gt;</description>
+      
     </item>
     
     <item>
       <title>Moved blog to hugo, fastly and comma</title>
-      <link>http://dieter.plaetinck.be/post/moved-blog-to-hugo-fastly-comma/</link>
+      <link>http://localhost:1313/posts/moved-blog-to-hugo-fastly-comma/</link>
       <pubDate>Thu, 02 Jul 2015 16:35:02 -0700</pubDate>
       
-      <guid>http://dieter.plaetinck.be/post/moved-blog-to-hugo-fastly-comma/</guid>
+      <guid>http://localhost:1313/posts/moved-blog-to-hugo-fastly-comma/</guid>
+      
       <description>&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;I noticed what a disservice I was doing my readers when I started monitoring my site using &lt;a href=&#34;http://www.raintank.io/litmus/&#34;&gt;litmus&lt;/a&gt;.
-A dynamic website in python on a cheap linode&amp;hellip; What do you expect?  So I now serve through &lt;a href=&#34;https://www.fastly.com/&#34;&gt;fastly&lt;/a&gt; and use a static site generator.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://pyblosxom.github.io/&#34;&gt;pyblosxom&lt;/a&gt; was decent while it lasted.
-It can generate sites statically, but the project never got a lot of traction and is slowly fading out.  There were a bit too many moving parts, so &amp;hellip;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;I now use the &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt; static site generator, which is powerful, quite complete and gaining momentum.
-Fast and simple to use.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Should also keep an eye on the &lt;a href=&#34;https://caddyserver.com/&#34;&gt;caddy&lt;/a&gt; webserver since it has some nice things such as &lt;a href=&#34;https://caddyserver.com/docs/git&#34;&gt;git integration&lt;/a&gt; which should work well with hugo.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Trying to get disqus going was frustrating.
-Self hosted options like &lt;a href=&#34;https://github.com/talkatv/talkatv&#34;&gt;talkatv&lt;/a&gt; and &lt;a href=&#34;https://github.com/posativ/isso&#34;&gt;isso&lt;/a&gt; were too complex, and &lt;a href=&#34;https://github.com/spf13/kaiju&#34;&gt;kaiju&lt;/a&gt; is just not there yet and also pretty complex.
-I wrote &lt;a href=&#34;https://github.com/Dieterbe/comma&#34;&gt;comma&lt;/a&gt; which is a simple comment server in Go.
-Everything I need in 100 lines of Go and 50 lines of javascript! Let me know if you see anything funky.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/Dieterbe/dieterblog/blob/master/pyblosxom-to-hugo.py&#34;&gt;pyblosxom-to-hugo.py&lt;/a&gt; migrated all content.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;li&gt;I noticed what a disservice I was doing my readers when I started monitoring my site using &lt;a href=&#34;http://www.raintank.io/litmus/&#34;&gt;litmus&lt;/a&gt;.
+A dynamic website in python on a cheap linode&amp;hellip; What do you expect?  So I now serve through &lt;a href=&#34;https://www.fastly.com/&#34;&gt;fastly&lt;/a&gt; and use a static site generator.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
     </item>
     
     <item>
       <title>A real whisper-to-InfluxDB program.</title>
-      <link>http://dieter.plaetinck.be/post/a-real-whisper-to-influxdb-program/</link>
+      <link>http://localhost:1313/posts/a-real-whisper-to-influxdb-program/</link>
       <pubDate>Tue, 30 Sep 2014 08:37:48 -0400</pubDate>
       
-      <guid>a-real-whisper-to-influxdb-program</guid>
-      <description>The &lt;a href=&#34;http://dieter.plaetinck.be/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;whisper-to-influxdb migration script&lt;/a&gt; I posted earlier is pretty bad.  A shell script, without concurrency, and an undiagnosed performance issue.
-I hinted that one could write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.
-That&#39;s what I did now, it&#39;s at &lt;a href=&#34;https://github.com/vimeo/whisper-to-influxdb&#34;&gt;github.com/vimeo/whisper-to-influxdb&lt;/a&gt;.
-It uses configurable amounts of workers for both whisper fetches and InfluxDB commits,
-but it&#39;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.
-My series, and hence my commits have at most 60k records, and presumably InfluxDB could handle a lot more per commit, so we might leverage better batching later.  Either way, this way I can consistently commit about 100k series every 2.5 hours (or 10/s), where each serie has a few thousand points on average, with peaks up to 60k points. I usually play with 1 to 30 InfluxDB workers. 
-Even though I&#39;ve hit a few &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/985&#34;&gt;InfluxDB&lt;/a&gt; &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/970&#34;&gt;issues&lt;/a&gt;, this tool has enabled me to fill in gaps after outages and to do a restore from whisper after a complete database wipe.
-
-</description>
+      <guid>http://localhost:1313/posts/a-real-whisper-to-influxdb-program/</guid>
+      
+      <description>The whisper-to-influxdb migration script I posted earlier is pretty bad. A shell script, without concurrency, and an undiagnosed performance issue. I hinted that one could write a Go program using the unofficial whisper-go bindings and the influxdb Go client library. That&#39;s what I did now, it&#39;s at github.com/vimeo/whisper-to-influxdb. It uses configurable amounts of workers for both whisper fetches and InfluxDB commits, but it&#39;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.</description>
+      
     </item>
     
     <item>
       <title>InfluxDB as a graphite backend, part 2</title>
-      <link>http://dieter.plaetinck.be/post/influxdb-as-graphite-backend-part2/</link>
+      <link>http://localhost:1313/posts/influxdb-as-graphite-backend-part2/</link>
       <pubDate>Wed, 24 Sep 2014 07:56:01 -0400</pubDate>
       
-      <guid>influxdb-as-graphite-backend-part2</guid>
+      <guid>http://localhost:1313/posts/influxdb-as-graphite-backend-part2/</guid>
+      
       <description>&lt;br&gt;
 &lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.
 &lt;br/&gt;
@@ -173,225 +71,35 @@ Even though I&#39;ve hit a few &lt;a href=&#34;https://github.com/influxdb/influ
 &lt;p&gt;
 The &lt;i&gt;Graphite + InfluxDB&lt;/i&gt; series continues.
 &lt;ul&gt;
-&lt;li&gt;In part 1, &lt;a href=&#34;http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html&#34;&gt;&#34;On Graphite, Whisper and InfluxDB&#34;&lt;/a&gt; I described the problems of Graphite&#39;s whisper and ceres, why I disagree with common graphite clustering advice as being the right path forward, what a great timeseries storage system would mean to me, why InfluxDB - despite being the youngest project - is my main interest right now, and introduced my approach for combining both and leveraging their respective strengths: InfluxDB as an ingestion and storage backend (and at some point, realtime processing and pub-sub) and graphite for its renown data processing-on-retrieval functionality.
+&lt;li&gt;In part 1, &lt;a href=&#34;http://localhost:1313/on-graphite-whisper-and-influxdb.html&#34;&gt;&#34;On Graphite, Whisper and InfluxDB&#34;&lt;/a&gt; I described the problems of Graphite&#39;s whisper and ceres, why I disagree with common graphite clustering advice as being the right path forward, what a great timeseries storage system would mean to me, why InfluxDB - despite being the youngest project - is my main interest right now, and introduced my approach for combining both and leveraging their respective strengths: InfluxDB as an ingestion and storage backend (and at some point, realtime processing and pub-sub) and graphite for its renown data processing-on-retrieval functionality.
 Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt; to easily route streams of carbon data (metrics datapoints) to storage backends, allowing me to send production data to Carbon+whisper as well as InfluxDB in parallel, &lt;a href=&#34;https://github.com/brutasse/graphite-api&#34;&gt;graphite-api&lt;/a&gt;, the simpler Graphite API server, with &lt;a href=&#34;https://github.com/vimeo/graphite-influxdb&#34;&gt;graphite-influxdb&lt;/a&gt; to fetch data from InfluxDB.
 &lt;/li&gt;
-&lt;li&gt;Not Graphite related, but I wrote &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt; which I introduced &lt;a href=&#34;http://dieter.plaetinck.be/influx-cli_a_commandline_interface_to_influxdb.html&#34;&gt;here&lt;/a&gt;.  It allows to easily interface with InfluxDB and measure the duration of operations, which will become useful for this article.&lt;/li&gt;
+&lt;li&gt;Not Graphite related, but I wrote &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt; which I introduced &lt;a href=&#34;http://localhost:1313/influx-cli_a_commandline_interface_to_influxdb.html&#34;&gt;here&lt;/a&gt;.  It allows to easily interface with InfluxDB and measure the duration of operations, which will become useful for this article.&lt;/li&gt;
 &lt;li&gt;In the &lt;a href=&#34;graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;Graphite &amp;amp; Influxdb intermezzo&lt;/a&gt; I shared a script to import whisper data into InfluxDB and noted some write performance issues I was seeing, but the better part of the article described the various improvements done to &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt;, which is becoming an increasingly versatile and useful tool.&lt;/li&gt;
-&lt;li&gt;In &lt;a href=&#34;http://dieter.plaetinck.be/using-influxdb-as-graphite-backend-part2.html&#34;&gt;part 2&lt;/a&gt;, which you are reading now, I&#39;m going to describe recent progress, share more info about my setup, testing results, state of affairs, and ideas for future work&lt;/li&gt;
+&lt;li&gt;In &lt;a href=&#34;http://localhost:1313/using-influxdb-as-graphite-backend-part2.html&#34;&gt;part 2&lt;/a&gt;, which you are reading now, I&#39;m going to describe recent progress, share more info about my setup, testing results, state of affairs, and ideas for future work&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!--more--&gt;
-
-&lt;h4&gt;Progress made&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;InfluxDB saw two major releases:
-&lt;ul&gt;
-&lt;li&gt;0.7 (and followups), which was mostly about some needed features and bug fixes&lt;/li&gt;
-&lt;li&gt;0.8 was all about bringing some major refactorings in the hands of early adopters/testers: support for multiple storage engines, configurable shard spaces, rollups and retention schemes. There was some other useful stuff like speed and robustness improvements for the graphite input plugin (by yours truly) and various things like regex filtering for &#39;list series&#39;.  Note that a bunch of older bugs remained open throughout this release (most notably the broken &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/334&#34;&gt;derivative aggregator&lt;/a&gt;), and a bunch of new ones appeared. Maybe this is why the release was mostly in the dark.  In this context, it&#39;s not so bad, because we let graphite-api do all the processing, but if you want to query InfluxDB directly you might hit some roadblocks.&lt;/li&gt;
-&lt;li&gt;An older fix, but worth mentioning: series names can now also contain any character, which means you can easily use &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics2.0&lt;/a&gt; identifiers.  This is a welcome relief after having struggled with Graphite&#39;s restrictions on metric keys.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://graphite-api.readthedocs.org&#34;&gt;graphite-api&lt;/a&gt; received various bug fixes and support for templating, statsd instrumentation and caching.
-&lt;br/&gt;Much of this was driven by graphite-influxdb: the caching allows us to cache metadata and the statsd integration gives us insights into the performance of the steps it goes through of building a graph (getting metadata from InfluxDB, querying InfluxDB, interacting with cache, post processing data, etc).&lt;/li&gt;
-&lt;li&gt;the progress on InfluxDB and graphite-api in turn enabled &lt;a href=&#34;https://github.com/vimeo/graphite-influxdb&#34;&gt;graphite-influxdb&lt;/a&gt; to become faster and simpler (note: graphite-influxdb requires InfluxDB 0.8).  Furthermore you can now configure series resolutions (but different retentions per serie is on the roadmap, see &lt;i&gt;State of affairs and what&#39;s coming&lt;/i&gt;), and of course it also got a bunch of bugfixes.&lt;/li&gt;
-&lt;/ul&gt;
-Because of all these improvements, all involved components are now ready for serious use.
-
-&lt;h4&gt;Putting it all together, with docker&lt;/h4&gt;
-&lt;a href=&#34;https://www.docker.com/&#34;&gt;Docker&lt;/a&gt; probably needs no introduction, it&#39;s a nifty tool to build an environment with given software installed, and allows to easily deploy it and run it in isolation.
-&lt;a href=&#34;https://github.com/vimeo/graphite-api-influxdb-docker&#34;&gt;graphite-api-influxdb-docker&lt;/a&gt; is a very creatively named project that generates the - also very creatively named - docker image &lt;a href=&#34;https://registry.hub.docker.com/u/vimeo/graphite-api-influxdb/&#34;&gt;graphite-api-influxdb&lt;/a&gt;, which contains graphite-api and graphite-influxdb, making it easy to hook in a customized configuration and get it up and running quickly.  This is the recommended way to set this up, and this is what we run in production.
-
-&lt;h4&gt;The setup&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;a server running InfluxDB and graphite-api with graphite-influxdb via the docker approach described above:
-&lt;pre&gt;
-dell PowerEdge R610
-24 x Intel(R) Xeon(R) X5660  @ 2.80GHz
-96GB RAM
-perc raid h700
-6x600GB seagate 10k rpm drives in raid10 = 1.6 TB, Adaptive Read Ahead, Write Back, 64 kB blocks, no read caching
-no sharding/shard spaces, compiled from git just before 0.8, using LevelDB (not rocksdb, which is now the default)
-LevelDB max-open-files = 10000 (lsof shows about 30k open files total for the InfluxDB process), LRU 4096m, everything else is default I think.
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;a server running graphite-web, carbon, and whisper:
-&lt;pre&gt;
-dell PowerEdge R710
-16 x Intel(R) Xeon(R) E5640  @ 2.67GHz
-96GB RAM
-perc raid h700
-8x150GB seagate 15k rm in raid5 = 952 GB, Read Ahead, Write Back, 64 kB blocks, no read caching
-MAX_UPDATES_PER_SECOND = 1000  # to sequentialize writes
-&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;a relay server running carbon-relay-ng that sends the same production load into both.  (about 2500 metrics/s, or 150k minutely)&lt;/li&gt;
-&lt;/ul&gt;
-As you can tell, on both machines RAM is vastly over provisioned, and they have lots of cpu available (the difference in cores should be negligible), but the difference in RAID level is important to note: RAID 5 comes with a write penalty. Even though the whisper machine has more, and faster disks, it probably has a disadvantage for writes.  Maybe.  Haven&#39;t done raid stuff in a long time, and I haven&#39;t it measured it out.
-&lt;br/&gt;&lt;b&gt;Clearly you&#39;ll need to take the results with a grain of salt, as unfortunately I do not have 2 systems available with the same configuration and their baseline (raw) performance is unknown.&lt;/b&gt;.
-&lt;br/&gt;Note: no InfluxDB clustering, see &lt;i&gt;State of affairs and what&#39;s coming&lt;/i&gt;.
-
-&lt;h4&gt;The empirical validation &amp;amp; migration&lt;/h4&gt;
-Once everything was setup and I could confidently send 100% of traffic to InfluxDB via carbon-relay-ng, it was trivial to run our dashboards with a flag deciding which server to go to.
-This way I have literally been running our graphite dashboards next to each other, allowing us to compare both stacks on:
-&lt;ul&gt;
-&lt;li&gt;visual differences: after a bunch of work and bug fixing, we got to a point where both dashboards looked almost exactly the same.  (note that graphite-api&#39;s implementation of certain functions can behave slightly different, see for example this &lt;a href=&#34;https://github.com/brutasse/graphite-api/issues/66&#34;&gt;divideSeries bug&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;speed differences by simply refreshing both pages and watching the PNGs load, with some assistance from firebug&#39;s network requests profiler.  The difference here was big: graphs served up by graphite-api + InfluxDB loaded considerably faster.  A page with 40 graphs or so would load in a few seconds instead of 20-30 seconds (on both first, as well as subsequent hits).  This is for our default, 6-hour timeframe views.  When cranking the timeframes up to a couple of weeks, graphite-api + InfluxDB was still faster.&lt;/li&gt;
-&lt;/ul&gt;
-Soon enough my colleagues started asking to make graphite-api + InfluxDB the default, as it was much faster in all common cases.  I flipped the switch and everybody has been happy.
-&lt;br/&gt;
-&lt;br/&gt;
-When loading a page with many dashboards, the InfluxDB machine will occasionally spike up to 500% cpu, though I rarely get to see any iowait (!), even after syncing the block cache (i just realized it&#39;ll probably still use the cache for reads after sync?)
-&lt;br/&gt;The carbon/whisper machine, on the other hand, is always fighting iowait, which could be caused by the raid 5 write amplification but the random io due to the whisper format probably has more to do with it.  Via the MAX_UPDATES_PER_SECOND I&#39;ve tried to linearize writes, with mixed success.  But I&#39;ve never gone to deep into it.  So basically &lt;b&gt;comparing write performance would be unfair in these circumstances, I am only comparing reads in these tests&lt;/b&gt;.  Despite the different storage setups, the Linux block cache should make things fair for reads.   Whisper&#39;s iowait will handicap the reads, but I always did successive runs with fully loaded PNGs to make sure the block cache was warm for reads.
-
-&lt;h4&gt;A &#34;slightly more professional&#34; benchmark&lt;/h4&gt;
-I could have stopped here, but the validation above was not very scientific.  I wanted to do a somewhat more formal benchmark, to measure read speeds (though I did not have much time so it had to be quick and easy).
-&lt;br/&gt;I wanted to compare InfluxDB vs whisper, and specifically how performance scales as you play with parameters such as number of series, points per series, and time range fetched (i.e. amount of points).  I &lt;a href=&#34;https://groups.google.com/forum/#!topic/influxdb/0VeUQCqzgVg&#34;&gt;posted the benchmark on the InfluxDB mailing list&lt;/a&gt;.  Look there for all information. I just want to reiterate the conclusion here:  I was surprised.  Because of the results above, I had assumed that InfluxDB would perform reads noticeably quicker than whisper but this is not the case.  (maybe because whisper reads are nicely sequential - it&#39;s mostly writes that suffer from the whisper format)
-&lt;br/&gt;This very much contrasts my earlier findings where the graphite-api+InfluxDB powered dashboards clearly take the lead.  I have yet to figure out why this is.  Maybe something to do with the performance of graphite-web vs graphite-api itself, gunicorn vs apache, worker configuration, or maybe InfluxDB only starts outperforming whisper as concurrency increases.  Some more investigation is definitely needed!
-
-&lt;h4&gt;Future benchmarks&lt;/h4&gt;
-The simple benchmark above was very simple to execute, as it only requires influx-cli and whisper-fetch (so you can easily check for yourself), but clearly there is a need to test more realistic scenarios with concurrent reads, and doing some write benchmarks would be nice too.
-&lt;br/&gt;We should also look into cpu and memory usage.  I have had the luxury of being able to completely ignore memory usage, but others seem to notice excessive InfluxDB memory usage.
-&lt;br/&gt;conclusion: many tests and benchmarks should happen, but I don&#39;t really have time to conduct them.  Hopefully other people in the community will take this on.
-
-&lt;h4&gt;Disk space efficiency&lt;/h4&gt;
-Last time I checked, using LevelDB I was pretty close to 24B per record (which makes sense because time, seq_no and value are all 64bit values, and each record has those 3 fields).  (this was with snappy compression enabled, so it didn&#39;t seem to give much benefit).
-&lt;br/&gt;Whisper seems to consume 12 Bytes per record - a 32bit timestamp and a 64bit float value - making it considerably more storage efficient than InfluxDB/levelDB for now.
-&lt;br/&gt;Some notes on this though:
-&lt;ul&gt;
-&lt;li&gt;whisper explicitly encodes None values, with InfluxDB those are implied (and require no space).  We have some clusters of metrics that have very sparse data, so whisper gives us a lot of overhead here, but this is different for everyone.  (note: Ceres should also be better at handling sparse data)&lt;/li&gt;
-&lt;li&gt;Whisper and Influxdb both explictly encode the timestamp for every record.  Influxdb uses 64bit so you can do very high resolution (up to microseconds), whisper is limited to per-second data.  Ceres AFAIK doesn&#39;t explicitly encode the timestamp at every record, which should also give it a space advantage.&lt;/li&gt;
-&lt;li&gt;I&#39;ve been using a data format in InfluxDB where every record is timestamp-sequence_number-value.  It currently works best overall, and so that&#39;s how the graphite ingestion plugin stores it and the graphite-influxdb plugin queries for it.  But it exacerbates the overhead of the timestamp and sequence number.
-&lt;br/&gt;We could technically use a row format where we use more variables as part of the record, storing them as columns instead of separate series, which would improve this dynamic (but currently comes with a big tradeoff in performance characteristics - see the &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/582&#34;&gt;column indexes&lt;/a&gt; ticket).
-&lt;br/&gt;Another thing is that we could technically come up with a storage format for InfluxDB that is optimized for even-spaced metrics, it wouldn&#39;t need sequence numbers, and timestamps could be implicit instead of explicit, saving a lot of space.  We could even go further and introduce types (int, etc) for values which would consume even less space.
-&lt;/ul&gt;
-&lt;br/&gt;
-It would be great if somebody with more Ceres experience could chip in here, as - in the context of space efficiency - it looks like a neat little format.
-Also, I&#39;m probably not making proper use of the compression features that InfluxDB&#39;s storage engines support.  This also requires some more looking into.
-
-
-&lt;h4&gt;State of affairs and what&#39;s coming&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;InfluxDB typically performs pretty well, but not in all cases.  More validation is needed. It wouldn&#39;t surprise me at this point if tools like hbase/Cassandra/riak clearly outperform InfluxDB, as long as we keep in mind that InfluxDB is a young project.  A year, or two, from now, it&#39;ll probably perform much better. (and then again, it&#39;s not all about raw performance.  InfluxDB&#39;s has other strengths)&lt;/li&gt;
-&lt;li&gt;A long time goal which is now a reality:  &lt;b&gt;You can use any Graphite dashboard on top of InfluxDB, as long as the data is stored in a graphite-compatible format.&lt;/b&gt;.  Again, the easiest to get running is via &lt;a href=&#34;https://github.com/vimeo/graphite-api-influxdb-docker&#34;&gt;graphite-api-influxdb-docker&lt;/a&gt;.  There are two issues to be mentioned, though:
-&lt;ul&gt;
-&lt;li&gt;graphite-influxdb needs to query InfluxDB for metadata, and this &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/884&#34;&gt;can be slow&lt;/a&gt;.  If you have millions of metrics, it can take tens of seconds before querying for the data even starts.  I am trying to work with the InfluxDB people on a solution.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/brutasse/graphite-api/issues/57&#34;&gt;graphite-api doesn&#39;t work with metric id&#39;s that have equals signs in them&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;li&gt;With the 0.8 release out the door, the shard spaces/rollups/retention intervals feature will start stabilizing, so we can start supporting multiple retention intervals per metric&lt;/li&gt;
-&lt;li&gt;Because InfluxDB clustering is &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/903&#34;&gt;undergoing major changes&lt;/a&gt;, and because clustering is not a high priority for me, I haven&#39;t needed to worry about this.  I&#39;ll probably only start looking at clustering somewhere in 2015 because I have more pressing issues.&lt;/li&gt;
-&lt;li&gt;Once the new clustering system and the storage subsystem have matured (sounds like a v1.0 ~ v1.2 to me) we&#39;ll get more speed improvements and robustness.  Most of the integration work is done, it&#39;s just a matter of doing smaller improvements, bug fixes and waiting for InfluxDB to become better.  Maintaining this stack aside, I personally will start focusing more on:
-    &lt;ul&gt;
-    &lt;li&gt;per-second resolution in our data feeds, and potentially storage&lt;/li&gt;
-    &lt;li&gt;realtime (but basic) anomaly detection, realtime graphs for some key timeseries.  Adrian Cockcroft had an inspirational piece in his &lt;a href=&#34;https://vimeo.com/95064249&#34;&gt;Monitorama keynote&lt;/a&gt; about how alerts from timeseries should trigger within seconds.&lt;/li&gt;
-    &lt;li&gt;Mozilla&#39;s awesome &lt;a href=&#34;http://hekad.readthedocs.org&#34;&gt;heka&lt;/a&gt; project (this &lt;a href=&#34;https://vimeo.com/98689689&#34;&gt;heka video&lt;/a&gt; is great), which should help a lot with the above.  Also looking at &lt;a href=&#34;http://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;Etsy&#39;s kale stack&lt;/a&gt; for anomaly detection&lt;/li&gt;
-    &lt;li&gt;metrics 2.0 and making sure metrics 2.0 works well with InfluxDB.  Up to now I find the series / columns as a data model too limiting and arbitrary, it could be so much more powerful, ditto for the query language.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Can we do anything else to make InfluxDB (+graphite) faster? Yes!
-&lt;ul&gt;
-&lt;li&gt;Long term, of course, InfluxDB should have powerful enough processing functions and query syntax, so that we don&#39;t even need a graphite layer anymore.&lt;/li&gt;
-&lt;li&gt;A storage engine optimized for fixed intervals would probably help, timestamps and sequence numbers currently consume 2/3 of the record... and there&#39;s no reason to explicitly store either one in this use case.  I&#39;ve even rarely seen people make use of the sequence number in any other InfluxDB use case.  See all the remarks in the &lt;i&gt;Disk space efficiency&lt;/i&gt; section above.  Finally we could have InfluxDB have fill in None values without it doing &#34;group by&#34; (timeframe consolidation), which would shave off runtime overhead.&lt;/li&gt;
-&lt;li&gt;Then of course, there are projects to replace graphite-web/graphite-api with a Go codebase: &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;graphite-ng&lt;/a&gt; and &lt;a href=&#34;https://github.com/dgryski/carbonapi&#34;&gt;carbonapi&lt;/a&gt;.  the latter is more production ready, but depends on some custom tooling and io using protobufs.  But it performs an order of magnitude better than the python api server!  I haven&#39;t touched graphite-ng in a while, but hopefully at some point I can take it up again&lt;/li&gt;
-&lt;/ul&gt;
-&lt;li&gt;Another thing to keep in mind when switching to graphite-api + InfluxDB: you loose the graphite composer.  I have a few people relying on this, so I can either patch it to talk to graphite-api (meh), separate it out (meh) or replace it with a nicer dashboard like tessera, grafana or descartes.  (or Graph-Explorer, but it can be a bit too much of a paradigm shift).&lt;/li&gt;
-&lt;li&gt;some more InfluxDB stuff I&#39;m looking forward to:
-&lt;ul&gt;
-&lt;li&gt;binary protocol and result streaming (faster communication and responses!) (the latter might not get implemented though)&lt;/li&gt;
-&lt;li&gt;&#34;list series&#34; speed improvements (if metadata querying gets fast enough, we won&#39;t need ES anymore for metrics2.0 index)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/influxdb/influxdb/pull/635&#34;&gt;InfluxDB instrumentation&lt;/a&gt; so we actually start getting an idea of what&#39;s going on in the system, a lot of the testing and troubleshooting is still in the dark.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Tracking exceptions in graphite-api is &lt;a href=&#34;https://github.com/brutasse/graphite-api/search?q=exception&amp;type=Issues&amp;utf8=%E2%9C%93&#34;&gt;much harder than it should be&lt;/a&gt;.  Currently there&#39;s no way to display exceptions to the user (in the http response) or to even log them.  So sometimes you&#39;ll get http 500 responses and don&#39;t know why.  You can use the &lt;a href=&#34;http://graphite-api.readthedocs.org/en/latest/configuration.html#extra-sections&#34;&gt;sentry integration&lt;/a&gt; which works all right, but is clunky.  Hopefully this will be addressed soon.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;Conclusion&lt;/h4&gt;
-The graphite-influxdb stack works and is ready for general consumption.  It&#39;s easy to install and operate, and performs well.
-It is expected that InfluxDB will over time mature and ultimately meet all my &lt;a href=&#34;http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html&#34;&gt;requirements of the ideal backend&lt;/a&gt;.  It definitely has a long way to go.  More benchmarks and tests are needed.  Keep in mind that we&#39;re not doing large volumes of metrics. For small/medium shops this solution should work well, but on larger scales you will definitely run into issues.  You might conclude that InfluxDB is not for you (yet) (there are alternative projects, after all).
-&lt;br/&gt;
-&lt;br/&gt;
-Finally, a closing thought:
-&lt;br/&gt;&lt;i&gt;Having graphs and dashboards that look nice and load fast is a good thing to have, but keep in mind that graphs and dashboards should be a last resort.  It&#39;s a solution if all else fails.  The fewer graphs you need, the better you&#39;re doing.
-&lt;br/&gt;How can you avoid needing graphs?  Automatic alerting on your data.
-&lt;br/&gt;
-&lt;br/&gt;I see graphs as a temporary measure: they provide headroom while you develop an understanding of the operational behavior of your infrastructure, conceive a model of it, and implement the alerting you need to do troubleshooting and capacity planning.  Of course, this process consumes more resources (time and otherwise), and these expenses are not always justifiable, but I think this is the ideal case we should be working towards.&lt;/i&gt;
-
-&lt;br/&gt;
-&lt;br/&gt;
-Either way, good luck and have fun!
 </description>
+      
     </item>
     
     <item>
       <title>Graphite &amp; Influxdb intermezzo: migrating old data and a more powerful carbon relay</title>
-      <link>http://dieter.plaetinck.be/post/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</link>
+      <link>http://localhost:1313/posts/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</link>
       <pubDate>Sat, 20 Sep 2014 15:18:32 -0400</pubDate>
       
-      <guid>graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay</guid>
-      <description>&lt;!--more--&gt;
-
-&lt;h4&gt;Migrating data from whisper into InfluxDB&lt;/h4&gt;
-
-&lt;i&gt;&#34;How do i migrate whisper data to influxdb&#34;&lt;/i&gt; is a question that comes up regularly, and I&#39;ve always replied it should be easy to write a tool
-to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# whisper dir without trailing slash.&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;wsp_dir&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;/opt/graphite/storage/whisper
-&lt;span style=&#34;color: #19177C&#34;&gt;start&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;date&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;sep 17 6am&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;+%s&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;end&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;date&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;sep 17 12pm&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;+%s&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;db&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;graphite
-&lt;span style=&#34;color: #19177C&#34;&gt;pipe_path&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;mktemp&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-u&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-mkfifo&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$pipe_path&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;function&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;influx_updater&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;influx-cli&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-db&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$db&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-async&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;lt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$pipe_path&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-influx_updater&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;amp;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;while&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;read&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;wsp;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;series&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;basename&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;wsp&lt;/span&gt;//&lt;span style=&#34;color: #AA5D1F; font-weight: bold&#34;&gt;\/&lt;/span&gt;/.&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;.wsp&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;updating &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$series&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; ...&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;whisper-fetch.py&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;--from&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$start&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;--until&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$end&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt;/&lt;span style=&#34;color: #19177C&#34;&gt;$wsp&lt;/span&gt;.wsp&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-v&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;None$&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print &amp;quot;insert into \&amp;quot;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$series&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;\&amp;quot; values (&amp;quot;$1&amp;quot;000,1,&amp;quot;$2&amp;quot;)&amp;quot;}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$pipe_path&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;done&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;lt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;lt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;find&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-name&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;*.wsp&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;sed&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;s#&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$wsp_dir&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/##&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;s/.wsp&lt;/span&gt;$&lt;span style=&#34;color: #BA2121&#34;&gt;//&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-
-
-It relies on the recently introduced asynchronous inserts feature of &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt; - which commits inserts in batches to improve the speed - and the whisper-fetch tool.
-&lt;br/&gt;
-You could probably also write a Go program using the unofficial &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt; bindings and the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb Go client library&lt;/a&gt;.  But I wanted to keep it simple.  Especially when I found out that whisper-fetch is not a bottleneck: starting whisper-fetch, and reading out - in my case - 360 datapoints of a file always takes about 50ms, whereas InfluxDB at first only needed a few ms to flush hundreds of records, but that soon increased to seconds.
-&lt;br/&gt;Maybe it&#39;s a bug in my code, I didn&#39;t test this much, because I didn&#39;t need to; but people keep asking for a tool so here you go.  Try it out and maybe you can fix a bug somewhere.  Something about the write performance here must be wrong.
-
-&lt;h4&gt;A more powerful carbon-relay-ng&lt;/h4&gt;
-&lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt; received a bunch of love and has been a great help in my graphite+influxdb experiments.
-&lt;p&gt;
-&lt;a href=&#34;http://dieter.plaetinck.be/files/carbon-relay-web-ui.png&#34;&gt;&lt;img width=&#34;441&#34; src=&#34;http://dieter.plaetinck.be/files/carbon-relay-web-ui.png&#34; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-Here&#39;s what changed:
-&lt;ul&gt;
-&lt;li&gt;First I made it so that you can adjust routes at runtime while data is flowing through, via a telnet interface.&lt;/li&gt;
-&lt;li&gt;Then &lt;a href=&#34;https://github.com/pauloconnor&#34;&gt;Paul O&#39;Connor&lt;/a&gt; built an embedded web interface to manage your routes in an easier and prettier way (pictured above)&lt;/li&gt;
-&lt;li&gt;The relay now also emits performance metrics via statsd (I want to make this better by using &lt;a href=&#34;https://github.com/rcrowley/go-metrics&#34;&gt;go-metrics&lt;/a&gt; which will hopefully get &lt;a href=&#34;https://github.com/rcrowley/go-metrics/issues/68&#34;&gt;expvar support&lt;/a&gt; at some point - any takers?).&lt;/li&gt;
-&lt;li&gt;Last but not least, I borrowed &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng/tree/master/nsqd&#34;&gt;the diskqueue&lt;/a&gt; code from &lt;a href=&#34;http://nsq.io/&#34;&gt;NSQ&lt;/a&gt; so now we can also spool to disk to bridge downtime of endpoints and re-fill them when they come back up&lt;/li&gt;
-&lt;/ul&gt;
-Beside our metrics storage, I also plan to put our anomaly detection (currently playing with &lt;a href=&#34;http://hekad.readthedocs.org/en/v0.7.1/&#34;&gt;heka&lt;/a&gt; and &lt;a href=&#34;http://codeascraft.com/2013/06/11/introducing-kale/&#34;&gt;kale&lt;/a&gt;) and &lt;a href=&#34;https://github.com/vimeo/carbon-tagger&#34;&gt;carbon-tagger&lt;/a&gt; behind the relay, centralizing all routing logic, making things more robust, and simplifying our system design.  The spooling should also help to deploy to our metrics gateways at other datacenters, to bridge outages of datacenter interconnects.
-&lt;br/&gt;
-&lt;br/&gt;
-I used to think of carbon-relay-ng as the python carbon-relay but on steroids,
-now it reminds me more of something like nsqd but with an ability to make packet routing decisions by introspecting the carbon protocol,
-&lt;br/&gt;or perhaps Kafka but much simpler, single-node (no HA), and optimized for the domain of carbon streams.
-&lt;br/&gt;I&#39;d like the HA stuff though, which is why I spend some of my spare time figuring out the intricacies of the increasingly popular &lt;a href=&#34;http://raftconsensus.github.io/&#34;&gt;raft&lt;/a&gt; consensus algorithm.   It seems opportune to have a simpler Kafka-like thing, in Go, using raft, for carbon streams.
-(note: InfluxDB &lt;a href=&#34;https://github.com/influxdb/influxdb/pull/859&#34;&gt;might introduce such a component&lt;/a&gt;, so I&#39;m also a bit waiting to see what they come up with)
-&lt;br/&gt;
-&lt;br/&gt;
-Reminder: notably missing from carbon-relay-ng is round robin and sharding.  I believe sharding/round robin/etc should be part of a broader HA design of the storage system, as I explained in &lt;a href=&#34;http://dieter.plaetinck.be/on-graphite-whisper-and-influxdb.html&#34;&gt;On Graphite, Whisper and InfluxDB&lt;/a&gt;.  That said, both should be fairly easy to implement in carbon-relay-ng, and I&#39;m willing to assist those who want to contribute it.
-</description>
+      <guid>http://localhost:1313/posts/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</guid>
+      
+      <description></description>
+      
     </item>
     
     <item>
       <title>Influx-cli: a commandline interface to Influxdb.</title>
-      <link>http://dieter.plaetinck.be/post/influx-cli_a_commandline_interface_to_influxdb/</link>
+      <link>http://localhost:1313/posts/influx-cli_a_commandline_interface_to_influxdb/</link>
       <pubDate>Mon, 08 Sep 2014 08:36:36 -0400</pubDate>
       
-      <guid>influx-cli_a_commandline_interface_to_influxdb</guid>
+      <guid>http://localhost:1313/posts/influx-cli_a_commandline_interface_to_influxdb/</guid>
+      
       <description>&lt;p&gt;
 Time for another side project:
 &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt;,
@@ -401,442 +109,75 @@ Nothing groundbreaking, and it behaves pretty much as you would expect if you&#3
 the mysql, pgsql, vsql, etc tools before.
 &lt;br/&gt;But I did want to highlight a few interesting features.
 &lt;/p&gt;
-&lt;!--more--&gt;
-&lt;br/&gt;
-
-&lt;p&gt;
-&lt;b&gt;You can do things like user management via SQL,
-even though influxdb doesn&#39;t have an SQL interface for this.&lt;/b&gt;
-&lt;br/&gt;This is much easier than doing curl http requests!
-&lt;pre&gt;
-influx&gt; create admin test test
-influx&gt; list admin
-## 0
-                     name root
-## 1
-                     name test
-&lt;/pre&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;You can change parameters and re-bind with the new values&lt;/b&gt;
-&lt;pre&gt;
-influx&gt; \user test
-influx&gt; \pass test
-influx&gt; \db graphite
-influx&gt; bind
-&lt;/pre&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Write your variables (user, pass, host, db, ...) to ~/.influxrc&lt;/b&gt;
-&lt;pre&gt;
-influx&gt; writerc
-&lt;/pre&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;You can even do inserts via SQL, instead of http posts&lt;/b&gt;
-&lt;br&gt;I use this often.  This is very useful to script test cases for bug reports etc.
-&lt;pre&gt;
-influx&gt; create db issue-1234
-influx&gt; \db issue-1234
-influx&gt; bind
-influx&gt; insert into demo (time, value, tag) values (120000, 10, &#34;hi&#34;)
-influx&gt; insert into demo (time, value, tag) values (180000, 20, &#34;hi again&#34;)
-influx&gt; select * from demo
-## demo
-                time sequence_number               value                 tag
-       120000.000000      70001.000000                  10                &#34;hi&#34;
-       180000.000000      80001.000000                  20          &#34;hi again&#34;
-influx&gt; delete db issue-1234
-&lt;/pre&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;You can send queries on standard input, which is useful in shell commands and scripts.&lt;/b&gt;
-&lt;pre&gt;
-$ echo &#39;list series&#39; | influx-cli | wc -l
-194722
-$ influx-cli &lt;&lt;&lt; &#39;list series&#39; | wc -l
-194722
-&lt;/pre&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-But even better, &lt;b&gt;from inside an influx-cli session, you can send output from any query into any other command.&lt;/b&gt;
-&lt;br&gt;In fact you can also &lt;b&gt;write output of queries into external files.&lt;/b&gt;
-All this via familiar shell constructs
-&lt;pre&gt;
-$ influx-cli
-influx&gt; list series | wc -l
-194721
-influx&gt; list series &gt; list-series.txt
-&lt;/pre&gt;
-
-(note: the discrepancy of one line is due to &lt;a href=&#34;https://github.com/shavac/readline/issues/2&#34;&gt;the Go readline library echoing the query&lt;/a&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;You can also toggle options, such as compression or display of timings.&lt;/b&gt;
-&lt;br/&gt;This can be very useful to easily get insights of performance of different operations.
-&lt;pre&gt;
-influx&gt; \t
-timing is now true
-influx&gt; select * from foo | wc -l
-64637
-timing&gt;
-query+network: 1.288792048s
-displaying   : 457.091811ms
-influx&gt; \comp
-compression is now disabled
-influx&gt; select * from foo | wc -l
-64637
-timing&gt;
-query+network: 969.322374ms
-displaying   : 670.736018ms
-influx&gt; list series &gt;/dev/null
-timing&gt;
-query+network: 3.109178142s
-displaying   : 65.712027ms
-&lt;/pre&gt;
-&lt;br/&gt;This has enabled me to pinpoint slow operations and provide evidence when &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/884&#34;&gt;when creating tickets&lt;/a&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;b&gt;Executing queries and debugging their result data format, works too&lt;/b&gt;
-&lt;br/&gt;This is useful when you want to understand the api better or if the database gets support for new queries with a different output format that influx-cli doesn&#39;t understand yet.
-&lt;pre&gt;
-influx&gt; raw select * from foo limit 1
-([]*client.Series) (len=1 cap=4) {
- (*client.Series)(0xc20b4f0480)({
-  Name: (string) (len=51) &#34;foo&#34;,
-  Columns: ([]string) (len=3 cap=4) {
-   (string) (len=4) &#34;time&#34;,
-   (string) (len=15) &#34;sequence_number&#34;,
-   (string) (len=5) &#34;value&#34;
-  },
-  Points: ([][]interface {}) (len=1 cap=4) {
-   ([]interface {}) (len=3 cap=4) {
-    (float64) 1.410148588e+12,
-    (float64) 1,
-    (float64) 95.549995
-   }
-  }
- })
-}
-&lt;/pre&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-And that&#39;s about it.
-I&#39;ve found this to be a much easier way to interface with InfluxDB then using the web interface and curl, but YMMV.
-&lt;br/&gt;If you were wondering, this is of course built on top of the &lt;a href=&#34;https://github.com/influxdb/influxdb/tree/master/client&#34;&gt;influxdb go client library&lt;/a&gt;, which was overall pretty pleasant to work with.
-&lt;br/&gt;Some ideas for future work:
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Dieterbe/influx-cli/issues/2&#34;&gt;bulk insert performance could be better&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;once &lt;a href=&#34;https://github.com/influxdb/influxdb/issues/263&#34;&gt;influxdb can report query execution time&lt;/a&gt; and hopefully also serialization time, the timing output can be more useful.  Right now we can only measure query execution+serialization+network transfer time combined&lt;/li&gt;
-&lt;li&gt;my gut feeling says that using something like msgpack instead of json, and/or even streaming the resultset as it is being generated (instead of first building the entire result, then serializing it, then sending it over, then having the client deserialize the entire thing) could really help performance, not just here, but basically anywhere you interface with influxdb.  Though I don&#39;t have hard numbers on this yet.&lt;/li&gt;
-&lt;/p&gt;
-
 </description>
+      
     </item>
     
     <item>
       <title>Beautiful Go patterns for concurrent access to shared resources and coordinating responses</title>
-      <link>http://dieter.plaetinck.be/post/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</link>
+      <link>http://localhost:1313/posts/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</link>
       <pubDate>Sat, 26 Jul 2014 13:22:32 -0400</pubDate>
       
-      <guid>beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses</guid>
+      <guid>http://localhost:1313/posts/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</guid>
+      
       <description>&lt;p&gt;
 It&#39;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
 and needing a response that tells them whether the operation succeeded and/or other auxiliary information.
 Something centralized manages the shared state, the changes to it and the responses.
 &lt;/p&gt;
-&lt;!--more--&gt;
-
-&lt;p&gt;
-This is effectively two things.
-&lt;/p&gt;
-
-&lt;h2&gt;Pattern one: making access to thread-unsafe data structures thread safe&lt;/h2&gt;
-&lt;p&gt;
-Making modifications to thread-unsafe data (remember, maps for example are not thread safe in go) in a thread safe way, you can use a select loop that reads
-from various channels and enforces that all operations are executed serially, because only one select case can happen at the same time.
-I saw this first in &lt;a href=&#34;https://github.com/bitly/statsdaemon/blob/master/statsdaemon.go#L90&#34;&gt;bitly&#39;s statsdaemon&lt;/a&gt; and have since used this in various places, including &lt;a href=&#34;https://github.com/vimeo/statsdaemon&#34;&gt;vimeo/statsdaemon&lt;/a&gt; and &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt;, for example to route metrics (which needs read access to the routes map) while allowing changes to the routes (coming from the telnet admin interface), by having those as two cases in a select statement.  This was my first &#34;aha!&#34; moment.
-&lt;/p&gt;
-
-&lt;h2&gt;pattern two: coordinating flow of responses&lt;/h2&gt;
-&lt;p&gt;
-For the second, after (potentially time consuming) work, returning a response to the invoker, (let&#39;s say in the carbon-relay-ng case where you want to notify whether the route change succeeded) I have so far just passed on references to the admin interface session along with the request, and after completion of the work it would spawn a new goroutine that resumes the session with the given response.  Not the most elegant, but it works.
-&lt;/p&gt;
-
-&lt;p&gt;
-The other day though, I saw a very interesting pattern for this case. I don&#39;t remember where (probably one of the gophercon presentations)
-or what it&#39;s called. 
-But the idea is you can simply use one shared channel for all requests, and one shared channel for all responses.
-As long as the requesters write a request to the requests channel and then read a response from the other channel, and the coordinator first reads a request and then writes the response, no further synchronization is needed.  Here&#39;s a demo program:
-&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;package&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;main
-
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;// demo the fact that we can just use one shared req and one resp channel.&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;// as long as they are unbuffered, the synchronization works just fine.&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;import&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;import&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;sync&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;import&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;math/rand&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;import&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;var&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;requests&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;=&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;make&lt;/span&gt;(&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;chan&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #B00040&#34;&gt;int&lt;/span&gt;)
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;var&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;responses&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;=&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;make&lt;/span&gt;(&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;chan&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #B00040&#34;&gt;string&lt;/span&gt;)
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;func&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;routine(num&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #B00040&#34;&gt;int&lt;/span&gt;,&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;wg&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;sync.WaitGroup)&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;{
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;// pretend this is a routine that&amp;#39;s doing something, like serving a user session&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;// but then we need to modify some shared state&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;time.Sleep(time.Duration(rand.Intn(&lt;span style=&#34;color: #666666&#34;&gt;100&lt;/span&gt;))&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;time.Millisecond)
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;requests&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;num
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;resp&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:=&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;-&lt;/span&gt;responses
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;fmt.Printf(&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;routine %d gets response: %s\n&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;num,&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;resp)
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;wg.Done()
-}
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;func&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;coordinator()&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;{
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;for&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;{
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;req&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:=&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;-&lt;/span&gt;requests
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;// in here, you can do whatever modifications to shared state you need.&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;time.Sleep(time.Duration(rand.Intn(&lt;span style=&#34;color: #666666&#34;&gt;100&lt;/span&gt;))&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;time.Millisecond)&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;// simulate some heavy lifting&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;responses&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;fmt.Sprintf(&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;this return value is meant for routine %d&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;req)
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;}
-}
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;func&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;main()&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;{
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;go&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;coordinator()
-
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;var&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;wg&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;sync.WaitGroup
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;for&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;i&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:=&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;i&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;lt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;10&lt;/span&gt;;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;i&lt;span style=&#34;color: #666666&#34;&gt;++&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;{
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;wg.Add(&lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;)
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;go&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;routine(i,&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&lt;/span&gt;wg)
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;}
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;wg.Wait()
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;close&lt;/span&gt;(requests)
-}
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;a href=&#34;http://play.golang.org/p/32BSXT0xhN&#34;&gt;code on Go playground&lt;/a&gt;
-
-&lt;p&gt;
-At first glance, it looked as if the seemingly arbitrary reading and writing from/to channels without explicit synchronization would introduce race conditions, with routines getting
-the response meant for other routines.  But after some reasoning, it becomes apparent that 
-the &#34;channel operation as synchronization&#34; keeps everything under control, in a pretty elegant way.
-&lt;b&gt;There is nothing explicit to assure the routines get their response, and not the response meant for another routine.
-Instead, it just flows naturally and implicitly from the ordering of the blocked channel operations.&lt;/b&gt;.
-Another &#34;aha!&#34; moment for me.  I&#39;ve heard &#34;use channel operations for synchronization&#34; often enough, and this is the most
-beautiful example of it I&#39;ve come across so far.  The routines are blocked on channel reads and writes, but when a channel operation occurs, that&#39;s where the respective goroutines unblock, and everything just works the way it&#39;s supposed to.  How elegant!
-&lt;/p&gt;
-
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;
-Maybe these patterns are obvious to you, maybe they are widely known patterns.
-But I think as you evolve from go rookie to experienced developer (and often need to wrap your head around new concepts and approaches)
-you will encounter some interesting patterns and also have your &#34;aha!&#34; moments, so I hope this will help someone.
-&lt;/p&gt;
-
-&lt;p&gt;
-I&#39;ve been using the first pattern in a few places, I haven&#39;t used the second one yet, but I know some places where I can apply it and simplify some code.
-Take for example this &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng/pull/7&#34;&gt;pull request to add a web UI to carbon-relay-ng&lt;/a&gt;, now the metrics-router, the admin telnet interface, &lt;b&gt;and&lt;/b&gt; the new http interface will all need access to the routes map.  I&#39;m looking forward to implement the second pattern, simplifying the code while making it more generic at the same time.
-&lt;/p&gt;
 </description>
+      
     </item>
     
     <item>
       <title>On Graphite, Whisper and InfluxDB</title>
-      <link>http://dieter.plaetinck.be/post/on-graphite-whisper-and-influxdb/</link>
+      <link>http://localhost:1313/posts/on-graphite-whisper-and-influxdb/</link>
       <pubDate>Sun, 18 May 2014 13:22:32 -0400</pubDate>
       
-      <guid>on-graphite-whisper-and-influxdb</guid>
+      <guid>http://localhost:1313/posts/on-graphite-whisper-and-influxdb/</guid>
+      
       <description>&lt;h4&gt;Graphite, and the storage Achilles heel&lt;/h4&gt;
 
 Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.
 &lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).
-&lt;!--more--&gt;
-&lt;ul&gt;
-&lt;li&gt;It can&#39;t keep all file descriptors in memory so there&#39;s a lot of overhead in constantly opening, seeking, and closing files, especially since usually one write comes in for all metrics at the same time.
-&lt;/li&gt;
-&lt;li&gt;Using the rollups feature (different data resolutions based on age) causes a lot of extra IO.&lt;/li&gt;
-&lt;li&gt;The format is also simply not optimized for writes.  Carbon, the storage agent that sits in front of whisper has a feature to batch up writes to files to make them more sequential but this doesn&#39;t seem to help much.&lt;/li&gt;
-&lt;li&gt;Worse, due to various &lt;a href=&#34;https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md#what-problems-have-we-had&#34;&gt;implementation details&lt;/a&gt; the carbon agent is surprisingly inefficient and even cpu-bound.  People often run into cpu limitations before they hit the io bottleneck.  Once the writeback queue hits a certain size, carbon will blow up.&lt;/li&gt;
-&lt;/ul&gt;
-Common recommendations are to &lt;a href=&#34;http://bitprophet.org/blog/2013/03/07/graphite/&#34;&gt;run multiple carbon agents&lt;/a&gt; and
-&lt;a href=&#34;http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5&#34;&gt;running graphite on SSD drives&lt;/a&gt;.
-&lt;br/&gt;If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though &lt;a href=&#34;https://github.com/jssjr/carbonate/&#34;&gt;carbonate&lt;/a&gt; makes this easier.  This is a path I simply don&#39;t want to go down.
-&lt;br/&gt;
-&lt;br/&gt;
-&lt;p&gt;
-&lt;i&gt;These might be reasonable solutions based on the circumstances (often based on short-term local gains), but I believe as a community we should solve the problem at its root, so that everyone can reap the long term benefits.
-&lt;/i&gt;
-&lt;/p&gt;
-&lt;br/&gt;
-
-In particular, &lt;a href=&#34;http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d&#34;&gt;running Ceres instead of whisper&lt;/a&gt;, is only a slight improvement, that suffers from most of the same problems.  I don&#39;t see any good reason to keep working on Ceres, other than perhaps that it&#39;s a fun exercise.   This probably explains the slow pace of development.
-&lt;br/&gt;However, many mistakenly believe Ceres is &#34;the future&#34;.
-&lt;br/&gt;&lt;a href=&#34;http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage&#34;&gt;Switching to LevelDB&lt;/a&gt; seems much more sensible but IMHO still doesn&#39;t cut it as a general purpose, scalable solution.
-
-&lt;h4&gt;The ideal backend&lt;/h4&gt;
-I believe we can build a backend for graphite that
-&lt;ul&gt;
-&lt;li&gt;can easily scale from a few metrics on my laptop in power-save mode to millions of metrics on a highly loaded cluster&lt;/li&gt;
-&lt;li&gt;supports nodes joining and leaving at runtime and automatically balancing the load across them&lt;/li&gt;
-&lt;li&gt;assures high availability and heals itself in case of disk or node failures&lt;/li&gt;
-&lt;li&gt;is simple to deploy.  think: just run an executable that knows which directories it can use for storage, elasticsearch-style automatic clustering, etc.&lt;/li&gt;
-&lt;li&gt;has the right read/write optimizations.  I&#39;ve never seen a graphite system that is not write-focused, so something like &lt;a href=&#34;http://en.wikipedia.org/wiki/Log-structured_merge-tree&#34;&gt;LSM trees&lt;/a&gt; seems to make a lot of sense.&lt;/li&gt;
-&lt;li&gt;can leverage cpu resources (e.g. for compression)&lt;/li&gt;
-&lt;li&gt;provides a more natural model for phasing out data.  Optional, runtime-changeable rollups.  And an age limit (possibly, but not necessarily round robin)
-&lt;/ul&gt;
-
-While we&#39;re at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.
-&lt;br/&gt;And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.
-
-&lt;h4&gt;InfluxDB&lt;/h4&gt;
-
-There&#39;s a lot of databases that you could hook up to graphite.
-riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.
-
-Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.
-I&#39;m personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.
-&lt;br/&gt;
-&lt;br/&gt;
-InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.
-In particular, installing it is a breeze (no dependencies), it&#39;s specifically built for timeseries (not based on a general purpose database),
-which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.
-And they&#39;re in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I&#39;m pretty confident that these guys can pull off something big.
-&lt;br/&gt;
-&lt;br/&gt;
-Technically, InfluxDB is a &#34;timeseries, metrics, and analytics&#34; databases with use cases well beyond graphite and even technical operations.
-Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.
-
-
-&lt;h4&gt;Graphite + InfluxDB&lt;/h4&gt;
-
-InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use &lt;a href=&#34;http://grafana.org/&#34;&gt;Grafana&lt;/a&gt;), which means at some point you could completely swap graphite for InfluxDB.
-
-However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.
-So here&#39;s how my setup currently works:
-
-&lt;ul&gt;
-&lt;li&gt;
-&lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt; is a carbon relay in Go.  
-It&#39;s a pretty nifty program to partition and manage carbon metrics streams.  I use it in front of our traditional graphite system, and have it stream - in realtime - a copy of a subset of our metrics into InfluxDB.  This way I basically have our unaltered Graphite system, and in parallel to it, InfluxDB, containing a subset of the same data.
-&lt;br/&gt;With a bit more work it will be a high performance alternative to the python carbon relay, allowing you to manage your streams on the fly.
-It doesn&#39;t support consistent hashing, because CH should be part of a strategy of a highly available storage system (see requirements above), using CH in the relay still results in a poor storage system, so there&#39;s no need for it.
-&lt;/li&gt;
-&lt;li&gt;I contributed the code to InfluxDB to make it listen on the carbon protocol.  So basically, for the purpose of ingestion, InfluxDB can look and act just like a graphite server.  Anything that can write to graphite, can now write to InfluxDB.  (assuming the plain-text protocol, it doesn&#39;t support the pickle protocol, which I think is a thing to avoid anyway because almost nothing supports it and you can&#39;t debug what&#39;s going on)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/brutasse/graphite-api&#34;&gt;graphite-api&lt;/a&gt; is a fork/clone of graphite-web, stripped of needless dependencies, stripped of the composer.  It&#39;s conceived for many of the same reasons behind &lt;a href=&#34;http://dieter.plaetinck.be/graphite-ng_a-next-gen-graphite-server-in-go.html&#34;&gt;graphite-ng&lt;/a&gt; (graphite technical debt, slow development pace, etc) though it doesn&#39;t go to such extreme lengths and for now focuses on being a robust alternative for the graphite server, api-compatible, trivial to install and with a faster pace of development.
-&lt;/li&gt;
-&lt;li&gt;
-That&#39;s where &lt;a href=&#34;https://github.com/vimeo/graphite-influxdb&#34;&gt;graphite-influxdb&lt;/a&gt; comes in.  It hooks InfluxDB into graphite-api, so that you can query the graphite api, but using data in InfluxDB.
-It should also work with the regular graphite, though I&#39;ve never tried.  (I have no incentive to bother with that, because I don&#39;t use the composer.  And I think it makes more sense to move the composer into a separate project anyway).
-&lt;/li&gt;
-&lt;/ul&gt;
-
-With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.
-Later i might do more extensive benchmarking and acceptance testing.
-&lt;br/&gt;
-&lt;br/&gt;
-If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live &#34;backup&#34;.
-We&#39;ll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I&#39;m really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)
-
-&lt;br/&gt;
-&lt;br/&gt;To be continued..
-
 </description>
+      
     </item>
     
     <item>
       <title>Pixie: simple photo management using directory layouts and tags.</title>
-      <link>http://dieter.plaetinck.be/post/pixie/</link>
+      <link>http://localhost:1313/posts/pixie/</link>
       <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
       
-      <guid>pixie</guid>
+      <guid>http://localhost:1313/posts/pixie/</guid>
+      
       <description>So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
 that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
-&lt;!--more--&gt;
-&lt;br/&gt;
-&lt;br/&gt;I couldn&#39;t find a tool that I liked, so I rolled my own: &lt;a href=&#34;https://github.com/Dieterbe/pixie&#34;&gt;Pixie&lt;/a&gt;.
-&lt;br/&gt;
-It gives you vim-like keybindings to navigate pictures, create edits (stored in a &#34;mirror directory&#34;) and add/remove tags to pictures.  (Because n:m tag relationships are basically a must for organizing things and don&#39;t work on any common filesystem)
-To generate &#34;album&#34; directories, just define which tags they should(n&#39;t) match and run the script that synchronizes an export directory by symlinking (or resizing) the correct files into them.
-Note the source directory stays unaltered so you can easily keep syncing with devices and/or people.
-&lt;br/&gt;What used to be a pain in the butt for me is now a pretty pleasant experience.
-&lt;br/&gt;Does this workflow make sense to you? Is this useful to you? Why (not) ?
 </description>
+      
     </item>
     
     <item>
       <title>Graphite-ng: A next-gen graphite server in Go.</title>
-      <link>http://dieter.plaetinck.be/post/graphite-ng_a-next-gen-graphite-server-in-go/</link>
+      <link>http://localhost:1313/posts/graphite-ng_a-next-gen-graphite-server-in-go/</link>
       <pubDate>Sat, 07 Sep 2013 20:54:20 -0400</pubDate>
       
-      <guid>graphite-ng_a-next-gen-graphite-server-in-go</guid>
+      <guid>http://localhost:1313/posts/graphite-ng_a-next-gen-graphite-server-in-go/</guid>
+      
       <description>&lt;p&gt;
 I&#39;ve been a &lt;a href=&#34;https://github.com/graphite-project/&#34;&gt;graphite&lt;/a&gt; contributor for a while (and still am).  It&#39;s a &lt;i&gt;great&lt;/i&gt; tool for timeseries metrics.
 Two weeks ago I started working on &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;Graphite-ng&lt;/a&gt;:
 it&#39;s somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in &lt;a href=&#34;http://golang.org&#34;&gt;Golang&lt;/a&gt;.
 The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #A45A77&#34;&gt;/render/&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;?&lt;/span&gt;target&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;sum(scale(stats.web2,&lt;span style=&#34;color: #666666&#34;&gt;5.12&lt;/span&gt;),derivative(stats.web2))
-&lt;/pre&gt;&lt;/div&gt;
-
+{{&lt; highlight &#34;javascript&#34; &#34;style=default&#34; &gt;}}
+/render/?target=sum(scale(stats.web2,5.12),derivative(stats.web2))
+{{&lt; /highlight &gt;}}
 &lt;p&gt;
 I.e. it lets you retrieve your timeseries, processed by function pipelines which are setup on the fly based on a spec in your http/rest arguments.
 Currently it only fetches metrics from text files but I&#39;m working on decent metrics storage as well.
 &lt;/p&gt;
-&lt;!--more--&gt;
-
-&lt;p&gt;
-There&#39;s a few reasons why I decided to start a new project from scratch:
-&lt;ul&gt;
-&lt;li&gt;With graphite, it&#39;s a whole ordeal to get all components properly installed.  Deploying in production environments is annoying and even more so
-when you just want a graphite setup on your personal netbook.&lt;/li&gt;
-&lt;li&gt;the graphite development process slows contributors down a lot.  A group of 3rd/4th generation maintainers jointly manages the project, but it&#39;s hard to get big changes through,
-because they (understandably) don&#39;t feel authoritative enough to judge those changes and the predecessors have disappeared or are too busy with other things.  And also ...&lt;/li&gt;
-&lt;li&gt;there&#39;s a high focus on backwards compatibility, which can be a good thing, but it&#39;s hard to get rid of old design mistakes,
-especially when fixing unclear (but arguably broken) early design decisions (or oversights) lead to different outputs&lt;/li&gt;
-&lt;li&gt;Graphite suffers feature creep: it has an events system, a PNG renderer, an elaborate composer web UI, etc.
-There&#39;s a lot of internal code dependencies holding you back from focusing on a specific problem&lt;/li&gt;
-&lt;li&gt;Carbon (the metrics daemon) has a pretty hard performance and scalability ceiling.
-&lt;a href=&#34;https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md&#34;&gt;Peter&#39;s article explains this well&lt;/a&gt;; I think we&#39;ll need some form of
-rewrite.   Peter suggests some solutions but they are basically workarounds for Python&#39;s shortcomings.  I&#39;m also thinking of using &lt;a href=&#34;http://pypy.org/&#34;&gt;pypy&lt;/a&gt;.
-But last time I checked pypy just wasn&#39;t there yet.&lt;/li&gt;
-&lt;li&gt;I want to become a good Go programmer&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;i&gt;Note: the Graphite project is still great&lt;/i&gt;, the people managing do good work, but it&#39;s fairly natural for a code base that large and complicated
-to end up in this situation.&lt;i&gt;I&#39;m not at all claiming graphite-ng is, or ever will be better&lt;/i&gt; but I need a fresh start to try some disruptive ideas,
-using Go means having a runtime very suited for concurrency and parallelism, you can compile the whole thing down into a single executable file,
-and its performance looks promising.  Leaving out the non-essentials (see below) allows for an elegant and surprisingly small, hackable code base.
-&lt;/p&gt;
-
-&lt;p&gt;
-The API server I developed sets up a processing pipeline as directed by your query: every processing function runs in a goroutine
-for concurrency and the metrics flow through using Go channels.  It literally compiles a program and executes it.  You can add your own functions
-to collect, process, and return metrics by writing simple plugins.
-&lt;br/&gt;As for timeseries storage, for now it uses simple text files,
-but I&#39;m experimenting and thinking what would be the best metric store(s) that works on small scale
-(personal netbook install) to large scale (&#34;I have millions of metrics that need to be distributed across nodes,
-the system should be HA and self-healing in failure scenarios, easily maintainable, and highly performant&#34;) and is still easy to deploy, configure and run.
-Candidates are &lt;a href=&#34;https://github.com/kisielk/whisper-go&#34;&gt;whisper-go&lt;/a&gt;, &lt;a href=&#34;https://code.google.com/p/kairosdb/&#34;&gt;kairosdb&lt;/a&gt;,
-my own &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng/tree/master/carbon-es&#34;&gt;elasticsearch experiment&lt;/a&gt; etc.
-&lt;br/&gt;I won&#39;t implement rendering images, because I think client-side rendering using something like &lt;a href=&#34;https://github.com/vimeo/timeserieswidget&#34;&gt;timeserieswidget&lt;/a&gt;
-is superior.  I can also leave out events because &lt;a href=&#34;https://github.com/Dieterbe/anthracite/&#34;&gt;anthracite&lt;/a&gt; already does that.
-There&#39;s a ton of dashboards out there (&lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;graph-explorer&lt;/a&gt;, &lt;a href=&#34;https://github.com/obfuscurity/descartes&#34;&gt;descartes&lt;/a&gt;, &lt;a href=&#34;http://graphite.readthedocs.org/en/1.0/tools.html&#34;&gt;etc&lt;/a&gt;) so that can be left out as well.
-&lt;/p&gt;
-
-For more information, see &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;the Graphite-ng homepage&lt;/a&gt;.
-&lt;br/&gt;
-&lt;br/&gt;PS: props to &lt;a href=&#34;http://felixge.de/&#34;&gt;Felix Geisendorfer&lt;/a&gt; who suggested a graphite clone in Go first,
-it seemed like a huge undertaking but the right thing to do, I had some time so I went for it!
 </description>
+      
     </item>
     
   </channel>

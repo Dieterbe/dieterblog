@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">Why rewriting git history? And why should commits be in imperative present tense? | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="Why rewriting git history? And why should commits be in imperative present tense? | Dieter&#39;s blog" />
+<meta name="twitter:title" content="Why rewriting git history? And why should commits be in imperative present tense? | Dieter&#39;s blog" />
+<meta itemprop="name" content="Why rewriting git history? And why should commits be in imperative present tense? | Dieter&#39;s blog" />
+<meta name="application-name" content="Why rewriting git history? And why should commits be in imperative present tense? | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2011-03-05T18:27:35-0400 />
+    <meta property="article:published_time" content=2011-03-05T18:27:35-0400 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Why rewriting git history? And why should commits be in imperative present tense?",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2011-03-05",
+        "description": "",
+        "wordCount":  942 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2011-03-05",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/why-rewriting-git-history-and-why-commits-imperative-present-tense/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Why rewriting git history? And why should commits be in imperative present tense?</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2011-03-05T18:27:35-04:00" itemprop="datePublished"> 5 Mar 2011 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <h3>Why rewriting git history?</h3>
+<p>
+Just like source code git history gets mostly read and relatively infrequently written.
+<br/>You read history when you want to see what has changed, when searching a bug, what the difference is between branches, and so on.
+<br/>The argument of "I want the history to look like exactly how it really happened" is flawed, because very often your history is suboptimal (you commit a feature, and shortly afterwards you commit a fix for that feature, or a commit that contains separate logical changes/bugfixes)
+<br/>This makes history more complicated to read then it should be, so for all the folks who will ever look back at your history (even if you think that will only be yourself) a clean history is more easy to "get", just like clean source code.
+<br/>Also, part of the awesomeness of git is that juggling with features (needed for debugging, trying things out, ..) in your code is so flexible (see the git commit/branch model), but if you have logical changes spread over multiple commits, or one commit containing multiple logical changes, this gets painful very quickly.
+<br/>Once you figure out history rewriting (and it's pretty easy to learn, really!) it only costs a little time to clean up your history, which will pay off in a much greater extent for every time you or somebody else wants to look at, or needs to work <i>with</i> it. (again, just like source code itself!)
+<br/>This also means that you don't need to spend so much time thinking about your commit messages for commits that are merely fixups or small additions to other logical changes.  Because those will be squashed into the other commits anyway.
+I usually commit frequently, but end up squashing many commits together, my commit log easily gets compressed by a factor two or more.  The less history, the better. (just like source code!)
+<br/>The commits you actually push (especially when pushing to a master branch) should of course be clean, accuractly described and with correct author information, for obvious reasons such as readability.
+</p>
+<p>
+Note that there is some kind of <i>paradox</i>: you can only achieve "perfect history" if your commits are well-tested and every introduced feature has no bugs (has all bugfix commits squashed into it), but at the same time, you can only properly expose new code by making it public, and it only gets widely used and tested if it's in your main (master) branch.
+<br/>This is one of the reasons why a workflow model such as one based on topic branches (aka feature branches) works: you see, git by default doesn't allow non-fast-forward pushes.
+Because you obviously don't want to break the history of other people following your stable (master branch) development.  So once you push to master, it should usually be there for good.
+<br/>As far as I can see, it is accepted in most projects (those run by folks with git expertise?) to push non-fast-forward to topic branches.  The idea being a topic branch is a "work in progress" branch, it is made public so multiple people can review/work on it.  Based on that work/review, its history will often get rewritten through a non-fast-forward push.  And if you're following/working on such a branch, you should be clever enough to deal with changed history.
+<br/>So, a topic branch allows you to make changes public, get feedback, clean up the history of the patchset you (and maybe others) are working on, and when satisfied, you can push to master.
+<br/>There is still a chance you'll later need to push bugfixes to master, but this will happen much more infrequently, so while there is no perfect workflow model that creates perfect history (in master) combined with perfect usability (no need to handle non-fastforward pushes) I find this model brings a quite good compromise.
+</p>
+
+<p>
+To paraphrase, I would say:
+<br/><i>You should care about clean vcs history for the same reasons you should care about clean code</i>.
+<br/>Just like using git is good to progressively help reaching better software, so is git history rewriting good for progressively reaching a better git history.  Version control on top of version control, if you will.  A very crude form of version control but I don't think it needs to be any more advanced then this.
+</p>
+
+<h3>Why should I write my commits in imperative present tense ('do foo') rather then past tense ('did foo')?</h3>
+<p>
+Git developers command doing this (at least for the <a href="http://repo.or.cz/w/git.git">git project</a>), but they did not document <em>why</em>'s.
+Some commonly cited reasons:
+<ul>
+<li>Consistency.  That's how it is in many projects (including git itself). Also git tools that generate commits (like git merge or git revert) do it.</li>
+<li>It's usually shorter</li>
+<li>You can name commits more consistently with titles of tickets in your issue/feature tracker (which don't use past tense, although sometimes future)</li>
+</ul>
+Another reason I came up with: people not only read history to know "what happened to this codebase",
+but also to answer questions like "what happens when I cherry-pick this commit", or "what kind of new things will happen to my code base because of these commits I may or may not merge in the future".
+(Note that these are questions about the past,current and future)
+This is more a subjective topic, but I feel that the best way to capture this time-independence of a commit is to write down as time-agnostic as possible,
+and something like 'do foo' (which could be 'do foo in the future', for instance) is more generic then something with a sense of time hardwired in it ("did foo" or "will do foo")
+</p>
+<p>
+See also
+<ul>
+<li><a href="http://git.kernel.org/?p=git/git.git;a=blob;f=Documentation/SubmittingPatches;h=ece3c77482b3ff006b973f1ed90b708e26556862;hb=HEAD">Git contributor guidelines</a></li>
+<li><a href="http://progit.org/book/ch5-2.html">ProGit: contributing to a project</a></li>
+<li><a href="http://en.wikibooks.org/wiki/Git/Introduction#Good_commit_messages">WikiBooks Git introduction</a></li>
+</ul>
+</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

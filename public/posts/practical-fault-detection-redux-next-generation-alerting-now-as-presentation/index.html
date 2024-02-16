@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">Practical fault detection: redux. Next-generation alerting now as presentation | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="Practical fault detection: redux. Next-generation alerting now as presentation | Dieter&#39;s blog" />
+<meta name="twitter:title" content="Practical fault detection: redux. Next-generation alerting now as presentation | Dieter&#39;s blog" />
+<meta itemprop="name" content="Practical fault detection: redux. Next-generation alerting now as presentation | Dieter&#39;s blog" />
+<meta name="application-name" content="Practical fault detection: redux. Next-generation alerting now as presentation | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2016-12-10T19:13:03Z />
+    <meta property="article:published_time" content=2016-12-10T19:13:03Z />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Practical fault detection: redux. Next-generation alerting now as presentation",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2016-12-10",
+        "description": "",
+        "wordCount":  538 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2016-12-10",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/practical-fault-detection-redux-next-generation-alerting-now-as-presentation/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Practical fault detection: redux. Next-generation alerting now as presentation</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2016-12-10T19:13:03&#43;00:00" itemprop="datePublished"> 10 Dec 2016 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>This summer I had the opportunity to present my <a href="/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/">practical fault detection</a> concepts and <a href="http://dieter.plaetinck.be/post/practical-fault-detection-on-timeseries-part-2/">hands-on approach</a> as conference presentations.</p>
+<p>First at <a href="http://conferences.oreilly.com/velocity/vl-ca-2016/public/schedule/detail/49335">Velocity</a> and then at <a href="https://www.usenix.org/conference/srecon16europe/program/presentation/plaetinck">SRECon16 Europe</a>.  The latter page also contains the recorded video.</p>
+<p><img src="http://dieter.plaetinck.be/files/poor-mans-fault-detection.png" alt="image"></p>
+<p>If you&rsquo;re interested at all in tackling non-trivial timeseries alerting use cases (e.g. working with seasonal or trending data) this video should be useful to you.</p>
+<p>It&rsquo;s basically me trying to convey in a concrete way why I think the big-data and math-centered algorithmic approaches come with a variety of problems making them unrealistic and unfit,
+whereas the real breakthroughs happen when tools recognize the symbiotic relationship between operators and software, and focus on supporting a collaborative, iterative process to managing alerting over time. There should be a harmonious relationship between operator and monitoring tool, leveraging the strengths of both sides, with minimal factors harming the interaction.
+From what I can tell, <a href="http://bosun.org/">bosun</a> is pioneering this concept of a modern alerting IDE and is far ahead of other alerting tools in terms of providing high alignment between alerting configuration, the infrastructure being monitored, and individual team members, which are all moving targets, often even fast moving.  In my experience this results in high signal/noise alerts and a happy team.
+(according to Kyle, the bosun project leader, my take <a href="https://twitter.com/kylembrandt/status/804409406846746624">is a useful one</a>)</p>
+<p>That said, figuring out the tool and using it properly has been, and remains, rather hard.  I know many who rather not fight the learning curve.  Recently the bosun team has been making strides at making it easier for newcomers -
+e.g. <a href="https://github.com/bosun-monitor/bosun/pull/1817">reloadable configuration</a> and <a href="https://grafana.net/plugins/bosun-app">Grafana integration</a> - but there is lots more to do.
+Part of the reason is that some of the UI tabs aren&rsquo;t implemented for non-opentsdb databases and integrating Graphite for example into the tag-focused system that is bosun, is bound to be a bit weird.  (that&rsquo;s on me)</p>
+<p>For an interesting juxtaposition, we released <a href="http://docs.grafana.org/guides/whats-new-in-v4/">Grafana v4 with alerting functionality</a> which approaches the problem from the complete other side: simplicity and a unified dashboard/alerting workflow first, more advanced alerting methods later.  I&rsquo;m doing what I can to make the ideas of both projects converge, or at least make the projects take inspiration from each other and combine the good parts. (just as I hope to bring the ideas behind <a href="http://vimeo.github.io/graph-explorer/">graph-explorer</a> into Grafana, eventually&hellip;)</p>
+<p>Note:
+One thing that somebody correctly pointed out to me, is that I&rsquo;ve been inaccurate with my terminology.
+Basically, machine learning and anomaly detection can be as simple or complex as you want to make it. In particular, what we&rsquo;re doing with our alerting software (e.g. bosun) can rightfully also be considered machine learning, since we construct models that learn from data and make predictions.  It may not be what we think of at first, and indeed, even a simple linear regression is a machine learning model.  So most of my critique was more about the big data approach to machine learning, rather than machine learning itself.  As it turns out then the key to applying machine learning successfully is tooling that assists the human operator in every possible way, which is what IDE&rsquo;s like bosun do and how I should have phrased it, rather than presenting it as an alternative to machine learning.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

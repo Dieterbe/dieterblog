@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bash on Dieter&#39;s blog</title>
-    <link>http://dieter.plaetinck.be/tags/bash/</link>
-    <description>Recent content in Bash on Dieter&#39;s blog</description>
+    <title>bash on Dieter&#39;s blog</title>
+    <link>http://localhost:1313/tags/bash/</link>
+    <description>Recent content in bash on Dieter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Dec 2010 22:59:15 -0400</lastBuildDate>
-    <atom:link href="http://dieter.plaetinck.be/tags/bash/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Tue, 28 Dec 2010 22:59:15 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/bash/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Libui-sh: a library providing UI functions for shell scripts</title>
-      <link>http://dieter.plaetinck.be/post/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</link>
+      <link>http://localhost:1313/posts/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</link>
       <pubDate>Tue, 28 Dec 2010 22:59:15 -0400</pubDate>
       
-      <guid>97 at http://dieter.plaetinck.be</guid>
+      <guid>http://localhost:1313/posts/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</guid>
+      
       <description>&lt;blockquote&gt;&lt;p&gt;
 == A library providing UI functions for shell scripts ==&lt;/p&gt;
 &lt;p&gt;When you write bash/shell scripts, do you write your own error/debug/logging/abort functions?&lt;br /&gt;
@@ -24,34 +23,17 @@ date/time, integer, ... ?&lt;/p&gt;
 libui-sh is meant to a be a general-purpose UI abstraction library for shell scripts.&lt;br /&gt;
 Low impact, easy to use, but still flexible.&lt;br /&gt;
 cli by default, can optionally use ncurses dialogs as well.&lt;br /&gt;
-&lt;!--more--&gt;&lt;/p&gt;
-&lt;p&gt;To start using it, you only need to source it and you can start calling its functions.&lt;br /&gt;
-To reconfigure it (i.e. to change UI type, debug settings, logfile location),&lt;br /&gt;
-just run the command libui_sh_init&lt;/p&gt;
-&lt;p&gt;example usage:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;source&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/usr/lib/libui.sh
-ask_yesno&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;do you want to continue?&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;return&lt;/span&gt;
-libui_sh_init&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cli&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/tmp&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/tmp/yourlogfile
-log&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;we just got hassle-free logging&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-The library is not strictly a UI library, it also contains a few useful functions like&lt;br /&gt;
-check_is_in (check if an element can be found in a set - usually an array) and&lt;br /&gt;
-seteditor (interactive $EDITOR selection)&lt;/p&gt;
-&lt;p&gt;Dependencies:&lt;br /&gt;
-- bash (for cli interface)&lt;br /&gt;
-- optionally: dialog (for ncurses interface)
-&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/Dieterbe/libui-sh&#34;&gt;https://github.com/Dieterbe/libui-sh&lt;/a&gt;&lt;/p&gt;
 </description>
+      
     </item>
     
     <item>
       <title>Filesystem code in AIF</title>
-      <link>http://dieter.plaetinck.be/post/filesystem_code_in_aif/</link>
+      <link>http://localhost:1313/posts/filesystem_code_in_aif/</link>
       <pubDate>Wed, 08 Dec 2010 12:24:03 -0400</pubDate>
       
-      <guid>94 at http://dieter.plaetinck.be</guid>
+      <guid>http://localhost:1313/posts/filesystem_code_in_aif/</guid>
+      
       <description>&lt;p&gt;In light of the work and discussions around supporting Nilfs2 and Btrfs on Arch Linux and its installer AIF,&lt;br /&gt;
 I&#39;ve shared some &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html&#34;&gt;AIF filesystem code design insights and experiences&lt;/a&gt; on the arch-releng mailing list.&lt;br /&gt;
 This is some hard to understand code.  Partly because it&#39;s in bash (and I&#39;ve needed to work around some limitations in bash),&lt;br /&gt;
@@ -64,799 +46,173 @@ which are not trivial to get right (mostly filesystems, but I also think about c
 Already several distro&#39;s use the (or a fork of) the Arch installer, for example &lt;a href=&#34;http://pentoo.blogspot.com/2010/10/pentoo-installation-made-easy.html&#34;&gt;Pentoo&lt;/a&gt;,&lt;br /&gt;
 but I think cooperation could be much better and more efficient.&lt;/p&gt;
 &lt;p&gt;Anyway:&lt;br /&gt;
-&lt;!--more--&gt;&lt;br /&gt;
-my acronyms for this text:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;LV = lvm2 Logical Volume&lt;/li&gt;
-&lt;li&gt;VG = lvm2 Volume Group&lt;/li&gt;
-&lt;li&gt;PV = lvm2 Physical Volume&lt;/li&gt;
-&lt;li&gt;DM = Device Mapper&lt;/li&gt;
-&lt;li&gt;BD = Block Device&lt;/li&gt;
-&lt;li&gt;FS = File System&lt;/li&gt;
-&lt;li&gt;DF = DeviceFile&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&#34;Normal&#34; FS&#39;es (&#34;do something on the BD represented by DF /dev/foo, so that you can then call `mount /dev/foo $somedir`&#34;) are &lt;em&gt;trivial&lt;/em&gt; to add to aif.&lt;br /&gt;
-Basically you just need to tell aif the name of the filesystem, and which commands and arguments it needs to invoke to create it and add a label to it.&lt;br /&gt;
-Nilfs2 falls in this category.  So do ext2/3/4, xfs, jfs, reiserfs, etc.  (Nilfs is now supported and new &lt;a href=&#34;http://build.archlinux.org/isos/&#34;&gt;archiso testbuilds&lt;/a&gt; are available)&lt;/p&gt;
-&lt;p&gt;&#34;Complex&#34; FS&#39;es (which yield a new DF for a DM BD, which can span multiple underlying BD&#39;s, etc) are more difficult, and I&#39;ll explain why.&lt;br /&gt;
-Btrfs falls in this category.  So do LVM, dm_crypt and softraid.  In aif terminology anything you put on top of a BD is a FS.  This is not always technically correct, but it&#39;s not far-fetched and avoids needless complication.  For example softraid would be a FS you put on top of one or more BD&#39;s, and which itself yields a new BD on top of which you can put something else.&lt;br /&gt;
-In the same way I call a VG a FS being applied on top of a PV BD, which itself results in a new BD which can host multiple LV FS&#39;es, which in return yield new BD&#39;s which can host other FS&#39;es.  Currently AIF provides support for lvm and dm_crypt, but not softraid or Btrfs.&lt;/p&gt;
-&lt;p&gt;How aif works is this: it uses a &#34;model&#34; that represents how your DF/FS structure will look like.&lt;br /&gt;
-I personally usually configure my hard disk like this:&lt;br /&gt;
-a boot partition, and a partition on which i do dm_crypt, which results in a DM BD, which I make a PV, then put a VG on&lt;br /&gt;
-it, which contains multiple LV&#39;s, one for swap, and two containing&lt;br /&gt;
-some FS&#39;es which get mounted as / and /home.&lt;/p&gt;
-&lt;p&gt;You can see that model on the bottom ($BLOCKDATA) of &lt;a href=&#34;https://github.com/Dieterbe/aif/blob/master/examples/fancy-install-on-sda&#34;&gt;the example file &#34;fancy-install-on-sda&#34; for automatic installations, included with aif&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You might have noticed in the installer - if you do it interactively - how you first configure all&lt;br /&gt;
-your filesystems in the dialog interface, but only after confirming, it&lt;br /&gt;
-does all the required actions, step by step.  Actually the dialog-based configuration helper will just generate a textfile in the same format as $BLOCKDATA and the processing code is the same for interactive and automatic installs.&lt;br /&gt;
-Since in the config file for an automatic install you could define your FS&#39;s in abitrary order, aif&lt;br /&gt;
-figures out the dependencies and processes things in the right order.&lt;br /&gt;
-With the example given above aif will parse the text and will figure out the order of creation: first partition (obviously), then create the dm_crypt, then the PV, then the VG,&lt;br /&gt;
-then the LV&#39;s, then the FS&#39;es on those LV&#39;s)&lt;br /&gt;
-then mount all mountpoints in the right order (first /, then /home and /boot)&lt;br /&gt;
-On rollback (when user changes his mind, an error occured - usually because of misconfiguration like a too big LV) everything I just explained happens in reverse.&lt;br /&gt;
-This allows users to tune their config (or try something completely different), without the installer breaking with errors like &#34;This device is already marked as encrypted&#34; or &#34;VG already exists&#34;&lt;/p&gt;
-&lt;p&gt;I choose this model-based approach initially because I wanted to get rid&lt;br /&gt;
-of the ugly, hacky original installer code, but still provide a lot of&lt;br /&gt;
-control through the nice dialog interfaces.  And interfaces that work fast (not causing you to wait between every step because it&#39;s creating the FS you just defined).&lt;br /&gt;
-Perhaps most importantly, since my main goal was automautic installs where you could just specify how you wanted your&lt;br /&gt;
-FS/BD structure to look like (not a series of commands), relatively little extra code was needed.  (this is also what separates AIF from FAI&amp;amp;debian installer.  On Debian the interactive and automatic installers are different projects.  On Arch they are just different extensions for the same codebase)&lt;/p&gt;
-&lt;p&gt;Advantages:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;provides some abstraction, it&#39;s trivial to support for new (simple) filesystems.&lt;/li&gt;
-&lt;li&gt;makes dialog-based &#34;configurator&#34; easier, because we can share code with the automated installer&lt;/li&gt;
-&lt;li&gt;the descriptive style of the config makes it easier (although the actual format could be further improved).&lt;br /&gt;
- definitely easier then running/writing a series of commands (resp. interactive, automatic install).&lt;br /&gt;
- if we would make users run/write a series of commands, we also couldn&#39;t support automatic rollbacks in case of failures.&lt;/i&gt;
-&lt;/ul&gt;
-&lt;p&gt;Disadvantages:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;the more control you want to give users, the more you&#39;re just putting&lt;br /&gt;
-  effort in wrapping commandline arguments in fancy dialog interfaces&lt;br /&gt;
-  (although there is also a textbox where you can enter which ever&lt;br /&gt;
-  additional arguments you want, so this is a compromise)&lt;/li&gt;
-&lt;li&gt;pretty hard to implement fancier filesystems, you usually need to&lt;br /&gt;
-  take the common use cases. (see next point)&lt;/li&gt;
-&lt;li&gt;bash datastructures are very limited. it&#39;s not easy to translate this model in a&lt;br /&gt;
-  datastructure.  If in &#34;FS on top of a BD&#34; the FS is a child, and the BD a parent, it would be like a tree,&lt;br /&gt;
-  but each node could have multiple children and multiple parents, i.e. a graph.&lt;br /&gt;
-  For now I choose to ignore the &#34;multiple parents&#34; clause.&lt;br /&gt;
-  Currently the only implication in aif is that you cannot have a VG which consumes multiple PV&#39;s.&lt;br /&gt;
-  This is rare enough to justify this simplification, but still quite some code is needed to update and parse text files&lt;br /&gt;
-  to mimic the datastructure, although I do consider using a specific&lt;br /&gt;
-  optimized text format and an external tool to update/query the data. (yaml?)&lt;br /&gt;
-  (See &lt;a href=&#34;https://bugs.archlinux.org/task/15640&#34;&gt;FS 15640&lt;/a&gt;).&lt;br /&gt;
-  Multiple children do need to be supported (a VG can have multiple LV&#39;s. line 34 in the example file)&lt;br /&gt;
-  Implementing Softraid in this model means I need to support multiple parents, i.e. work with a graph structure.&lt;br /&gt;
-  For Btrfs, the LVM-like restrictiction (no multiple physical volumes for the same FS) might be an acceptable compromise&lt;/li&gt;
-&lt;li&gt;users cannot do their own stuff outside aif and expect to see the&lt;br /&gt;
-  results inside aif.  If the installer would execute everything in realtime,&lt;br /&gt;
-  you could detect changes being made to the system (probably not easy though)&lt;/li&gt;
-&lt;li&gt;since changes don&#39;t happen in realtime, the model needs to update itself to represent how&lt;br /&gt;
-the actual state &lt;em&gt;would&lt;/em&gt; look like.  For example: if you just added a dm_crypt FS on a BD, we must create&lt;br /&gt;
-a new entry /dev/mapper/$label in the model&lt;/li&gt;
-&lt;li&gt;for PV&#39;s, you need a way to differentiate in the menu between the&lt;br /&gt;
-  real BD (the one on which you say you want to put a PV FS) and the actual PV (on which you can put VG FS&#39;s),&lt;br /&gt;
-  so aif generates an entry with the same name as the DF, but with a &#39;+&#39; appended to the file.&lt;br /&gt;
-  (see the example file if unclear).  Although this problem is not specific to the actual model approach,&lt;br /&gt;
-  it&#39;s more caused by my desire to present a &#34;global interface&#34; to the user, and not a series of wizards and dialogs&lt;/li&gt;
-&lt;li&gt;Rollbacks are cool, but requires some hard to maintain code, and I doubt they are used often.&lt;br /&gt;
-(also this is not really specific about the model approach taken, but still worth mentioning)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Because of all this, I have sweared quite a bit over the last few&lt;br /&gt;
-years, wondering if bash really was a good choice.  But using an external tool to work with a text-base graph/tree datastructure (where nodes can have some properties) will probably remove the big nuisance.  Also, Because bash v4 has associative arrays (finally), I can clean up a bunch of other code as well.&lt;/p&gt;
-&lt;p&gt;I&#39;ve pondered whether we should just let users do everything on the commandline (like Gentoo), or provide a minimal layer of&lt;br /&gt;
-abstraction, like provide some scripts which they can modify that setup&lt;br /&gt;
-a system in a certain way. (for example, basically a series of mkfs; mount;pacman; calls)&lt;br /&gt;
-Another alternative would be to just make the user choose between a series of &#34;common setups&#34; and make them answer some questions for the choosen setup.&lt;br /&gt;
-This is how the old installer did it, and afaik archboot still does it, but it doesn&#39;t scale well with more and more possibilities.&lt;br /&gt;
-Actually, aif still contains the optional &#34;autoprepare&#34; method, which is in fact a simple wizard for a simple setup.&lt;/p&gt;
-&lt;p&gt;I guess it&#39;s a tradeoff between making it easy for users and not overloading the brain of people who want to hack on the installer.&lt;br /&gt;
-The approach which afaik has always been taken by Arch is to make the installer hold the hands of the user.&lt;br /&gt;
-When creating aif, I&#39;ve choosen to stick to that concept.  And frankly I still like the idea.  It may be hard to maintain,&lt;br /&gt;
-but as a user you can finish all your installs and have a lot of options, but still use very minimal keystrokes (and mental energy).&lt;/p&gt;
-&lt;p&gt;Like mentioned earlier, softraid hasn&#39;t been implemented yet in aif, nor btrfs.&lt;br /&gt;
-I would need to know the most common/recommended use cases, and figure out the best way to implement them.&lt;br /&gt;
-Btrfs might be relatively easy, if i can implement it like i did lvm.  But it seems like a great FS and I don&#39;t want to provide only-half-assed support for it.&lt;br /&gt;
-Either way, refactoring the datastructure is something that will needs to be done at some point, especially for softraid.&lt;/p&gt;
-&lt;p&gt;I hope this article was a bit understandable.  And if you have any advice, please share :)&lt;br /&gt;
-The actual blockdevices-filesystems library of AIF is here:&lt;br /&gt;
-&lt;a href=&#34;https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-blockdevices-filesystems.sh&#34;&gt;https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-blockdevices-filesystems.sh&lt;/a&gt;&lt;br /&gt;
-And the menu&#39;s are here:&lt;br /&gt;
-&lt;a href=&#34;https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-ui-interactive.sh&#34;&gt;https://github.com/Dieterbe/aif/blob/2ee11ef334983fc68352364025ba5a97d795b95e/src/core/libs/lib-ui-interactive.sh&#34;&lt;/a&gt; (the most interesting functions are interactive_filesystems for the main FS menu, and interactive_filesystem which handles definition of a specific FS)&lt;/p&gt;
 </description>
+      
     </item>
     
     <item>
       <title>A script that pulls photos from facebook</title>
-      <link>http://dieter.plaetinck.be/post/a_script_that_pulls_photos_from_facebook/</link>
+      <link>http://localhost:1313/posts/a_script_that_pulls_photos_from_facebook/</link>
       <pubDate>Tue, 18 Aug 2009 17:36:21 -0400</pubDate>
       
-      <guid>71 at http://dieter.plaetinck.be</guid>
+      <guid>http://localhost:1313/posts/a_script_that_pulls_photos_from_facebook/</guid>
+      
       <description>&lt;p&gt;&lt;a href=&#34;http://fbcmd.dtompkins.com/&#34;&gt;Fbcmd&lt;/a&gt; is pretty cool.&lt;br /&gt;
-I quickly hacked this script together which pulls all photo albums from friends on facebook, so I have them available where I want.  (It should also pull your own albums, but I don&#39;t have any so I can&#39;t check that)&lt;!--more--&gt;&lt;br /&gt;
-Maybe there are better ways to do this.  I looked at &lt;a href=&#34;http://nerd256.diggles.net/fbfs/&#34;&gt;fbfs&lt;/a&gt; but it looks a bit weird.  I have no idea what the corrupted images fuss is all about.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;dir&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;/fbphotos
-&lt;span style=&#34;color: #19177C&#34;&gt;cache&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;XDG_CACHE_HOME&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;:-&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;/.cache&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;}&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$cache&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;mkdir&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$cache&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$cache&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;exit&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#fbcmd=`which fbcmd`&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;fbcmd&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;php /home/dieter/fbcmd/fbcmd.php&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Fetching info about friends and myself ..&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;$fbcmd&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;FRIENDS&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-csv&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;tail&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-n&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;+2&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$cache&lt;/span&gt;/fb-users&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# ID NAME&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;$fbcmd&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;WHOAMI&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;-csv&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$cache&lt;/span&gt;/fb-users
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;while&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;read&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;line
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;uid&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-f&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$line&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;`&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;uname&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-f&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$line&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;`&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Fetching list of albums for user &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$uname&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; ... &amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$fbcmd&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;ALBUMS&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$uid&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-csv&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;tail&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-n&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;+2&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$cache&lt;/span&gt;/fb-&lt;span style=&#34;color: #19177C&#34;&gt;$uid&lt;/span&gt;-albums&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#OWNER_NAME AID NAME SIZE&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;done&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;lt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$cache&lt;/span&gt;/fb-users
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;for&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;i&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;in&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$cache&lt;/span&gt;/fb-*-albums
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;while&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;read&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;line
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;do&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;                &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;oname&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-f&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$line&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;`&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;                &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;aid&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-f&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$line&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;`&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;                &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;aname&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-f&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;3&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$line&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;`&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;                &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;asize&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-f&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;4&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$line&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;`&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;                &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Fetching &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$oname&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; album: &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$aname&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;                &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$fbcmd&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;APICS&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$aid&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$dir&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-psize&lt;span style=&#34;color: #666666&#34;&gt;=1&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-af&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$oname&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$aname&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/[pid].jpg&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-pic_skip_exists&lt;span style=&#34;color: #666666&#34;&gt;=1&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;done&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;lt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$i&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;done&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Here&#39;s a picture from &lt;a href=&#34;http://www.countingcows.be&#34;&gt;Counting cows&lt;/a&gt; I grabbed from &lt;a href=&#34;http://lievendekeyser.net/&#34;&gt;Lievens&lt;/a&gt; album.&lt;br /&gt;
-&lt;img src=&#34;http://dieter.plaetinck.be/files/countingcows2009.jpg&#34; /&gt;&lt;/p&gt;
-</description>
+I quickly hacked this script together which pulls all photo albums from friends on facebook, so I have them available where I want.  (It should also pull your own albums, but I don&#39;t have any so I can&#39;t check that)</description>
+      
     </item>
     
     <item>
       <title>Visual feedback of the exit status of the previous command in bash</title>
-      <link>http://dieter.plaetinck.be/post/visual_feedback_of_the_exit_status_of_the_previous_command_in_bash/</link>
+      <link>http://localhost:1313/posts/visual_feedback_of_the_exit_status_of_the_previous_command_in_bash/</link>
       <pubDate>Tue, 14 Oct 2008 21:56:50 -0400</pubDate>
       
-      <guid>51 at http://dieter.plaetinck.be</guid>
-      <description>&lt;p&gt;Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing &#39;echo $?&#39;, &#39; &amp;amp;&amp; echo ok&#39;, &#39;|| echo failed&#39; etc on the command line.&lt;!--more--&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;tput&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;colors&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-gt&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;RED&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;tput&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;setaf&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;GREEN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;tput&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;setaf&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;RST&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;tput&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;op&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-
-bash_prompt_command&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;last_exit&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$?&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;exit_to_color&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$RED&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$last_exit&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;exit_to_color&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$GREEN&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000&#34;&gt;export&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;PROMPT_COMMAND&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;bash_prompt_command
-
-&lt;span style=&#34;color: #19177C&#34;&gt;PS1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;\u@\h \[\$exit_to_color\]\W\[&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$RST&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;\] \$&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-( Inspired by &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?pid=367626#p367626&#34;&gt;this post&lt;/a&gt; )&lt;/p&gt;
-</description>
+      <guid>http://localhost:1313/posts/visual_feedback_of_the_exit_status_of_the_previous_command_in_bash/</guid>
+      
+      <description>&lt;p&gt;Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing &#39;echo $?&#39;, &#39; &amp;amp;&amp; echo ok&#39;, &#39;|| echo failed&#39; etc on the command line.</description>
+      
     </item>
     
     <item>
       <title>DDM v0.4 released</title>
-      <link>http://dieter.plaetinck.be/post/ddm_v04_released/</link>
+      <link>http://localhost:1313/posts/ddm_v04_released/</link>
       <pubDate>Tue, 23 Sep 2008 16:21:27 -0400</pubDate>
       
-      <guid>49 at http://dieter.plaetinck.be</guid>
+      <guid>http://localhost:1313/posts/ddm_v04_released/</guid>
+      
       <description>&lt;p&gt;DDM v0.4 has been released.&lt;br /&gt;
 Since the last release many, many things have been changed/fixed/added.&lt;br /&gt;
-&lt;!--more--&gt;&lt;br /&gt;
-Here is the Changelog:&lt;/p&gt;
-&lt;pre&gt;
-4.0 (23-9-2008)
- * new dataset types (dataset types are now: blob, buffer, cache, copy, direct, extension, selection)
- * new (default) actions (default actions are now: backup, checkout, commit, flush, restore, update)
- * actions and callbacks are addable/customizable/disableable etc
- * some actions for certain dataset types are now implemented that weren&#39;t before (see manual)
- * better choosen commandline switches. especially needed for specifying (custom) actions.
- * ddm follows XDG basedir spec now (&lt;a href=&#34;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&#34; title=&#34;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&#34;&gt;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&lt;/a&gt;).
-   This affects the location of ddmrc and plugins (read on)
- * datasets can have arbitrary names now. (so it&#39;s also fully compatible with the XDG usedir spec now &lt;a href=&#34;http://freedesktop.org/wiki/Software/xdg-user-dirs&#34; title=&#34;http://freedesktop.org/wiki/Software/xdg-user-dirs&#34;&gt;http://freedesktop.org/wiki/Software/xdg-user-dirs&lt;/a&gt; )
-   In some cases you do need to make up for this by specifying one or two vars in the .ddm file. See manual.
- * possibility to create plugins.
- * 2 plugins come by default now:
-   - slidewindow (old function pluginized now)
-   - get_exaile (supposed to populate selection with favorite/most-played/... music according to the exaile
-   music player database). this plugin is still *work in progress*
- * slidewindow is more flexible now (configurable subpaths, regex grepstring, ...) *api has changed*
- * pretend mode
- * validators for actions, repositories and datasets
- * new, better and more generic wrappers for rsync, svn, rm, cd, mkdir and &#39;keep&#39;
- * refactored exit codes
- * better validation, error handling, help information
- * better documentation (MANUAL, examples, ...) comes with sources now + can be seen online @ &lt;a href=&#34;http://github.com/Dieterbe/ddm&#34; title=&#34;http://github.com/Dieterbe/ddm&#34;&gt;http://github.com/Dieterbe/ddm&lt;/a&gt;)
- * lots of changes and fixes big and small
-&lt;/pre&gt;&lt;p&gt;
-The &lt;a href=&#34;http://github.com/Dieterbe/ddm&#34;&gt;ddm project on github&lt;/a&gt; has now 2 branches:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://github.com/Dieterbe/ddm/tree/master&#34; title=&#34;http://github.com/Dieterbe/ddm/tree/master&#34;&gt;http://github.com/Dieterbe/ddm/tree/master&lt;/a&gt; (bleeding edge development will happen here)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://github.com/Dieterbe/ddm/tree/v0.4&#34; title=&#34;http://github.com/Dieterbe/ddm/tree/v0.4&#34;&gt;http://github.com/Dieterbe/ddm/tree/v0.4&lt;/a&gt; (0.4 &#39;stable&#39; patches will be pushed here)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;It now also comes with a &lt;a href=&#34;http://github.com/Dieterbe/ddm/tree/v0.4/MANUAL&#34;&gt;Manual&lt;/a&gt; and some &lt;a href=&#34;http://github.com/Dieterbe/ddm/tree/v0.4/Examples.textile&#34;&gt;examples&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Have fun...&lt;/p&gt;
-&lt;p&gt;Oh and btw: It&#39;s probably not bug free (especially the slidewindow code)&lt;/p&gt;
 </description>
+      
     </item>
     
     <item>
       <title>A fast way to get stuff out of your head and into your GTD inbox</title>
-      <link>http://dieter.plaetinck.be/post/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/</link>
+      <link>http://localhost:1313/posts/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/</link>
       <pubDate>Wed, 13 Aug 2008 20:42:51 -0400</pubDate>
       
-      <guid>47 at http://dieter.plaetinck.be</guid>
-      <description>&lt;p&gt;Often while you&#39;re occupied with something, some thought pops into your head.  Something that you want to remember/do something about.&lt;!--more--&gt;&lt;br /&gt;
-One of the key factors of a successful &lt;a href=&#34;http://en.wikipedia.org/wiki/Getting_Things_Done&#34;&gt;GTD&lt;/a&gt; implementation is having the tools in place to get that stuff out of your head and into something you can trust, so you can continue your work with the smallest interruption possible.  Many GTD tools I&#39;ve checked out focus on the &#39;action management&#39; part of GTD, leaving out the collection and processing phases (&lt;a href=&#34;http://www.thinkingrock.com.au/&#34;&gt;Thinkingrock&lt;/a&gt; is a notable exception here) and often some other things (reference system etc).&lt;/p&gt;
-&lt;p&gt;This is not necessarily a bad thing:  The whole GTD system is built around so many different actions and systems that some stuff can be divided into separate programs.  The only thing that matters is the global workflow, whether inside 1 program or across multiple.&lt;/p&gt;
-&lt;p&gt;If you use a program that does not implement the collection/processing phases, one thing thing you should &lt;strong&gt;not&lt;/strong&gt; do, is skip them. You should not try to make out what an idea is, how to implement it, how to file it, which context/project/tag to assign etc on the moment it pops into your head, because it makes you loose your focus, distracts you and generally makes you less efficient.&lt;/p&gt;
-&lt;p&gt;I&#39;m now trying out the &lt;a href=&#34;http://www.rousette.org.uk/projects&#34;&gt;Tracks&lt;/a&gt; gtd program, which does not implement collection/processing.  The official explanation is that they try to make tracks customizable and flexible to allow you to use it the way you want, but I don&#39;t see how I could use it effectively for this.  &lt;/p&gt;
-&lt;p&gt;What I did is write a simple shell script, one that I trigger via a quick keyboard shortcut (ctrl+i), it pops up a Gtk input dialog box - using &lt;a href=&#34;http://live.gnome.org/Zenity&#34;&gt;zenity&lt;/a&gt;, which i &lt;a href=&#34;http://dieter.plaetinck.be/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add&#34;&gt;blogged about earlier.&lt;/a&gt;.  When you sumbit the form (by pressing enter) it just appends your text to a textfile.  That&#39;s it !&lt;br /&gt;
-If something goes wrong (and only then!) it will show a popup with &lt;a href=&#34;http://www.galago-project.org&#34;&gt;libnotify&lt;/a&gt; so if you see nothing after submitting, you can be assured that it saved fine.&lt;br /&gt;
-  &lt;i&gt;Less is more.&lt;/i&gt;&lt;/p&gt;
-&lt;p&gt;When you are ready for processing mode (eg the &#39;weekly review&#39; in gtd speak) you can then process entry by entry and enter stuff into your GTD program as necessary.&lt;/p&gt;
-&lt;p&gt;Dependencies:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;bash&lt;/li&gt;
-&lt;li&gt;zenity&lt;/li&gt;
-&lt;li&gt;notify-send (package libnotify-bin on ubuntu)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here is the file, save it as gtdinbox.sh&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# A very simple script to implement the Collecting part of GTD.&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# The only thing this script does is getting something out of head as quickly as possible, into a file you can trust&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# See http://dieter.plaetinck.be/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;program&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;basename&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$0&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;.sh&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;datadir&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;XDG_DATA_HOME&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;:-&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;/.local/share&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;}&lt;/span&gt;/&lt;span style=&#34;color: #19177C&#34;&gt;$program&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;inboxfile&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt;/inbox.txt
-
-die_error&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$1&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;gt;&amp;amp;&lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;notify-send&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;Gtd Inbox&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$1&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-i&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;gtk-dialog-info&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-t&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;5000&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-u&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;critical
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;exit&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;:-&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;}&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;!&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;mkdir&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-p&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;&amp;gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/dev/null&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;chmod&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;700&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;2&lt;/span&gt;&amp;gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;/dev/null&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;die_error&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Could not create/chmod &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$datadir&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;input&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;`&lt;/span&gt;zenity&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;--entry&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;--title&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;GTD Inbox&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;--text&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Enter text for gtd inbox&amp;quot;`&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-n&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$input&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$input&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;                &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Entered &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$input&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; into &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;                &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;exit&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;0&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;die_error&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Something failed while entering &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$input&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; into &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;3&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;else&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;Cancelled input into &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$inboxfile&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-</description>
+      <guid>http://localhost:1313/posts/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/</guid>
+      
+      <description>&lt;p&gt;Often while you&#39;re occupied with something, some thought pops into your head.  Something that you want to remember/do something about.</description>
+      
     </item>
     
     <item>
       <title>DDM : a Distributed Data Manager</title>
-      <link>http://dieter.plaetinck.be/post/ddm_a_distributed_data_manager/</link>
+      <link>http://localhost:1313/posts/ddm_a_distributed_data_manager/</link>
       <pubDate>Sat, 29 Mar 2008 20:28:16 -0400</pubDate>
       
-      <guid>39 at http://dieter.plaetinck.be</guid>
+      <guid>http://localhost:1313/posts/ddm_a_distributed_data_manager/</guid>
+      
       <description>&lt;p&gt;&lt;b&gt;UPDATE: this information is outdated.  See &lt;a href=&#34;http://github.com/Dieterbe/ddm/tree/master&#34; title=&#34;http://github.com/Dieterbe/ddm/tree/master&#34;&gt;http://github.com/Dieterbe/ddm/tree/master&lt;/a&gt; for latest information.&lt;/b&gt;&lt;/p&gt;
 &lt;h3&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;If you have multiple sets of data (e.g.: music, images, documents, movies, ...) and you use these on more then one system ( e.g. a laptop and a file server) then you probably also have some &#39;rules&#39; on how you use these on your systems.  For example after capturing new images you maybe put them on your laptop first but you like to sync them to your file server frequently.  On the other hand you also want all your high-res images (stored on the server) available for editing on the laptop, and to make it more complicated you might have the same images in a smaller format on your server (for gallery programs etc.) and want these (or a select few albums of them) available on the road. &lt;/p&gt;
 &lt;p&gt;The more different types of data you have and the more you have specific work flows the harder it becomes to keep your data as up to date as possible and consistent on your boxes.  You could manually rsync/(s)cp your data but you end up in having a mess (at least that&#39;s how it turned out on my boxes). Putting everything under version control is great for text files and such, but it&#39;s not an option for bigger (binary) files.&lt;/p&gt;
-&lt;p&gt;I wanted to keep all my stuff neatly organised in my home directories and I want to create good work flows with as minimum hassle as possible, so I decided to write DDM: the Distributed Data Manager.&lt;!--more--&gt;&lt;/p&gt;
-&lt;h3&gt;Disclaimer&lt;/h3&gt;
-&lt;p&gt;The code is far from finished.  Some features are still missing and there will be bugs in it.  I&#39;m even still thinking about the concepts themselves.   Don&#39;t blame me if ddm deletes the wrong files or causes your computer to blow up.&lt;/p&gt;
-&lt;h3&gt;Concepts&lt;/h3&gt;
-&lt;p&gt;DDM is a bash script that manages your data, distributed over multiple (*nix) systems.  You tell it how you want to work with your data and ddm will do the copying, deleting, syncing, committing, updating, ... for you.&lt;br /&gt;
-It uses simple things like cp, rsync and svn for this.&lt;br /&gt;
-Configuration is done through simple text files that will be sourced.&lt;/p&gt;
-&lt;p&gt;Ddm works with repositories: these are data stores on your server which should never be edited by hand.  A repository can be a svn repository or something as simple as a directory shared over the network ( through NFS, SMB, ... )&lt;/p&gt;
-&lt;p&gt;I highly recommend &lt;a href=&#34;http://wiki.autofs.net/&#34;&gt;autoFS&lt;/a&gt; as auto mounter.  It is very easy, yet powerful and flexible.&lt;/p&gt;
-&lt;h4&gt;Vocabulary&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;repotype: the type of your repo.  currently this is either &#39;svn&#39; (subversion) or &#39;vfs&#39; ( any position in your VFS, the underlying technology is up to you. although autofs+nfs will be most useful)&lt;/li&gt;
-&lt;li&gt;dataset name: The name of your dataset. e.g. &#39;movies&#39;&lt;/li&gt;
-&lt;li&gt;dataset type (see below)&lt;/li&gt;
-&lt;li&gt;action: commit, update, checkout&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;Dataset types&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;selection: a copy of a subset of the data in the repo (e.g. your favourite movies of all your movies)&lt;/li&gt;
-&lt;li&gt;buffer: temporary storage to be flushed to the repo regularly (e.g. new images or stuff you just downloaded)&lt;/li&gt;
-&lt;li&gt;copy: (default): a copy of all content in the repo (an svn working copy or a directory using rsync)&lt;/li&gt;
-&lt;li&gt;extension: contains unique content that you don&#39;t want on your server (e.g. temporary files)&lt;/li&gt;
-&lt;li&gt;direct: a (symlink to a) local mount point for a remote location. useful for big collections&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So basically you tell ddm to perform an action on a dataset of a specific type.&lt;br /&gt;
-Note that some actions wouldn&#39;t make sense for some dataset types ( e.g. commit on a selection or extension) and thus don&#39;t need to be implemented, while others perform really basic operations (an update of a vfs copy is just an rsync) or just wrap around something else (notably the svn actions just wrap around the svn tool)&lt;br /&gt;
-Keep in mind though that everything can be overridden through .ddm files in dataset directories.&lt;/p&gt;
-&lt;h4&gt;Configuration&lt;/h4&gt;
-&lt;p&gt;Ddm is configured through:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;a .ddm file in your home directory. (needed)&lt;/li&gt;
-&lt;li&gt;a .ddm file in your dataset directories (optional)&lt;/li&gt;
-&lt;li&gt;the directory name of your dataset (read on) (optional)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To specify the dataset type, the easiest way is to add suffixes to your directories. eg video-selection.  This is not a must and can be specified in the .ddm file in the dataset directory. For the &#39;copy&#39; dataset type you don&#39;t need to specify anything (it&#39;s default)&lt;br /&gt;
-Unless overridden, ddm will construct the repo path as follows:  &lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$TYPE_BASE&lt;/span&gt;/&lt;span style=&#34;color: #19177C&#34;&gt;$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;(if unclear, read on)&lt;/p&gt;
-&lt;p&gt;In the .ddm file in your dataset directory you can override defaults.&lt;/p&gt;
-&lt;h5&gt;~/.ddm&lt;/h5&gt;
-&lt;p&gt;This is how my file looks like.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;ALLOWED_REPO_TYPES&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;svn vfs&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;DEFAULT_REPO_TYPE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;vfs&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;SVN_BASE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;https://server/svn/repos/&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;SVN_PREFIX&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;ddm-&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;VFS_BASE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;/net/server/home/dieter/ddm-repo&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;These are all the options you can specify:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;SVN_BASE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;SVN_PREFIX&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;SVN_SUFFIX&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;VFS_BASE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;VFS_PREFIX&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;VFS_SUFFIX&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;DEFAULT_REPO_TYPE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;vfs&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;ALLOWED_REPO_TYPES&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;vfs&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;IGNORE_DATASET_REMOTE_SVN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=0&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#nag if the repo url figured out is not the same as the one in &amp;#39;svn info&amp;#39;. you should leave this 0&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h5&gt;dataset/.ddm&lt;/h5&gt;
-&lt;p&gt;For an example see below.  Possible options are these:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;DATASET_LOCAL&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#path to dataset locally (including type suffix if any)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;DATASET_REMOTE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#path to dataset remotely (or locally if network mount)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;DATASET_PATH&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#just the path (until parent directory of dataset)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;DATASET_DIR_NAME&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#like $DATASET_LOCAL but no path &lt;/span&gt;
-DATASET_DIR_NAME_REL&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# identifier to dataset, taken against pwd ( could be &amp;#39;.&amp;#39;,&amp;#39;..&amp;#39;, nothing at all, dirname, full path, ..)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;DATASET_NAME&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#like $DATASET_DIR_NAME but no type suffix&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;DATASET_TYPE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;REPO_TYPE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#you can override the following callbacks (example see below)&lt;/span&gt;
-precheckout
-docheckout
-postcheckout
-
-precommit
-docommit
-postcommit
-
-preupdate
-doupdate
-postupdate
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;Invocation&lt;/h4&gt;
-&lt;pre&gt;
-dieter@dieter-mbp:~$ ddm -h
-usage: ddm options
-
-OPTIONS:
-   -d                Dataset (name of directory)
-   -h                Show this message
-   -m                Message (used for commits in svn, ignored otherwise)
-   -u                Update
-   -c                Commit
-   -o                Checkout (default repo type)
-   -O &lt;repo-type&gt;    Checkout using specific repo type (one of: svn vfs)
-   -t &lt;dataset-type&gt; Specify dataset-type (selection,copy, ...) (only honoured for checkouts)
-   -v                Verbose
-&lt;/pre&gt;&lt;h4&gt;Examples&lt;/h4&gt;
-&lt;h5&gt;Update my video-selection.&lt;/h5&gt;
-&lt;p&gt;The directory is ~/video-selection.  It contains episodes that I&#39;m watching&lt;br /&gt;
-The .ddm file looks like this&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;doupdate&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;	&lt;/span&gt;slidewindow&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;mplayer&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;1&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This means that ddm will look in my bash history and look for the movie files in this directory I have played (using &#34;mplayer video-selection/*somefile*).&lt;br /&gt;
-It will then delete all the ones I&#39;ve already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)&lt;/p&gt;
-&lt;pre&gt;
-dieter@dieter-mbp:~$ ddm -u -v -d video-selection/
-Included /home/dieter/video-selection/.ddm
-action update on dataset name video type selection
-Deleting old files... (3 items).
- * /home/dieter/video-selection/910 - The One With Christmas In Tulsa.avi... success
- * /home/dieter/video-selection/911 - The One Where Rachel Goes Back To Work.avi... success
- * /home/dieter/video-selection/912 - The One With Phoebes Rats.avi... success
-Keeping these files... (1 items).
- * /home/dieter/video-selection/913 - The One Where Monica Sings.avi
-Copying new files... (10 items).
- * /home/dieter/video-selection/914 - The One With The Blind Dates.avi... success
- * /home/dieter/video-selection/915 - The One With the Mugging.avi... success
- * /home/dieter/video-selection/916 - The One With The Boob Job.avi... success
- * /home/dieter/video-selection/917 - The One With The Memorial Service.avi... success
- * /home/dieter/video-selection/918 - The One With The Lottery.avi... success
- * /home/dieter/video-selection/919 - The One With Rachels Dream.avi... success
- * /home/dieter/video-selection/920 - The One With The Soap Opera Party.avi... success
- * /home/dieter/video-selection/921 - The One With The Fertility Test.avi... success
- * /home/dieter/video-selection/922 - The One With The Donor.avi... success
- * /home/dieter/video-selection/923 - 924 - The One In Barbados.avi... success
-finished
-&lt;/pre&gt;&lt;h4&gt;Download&lt;/h4&gt;
-&lt;p&gt;The code is licensed under &lt;a href=&#34;http://www.gnu.org/licenses/gpl-3.0.txt&#34;&gt;Gpl v3&lt;/a&gt;&lt;br /&gt;
-You can dowload it &lt;a href=&#34;http://dieter.plaetinck.be/files/ddm&#34; onClick=&#34;javascript:urchinTracker (&#39;/files/ddm&#39;);&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-</description>
+&lt;p&gt;I wanted to keep all my stuff neatly organised in my home directories and I want to create good work flows with as minimum hassle as possible, so I decided to write DDM: the Distributed Data Manager.</description>
+      
     </item>
     
     <item>
       <title>Per-directory bash history</title>
-      <link>http://dieter.plaetinck.be/post/per_directory_bash_history/</link>
+      <link>http://localhost:1313/posts/per_directory_bash_history/</link>
       <pubDate>Wed, 30 Jan 2008 21:37:31 -0400</pubDate>
       
-      <guid>36 at http://dieter.plaetinck.be</guid>
+      <guid>http://localhost:1313/posts/per_directory_bash_history/</guid>
+      
       <description>&lt;p&gt;I&#39;ve been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
-&lt;!--more--&gt;&lt;br /&gt;
-Quote from an &lt;a href=&#34;http://www.debian-administration.org/articles/543#comment_17&#34;&gt;anonymous reply on debian-administration.org&lt;/a&gt;&lt;/p&gt;
-&lt;br/&gt;
-&lt;cite&gt;
-So I use the following bash function:
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# Usage: mycd &amp;lt;path&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#  Replacement for builtin &amp;#39;cd&amp;#39;, which keeps a separate bash-history&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#   for every directory.&lt;/span&gt;
-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;function&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;mycd&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;history&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-w&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# write current history file&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;builtin&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;cd&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$@&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# do actual cd&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;local&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;HISTDIR&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/.dir_bash_history&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PWD&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# use nested folders for history&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;if&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;!&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-d&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HISTDIR&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;]&lt;/span&gt;;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;then&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# create folder if needed&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;      &lt;/span&gt;mkdir&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-p&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HISTDIR&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;fi&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;export&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;HISTFILE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HISTDIR&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/bash_history.txt&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# set new history file&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;history&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# clear memory&lt;/span&gt;
-&lt;span style=&#34;color: #bbbbbb&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;history&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-r&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# read from current histfile&lt;/span&gt;
-&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and then set it up with the following in my bashrc:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;shopt&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-s&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;histappend
-&lt;span style=&#34;color: #008000&#34;&gt;alias&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;cd&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;mycd&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000&#34;&gt;export&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;HISTFILE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOME&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/.dir_bash_history&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PWD&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/bash_history.txt&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/cite&gt;
-&lt;p&gt;Great stuff.  It would be nice to be able to use both the global and the directory-specific history by combining with an extra modifier key .&lt;br /&gt;
-( eg arrowup/pageup/c^r for global and alt+arrowup/alt+pageup/alt+c^r for the directory-specific one )&lt;/p&gt;
-&lt;p&gt;If I ever come up with / find something to do this I&#39;ll let you know...&lt;/p&gt;
 </description>
+      
     </item>
     
     <item>
       <title>gtk dialogs for (shell)scripts with zenity and the ask-pass gui tools for ssh-add</title>
-      <link>http://dieter.plaetinck.be/post/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add/</link>
+      <link>http://localhost:1313/posts/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add/</link>
       <pubDate>Sun, 25 Nov 2007 18:45:41 -0400</pubDate>
       
-      <guid>33 at http://dieter.plaetinck.be</guid>
-      <description>&lt;p&gt;Phew! where to start?  Probably at &lt;a href =&#34;http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively&#34;&gt;this blogpost&lt;/a&gt;.  It&#39;s about making it very easy to work with external encrypted volumes. I&#39;m not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity. &lt;!--more--&gt; It&#39;s an LGPL-licensed program written in C by some guys from Gnome and Sun. You can call it from any script and present a user with a gtk widget such as a password-dialog, filechooser, calendar, ... It has &lt;a href=&#34;http://www.linuxmanpages.com/man1/zenity.1.php&#34;&gt;many possibilities&lt;/a&gt;.&lt;br /&gt;
-This is great if you want to run scripts on the terminal or even without a terminal (scripts automatically started by your desktop environment) and need user input.&lt;/p&gt;
-&lt;p&gt;This immediately made me think of using this together with ssh-add, because i was getting a bit tired to open a console and add my key by typing the ssh-add command for every X session. (For the record: ssh-add without any arguments is enough for most users: it looks for keys with default names, but i have multiple keys with some speial names so...)&lt;br /&gt;
-(I can easily retrieve the right command by typing ssh-add*arrowup* but still it&#39;s cumbersome.. see &lt;a href=&#34;http://dieter.plaetinck.be/my_favorite_bash_tricks&#34;&gt;this page for the bash-trick&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;Of course I realized I was probably not the only one with this idea so I googled a bit and looked in the &lt;a href=&#34;http://www.hmug.org/man/1/ssh-add.php&#34;&gt;ssh-add manpage&lt;/a&gt;, and I found out some cool stuff!&lt;br /&gt;
-It turned out ssh-add has support for such scenarios and offers the $SSH_ASKPASS environment variable for this.  Since the system I&#39;m currently using on my laptop (which i converted from Arch to xubuntu 7.10 but that&#39;s another story :-)) doesn&#39;t have this variable set by default I could of course set it myself, but it can be even easier then this...&lt;/p&gt;
-&lt;p&gt;When the $SSH_ASKPASS variable is not set, ssh-add will try to execute /usr/bin/ssh-askpass by default.  I figured this out by typing this in a console:&lt;br /&gt;
-ssh-add *mykey* &lt; /dev/null&lt;br /&gt;
-This revealed that there are already some utilities specifically for this purpose!  Let&#39;s see...:&lt;/p&gt;
-&lt;pre&gt;
-dieter@dieter-mbp:~$ aptitude search askpass
-p   gtk-led-askpass                                                - GTK+ password dialog suitable for use with ssh-add                      
-p   ssh-askpass                                                    - under X, asks user for a passphrase for ssh-add                         
-p   ssh-askpass-fullscreen                                         - Under Gnome2, asks user for a passphrase for ssh-add                    
-p   ssh-askpass-gnome                                              - interactive X program to prompt users for a passphrase for ssh-add  
-&lt;/pre&gt;&lt;p&gt;I decided to install ssh-askpass-gnome even though I use xfce.  And it works great :D&lt;/p&gt;
-&lt;p&gt;After installing this you can just put your ssh-add line in the settings panel called &#34;autostarted Applications&#34; from Xfce and for your next session it will show a nice gtk popup to ask for your password and it works like a charm :)&lt;br /&gt;
-However, since i use multiple keys, i used to use the globbing operator (*) but this doesnt work anymore with this method.  I guess that makes sense as the globbing operator is probably a bash built-in...&lt;/p&gt;
-</description>
+      <guid>http://localhost:1313/posts/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add/</guid>
+      
+      <description>&lt;p&gt;Phew! where to start?  Probably at &lt;a href =&#34;http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively&#34;&gt;this blogpost&lt;/a&gt;.  It&#39;s about making it very easy to work with external encrypted volumes. I&#39;m not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity. </description>
+      
     </item>
     
     <item>
       <title>Emulating two-dimensional (or even multi-dimensional) arrays in bash</title>
-      <link>http://dieter.plaetinck.be/post/emulating_two-dimensional_%28or_even_multi-dimensional%29_arrays_in_bash/</link>
+      <link>http://localhost:1313/posts/emulating_two-dimensional_or_even_multi-dimensional_arrays_in_bash/</link>
       <pubDate>Sun, 26 Aug 2007 12:49:42 -0400</pubDate>
       
-      <guid>30 at http://dieter.plaetinck.be</guid>
+      <guid>http://localhost:1313/posts/emulating_two-dimensional_or_even_multi-dimensional_arrays_in_bash/</guid>
+      
       <description>&lt;p&gt;Ever needed to use arrays of two or more dimensions but got stuck on Bash limited array support which provides only 1 dimension?&lt;/p&gt;
 &lt;p&gt;There is a trick that let&#39;s you dynamically create variable names.  Using this, you can emulate additional dimensions.&lt;br /&gt;
-&lt;!--more--&gt;&lt;/p&gt;
-&lt;p&gt;Here&#39;s a simple example for an array with 2 dimensions:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#set the value of my_array[i][j] where i = 25 and j = 10 to &amp;quot;value&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;var&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;my_array25-10&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#or like this: I=25;J=10;var=&amp;quot;my_array$I-$J&amp;quot;&lt;/span&gt;
-
-&lt;span style=&#34;color: #008000&#34;&gt;declare&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$var&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#retrieve the value of my_array[i][j] where i = 5 and j = 10&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;var&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;my_array5-10&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#or like this: I=5;J=10;var=&amp;quot;my_array$I-$J&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;${&lt;/span&gt;!var&lt;span style=&#34;color: #A45A77; font-weight: bold&#34;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;
-Thanks to the guys from #bash on freenode for their help and their excellent &lt;a href=&#34;http://wooledge.org/mywiki/BashFAQ&#34;&gt;bash faq&lt;/a&gt;&lt;/p&gt;
 </description>
+      
     </item>
     
     <item>
       <title>Nagios monitoring in your desktop panel aka Xfce Genmon panel plugin rules!</title>
-      <link>http://dieter.plaetinck.be/post/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</link>
+      <link>http://localhost:1313/posts/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</link>
       <pubDate>Sun, 05 Aug 2007 16:42:46 -0400</pubDate>
       
-      <guid>29 at http://dieter.plaetinck.be</guid>
-      <description>&lt;p&gt;FOSS is written by users, for users, and what I&#39;ve been doing/experiencing this afternoon is a perfect example of that.&lt;!--more--&gt;&lt;br /&gt;
-First of all take &lt;a href=&#34;http://www.xfce.org&#34;&gt;Xfce&lt;/a&gt;: a lightweight but sleek and flexible Desktop Environment.  Then take a look at the &lt;a href=&#34;http://goodies.xfce.org/&#34;&gt;Xfce Goodies project&lt;/a&gt;, more specifically the &lt;a href=&#34;http://goodies.xfce.org/projects/panel-plugins/start&#34;&gt;Panel Plugins&lt;/a&gt; page.  There are plenty of panel plugins to make your life easier: they check your mail, you can control your media player, they can show how your pc performs, built-in dictionaries, translate tools or command lines, show weather forecasts and so on.&lt;/p&gt;
-&lt;p&gt;Now, for &lt;a href=&#34;http://corporate.netlog.com&#34;&gt;work&lt;/a&gt; I need to keep an eye on &lt;a href=&#34;http://www.nagios.org/&#34;&gt;Nagios&lt;/a&gt;, (Nagios is a great FOSS host/service monitoring web application) but I don&#39;t like periodically checking the same webpage over and over again:&lt;br /&gt;
-news should come to me, not the other way around.&lt;/p&gt;
-&lt;p&gt;Now, I had already found an excellent &lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/3607&#34;&gt;Nagios Checker Firefox extension&lt;/a&gt; but then I would need to have Firefox open all the time, which I don&#39;t.&lt;br /&gt;
-So at first I wanted to write my own panel plugin that would let me allow seeing the most important Nagios status information but then I came across the coolest Xfce panel plugin of them all: the &lt;a href=&#34;http://goodies.xfce.org/projects/panel-plugins/xfce4-genmon-plugin&#34;&gt;Genmon plugin&lt;/a&gt;.  This is a plugin which you can add as many times to your panel as you want, and for each instance you can configure a script that it should run, and the frequency of it.  Like this you can create your own simple scripts (in php, bash, perl, python,...) which generate content (eg: text and images to be shown on the panel, tooltip, on-click action etc) and the Genmon plugin takes care of the rest.&lt;/p&gt;
-&lt;p&gt;This is exactly what I&#39;ve done and in less then an hour everything was working just like I wanted :-)&lt;br /&gt;
-Well, not exactly: apparently the on-click action is bound to the image you show.  I would rather show no image at all and just show text with an on-click action bound to it, but this seems not possible so I had to use an icon.  This made my panel a bit larger (as text is shown beneath the icon, you can&#39;t configure it to place it next to it) Also it would be neat if I could work with colors: red for hosts who are down, green for those who are up etc.  Some details I could achieve if I would make my hands dirty, but for now I don&#39;t have time to enhance the Genmon plugin or to write my own, so I just live with it ;-)&lt;/p&gt;
-&lt;p&gt;Anyways, enough talk.&lt;/p&gt;
-&lt;p&gt;Here is a screenshot:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://dieter.plaetinck.be/files/xfce_genmon_nagios_script.png&#34;/&gt;&lt;/p&gt;
-&lt;p&gt;The cursor is not on the screenshot but I was obviously hoovering over the panel plugin to show the tooltip.&lt;br /&gt;
-You can also see at the left the notes plugin and the mail checker plugin and at the right the volume control, trash applet, battery monitor, systray, clock and action button(s) panel plugins.&lt;/p&gt;
-&lt;p&gt;And here is the source code of my bash script&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #f8f8f8&#34;&gt;&lt;pre style=&#34;line-height: 125%;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# Written by Dieter Plaetinck&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# Licensed under the GPL V3&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# See gnu.org/licenses/gpl-3.0.html&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;#&lt;/span&gt;
-&lt;span style=&#34;color: #3D7B7B; font-style: italic&#34;&gt;# works for Nagios 2.x No idea about 3.x &lt;/span&gt;
-
-
-&lt;span style=&#34;color: #19177C&#34;&gt;URL&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;https://&amp;lt;yourhost&amp;gt;/nagios/cgi-bin/tac.cgi
-&lt;span style=&#34;color: #19177C&#34;&gt;USERNAME&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;username
-&lt;span style=&#34;color: #19177C&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;password
-
-&lt;span style=&#34;color: #19177C&#34;&gt;PAGE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;curl&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-s&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-k&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-u&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$USERNAME&lt;/span&gt;:&lt;span style=&#34;color: #19177C&#34;&gt;$PASSWORD&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$URL&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;HOSTS_DOWN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;           &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;hoststatustypes=4&amp;#39; class=&amp;#39;hostHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;20&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;HOSTS_UNREACHABLE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;hoststatustypes=8&amp;#39; class=&amp;#39;hostHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;20&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;HOSTS_UP&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;             &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;hoststatustypes=2&amp;#39; class=&amp;#39;hostHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;20&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;HOSTS_PENDING&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;hoststatustypes=1&amp;#39; class=&amp;#39;hostHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;20&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-
-&lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_CRIT&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=16&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;23&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_WARN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=4&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;23&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_UNKNOWN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;     &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=8&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;23&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_OK&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=2&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;23&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #19177C&#34;&gt;SERVICES_PENDING&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt;     &lt;/span&gt;&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-e&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$PAGE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;grep&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;servicestatustypes=1&amp;#39; class=&amp;#39;serviceHeader&amp;#39;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;awk&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;#39;{print $5}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;|&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;cut&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;-c&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;23&lt;/span&gt;-&lt;span style=&#34;color: #008000; font-weight: bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;img&amp;gt;scripts/nagios.gif&amp;lt;/img&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;txt&amp;gt;&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_DOWN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_CRIT&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_WARN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;lt;/txt&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;tool&amp;gt;Hosts: &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_DOWN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; down / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_UNREACHABLE&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; unreachable / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_UP&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; up / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$HOSTS_PENDING&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; pending&lt;/span&gt;
-&lt;span style=&#34;color: #BA2121&#34;&gt;Services: &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_CRIT&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; crit / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_WARN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; warn / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_UNKNOWN&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; unknown / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_OK&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; ok / &lt;/span&gt;&lt;span style=&#34;color: #19177C&#34;&gt;$SERVICES_PENDING&lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt; pending&amp;lt;/tool&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;span style=&#34;color: #008000&#34;&gt;echo&lt;/span&gt;&lt;span style=&#34;color: #bbbbbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color: #BA2121&#34;&gt;&amp;quot;&amp;lt;click&amp;gt;firefox https://&amp;lt;yourhost&amp;gt;/nagios&amp;lt;/click&amp;gt;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;At my company we use https, If you use http I don&#39;t know if the authentication method is the same. If not check the -d flag for curl.&lt;br /&gt;
-The icon is just one I took from the nagios page and resized it a bit.  The script will be running in your home directory (even though you can put it anywhere you want)&lt;/p&gt;
-&lt;p&gt;PS: does anyone know a good Apple Keychain- like daemon that I can query from other scripts to receive passwords? Preferably GTK ones that do not pull in Gnome deps.  So I don&#39;t have to store passwords in cleartext... (and I need this anyway for other purposes :p)&lt;/p&gt;
-</description>
+      <guid>http://localhost:1313/posts/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</guid>
+      
+      <description>&lt;p&gt;FOSS is written by users, for users, and what I&#39;ve been doing/experiencing this afternoon is a perfect example of that.</description>
+      
     </item>
     
     <item>
       <title>PhpDeliciousClient, a php cli client to administer del.icio.us accounts</title>
-      <link>http://dieter.plaetinck.be/post/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/</link>
+      <link>http://localhost:1313/posts/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/</link>
       <pubDate>Sun, 01 Jul 2007 16:52:51 -0400</pubDate>
       
-      <guid>21 at http://dieter.plaetinck.be</guid>
-      <description>&lt;p&gt;PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.&lt;br /&gt;
-I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).&lt;/p&gt;
-&lt;p&gt;You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated:  It gets filled with way too many tags.  Among those tags several of them mean the same (fun, funny, humor, ...) or include the other (humor, jokes, ...)  You can group them in bundles but even then you need to add all the tags to a post if you want it to appear in the results for that tag.  Not very convenient. Also, if you have your del.icio.us bookmarks available in Firefox, you&#39;d have a menu with several hundreds of entries (one for each tag), each menu containing usually just a few (or worse: just one) entry.&lt;/p&gt;
-&lt;p&gt;When I got in this situation I tried to fix it, but it was a hell of a task to do this on the Delicious webpage itself, and I although I found some other tools they were far to basic, outdated, dependent on other stuff or just not meant for this kind of task, so I decided to write my own.&lt;/p&gt;
-&lt;p&gt;The result is a php command line program called &lt;a href=&#34;http://dieter.plaetinck.be/php_delicious_client&#34;&gt;PhpDeliciousClient&lt;/a&gt; (as you can see, I added it to the menu on the left too), which uses the &lt;a href=&#34;http://www.ejeliot.com/pages/php-delicious&#34;&gt;PhpDelicious&lt;/a&gt; library to access the Del.icio.us api.&lt;/p&gt;
-&lt;p&gt;The primary focus of the program is to help you to bring your tags in balance, in an as efficient way as possible.  Other stuff, which can be done just fine on the delicious page (editing single posts, changing your password, ...) is not implemented.  &lt;/p&gt;
-&lt;p&gt;It&#39;s a bit hacky, I don&#39;t give any guarantees but I can tell I used it to edit &lt;a href=&#34;http://del.icio.us/Dieter_be&#34;&gt;my own Del.icio.us page&lt;/a&gt;, going from about 400 tags to about 80 without any problems.&lt;/p&gt;
-&lt;p&gt;That said, head over to &lt;a href=&#34;http://dieter.plaetinck.be/php_delicious_client&#34;&gt;the PhpDeliciousClient project page&lt;/a&gt; for some more information, and to download it ;-)&lt;/p&gt;
-</description>
+      <guid>http://localhost:1313/posts/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/</guid>
+      
+      <description>PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.
+I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).
+You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated: It gets filled with way too many tags.</description>
+      
     </item>
     
     <item>
       <title>PhpDeliciousClient</title>
-      <link>http://dieter.plaetinck.be/post/php_delicious_client/</link>
+      <link>http://localhost:1313/posts/php_delicious_client/</link>
       <pubDate>Fri, 29 Jun 2007 13:52:21 -0400</pubDate>
       
-      <guid>20 at http://dieter.plaetinck.be</guid>
-      <description>&lt;h3&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;PhpDeliciousClient is a CLI program for administering your Delicous account.  When you invoke it from the command line you have some methods to administer your tags and your posts.&lt;/p&gt;
-&lt;p&gt;It&#39;s written in PHP and uses &lt;a href=&#34;http://www.ejeliot.com/&#34;&gt;Ed Eliot&#39;s&lt;/a&gt; &lt;a href=&#34;http://www.ejeliot.com/pages/php-delicious&#34;&gt;PhpDelicous&lt;/a&gt; class to contact the del.icio.us api. (included in download)&lt;br /&gt;
-PhpDeliciousClient is licensed under the GPL v2, while the PhpDelicious class is licensed under the BSD license.&lt;/p&gt;
-&lt;h3&gt;Why?&lt;/h3&gt;
-&lt;p&gt;The main reason I started developing it is because administering your account on the del.ico.us web interface can be cumbersome.&lt;br /&gt;
-This is especially true in the case of balancing your tags:&lt;br /&gt;
-After a while, your del.icio.us account can get unbalanced: this is when you have many tags, but most of them only contain a few posts (very often even just one! ).&lt;br /&gt;
-So you would want to balance them again, by deleting and renaming some very specific tags so that you get a collection consisting of less tags (who are more general) and contain about 10 ~ 30 posts each.  Maybe you even also want to delete or rename some general ones who have way to many associated posts.&lt;br /&gt;
-If you want to do this via the del.icio.us web interface you could either go to your personal page, click a tag, and delete the tag manually from each associated post.  Or you could go to the delete or rename tag pages.  On these pages you have a form where you can select an existing tag from a dropdown (which usually is huge) and choose to delete or rename it (depending on which page you are on).  Then you would need to go to the form again and do this again for each tag.&lt;/p&gt;
-&lt;p&gt;With this tool, you can get a list of tags with certain conditions.  Eg &#34;show me all tags who have between 1 and 3 associated posts&#34;.  You can then loop through that list and for each tag the tool will present you the option to delete, rename or skip it.&lt;/p&gt;
-&lt;p&gt;Of course it can do more, but this was my focus: making balancing an account as pleasant as possible.  Other features, such as adding or editing single posts are considered less important as these things can be done just fine on the del.icio.us page.&lt;/p&gt;
-&lt;h3&gt;Current state&lt;/h3&gt;
-&lt;p&gt;Currently the tool seems to do what it is intended to (and pretty well, at least for me: I cleaned up my account from about 400 to 80 tags during development of this program).&lt;br /&gt;
-However I don&#39;t give any warranty, the tool is only moderately documented, performs little to no user input checking and isn&#39;t very well tested so don&#39;t expect any higher quality then that of the average Microsoft product.&lt;br /&gt;
-This program shouldn&#39;t empty your del.icio.us account or blow up your computer but if it does I cannot be held responsible.&lt;/p&gt;
-&lt;h3&gt;Supported features&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;[t] View Tag: Based on the name of tag you enter, you can see the associated posts and edit or rename the tag.&lt;/li&gt;
-&lt;li&gt;[ts]  View Tags: Shows you all tags based on certain criteria:
-&lt;ul&gt;
-&lt;li&gt;lowerlimit: the minimum amount of times a tag has to be associated to a post&lt;/li&gt;
-&lt;li&gt;upperlimit: the maximum amount of times a tag has to be associated to a post&lt;/li&gt;
-&lt;li&gt;hard limit: the maximum number of tags you wish to edit/view at once&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You can decide to view associated posts for each tag, and you can choose wether to only show the tags, or to present you a menu with options for each one.  I usually use the latter, along with associated posts viewing enabled.&lt;/li&gt;
-&lt;li&gt;[p] View Post: shows you the first hit based on a tag and url*&lt;/li&gt;
-&lt;li&gt;[ps] View Posts: shows you all posts based on a tag and url*&lt;/li&gt;
-&lt;li&gt;[lu] Date of last update: Shows you the time when the data (on the serverside) last changed&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;*: url based searching is still buggy, I&#39;m working on it.&lt;/p&gt;
-&lt;h3&gt;Plans for the future&lt;/h3&gt;
-&lt;p&gt;My goals for upcoming releases are (aside from bug fixing) to add features to let you do stuff that you currently can&#39;t do or at least not in a productive manner.  &lt;/p&gt;
-&lt;h4&gt;Known bugs to be fixed&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;URL-based post querying doesn&#39;t work&lt;/li&gt;
-&lt;li&gt;Timezone not taken into account or something like that, because the &#34;last updated&#34; date has a 2hrs offset for me&lt;/li&gt;
-&lt;li&gt;During list iteration tags that have been renamed/deleted already still appear in posts for other tags&lt;/li&gt;
-&lt;li&gt;Issue less load on the Del.icio.us webservice by using the updated date (gonna take a look at Ed&#39;s caching system for that)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4&gt;Features I have on my mind&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Try to hide password as it is typed in by user&lt;/li&gt;
-&lt;li&gt;When a tag has many associated posts, automatically show them more concisely&lt;/li&gt;
-&lt;li&gt;An &#34;are you sure?&#34; thing when you want to rename to a tag that already has many (say: 40) associated posts&lt;/li&gt;
-&lt;li&gt;A mode to only show tags that differ one letter, or differ several letters, as long as they have enough in common (say: 2/3, 1/2 or user configurable)&lt;/li&gt;
-&lt;li&gt;An improved commandline that allows commands/queries like &#34;rm tag1 tag2 tag3&#34;
-&lt;/ul&gt;
-&lt;h3&gt;Prerequisites&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;A shell (such as bash)&lt;/li&gt;
-&lt;li&gt;PHP 4 or higher, with php-cli enabled (default)&lt;/li&gt;
-&lt;li&gt;A del.icio.us account, preferrably a very messy one&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Download&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;http://users.edpnet.be/dieter/php_delicious_client_v05.zip&#34; onClick=&#34;javascript:urchinTracker (&#39;/files/php_delicious_client_v05.zip&#39;);&#34;&gt;release v0.5 (1-7-2007)&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Installation&lt;/h3&gt;
-&lt;p&gt;Unpack the archive and put the directory somewhere on your system.  On Linux /usr/local/bin/ is usually a good choice.&lt;br /&gt;
-Make sure pdclient.php has the executable flag (x).  If the directory is in your $PATH, you can just type pdclient.php on your console, otherwise you need to type &amp;lt;path to program&amp;gt;/phpdeliciousclient/pdclient.php or edit your $PATH.&lt;/p&gt;
-&lt;p&gt;You could also create a symlink in a good directory: &lt;em&gt;ln -s &amp;lt;path to program&amp;gt;/phpdeliciousclient/pdclient.php /usr/local/bin/pdclient&lt;/em&gt;&lt;/p&gt;
-&lt;h3&gt;Usage&lt;/h3&gt;
-&lt;p&gt;I choose a mysql-like syntax for invoking the program.  Valid options are:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;em&gt;pdclient.php&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;pdclient.php --help&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;pdclient.php --user &amp;lt;delicious username&amp;gt;&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;pdclient.php --user &amp;lt;delicious username&amp;gt; --password&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;pdclient.php --user &amp;lt;delicious username&amp;gt; --password &amp;lt;delicious password&amp;gt;&lt;/em&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;With method #4, the program will ask your password upon execution.  With the other methods this doesn&#39;t happen.  You can always update your account information from the menu. (&lt;em&gt;account setup&lt;/em&gt;)&lt;/p&gt;
-&lt;p&gt;In the program prompt you can always type &#39;h&#39; to get help.  Aside from that, just try the options, you&#39;ll figure it out in no time.&lt;/p&gt;
-&lt;h3&gt;Bug reports &amp;amp; feature requests&lt;/h3&gt;
-&lt;p&gt;You can report bugs or file feature requests through the comment system on this page. Choose an appropriate title and prefix it with &#34;Bug: &#34; or &#34;Feature: &#34;&lt;/p&gt;
-</description>
+      <guid>http://localhost:1313/posts/php_delicious_client/</guid>
+      
+      <description>Introduction PhpDeliciousClient is a CLI program for administering your Delicous account. When you invoke it from the command line you have some methods to administer your tags and your posts.
+It&#39;s written in PHP and uses Ed Eliot&#39;s PhpDelicous class to contact the del.icio.us api. (included in download)
+PhpDeliciousClient is licensed under the GPL v2, while the PhpDelicious class is licensed under the BSD license.
+Why? The main reason I started developing it is because administering your account on the del.</description>
+      
     </item>
     
     <item>
       <title>Fosdem 2007 review</title>
-      <link>http://dieter.plaetinck.be/post/fosdem_2007_review/</link>
+      <link>http://localhost:1313/posts/fosdem_2007_review/</link>
       <pubDate>Thu, 15 Mar 2007 21:02:41 -0400</pubDate>
       
-      <guid>6 at http://dieter.plaetinck.be</guid>
+      <guid>http://localhost:1313/posts/fosdem_2007_review/</guid>
+      
       <description>&lt;p&gt;Every year, during a special weekend in February, the &lt;a href=&#34;http://www.ulb.ac.be/&#34;&gt;University Libre of Brussels&lt;/a&gt; suddenly becomes a little more geeky.&lt;br /&gt;
 It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
 &lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
-&lt;!--more--&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org/2007/&#34;&gt;This years edition&lt;/a&gt; took place in the weekend of 24 - 2 - 2007.  And I was there, for the first time.  Saturday and Sunday :-)&lt;/p&gt;
-&lt;p&gt;Like usual the &lt;a href=&#34;http://www.fosdem.org/2007/schedule/days&#34;&gt;schedule&lt;/a&gt; was pretty full, with lots of things happening at the same time, and only one thing a human being is able to attend at the same time.  Luckily however the 2 biggest rooms (Janson and Chavanne) were videotaped and the &lt;a href=&#34;http://www.fosdem.org/2007/media/video&#34;&gt;videos&lt;/a&gt; are always made available online afterwards.  So knowing that, I could safely follow other rooms if I found those more interesting.&lt;/p&gt;
-&lt;h3&gt;Saturday&lt;/h3&gt;
-&lt;p&gt;The first talk started at 10:00h, and it&#39;s about an hour drive, if you don&#39;t get lost.&lt;br /&gt;
-But I need my sleep, especially the sparse kind of sleep after Friday evenings.  (same goes for my buddy &lt;a href=&#34;http://ghosty.be/&#34;&gt;Geert&lt;/a&gt; who I could ride along with).  We headed off at 11h, and arrived somewhere around 12:30.  (Let&#39;s blame Brussels&#39; bad road signaling for that).  &lt;/p&gt;
-&lt;p&gt;Missed the opening talks, and the &#34;status of software patents&#34; and &#34;liberating java&#34; talks which I&#39;m was really interested in, but hey they were taped so no problemo ;-). During lunch break I explored the stands a bit, talked with some guys and picked up some reading material.&lt;/p&gt;
-&lt;p&gt;At the &lt;a href=&#34;http://www.gentoo.org/&#34;&gt;Gentoo&lt;/a&gt; stand there was no merchandise to be found.  I asked whether merch would arrive, but they said they were afraid not.  (and they were right).  No Gentoo merchandise, that was bummer.  I really wanted a t-shirt or something like that.  Gentoo is one of my favorite distros.&lt;/p&gt;
-&lt;p&gt;At the gnome stand they had made a panel were people could write their favorite things (or things they hate) about gnome on post-its.  There were things like &#34;gnome should use QT&#34; replied by &#34;qt should use gtk&#34; and all kinds of jokes.  Then there was this guy who was repositioning all the post-it&#39;s in the shape of letters of kde.  I use neither (I use &lt;a href=&#34;http://www.xfce.org/&#34;&gt;xfce&lt;/a&gt;) but this sure was a cool place to hang out during breaks.  &lt;/p&gt;
-&lt;p&gt;After that I followed the &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/xorg&#34;&gt;X.org talk&lt;/a&gt;, &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/keith+packard&#34;&gt;Keith&lt;/a&gt; (the project leader) was a real-funpants and told us all about the developers involved with Xorg.  Where they live, their tasks, favorite beers, and so on.  More of a talk for the community then the developers.&lt;/p&gt;
-&lt;p&gt;Next was &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/aiglx&#34;&gt;the aiglx one&lt;/a&gt;.  Actually I preferred attending &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/linuxbios&#34;&gt;linuxBIOS&lt;/a&gt; which I just find more interesting.  Besides, thanks to my nvidia card i can run GLX_EXT_texture_from_pixmap without aiglx or xgl, but hey, I guess the other guys are less fortunate so I decided to stick with them.  I can always check linuxBIOS later :-).   This talk was pretty advanced.  A real developers-talk you could say.  I certainly couldn&#39;t follow ;-)&lt;/p&gt;
-&lt;p&gt;After that came a talk about the state of &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/linux_kernel&#34;&gt; the Linux kernel&lt;/a&gt;.  It was quite interesting, again, this was a talk aimed at developers, which I&#39;m totally not, but I&#39;m a bit familiar with the kernel (running &lt;a href=&#34;http://www.gentoo.org/&#34;&gt;Gentoo&lt;/a&gt; and following &lt;a href=&#34;http://kerneltrap.org/&#34;&gt;kerneltrap&lt;/a&gt; a bit has it advantages) so I could follow, more or less.&lt;/p&gt;
-&lt;p&gt;Next I followed &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/donators_return&#34;&gt;the donators return&lt;/a&gt; thing where people who donated (like me) can &lt;a href=&#34;http://fosdem.org/2007/support/donate&#34;&gt;win prizes&lt;/a&gt;.  I didn&#39;t win anything but hey, still I felt the money was well spent.  (and I also got a free t-shirt ;-) )  One of &lt;a href=&#34;http://www.sun.com/desktop/workstation/ultra20/&#34;&gt;these&lt;/a&gt; would certainly fit in my room though ;-))&lt;/p&gt;
-&lt;p&gt;One thing I just had to attend was the Gentoo devroom.  like I said: Gentoo is one of my favorite distributions.  Also, it was our Belgian irc-friend &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/dimitry+bradt&#34;&gt;Dimitry (aka diox)&lt;/a&gt; who gave his talk so I just couldn&#39;t miss &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_future_discussion&#34;&gt;his talk about Gentoo&#39;s future&lt;/a&gt;.  This was the first devroom I followed and it was totally different then any other talk: it was more of an interactive talk between the devs and the audience.  In the audience were some real devs, but also lot&#39;s of &#34;normal&#34; communitypeople.  Next to me there even was a guy who was very new to Gentoo.  I was happy to tell him all about paludis, overlays and other concepts and terms of Gentoo.&lt;/p&gt;
-&lt;p&gt;After that, there were no more talks to attend, so I went by some stands again (to check if Gentoo merchandise might have arised, among others), met Geert again and, although it was pretty hard to find our way back in the (now darkened) city of Brussels, we managed to drive back home.&lt;/p&gt;
-&lt;h3&gt;Sunday&lt;/h3&gt;
-&lt;p&gt;A new day, and wow, so many cool talks to attend: metasploit, drupal, security testing, mozilla, mono, gplv3, the list goes on.  Luckily many of them were in Janson/Chavanne so I could safely skip these and head for...&lt;/p&gt;
-&lt;p&gt;the Gentoo devroom.  (yeah, sorry, Gentoo here Gentoo there.  My other favorite distro &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; wasn&#39;t featured anywhere, so Gentoo got all the attention)&lt;br /&gt;
-I missed the &#34;programing with paludis&#34; one (ouch! I would have liked that one) but I was there to hear &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/mike+frysinger&#34;&gt;Mike&lt;/a&gt; talk about &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_council&#34;&gt;Gentoo&#39;s inner workings&lt;/a&gt;.  He told us all about Gentoo&#39;s history and how (by who) the project is managed.  That Daniel (the founder of Gentoo) left and came back (I found it remarkable he didn&#39;t mention &lt;em&gt;why&lt;/em&gt; he left (to work at Microsoft).    Guess that wasn&#39;t important enough for the community)&lt;/p&gt;
-&lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/chris+gianelloni&#34;&gt;Chris&lt;/a&gt; talked about &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_tinderbox_testing&#34;&gt;the process that happens for making releases&lt;/a&gt;.  I was impressed.&lt;/p&gt;
-&lt;p&gt;To fill the gap between 13h and 14h I wanted to follow &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/jabber_oneteam&#34;&gt;this&lt;/a&gt; talk.  I have no idea what oneteam is, but I like jabber.  The room was stuffed with people though, and when opening the door you literally felt warm air coming out, so I decided to let the jabber guys in their oven :-)&lt;/p&gt;
-&lt;p&gt;After that some more Gentoo talks: &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_community_distro&#34;&gt;&#34;what makes Gentoo a community based distribution&#34;&lt;/a&gt; by &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/christel+dahlksjaer&#34;&gt;Christel&lt;/a&gt; didn&#39;t make me believe Gentoo is any more community based then most other open source Linux distributions, but hey Christel was quite a joker and the community vibe in the room was nice.&lt;/p&gt;
-&lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/marius+mauch&#34;&gt;Marius&lt;/a&gt; did a &lt;em&gt;great&lt;/em&gt; job explaining the ins and outs of portage -especially the new ones- in his talk &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_portage&#34;&gt;Portage: a look under the surface&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;After that &lt;a href=&#34;http://www.fosdem.org/2007/schedule/speakers/alexander+faeroey&#34;&gt;Alexander&lt;/a&gt; did a talk called &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/gentoo_bugday&#34;&gt;future of the bugday project&lt;/a&gt;.  This was pretty much the kind of information you get by reading the forums/newsletters.  Nothing new, but I don&#39;t think the talk intended to make groundbreaking revelations either ;-)&lt;/p&gt;
-&lt;p&gt;17 &#39;o clock.  Damn.. time went fast.. Fosdem pretty much coming to end, luckily there was another nice topic I was really interested in: &lt;a href=&#34;http://www.fosdem.org/2007/schedule/events/embedded_security_devices&#34;&gt;Linux on embedded security devices&lt;/a&gt;.  This talk wasn&#39;t very good though:   No kernel revelations.  No open source code.  No in-depth explanations.&lt;br /&gt;
-Basically a company showing it&#39;s product: an embedded device running Linux, running customized code and a presentation showing a scheme showing where they used technologies like SSL, dns or dhcp.  Boring...  And a little demo.&lt;br /&gt;
-Nice to see, but nothing more then that.&lt;/p&gt;
-&lt;p&gt;I think it must have been after this talk I went back to the stands to find &lt;a href=&#34;http://christophe.vandeplas.com/&#34;&gt;Christophe (aka chri)&lt;/a&gt;, who I hadn&#39;t met yet but I had helped him a bit getting &lt;a href=&#34;http://code.google.com/p/weids/&#34;&gt;weids, the &#34;Webbased Information Display System&#34;&lt;/a&gt; (which was created for fosdem) to work.&lt;br /&gt;
-After talking some time with chri the &lt;a href=&#34;http://www.fsfeurope.org/&#34;&gt;Free Software Foundation: Europe&lt;/a&gt; got my attention, and I couldn&#39;t resist buying one of their lovely t-shirts.  I can&#39;t remember how much it cost me, but it was pretty expensive.  No problem though, as I know the money is in very good hands.&lt;/p&gt;
-&lt;p&gt;After that me and Geert drunk a beer, and then drove home again.&lt;/p&gt;
-&lt;p&gt;Fosdem was good.&lt;/p&gt;
-&lt;h2&gt;Did you know...?&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;I invited the &lt;a href=&#34;http://www.cakephp.org/&#34;&gt;CakePHP&lt;/a&gt; guys to come?  Unfortunately none of them came, but maybe I can convince them next year!&lt;/li&gt;
-&lt;li&gt;The catering was allright and very, very cheap (and also run by volunteers)&lt;/li&gt;
-&lt;li&gt;Fosdem is mentioned in this &lt;a href=&#34;http://www.gentoo.org/news/en/gwn/20070305-newsletter.xml&#34;&gt;Gentoo newsletter&lt;/a&gt;.  Including a picture of all the devs, shot by SeJo (sunday afternoon iirc)&lt;/li&gt;
-&lt;li&gt;You&#39;ll find many pictures &lt;a href=&#34;http://www.fosdem.org/2007/media/pictures&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Most of the talks are aimed at developers, and developers certainly are the guys that should come.  Fosdem is the perfect place to meet, discuss (with both developers of your own team, as with devs of other projects that you depend on), learn and hack some code together.&lt;/p&gt;
-&lt;p&gt;For the community it&#39;s another story.  Many of the talks are too hard to follow, and those talks that are aimed at the community usually don&#39;t offer more information then what you would find on the websites, forums/mailinglists or newsletters.&lt;br /&gt;
-The fact that you can download lots of video material is great.  If you stay home you can still make up for it by watching the movies.&lt;br /&gt;
-It&#39;s cool to meet people though.  And if you want to visit stands of different projects (for example to buy merchandise).  That&#39;s imho the best reason for non-developers to come to fosdem.  But that&#39;s personal of course.&lt;/p&gt;
-&lt;p&gt;So who&#39;s coming with me to fosdem 2008? :-).&lt;/p&gt;
 </description>
+      
     </item>
     
     <item>
       <title>My favorite bash tricks</title>
-      <link>http://dieter.plaetinck.be/post/my_favorite_bash_tricks/</link>
+      <link>http://localhost:1313/posts/my_favorite_bash_tricks/</link>
       <pubDate>Wed, 14 Mar 2007 23:38:54 -0400</pubDate>
       
-      <guid>5 at http://dieter.plaetinck.be</guid>
-      <description>&lt;p&gt;Hello everyone.&lt;br /&gt;
-This post is about &lt;a href=&#34;http://www.gnu.org/software/bash/&#34;&gt;bash&lt;/a&gt;, the shell providing so many users easy access to the underlying power of their system.&lt;br /&gt;
-(not &lt;a href=&#34;http://www.bash.org/&#34;&gt;bash&lt;/a&gt; the quote database, although i really like that website too ;-) )&lt;br /&gt;
-Most people know the basics, but getting to know it better can really increase your productivity.  And when that happens, you might start loving bash as much as I do ;-)&lt;/p&gt;
-&lt;p&gt;I assume you have a basic knowledge of bash, the history mechanism, and  ~/.bash* files.&lt;br /&gt;
-So here they are, my favorite tricks, key combo&#39;s and some bonus stuff:&lt;/p&gt;
-&lt;h3&gt;Tricks&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&#34;cd -&#34; takes you back to the previous directory, wherever that was.  Press again to cycle back.&lt;/li&gt;
-&lt;li&gt;putting arguments between braces {like,so} will execute the command multiple times, once for each &#34;argument&#34;.  Bash will make the cartesian product when doing it multiple times in 1 expression.  Some less-obvious tricks with this method are mentioned &lt;a href=&#34;http://www.bhaskarvk.info/technology/bash-tricks.html&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;HISTIGNORE : with this variable you have control over which things are being saved in your history.  &lt;a href=&#34;http://www.talug.org/events/20030709/cmdline_history.html&#34;&gt;Here&lt;/a&gt; is a nice explication.  Especially the space trick is very useful imho.&lt;/li&gt;
-&lt;li&gt;CD_PATH : &lt;a href=&#34;http://www.caliban.org/bash/&#34;&gt;Here&lt;/a&gt; is a great explanation ;-)&lt;/li&gt;
-&lt;li&gt;readline (library used by bash) trick:  put this in your ~/.inputrc (or /etc/inputrc) :&lt;br /&gt;
-&lt;pre&gt;
-&#34;\e[5~&#34;: history-search-backward
-&#34;\e[6~&#34;: history-search-forward
-&lt;/pre&gt;&lt;p&gt;This way you can do *something*+pageup/pagedown to cycle through your history for commands starting with *something*&lt;br /&gt;
-You can use the up/down arrows too, their codes are &#34;\e[A&#34; and &#34;\e[B&#34;
-&lt;/li&gt;
-&lt;li&gt;for more &#34;natural&#34; history saving behavior (when having several terminals open): put this in .bash_profile: &lt;br/&gt;&lt;br /&gt;
-&lt;pre&gt;PROMPT_COMMAND=&#39;history -a&#39;&lt;/pre&gt;&lt;p&gt; (write each command separately in a new entry, instead of all at shell exit).&lt;br /&gt;
-And type &lt;/p&gt;
-&lt;pre&gt;shopt -s histappend&lt;/pre&gt;&lt;p&gt; to append instead of overwrite. (this might be default on some distro&#39;s.  I think it was on Gentoo)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Shortcuts/keycombos&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;ctrl+r : search through your history.  Repeatedly press ctrl+r to cycle through hits.&lt;/li&gt;
-&lt;li&gt;ctrl-u : cut everything on the current line before the cursor.&lt;/li&gt;
-&lt;li&gt;ctrl-y : paste text that was cut using ctrl-u. (starting at the cursor)&lt;/li&gt;
-&lt;li&gt;!$: equals the last word of the previous command. (great when performing several operations on the same file)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Bonus material&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.caliban.org/bash/index.shtml#completion&#34;&gt;Bash completion&lt;/a&gt;, an add-on for bash which adds completion for arguments of your commands.  It&#39;s pretty smart and configurable.  (it&#39;s in portage, and probably in repos of all popular distros out there)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://n01se.net/agriffis/nopaste/&#34;&gt;This script&lt;/a&gt; provides you an interface to the &lt;a href=&#34;http://rafb.net/paste/&#34;&gt;rafb pastebin&lt;/a&gt;!&lt;/li&gt;
-&lt;li&gt;Recursively delete all .svn folders in this folder, and in folders below. &#34;find . -name .svn -print0 | xargs -0 rm -rf&#34;&lt;/li&gt;
-&lt;li&gt;Recursively count number of files in a directory: &#34;find -not -type d | wc -l&#34;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;Conclusion&lt;/h3&gt;
-&lt;p&gt;Those were all important tricks I&#39;m currently using.  On the web you&#39;ll find lots more useful tips :-).&lt;br /&gt;
-If that still isn&#39;t enough, there is also &lt;a href=&#34;http://www.gnu.org/software/bash/manual/bashref.html&#34;&gt;man bash&lt;/a&gt; :o&lt;/p&gt;
-&lt;p&gt;With aliases and scripts (and involving tools like sed or awk) the possibilities become pretty much endless.  But for that I refer to &lt;a href=&#34;http://tldp.org/LDP/abs/html/&#34;&gt;tldp.org&lt;/a&gt; and your favorite web search engine.&lt;/p&gt;
-</description>
+      <guid>http://localhost:1313/posts/my_favorite_bash_tricks/</guid>
+      
+      <description>Hello everyone.
+This post is about bash, the shell providing so many users easy access to the underlying power of their system.
+(not bash the quote database, although i really like that website too ;-) )
+Most people know the basics, but getting to know it better can really increase your productivity. And when that happens, you might start loving bash as much as I do ;-)
+I assume you have a basic knowledge of bash, the history mechanism, and ~/.</description>
+      
     </item>
     
   </channel>

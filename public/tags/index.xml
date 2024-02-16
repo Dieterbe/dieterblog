@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Dieter&#39;s blog</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Dec 2016 19:13:03 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>devops</title>
+      <link>http://localhost:1313/tags/devops/</link>
+      <pubDate>Sat, 10 Dec 2016 19:13:03 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/devops/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>monitoring</title>
+      <link>http://localhost:1313/tags/monitoring/</link>
+      <pubDate>Sat, 10 Dec 2016 19:13:03 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/monitoring/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>http://localhost:1313/tags/git/</link>
+      <pubDate>Mon, 14 Nov 2016 11:33:03 +0200</pubDate>
+      
+      <guid>http://localhost:1313/tags/git/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>http://localhost:1313/tags/golang/</link>
+      <pubDate>Fri, 02 Oct 2015 10:25:02 +0200</pubDate>
+      
+      <guid>http://localhost:1313/tags/golang/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>http://localhost:1313/tags/programming/</link>
+      <pubDate>Fri, 02 Oct 2015 10:25:02 +0200</pubDate>
+      
+      <guid>http://localhost:1313/tags/programming/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>life</title>
+      <link>http://localhost:1313/tags/life/</link>
+      <pubDate>Fri, 03 Jul 2015 09:22:02 -0700</pubDate>
+      
+      <guid>http://localhost:1313/tags/life/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>photos</title>
+      <link>http://localhost:1313/tags/photos/</link>
+      <pubDate>Tue, 12 Aug 2014 08:36:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/photos/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>perf</title>
+      <link>http://localhost:1313/tags/perf/</link>
+      <pubDate>Sun, 18 May 2014 13:22:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/perf/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>arch</title>
+      <link>http://localhost:1313/tags/arch/</link>
+      <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/arch/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>vimeo</title>
+      <link>http://localhost:1313/tags/vimeo/</link>
+      <pubDate>Sun, 22 Dec 2013 12:46:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/vimeo/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>travel</title>
+      <link>http://localhost:1313/tags/travel/</link>
+      <pubDate>Sun, 19 Aug 2012 16:50:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/travel/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>openstack</title>
+      <link>http://localhost:1313/tags/openstack/</link>
+      <pubDate>Wed, 02 May 2012 11:50:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/openstack/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>http://localhost:1313/tags/linux/</link>
+      <pubDate>Sun, 25 Mar 2012 23:05:05 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/linux/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>music</title>
+      <link>http://localhost:1313/tags/music/</link>
+      <pubDate>Sun, 08 Jan 2012 18:10:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/music/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>lua</title>
+      <link>http://localhost:1313/tags/lua/</link>
+      <pubDate>Sun, 02 Oct 2011 09:28:45 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/lua/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>mail</title>
+      <link>http://localhost:1313/tags/mail/</link>
+      <pubDate>Sun, 02 Oct 2011 09:28:45 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/mail/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>foss</title>
+      <link>http://localhost:1313/tags/foss/</link>
+      <pubDate>Thu, 16 Jun 2011 22:32:12 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/foss/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>http://localhost:1313/tags/python/</link>
+      <pubDate>Thu, 16 Jun 2011 22:32:12 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/python/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>conf</title>
+      <link>http://localhost:1313/tags/conf/</link>
+      <pubDate>Sun, 06 Feb 2011 23:46:18 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/conf/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>http://localhost:1313/tags/bash/</link>
+      <pubDate>Tue, 28 Dec 2010 22:59:15 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/bash/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>drupal</title>
+      <link>http://localhost:1313/tags/drupal/</link>
+      <pubDate>Sun, 19 Dec 2010 19:54:07 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/drupal/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>uzbl</title>
+      <link>http://localhost:1313/tags/uzbl/</link>
+      <pubDate>Mon, 22 Nov 2010 15:05:35 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/uzbl/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>php</title>
+      <link>http://localhost:1313/tags/php/</link>
+      <pubDate>Fri, 12 Feb 2010 23:25:46 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/php/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>n900</title>
+      <link>http://localhost:1313/tags/n900/</link>
+      <pubDate>Mon, 12 Oct 2009 21:20:39 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/n900/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>http://localhost:1313/tags/mysql/</link>
+      <pubDate>Sat, 06 Jun 2009 11:33:34 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/mysql/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>cakephp</title>
+      <link>http://localhost:1313/tags/cakephp/</link>
+      <pubDate>Mon, 19 Jan 2009 22:16:52 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/cakephp/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>productivity</title>
+      <link>http://localhost:1313/tags/productivity/</link>
+      <pubDate>Sat, 13 Dec 2008 17:43:02 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/productivity/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>netlog</title>
+      <link>http://localhost:1313/tags/netlog/</link>
+      <pubDate>Sat, 24 May 2008 12:39:28 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/netlog/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>web2.0</title>
+      <link>http://localhost:1313/tags/web2.0/</link>
+      <pubDate>Sat, 24 May 2008 12:39:28 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/web2.0/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>drums</title>
+      <link>http://localhost:1313/tags/drums/</link>
+      <pubDate>Sun, 04 Nov 2007 18:28:17 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/drums/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>real life</title>
+      <link>http://localhost:1313/tags/real-life/</link>
+      <pubDate>Sun, 04 Nov 2007 18:28:17 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/real-life/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>thesis</title>
+      <link>http://localhost:1313/tags/thesis/</link>
+      <pubDate>Wed, 04 Jul 2007 15:23:01 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/thesis/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>dauth</title>
+      <link>http://localhost:1313/tags/dauth/</link>
+      <pubDate>Mon, 02 Jul 2007 13:19:14 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/dauth/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>information age</title>
+      <link>http://localhost:1313/tags/information-age/</link>
+      <pubDate>Sat, 02 Jun 2007 13:06:40 -0400</pubDate>
+      
+      <guid>http://localhost:1313/tags/information-age/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

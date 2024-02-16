@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">Practical fault detection on timeseries part 2: first macros and templates | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="Practical fault detection on timeseries part 2: first macros and templates | Dieter&#39;s blog" />
+<meta name="twitter:title" content="Practical fault detection on timeseries part 2: first macros and templates | Dieter&#39;s blog" />
+<meta itemprop="name" content="Practical fault detection on timeseries part 2: first macros and templates | Dieter&#39;s blog" />
+<meta name="application-name" content="Practical fault detection on timeseries part 2: first macros and templates | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2015-04-27T09:05:02-0400 />
+    <meta property="article:published_time" content=2015-04-27T09:05:02-0400 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Practical fault detection on timeseries part 2: first macros and templates",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2015-04-27",
+        "description": "",
+        "wordCount":  1506 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2015-04-27",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/practical-fault-detection-on-timeseries-part-2/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Practical fault detection on timeseries part 2: first macros and templates</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2015-04-27T09:05:02-04:00" itemprop="datePublished"> 27 Apr 2015 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <h2>Target use case</h2>
+As in the previous article, we focus on the specific category of timeseries metrics driven by user activity.
+Those series are expected to fluctuate in at least some kind of (usually daily) pattern, but is expected to have a certain smoothness to it. Think web requests per second or uploads per minute.   There are a few characteristics that are considered faulty or at least worth our attention:
+<br/>
+<table>
+<tr>
+    <td style="padding:0px;" width="160px;"><a href="/files/practical-alerting-timeseries-good.png"><img width="160px;" src="/files/practical-alerting-timeseries-good.png"/></a></td>
+    <td style="padding:0px;" width="160px;"><a href="/files/practical-alerting-timeseries-bad-spikes.png"><img width="160px;" src="/files/practical-alerting-timeseries-bad-spikes.png"/></a></td>
+    <td style="padding:0px;" width="160px;"><a href="/files/practical-alerting-timeseries-bad-erratic.png"><img width="160px;" src="/files/practical-alerting-timeseries-bad-erratic.png"/></a></td>
+    <td style="padding:0px;" width="160px;"><a href="/files/practical-alerting-timeseries-bad-timeseries-median-drop.png"><img width="160px;" src="/files/practical-alerting-timeseries-bad-timeseries-median-drop.png"/></a></td>
+</tr>
+<tr>
+  <td><b style="color: green;">looks good</b><br/>consistent pattern<br/>consistent smoothness</td>
+  <td><b style="color: red;">sudden deviation (spike)</b><br/>Almost always something broke or choked.<br/>could also be pointing up. ~ peaks and valleys</td>
+  <td><b style="color: red;">increased erraticness</b><br/>Sometimes natural<br/>often result of performance issues</td>
+  <td><b style="color: red;">lower values than usual</b> (in the third cycle)<br/>Often caused by changes in code or config, sometimes innocent.  But best to alert operator in any case [*]</td>
+</tr>
+</table>
+
+<br/>
+[*] Note that some regular patterns can look like this as well. For example weekend traffic lower than weekdays, etc.  We see this a lot.
+<br/>The illustrations don't portray this for simplicity.   But the alerting logic below supports this just fine by comparing to same day last week instead of yesterday, etc.
+
+
+<h2>Introducing the new approach</h2>
+
+The <a href="/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html">previous article</a> demonstrated using graphite to compute standard deviation.
+This let us alert on the erraticness of the series in general and as a particularly interesting side-effect, on spikes up and down.
+The new approach is more refined and concrete by leveraging some of bosun's and Grafana's strengths.  We can't always detect the last case above via erraticness checking (a lower amount may be introduced gradually, not via a sudden drop) so now we monitor for that as well, covering all cases above.
+
+We use 
+<ul>
+<li>Bosun macros which encapsulate all the querying and processing</li>
+<li>Bosun template for notifications</li>
+<li>A generic Grafana dashboard which aids in troubleshooting</li>
+</ul>
+We can then leverage this for various use cases, as long as the expectations of the data are as outlined above.
+We use this for web traffic, volume of log messages, uploads, telemetry traffic, etc.
+For each case we simply define the graphite queries and some parameters and leverage the existing mentioned Bosun and Grafana configuration.
+<br/>
+<p>
+The best way to introduce this is probably by showing how a notification looks like:
+<br/>
+<center>
+<a href="/files/practical-alerting-dm-notification.png"><img height="600px" src="/files/practical-alerting-dm-notification.png"/></a>
+<br/>
+(image redacted to hide confidential information
+<br/>the numbers are not accurate and for demonstration purposes only)
+</center>
+<p>
+As you can tell by the sections, we look at some global data (for example "all web traffic", "all log messages", etc), and also
+by data segregated by a particular dimension (for example web traffic by country, log messages by key, etc)
+<br/>
+To cover all problematic cases outlined above, we do 3 different checks:
+(note, everything is parametrized so you can tune it, see further down)
+<ul>
+<li>Global volume: comparing the median value of the last 60 minutes or so against the corresponding 60 minutes last week and expressing it as a "strength ratio".  Anything below a given threshold such as 0.8 is alerted on</li>
+<li>Global erraticness. To find all forms of erraticness (increased deviation), we use a refined formula.  See details below.  A graph of the input data is included so you can visually verify the series</li>
+<li>On the segregated data: compare current (hour or so) median against median derived from the corresponding hours during the past few weeks, and only allow a certain amount of standard deviations difference</li>
+</ul>
+
+If any, or multiple of these conditions are in warning or critical state, we get 1 alert that gives us all the information we need.
+<br/>
+Note the various links to GE (Graph-Explorer) and Grafana for timeshifts.
+The Graph-Explorer links are just standard GEQL queries, I usually use this if i want to be easily manage what I'm viewing (compare against other countries, adjust time interval, etc) because that's what GE is really good at.
+The timeshift view is a Grafana dashboard that takes in a Graphite expression as a template variable, and can hence be set via a GET parameter by using the url  <pre>http://grafana/#/dashboard/db/templatetimeshift?var-patt=expression</pre>
+It shows the current past week as red dots, and the past weeks before that as timeshifts in various shades of blue representing the age of the data. (darker is older).
+<br/>
+<br/>
+
+<a href="/files/practical-alerting-screenshot-template-timeshift.png"><img src="/files/practical-alerting-screenshot-template-timeshift.png" /></a>
+<br/>
+This allows us to easily spot when traffic becomes too low, overly erratic, etc as this example shows:
+<br/>
+<br/>
+
+<a href="/files/practical-alerting-timeshift-use.png"><img src="/files/practical-alerting-timeshift-use.png" /></a>
+<br/>
+
+<h2>Getting started</h2>
+
+Note: I Won't explain the details of the bosun configuration.  Familiarity with bosun is assumed.  The <a href="http://bosun.org/">bosun documentation</a> is pretty complete.
+<br/>
+<br/>
+<a href="https://gist.github.com/Dieterbe/d1892fa0b4454b892216">Gist with bosun macro, template, example use, and Grafana dashboard definition</a>.  Load the bosun stuff in your bosun.conf and import the dashboard in Grafana.
+<br/>
+<br/>
+The pieces fit together like so:
+
+<ul>
+<li>The alert is where we define the graphite queries, the name of the dimension segregated by (used in template), how long the periods are, what the various thresholds are and the expressions to be fed into Grafana and Graph-Explorer.
+<br/>
+It also lets you set an importance which controls the sorting of the segregated entries in the notification (see screenshot).  By default it is based on the historical median of the values but you could override this.  For example for a particular alert we maintain a lookup table with custom importance values.</li>
+<li>The macros are split in two:
+<ol>
+<li>dm-load loads all the initial data based on your queries and computes a bunch of the numbers.</li>
+<li>dm-logic does some final computations and evaluates the warning and critical state expressions.</li>
+</ol>
+They are split so that your alerting rule can leverage the returned tags from the queries in dm-load to use a lookup table to set the importance variable or other thresholds, such as s_min_med_diff on a case-by-case basis, before calling dm-logic.
+<br/>
+We warn if one or more segregated items didn't meet their median requirements, and if erraticness exceeds its threshold (note that the latter can be disabled).
+<br>Critical is when more than the specified number of segregated items didn't meet their median requirements, the global volume didn't meet the strength ratio, or if erraticness is enabled and above the critical threshold.
+</li>
+<li>The template is evaluated and generates the notification like shown above</li>
+<li>Links to Grafana (timeshift) and GE are generated in the notification to make it easy to start troubleshooting</li>
+</ul>
+
+<h2>Erraticness formula refinements</h2>
+You may notice that the formula has changed to
+<pre>
+(deviation-now * median-historical) /
+((deviation-historical * median-now) + 0.01)
+</pre>
+<img style="float: right; margin: 45px;" width="40%" src="/files/practical-alerting-notes-cleaned-small.jpg" />
+<ul>
+<li>Current deviation is compared to an automatically chosen historical deviation value (so no more need to manually set this)</li>
+<li>Accounts for difference in volume: for example if traffic at any point is much higher, we can also expect the deviation to be higher.  With the previous formula we would have cases where in the past the numbers were very low, and naturally the deviation then was low and not a reasonable standard to be held against when traffic is higher, resulting in trigger happy alerting with false positives.
+<br/>Now we give a fair weight to the deviation ratio by making it inversely proportional to the median ratio</li>
+<li>The + 0.01 is to avoid division by zero</li>
+</ul>
+
+<!--
+streak covers cases where values are very low so that stdev is in the same order (like low volume logs) and we can't properly use the erraticness or x-deviations. for example logs with very little traffic, datapoints representing healthy traffic can look like (1, 2, 0, 3, 1, ..)
+although i think the ratio of medians (median_now/median_then) should work just as well as streak
+
+<img src="/files/practical-alerting-low-values-zeroes.png" />
+<img src="/files/practical-alerting-low-values-low.png" />
+-->
+
+<h2>Still far from perfect</h2>
+While this has been very helpful to us, I want to highlight a few things that could be improved.
+<ul>
+<li>With these alerts, you'll find yourself wanting to iteratively fine tune the various parameters and validate the result of your changes by comparing the status-over-time timeline before and after the change.  While Bosun already makes iterative development easier and lets you <a href="http://bosun.org/public/ss_rule_timeline.png">run test rules against old data and look at a the status over time</a>, the interface could be improved by
+<ol>
+<li><a href="https://github.com/bosun-monitor/bosun/issues/636">showing timeseries (with event markers where relevant) alongside the status visualization</a>, so you have context to interpret the status timeline</li>
+<li>routinely building <a href="https://github.com/grafana/grafana/pull/1569">a knowledge base of time ranges annotated with a given state for a given alerting concern, which would help in validating the generated status timeline, both visually and in code.  We could compute percentage of issues found, missed, etc</a>. "unit tests for alerting" my boss called it.</li>
+</ol>
+</li>
+<li>Template could be prettier.  In particular the plots often don't render very well.  We're looking into closer Grafana-Bosun integration so I think that will be resolved at some point.</li>
+<li><a href="https://github.com/bosun-monitor/bosun/issues/719">Current logic doesn't take past outages into account. "just taking enough periods in graphiteBand()" helps alleviate it mostly, but it's not very robust</a></li>
+<li>See that drop in the screenshot a bit higher up? That one was preceded by a code deploy event in anthracite which made some changes where a drop in traffic was actually expected.  Would love to be able to mark stuff like this in deploys (like putting in the commit message something like "expect 20-50 drop" and have the monitoring system leverage that.</li>
+</ul>
+
+<h2>In conclusion</h2>
+I know many people are struggling with poor alerting rules (static thresholds?)
+<br/>As I explained in the previous article I fondly believe that the commonly cited solutions (anomaly detection via machine learning) are a very difficult endeavor and results can be achieved much quicker and simpler.
+<br/>While this only focuses on one class of timeseries (it won't work on diskspace metrics for example) I found this class to be in the most dire need of better fault detection.  Hopefully this is useful to you. Good luck and let me know how it goes!
+
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

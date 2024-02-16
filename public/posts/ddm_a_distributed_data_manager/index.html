@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">DDM : a Distributed Data Manager | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="DDM : a Distributed Data Manager | Dieter&#39;s blog" />
+<meta name="twitter:title" content="DDM : a Distributed Data Manager | Dieter&#39;s blog" />
+<meta itemprop="name" content="DDM : a Distributed Data Manager | Dieter&#39;s blog" />
+<meta name="application-name" content="DDM : a Distributed Data Manager | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2008-03-29T20:28:16-0400 />
+    <meta property="article:published_time" content=2008-03-29T20:28:16-0400 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "DDM : a Distributed Data Manager",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2008-03-29",
+        "description": "",
+        "wordCount":  988 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2008-03-29",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/ddm_a_distributed_data_manager/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">DDM : a Distributed Data Manager</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2008-03-29T20:28:16-04:00" itemprop="datePublished"> 29 Mar 2008 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                </p>
+<h3>Disclaimer</h3>
+<p>The code is far from finished.  Some features are still missing and there will be bugs in it.  I'm even still thinking about the concepts themselves.   Don't blame me if ddm deletes the wrong files or causes your computer to blow up.</p>
+<h3>Concepts</h3>
+<p>DDM is a bash script that manages your data, distributed over multiple (*nix) systems.  You tell it how you want to work with your data and ddm will do the copying, deleting, syncing, committing, updating, ... for you.<br />
+It uses simple things like cp, rsync and svn for this.<br />
+Configuration is done through simple text files that will be sourced.</p>
+<p>Ddm works with repositories: these are data stores on your server which should never be edited by hand.  A repository can be a svn repository or something as simple as a directory shared over the network ( through NFS, SMB, ... )</p>
+<p>I highly recommend <a href="http://wiki.autofs.net/">autoFS</a> as auto mounter.  It is very easy, yet powerful and flexible.</p>
+<h4>Vocabulary</h4>
+<ul>
+<li>repotype: the type of your repo.  currently this is either 'svn' (subversion) or 'vfs' ( any position in your VFS, the underlying technology is up to you. although autofs+nfs will be most useful)</li>
+<li>dataset name: The name of your dataset. e.g. 'movies'</li>
+<li>dataset type (see below)</li>
+<li>action: commit, update, checkout</li>
+</ul>
+<h4>Dataset types</h4>
+<ul>
+<li>selection: a copy of a subset of the data in the repo (e.g. your favourite movies of all your movies)</li>
+<li>buffer: temporary storage to be flushed to the repo regularly (e.g. new images or stuff you just downloaded)</li>
+<li>copy: (default): a copy of all content in the repo (an svn working copy or a directory using rsync)</li>
+<li>extension: contains unique content that you don't want on your server (e.g. temporary files)</li>
+<li>direct: a (symlink to a) local mount point for a remote location. useful for big collections</li>
+</ul>
+<p>So basically you tell ddm to perform an action on a dataset of a specific type.<br />
+Note that some actions wouldn't make sense for some dataset types ( e.g. commit on a selection or extension) and thus don't need to be implemented, while others perform really basic operations (an update of a vfs copy is just an rsync) or just wrap around something else (notably the svn actions just wrap around the svn tool)<br />
+Keep in mind though that everything can be overridden through .ddm files in dataset directories.</p>
+<h4>Configuration</h4>
+<p>Ddm is configured through:</p>
+<ul>
+<li>a .ddm file in your home directory. (needed)</li>
+<li>a .ddm file in your dataset directories (optional)</li>
+<li>the directory name of your dataset (read on) (optional)</li>
+</ul>
+<p>To specify the dataset type, the easiest way is to add suffixes to your directories. eg video-selection.  This is not a must and can be specified in the .ddm file in the dataset directory. For the 'copy' dataset type you don't need to specify anything (it's default)<br />
+Unless overridden, ddm will construct the repo path as follows:  </p>
+{{< highlight "bash" "style=default" >}}
+$TYPE_BASE/$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX
+{{< /highlight >}}<p>(if unclear, read on)</p>
+<p>In the .ddm file in your dataset directory you can override defaults.</p>
+<h5>~/.ddm</h5>
+<p>This is how my file looks like.</p>
+{{< highlight "bash" "style=default" >}}
+ALLOWED_REPO_TYPES='svn vfs'
+DEFAULT_REPO_TYPE='vfs'
+
+SVN_BASE='https://server/svn/repos/'
+SVN_PREFIX='ddm-'
+VFS_BASE='/net/server/home/dieter/ddm-repo'
+{{< /highlight >}}<p>These are all the options you can specify:</p>
+{{< highlight "bash" "style=default" >}}
+SVN_BASE=''
+SVN_PREFIX=''
+SVN_SUFFIX=''
+VFS_BASE=''  
+VFS_PREFIX=''
+VFS_SUFFIX=''
+
+DEFAULT_REPO_TYPE='vfs'
+ALLOWED_REPO_TYPES='vfs'
+IGNORE_DATASET_REMOTE_SVN=0 #nag if the repo url figured out is not the same as the one in 'svn info'. you should leave this 0
+{{< /highlight >}}<h5>dataset/.ddm</h5>
+<p>For an example see below.  Possible options are these:</p>
+{{< highlight "bash" "style=default" >}}
+DATASET_LOCAL='' #path to dataset locally (including type suffix if any)
+DATASET_REMOTE='' #path to dataset remotely (or locally if network mount)
+DATASET_PATH='' #just the path (until parent directory of dataset)
+DATASET_DIR_NAME='' #like $DATASET_LOCAL but no path 
+DATASET_DIR_NAME_REL  # identifier to dataset, taken against pwd ( could be '.','..', nothing at all, dirname, full path, ..)
+DATASET_NAME='' #like $DATASET_DIR_NAME but no type suffix
+DATASET_TYPE=''
+REPO_TYPE=''
+
+#you can override the following callbacks (example see below)
+precheckout
+docheckout
+postcheckout
+
+precommit
+docommit
+postcommit
+
+preupdate
+doupdate
+postupdate
+{{< /highlight >}}<h4>Invocation</h4>
+<pre>
+dieter@dieter-mbp:~$ ddm -h
+usage: ddm options
+
+OPTIONS:
+   -d                Dataset (name of directory)
+   -h                Show this message
+   -m                Message (used for commits in svn, ignored otherwise)
+   -u                Update
+   -c                Commit
+   -o                Checkout (default repo type)
+   -O <repo-type>    Checkout using specific repo type (one of: svn vfs)
+   -t <dataset-type> Specify dataset-type (selection,copy, ...) (only honoured for checkouts)
+   -v                Verbose
+</pre><h4>Examples</h4>
+<h5>Update my video-selection.</h5>
+<p>The directory is ~/video-selection.  It contains episodes that I'm watching<br />
+The .ddm file looks like this</p>
+{{< highlight "bash" "style=default" >}}
+doupdate()
+{
+	slidewindow mplayer 10 1
+}
+{{< /highlight >}}<p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
+It will then delete all the ones I've already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)</p>
+<pre>
+dieter@dieter-mbp:~$ ddm -u -v -d video-selection/
+Included /home/dieter/video-selection/.ddm
+action update on dataset name video type selection
+Deleting old files... (3 items).
+ * /home/dieter/video-selection/910 - The One With Christmas In Tulsa.avi... success
+ * /home/dieter/video-selection/911 - The One Where Rachel Goes Back To Work.avi... success
+ * /home/dieter/video-selection/912 - The One With Phoebes Rats.avi... success
+Keeping these files... (1 items).
+ * /home/dieter/video-selection/913 - The One Where Monica Sings.avi
+Copying new files... (10 items).
+ * /home/dieter/video-selection/914 - The One With The Blind Dates.avi... success
+ * /home/dieter/video-selection/915 - The One With the Mugging.avi... success
+ * /home/dieter/video-selection/916 - The One With The Boob Job.avi... success
+ * /home/dieter/video-selection/917 - The One With The Memorial Service.avi... success
+ * /home/dieter/video-selection/918 - The One With The Lottery.avi... success
+ * /home/dieter/video-selection/919 - The One With Rachels Dream.avi... success
+ * /home/dieter/video-selection/920 - The One With The Soap Opera Party.avi... success
+ * /home/dieter/video-selection/921 - The One With The Fertility Test.avi... success
+ * /home/dieter/video-selection/922 - The One With The Donor.avi... success
+ * /home/dieter/video-selection/923 - 924 - The One In Barbados.avi... success
+finished
+</pre><h4>Download</h4>
+<p>The code is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt">Gpl v3</a><br />
+You can dowload it <a href="/files/ddm" onClick="javascript:urchinTracker ('/files/ddm');">here</a></p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

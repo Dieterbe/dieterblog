@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">On Graphite, Whisper and InfluxDB | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="On Graphite, Whisper and InfluxDB | Dieter&#39;s blog" />
+<meta name="twitter:title" content="On Graphite, Whisper and InfluxDB | Dieter&#39;s blog" />
+<meta itemprop="name" content="On Graphite, Whisper and InfluxDB | Dieter&#39;s blog" />
+<meta name="application-name" content="On Graphite, Whisper and InfluxDB | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2014-05-18T13:22:32-0400 />
+    <meta property="article:published_time" content=2014-05-18T13:22:32-0400 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "On Graphite, Whisper and InfluxDB",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2014-05-18",
+        "description": "",
+        "wordCount":  1305 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2014-05-18",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/on-graphite-whisper-and-influxdb/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">On Graphite, Whisper and InfluxDB</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2014-05-18T13:22:32-04:00" itemprop="datePublished"> 18 May 2014 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <ul>
+<li>It can't keep all file descriptors in memory so there's a lot of overhead in constantly opening, seeking, and closing files, especially since usually one write comes in for all metrics at the same time.
+</li>
+<li>Using the rollups feature (different data resolutions based on age) causes a lot of extra IO.</li>
+<li>The format is also simply not optimized for writes.  Carbon, the storage agent that sits in front of whisper has a feature to batch up writes to files to make them more sequential but this doesn't seem to help much.</li>
+<li>Worse, due to various <a href="https://github.com/pcn/carbon/blob/new-sending-mechanism/Why_Spooling.md#what-problems-have-we-had">implementation details</a> the carbon agent is surprisingly inefficient and even cpu-bound.  People often run into cpu limitations before they hit the io bottleneck.  Once the writeback queue hits a certain size, carbon will blow up.</li>
+</ul>
+Common recommendations are to <a href="http://bitprophet.org/blog/2013/03/07/graphite/">run multiple carbon agents</a> and
+<a href="http://obfuscurity.com/2012/04/Unhelpful-Graphite-Tip-5">running graphite on SSD drives</a>.
+<br/>If you want to scale out across multiple systems, you can get carbon to shard metrics across multiple nodes, but the complexity can get out of hand and manually maintaining a cluster where nodes get added, fail, get phased out, need recovery, etc involves a lot of manual labor even though <a href="https://github.com/jssjr/carbonate/">carbonate</a> makes this easier.  This is a path I simply don't want to go down.
+<br/>
+<br/>
+<p>
+<i>These might be reasonable solutions based on the circumstances (often based on short-term local gains), but I believe as a community we should solve the problem at its root, so that everyone can reap the long term benefits.
+</i>
+</p>
+<br/>
+
+In particular, <a href="http://blog.sweetiq.com/2013/01/using-ceres-as-the-back-end-database-to-graphite/#axzz324uQtk3d">running Ceres instead of whisper</a>, is only a slight improvement, that suffers from most of the same problems.  I don't see any good reason to keep working on Ceres, other than perhaps that it's a fun exercise.   This probably explains the slow pace of development.
+<br/>However, many mistakenly believe Ceres is "the future".
+<br/><a href="http://www.inmobi.com/blog/2014/01/24/extending-graphites-mileage">Switching to LevelDB</a> seems much more sensible but IMHO still doesn't cut it as a general purpose, scalable solution.
+
+<h4>The ideal backend</h4>
+I believe we can build a backend for graphite that
+<ul>
+<li>can easily scale from a few metrics on my laptop in power-save mode to millions of metrics on a highly loaded cluster</li>
+<li>supports nodes joining and leaving at runtime and automatically balancing the load across them</li>
+<li>assures high availability and heals itself in case of disk or node failures</li>
+<li>is simple to deploy.  think: just run an executable that knows which directories it can use for storage, elasticsearch-style automatic clustering, etc.</li>
+<li>has the right read/write optimizations.  I've never seen a graphite system that is not write-focused, so something like <a href="http://en.wikipedia.org/wiki/Log-structured_merge-tree">LSM trees</a> seems to make a lot of sense.</li>
+<li>can leverage cpu resources (e.g. for compression)</li>
+<li>provides a more natural model for phasing out data.  Optional, runtime-changeable rollups.  And an age limit (possibly, but not necessarily round robin)
+</ul>
+
+While we're at it. pub-sub for realtime analytics would be nice too.  Especially when it allows to use the same functions as the query api.
+<br/>And getting rid of the metric name restrictions such as inability to use dots or slashes.  Efficient sparse series support would be nice too.
+
+<h4>InfluxDB</h4>
+
+There's a lot of databases that you could hook up to graphite.
+riak, hdfs based (opentsdb), Cassandra based (kairosdb, blueflood, cyanite), etc.
+
+Some of these are solid and production ready, and would make sense depending on what you already have and have experience with.
+I'm personally very interested in playing with Riak, but decided to choose InfluxDB as my first victim.
+<br/>
+<br/>
+InfluxDB is a young project that will need time to build maturity, but is on track to meet all my goals very well.
+In particular, installing it is a breeze (no dependencies), it's specifically built for timeseries (not based on a general purpose database),
+which allows them to do a bunch of simplifications and optimizations, is write-optimized, and should meet my goals for scalability, performance, and availability well.
+And they're in NYC so meeting up for lunch has proven to be pretty fruitful for both parties.  I'm pretty confident that these guys can pull off something big.
+<br/>
+<br/>
+Technically, InfluxDB is a "timeseries, metrics, and analytics" databases with use cases well beyond graphite and even technical operations.
+Like the alternative databases, graphite-like behaviors such as rollups management and automatically picking the series in the most appropriate resolutions, is something to be implemented on top of it.  Although you never know, it might end up being natively supported.
+
+
+<h4>Graphite + InfluxDB</h4>
+
+InfluxDB developers plan to implement a whole bunch of processing functions (akin to graphite, except they can do locality optimizations) and add a dashboard that talks to InfluxDB natively (or use <a href="http://grafana.org/">Grafana</a>), which means at some point you could completely swap graphite for InfluxDB.
+
+However, I think for quite a while, the ability to use the Graphite api, combine backends, and use various graphite dashboards is still very useful.
+So here's how my setup currently works:
+
+<ul>
+<li>
+<a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> is a carbon relay in Go.  
+It's a pretty nifty program to partition and manage carbon metrics streams.  I use it in front of our traditional graphite system, and have it stream - in realtime - a copy of a subset of our metrics into InfluxDB.  This way I basically have our unaltered Graphite system, and in parallel to it, InfluxDB, containing a subset of the same data.
+<br/>With a bit more work it will be a high performance alternative to the python carbon relay, allowing you to manage your streams on the fly.
+It doesn't support consistent hashing, because CH should be part of a strategy of a highly available storage system (see requirements above), using CH in the relay still results in a poor storage system, so there's no need for it.
+</li>
+<li>I contributed the code to InfluxDB to make it listen on the carbon protocol.  So basically, for the purpose of ingestion, InfluxDB can look and act just like a graphite server.  Anything that can write to graphite, can now write to InfluxDB.  (assuming the plain-text protocol, it doesn't support the pickle protocol, which I think is a thing to avoid anyway because almost nothing supports it and you can't debug what's going on)</li>
+<li><a href="https://github.com/brutasse/graphite-api">graphite-api</a> is a fork/clone of graphite-web, stripped of needless dependencies, stripped of the composer.  It's conceived for many of the same reasons behind <a href="http://dieter.plaetinck.be/graphite-ng_a-next-gen-graphite-server-in-go.html">graphite-ng</a> (graphite technical debt, slow development pace, etc) though it doesn't go to such extreme lengths and for now focuses on being a robust alternative for the graphite server, api-compatible, trivial to install and with a faster pace of development.
+</li>
+<li>
+That's where <a href="https://github.com/vimeo/graphite-influxdb">graphite-influxdb</a> comes in.  It hooks InfluxDB into graphite-api, so that you can query the graphite api, but using data in InfluxDB.
+It should also work with the regular graphite, though I've never tried.  (I have no incentive to bother with that, because I don't use the composer.  And I think it makes more sense to move the composer into a separate project anyway).
+</li>
+</ul>
+
+With all these parts in place, I can run our dashboards next to each other - one running on graphite with whisper, one on graphite-api with InfluxDB - and simply look whether the returned data matches up, and which dashboards loads graphs faster.
+Later i might do more extensive benchmarking and acceptance testing.
+<br/>
+<br/>
+If all goes well, I can make carbon-relay-ng fully mirror all data, make graphite-api/InfluxDB the primary, and turn our old graphite box into a live "backup".
+We'll need to come up with something for rollups and deletions of old data (although it looks like by itself influx is already more storage efficient than whisper too), and I'm really looking forward to the InfluxDB team building out the function api, having the same function api available for historical querying as well as realtime pub-sub.  (my goal used to be implementing this in graphite-ng and/or carbon-relay-ng, but if they do this well, I might just abandon graphite-ng)
+
+<br/>
+<br/>To be continued..
+
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

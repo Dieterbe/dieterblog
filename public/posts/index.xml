@@ -1,0 +1,1999 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Dieter&#39;s blog</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Dieter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Feb 2024 12:15:47 +0200</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A New Blog</title>
+      <link>http://localhost:1313/posts/a-new-blog/</link>
+      <pubDate>Fri, 16 Feb 2024 12:15:47 +0200</pubDate>
+      
+      <guid>http://localhost:1313/posts/a-new-blog/</guid>
+      
+      <description>For nearly a decade, this blog has withered through neglect. I&amp;rsquo;ve given my everything to building out Grafana Labs from a loose set of ideas, to the unicorn powerhouse that is today. Subsequently, I needed some personal time. I&amp;rsquo;ve come out of these experiences as a different person, and am ready to share a few things I learned. Hugo 0.16 to 0.122, new theme</description>
+      
+    </item>
+    
+    <item>
+      <title>Practical fault detection: redux. Next-generation alerting now as presentation</title>
+      <link>http://localhost:1313/posts/practical-fault-detection-redux-next-generation-alerting-now-as-presentation/</link>
+      <pubDate>Sat, 10 Dec 2016 19:13:03 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/practical-fault-detection-redux-next-generation-alerting-now-as-presentation/</guid>
+      
+      <description>This summer I had the opportunity to present my practical fault detection concepts and hands-on approach as conference presentations.
+First at Velocity and then at SRECon16 Europe. The latter page also contains the recorded video.
+If you&amp;rsquo;re interested at all in tackling non-trivial timeseries alerting use cases (e.g. working with seasonal or trending data) this video should be useful to you.
+It&amp;rsquo;s basically me trying to convey in a concrete way why I think the big-data and math-centered algorithmic approaches come with a variety of problems making them unrealistic and unfit, whereas the real breakthroughs happen when tools recognize the symbiotic relationship between operators and software, and focus on supporting a collaborative, iterative process to managing alerting over time.</description>
+      
+    </item>
+    
+    <item>
+      <title>Restoring accidental git force push overwrite on GitHub if you don&#39;t have the needed commits locally</title>
+      <link>http://localhost:1313/posts/restoring-accidental-git-force-push-overwrite-on-github-if-dont-have-needed-commits-locally/</link>
+      <pubDate>Mon, 14 Nov 2016 11:33:03 +0200</pubDate>
+      
+      <guid>http://localhost:1313/posts/restoring-accidental-git-force-push-overwrite-on-github-if-dont-have-needed-commits-locally/</guid>
+      
+      <description>I like cleaning git history, in feature branches, at least. The goal is a set of logical commits without other cruft, that can be cleanly merged into master. This can be easily achieved with git rebase and force pushing to the feature branch on GitHub.
+Today I had a little accident and found myself in this situation:
+I accidentally ran git push origin -f instead of my usual git push origin -f branchname or git push origin -f HEAD This meant that I not only overwrote the branch I wanted to update, but also by accident a feature branch (called httpRefactor in this case) to which a colleague had been force pushing various improvements which I did not have on my computer.</description>
+      
+    </item>
+    
+    <item>
+      <title>25 Graphite, Grafana and statsd gotchas</title>
+      <link>http://localhost:1313/posts/25-graphite-grafana-statsd-gotchas/</link>
+      <pubDate>Tue, 15 Mar 2016 16:22:03 +1000</pubDate>
+      
+      <guid>http://localhost:1313/posts/25-graphite-grafana-statsd-gotchas/</guid>
+      
+      <description>This is a crosspost of an article I wrote on the raintank.io blog
+For several years I&amp;rsquo;ve worked with Graphite, Grafana and statsd on a daily basis and have been participating in the community. All three are fantastic tools and solve very real problems. Hence my continued use and recommendation. However, between colleagues, random folks on irc, and personal experience, I&amp;rsquo;ve seen a plethora of often subtle issues, gotchas and insights, which today I&amp;rsquo;d like to share.</description>
+      
+    </item>
+    
+    <item>
+      <title>Interview with Matt Reiferson, creator of NSQ</title>
+      <link>http://localhost:1313/posts/interview-matt-reiferson-nsq/</link>
+      <pubDate>Fri, 02 Oct 2015 10:25:02 +0200</pubDate>
+      
+      <guid>http://localhost:1313/posts/interview-matt-reiferson-nsq/</guid>
+      
+      <description>I&amp;rsquo;m a fan of the NSQ message processing system written in golang. I&amp;rsquo;ve studied the code, transplanted its diskqueue code into another project, and have used NSQ by itself. The code is well thought out, organized and written.
+Inspired by the book coders at work and the systems live podcast, I wanted to try something I&amp;rsquo;ve never done before: spend an hour talking to Matt Reiferson - the main author of NSQ - about software design and Go programming patterns, and post the video online for whomever might be interested.</description>
+      
+    </item>
+    
+    <item>
+      <title>Transplanting Go packages for fun and profit</title>
+      <link>http://localhost:1313/posts/transplanting-go-packages-for-fun-and-profit/</link>
+      <pubDate>Wed, 02 Sep 2015 19:25:02 +0300</pubDate>
+      
+      <guid>http://localhost:1313/posts/transplanting-go-packages-for-fun-and-profit/</guid>
+      
+      <description>How I hunt for high quality Go code to transplant for fun and profit&amp;hellip;
+This article is about learning and discussing ideas and code on a more fine grained level rather than the project/library level we&amp;rsquo;re used to.
+Some anecdotes of successfully transplanting (taking components from one project and using them in another) Go code from &lt;a href=&#34;http://nsq.io&#34;&gt;NSQ&lt;/a&gt; and &lt;a href=&#34;http://bosun.org&#34;&gt;bosun&lt;/a&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Focusing on open source monitoring.  Joining raintank.</title>
+      <link>http://localhost:1313/posts/focusing-on-open-source-monitoring-joining-raintank/</link>
+      <pubDate>Fri, 03 Jul 2015 09:22:02 -0700</pubDate>
+      
+      <guid>http://localhost:1313/posts/focusing-on-open-source-monitoring-joining-raintank/</guid>
+      
+      <description>Vimeo is special.  It changed my life.
+But interests, goals and ambitions change.
+This post is about leaving, joining raintank, working remote while traveling, open source monitoring, startups, personal relations, litmus and Grafana alerting</description>
+      
+    </item>
+    
+    <item>
+      <title>Moved blog to hugo, fastly and comma</title>
+      <link>http://localhost:1313/posts/moved-blog-to-hugo-fastly-comma/</link>
+      <pubDate>Thu, 02 Jul 2015 16:35:02 -0700</pubDate>
+      
+      <guid>http://localhost:1313/posts/moved-blog-to-hugo-fastly-comma/</guid>
+      
+      <description>&lt;ul&gt;
+&lt;li&gt;I noticed what a disservice I was doing my readers when I started monitoring my site using &lt;a href=&#34;http://www.raintank.io/litmus/&#34;&gt;litmus&lt;/a&gt;.
+A dynamic website in python on a cheap linode&amp;hellip; What do you expect?  So I now serve through &lt;a href=&#34;https://www.fastly.com/&#34;&gt;fastly&lt;/a&gt; and use a static site generator.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Practical fault detection on timeseries part 2: first macros and templates</title>
+      <link>http://localhost:1313/posts/practical-fault-detection-on-timeseries-part-2/</link>
+      <pubDate>Mon, 27 Apr 2015 09:05:02 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/practical-fault-detection-on-timeseries-part-2/</guid>
+      
+      <description>In the &lt;a href=&#34;http://localhost:1313/practical-fault-detection-alerting-dont-need-to-be-data-scientist.html&#34;&gt;previous fault detection article&lt;/a&gt;, we saw how we can cover a lot of ground in fault detection with simple methods and technology that is available today.
+It had an example of a simple but effective approach to find sudden spikes (peaks and drops) within fluctuating time series.
+This post explains the continuation of that work and provides you the means to implement this yourself with minimal effort.
+I&#39;m sharing with you:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://bosun.org&#34;&gt;Bosun&lt;/a&gt; macros which detect our most common not-trivially-detectable symptoms of problems&lt;/li&gt;
+&lt;li&gt;Bosun notification template which provides a decent amount of information&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.grafana.org&#34;&gt;Grafana&lt;/a&gt; and &lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;Graph-Explorer&lt;/a&gt; dashboards and integration for further troubleshooting&lt;/li&gt;
+&lt;/ul&gt;
+We reuse this stuff for a variety of cases where the data behaves similarly and I suspect that you will be able to apply this to a bunch of your monitoring targets as well.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Practical fault detection &amp; alerting.  You don&#39;t need to be a data scientist</title>
+      <link>http://localhost:1313/posts/practical-fault-detection-alerting-dont-need-to-be-data-scientist/</link>
+      <pubDate>Thu, 29 Jan 2015 09:08:02 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/practical-fault-detection-alerting-dont-need-to-be-data-scientist/</guid>
+      
+      <description>&lt;br/&gt;
+As we try to retain visibility into our increasingly complicated applications and infrastructure, we&#39;re building out more advanced monitoring systems.
+Specifically, a lot of work is being done on alerting via fault and anomaly detection.
+This post covers some common notions around these new approaches, debunks some of the myths that ask for over-complicated solutions, and provides some practical pointers that any programmer or sysadmin can implement that don&#39;t require becoming a data scientist.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>IT-Telemetry Google group.  Trying to foster more collaboration around operational insights.</title>
+      <link>http://localhost:1313/posts/it-telemetry-google-group-collaboration-operational-insights/</link>
+      <pubDate>Sat, 06 Dec 2014 16:01:02 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/it-telemetry-google-group-collaboration-operational-insights/</guid>
+      
+      <description>The discipline of collecting infrastructure &amp; application performance metrics, aggregation, storage, visualizations and alerting has many terms associated with it... Telemetry. Insights engineering. Operational visibility. I&#39;ve seen a bunch of people present their work in advancing the state of the art in this domain: from Anton Lebedevich&#39;s statistics for monitoring series, Toufic Boubez&#39; talks on anomaly detection and Twitter&#39;s work on detecting mean shifts to projects such as flapjack (which aims to offload the alerting responsibility from your monitoring apps), the metrics 2.</description>
+      
+    </item>
+    
+    <item>
+      <title>A real whisper-to-InfluxDB program.</title>
+      <link>http://localhost:1313/posts/a-real-whisper-to-influxdb-program/</link>
+      <pubDate>Tue, 30 Sep 2014 08:37:48 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/a-real-whisper-to-influxdb-program/</guid>
+      
+      <description>The whisper-to-influxdb migration script I posted earlier is pretty bad. A shell script, without concurrency, and an undiagnosed performance issue. I hinted that one could write a Go program using the unofficial whisper-go bindings and the influxdb Go client library. That&#39;s what I did now, it&#39;s at github.com/vimeo/whisper-to-influxdb. It uses configurable amounts of workers for both whisper fetches and InfluxDB commits, but it&#39;s still a bit naive in the sense that it commits to InfluxDB one serie at a time, irrespective of how many records are in it.</description>
+      
+    </item>
+    
+    <item>
+      <title>InfluxDB as a graphite backend, part 2</title>
+      <link>http://localhost:1313/posts/influxdb-as-graphite-backend-part2/</link>
+      <pubDate>Wed, 24 Sep 2014 07:56:01 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/influxdb-as-graphite-backend-part2/</guid>
+      
+      <description>&lt;br&gt;
+&lt;br/&gt;Updated oct 1, 2014 with a new &lt;i&gt;Disk space efficiency&lt;/i&gt; section which fixes some mistakes and adds more clarity.
+&lt;br/&gt;
+
+&lt;p&gt;
+The &lt;i&gt;Graphite + InfluxDB&lt;/i&gt; series continues.
+&lt;ul&gt;
+&lt;li&gt;In part 1, &lt;a href=&#34;http://localhost:1313/on-graphite-whisper-and-influxdb.html&#34;&gt;&#34;On Graphite, Whisper and InfluxDB&#34;&lt;/a&gt; I described the problems of Graphite&#39;s whisper and ceres, why I disagree with common graphite clustering advice as being the right path forward, what a great timeseries storage system would mean to me, why InfluxDB - despite being the youngest project - is my main interest right now, and introduced my approach for combining both and leveraging their respective strengths: InfluxDB as an ingestion and storage backend (and at some point, realtime processing and pub-sub) and graphite for its renown data processing-on-retrieval functionality.
+Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt; to easily route streams of carbon data (metrics datapoints) to storage backends, allowing me to send production data to Carbon+whisper as well as InfluxDB in parallel, &lt;a href=&#34;https://github.com/brutasse/graphite-api&#34;&gt;graphite-api&lt;/a&gt;, the simpler Graphite API server, with &lt;a href=&#34;https://github.com/vimeo/graphite-influxdb&#34;&gt;graphite-influxdb&lt;/a&gt; to fetch data from InfluxDB.
+&lt;/li&gt;
+&lt;li&gt;Not Graphite related, but I wrote &lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt; which I introduced &lt;a href=&#34;http://localhost:1313/influx-cli_a_commandline_interface_to_influxdb.html&#34;&gt;here&lt;/a&gt;.  It allows to easily interface with InfluxDB and measure the duration of operations, which will become useful for this article.&lt;/li&gt;
+&lt;li&gt;In the &lt;a href=&#34;graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html&#34;&gt;Graphite &amp;amp; Influxdb intermezzo&lt;/a&gt; I shared a script to import whisper data into InfluxDB and noted some write performance issues I was seeing, but the better part of the article described the various improvements done to &lt;a href=&#34;https://github.com/graphite-ng/carbon-relay-ng&#34;&gt;carbon-relay-ng&lt;/a&gt;, which is becoming an increasingly versatile and useful tool.&lt;/li&gt;
+&lt;li&gt;In &lt;a href=&#34;http://localhost:1313/using-influxdb-as-graphite-backend-part2.html&#34;&gt;part 2&lt;/a&gt;, which you are reading now, I&#39;m going to describe recent progress, share more info about my setup, testing results, state of affairs, and ideas for future work&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Graphite &amp; Influxdb intermezzo: migrating old data and a more powerful carbon relay</title>
+      <link>http://localhost:1313/posts/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</link>
+      <pubDate>Sat, 20 Sep 2014 15:18:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Influx-cli: a commandline interface to Influxdb.</title>
+      <link>http://localhost:1313/posts/influx-cli_a_commandline_interface_to_influxdb/</link>
+      <pubDate>Mon, 08 Sep 2014 08:36:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/influx-cli_a_commandline_interface_to_influxdb/</guid>
+      
+      <description>&lt;p&gt;
+Time for another side project:
+&lt;a href=&#34;https://github.com/Dieterbe/influx-cli&#34;&gt;influx-cli&lt;/a&gt;,
+a commandline interface to influxdb.
+&lt;br/&gt;
+Nothing groundbreaking, and it behaves pretty much as you would expect if you&#39;ve ever used
+the mysql, pgsql, vsql, etc tools before.
+&lt;br/&gt;But I did want to highlight a few interesting features.
+&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Darktable: a magnificent photo manager and editor</title>
+      <link>http://localhost:1313/posts/darktable_magnificent_photo_manager_editor/</link>
+      <pubDate>Tue, 12 Aug 2014 08:36:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/darktable_magnificent_photo_manager_editor/</guid>
+      
+      <description>A post about the magnificent &lt;a href=&#34;http://darktable.org/&#34;&gt;darktable&lt;/a&gt; photo manager/editor and why I&#39;m abandoning &lt;a href=&#34;http://localhost:1313/pixie.html&#34;&gt;pixie&lt;/a&gt;
+
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Beautiful Go patterns for concurrent access to shared resources and coordinating responses</title>
+      <link>http://localhost:1313/posts/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</link>
+      <pubDate>Sat, 26 Jul 2014 13:22:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</guid>
+      
+      <description>&lt;p&gt;
+It&#39;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
+and needing a response that tells them whether the operation succeeded and/or other auxiliary information.
+Something centralized manages the shared state, the changes to it and the responses.
+&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Monitorama PDX &amp; my metrics 2.0 presentation</title>
+      <link>http://localhost:1313/posts/monitorama-pdx-metrics20/</link>
+      <pubDate>Thu, 29 May 2014 10:39:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/monitorama-pdx-metrics20/</guid>
+      
+      <description>&lt;p&gt;
+Earlier this month we had another iteration of the &lt;a href=&#34;http://monitorama.com/&#34;&gt;Monitorama&lt;/a&gt; conference, this time in Portland, Oregon.
+&lt;/p&gt;
+&lt;p&gt;
+&lt;img src=&#34;http://localhost:1313/files/blog/monitorama-audience.jpg&#34; width=&#34;800&#34; /&gt;
+&lt;br/&gt;(photo by &lt;a href=&#34;https://www.flickr.com/photos/78527903@N00/sets/72157644593947233/&#34;&gt;obfuscurity&lt;/a&gt;)
+&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>On Graphite, Whisper and InfluxDB</title>
+      <link>http://localhost:1313/posts/on-graphite-whisper-and-influxdb/</link>
+      <pubDate>Sun, 18 May 2014 13:22:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/on-graphite-whisper-and-influxdb/</guid>
+      
+      <description>&lt;h4&gt;Graphite, and the storage Achilles heel&lt;/h4&gt;
+
+Graphite is a neat timeseries metrics storage system that comes with a powerful querying api, mainly due to the whole bunch of &lt;a href=&#34;http://graphite.readthedocs.org/en/latest/functions.html&#34;&gt;available processing functions&lt;/a&gt;.
+&lt;br/&gt;For medium to large setups, the storage aspect quickly becomes a pain point.  Whisper, the default graphite storage format, is a simple storage format, using one file per metric (timeseries).
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Metrics 2.0 now has its own website!</title>
+      <link>http://localhost:1313/posts/metrics-2-0-own-website/</link>
+      <pubDate>Wed, 23 Apr 2014 09:10:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/metrics-2-0-own-website/</guid>
+      
+      <description>Metrics 2.0 started as a &lt;a href=&#34;http://dieter.plaetinck.be/metrics_2_a_proposal.html&#34;&gt;half-formal proposal&lt;/a&gt; and an implementation via &lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;graph-explorer&lt;/a&gt;, but is broad enough in scope that it deserves its own website, its own spec, its own community.  That&#39;s why I launched &lt;a href=&#34;http://metrics20.org/&#34;&gt;metrics20.org&lt;/a&gt; and a &lt;a href=&#34;https://groups.google.com/forum/#!forum/metrics20&#34;&gt;discussion group&lt;/a&gt;.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Introduction talk to metrics 2.0 and Graph-Explorer</title>
+      <link>http://localhost:1313/posts/introduction_talk_to_metrics2-0_and_graph_explorer/</link>
+      <pubDate>Sun, 23 Feb 2014 16:20:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/introduction_talk_to_metrics2-0_and_graph_explorer/</guid>
+      
+      <description>This week I had the opportunity to present &lt;a href=&#34;http://dieter.plaetinck.be/metrics_2_a_proposal.html&#34;&gt;metrics 2.0&lt;/a&gt; and
+&lt;a href=&#34;http://vimeo.github.io/graph-explorer/&#34;&gt;Graph-Explorer&lt;/a&gt; at the
+&lt;a href=&#34;http://www.meetup.com/Full-Stack-Engineering-Meetup/&#34;&gt;Full-stack engineering meetup&lt;/a&gt;.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Pixie: simple photo management using directory layouts and tags.</title>
+      <link>http://localhost:1313/posts/pixie/</link>
+      <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/pixie/</guid>
+      
+      <description>So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
+that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Vimeo holiday special &amp; other great videos</title>
+      <link>http://localhost:1313/posts/vimeo_holiday_special_and_other_great_videos/</link>
+      <pubDate>Sun, 22 Dec 2013 12:46:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/vimeo_holiday_special_and_other_great_videos/</guid>
+      
+      <description>&lt;p&gt;
+We (the &lt;a href=&#34;http://vimeo.com/staff&#34;&gt;Vimeo Staff&lt;/a&gt;) just &lt;a href=&#34;https://vimeo.com/blog/post:602&#34;&gt;released&lt;/a&gt; the &lt;a href=&#34;http://vimeo.com/82236972&#34;&gt;2013 Vimeo Holiday Special&lt;/a&gt;, embedded below.
+&lt;br/&gt;(and I have a line in it! &#34;Who&#39;s behind this?&#34;)
+&lt;/p&gt;
+&lt;p&gt;
+&lt;iframe src=&#34;//player.vimeo.com/video/82236972?title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=33a352&#34; width=&#34;500&#34; height=&#34;211&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Metrics 2.0: a proposal</title>
+      <link>http://localhost:1313/posts/metrics_2_a_proposal/</link>
+      <pubDate>Sat, 14 Sep 2013 11:29:32 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/metrics_2_a_proposal/</guid>
+      
+      <description>&lt;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+Graphite&#39;s metrics are strings comprised of dot-separated nodes which, due to their ordering, can be represented as a tree.
+Many other places use a similar format (stats in /proc etc).
+&lt;/li&gt;
+&lt;li&gt;
+OpenTSDB&#39;s metrics are shorter, because they move some of the dimensions (server, etc) into key-value tags.
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;I think we can do better...&lt;/b&gt;
+&lt;br/&gt;
+I think our metrics format is restrictive and we do our self a disservice using it:
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Graphite-ng: A next-gen graphite server in Go.</title>
+      <link>http://localhost:1313/posts/graphite-ng_a-next-gen-graphite-server-in-go/</link>
+      <pubDate>Sat, 07 Sep 2013 20:54:20 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/graphite-ng_a-next-gen-graphite-server-in-go/</guid>
+      
+      <description>&lt;p&gt;
+I&#39;ve been a &lt;a href=&#34;https://github.com/graphite-project/&#34;&gt;graphite&lt;/a&gt; contributor for a while (and still am).  It&#39;s a &lt;i&gt;great&lt;/i&gt; tool for timeseries metrics.
+Two weeks ago I started working on &lt;a href=&#34;https://github.com/graphite-ng/graphite-ng&#34;&gt;Graphite-ng&lt;/a&gt;:
+it&#39;s somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in &lt;a href=&#34;http://golang.org&#34;&gt;Golang&lt;/a&gt;.
+The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like&lt;/p&gt;
+{{&lt; highlight &#34;javascript&#34; &#34;style=default&#34; &gt;}}
+/render/?target=sum(scale(stats.web2,5.12),derivative(stats.web2))
+{{&lt; /highlight &gt;}}
+&lt;p&gt;
+I.e. it lets you retrieve your timeseries, processed by function pipelines which are setup on the fly based on a spec in your http/rest arguments.
+Currently it only fetches metrics from text files but I&#39;m working on decent metrics storage as well.
+&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>A few common graphite problems and how they are already solved.</title>
+      <link>http://localhost:1313/posts/a_few_common_graphite_problems_and_how_they_are_already_solved/</link>
+      <pubDate>Thu, 04 Apr 2013 08:54:20 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/a_few_common_graphite_problems_and_how_they_are_already_solved/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Hi Planet Devops and Infratalk</title>
+      <link>http://localhost:1313/posts/hi_planet_devops_and_infratalk/</link>
+      <pubDate>Sun, 24 Mar 2013 11:36:20 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/hi_planet_devops_and_infratalk/</guid>
+      
+      <description>This &lt;a href=&#34;http://dieter.plaetinck.be&#34;&gt;blog&lt;/a&gt; just got added to &lt;a href=&#34;http://www.planetdevops.net/&#34;&gt;planet devops&lt;/a&gt; and &lt;a href=&#34;http://infra-talk.org/&#34;&gt;infra-talk&lt;/a&gt;,
+so for my new readers: you might know me as Dieterbe on irc, &lt;a href=&#34;https://github.com/Dieterbe&#34;&gt;github&lt;/a&gt; or &lt;a href=&#34;https://twitter.com/Dieter_be&#34;&gt;twitter&lt;/a&gt;.
+Since my &lt;a href=&#34;http://localhost:1313/moving-to-nyc.html&#34;&gt;move from Belgium to NYC&lt;/a&gt; (to do backend stuff at Vimeo) I&#39;ve started writing more about devops-y topics
+(whereas I used to write more about general hacking and
+&lt;a href=&#34;http://localhost:1313/tag/arch&#34;&gt;arch linux release engineering and (automated) installations&lt;/a&gt;).
+I&#39;ll mention some earlier posts you might be interested in:
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Profiling and behavior testing of processes and daemons, and Devopsdays NYC</title>
+      <link>http://localhost:1313/posts/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/</link>
+      <pubDate>Mon, 21 Jan 2013 15:25:14 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc/</guid>
+      
+      <description>&lt;h3&gt;Profiling a process run&lt;/h3&gt;
+&lt;a href=&#34;https://github.com/Dieterbe/profile-process&#34;&gt;
+&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/presentation-simple-black-box/images/profile_io.png&#34; width=&#34;100px&#34; height=&#34;100px&#34;/&gt;
+&lt;/a&gt;
+I wanted the ability to run a given process and get
+&lt;br/&gt;a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.
+&lt;br/&gt;Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.
+&lt;br/&gt;Couldn&#39;t find a tool for it, so I wrote &lt;a href=&#34;https://github.com/Dieterbe/profile-process&#34;&gt;profile-process&lt;/a&gt;
+&lt;br/&gt;which does exactly that in &lt;100 lines of python.
+&lt;br/&gt;
+&lt;br/&gt;
+
+&lt;h3&gt;black-box behavior testing processes/daemons&lt;/h3&gt;
+&lt;a href=&#34;https://github.com/vimeo/simple-black-box&#34;&gt;
+&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/presentation-simple-black-box/images/screenshot-no-pause.png&#34; width=&#34;150px&#34; height=&#34;100px&#34;/&gt;
+&lt;/a&gt;
+I wrote &lt;a href=&#34;https://github.com/vimeo/simple-black-box&#34;&gt;simple-black-box&lt;/a&gt; to do this.
+&lt;br/&gt;It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, ...)
+&lt;br/&gt;and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,
+&lt;br/&gt;file existence/checksums in the VFS/swift clusters, etc.
+&lt;br/&gt;Each test-case is a scenario.
+&lt;br/&gt;It also can use &lt;a href=&#34;http://logstash.net/&#34;&gt;logstash&lt;/a&gt; to give a centralized &#34;distributed stack trace&#34; when you need to debug a failure after
+multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.
+&lt;br/&gt;You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Graph-Explorer: A graphite dashboard unlike any other</title>
+      <link>http://localhost:1313/posts/graph-explorer-a-graphite-dashboard-unlike-any-other/</link>
+      <pubDate>Wed, 09 Jan 2013 09:25:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/graph-explorer-a-graphite-dashboard-unlike-any-other/</guid>
+      
+      <description>The above sounds like a marketing phrase and I&#39;m just as skeptical of them as you, but I feel it&#39;s in place. Not because GE is necessarily better, but it&#39;s certainly &lt;i&gt;different&lt;/i&gt;.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Client-side rendered graphite charts for all</title>
+      <link>http://localhost:1313/posts/client-side-rendered-graphite-charts-for-all/</link>
+      <pubDate>Wed, 14 Nov 2012 08:49:56 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/client-side-rendered-graphite-charts-for-all/</guid>
+      
+      <description>Client-side rendering of charts as opposed to using graphite&#39;s server side generated png&#39;s
+allows various interactivity features, such as:
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Anthracite, an event database to enrich monitoring dashboards and to allow visual and numerical analysis of events that have a business impact</title>
+      <link>http://localhost:1313/posts/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact/</link>
+      <pubDate>Mon, 12 Nov 2012 08:49:56 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/anthracite-event-database-enrich-monitoring-dashboards-visual-numerical-analysis-events-business-impact/</guid>
+      
+      <description>&lt;h4&gt;Introduction&lt;/h4&gt;
+&lt;p&gt;Graphite can show events such as &lt;a href=&#34;http://codeascraft.etsy.com/2010/12/08/track-every-release/&#34;&gt;code deploys&lt;/a&gt; and
+&lt;a href=&#34;https://github.com/joemiller/puppet-graphite_event&#34;&gt;puppet changes&lt;/a&gt; as vertical markers on your graph.
+With the advent of new graphite dashboards and interfaces where we can have popups and annotations to show metadata for each event (by means of client-side rendering),
+it&#39;s time we have a database to track all events along with categorisation and text descriptions (which can include rich text and hyperlinks).
+Graphite is meant for time series (metrics over time), Anthracite aims to be the companion for annotated events.&lt;br&gt;
+More precisely, &lt;strong&gt;Anthracite aims to be a database of &#34;relevant events&#34;&lt;/strong&gt; (see further down), &lt;strong&gt;for the purpose of enriching monitoring dashboards,
+as well as allowing visual and numerical analysis of events that have a business impact&lt;/strong&gt; (for the latter, see &#34;&lt;i&gt;Thoughts on incident nomenclature, severity levels and incident analysis&lt;/i&gt;&#34; below)&lt;br&gt;
+It has a TCP receiver, a database (sqlite3), a http interface to deliver event data in many formats and a simple web frontend for humans.&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Histograms in statsd, and graphing them over time with graphite.</title>
+      <link>http://localhost:1313/posts/histogram-statsd-graphing-over-time-with-graphite/</link>
+      <pubDate>Wed, 07 Nov 2012 18:45:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/histogram-statsd-graphing-over-time-with-graphite/</guid>
+      
+      <description>&lt;p&gt;
+I submitted a pull request to statsd which adds &lt;a href=&#34;https://github.com/etsy/statsd/pull/162&#34;&gt;histogram support&lt;/a&gt;.
+&lt;img style=&#34;float:left;margin:0 5px 0 0;&#34; src=&#34;http://localhost:1313/files/Black_cherry_tree_histogram.svg.png&#34; alt=&#34;Example histogram, from Wikipedia&#34;/&gt;
+&lt;br/&gt;(refresher: a histogram is [a visualization of] a frequency distribution of data,
+paraphrasing your data by keeping frequencies for entire classes (ranges of data).
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Histogram&#34;&gt;histograms - Wikipedia&lt;/a&gt;)
+&lt;br/&gt;It&#39;s commonly documented how to plot single histograms, that is a 2D diagram consisting of rectangles whose
+&lt;ul&gt;
+&lt;li&gt;area is proportional to the frequency of a variable&lt;/li&gt;
+&lt;li&gt;whose width is equal to the class interval&lt;/li&gt;
+&lt;/ul&gt;
+Class intervals go on x-axis, frequencies on y-axis.
+&lt;br/&gt;
+&lt;br/&gt;
+Note: histogram class intervals are supposed to have the same width.
+&lt;br/&gt;My implementation allows arbitrary class intervals with potentially different widths,
+as well as an upper boundary of infinite.
+&lt;/p&gt;
+&lt;h4&gt;Plotting histograms.. over time&lt;/h4&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Moving to New York City</title>
+      <link>http://localhost:1313/posts/moving-to-nyc/</link>
+      <pubDate>Sun, 19 Aug 2012 16:50:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/moving-to-nyc/</guid>
+      
+      <description>I have a one-way ticket to NYC on Sept. 21st. Vimeo HQ is in Manhattan, and practically the whole team works in the building so it makes sense for me to relocate and join them locally. I&#39;m looking forward to working with the colleagues face to face, but mainly I&#39;m looking forward to the experience of living in such a different place, and exploring the US. In fact, I already have some small trips planned (Hamptons NY, camping in Pennsylvania, skiing in New York this winter) with some friends I met last year in NY.</description>
+      
+    </item>
+    
+    <item>
+      <title>Resigning as Arch Linux developer</title>
+      <link>http://localhost:1313/posts/resigning_arch_linux/</link>
+      <pubDate>Sat, 21 Jul 2012 16:50:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/resigning_arch_linux/</guid>
+      
+      <description>A few days ago, I resigned as Arch Linux developer. I&#39;m sad to go, but I felt like my work on Arch became a drag, so it was time I officialized my decreased interest. The Releng team we started more than 3 years ago is now dead, but other developers are showing interest in iso building and installer scripts, so as long as they don&#39;t burn out, you&#39;ll see new isos again.</description>
+      
+    </item>
+    
+    <item>
+      <title>Dell crowbar openstack swift</title>
+      <link>http://localhost:1313/posts/dell_crowbar_openstack_swift/</link>
+      <pubDate>Wed, 02 May 2012 11:50:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/dell_crowbar_openstack_swift/</guid>
+      
+      <description>Learned about &lt;a href=&#34;https://github.com/dellcloudedge/crowbar&#34;&gt;Dell Crowbar&lt;/a&gt; the other day.  It seems to be (becoming) a tool I&#39;ve wanted for quite a while, because it takes automating physical infrastructure to a new level, and is also convenient on virtual.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Joining Vimeo</title>
+      <link>http://localhost:1313/posts/joining_vimeo/</link>
+      <pubDate>Tue, 27 Mar 2012 11:50:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/joining_vimeo/</guid>
+      
+      <description>Working on scalable information retrieval systems at the university of Ghent has been very fun: interesting and challenging work, smart team, and an environment that fosters growth and innovation. I could definitely see myself continuing there... However, Vimeo got in touch and told me about their plans... specifically what&#39;s going into the new version and what other stuff they have on their roadmap. I can honestly say vimeo is the most beautiful web property I&#39;ve ever seen [*], not just that, they also provide a top product/service, and host a great community of passionate people who create some of the most beautiful online videos I&#39;ve ever seen.</description>
+      
+    </item>
+    
+    <item>
+      <title>Lighttpd socket Arch Linux /var/run tmpfs tmpfiles.d</title>
+      <link>http://localhost:1313/posts/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</link>
+      <pubDate>Sun, 25 Mar 2012 23:05:05 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/lighttpd-socket-arch-linux-var-run-tmpfs-tmpfiles.d/</guid>
+      
+      <description>On Arch Linux, and probably many other distros /run is a new tmpfs, and /var/run symlinks to it. With Lighttpd you might have a fastcgi socket defined something like &#34;/var/run/lighttpd/sockets/mywebsite.sock&#34;. This won&#39;t work anymore as after each reboot /var/run is an empty directory and lighttpd won&#39;t start, /var/log/lighttpd/error.log will tell you: 2012-03-16 09:21:34: (log.c.166) server started 2012-03-16 09:21:34: (mod_fastcgi.c.977) bind failed for: unix:/var/run/lighttpd/sockets/mywebsite.sock-0 No such file or directory 2012-03-16 09:21:34: (mod_fastcgi.</description>
+      
+    </item>
+    
+    <item>
+      <title>Thailand, Berlin Velocity EU, NYC, Ghent and more metal</title>
+      <link>http://localhost:1313/posts/thailand_berlin_velocity_nyc_ghent_metal/</link>
+      <pubDate>Sun, 08 Jan 2012 18:10:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/thailand_berlin_velocity_nyc_ghent_metal/</guid>
+      
+      <description>&lt;p&gt;I&#39;ve been meaning to write about a lot of stuff in separate posts, but they kept getting delayed, so I&#39;ll just briefly share everything in one post.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Luamail: a mail client built into luakit</title>
+      <link>http://localhost:1313/posts/luamail_a_mail_client_built_into_luakit/</link>
+      <pubDate>Sun, 02 Oct 2011 09:28:45 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/luamail_a_mail_client_built_into_luakit/</guid>
+      
+      <description>&lt;p&gt;Similarly to how back in 2009 there was no browser that works in a way I find sane, and I started solving that with &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt;,
+now I&#39;m fed up with the lack of an email client that works in a way I find sane.  Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic &lt;a href=&#34;http://luakit.org&#34;&gt;luakit&lt;/a&gt; browser,
+which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API&#39;s.
+Now I want to build the &#34;luakit of email clients&#34;.  Let me explain what&#39;s that all about...&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Hitchhiking.. try it.</title>
+      <link>http://localhost:1313/posts/hitchhiking_try_it/</link>
+      <pubDate>Wed, 06 Jul 2011 16:04:45 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/hitchhiking_try_it/</guid>
+      
+      <description>For the last few months, I&#39;ve started to actively use hitchhiking as a means to
+travel between home and work.
+What started as a &#34;I&#39;m not sure about this, it seems a bit awkward, but I do
+want to know how it goes and feels, so I&#39;ll try it out once&#34; ended up being &#34;this is
+great, I&#39;m doing it every day and loving it&#34;.
+Here&#39;s why you should try it and why it may make your life more awesome.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Poor mans pickle implementations benchmark</title>
+      <link>http://localhost:1313/posts/poor_mans_pickle_implementations_benchmark/</link>
+      <pubDate>Thu, 16 Jun 2011 22:32:12 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/poor_mans_pickle_implementations_benchmark/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Where are the new Arch Linux release images?</title>
+      <link>http://localhost:1313/posts/where_are_the_new_arch_linux_images/</link>
+      <pubDate>Tue, 17 May 2011 21:29:58 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/where_are_the_new_arch_linux_images/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>My metal band</title>
+      <link>http://localhost:1313/posts/my_metalband/</link>
+      <pubDate>Sat, 14 May 2011 14:58:12 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/my_metalband/</guid>
+      
+      <description>Since the audience of this blog is largely technical, I don&#39;t post much about other topics, but I feel it&#39;s time for a short summary about one of my &#34;real life projects&#34;. In the spring of 2009 I joined a progressive death metal band. I&#39;ve been drumming since I was 17, but during the last 2 years I&#39;ve been practising and rehearsing like never before.[1] When you hear yourself on tape for the first time, it&#39;s a bit of disillusionment as you suddenly hear every imperfection, many of which you didn&#39;t realise you had (or didn&#39;t think were very noticeable).</description>
+      
+    </item>
+    
+    <item>
+      <title>Thank you Google!</title>
+      <link>http://localhost:1313/posts/thank_you_google/</link>
+      <pubDate>Mon, 28 Mar 2011 22:54:01 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/thank_you_google/</guid>
+      
+      <description>Google, you get a lot of bad words over you lately. &#34;Evil&#34;, &#34;big brother&#34;, &#34;dangerous&#34;, .... But I just wanted to say: thank you. You provide us some nice services. Google search, Gmail, analytics, google maps, ... All of these products are/were game changers and made the life of people all over the world easier. Many people take them for granted and don&#39;t realise what it takes to design, engineer and operate these applications.</description>
+      
+    </item>
+    
+    <item>
+      <title>Dvcs-autosync: An open source dropbox clone... well.. almost</title>
+      <link>http://localhost:1313/posts/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</link>
+      <pubDate>Sat, 26 Mar 2011 21:48:56 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/dvcs-autosync_an_opensource_dropbox_clone_well_almost/</guid>
+      
+      <description>I found the Dvcs-autosync project on the &lt;a href=&#34;http://lists.madduck.net/listinfo/vcs-home&#34;&gt;vcs-home&lt;/a&gt; mailing list,
+which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.
+&lt;br/&gt;In short:
+&lt;ul&gt;
+&lt;li&gt;simple python tool (600 sloc), works with your dvcs of choice (mainly tested/used with git)&lt;/li&gt;
+&lt;li&gt;watches for inotify events, performs commits on changes (coalesces some changes together)&lt;/li&gt;
+&lt;li&gt;synchronizes with other clones (remotes), uses xmpp for push notifications&lt;/li&gt;
+&lt;li&gt;let&#39;s you know what&#39;s going on through libnotify popups or whatever&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mayrhofer.eu.org/dvcs-autosync&#34;&gt;home page: http://mayrhofer.eu.org/dvcs-autosync&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://gitorious.org/dvcs-autosync/dvcs-autosync&#34;&gt;dvcs-autosync gitorious repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://lists.madduck.net/pipermail/vcs-home/2011-March/000314.html&#34;&gt;initial announcement on vcs-home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+Use cases:
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Let&#39;s make the world a better place.  Let&#39;s stop the abuse of SI prefixes</title>
+      <link>http://localhost:1313/posts/stop-abusing-si-prefixes/</link>
+      <pubDate>Mon, 07 Mar 2011 10:01:35 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/stop-abusing-si-prefixes/</guid>
+      
+      <description>This has been on my mind for a while. But now I actually took some time to launch a little project to do something about it. 1024 just ain&#39;t 1000. stop abusing SI prefixes! </description>
+      
+    </item>
+    
+    <item>
+      <title>Why rewriting git history? And why should commits be in imperative present tense?</title>
+      <link>http://localhost:1313/posts/why-rewriting-git-history-and-why-commits-imperative-present-tense/</link>
+      <pubDate>Sat, 05 Mar 2011 18:27:35 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/why-rewriting-git-history-and-why-commits-imperative-present-tense/</guid>
+      
+      <description>&lt;p&gt;
+There are tons of articles describing &lt;em&gt;how&lt;/em&gt; you can rewrite history with git, but they do not answer &#34;&lt;em&gt;why&lt;/em&gt; should I do it?&#34;.
+A similar question is &#34;what are the tradeoffs / how do I apply this in my distributed workflow?&#34;.
+&lt;br/&gt;Also, git developers strongly encourage/command you to write commit message in imperative present tense, but do not say why.  So, why?
+&lt;br/&gt;I&#39;ll try to answer these to the best of my abilities, largely based on how I see things.  I won&#39;t get too detailed (there are enough manuals and tutorials for the exact concepts and commands).
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Can we build a simple, cross-distribution installation framework?</title>
+      <link>http://localhost:1313/posts/can_we_build_a_simple_cross-distribution_installation_framework/</link>
+      <pubDate>Sun, 06 Feb 2011 23:46:18 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/can_we_build_a_simple_cross-distribution_installation_framework/</guid>
+      
+      <description>Today at Fosdem 2011 I did my talk Can we build a simple, cross-distribution installation framework? Basically, using the Arch Installation Framework as a starting point, along with the notion that most of the code is actually not Arch-specific I adressed other distros to check if there was any interest in sharing workload on the distribution-agnostic aspects of the framework. If other distros with a similar philosophy of little-abstractions/KISS would join, we would all reap the benefits of a simple, yet quite featureful installer.</description>
+      
+    </item>
+    
+    <item>
+      <title>Dir 2011, Fosdem 2011</title>
+      <link>http://localhost:1313/posts/dir_fosdem_2011/</link>
+      <pubDate>Tue, 25 Jan 2011 23:15:45 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/dir_fosdem_2011/</guid>
+      
+      <description>On February 4, I&#39;ll be in Amsterdam at DIR 2011, the 11th Dutch-Belgian Information Retrieval Workshop. After that, I&#39;m going to the devopsdinner and Fosdem beer event in Brussels. On february 5/6 of course, Fosdem itself. Looking forward to the systemd talk. On sunday I&#39;ll do a talk about simple shell based Gnu/Linux installers, like mentioned earlier I hope devs from other &#34;lightweight&#34;/kiss-style distro&#39;s will be present (Gentoo and other *too&#39;s, Crux, *ppix, .</description>
+      
+    </item>
+    
+    <item>
+      <title>Building a search engine</title>
+      <link>http://localhost:1313/posts/building_a_search_engine/</link>
+      <pubDate>Sat, 22 Jan 2011 19:15:29 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/building_a_search_engine/</guid>
+      
+      <description>I started working at IBCN, the research group of the university of Ghent. I was looking to get back to the challenging world of high-performance and large-scale (web) applications, but I also wanted something more conceptual and researchy, rather then the highly hands-on dev- and ops work I&#39;ve been doing for a few years now. The Bom-vl project is pretty broad: it aims to make the Flemish cultural heritage media more useable by properly digitizing, archiving and making public the (currently mostly analog) archives from providers such as TV stations.</description>
+      
+    </item>
+    
+    <item>
+      <title>Blog moved</title>
+      <link>http://localhost:1313/posts/blog_moved/</link>
+      <pubDate>Wed, 19 Jan 2011 19:48:39 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/blog_moved/</guid>
+      
+      <description>This blog now runs on Pyblosxom on Lighttpd on my new Linode machine. The moving/conversion process wasn&#39;t as smooth as I thought it would be as I needed to work quite a bit on pyblosxom and implement some new plugins to get certain features working (like syntax highlighting). Also, my previous hosting provider removed my account before the contract expired. But luckily I managed to restore everything and all should work pretty much as before, in particular: Rss feeds should still be working on the old urls and the same GUID&#39;s are used to avoid spamming anyone, syntax highlighting of all old entries and comments works, but not yet posting highlighted code in new comments.</description>
+      
+    </item>
+    
+    <item>
+      <title>Libui-sh: a library providing UI functions for shell scripts</title>
+      <link>http://localhost:1313/posts/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</link>
+      <pubDate>Tue, 28 Dec 2010 22:59:15 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/libui-sh_a_library_providing_ui_functions_for_shell_scripts/</guid>
+      
+      <description>&lt;blockquote&gt;&lt;p&gt;
+== A library providing UI functions for shell scripts ==&lt;/p&gt;
+&lt;p&gt;When you write bash/shell scripts, do you write your own error/debug/logging/abort functions?&lt;br /&gt;
+Logic that requests the user to input a boolean, string, password, selection out of a list,&lt;br /&gt;
+date/time, integer, ... ?&lt;/p&gt;
+&lt;p&gt;Libui-sh is written to take care of all that.&lt;br /&gt;
+libui-sh is meant to a be a general-purpose UI abstraction library for shell scripts.&lt;br /&gt;
+Low impact, easy to use, but still flexible.&lt;br /&gt;
+cli by default, can optionally use ncurses dialogs as well.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Migrating blogs from Drupal to Pyblosxom</title>
+      <link>http://localhost:1313/posts/migrating_blogs_from_drupal_to_pyblosxom/</link>
+      <pubDate>Sun, 19 Dec 2010 19:54:07 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/migrating_blogs_from_drupal_to_pyblosxom/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;http://pyblosxom.bluesock.org/&#34;&gt;pyblosxom&lt;/a&gt; is a pretty cool blogging platform written in python.&lt;br /&gt;
+Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.&lt;br /&gt;
+The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn&#39;t just rely on an external service like disqus, but stores comments as plaintext files as well.&lt;br /&gt;
+Some features seem a bit overengineered (like, multiple possible locations to store themes (known as &#34;flavours&#34;) and templates; I&#39;m a fan of convention over configuration and keeping things simple), but discussing this with the maintainer revealed this is because pyblosxom is meant as a reimplementation of the original perl-based bloxsom project.  Over time features could be simplified and/or redesigned.&lt;br /&gt;
+So I plan to migrate this blog from drupal to pyblosxom.&lt;br /&gt;
+To do this, I&#39;m building the tool &lt;a href=&#34;https://github.com/Dieterbe/drupal-to-pyblosxom&#34;&gt;drupal-to-pyblosxom&lt;/a&gt;.&lt;br /&gt;
+The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)</description>
+      
+    </item>
+    
+    <item>
+      <title>Checking if a git clone has any unique content, git/svn scripts</title>
+      <link>http://localhost:1313/posts/checking_if_a_git_clone_has_any_unique_content__git_and_svn_scripts/</link>
+      <pubDate>Thu, 16 Dec 2010 18:06:23 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/checking_if_a_git_clone_has_any_unique_content__git_and_svn_scripts/</guid>
+      
+      <description>&lt;p&gt;When cleaning up a system and going over git repositories I often wonder if a git repo contains any interesting, but unpushed work. (i.e. &#34;unique&#34; content)&lt;br /&gt;
+I heard bzr (or was it hg...) can do it out-of-the-box, but I couldn&#39;t find any existing solution for git.&lt;br /&gt;
+So I wrote a script to do this.  It checks a repo for unique commits, tags, branches, dirty files/index, added files, or stashed states.  In comparison to a specific remote, or all of them, and uses an appropriate exitcode.&lt;br /&gt;
+&lt;a href=&#34;https://github.com/Dieterbe/git-scripts/blob/master/git-remote-in-sync.sh&#34;&gt;git-remote-in-sync.sh&lt;/a&gt;&lt;br /&gt;
+The script is part of a bigger &lt;a href=&#34;https://github.com/Dieterbe/git-scripts/&#34;&gt;git-scripts&lt;/a&gt; repo (most of the scripts written by random people).  Although the original repo creator hasn&#39;t gotten back to me this seems like a good starting point to have some sense of order in the wildspread of git scripts.&lt;/p&gt;
+&lt;p&gt;Here are some other scripts I find pretty useful:</description>
+      
+    </item>
+    
+    <item>
+      <title>Filesystem code in AIF</title>
+      <link>http://localhost:1313/posts/filesystem_code_in_aif/</link>
+      <pubDate>Wed, 08 Dec 2010 12:24:03 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/filesystem_code_in_aif/</guid>
+      
+      <description>&lt;p&gt;In light of the work and discussions around supporting Nilfs2 and Btrfs on Arch Linux and its installer AIF,&lt;br /&gt;
+I&#39;ve shared some &lt;a href=&#34;http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html&#34;&gt;AIF filesystem code design insights and experiences&lt;/a&gt; on the arch-releng mailing list.&lt;br /&gt;
+This is some hard to understand code.  Partly because it&#39;s in bash (and I&#39;ve needed to work around some limitations in bash),&lt;br /&gt;
+partly because there is some complex logic going on.&lt;/p&gt;
+&lt;p&gt;I think it&#39;s very useful material for those who are interested (it can also help understanding the user aspect),&lt;br /&gt;
+so I wanted to share an improved version here.&lt;br /&gt;
+On a related topic: I proposed to do a session at &lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem 2011/&#34;distro miniconf&#34;&lt;/a&gt; about simple (console based) installers for Linux,&lt;br /&gt;
+and how multiple distributions could share efforts maintaining installation tools, because there are a lot of cross-distribution concerns&lt;br /&gt;
+which are not trivial to get right (mostly filesystems, but I also think about clock adjustments, bootloaders, etc).&lt;br /&gt;
+Already several distro&#39;s use the (or a fork of) the Arch installer, for example &lt;a href=&#34;http://pentoo.blogspot.com/2010/10/pentoo-installation-made-easy.html&#34;&gt;Pentoo&lt;/a&gt;,&lt;br /&gt;
+but I think cooperation could be much better and more efficient.&lt;/p&gt;
+&lt;p&gt;Anyway:&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Handing off uzbl to a new project leader</title>
+      <link>http://localhost:1313/posts/handing_off_uzbl_to_a_new_project_leader/</link>
+      <pubDate>Mon, 22 Nov 2010 15:05:35 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/handing_off_uzbl_to_a_new_project_leader/</guid>
+      
+      <description>&lt;p&gt;As of yesterday, &lt;a href=&#34;http://necronomicorp.com/lab/&#34;&gt;Brendan &#39;bct&#39; Taylor&lt;/a&gt; is the new Uzbl project leader / maintainer.&lt;br /&gt;
+Yesterday I did the &lt;a href=&#34;http://www.uzbl.org/news.php?id=30&#34;&gt;newspost on uzbl.org&lt;/a&gt; which explains the reasoning.  I can add it feels pretty weird &#34;giving away&#34; and &#34;leaving behind&#34; a project you spent so much time on and which grew a large (well, for a FOSS side project with a hacker audience) base of users and contributors, and which served as inspiration for various other projects.</description>
+      
+    </item>
+    
+    <item>
+      <title>Rsyncbench, an rsync benchmarking tool</title>
+      <link>http://localhost:1313/posts/rsyncbench_an_rsync_benchmarking_tool/</link>
+      <pubDate>Fri, 15 Oct 2010 09:38:12 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/rsyncbench_an_rsync_benchmarking_tool/</guid>
+      
+      <description>&lt;p&gt;Background info:&lt;br /&gt;
+I&#39;m currently in the process of evaluating (V)PS hosting providers and backup solutions.  The idea being: I want a (V)PS to run my stuff, which doesn&#39;t need much disk space,&lt;br /&gt;
+but in the meantime it might be a good idea to look for online backup solutions (oops did I say &#34;online&#34;? I meant &#34;cloud&#34;), like on the (V)PS itself, or maybe as a separate solution.&lt;br /&gt;
+But I&#39;ve got some diverse amount of data (my personal data is mostly a lot of small plaintext files, my mom has a windows VM for which I considered syncing the entire vdi file)&lt;br /&gt;
+At this point the biggest contenders are &lt;a href=&#34;http://linode.com/&#34;&gt;Linode&lt;/a&gt; (which offers quite some flexibility and management tools, but becomes expensive when you want extra disk space (2$/month*GB), &lt;a href=&#34;http://www.rackspace.com/apps/backup_and_collaboration/data_backup_software/&#34;&gt;Rackspace backup&lt;/a&gt; gives you 10GB for 5$/month, but they have nice backup tools so I could only backup the important files from within the windows VM (~200MB), and then there&#39;s &lt;a href=&#34;http://www.hetzner.de/&#34;&gt;Hetzner&lt;/a&gt;, which offers powerful physical private servers with a lot of storage (160GB) for 29eur/month, but less flexibility (I.e. kvm-over-ip costs an extra 15eur/month)&lt;/p&gt;
+&lt;p&gt;Another issue, given the limited capacity of Belgian internet connections, I needed to figure out how much bandwith rsync really needs, so I can calculate if the duration of a backup run including syncing the full vdi file is still reasonable.&lt;/p&gt;
+&lt;p&gt;I couldn&#39;t find an rsync benchmarking tool, so I wrote my own.&lt;/p&gt;
+&lt;p&gt;Features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;simple&lt;/li&gt;
+&lt;li&gt;non invasive: you specify the target and destination hosts (just localhost is fine too), and file locations&lt;/li&gt;
+&lt;li&gt;measures time spent, bytes sent (measured with tcpdump), and data sent (rsync&#39;s statistics which takes compression into account)&lt;/li&gt;
+&lt;li&gt;supports plugins&lt;/li&gt;
+&lt;li&gt;generates png graphs using Gnuplot&lt;/li&gt;
+&lt;li&gt;two current plugins: one using files of various sizes, both randomly generated (/dev/urandom) and easily compressable (/dev/zero), does some use cases like initial sync, second sync (no-op), and syncing with a data block appended and prepended.  The other plugin collects vdi files from rsnapshot directories and measures the rsyncing from each image to the next&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>An rss2email fork that sucks less</title>
+      <link>http://localhost:1313/posts/an_rss2email_fork_that_sucks_less/</link>
+      <pubDate>Sat, 25 Sep 2010 20:33:08 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/an_rss2email_fork_that_sucks_less/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.allthingsrss.com/rss2email/&#34;&gt;Rss2email&lt;/a&gt; is a great tool.  I like getting all my news messages in my mailbox and using smtp to make the &#34;news delivery&#34; process more robust makes sense.&lt;br /&gt;
+However, there are some things I didn&#39;t like about it so I made a &lt;a href=&#34;http://github.com/Dieterbe/rss2email/&#34;&gt;github repo&lt;/a&gt; where I maintain an alternative version which (imho) contains several useful improvements, both for end users and for developers/downstreams.&lt;br /&gt;
+Also, this was a nice opportunity for me to improve my python skills :)&lt;/p&gt;
+&lt;p&gt;Here is how it compares:&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>What the open source community can learn from Devops</title>
+      <link>http://localhost:1313/posts/what_the_open_source_community_can_learn_from_devops/</link>
+      <pubDate>Fri, 03 Sep 2010 22:26:22 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/what_the_open_source_community_can_learn_from_devops/</guid>
+      
+      <description>&lt;p&gt;Being active as both a developer and ops person in the professional life, and both an open source developer and packager in my spare time, I noticed some common ground between both worlds, and I think the open source community can learn from the Devops movement which is solving problems in the professional tech world.&lt;/p&gt;
+&lt;p&gt;For the sake of getting a point across, I&#39;ll simplify some things.&lt;/p&gt;
+&lt;h3&gt;First, a crash course on Devops...&lt;/h3&gt;
+&lt;p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>the &#34;Community Contributions&#34; section on the Arch Linux forums is a goldmine</title>
+      <link>http://localhost:1313/posts/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</link>
+      <pubDate>Wed, 25 Aug 2010 22:11:58 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/the_community_contributions_section_on_the_arch_linux_forums_is_a_goldmine/</guid>
+      
+      <description>The Community contributions subforum of the Arch Linux forums is awesome.
+It is the birthplace of many applications, most of them not Arch Linux specific.
+File managers, media players, browsers, window managers, text editors, todo managers, and so on. Many shell scripts, urxvt extensions and dwm patches aswell.
+Most of the apps are designed after suckless/KISS principles, but there are also some GUI programs.
+If you like to discover new apps and tools, check it out.</description>
+      
+    </item>
+    
+    <item>
+      <title>Review of &#34;Python 3 Object Oriented Programming&#34;</title>
+      <link>http://localhost:1313/posts/review_of_python_3_object_oriented_programming/</link>
+      <pubDate>Mon, 23 Aug 2010 19:01:09 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/review_of_python_3_object_oriented_programming/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;http://archlinux.me/dusty/&#34;&gt;Dusty Phillips&lt;/a&gt;, Arch Linux shwag guy, Archcon co-organizer, (python) consultant and since recently &lt;a href=&#34;http://localhost:1313/back_from_canada_archcon&#34;&gt;buddy of mine&lt;/a&gt; wrote his first &lt;a href=&#34;https://www.packtpub.com/python-3-object-oriented-programming/book?utm_source=dieter.plaetinck.be&amp;amp;utm_medium=bookrev&amp;amp;utm_content=blog&amp;amp;utm_campaign=mdb_004281&#34;&gt;book: Python 3 Object Oriented Programming&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I got the opportunity to get a free pdf copy in exchange for a review on my blog, so here we go.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Back from Canada, Archcon</title>
+      <link>http://localhost:1313/posts/back_from_canada_archcon/</link>
+      <pubDate>Sat, 31 Jul 2010 23:10:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/back_from_canada_archcon/</guid>
+      
+      <description>&lt;p&gt;I&#39;m back from Canada/Archcon, and it was great. I&#39;ve been in Toronto for 11 days, and visited Montreal for 3 days.&lt;/p&gt;
+&lt;h3&gt;Archcon&lt;/h3&gt;
+&lt;p&gt;Archcon was small (20-ish people).  (That&#39;s what you get for doing it in Canada ;), but very nice.&lt;br /&gt;
+Interesting talks, informal, good vibe, decent logistics and catering.&lt;br /&gt;
+This year it happened because Dusty and Ricardo actually just wanted to have a conference without worrying too much about the attendance,&lt;br /&gt;
+next year we should do it again because Arch (conferences) rock(s), and because we need more visitors.  More central locations such as Seattle and Europe have been suggested.&lt;br /&gt;
+Either way, next year both Judd (founder) and Aaron (current overlord) should be there. (this year they both had lame excuses like family reunions and &#34;almost getting married&#34;.  Congrats btw, Aaron!)&lt;/p&gt;
+&lt;p&gt;It was an absolute pleasure to meet some more of my fellow devs, and users.&lt;br /&gt;
+Here is a pic from the group (unfortunately, a few are missing)</description>
+      
+    </item>
+    
+    <item>
+      <title>Off to Toronto July 14-28, Archcon</title>
+      <link>http://localhost:1313/posts/off_to_toronto_july_14-28_archcon/</link>
+      <pubDate>Sun, 04 Jul 2010 11:34:08 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/off_to_toronto_july_14-28_archcon/</guid>
+      
+      <description>&lt;p&gt;As mentioned &lt;a href=&#34;http://localhost:1313/uzbl_monitoring_aif_talks&#34;&gt;earlier&lt;/a&gt;, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;Archcon in Toronto&lt;/a&gt; in a few weeks.&lt;br /&gt;
+It&#39;s a very small conference, and the first of its kind.  At the &lt;a href=&#34;http://localhost:1313/froscon_2009_afterthoughts&#34;&gt;last FrOSCon&lt;/a&gt; we have been playing with the idea to hold an informal Arch conference in Europe, but those were just ideas.  Dusty and Ricardo beat us with an actual implementation.&lt;br /&gt;
+This is great, and one of the milestones in Arch Linux history.  Which is why I want to be there and help making it better.</description>
+      
+    </item>
+    
+    <item>
+      <title>Restoring ssh connections on resume</title>
+      <link>http://localhost:1313/posts/restoring_ssh_connections_on_resume/</link>
+      <pubDate>Wed, 16 Jun 2010 18:11:50 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/restoring_ssh_connections_on_resume/</guid>
+      
+      <description>I use pm-utils for hibernation support.
+It has a hooks system which can execute stuff upon hibernate/suspend/thaw/resume/..., but they run as root.
+If you want to run stuff as a regular user you could do something like
+su $user -c &amp;lt;command&amp;gt;..but these commands have no access to your user environment.
+In my user environment I have a variable which I need access to, namely SSH_AUTH_SOCK, which points to my agent which has some unlocked ssh keys.</description>
+      
+    </item>
+    
+    <item>
+      <title>Uzbl, monitoring, AIF talks</title>
+      <link>http://localhost:1313/posts/uzbl_monitoring_aif_talks/</link>
+      <pubDate>Sun, 07 Mar 2010 12:06:18 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/uzbl_monitoring_aif_talks/</guid>
+      
+      <description>&lt;p&gt;I recently did two talks, for which the videos are now online.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.uzbl.org/news.php?id=25&#34;&gt;Uzbl lightningtalk @ fosdem 2010&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open Source Monitoring tools lightning talk @ &lt;a href=&#34;http://www.kangaroot-showcase.be/&#34;&gt;Kangaroot showcase&lt;/a&gt; 2009.  This one is password protected.  If you were a participant, you should have received the pass&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If all goes well, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;ArchCon&lt;/a&gt; this summer, where I&#39;ll be doing these talks:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=67&#34;&gt;AIF: The Arch Installation Framework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=73&#34;&gt;Uzbl &amp; web interface tools which adhere to the unix philosophy&lt;/a&gt;. Whereas in the fosdem talk I had to focus a lot of information into a short timeslot, here I&#39;ll elaborate a bit more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&#39;re not sure yet if those talks will get videotaped.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>facebook usrbincrash php implementation</title>
+      <link>http://localhost:1313/posts/facebook_usrbincrash_php_implementation/</link>
+      <pubDate>Fri, 12 Feb 2010 23:25:46 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/facebook_usrbincrash_php_implementation/</guid>
+      
+      <description>Implementation for Facebook usr bin crash puzzle. (how/why)
+I haven&#39;t touched the code for a few months, but better to put it online then to let it rot.
+http://github.com/Dieterbe/facebookpuzzles/
+2 branches:
+master: basically what I submitted to FB, and what just works withpruning: an attempt for futher optimalisation (it only improves the runtime in some cases) but I didn&#39;t finish that version and there&#39;s a bug in it somewhere In the repo you&#39;ll also find various test input files supplied by the community on the forums and a script to benchmark the implementation on all inputfiles.</description>
+      
+    </item>
+    
+    <item>
+      <title>Not working for Facebook</title>
+      <link>http://localhost:1313/posts/not_working_for_facebook/</link>
+      <pubDate>Fri, 12 Feb 2010 22:58:31 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/not_working_for_facebook/</guid>
+      
+      <description>&lt;p&gt;In november last year, I was contacted by Facebook HR.&lt;br /&gt;
+They found my background interesting and thought I might be a good&lt;br /&gt;
+fit for an &#34;application operations engineer&#34; position in Palo Alto, California. (it is&lt;br /&gt;
+basically the link between their infrastructure engineering and operations/support&lt;br /&gt;
+teams).</description>
+      
+    </item>
+    
+    <item>
+      <title>Fosdem 2010</title>
+      <link>http://localhost:1313/posts/fosdem_2010/</link>
+      <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/fosdem_2010/</guid>
+      
+      <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
+Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guys Roman, JGC, Thomas and me will hang out at the &lt;a href=&#34;http://fosdem.org/2010/schedule/devrooms/distributions&#34;&gt;distro miniconf&lt;/a&gt;.  We might join the &lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_infrastructure&#34;&gt;infrastructure round-table&lt;/a&gt; panel, but there is no concrete information yet.&lt;/p&gt;
+&lt;p&gt;More stuff I&#39;m looking forward to:</description>
+      
+    </item>
+    
+    <item>
+      <title>Arch Linux interview and Uzbl article</title>
+      <link>http://localhost:1313/posts/arch_linux_interview_and_uzbl_article/</link>
+      <pubDate>Mon, 11 Jan 2010 21:30:50 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/arch_linux_interview_and_uzbl_article/</guid>
+      
+      <description>Arch Linux team interview @ OSNews Uzbl @ LWN.net Apologies for only informing you about the second article now. I assumed most of you follow LWN (you probably should) or found the article anyway.
+Of all the articles written about uzbl, no one came close to the quality of Koens work. So even though it&#39;s a bit dated it&#39;s still worth a read.</description>
+      
+    </item>
+    
+    <item>
+      <title>RRDtool: updating RRA settings and keeping your collected data</title>
+      <link>http://localhost:1313/posts/rrdtool_updating_rra_settings_and_keeping_your_collected_data/</link>
+      <pubDate>Wed, 09 Dec 2009 15:05:14 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/rrdtool_updating_rra_settings_and_keeping_your_collected_data/</guid>
+      
+      <description>When you use &lt;a href=&#34;http://oss.oetiker.ch/rrdtool/&#34;&gt;rrdtool&lt;/a&gt;, it can happen that you first create your databases, then collect a whole bunch of data and decide later you want more accuracy/longer periods.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>ext3 logical partition resizing</title>
+      <link>http://localhost:1313/posts/ext3_logical_partition_resizing/</link>
+      <pubDate>Sun, 01 Nov 2009 10:17:26 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/ext3_logical_partition_resizing/</guid>
+      
+      <description>&lt;p&gt;You probably know you can resize primary partitions by deleting them and recreating them, keeping the starting block the same but using a higher block as ending point.  You can then increase the filesystem.&lt;br /&gt;
+But what about logical partitions?  A while back I had to resize an ext3 logical partition which ended at the end of the last logical partition.  I learned some usefull stuff but I only made some quick scratch notes and I don&#39;t remember all details so:&lt;br /&gt;
+&lt;strong&gt;Do not expect a nice tutorial here, it&#39;s more of a commented dump of my scratch notes and some vague memories.&lt;br /&gt;
+The information in this post is not 100% accurate&lt;/strong&gt;&lt;br /&gt;
+I wondered if I could just drop and recreate the extended partition (and if needed, recreating all contained logical partitions, the last one being bigger of course) but nowhere I could find information about that.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>About the maemo summit 2009 and the nokia n900</title>
+      <link>http://localhost:1313/posts/about_the_maemo_summit_2009_and_the_nokia_n900/</link>
+      <pubDate>Mon, 12 Oct 2009 21:20:39 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/about_the_maemo_summit_2009_and_the_nokia_n900/</guid>
+      
+      <description>&lt;p&gt;So I&#39;m back from the 3-day &lt;a href=&#34;http://wiki.maemo.org/Maemo_Summit_2009&#34;&gt;maemo summit&lt;/a&gt; in Amsterdam.  It was very nice.  Very well organized, and Nokia definitely invested enough in catering, fancy-suited people and such to please all 400 of us.  I met several interesting people, both from the community, as well as Nokia guys.&lt;br /&gt;
+The talks were diverse, but interesting (duh?).  I will especially remember the kickoff with its fancy visual effects and loud music that set the mood straight for the entire weekend.&lt;br /&gt;
+The best moment was, of course, when it was announced that &lt;strong&gt;every summit participant would receive a n900.  Uncontrolled hapiness all around. &lt;/strong&gt;&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>nokia n900 &amp; maemo summit 2009</title>
+      <link>http://localhost:1313/posts/nokia_n900_and_maemo_summit_2009/</link>
+      <pubDate>Fri, 02 Oct 2009 17:40:14 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/nokia_n900_and_maemo_summit_2009/</guid>
+      
+      <description>I have been looking for the &#34;perfect mobile companion device&#34; already for a while. Basically I want a &#34;pocket PC that can do as much as possible over which i have as much control as possible so I can do things my way, but still fits in a pocket and which can do gsm and such&#34;
+So, something like a netbook, but really portable, and that can also do telephony stuff.</description>
+      
+    </item>
+    
+    <item>
+      <title>Opening files automatically on mainstream Linux desktops</title>
+      <link>http://localhost:1313/posts/opening_files_automatically_on_mainstream_linux_desktops/</link>
+      <pubDate>Tue, 22 Sep 2009 19:43:17 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/opening_files_automatically_on_mainstream_linux_desktops/</guid>
+      
+      <description>&lt;p&gt;Xfce/Gnu/Linux works amazingly well on my moms workstation, with one exception: opening files automatically with the correct program.&lt;/p&gt;
+&lt;p&gt;The two biggest culprits are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gtk&#39;s &#34;open file with&#34; dialog: if any Gtk program doesn&#39;t know how to open a file it brings up this dialog that is horrible to use.  You can search through your entire VFS for the right executable.  No thumbnails, no usage of .desktop files, $PATH, autocompletion and not even limiting the scope to directories such as /usr/bin&lt;/li&gt;
+&lt;li&gt;Mozilla software such as Firefox and Thunderbird: they only seem to differentiate files by their mimetype, not by extension.  There are add-ons to make it easier to edit these preferences, but eventually you&#39;re in a dead end because you get files with correct extensions but unuseful mimetimes (application/octet-stream)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Luckily the fd.o guys have come up with &lt;a href=&#34;http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html&#34;&gt;.desktop files&lt;/a&gt;.</description>
+      
+    </item>
+    
+    <item>
+      <title>Snip: a dead-simple but quite powerful text expander and more</title>
+      <link>http://localhost:1313/posts/snip_a_dead-simple_but_quite_powerful_text_expander_and_more/</link>
+      <pubDate>Mon, 14 Sep 2009 20:22:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/snip_a_dead-simple_but_quite_powerful_text_expander_and_more/</guid>
+      
+      <description>&lt;p&gt;Inspired by &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=71938&#34;&gt;Snippy&lt;/a&gt; and &lt;a href=&#34;http://lifehacker.com/351285/automate-repetitive-typing-with-snippits&#34;&gt;snippits&lt;/a&gt;, I wrote a simple tool called &lt;a href=&#34;http://github.com/Dieterbe/snip&#34;&gt;snip&lt;/a&gt;.&lt;br /&gt;
+It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Wishlist</title>
+      <link>http://localhost:1313/posts/wishlist/</link>
+      <pubDate>Fri, 04 Sep 2009 16:22:03 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/wishlist/</guid>
+      
+      <description>I&#39;m starting to keep track of some things I want. I&#39;ve picked Amazon because they have many items in their database.
+wishlist</description>
+      
+    </item>
+    
+    <item>
+      <title>Froscon 2009 afterthoughts</title>
+      <link>http://localhost:1313/posts/froscon_2009_afterthoughts/</link>
+      <pubDate>Fri, 28 Aug 2009 19:00:02 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/froscon_2009_afterthoughts/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>A script that pulls photos from facebook</title>
+      <link>http://localhost:1313/posts/a_script_that_pulls_photos_from_facebook/</link>
+      <pubDate>Tue, 18 Aug 2009 17:36:21 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/a_script_that_pulls_photos_from_facebook/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;http://fbcmd.dtompkins.com/&#34;&gt;Fbcmd&lt;/a&gt; is pretty cool.&lt;br /&gt;
+I quickly hacked this script together which pulls all photo albums from friends on facebook, so I have them available where I want.  (It should also pull your own albums, but I don&#39;t have any so I can&#39;t check that)</description>
+      
+    </item>
+    
+    <item>
+      <title>Arch Linux 2009.08 &amp; Froscon 2009</title>
+      <link>http://localhost:1313/posts/arch_linux_2009.08_and_froscon_2009/</link>
+      <pubDate>Mon, 10 Aug 2009 12:36:48 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/arch_linux_2009.08_and_froscon_2009/</guid>
+      
+      <description>So, the Arch Linux 2009.08 release is now behind us, nicely on schedule.
+I hope people will like AIF because it was a lot of work and we didn&#39;t receive much feedback. I personally like it to apply my fancy backup restoration approach.
+But I&#39;m sure if more people would look at the code we would find quite some design and implementation things that could be improved. (With uzbl I was amazed how much difference it can make if many people all have ideas and opinions about every little detail)</description>
+      
+    </item>
+    
+    <item>
+      <title>AIF automatic lvm/dm_crypt installations and test suite</title>
+      <link>http://localhost:1313/posts/aif_automatic_lvm_dm_crypt_installations_and_test_suite/</link>
+      <pubDate>Wed, 22 Jul 2009 22:36:30 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/aif_automatic_lvm_dm_crypt_installations_and_test_suite/</guid>
+      
+      <description>We&#39;re working hard on a new Arch release. (should be done by froscon)
+Amongst the slew of fixes and improvements there are also some cool new things I&#39;m working on.
+First of all, I worked more on the automatic installations. Now you can easily install an LVM based Arch system on top of dm_crypt for example.
+You type this command:
+aif -p automatic -c /usr/share/aif/examples/fancy-install-on-sdaAnd bam you have a complete working system with LVM, dm_crypt etc all set up.</description>
+      
+    </item>
+    
+    <item>
+      <title>Mysql status variables caveats</title>
+      <link>http://localhost:1313/posts/mysql_status_variables_caveats/</link>
+      <pubDate>Sat, 06 Jun 2009 11:33:34 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/mysql_status_variables_caveats/</guid>
+      
+      <description>While setting up Zenoss and reading Mysql documentation about status variables I learned:
+All select_* variables (&#34;Select statistics&#34; graph in Zenoss) are actually about joins, not (all) selects. This also explains why there is no clear relation to com_select (which shows the amount of selects). (&#34;Command statistics:selects&#34; graph in Zenoss) Com_select does not denote all incoming select commands. If you have a hit on your query cache, com_select is not incremented.</description>
+      
+    </item>
+    
+    <item>
+      <title>Zenoss &amp; Mysql monitoring</title>
+      <link>http://localhost:1313/posts/zenoss_and_mysql_monitoring/</link>
+      <pubDate>Sat, 06 Jun 2009 10:35:40 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/zenoss_and_mysql_monitoring/</guid>
+      
+      <description>&lt;p&gt;I&#39;ve been playing with &lt;a href=&#34;http://www.zenoss.com/&#34;&gt;Zenoss&lt;/a&gt; (2.4) for the first time.  Here are my thoughts:</description>
+      
+    </item>
+    
+    <item>
+      <title>Uzbl.  A browser that adheres to the unix philosophy.</title>
+      <link>http://localhost:1313/posts/uzbl_a_browser_that_adheres_to_the_unix_philosophy/</link>
+      <pubDate>Mon, 27 Apr 2009 23:02:37 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/uzbl_a_browser_that_adheres_to_the_unix_philosophy/</guid>
+      
+      <description>&lt;p&gt;I need a browser that is fast, not bloated, stores my data (bookmarks, history, account settings, preferences, ...) in simple text files that I can keep under version control, something that does not reinvent the wheel, something that I can control.&lt;/p&gt;
+&lt;p&gt;Well, I could not find it.&lt;br /&gt;
+So I started the &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=70700&amp;amp;p=1&#34;&gt;uzbl browser&lt;/a&gt; project.</description>
+      
+    </item>
+    
+    <item>
+      <title>Poor mans dmenu benchmark</title>
+      <link>http://localhost:1313/posts/poor_mans_dmenu_benchmark/</link>
+      <pubDate>Sat, 25 Apr 2009 11:25:26 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/poor_mans_dmenu_benchmark/</guid>
+      
+      <description>&lt;p&gt;I wanted to know how responsive &lt;a href=&#34;http://tools.suckless.org/dmenu&#34;&gt;dmenu&lt;/a&gt; and awk, sort, uniq are on a 50MB file (625000 entries of 80 1-byte chars each).&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Automatic installations with AIF</title>
+      <link>http://localhost:1313/posts/automatic_installations_with_aif/</link>
+      <pubDate>Sat, 14 Mar 2009 13:15:20 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/automatic_installations_with_aif/</guid>
+      
+      <description>&lt;p&gt;Yesterday I finished the first working version of AIF&#39;s &lt;a href=&#34;http://github.com/Dieterbe/aif/blob/b6aad22d8c0657d9205314b176e31878ffbc46a4/src/core/procedures/automatic&#34;&gt;automatic procedure&lt;/a&gt;, along with a &lt;a href=&#34;http://github.com/Dieterbe/aif/blob/b6aad22d8c0657d9205314b176e31878ffbc46a4/examples/generic-install-on-sda&#34;&gt;sample config for a basic install.&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For me personally this means I can start working on the next step towards my goal of having all my systems &#34;metadata&#34; centrally stored (along with my real &#34;data&#34;), and the possibility to reconstruct all my systems in a deployment-meets-backup-restore fashion ( see &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34; title=&#34;/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;rethinking_the_backup_paradigm_a_higher-level...&lt;/a&gt; )&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Fosdem 2009</title>
+      <link>http://localhost:1313/posts/fosdem_2009/</link>
+      <pubDate>Thu, 05 Feb 2009 21:20:15 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/fosdem_2009/</guid>
+      
+      <description>
+I&#39;m particulary interested in:
+The out-of-the-box concepts of Exherbo. I hope to see more things like this. Various talks at OpenSuse about distribution development, their build service, etc. tools such as func and puppet. syslinux, upstart, ext4 etc. Some mysql stuff and the filesystem i/o from a db perspective talk. </description>
+      
+    </item>
+    
+    <item>
+      <title>Arch Linux release engineering</title>
+      <link>http://localhost:1313/posts/arch_linux_release_engineering/</link>
+      <pubDate>Thu, 22 Jan 2009 23:11:01 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/arch_linux_release_engineering/</guid>
+      
+      <description>I don&#39;t think I&#39;ve ever seen so much anxiety/impatience/hope/buzz for a new Arch Linux release. (this is because of 2.6.28 with ext4 support).
+The last release was 6 months ago, which is not so good.. also the arch-installer project has been slacking for a while. But the Arch devs have been very busy and many things going on. You know how it goes...
+That&#39;s why some new people have stepped up to help out on a new release:</description>
+      
+    </item>
+    
+    <item>
+      <title>CakePHP and a paradigm shift to a code generation based approach?</title>
+      <link>http://localhost:1313/posts/cakephp_and_a_paradigm_shift_to_a_code_generation_based_approach/</link>
+      <pubDate>Mon, 19 Jan 2009 22:16:52 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/cakephp_and_a_paradigm_shift_to_a_code_generation_based_approach/</guid>
+      
+      <description>&lt;p&gt;At my &lt;a href=&#34;http://localhost:1313/jobhunt_over&#34;&gt;new job&lt;/a&gt;, I&#39;m writing a quite full-featured web application.&lt;br /&gt;
+I&#39;ve choosen to use CakePHP.&lt;br /&gt;
+Why? Well, it may be 2 years since I last used it, but I&#39;ve followed the project and it&#39;s planet, and it seems to have matured and gained even more monumentum.&lt;br /&gt;
+I want to use something that is widely used so there is plenty of stuff available for it, it&#39;s RAD, it&#39;s flexible and powerful.&lt;br /&gt;
+I noticed things such as CLI support and documentation have improved tremendously too.&lt;/p&gt;
+&lt;p&gt;However, I find that still, the recommended (or at least &#34;most commonly used&#34;) practices are not as efficient as they could be, and that emphasis is placed on the wrong aspects.&lt;br /&gt;
+See, even though the &lt;a href=&#34;http://book.cakephp.org/view/113/Code-Generation-with-Bake&#34;&gt;bake&lt;/a&gt; tool has come a long way since I last used it, it&#39;s still used to &#34;generate some standard models/controllers/views&#34; and the developer can take it from there [further editing the resulting files himself].&lt;br /&gt;
+Finetuning generated code by editing the templates (in fact, only views have templates; the php code of models and controllers is hardcoded in the scripts that generate them), is still an obscure practice...&lt;br /&gt;
+Also, there are very few commandline switches (Right now you can choose your app dir, whether you want to bake a model,controller or view, and it&#39;s name.)&lt;br /&gt;
+All other things (validation rules, associatons, index/view/edit/add actions/views, which components, overwrite yes/no etc) are all handled interactively.&lt;br /&gt;
+There are also some smaller enoyances such as when you specify one option like the name of the model, it assumes you don&#39;t want interactivity and produces a model containing nothing more then the class definition and the membervariable $name, which is usually worthless.&lt;br /&gt;
+One thing that is pretty neat though, If you update $this-&gt;recursive in a model, the baked views will contain stuff for the associated things.  But so much more could be done...&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Jobhunt over.</title>
+      <link>http://localhost:1313/posts/jobhunt_over/</link>
+      <pubDate>Wed, 24 Dec 2008 18:07:35 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/jobhunt_over/</guid>
+      
+      <description>What better way to launch the new year then starting to work as a System Engineer/Developer for a consulting firm where everyone breathes Linux and Open Source?
+Next week I&#39;ll start at Kangaroot. Woohoo.</description>
+      
+    </item>
+    
+    <item>
+      <title>new AIF release</title>
+      <link>http://localhost:1313/posts/new_aif_release/</link>
+      <pubDate>Wed, 17 Dec 2008 09:50:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/new_aif_release/</guid>
+      
+      <description>&lt;p&gt;My holidays present for Arch devs and users: AIF alpha-0.6 !&lt;/p&gt;
+&lt;p&gt;* Changes since alpha 0.5:</description>
+      
+    </item>
+    
+    <item>
+      <title>#1 productivity tip: showers</title>
+      <link>http://localhost:1313/posts/number_1_productivity_tip_showers/</link>
+      <pubDate>Sat, 13 Dec 2008 17:43:02 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/number_1_productivity_tip_showers/</guid>
+      
+      <description>&lt;p&gt;When you&#39;re stuck on a problem, or not even stuck but you just want to boost your creative/out-of-the-box thinking...&lt;br /&gt;
+Take a shower.  When I&#39;m thinking about a problem and I take a shower, the ideas and thoughts just start popping up, one after each other, or sometimes even two at the same time.  It&#39;s amazing.  And it works every time.</description>
+      
+    </item>
+    
+    <item>
+      <title>Looking for a new job</title>
+      <link>http://localhost:1313/posts/looking_for_a_new_job/</link>
+      <pubDate>Mon, 24 Nov 2008 20:30:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/looking_for_a_new_job/</guid>
+      
+      <description>The adventure at Netlog didn&#39;t work out entirely, so I&#39;m looking for a new challenge!
+My new ideal (slightly utopic) job would be:
+Conceptual engineering while still being close to the technical side as well, most notably system engineering and development. Innovative: go where no one has gone before. Integrated in the open-source world. (Bonus points for companies where open source is key in their business model) To get a detailed overview of my interests and skills, I refer to:</description>
+      
+    </item>
+    
+    <item>
+      <title>AIF: the brand new Arch Linux Installation Framework</title>
+      <link>http://localhost:1313/posts/aif_the_brand_new_arch_linux_installation_framework/</link>
+      <pubDate>Mon, 17 Nov 2008 11:45:25 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/aif_the_brand_new_arch_linux_installation_framework/</guid>
+      
+      <description>&lt;p&gt;Recently I started thinking about writing my own automatic installer that would set up my system exactly the way I want.&lt;br /&gt;
+(See &lt;a href=&#34;http://localhost:1313/rethinking_the_backup_paradigm_a_higher-level_approach&#34; title=&#34;/rethinking_the_backup_paradigm_a_higher-level_approach&#34;&gt;rethinking_the_backup_paradigm_a_higher-level...&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;I looked at the official Arch install scripts to see if I could reuse parts of their code, but unfortunately the code was just one big chunk of bash code with the main program and &#34;flow control&#34; (you must first do this step, then that), UI-code (dialogs etc) and backend logic (create filesystems, ...) all mangled up and mixed very closely together.&lt;br /&gt;
+Functionality-wise the installer works fine, but I guess the code behind it is the result of years of adding features and quick fixes without refactoring, making it impossible to reuse any of the code.&lt;/p&gt;
+&lt;p&gt;So I started to write &lt;a href=&#34;http://github.com/Dieterbe/aif/&#34;&gt;AIF: the Arch Linux Installation Framework&lt;/a&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Handling a remote rename/move with Git</title>
+      <link>http://localhost:1313/posts/handling_a_remote_rename_or_move_with_git/</link>
+      <pubDate>Mon, 17 Nov 2008 11:29:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/handling_a_remote_rename_or_move_with_git/</guid>
+      
+      <description>I recently had to rename a repo on my Github account. Github has made this very easy but it&#39;s just one side of the issue. Obviously you must also update any references to this remote in other clones, otherwise pushes, fetches etc won&#39;t work anymore.
+You can do this in two ways:
+open .git/config and modify the url for the remote manually git remote rm origin &amp;amp;&amp;amp; git remote add origin git@github.</description>
+      
+    </item>
+    
+    <item>
+      <title>Muse ... wow</title>
+      <link>http://localhost:1313/posts/muse...wow/</link>
+      <pubDate>Sun, 09 Nov 2008 10:33:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/muse...wow/</guid>
+      
+      <description>Weird as it might sound, I&#39;ve never bothered to listen to Muse songs.. until now. Some people have recommended the band to me so I really had to stop ignoring this band someday. And wow.. what have I been missing al that time :/
+Songs like Butterflies and Hurricanes and Citizen Erased are among the most beautiful songs I&#39;ve ever heard now.</description>
+      
+    </item>
+    
+    <item>
+      <title>dautostart, a standalone freedesktop-compliant application starter</title>
+      <link>http://localhost:1313/posts/dautostart_a_standalone_freedesktop-compliant_application_starter/</link>
+      <pubDate>Sun, 19 Oct 2008 13:26:08 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/dautostart_a_standalone_freedesktop-compliant_application_starter/</guid>
+      
+      <description>&lt;p&gt;I couldn&#39;t find a standalone application/script that implements &lt;a href=&#34;http://standards.freedesktop.org/autostart-spec/autostart-spec-latest.html&#34;&gt;freedesktop compliant (XDG based) autostarting&lt;/a&gt; of applications, so I decided to write my own.&lt;br /&gt;
+The project is at &lt;a href=&#34;http://github.com/Dieterbe/dautostart&#34; title=&#34;http://github.com/Dieterbe/dautostart&#34;&gt;http://github.com/Dieterbe/dautostart&lt;/a&gt; .&lt;/p&gt;
+&lt;p&gt;Right now, all the basics seem to work (except &#34;Autostart Of Applications After Mount&#34; of the spec).&lt;br /&gt;
+It&#39;s probably not bugfree.  I hacked it together in a few hours (but it works for me :-).   Bugreports welcome!&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Visual feedback of the exit status of the previous command in bash</title>
+      <link>http://localhost:1313/posts/visual_feedback_of_the_exit_status_of_the_previous_command_in_bash/</link>
+      <pubDate>Tue, 14 Oct 2008 21:56:50 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/visual_feedback_of_the_exit_status_of_the_previous_command_in_bash/</guid>
+      
+      <description>&lt;p&gt;Put this in your .bashrc, and the current directory in your PS1 will be printed green if the previous command had exit state 0, red otherwise.  No more typing &#39;echo $?&#39;, &#39; &amp;amp;&amp; echo ok&#39;, &#39;|| echo failed&#39; etc on the command line.</description>
+      
+    </item>
+    
+    <item>
+      <title>I&#39;m done with Gnome/Gconf</title>
+      <link>http://localhost:1313/posts/im_done_with_gnome_and_gconf/</link>
+      <pubDate>Mon, 29 Sep 2008 22:01:41 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/im_done_with_gnome_and_gconf/</guid>
+      
+      <description>&lt;p&gt;I&#39;m managing my ~ in svn but using gnome &amp;amp; gconf makes this rather hard.&lt;br /&gt;
+They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).&lt;br /&gt;
+The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime &#39;something&#39; happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.&lt;br /&gt;
+I&#39;m fine with the fact they do that.  I&#39;m sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as &lt;a href=&#34;http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html&#34;&gt;xdg&#39;s&lt;/a&gt; $XDG_CACHE_HOME directory)</description>
+      
+    </item>
+    
+    <item>
+      <title>DDM v0.4 released</title>
+      <link>http://localhost:1313/posts/ddm_v04_released/</link>
+      <pubDate>Tue, 23 Sep 2008 16:21:27 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/ddm_v04_released/</guid>
+      
+      <description>&lt;p&gt;DDM v0.4 has been released.&lt;br /&gt;
+Since the last release many, many things have been changed/fixed/added.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>My projects are on github now</title>
+      <link>http://localhost:1313/posts/my_projects_are_on_github_now/</link>
+      <pubDate>Tue, 09 Sep 2008 11:40:03 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/my_projects_are_on_github_now/</guid>
+      
+      <description>&lt;p&gt;I&#39;ve put my (somewhat interesting) projects on &lt;a href=&#34;http://github.com/&#34;&gt;GitHub&lt;/a&gt;.&lt;br /&gt;
+Git is a damn cool VCS for distributed development, and I think Github integrates with it really nicely, adding some useful aspects for following and collaborating on projects.&lt;br /&gt;
+The projects I have migrated to my &lt;a href=&#34;https://github.com/Dieterbe&#34;&gt;GitHub profile&lt;/a&gt; are:</description>
+      
+    </item>
+    
+    <item>
+      <title>A fast way to get stuff out of your head and into your GTD inbox</title>
+      <link>http://localhost:1313/posts/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/</link>
+      <pubDate>Wed, 13 Aug 2008 20:42:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/a_fast_way_to_get_stuff_out_of_your_head_and_into_your_gtd_inbox/</guid>
+      
+      <description>&lt;p&gt;Often while you&#39;re occupied with something, some thought pops into your head.  Something that you want to remember/do something about.</description>
+      
+    </item>
+    
+    <item>
+      <title>Requirements for the perfect GTD tool</title>
+      <link>http://localhost:1313/posts/requirements_for_the_perfect_gtd_tool/</link>
+      <pubDate>Sat, 09 Aug 2008 16:04:45 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/requirements_for_the_perfect_gtd_tool/</guid>
+      
+      <description>&lt;p&gt;I&#39;ve been reading &lt;a href=&#34;http://en.wikipedia.org/wiki/Getting_Things_Done&#34;&gt;GTD&lt;/a&gt; lately and it&#39;s absolutely a great and inspiring book.&lt;br /&gt;
+Having made my home office space into a real &lt;i&gt;Zen&lt;/i&gt; I want to start implementing GTD in my digital life but it seems very hard to find a good GTD tool that fully implements GTD. (even though there are a lot of tools out there)&lt;/p&gt;
+&lt;p&gt;The most interesting ones (each for different reasons) I&#39;ve looked at so far are &lt;a href=&#34;http://www.thinkingrock.com.au/index.php&#34;&gt;Thinkingrock&lt;/a&gt;, &lt;a href=&#34;http://www.rousette.org.uk/projects/&#34;&gt;tracks&lt;/a&gt; and &lt;a href=&#34;https://gna.org/projects/yagtd/&#34;&gt;yagtd&lt;/a&gt; (the latter requiring most work before it does everything I need, but it&#39;s also the most easy to dive into the code base). I&#39;m keeping my eyes open because there are certainly more things to discover.&lt;/p&gt;
+&lt;p&gt;Even though there are probably no applications out there that can do everything I want, I just wanted to share my feature-wishlist.  These are the requirements I find that a really good tool should comply with:&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Rethinking the backup paradigm: a higher-level approach</title>
+      <link>http://localhost:1313/posts/rethinking_the_backup_paradigm_a_higher-level_approach/</link>
+      <pubDate>Mon, 21 Jul 2008 20:21:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/rethinking_the_backup_paradigm_a_higher-level_approach/</guid>
+      
+      <description>&lt;p&gt;In this post I explain my vision on the concepts of backups and how several common practices are in my opinion suboptimal and become unnecessary or at least can be done more easily by managing data on a higher level by employing other patterns such as versioning important directories and distributed data management.</description>
+      
+    </item>
+    
+    <item>
+      <title>Dump your azerty and querty because the only keyboard layout that makes sense is Dvorak!</title>
+      <link>http://localhost:1313/posts/dump_your_azerty_and_querty_because_the_only_keyboard_layout_that_makes_sense_is_dvorak/</link>
+      <pubDate>Sun, 15 Jun 2008 21:20:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/dump_your_azerty_and_querty_because_the_only_keyboard_layout_that_makes_sense_is_dvorak/</guid>
+      
+      <description>&lt;p&gt;For a while now I am typing using solely the Dvorak keyboard layout.  I roughly estimate it has been 4 or 5 months now - with the first month being a pain in the ass because i had to relearn typing pretty much from scratch - but now my typing speed is starting to exceed what it used to be in querty, and I still have much headroom to improve.&lt;/p&gt;
+&lt;p&gt;For those who have no clue what I&#39;m talking about: think for 30 seconds which characters you type the most and which the least (eg: which characters occur the most/least in the language you type?).&lt;/p&gt;
+&lt;p&gt;Ok you got them?  Now look at your keyboard and spot where these characters are.  Now consider where your fingers are most of the time (if you&#39;ve never learned to type: the &#39;base position&#39; for your fingers is on the middle row).  Notice anything strange?</description>
+      
+    </item>
+    
+    <item>
+      <title>Announcing the Netlog Developer Pages</title>
+      <link>http://localhost:1313/posts/announcing_the_netlog_developer_pages/</link>
+      <pubDate>Sat, 24 May 2008 12:39:28 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/announcing_the_netlog_developer_pages/</guid>
+      
+      <description>At work, we&#39;ve setup the Netlog Developer Pages
+It is the place where you can/will find all information around our OpenSocial implementation, our own API, skin development, sample code and so on.
+We&#39;ve also launched a group where you can communicate with fellow developers and Netlog employees.
+The page also features a blog where you can follow what is going on in the Netlog Tech team.
+PS: We&#39;ve also updated our jobs page</description>
+      
+    </item>
+    
+    <item>
+      <title>Windows sucks</title>
+      <link>http://localhost:1313/posts/windows_sucks/</link>
+      <pubDate>Thu, 01 May 2008 14:22:17 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/windows_sucks/</guid>
+      
+      <description>I had to fix a problem at my dad&#39;s company...
+&#34;The network was broken.&#34;
+It was a NetBEUI network connecting some windows stations - it has been running for years - and now suddenly the nodes couldn&#39;t find eachother.
+One of the boxes (windows 2000 iirc) had 2 network cards, one for the network, the other not used for anything (not even connected). Disabling the latter - not even touching the former - fixed half of the network.</description>
+      
+    </item>
+    
+    <item>
+      <title>I survived LCL 31-3-2008</title>
+      <link>http://localhost:1313/posts/i_survived_lcl_31_3_2008/</link>
+      <pubDate>Sat, 19 Apr 2008 12:10:11 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/i_survived_lcl_31_3_2008/</guid>
+      
+      <description>&lt;p&gt;On 31-3-2008 &lt;a href=&#34;http://www.lcl.be&#34;&gt;LCL&lt;/a&gt;, one of the most used datacenters in Belgium - and the only one with a 0% downtime record in Belgium - had major power issues with their datacenter in Diegem, bringing lots of Belgian parties offline.  (more specifics &lt;a href=&#34;http://www.google.be/search?q=lcl+diegem+power+failure&#34;&gt;on the net&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;If you&#39;re one of the sysadmins of a website with 35M members and 150M hits per day this means you&#39;re in for an exciting night ...</description>
+      
+    </item>
+    
+    <item>
+      <title>DDM : a Distributed Data Manager</title>
+      <link>http://localhost:1313/posts/ddm_a_distributed_data_manager/</link>
+      <pubDate>Sat, 29 Mar 2008 20:28:16 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/ddm_a_distributed_data_manager/</guid>
+      
+      <description>&lt;p&gt;&lt;b&gt;UPDATE: this information is outdated.  See &lt;a href=&#34;http://github.com/Dieterbe/ddm/tree/master&#34; title=&#34;http://github.com/Dieterbe/ddm/tree/master&#34;&gt;http://github.com/Dieterbe/ddm/tree/master&lt;/a&gt; for latest information.&lt;/b&gt;&lt;/p&gt;
+&lt;h3&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;If you have multiple sets of data (e.g.: music, images, documents, movies, ...) and you use these on more then one system ( e.g. a laptop and a file server) then you probably also have some &#39;rules&#39; on how you use these on your systems.  For example after capturing new images you maybe put them on your laptop first but you like to sync them to your file server frequently.  On the other hand you also want all your high-res images (stored on the server) available for editing on the laptop, and to make it more complicated you might have the same images in a smaller format on your server (for gallery programs etc.) and want these (or a select few albums of them) available on the road. &lt;/p&gt;
+&lt;p&gt;The more different types of data you have and the more you have specific work flows the harder it becomes to keep your data as up to date as possible and consistent on your boxes.  You could manually rsync/(s)cp your data but you end up in having a mess (at least that&#39;s how it turned out on my boxes). Putting everything under version control is great for text files and such, but it&#39;s not an option for bigger (binary) files.&lt;/p&gt;
+&lt;p&gt;I wanted to keep all my stuff neatly organised in my home directories and I want to create good work flows with as minimum hassle as possible, so I decided to write DDM: the Distributed Data Manager.</description>
+      
+    </item>
+    
+    <item>
+      <title>Tweaking Lighttpd stat() performance with fcgi-stat-accel</title>
+      <link>http://localhost:1313/posts/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/</link>
+      <pubDate>Mon, 03 Mar 2008 21:12:42 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/</guid>
+      
+      <description>&lt;p&gt;If you serve lots of (small) files with Lighttpd you might notice you&#39;re not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn&#39;t have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
+</description>
+      
+    </item>
+    
+    <item>
+      <title>I&#39;m not going to Fosdem 2008</title>
+      <link>http://localhost:1313/posts/im_not_going_to_fosdem_2008/</link>
+      <pubDate>Tue, 12 Feb 2008 20:37:50 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/im_not_going_to_fosdem_2008/</guid>
+      
+      <description>&lt;p&gt;I wish I could put this on my webpage :&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2008.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Per-directory bash history</title>
+      <link>http://localhost:1313/posts/per_directory_bash_history/</link>
+      <pubDate>Wed, 30 Jan 2008 21:37:31 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/per_directory_bash_history/</guid>
+      
+      <description>&lt;p&gt;I&#39;ve been thinking about how a specific bash history for each directory could improve productivity, and unlike what I feared it was actually pretty easy to find a solution on the net.
+</description>
+      
+    </item>
+    
+    <item>
+      <title>The key to mastering a musical instrument ...</title>
+      <link>http://localhost:1313/posts/the_key_to_mastering_a_musical_instrument/</link>
+      <pubDate>Sat, 19 Jan 2008 23:36:06 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/the_key_to_mastering_a_musical_instrument/</guid>
+      
+      <description>The key to mastering a musical instrument is learning an other.</description>
+      
+    </item>
+    
+    <item>
+      <title>Hacking into my router by brute-forcing http authentication</title>
+      <link>http://localhost:1313/posts/hacking_into_my_router_by_brute_force_http_authentication/</link>
+      <pubDate>Wed, 28 Nov 2007 22:11:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/hacking_into_my_router_by_brute_force_http_authentication/</guid>
+      
+      <description>&lt;p&gt;I forgot the username and password to access the web panel of my router.&lt;br /&gt;
+Luckily I knew some possible usernames and some patterns that I could have used to construct my password, so I just had to try all the combinations... Too much work to do manually but easily done when scripted.&lt;/p&gt;
+&lt;p&gt;Here is the php script that I came up with.  (obviously stripped of my personal stuff).  It got my account in less then a second :)</description>
+      
+    </item>
+    
+    <item>
+      <title>gtk dialogs for (shell)scripts with zenity and the ask-pass gui tools for ssh-add</title>
+      <link>http://localhost:1313/posts/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add/</link>
+      <pubDate>Sun, 25 Nov 2007 18:45:41 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/gtk_dialogs_for_shell_scripts_with_zenity_and_the_ask-pass_gui_tools_for_ssh-add/</guid>
+      
+      <description>&lt;p&gt;Phew! where to start?  Probably at &lt;a href =&#34;http://www.chimeric.de/blog/2007/1107_mounting_external_truecrypt_volumes_interactively&#34;&gt;this blogpost&lt;/a&gt;.  It&#39;s about making it very easy to work with external encrypted volumes. I&#39;m not going to talk about the article itself but about a great tool i discovered thanks to it: Zenity. </description>
+      
+    </item>
+    
+    <item>
+      <title>Video of me drumming</title>
+      <link>http://localhost:1313/posts/video_of_me_drumming/</link>
+      <pubDate>Sun, 04 Nov 2007 18:28:17 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/video_of_me_drumming/</guid>
+      
+      <description>I recorded a little drumvideo while practicing.
+It&#39;s just some improvisation... Find the mistakes! ;-)
+Recorded with 2 shure SM57&#39;s, an M-audio mobilepre USB and the iSight cam in my macbook pro.
+The mic setup had to be close enough to sound direct and focused without too much reverb, and still far enough to allow all instruments too come through. After some experimenting I decided to place the mics behind the kit, next to me ( one each side), just below the height of the hips.</description>
+      
+    </item>
+    
+    <item>
+      <title>Simple command to retrieve stuff from RAM after closing/crashing an application</title>
+      <link>http://localhost:1313/posts/simple_command_to_retrieve_stuff_from_ram_after_closing_or_crashing_an_application/</link>
+      <pubDate>Sat, 15 Sep 2007 15:32:24 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/simple_command_to_retrieve_stuff_from_ram_after_closing_or_crashing_an_application/</guid>
+      
+      <description>After an app is closed or crashed, the data is still in your RAM and you can very easily get it back by grepping /proc/kcore.
+thanks Martin for this tip!
+http://www.matusiak.eu/numerodix/blog/index.php/2007/09/10/recover-lost-...</description>
+      
+    </item>
+    
+    <item>
+      <title>Emulating two-dimensional (or even multi-dimensional) arrays in bash</title>
+      <link>http://localhost:1313/posts/emulating_two-dimensional_or_even_multi-dimensional_arrays_in_bash/</link>
+      <pubDate>Sun, 26 Aug 2007 12:49:42 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/emulating_two-dimensional_or_even_multi-dimensional_arrays_in_bash/</guid>
+      
+      <description>&lt;p&gt;Ever needed to use arrays of two or more dimensions but got stuck on Bash limited array support which provides only 1 dimension?&lt;/p&gt;
+&lt;p&gt;There is a trick that let&#39;s you dynamically create variable names.  Using this, you can emulate additional dimensions.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Nagios monitoring in your desktop panel aka Xfce Genmon panel plugin rules!</title>
+      <link>http://localhost:1313/posts/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</link>
+      <pubDate>Sun, 05 Aug 2007 16:42:46 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/nagios_monitoring_in_your_desktop_panel_aka_xfce_genmon_panel_plugin_rules/</guid>
+      
+      <description>&lt;p&gt;FOSS is written by users, for users, and what I&#39;ve been doing/experiencing this afternoon is a perfect example of that.</description>
+      
+    </item>
+    
+    <item>
+      <title>Upgrading Drupal the easy way</title>
+      <link>http://localhost:1313/posts/upgrading_drupal_the_easy_way/</link>
+      <pubDate>Sun, 29 Jul 2007 15:57:23 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/upgrading_drupal_the_easy_way/</guid>
+      
+      <description>&lt;p&gt;I just upgraded this site to &lt;a href=&#34;http://drupal.org/drupal-5.2&#34;&gt;Drupal 5.2&lt;/a&gt;.  The package came with upgrading instructions consisting of 11 steps to complete the upgrade proces, but after reading it a few times I realized it could be done easier.</description>
+      
+    </item>
+    
+    <item>
+      <title>Bye CakePHP, bye dAuth... Hello Drupal!</title>
+      <link>http://localhost:1313/posts/bye_cakephp_bye_dauth_hello_drupal/</link>
+      <pubDate>Thu, 19 Jul 2007 00:34:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/bye_cakephp_bye_dauth_hello_drupal/</guid>
+      
+      <description>&lt;p&gt;I&#39;m afraid the time has come to say goodbye to CakePHP, and to the projects I&#39;ve been working on for it.&lt;br /&gt;
+I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don&#39;t like but that&#39;s not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.&lt;br /&gt;
+But .. all the sites I currently work on are all community sites or blogs</description>
+      
+    </item>
+    
+    <item>
+      <title>Assymetric keys instead of passwords for SSH authentication to increase security and convenience</title>
+      <link>http://localhost:1313/posts/assymetric_keys_instead_of_passwords_for_ssh_authentication_to_increase_security_and_convenience/</link>
+      <pubDate>Sat, 14 Jul 2007 20:22:38 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/assymetric_keys_instead_of_passwords_for_ssh_authentication_to_increase_security_and_convenience/</guid>
+      
+      <description>I&#39;ve been using OpenSSH already for a while and although I&#39;ve seen mentions of &#34;public key authentication&#34; and &#34;RSA encryption&#34; several times in it&#39;s config files, I never decided to figure out what it did exactly, and stuck to password authentication. But now the guys at work explained how it works and after reading more about it, I&#39;m totally hooked on it!
+It&#39;s a feature in ssh protocol version 2 (thus it&#39;s around for already a while, e.</description>
+      
+    </item>
+    
+    <item>
+      <title>The perfect GTK music player: can Exaile replace Amarok?</title>
+      <link>http://localhost:1313/posts/the_perfect_gtk_music_player_can_exaile_replace_amarok/</link>
+      <pubDate>Sun, 08 Jul 2007 12:50:50 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/the_perfect_gtk_music_player_can_exaile_replace_amarok/</guid>
+      
+      <description>&lt;p&gt;I&#39;ve always liked Amarok: it does everything I always wanted, &lt;em&gt; and more&lt;/em&gt;.  It looks perfect in every way ...&lt;br /&gt;
+But .. it uses the QT library, and although there are tricks to make QT applications more fit in with your gtk desktop/theme it will never fit in perfectly, not only graphically but also because you still need to load the qt libraries when you want to listen to some music and it is built to interact with the KDE desktop environment.&lt;/p&gt;
+&lt;p&gt;So, I&#39;ve been looking for an alternative, a GTK application strong enough to actually be able to replace Amarok, the king of all software music players.</description>
+      
+    </item>
+    
+    <item>
+      <title>Webpages should not contain &#34;add to Digg / Del.icio.us / Technorati /...&#34; links</title>
+      <link>http://localhost:1313/posts/webpages_should_not_contain_add_to_digg_delicious_technorati_links/</link>
+      <pubDate>Sun, 08 Jul 2007 12:38:38 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/webpages_should_not_contain_add_to_digg_delicious_technorati_links/</guid>
+      
+      <description>I don&#39;t like pages / articles / blog posts /.. accompanied by &#34;Digg this&#34;, &#34;add to Del.icio.us&#34; or &#34;add to Technorati&#34; links.
+Why not? Because this is meta level functionality. Not functionality of the blog/article/page in question, but on a higher level. And thus this should be handled on a higher level: the web browser. Just like we can create and manage bookmarks (I mean the old fashioned ones, not the delicious ones) in our browser: this is not the task of a web page.</description>
+      
+    </item>
+    
+    <item>
+      <title>Afgestudeerd - graduated</title>
+      <link>http://localhost:1313/posts/afgestudeerd_graduated/</link>
+      <pubDate>Wed, 04 Jul 2007 15:23:01 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/afgestudeerd_graduated/</guid>
+      
+      <description>Foreign visitors: yeay I graduated today \o/
+Dutchies: joepie, afgestudeerd...
+Vandaag proclamatie gehad, ben geslaagd met voldoening, zelfs geen enkele buis \o/
+En een 12/20 voor de Masterproef :-)</description>
+      
+    </item>
+    
+    <item>
+      <title>dAuth</title>
+      <link>http://localhost:1313/posts/dauth/</link>
+      <pubDate>Mon, 02 Jul 2007 13:19:14 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/dauth/</guid>
+      
+      <description>dAuth is a secure authentication system for CakePHP.
+It uses techniques such as the challenge-response paradigm, customizable multiple-stage password hashing, brute force (hammering) detection, session hijacking prevention etc.
+Read all about it
+You can download the files separately on the before mentioned page or get the tarball that somebody was kind enough to create.
+(damn I&#39;m lazy today)
+I don&#39;t maintain this any more!</description>
+      
+    </item>
+    
+    <item>
+      <title>PhpDeliciousClient, a php cli client to administer del.icio.us accounts</title>
+      <link>http://localhost:1313/posts/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/</link>
+      <pubDate>Sun, 01 Jul 2007 16:52:51 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/phpdeliciousclient_a_php_cli_client_to_administer_delicious_accounts/</guid>
+      
+      <description>PhpDeliciousClient is a console based client for doing maintenance on Del.icio.us accounts.
+I wrote it because - to my knowledge - there currently is no good program (including the personalized del.icio.us web page itself) that lets you make changes to your del.icio.us data in a powerful, productive manner. (with data I primarily mean tags. Posts and bundles are considered less important).
+You probably are familiar with the fact that a Delicious account (or any tag based meta data organizing system, for that matter) can soon become bloated: It gets filled with way too many tags.</description>
+      
+    </item>
+    
+    <item>
+      <title>PhpDeliciousClient</title>
+      <link>http://localhost:1313/posts/php_delicious_client/</link>
+      <pubDate>Fri, 29 Jun 2007 13:52:21 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/php_delicious_client/</guid>
+      
+      <description>Introduction PhpDeliciousClient is a CLI program for administering your Delicous account. When you invoke it from the command line you have some methods to administer your tags and your posts.
+It&#39;s written in PHP and uses Ed Eliot&#39;s PhpDelicous class to contact the del.icio.us api. (included in download)
+PhpDeliciousClient is licensed under the GPL v2, while the PhpDelicious class is licensed under the BSD license.
+Why? The main reason I started developing it is because administering your account on the del.</description>
+      
+    </item>
+    
+    <item>
+      <title>Getting statistics about events that don&#39;t trigger page requests with Google Analytics</title>
+      <link>http://localhost:1313/posts/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/</link>
+      <pubDate>Sun, 24 Jun 2007 19:27:42 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/</guid>
+      
+      <description>&lt;p&gt;You probably already heard of &lt;a href=&#34;www.google.com/analytics&#34;&gt;Google Analytics&lt;/a&gt;.  It&#39;s a pretty nice program that (&lt;em&gt;basically&lt;/em&gt;) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;amp;topic=11012&#34;&gt;events that don&#39;t require page requests!&lt;/a&gt;&lt;br /&gt;
+Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).</description>
+      
+    </item>
+    
+    <item>
+      <title>Bye, Google sandbox!</title>
+      <link>http://localhost:1313/posts/bye_google_sandbox/</link>
+      <pubDate>Mon, 18 Jun 2007 12:01:13 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/bye_google_sandbox/</guid>
+      
+      <description>Today I&#39;m finally out of Google&#39;s Sandbox.
+Google has this system called the sandbox where new pages go into for 6 months, in order to prevent scammers/spammers from resurrecting dummy pages - and scoring well in Google - all the time.
+During these 6 months a page will score very bad in search results, even if it should rate very well for the specific keywords.
+Smart people will look at my first post, dated 03/04/2007, but keep in mind that before this blog existed I already had a dummy page with my name on (the keywords I want to score on) as soon as I could because back then I already knew I wanted to put a blog here and I wanted to get out of the sandbox as soon as possible.</description>
+      
+    </item>
+    
+    <item>
+      <title>You can&#39;t make bits harder to copy</title>
+      <link>http://localhost:1313/posts/cory_doctorow_you_cant_make_bits_harder_to_copy/</link>
+      <pubDate>Sat, 02 Jun 2007 13:06:40 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/cory_doctorow_you_cant_make_bits_harder_to_copy/</guid>
+      
+      <description>&lt;p&gt;I just watched &lt;a href=&#34;http://www.youtube.com/watch?v=xgXwmXpaH2Q&#34;&gt;Cory Doctorow&#39;s talk&lt;/a&gt; which is part of the Authors@Google series on youtube.&lt;/p&gt;
+&lt;p&gt;He made some great points about where the (music) industry gets/does it wrong and about some fundamental flaws in our law systems (especially with regards to copyright).  All of which are of course results of the challenges imposed by the &#34;information age&#34;.</description>
+      
+    </item>
+    
+    <item>
+      <title>Drag &#39;n drop tutorial with the CakePHP 1.2 Ajax helper, Prototype framework and Scriptaculous library</title>
+      <link>http://localhost:1313/posts/drag_n_drop_tutorial_with_cakephp_ajax_prototype_scriptaculous/</link>
+      <pubDate>Tue, 29 May 2007 21:25:13 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/drag_n_drop_tutorial_with_cakephp_ajax_prototype_scriptaculous/</guid>
+      
+      <description>&lt;h3&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;During the development of my &lt;a href=&#34;http://localhost:1313/masterproef&#34;&gt;thesis&lt;/a&gt; I wanted to create a drag &#39;n drop interface.  But I never did anything like that, I never used CakePHP&#39;s Ajax helper and neither made I ever use of more advanced functionalities of Scriptaculous/Prototype.  Hell I even never touched Ajax before this! &lt;/p&gt;
+&lt;p&gt;Although there are some basic CakePHP/Ajax tutorials out there, I still had a hard time because some knowledge about Ajax (in CakePHP) was assumed in all of those.  After a lot of googling I even found a tutorial called &lt;a href=&#34;http://www.dustinweber.com/blog/_archives/2007/4/4/2859177.html&#34;&gt;CakePHP: Sortable AJAX Drag &amp;amp; Drops - The Basics&lt;/a&gt;  &lt;br/&gt;&#34;Perfect!&#34; I thought, until after staring at the article for a long while and I started to notice nowhere in the article &#34;$ajax-&gt;drag&#34;, &#34;$ajax-&gt;drop&#34; or &#34;$ajax-&gt;dropRemote&#34; is used.  (those are calls on the CakePHP Ajax helper to enhance objects to become draggable, or to become a dropbox where draggables can be dropped into).  So the only more or less suited tutorial about drag &#39;n drop was actually about sorting and didn&#39;t use the drag/drop function calls at all.  Even though it contains very useful information.&lt;/p&gt;
+&lt;p&gt;Long story short:  I finally got it working (thanks to Krazylegz and kristofer and possibly others too, it has been a while so I may forget someone ;-), and learned a lot in the process.  I will share what I learned with you guys so that hopefully it&#39;s a bit easier for you then what I had to go through.&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Open source en softwarepatenten vanuit een ethisch perspectief</title>
+      <link>http://localhost:1313/posts/open_source_softwarepatenten_vanuit_ethisch_perspectief/</link>
+      <pubDate>Tue, 29 May 2007 00:53:08 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/open_source_softwarepatenten_vanuit_ethisch_perspectief/</guid>
+      
+      <description>Voor school moest ik een ethisch verslag schrijven.
+Hier moesten 3 elementen in voorkomen:
+Inleidende tekst / Persoonlijke reflectie over beroeps- en bedrijfsethiek Ethische beschouwingen bij het eindwerk Uitgebreidere verhandeling met ethische beschouwingen over een vraagstuk naar keuze uit het domein van wetenschap, techniek, beroeps- en bedrijfsleven. In mijn geval is dit vraagstuk naar keuze &#34;open source en softwarepatenten&#34; geworden Zoals sommigen onder jullie weten vind ik ethiek een heel belangrijk aspect in het leven en ik ben dan ook blij dat ik het issue van open source en softwarepatenten verder heb kunnen uitdiepen, want dit is iets waar ik in geinteresseerd ben.</description>
+      
+    </item>
+    
+    <item>
+      <title>Thesis finished</title>
+      <link>http://localhost:1313/posts/thesis_finished/</link>
+      <pubDate>Thu, 24 May 2007 16:55:34 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/thesis_finished/</guid>
+      
+      <description>&lt;p&gt;Yesterday, after a night of searching and fixing spelling errors, things that could be better explained and other small details,&lt;br /&gt;
+I got my thesis printed and delivered the six books to my school.&lt;br /&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>I just became a &#34;System &amp; Network Architect&#34;</title>
+      <link>http://localhost:1313/posts/i_just_became_a_system_and_network_architect/</link>
+      <pubDate>Tue, 17 Apr 2007 20:11:07 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/i_just_became_a_system_and_network_architect/</guid>
+      
+      <description>&lt;p&gt;I just signed my contract at &lt;a href=&#34;http://incrowd.be/&#34;&gt;Incrowd&lt;/a&gt;, the company behind sites such as &lt;a href=&#34;http://redbox.be/&#34;&gt;redbox&lt;/a&gt; and &lt;a href=&#34;http://www.facebox.com/&#34;&gt;facebox&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I will be working there in a team of all young, enthusiastic people.  Among those, some people are already familiar to me:  my old friend &lt;a href=&#34;http://www.lievendekeyser.net/&#34;&gt;Lieven&lt;/a&gt; (we&#39;ve played in a band together but kept in touch afterwards) and my ex-classmate &lt;a href=&#34;http://www.jurriaanpersyn.com/&#34;&gt;Jurriaan&lt;/a&gt;.  Both of them love their jobs btw :-).&lt;/p&gt;
+&lt;p&gt;My official title is &#34;System &amp;amp; Network architect&#34;.&lt;br /&gt;
+Things I will be doing there is </description>
+      
+    </item>
+    
+    <item>
+      <title>Debian changing route: the end of the perfect server linux distribution?</title>
+      <link>http://localhost:1313/posts/debian_changing_route_the_end_of_the_perfect_server_distribution/</link>
+      <pubDate>Tue, 10 Apr 2007 11:58:30 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/debian_changing_route_the_end_of_the_perfect_server_distribution/</guid>
+      
+      <description>&lt;p&gt;From the very little experience I have with &lt;a href=&#34;http://www.debian.org/&#34;&gt;Debian&lt;/a&gt;, and from the stuff I&#39;ve been reading about it, I think I can safely say Debian has always been a special distribution: packages always take very long to get into the stable tree, because Debian wanted to be a rock solid system where packages go through a lot of testing.  (&#34;We release it when it&#39;s done&#34;)  The end result is a distro where you don&#39;t have the latest software, neither as much flexibility as, say &lt;a href=&#34;http://www.gentoo.org/&#34;&gt;Gentoo&lt;/a&gt; or &lt;a href=&#34;http://www.archlinux.org&#34;&gt;Arch&lt;/a&gt;: You&#39;d many times need to adapt your way of doing things to the &#34;Debian way&#34; (or be prepared to look for help in really obscure places and probably break things) but the end result is a stable distro where everything works very decently.  That, combined with no licensing fees (unlike for example &lt;a href=&#34;http://www.redhat.com&#34;&gt;Red hat&lt;/a&gt;), make it the perfect choice for a server in small companies, where money is more important then features such as professional support or official certifications.&lt;/p&gt;
+&lt;p&gt;However, it seems like Debian is taking a route that will make it lose it&#39;s advantages over other distributions in the server market:</description>
+      
+    </item>
+    
+    <item>
+      <title>Figuring out CakePHP&#39;s new AuthComponent</title>
+      <link>http://localhost:1313/posts/figuring_out_cakephp_new_authcomponent/</link>
+      <pubDate>Sat, 07 Apr 2007 15:52:48 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/figuring_out_cakephp_new_authcomponent/</guid>
+      
+      <description>&lt;p&gt;In the Cake community, there has always been much interest in authentication/authorization systems.  The issue of authentication has been addressed in several add-ons provided by the community, such as &lt;a href=&#34;http://bakery.cakephp.org/articles/view/147&#34;&gt;DAuth&lt;/a&gt; (written by me), &lt;a href=&#34;http://bakery.cakephp.org/articles/view/99&#34;&gt;OthAuth&lt;/a&gt; (written by &lt;a href=&#34;http://www.devmoz.com/blog&#34;&gt;Crazylegs&lt;/a&gt;) and &lt;a href=&#34;http://bakery.cakephp.org/tags/view/auth&#34;&gt;many others&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;However, one of the additions to the 1.2 branch which is currently in active development , is a built-in auth module.  A module that isn&#39;t finished yet but it sure is worth it looking at.  (In fact I&#39;m thinking about making a new dAuth version built on cake&#39;s own auth system.).  As most bakers know, there is very little information about the 1.2 branch in general, and the auth component in specific.  So what I will try to do, is delve in the code, mess with it, and explain my findings in this post.  </description>
+      
+    </item>
+    
+    <item>
+      <title>Kwartee 4 2007 verslag</title>
+      <link>http://localhost:1313/posts/kwartee_4_2007_verslag/</link>
+      <pubDate>Mon, 19 Mar 2007 12:09:06 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/kwartee_4_2007_verslag/</guid>
+      
+      <description>&lt;p&gt;Dit weekend (17-18 maart) ben ik naar &lt;a href=&#34;http://www.formaat.be/index.php?l1=5&amp;amp;l2=18&amp;amp;l3=19&amp;amp;l4=129&#34;&gt;Kwartee 4&lt;/a&gt; geweest.&lt;br /&gt;
+&lt;a href=&#34;http://www.formaat.be/index.php?l1=5&amp;amp;l2=18&amp;amp;l3=19&#34;&gt;Kwartee weekends&lt;/a&gt; worden georganiseerd door &lt;a href=&#34;http://www.formaat.be/&#34;&gt;Formaat&lt;/a&gt; (vroeger bekend als VFJ) en ging door in &lt;a href=&#34;http://www.destelheide.be/&#34;&gt;vormingscentrum destelheide&lt;/a&gt; te Dworp (dichtbij Halle, ten zuiden van Brussel).&lt;br /&gt;
+Twee man sterk (Steven en ik) vertegenwoordigden we &lt;a href=&#34;http://www.jhsjatoo.org/&#34;&gt;jeugdhuis SjaTOo&lt;/a&gt;.&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Fosdem 2007 review</title>
+      <link>http://localhost:1313/posts/fosdem_2007_review/</link>
+      <pubDate>Thu, 15 Mar 2007 21:02:41 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/fosdem_2007_review/</guid>
+      
+      <description>&lt;p&gt;Every year, during a special weekend in February, the &lt;a href=&#34;http://www.ulb.ac.be/&#34;&gt;University Libre of Brussels&lt;/a&gt; suddenly becomes a little more geeky.&lt;br /&gt;
+It&#39;s that time of the year when many European (and some inter-continental) colleagues join us at&lt;br /&gt;
+&lt;a href=&#34;http://www.fosdem.org&#34;&gt;Fosdem: the Free and Open source Software Developers&#39; European Meeting&lt;/a&gt; (more info &lt;a href=&#34;http://www.fosdem.org/about/fosdem&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>My favorite bash tricks</title>
+      <link>http://localhost:1313/posts/my_favorite_bash_tricks/</link>
+      <pubDate>Wed, 14 Mar 2007 23:38:54 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/my_favorite_bash_tricks/</guid>
+      
+      <description>Hello everyone.
+This post is about bash, the shell providing so many users easy access to the underlying power of their system.
+(not bash the quote database, although i really like that website too ;-) )
+Most people know the basics, but getting to know it better can really increase your productivity. And when that happens, you might start loving bash as much as I do ;-)
+I assume you have a basic knowledge of bash, the history mechanism, and ~/.</description>
+      
+    </item>
+    
+    <item>
+      <title>Hello world!</title>
+      <link>http://localhost:1313/posts/blogpost1_hello_world/</link>
+      <pubDate>Sun, 04 Mar 2007 14:45:36 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/blogpost1_hello_world/</guid>
+      
+      <description>Finally, my own website...
+I already wanted to get this up for a long time. My initial idea was writing (and styling) it all from scratch using the marvelous CakePHP framework along with an authentication system i wrote, dAuth.
+However, due to my lack of time I decided to use the excellent drupal platform, of which I&#39;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)</description>
+      
+    </item>
+    
+  </channel>
+</rss>

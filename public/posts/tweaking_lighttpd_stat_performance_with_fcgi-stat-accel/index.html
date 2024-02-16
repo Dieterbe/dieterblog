@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">Tweaking Lighttpd stat() performance with fcgi-stat-accel | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="Tweaking Lighttpd stat() performance with fcgi-stat-accel | Dieter&#39;s blog" />
+<meta name="twitter:title" content="Tweaking Lighttpd stat() performance with fcgi-stat-accel | Dieter&#39;s blog" />
+<meta itemprop="name" content="Tweaking Lighttpd stat() performance with fcgi-stat-accel | Dieter&#39;s blog" />
+<meta name="application-name" content="Tweaking Lighttpd stat() performance with fcgi-stat-accel | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2008-03-03T21:12:42-0400 />
+    <meta property="article:published_time" content=2008-03-03T21:12:42-0400 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Tweaking Lighttpd stat() performance with fcgi-stat-accel",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2008-03-03",
+        "description": "",
+        "wordCount":  506 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2008-03-03",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/tweaking_lighttpd_stat_performance_with_fcgi-stat-accel/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Tweaking Lighttpd stat() performance with fcgi-stat-accel</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2008-03-03T21:12:42-04:00" itemprop="datePublished"> 3 Mar 2008 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <br/>
+(in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p>
+<p>This is explained on the <a href="http://trac.lighttpd.net/trac/wiki/HowtoSpeedUpStatWithFastcgi"> HowtoSpeedUpStatWithFastcgi</a> page on the <a href="http://trac.lighttpd.net/trac/"> Lighty wiki</a>.</p>
+<p>Now, for <a href="http://www.netlog.com">Netlog</a> we needed to add some http headers ( Cache-Control: max-age, ETag, Expires and Last-Modified ) so we patched up the code a bit to do that, and a bit of other stuff.</p>
+<p>Ofcourse this is documented on <a href="http://trac.lighttpd.net/trac/wiki/FcgiStatAccelWithMoreHttpHeaders">the FcgiStatAccelWithMoreHttpHeaders page on the Lighty wiki</a></p>
+<p>Have fun !</p>
+{{< highlight "c" "style=default" >}}
+/*
+  Originally written by Fobax.
+  Edited by darix to support controlling thread count at runtime. 
+  Edited by poison and Dieter_be to support some http headers derived from the files.
+
+  Please do not remove any of the above.
+  
+  compile with: 
+
+  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel
+
+  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.
+
+  The default value, if spawned from lighttpd, is 20.
+*/
+
+#include "fcgi_config.h"
+
+#include <pthread.h>
+#include <sys/types.h>
+#include <unistd.h>   
+#include "fcgiapp.h"  
+#include <string.h>   
+#include <sys/types.h>
+#include <sys/stat.h> 
+
+#include <stdlib.h>
+#include <stdio.h> 
+
+#include "etag.h"
+#include "buffer.h"
+
+
+#define THREAD_COUNT 20
+
+
+#define FORBIDDEN(stream) \
+        FCGX_FPrintF(stream, "Status: 403 Forbidden\r\nContent-Type: text/html\r\n\r\n<h1>403 Forbidden</h1>\n");
+#define NOTFOUND(stream, filename) \
+        FCGX_FPrintF(stream, "Status: 404 Not Found\r\nContent-Type: text/html\r\n\r\n<h1>404 Not Found</h1>\r\n%s", filename);
+#define SENDFILE(stream, filename, headers) \
+        FCGX_FPrintF(stream, "%sX-LIGHTTPD-send-file: %s\r\n\r\n", headers, filename);
+
+#define EXPIRATION_TIME (int) 60*60*24*30
+
+
+int genheaders (char* mybuffer, size_t bufferlen, const char* file)
+{
+        char timebuf[32]; //possibly unsafe   
+        char lastmodbuf[32]; //possibly unsafe
+        char etag[128]; //possibly unsafe
+        struct stat statbuf;
+        time_t exp;
+        time_t lastmod;  
+        buffer *etag_raw;
+        buffer *etag_ok ;
+ 
+        //create buffers for Etag
+        etag_raw = buffer_init();
+        etag_ok = buffer_init();
+                
+        // Stat the file
+        if (stat (file, &statbuf) != 0)
+        {
+                return -1;
+        }
+
+        // Clear the buffer
+        memset (mybuffer, 0, bufferlen);
+
+        // Get the local time
+        exp = time (NULL) + EXPIRATION_TIME;
+        lastmod = statbuf.st_mtime;
+
+        strftime (timebuf, (sizeof (timebuf) / sizeof (char)) - 1, "%a, %d %b %Y %H:%M:%S GMT", gmtime (&(exp)));
+        strftime (lastmodbuf, (sizeof (lastmodbuf) / sizeof (char)) - 1, "%a, %d %b %Y %H:%M:%S GMT", gmtime (&(lastmod)));
+
+        etag_create(etag_raw, &statbuf, ETAG_USE_SIZE);
+        etag_mutate(etag_ok, etag_raw);
+
+        buffer_free(etag_raw);
+
+        snprintf (mybuffer, bufferlen, "Cache-Control: max-age=%d\r\nETag: \%s\r\nExpires: %s\r\nLast-Modified: %s\r\n", EXPIRATION_TIME, etag_ok->ptr, timebuf , lastmodbuf);
+
+        buffer_free(etag_ok);
+
+        return 0;
+}
+ 
+static void *doit(void *a){
+        FCGX_Request request;
+        int rc;
+        char *filename;
+        char extraheaders[192];
+        int r;
+
+        FCGX_InitRequest(&request, 0, FCGI_FAIL_ACCEPT_ON_INTR);
+
+        while(1){
+                //Some platforms require accept() serialization, some don't. The documentation claims it to be thread safe
+//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;
+//              pthread_mutex_lock(&accept_mutex);
+                rc = FCGX_Accept_r(&request);
+//              pthread_mutex_unlock(&accept_mutex);
+
+                if(rc < 0)
+                        break;
+
+        //get the filename
+                if((filename = FCGX_GetParam("SCRIPT_FILENAME", request.envp)) == NULL){
+                        FORBIDDEN(request.out);
+        //don't try to open directories
+                }else if(filename[strlen(filename)-1] == '/'){
+                        FORBIDDEN(request.out);
+        //open the file
+                }else if((r = genheaders (extraheaders, 191, filename)) != 0){
+                        NOTFOUND(request.out, filename);
+        //no error, serve it
+                }else{
+                        SENDFILE(request.out, filename, extraheaders);
+                }
+
+                FCGX_Finish_r(&request);
+        }
+        return NULL;
+}
+
+int main(void){
+        int i,j,thread_count;
+        pthread_t* id;
+        char* env_val;
+
+        FCGX_Init();
+
+        thread_count = THREAD_COUNT;
+        env_val = getenv("PHP_FCGI_CHILDREN");
+        if (env_val != NULL) {
+                j = atoi(env_val);
+                if (j != 0) {
+                        thread_count = j;
+                };
+        };
+
+        id = malloc(sizeof(*id) * thread_count);
+
+        for (i = 0; i < thread_count; i++) {
+                pthread_create(&id[i], NULL, doit, NULL);
+        }
+
+        doit(NULL);
+        free(id);  
+        return 0;  
+}
+{{< /highlight >}}
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

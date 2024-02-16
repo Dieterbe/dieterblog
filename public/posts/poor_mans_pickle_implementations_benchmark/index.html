@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">Poor mans pickle implementations benchmark | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="Poor mans pickle implementations benchmark | Dieter&#39;s blog" />
+<meta name="twitter:title" content="Poor mans pickle implementations benchmark | Dieter&#39;s blog" />
+<meta itemprop="name" content="Poor mans pickle implementations benchmark | Dieter&#39;s blog" />
+<meta name="application-name" content="Poor mans pickle implementations benchmark | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2011-06-16T22:32:12-0400 />
+    <meta property="article:published_time" content=2011-06-16T22:32:12-0400 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Poor mans pickle implementations benchmark",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2011-06-16",
+        "description": "",
+        "wordCount":  2656 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2011-06-16",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/poor_mans_pickle_implementations_benchmark/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Poor mans pickle implementations benchmark</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2011-06-16T22:32:12-04:00" itemprop="datePublished"> 16 Jun 2011 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p><a href="http://nlp.fi.muni.cz/projekty/gensim/">Gensim</a> is a very cool python2, numpy-based vector space modelling (information retrieval) framework.  It does the job in a straightforward way, and it has been a great project for me to learn python with because it uses some nice tricks in real life scenarios (like Generators) and is AFAICT elegantly coded.  Sometimes I find it hard to believe how much functionality can be crammed in so few lines of (readable) code.</p>
+
+<p>But anyway we're having some issues in it with cPickle (it <a href="https://github.com/piskvorky/gensim/issues/31">breaks when saving large matrices</a>, it <a href="https://github.com/piskvorky/gensim/issues/30">breaks with some objects</a>).
+For now I worked around it by using <a href="http://jsonpickle.github.com/">jsonpickle</a> but I wonder how viable this alternative really is.</p>
+
+<p>To give at least a crude idea of performance characteristics of different pickle methods, I wrote a very simple benchmark program - <a href="https://github.com/Dieterbe/picklebench">picklebench</a> - to compare pickle, cPickle and jsonpickle.
+The script fills a dictionary which gets bigger and bigger, and for certain sizes of dictionary it is saved to, and loaded from disk again.  We measure some metrics of each step.
+We continue until memory is exhausted.</p>
+<!--more-->
+limitations of this benchmark:
+<ul>
+<li>effects of writing a new file, or overwriting existing file, and however the filesystem deals with that (efficiency, allocation of sectors on disk, etc) are ignored</li>
+<li>no explicit flushing or warming of Linux block cache, ignoring writeback caches. (but that should be okay: every write is treated the same way, and reads always benefit from warm block cache)</li>
+<li>I could ignore disk i/o by only doing serializing in memory, but that wouldn't be very realistic either, and speed is lower than sequential read/write speeds of my hard disk anyway</li>
+<li>other running processes are ignored. (but my pc was pretty much idle otherwise)</li>
+<li>all metrics are crude</li>
+<li>all single runs</li>
+<li>no garbage collection is being run. volatility of datastructures is completely ignored.  Assumes that measuring the RSS difference provides useful information.</li>
+<li>Other than the obvious cPickle, I did not bother to look up if optimized implementations for some things exist (like json decoders)</li>
+</ul>
+You can easily <a href="https://github.com/Dieterbe/picklebench/blob/master/runall.sh">run the program</a> yourself, but here is the output I got, on my i3 540 @ 3.07GHz with 3GiB RAM.
+<pre>
+Testing JsonPickle
+== 1000 ==
+Stored in 0.01s. file size 0.05 MB. Speed 6.56 MB/s. RSS taken 0.23 MB. (4.34 MB per MB in file)
+Loaded in 0.01s. Speed 9.30 MB/s. RSS taken 0.04 MB.  (0.71 MB per MB in file)
+== 4000 ==
+Stored in 0.03s. file size 0.21 MB. Speed 6.93 MB/s. RSS taken 0.45 MB. (2.16 MB per MB in file)
+Loaded in 0.02s. Speed 9.54 MB/s. RSS taken 0.47 MB.  (2.23 MB per MB in file)
+== 16000 ==
+Stored in 0.13s. file size 0.85 MB. Speed 6.80 MB/s. RSS taken 0.86 MB. (1.00 MB per MB in file)
+Loaded in 0.09s. Speed 9.55 MB/s. RSS taken 0.88 MB.  (1.04 MB per MB in file)
+== 64000 ==
+Stored in 0.50s. file size 3.44 MB. Speed 6.87 MB/s. RSS taken 4.02 MB. (1.17 MB per MB in file)
+Loaded in 0.36s. Speed 9.44 MB/s. RSS taken 2.52 MB.  (0.73 MB per MB in file)
+== 256000 ==
+Stored in 2.10s. file size 13.97 MB. Speed 6.64 MB/s. RSS taken 17.24 MB. (1.23 MB per MB in file)
+Loaded in 1.53s. Speed 9.15 MB/s. RSS taken 8.49 MB.  (0.61 MB per MB in file)
+== 1024000 ==
+Stored in 8.60s. file size 56.23 MB. Speed 6.54 MB/s. RSS taken 61.64 MB. (1.10 MB per MB in file)
+Loaded in 6.27s. Speed 8.97 MB/s. RSS taken 95.99 MB.  (1.71 MB per MB in file)
+== 4096000 ==
+Stored in 38.80s. file size 228.26 MB. Speed 5.88 MB/s. RSS taken 181.83 MB. (0.80 MB per MB in file)
+Loaded in 25.17s. Speed 9.07 MB/s. RSS taken 170.84 MB.  (0.75 MB per MB in file)
+== 16384000 ==
+Testing cPickle
+Protocol 0
+== 1000 ==
+Stored in 0.01s. file size 0.01 MB. Speed 0.83 MB/s. RSS taken 0.05 MB. (5.95 MB per MB in file)
+Loaded in 0.00s. Speed 9.02 MB/s. RSS taken 0.05 MB.  (5.04 MB per MB in file)
+== 4000 ==
+Stored in 0.00s. file size 0.04 MB. Speed 8.69 MB/s. RSS taken 0.10 MB. (2.52 MB per MB in file)
+Loaded in 0.00s. Speed 15.43 MB/s. RSS taken 0.13 MB.  (3.26 MB per MB in file)
+== 16000 ==
+Stored in 0.01s. file size 0.17 MB. Speed 11.06 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
+Loaded in 0.01s. Speed 16.82 MB/s. RSS taken 0.10 MB.  (0.60 MB per MB in file)
+== 64000 ==
+Stored in 0.06s. file size 0.69 MB. Speed 12.43 MB/s. RSS taken 0.12 MB. (0.17 MB per MB in file)
+Loaded in 0.04s. Speed 17.25 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
+== 256000 ==
+Stored in 0.22s. file size 2.96 MB. Speed 13.65 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
+Loaded in 0.17s. Speed 17.49 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
+== 1024000 ==
+Stored in 0.88s. file size 12.20 MB. Speed 13.93 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
+Loaded in 0.69s. Speed 17.72 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
+== 4096000 ==
+Stored in 3.52s. file size 52.14 MB. Speed 14.80 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+Loaded in 2.84s. Speed 18.37 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
+== 16384000 ==
+Stored in 12.68s. file size 218.27 MB. Speed 17.22 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 11.59s. Speed 18.82 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
+Testing cPickle
+Protocol 1
+== 1000 ==
+Stored in 0.00s. file size 0.00 MB. Speed 9.65 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
+Loaded in 0.00s. Speed 9.31 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
+== 4000 ==
+Stored in 0.00s. file size 0.02 MB. Speed 10.95 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+Loaded in 0.00s. Speed 11.15 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
+== 16000 ==
+Stored in 0.02s. file size 0.08 MB. Speed 5.26 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+Loaded in 0.01s. Speed 11.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+== 64000 ==
+Stored in 0.03s. file size 0.32 MB. Speed 12.60 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
+Loaded in 0.03s. Speed 11.48 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
+== 256000 ==
+Stored in 0.10s. file size 1.66 MB. Speed 17.00 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
+Loaded in 0.11s. Speed 14.50 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
+== 1024000 ==
+Stored in 0.40s. file size 7.04 MB. Speed 17.76 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+Loaded in 0.45s. Speed 15.54 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
+== 4096000 ==
+Stored in 1.59s. file size 28.55 MB. Speed 17.95 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+Loaded in 1.88s. Speed 15.20 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
+== 16384000 ==
+Stored in 6.23s. file size 114.59 MB. Speed 18.40 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 7.18s. Speed 15.96 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
+Testing cPickle
+Protocol 2
+== 1000 ==
+Stored in 0.00s. file size 0.00 MB. Speed 9.54 MB/s. RSS taken 0.05 MB. (11.10 MB per MB in file)
+Loaded in 0.00s. Speed 8.92 MB/s. RSS taken 0.06 MB.  (12.81 MB per MB in file)
+== 4000 ==
+Stored in 0.00s. file size 0.02 MB. Speed 13.25 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+Loaded in 0.00s. Speed 11.39 MB/s. RSS taken 0.12 MB.  (6.19 MB per MB in file)
+== 16000 ==
+Stored in 0.01s. file size 0.08 MB. Speed 13.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+Loaded in 0.01s. Speed 10.77 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+== 64000 ==
+Stored in 0.02s. file size 0.32 MB. Speed 13.99 MB/s. RSS taken 0.12 MB. (0.37 MB per MB in file)
+Loaded in 0.03s. Speed 11.45 MB/s. RSS taken 0.78 MB.  (2.43 MB per MB in file)
+== 256000 ==
+Stored in 0.10s. file size 1.66 MB. Speed 16.81 MB/s. RSS taken 0.18 MB. (0.11 MB per MB in file)
+Loaded in 0.12s. Speed 14.31 MB/s. RSS taken 3.10 MB.  (1.86 MB per MB in file)
+== 1024000 ==
+Stored in 0.37s. file size 7.04 MB. Speed 19.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+Loaded in 0.45s. Speed 15.55 MB/s. RSS taken 12.39 MB.  (1.76 MB per MB in file)
+== 4096000 ==
+Stored in 1.58s. file size 28.55 MB. Speed 18.09 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+Loaded in 1.83s. Speed 15.61 MB/s. RSS taken 49.55 MB.  (1.74 MB per MB in file)
+== 16384000 ==
+Stored in 6.02s. file size 114.59 MB. Speed 19.04 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 7.32s. Speed 15.65 MB/s. RSS taken 198.21 MB.  (1.73 MB per MB in file)
+Testing pickle
+Protocol 0
+== 1000 ==
+Stored in 0.01s. file size 0.01 MB. Speed 1.17 MB/s. RSS taken 0.03 MB. (3.21 MB per MB in file)
+Loaded in 0.04s. Speed 0.20 MB/s. RSS taken 0.06 MB.  (6.41 MB per MB in file)
+== 4000 ==
+Stored in 0.02s. file size 0.04 MB. Speed 1.91 MB/s. RSS taken 0.09 MB. (2.42 MB per MB in file)
+Loaded in 0.02s. Speed 2.12 MB/s. RSS taken 0.12 MB.  (3.15 MB per MB in file)
+== 16000 ==
+Stored in 0.08s. file size 0.17 MB. Speed 2.00 MB/s. RSS taken 0.13 MB. (0.79 MB per MB in file)
+Loaded in 0.07s. Speed 2.27 MB/s. RSS taken 0.09 MB.  (0.55 MB per MB in file)
+== 64000 ==
+Stored in 0.33s. file size 0.69 MB. Speed 2.08 MB/s. RSS taken 0.12 MB. (0.18 MB per MB in file)
+Loaded in 0.29s. Speed 2.40 MB/s. RSS taken 0.77 MB.  (1.11 MB per MB in file)
+== 256000 ==
+Stored in 1.34s. file size 2.96 MB. Speed 2.21 MB/s. RSS taken 0.18 MB. (0.06 MB per MB in file)
+Loaded in 1.17s. Speed 2.53 MB/s. RSS taken 3.09 MB.  (1.04 MB per MB in file)
+== 1024000 ==
+Stored in 5.33s. file size 12.20 MB. Speed 2.29 MB/s. RSS taken 0.16 MB. (0.01 MB per MB in file)
+Loaded in 4.73s. Speed 2.58 MB/s. RSS taken 12.38 MB.  (1.01 MB per MB in file)
+== 4096000 ==
+Stored in 21.23s. file size 52.14 MB. Speed 2.46 MB/s. RSS taken 0.05 MB. (0.00 MB per MB in file)
+Loaded in 18.63s. Speed 2.80 MB/s. RSS taken 49.55 MB.  (0.95 MB per MB in file)
+== 16384000 ==
+Stored in 85.09s. file size 218.27 MB. Speed 2.57 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 74.60s. Speed 2.93 MB/s. RSS taken 198.20 MB.  (0.91 MB per MB in file)
+Testing pickle
+Protocol 1
+== 1000 ==
+Stored in 0.01s. file size 0.00 MB. Speed 0.80 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
+Loaded in 0.00s. Speed 1.56 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
+== 4000 ==
+Stored in 0.02s. file size 0.02 MB. Speed 0.84 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+Loaded in 0.01s. Speed 1.65 MB/s. RSS taken 0.13 MB.  (6.61 MB per MB in file)
+== 16000 ==
+Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+Loaded in 0.05s. Speed 1.68 MB/s. RSS taken 0.09 MB.  (1.13 MB per MB in file)
+== 64000 ==
+Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.32 MB per MB in file)
+Loaded in 0.19s. Speed 1.67 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
+== 256000 ==
+Stored in 1.49s. file size 1.66 MB. Speed 1.11 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
+Loaded in 0.75s. Speed 2.21 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
+== 1024000 ==
+Stored in 6.11s. file size 7.04 MB. Speed 1.15 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+Loaded in 2.99s. Speed 2.35 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
+== 4096000 ==
+Stored in 24.40s. file size 28.55 MB. Speed 1.17 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
+Loaded in 11.97s. Speed 2.39 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
+== 16384000 ==
+Stored in 97.62s. file size 114.59 MB. Speed 1.17 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 48.04s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
+Testing pickle
+Protocol 2
+== 1000 ==
+Stored in 0.01s. file size 0.00 MB. Speed 0.78 MB/s. RSS taken 0.06 MB. (11.96 MB per MB in file)
+Loaded in 0.00s. Speed 1.57 MB/s. RSS taken 0.07 MB.  (14.52 MB per MB in file)
+== 4000 ==
+Stored in 0.02s. file size 0.02 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (4.95 MB per MB in file)
+Loaded in 0.01s. Speed 1.52 MB/s. RSS taken 0.13 MB.  (6.60 MB per MB in file)
+== 16000 ==
+Stored in 0.09s. file size 0.08 MB. Speed 0.85 MB/s. RSS taken 0.13 MB. (1.64 MB per MB in file)
+Loaded in 0.05s. Speed 1.66 MB/s. RSS taken 0.09 MB.  (1.18 MB per MB in file)
+== 64000 ==
+Stored in 0.38s. file size 0.32 MB. Speed 0.85 MB/s. RSS taken 0.10 MB. (0.31 MB per MB in file)
+Loaded in 0.19s. Speed 1.65 MB/s. RSS taken 0.80 MB.  (2.51 MB per MB in file)
+== 256000 ==
+Stored in 1.52s. file size 1.66 MB. Speed 1.09 MB/s. RSS taken 0.19 MB. (0.11 MB per MB in file)
+Loaded in 0.76s. Speed 2.18 MB/s. RSS taken 3.13 MB.  (1.88 MB per MB in file)
+== 1024000 ==
+Stored in 6.19s. file size 7.04 MB. Speed 1.14 MB/s. RSS taken 0.16 MB. (0.02 MB per MB in file)
+Loaded in 3.01s. Speed 2.34 MB/s. RSS taken 12.45 MB.  (1.77 MB per MB in file)
+== 4096000 ==
+Stored in 24.60s. file size 28.55 MB. Speed 1.16 MB/s. RSS taken 0.06 MB. (0.00 MB per MB in file)
+Loaded in 12.06s. Speed 2.37 MB/s. RSS taken 49.74 MB.  (1.74 MB per MB in file)
+== 16384000 ==
+Stored in 98.38s. file size 114.59 MB. Speed 1.16 MB/s. RSS taken 0.19 MB. (0.00 MB per MB in file)
+Loaded in 47.89s. Speed 2.39 MB/s. RSS taken 198.88 MB.  (1.74 MB per MB in file)
+</pre>
+Paraphrased:
+<ul>
+<li>JsonPickle needs more RSS then pickle/cPickle, and runs out of memory sooner. all pickle/cPickle runs need the same RSS</li>
+<li>Protocol 1/2 need the same amount of diskspace, protocol 0 needs about the double, JsonPickle about 8 times more</li>
+<li>Protocol 1/2 are as fast, protocol 0 is slower. cPickle is speed king.  Jsonpickle is slow</li>
+</ul>
+Conclusion:
+<ul>
+<li>Use cPickle or pickle, unless they are broken for your use case(s)</li>
+<li>Consider persisting only your data in appropriate formats (textfile, database, ...). Often you don't really need to persist entire <i>objects</i>.  In the case of Gensim, we can also work with numpy's dataformat.</li>
+<li>If you like json, or want a very simple workaround for cPickle/pickle brokenness, and you cannot use a more appropriate format (see above) consider jsonpickle</li>
+</ul>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

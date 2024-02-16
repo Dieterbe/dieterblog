@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title itemprop="name">A few common graphite problems and how they are already solved. | Dieter&#39;s blog</title>
+
+<meta property="og:title" content="A few common graphite problems and how they are already solved. | Dieter&#39;s blog" />
+<meta name="twitter:title" content="A few common graphite problems and how they are already solved. | Dieter&#39;s blog" />
+<meta itemprop="name" content="A few common graphite problems and how they are already solved. | Dieter&#39;s blog" />
+<meta name="application-name" content="A few common graphite problems and how they are already solved. | Dieter&#39;s blog" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+
+
+  <meta itemprop="image" content="http://localhost:1313" />
+  <meta property="og:image" content="http://localhost:1313" />
+  <meta name="twitter:image" content="http://localhost:1313" />
+  <meta name="twitter:image:src" content="http://localhost:1313" />
+
+
+
+
+    
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2013-04-04T08:54:20-0400 />
+    <meta property="article:published_time" content=2013-04-04T08:54:20-0400 />
+
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "A few common graphite problems and how they are already solved.",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2013-04-04",
+        "description": "",
+        "wordCount":  1045 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2013-04-04",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "Dieter\u0027s blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.122.0">
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/a_few_common_graphite_problems_and_how_they_are_already_solved/">
+    <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    </head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/talks/">
+                        Talks
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">A few common graphite problems and how they are already solved.</h1>
+                
+                
+                <div class="post-meta">
+                    <time datetime="2013-04-04T08:54:20-04:00" itemprop="datePublished"> 4 Apr 2013 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <h4>metrics often seem to lack details, such as units and metric types</h4>
+looking at a metric name, it's often hard to know
+<ul>
+<li>the unit a metric is measured in (bits, queries per second, jiffies, etc)</li>
+<li>the "type" (a rate, an ever increasing counter, gauge, etc)</li>
+<li>the scale/prefix (absolute, relative, percentage, mega, milli, etc)</li>
+</ul>
+<a href="#structured_metrics">structured_metrics</a> solves this by adding these tags to graphite metrics:
+<ul>
+<li><pre>what</pre>
+<i>what is being measured?: bytes, queries, timeouts, jobs, etc</i></li>
+<li><pre>target_type</pre>
+<i>must be one of the existing <a href="https://github.com/vimeo/graph-explorer#enhanced-metrics">clearly defined target_types</a> (count, rate, counter, gauge)
+<br/>These match statsd metric types (i.e. rate is per second, count is per flushInterval)</i></li>
+</ul>
+In <a href="#graph_explorer">Graph-Explorer</a> these tags are mandatory, so that it can show the unit along with the prefix (i.e. <i>'Gb/s'</i>) on the axis.  
+<br/>
+This will also allow you to request graphs in a different unit and the dashboard will know how to convert (say, Mbps to GB/day)
+
+<h4>tree navigation/querying is cumbersome, metrics search is broken.  How do I organize the tree anyway?</h4>
+the tree is a simplistic model. There is simply too much dimensionality that can't be expressed in a flat tree.
+There's no way you can organize it so that will it satisfy all later needs.
+A tag space like <a href="#structured_metrics">structured_metrics</a> makes it <b>obsolete</b>.
+with <a href="#graph_explorer">Graph-Explorer</a> you can do (full-text) search on metric name, by any of their tags, and/or by added metadata.
+So practically you can filter by things like server, service, unit (e.g. anything expressed in bits/bytes per second,
+or anything denoting errors).  All this irrespective of the source of a metric or the "location in the tree".
+
+<h4>no interactivity with graphs</h4>
+<a href="#timeserieswidget">timeserieswidget</a> allows you to easily add interactive graphite graph objects to html pages.
+You get modern features like togglable/reorderable metrics, realtime switching between lines/stacked,
+information popups on hoover, highlighting, smoothing, and (WIP) realtime zooming.
+It has a canvas (<a href="http://www.flotcharts.org/">flot</a>) and svg (<a href="http://code.shutterstock.com/rickshaw/">rickshaw/d3</a>) backend.
+So it basically provides a simpler api to use these libraries specifically with graphite.
+<br/>There's a bunch of different graphite dashboards with different takes on graph composition/configuration and workflow, but the actual rendering of graphs
+usually comes down to plotting some graphite targets with a legend.  timeserieswidget aims to be a drop-in plugin that brings all modern features
+so that different dashboards can benefit from a common, shared codebase, because <b>static PNGs are a thing from the past</b>
+<p>
+screenshot:
+<br/>
+<a href="/files/timeserieswidget-rickshaw-stacked.png"><img height="300" src="/files/blog/github/vimeo/timeserieswidget/timeserieswidget-rickshaw-stacked.png" title="yes I'm aware of the irony of a static screenshot of an interactive widget :)"></img></a>
+</p>
+
+<h4>events lack text annotations, they are simplistic and badly supported</h4>
+Graphite is a great system for time series metrics.  Not for events.  metrics and events are very different things across the board.  drawAsInFinite() is a bit of a hack.
+<ul>
+<li><a href="#anthracite">anthracite</a> is designed specifically to manage events.
+<br/>It brings extra features such as different submission scripts, outage annotations, various ways to see events and reports with uptime/MTTR/etc metrics.</li>
+<li><a href="#timeserieswidget">timeserieswidget</a> displays your events on graphs along with their metadata (which can be just some text or even html code).
+<br/>this is where client side rendering <i>shines</i></li>
+</ul>
+<p>
+screenshots:
+<br/>
+<a href="https://raw.github.com/Dieterbe/anthracite/master/screenshots/screenshot-table.png"><img height="300" src="/files/blog/github/Dieterbe/anthracite/screenshot-table.png"></img></a>
+<a href="https://raw.github.com/vimeo/timeserieswidget/master/screenshots/flot-annotated-event.png"><img height="300" src="/files/blog/github/vimeo/timeserieswidget/flot-annotated-event.png"></img></a>
+</p>
+
+<h4>cumbersome to compose graphs</h4>
+There's basically two approaches:
+<ul>
+<li>interactive composing: with the graphite composer, you navigate through the tree and apply functions.
+This is painfull, dashboards like <a href="https://github.com/obfuscurity/descartes">descartes</a> and
+<a href="https://github.com/paperlesspost/graphiti">graphiti</a> can make this easier</li>
+<li>use a dashboard that uses predefined templates (<a href="https://github.com/ripienaar/gdash">gdash</a> and others)
+They often impose a strict navigation path to reach pages which may or may not give you the information you need (usually less or way more)</li>
+</ul>
+With both approaches, you usually end up with an ever growing pile of graphs that you created and then keep for reference.
+<br/>This becomes unwieldy but is useful for various use cases and needs.
+<br/>However, <i>neither approach is convenient for changing information needs</i>.
+<br/>Especially when troubleshooting, one day you might want to compare the rate of increase of open file handles on a set of specific servers to the traffic
+on given network switches, the next day it's something completely different.
+<br/>With <a href="#graph_explorer">Graph-Explorer</a>:
+<ul>
+<li>GE gives you a query interface on top of <a href="#structure_metrics">structured_metric</a>'s tag space.  this enables a bunch of things (see above)</li>
+<li>you can yield arbitrary targets for each metric, to look at the same thing from a different angle (i.e. as a rate with `derivative()` or as a daily summary),
+and you can of course filter by angle</li>
+<li><b>You can group metrics into graphs by arbitrary tags</b> (e.g. you can see bytes used of all filesystems on a graph per server, or <i>compare servers on a graph per filesystem</i>).
+<b>This feature always results in the "wow that's really cool" every time I show it</b></li>
+<li>GE includes 'what' and 'target_type' in the group_by tags by default so basically, if things are in a different unit (B/s vs B vs b etc) it'll put them in
+separate graphs (controllable in query)</li>
+<li>GE automatically generates the graph title and vertical title (always showing the 'what' and the unit), and shows all metrics' extra tags.
+This also gives you a lot of inspiration to modify or extend your query</li>
+</ul>
+<p>
+<a href="/files/blog/github/vimeo/graph-explorer/screenshot.png">
+<img src="/files/blog/github/vimeo/graph-explorer/screenshot.png" width="619" height="396"/>
+</a>
+</p>
+
+<h4>limited options to request a specific time range</h4>
+<a href="https://github.com/vimeo/graph-explorer#query-parsing-and-execution">GE's query language</a> supports freeform `from` and `to` clauses.
+
+<h3>Referenced projects</h3>
+<ul>
+<li>
+<a href="https://github.com/Dieterbe/anthracite" id="anthracite">anthracite</a>:
+<br/>
+event/change logging/management with a bunch of ingestion scripts and outage reports
+</li>
+<li>
+<a href="https://github.com/vimeo/timeserieswidget" id="timeserieswidget">timeserieswidget</a>:
+<br/>
+jquery plugin to easily get highly interactive graphite graphs onto html pages (dashboards)
+</li>
+<li>
+<a href="https://github.com/vimeo/graph-explorer/tree/master/structured_metrics" id="structured_metrics">structured_metrics</a>:
+<br/>
+python library to convert graphite metrics tree into a tag space with clearly defined units and target types, and arbitrary metadata.
+</li>
+<li>
+<a href="https://github.com/vimeo/graph-explorer" id="graph_explorer">graph-explorer</a>:
+<br/>
+dashboard that provides a query language so you can easily compose graphs on the fly to satisfy varying information needs.
+</li>
+</ul>
+All tools are designed for integration with other tools and each other.
+Timeserieswidget gets data from anthracite, graphite and elasticsearch.
+Graph-Explorer uses structured_metrics and timeserieswidget.
+
+<h3>Future work</h3>
+There's a whole lot going on in the monitoring space, but I'd like to highlight a few things I personally want to work more on:
+<ul>
+<li>
+I spoke with Michael Leinartas at Monitorama (and there's also a <a href="https://answers.launchpad.net/graphite/+question/223956">launchpad thread</a>).
+We agreed that native tags in graphite are the way forward.  This will address some of the pain points
+I'm already fixing with structured_metrics but in a more native way.
+I envision submitting metrics would move from:
+<pre>
+stats.serverdb123.mysql.queries.selects 895 1234567890
+</pre>
+to something more along these lines:
+<pre>
+host=serverdb123 service=mysql type=select what=queries target_type=rate 895 1234567890
+host=serverdb123 service=mysql type=select unit=Queries/s 895 1234567890
+h=serverdb123 s=mysql t=select queries r 895 1234567890
+</pre>
+</li>
+<li>switch Anthracite backend to ElasticSearch for native integration with logstash data (and allow you to use kibana)</li>
+</ul>
+
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+    title="Twitter">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+    </path>
+</svg>
+</a>
+<a href="index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        All content © Dieter Plaetinck, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="http://localhost:1313/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

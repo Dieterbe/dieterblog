@@ -2,8 +2,10 @@
 title = "25 Graphite, Grafana and statsd gotchas"
 date = "2016-03-15T16:22:03+10:00"
 tags = ["monitoring"]
+toc = true
+tocOpen = true
 +++
-
+### Introduction
 This is a crosspost of [an article I wrote on the raintank.io blog](https://blog.raintank.io/25-graphite-grafana-and-statsd-gotchas/)  
 For several years I've worked with Graphite, Grafana and statsd on a daily basis and have been participating in the community.  All three are fantastic tools and solve very real problems.  Hence my continued use and recommendation.  However, between colleagues, random folks on irc, and personal experience, I've seen a plethora of often subtle issues, gotchas and insights, which today I'd like to share.
 
@@ -12,41 +14,16 @@ I hope this will prove useful to users while we, open source monitoring develope
 Before we begin, when trying to debug what's going on with your metrics (whether they're going in or out of these tools), don't be afraid to dive into the network or the whisper files. They can often be invaluable in understanding what's up.
 
 For network sniffing, I almost always use these commands:  
-<code>ngrep -d any -W byline port 2003 # carbon traffic
-ngrep -d any -W byline port 8125 # statsd traffic</code>
+{{<highlight bash>}}
+ngrep -d any -W byline port 2003 # carbon traffic
+ngrep -d any -W byline port 8125 # statsd traffic
+{{</highlight>}}
 
 Getting the json output from Graphite (just append `&format=json`) can be very helpful as well. Many dashboards, including <a href="http://www.grafana.org">Grafana</a> already do this, so you can use the browser network inspector to analyze requests. For the whisper files, Graphite comes with various useful utilities such as whisper-info, whisper-dump, whisper-fetch, etc.
 
 *here we go:*
 
-<a href="#traffic.drop">1. OMG! Did all our traffic just drop?</a>  
-<a href="#null.math.func">2. Null handling in math functions.</a>  
-<a href="#null.runtime">3. Null handling during runtime consolidation.</a>  
-<a href="#consolidation.aggregation">4. No consolidation or aggregation for incoming data.</a>  
-<a href="#limited.aggregation">5. Limited storage aggregation options.</a>  
-<a href="#runtime.consolidation">6. Runtime consolidation is detached from storage aggregation.</a>  
-<a href="#grafana.consolidation">7. Grafana consolidation is detached from storage aggregation and runtime consolidation.</a>  
-<a href="#aggregating.percentiles">8. Aggregating percentiles.</a>  
-<a href="#deriving.integration">9. Deriving and integration in Graphite.</a>  
-<a href="#graphite.quantization">10. Graphite quantization.</a>  
-<a href="#statsd.flush.offset">11. statsd flush offset depends on when statsd was started.</a>  
-<a href="#time-attributed.metrics">12. Improperly time-attributed metrics.</a>  
-<a href="#timestamps">13. The relation between timestamps and the intervals they describe.</a>  
-<a href="#statsd.timing">14. The statsd timing type is not only for timings.</a>  
-<a href="#metric.keys">15. The choice of metric keys depends on how you deployed statsd.</a>  
-<a href="#non-blocking.udp.sends">16. statsd is "fire and forget", "non-blocking" & UDP sends "have no overhead".</a>  
-<a href="#statsd.sampling">17. statsd sampling.</a>  
-<a href="#saturate">18. As long as my network doesn't saturate, statsd graphs should be accurate.</a>  
-<a href="#gauges">19. Incrementing/decrementing gauges.</a>  
-<a href="#cant.graph.what.you.havent.seen">20. You can't graph what you haven't seen</a>  
-<a href="#nulls.deleteIdleStats">21. Don't let the data fool you: nulls and deleteIdleStats options.</a>  
-<a href="#keeplastvalue">22. keepLastValue works... almost always.</a>  
-<a href="#statsd.counters">23. statsd counters are not counters in the traditional sense.</a>  
-<a href="#input">24. What can I send as input? </a>  
-<a href="#hostnames.ip.addresses">25. Hostnames and ip addresses in metric keys.</a>  
-
-<span id="traffic.drop"></span>
-1) <a href="#traffic.drop" class="anchor-link">**OMG! Did all our traffic just drop?**</a>  
+### 1. OMG! Did all our traffic just drop?
 Probably the most common gotcha, and one i run into periodically. Graphite will return data up until the current time, according to your data schema.
 
 >**Example:** if your data is stored at 10s resolution, then at 10:02:35, it will show 
@@ -56,8 +33,7 @@ data up until 10:02:30. Once the clock hits 10:02:40, it will also include that 
 
 You can work around this with "null as null" in Grafana, transformNull() or keepLastValue() in Graphite, or plotting until a few seconds ago instead of now. See below for some other related issues.
 
-<span id="null.math.func"></span>
-2) <a href="#null.math.func" class="anchor-link">**Null handling in math functions.**</a>  
+### 2. Null handling in math functions
 Graphite functions don't exactly follow the rules of logic (by design). When you request something like `sumSeries(diskspace.server_*.bytes_free)` Graphite returns the sum of all bytes_free's for all your servers, at each point in time. If all of the servers have a null for a given timestamp, the result will be null as well for that time. However, if only some - but not all - of the terms are null, they are counted as 0.
 
 >**Example:** The sum for a given point in time, 100 + 150 + null + null = 250.  
@@ -94,23 +70,20 @@ points from different series at each point in time.</li>
 </ul>
 </div>
 
-<span id="null.runtime"></span>
-3) <a href="#null.runtime" class="anchor-link">**Null handling during runtime consolidation**</a>  
+### 3. Null handling during runtime consolidation  
 Similar to above, when Graphite performs runtime consolidation it simply ignores null values. Imagine a series that measures throughput with points 10, 12, 11, null, null, 10, 11, 12, 10. Let's say it needs to aggregate every 3 points with sum. this would return 33, 10, 33. This will visually look like a drop in throughput, even though there probably was none.
 
 
 
 For some functions like avg, a missing value amongst several valid values is usually not a big deal, but the likeliness of it becoming a big deal increases with the amount of nulls, especially with sums. For runtime consolidation, Graphite needs something similar to the xFilesFactor setting for rollups.
 
-<span id="consolidation.aggregation"></span>
-4) <a href="#consolidation.aggregation" class="anchor-link">**No consolidation or aggregation for incoming data.**</a>  
+### 4. No consolidation or aggregation for incoming data  
 If you submit multiple values into Graphite for the same interval, the last one overwrites any previous values, no consolidation/aggregation happens in this scenario.
 
 
 Never send multiple values for the same interval. However, carbon-aggregator or carbon-relay-ng may be of help (see above)
 
-<span id="limited.aggregation"></span>
-5) <a href="#limited.aggregation" class="anchor-link">**Limited storage aggregation options.**</a>  
+### 5. Limited storage aggregation options  
 In storage-aggregation.conf you configure which function to use for historical rollups. It can be limiting that you can only choose one. Often you may want to retain both the max values as well as the averages for example.(very useful for throughput). This feature exists in <a href="http://oss.oetiker.ch/rrdtool/">RRDtool</a>.
 
 Another issue with this is that often these functions will be misconfigured. Make sure to think about all the possible metrics you'll be sending (e.g. min and max values through statsd) and set up the right configuration for them.
@@ -118,8 +91,7 @@ Another issue with this is that often these functions will be misconfigured. Mak
 
 <a href="http://blog.librato.com/posts/time-series-data">Proprietary systems tend to be more flexible</a> and I'm sure it will make a come back in the Graphite stack as well. (more on that later)
 
-<span id="runtime.consolidation"></span>
-6) <a href="#runtime.consolidation" class="anchor-link">**Runtime consolidation is detached from storage aggregation.**</a>  
+### 6. Runtime consolidation is detached from storage aggregation  
 The function chosen in storage-aggregation.conf is only used for rollups.
 
 If Graphite performs any runtime consolidation it will always use average unless told otherwise through consolidateBy.  This means it's easy to run into cases where data is rolled up (in whisper) using, say, max or count,  but then accidentally with average while creating your visualization, resulting in incorrect information and nonsensical charts. Beware!
@@ -127,18 +99,15 @@ If Graphite performs any runtime consolidation it will always use average unless
 It would be nice if the configured roll-up function would also apply here (and also the xFilesFactor, as above),
 For now, just be careful :)
 
-<span id="grafana.consolidation"></span>
-7) <a href="#grafana.consolidation" class="anchor-link">**Grafana consolidation is detached from storage aggregation and runtime consolidation.**</a>  
+### 7. Grafana consolidation is detached from storage aggregation and runtime consolidation  
 Like mentioned earlier, Grafana can provide min/max/avg/... values from the received data. For now, it just computes these from the received data, which may already have been consolidated (twice: in storage and in runtime) using different functions, so these results may not be always representative. (<a href="http://play.grafana.org/dashboard/db/ultimate-graphite-query-guide">more info</a>) We will make this mechanism more powerful and accurate.
 
-<span id="aggregating.percentiles"></span>
-8) <a href="#aggregating.percentiles" class="anchor-link">**Aggregating percentiles.**</a>  
+### 8. Aggregating percentiles  
 The pet peeve of many, it has been written about a lot: If you have percentiles, such as those collected by statsd, (e.g. 95th percentile response time for each server) there is in theory no proper way to aggregate those numbers.  
 
 This issue appears when rolling up the data in the storage layer, as well when doing runtime consolidation, or when  trying to combine the data for all servers (multiple series) together. There is real math behind this, and I'm not going into it because in practice it actually doesn't seem to matter much. If you're trying to spot issues or alert on outliers you'll get quite far with averaging the data together or taking the max value seen. This is especially true when the amount of requests, represented by each latency measurement, is in the same order of magnitude.  E.g. You're averaging per-server latency percentiles and your servers get a similar load or you're averaging multiple points in time for one server, but there was a similar load at each point.  You can always set up a separate alerting rule for unbalanced servers or drops in throughput.  As we'll see in some of the other points, taking sensible shortcuts instead of obsessing over math is often the better way to accomplish your job of operating your infrastructure or software.
 
-<span id="deriving.integration"></span>
-9) <a href="#deriving.integration" class="anchor-link">**Deriving and integration in Graphite.**</a>  
+### 9. Deriving and integration in Graphite  
 The Graphite documentation for <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.derivative">derivative()</a> hints at this already ("This function does not normalize for periods of time, as a true derivative would."), but to be  entirely clear:
 <ul>
 <li>Graphite's <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.derivative">derivative</a> is not a derivative. A <a href="https://en.wikipedia.org/wiki/Derivative">derivative</a> divides difference in value by difference in time.  Graphite's derivative just returns the value deltas. Similar for <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.nonNegativeDerivative">nonNegativeDerivative()</a>.  If you want an actual derivative, use the somewhat awkwardly named <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.perSecond">perSecond()</a> function.</li>
@@ -146,14 +115,12 @@ The Graphite documentation for <a href="http://graphite.readthedocs.org/en/0.9.1
 </ul>
 Maybe for a future stable Graphite release this can be reworked.  for now, just something to be aware of.  
 
-<span id="graphite.quantization"></span>
-10) <a href="#graphite.quantization" class="anchor-link">**Graphite quantization.**</a>  
+### 10. Graphite quantization  
 We already saw in the consolidation paragraph that for multiple points per interval, last write wins. But you should also know that any data point submitted gets the timestamp rounded down. 
 
 >**Example**: You record points every 10 seconds but submit a point with timestamp at 10:02:59, in Graphite this will be stored at 10:02:50. To be more precise if you submit points at 10:02:52, 10:02:55 and 10:02:59, and have 10s resolution, Graphite will pick the point from 10:02:59 but store it at 10:02:50. So it's important that you make sure to submit points at consistent intervals, aligned to your Graphite retention intervals (e.g. if every 10s, submit on timestamps divisible by 10)
 
-<span id="statsd.flush.offset"></span>
-11) <a href="#statsd.flush.offset" class="anchor-link">**statsd flush offset depends on when statsd was started.**</a>  
+### 11. Statsd flush offset depends on when statsd was started  
 Statsd lets you configure a flushInterval, i.e. how often it should compute the output stats and submit them to your backend. However, the exact timing is pretty arbitrary and depends on when statsd is  started.
 
 >**Example**: If you start statsd at 10:02:00 with a flushInterval of 10, then it 
@@ -161,16 +128,14 @@ will emit values with timestamps at 10:02:10, 10:02:20, etc (this is what you wa
 
 *Note: <a href="https://github.com/vimeo/statsdaemon">vimeo/statsdaemon</a> (and possibly other servers as well) will always submit values at quantized intervals  so that it's guaranteed to map exactly to Graphite's timestamps as long as the interval is correct.*
 
-<span id="time-attributed.metrics"></span>
-12) <a href="#time-attributed.metrics" class="anchor-link">**Improperly time-attributed metrics.**</a>  
+### 12. Improperly time-attributed metrics  
 You don't tell statsd the timestamps of when things happened.  Statsd applies its own timestamp when it flushes the data. So this is prone to various (mostly network) delays. This could result in a metric being generated in a certain interval only arriving in statsd after the next interval has started. But it can get worse.  Let's say you measure how long it takes to execute a query on a database server. Typically it takes 100ms but let's say now many queries are taking 60s, and you have a flushInterval of 10s. Note that the metric is only sent after the full query has completed. So during the full minute where queries were slow, there are no  metrics (or only some metrics that look good, they came through cause they were part of a group of queries that managed to execute timely), and only after a minute do you get the stats that reflect queries  spawned a minute ago. The higher a timing value, the higher the attribution error, the more into the past the values it represents and the longer the issue will go undetected or invisible. 
 
 Keep in mind that other things, such as garbage collection cycles or paused goroutines under cpu saturation may also delay your metrics reporting. Also watch out for the queries aborting all together, causing the metrics never to be sent and these faults to be invisble! Make sure you properly monitor throughput and the functioning (timeouts, errors, etc) of the service from the client perspective, to get a more accurate picture.
 
 *Note that many instrumentation libraries have similar issues.*
 
-<span id="timestamps"></span>
-13) <a href="#timestamps" class="anchor-link">**The relation between timestamps and the intervals they describe.**</a>  
+### 13. The relation between timestamps and the intervals they describe  
 When I look at a point at a graph that represents a spike in latency, a drop in throughput, or anything interesting really, I always wonder whether it describes the timeframe before, or after it.
 
 >**Example**: With points every minute, and a spike at 10:17:00, does it mean the spike happened in the timeframe between 10:16 and 10:17, or between 10:17 and 10:18?
@@ -183,19 +148,16 @@ We saw above that any data received by Graphite for a point in between an interv
 
 So essentially, Graphite likes to show metric values before they actually happened, especially after aggregation, whereas other tools rather use a timestamp in the future of the event than in the past. As a monitoring community, we should probably standardize on an approach. I personally favor postmarking because measurements being late is fairly intuitive, predicting the future not so much.
 
-<span id="statsd.timing"></span>
-14) <a href="#statsd.timing" class="anchor-link">**The statsd timing type is not only for timings.**</a>  
+### 14. The statsd timing type is not only for timings  
 The naming is a bit confusing, but anything you want to compute summary statistics (min, max, mean, percentiles, etc) for (for example message or packet sizes) can be submitted as a timing metric. You'll get your  summary stats just fine. The type is just named "timing" because that was the original (and still most  common) use case. Note that if you want to time an operation that happens at consistent intervals,  you may just as well simply use a statsd gauge for it. (or write directly to Graphite)
 
-<span id="metric.keys"></span>
-15) <a href="#metric.keys" class="anchor-link">**The choice of metric keys depends on how you deployed statsd.**</a>  
+### 15. The choice of metric keys depends on how you deployed statsd  
 It's common to deploy a statsd server per machine or per cluster. This is a convenient way to assure you have a lot of processing capacity. However, if multiple statsd servers receive the same metric, they will do their own independent computations and emit the same output metric, overwriting each other. So if you run a statsd server per host, you should include the host in the metrics you're sending into statsd, or into the prefixStats (or similar option) for your statsd server, so that statsd itself differentiates the metrics.
 
 *Note: there's some other statsd options to diversify metrics but the global
 prefix is the most simple and common one used.*
 
-<span id="non-blocking.udp.sends"></span>
-16) <a href="#non-blocking.udp.sends" class="anchor-link">**statsd is "fire and forget", "non-blocking" &amp; UDP sends "have no overhead".**</a>  
+### 16. statsd is "fire and forget", "non-blocking" &amp; UDP sends "have no overhead"  
 
 This probably stems from this snippet in the <a href="https://codeascraft.com/2011/02/15/measure-anything-measure-everything/">original statsd announcement</a>.
 
@@ -219,8 +181,7 @@ This is because destination hosts receiving UDP traffic for a closed socket, wil
 
 *Takeaway: If you use statsd in high-performance situations, use optimized client libraries . Or use client libraries such as go-metrics, but be prepared to pay a processing tax on all of your servers. Be aware that slow NICs and sending to non-listening destinations will slow your app down.*
 
-<span id="statsd.sampling"></span>
-17) <a href="#statsd.sampling" class="anchor-link">**statsd sampling.**</a>  
+### 17. statsd sampling  
 The sampling feature was part of the original statsd, so it can be seen in pretty much every client and server alternative.  The idea sounds simple enough: If a certain statsd invocation causes too much statsd network traffic or  overloads the server, sample down the messages. However, there's several gotchas with this.  A common invocation with a typical  statsd client looks something like:
 ```
 statsd.Increment("requests.$backend.$http_response")
@@ -242,8 +203,7 @@ One of the ideas I wanted to implement in https://github.com/vimeo/statsdaemon w
 
 *Takeaway: Sampling can be used to lower load, but be aware of the trade offs.*
 
-<span id="saturate"></span>
-18) <a href="#saturate" class="anchor-link">**As long as my network doesn't saturate, statsd graphs should be accurate.**</a>  
+### 18. As long as my network doesn't saturate, statsd graphs should be accurate  
 We all know that graphs from statsd are not guaranteed to be accurate, because it uses UDP, so is prone to data loss and inaccurate graphs. And we're OK with that trade  off, because the convenience is worth the loss in accuracy. However, it's commonly believed that the only, or main reason of inaccurate  graphs is UDP data loss on the network. In my experience, I've seen a lot more message loss due to the UDP buffer overflowing on the statsd server.
 
 A typical statsd server is constantly receiving a flood of metrics. For a network socket, the Linux kernel maintains a buffer in which it stores newly received network packets, while the listening application (statsd) reads  them out of the buffer.  But if for any reason the application can't read from the buffer fast enough and it fills up, the kernel has to drop incoming traffic. The most common case are the statsd flushes, which compute all summary statistics and submit them each flushInterval. Typically this operation takes between 50ms and a few seconds, depending mostly on how many timing metrics were received, because those are the most computationally expensive.  Usually statsd's cpu is maxed out during this operation, but you won't see it on  your cpu graphs because your cpu measurements are averages taken at intervals that typically don't exactly coincide with the statsd flush-induced spikes. During this time, it temporarily cannot read from the UDP buffer, and it is very  common for the UDP buffer to rapidly fill up with new packets, at which point the Linux kernel is forced to drop incoming network packets for the UDP socket. In my experience this is very common and often even goes undetected, because  only a portion of the metrics are lost, and the graphs are not obviously wrong. Needless to say, there's also plenty of other scenarios for the buffer to fill up and cause traffic drops other than statsd flushing.
@@ -252,7 +212,7 @@ There's two things to be done here:
 
 1. Luckily we can tune the size of the incoming UDP buffer with the net.core.rmem\_max and net.core.rmem\_default sysctl's. I recommend setting it to the <a href="http://stackoverflow.com/questions/2090850/specifying-udp-receive-buffer-size-at-runtime-in-linux">max values</a>
 
-2. The kernel increments a counter every time it drops a UDP packet. You can see UDP packet drops with <code>netstat -s --udp</code> on the command  line. I highly encourage you to monitor this with something like collectd, visualize  it over time, and make sure to set an alert on it.
+2. The kernel increments a counter every time it drops a UDP packet. You can see UDP packet drops with `netstat -s --udp` on the command  line. I highly encourage you to monitor this with something like collectd, visualize  it over time, and make sure to set an alert on it.
 
 
 *Note also that the larger of a buffer you need, the more delay between receiving a metric and including it in the output data, possibly skewing data into the future.*
@@ -262,12 +222,10 @@ There's two things to be done here:
 There's a lot of good statsd servers out there with various feature  sets. Most of them provide improved performance (upstream statsd is single threaded JavaScript), but some come with additional interesting features. My favorites include <a href="https://github.com/armon/statsite">statsite</a>, <a href="http://githubengineering.com/brubeck/">brubeck</a> and of course <a href="https://github.com/vimeo/statsdaemon">vimeo's statsdaemon version</a>
 </div>
 
-<span id="gauges"></span>
-19) <a href="#gauges" class="anchor-link">**Incrementing/decrementing gauges.**</a>  
+### 19. Incrementing/decrementing gauges 
 Statsd supports a syntax to <a href="https://github.com/etsy/statsd/blob/master/docs/metric_types.md#gauges"> increment and decrement gauges</a>. However, as we've seen, any message can be lost. If you do this and a message gets dropped, your gauge value will be incorrect forever (or until you set it explicitly again). Also by sending increment/decrement values you can confuse a statsd server if it was just started. For this reason, I highly recommend not using this particular feature, and always setting gauge values explicitly.  In fact, some statsd servers don't support this syntax for this reason.
 
-<span id="cant.graph.what.you.havent.seen"></span>
-20) <a href="#cant.graph.what.you.havent.seen" class="anchor-link">**You can't graph what you haven't seen**</a>  
+### 20. You can't graph what you haven't seen  
 Taking the earlier example again:
 ```
 statsd.Increment("requests.$backend.$http_response")
@@ -277,8 +235,7 @@ The metrics will only be created after the values have been sent. Sounds obvious
 
 I see this very commonly with all kinds of error metrics.  I think with Grafana it will become easier to deal with this over time,  but for now I write code to just send each metric once at startup.  For counts you can just send a 0, for gauges and timers it's of course harder/weirder to come up with a fake value but it's still a  reasonable approach.
 
-<span id="nulls.deleteIdleStats"></span>
-21) <a href="#nulls.deleteIdleStats" class="anchor-link">**Don't let the data fool you: nulls and deleteIdleStats options.**</a>  
+### 21. Don't let the data fool you: nulls and deleteIdleStats options  
 statsd has the deleteIdleStats, deleteGauges, and similar options. By default they are disabled, meaning statsd will keep sending data for metrics it's no longer seeing. So for example, it'll keep sending the last gauge value even if it didn't get an update. I have three issues with this:
 
 * **Your graphs are misleading.** Your service may be dead but you can't tell from 
@@ -294,28 +251,24 @@ My recommendation is, enable deleteIdleStats.  I went as far as hard coding that
 To visualize it, make sure in Grafana to set the "null as null" option, though "null as zero" can make sense for counters. You can also use the <a href="http://graphite.readthedocs.org/en/0.9.15/functions.html#graphite.render.functions.transformNull">transformNull()</a> or <a href="http://graphite.readthedocs.org/en/0.9.15/render_api.html#drawnullaszero">drawNullAsZero</a> options in Graphite for those  cases where you want to explicitly get 0's instead of nulls, which I typically  do in some of my bosun alerting rules, so I can treat null counts as no traffic received, while having a separate alerting rule to make sure my service is up  and running, based on a different metric, while using null as null for visualization. 
 
 
-<span id="keeplastvalue"></span>
-22) <a href="#keeplastvalue" class="anchor-link">**keepLastValue works... almost always.**</a>  
+### 22. keepLastValue works... almost always
 Another Graphite function to change the semantics of nulls is <a href="http://graphite.readthedocs.org/en/latest/functions.html#graphite.render.functions.keepLastValue"> keepLastValue</a>, which causes null values to be represented by the last known value that precedes them. However, that known value must be included in the requested time range.  This is probably a rare case that you may never encounter, but if you have scripts that infrequently update a metric and you use this function, it may result in a graph sometimes showing no data at all if the last known value becomes too old.  Especially confusing to newcomers, if the graph does "work" at other times.
 
-<span id="statsd.counters"></span>
-23) <a href="#statsd.counters" class="anchor-link">**statsd counters are not counters in the traditional sense.**</a>  
+### 23. statsd counters are not counters in the traditional sense  
 You may know counters such as switch traffic/packet counters, that just keep increasing over time. You can see their rates per second by deriving the data. Statsd counters however, are typically either stored as the number of hits per flushInterval, or per second, or both (perhaps because of Graphite's derivative issue?). This in itself is not a huge problem, however this is more vulnerable to loss of data.  If your statsd server has trouble flushing some data to Graphite and some data gets lost.  If it were using a traditional counter, you could still derive the data and average out the gap across the nulls. In this case however this is not possible and you have no idea what the numbers were.  In practice this doesn't happen often though.  Many statsd implementations can buffer a writequeue or use something like <a href="https://github.com/graphite-ng/carbon-relay-ng"> carbon-relay-ng</a> as a write queue. 
 Other disadvantages of this approach is that you need to know the flushInterval
 value to make sense of the count values, and the rounding that happens when
 computing the rates per second, which is also slightly lossy.
 
-<span id="input"></span>
-24) <a href="#input" class="anchor-link">**What can I send as input?**</a>  
+### 24. What can I send as input?  
 Neither <a href="http://graphite.readthedocs.org/en/latest/feeding-carbon.html">Graphite</a>, nor <a href="https://github.com/etsy/statsd/blob/master/docs/metric_types.md">statsd</a> does a great job specifying exactly what they allow as input, which can be frustrating.  Graphite timestamps are 32bit unix timestamp integers, while values for both Graphite and statsd can be integers or floats, up to float 64bit precision. For statsd, see the <a href"https://github.com/b/statsd_spec">statsd_spec</a> project for more details.
 
 As for what characters can be included in the metric keys. Generally, Graphite is somewhat forgiving and may alter your metric keys: it converts slashes to dots (which can be confusing), subsequent dots become single dots, prefix dots get removed, postfix dots will get it confused a bit though and create an extra hierarchy with an empty node at the end if you're using whisper. Non-alphanumeric characters such as <a href="https://github.com/graphite-project/graphite-web/issues/242">parenthesis</a>, <a href="https://github.com/graphite-project/graphite web/issues/604">colons</a>, or <a href="https://github.com/brutasse/graphite-api/issues/57"> equals signs</a> often don't work well or at all.
 
 Graphite as a policy does not go far in validating incoming data, citing performance in large-throughput systems as the major reason. It's up to the senders to send data in proper form, with non-empty nodes (words between dots) separated by single dots.  You can use alphanumeric characters, hyphens and underscores, but straying from that will probably not work well. You may want to use <a href="https://github.com/graphite-ng/carbon-relay-ng"> carbon-relay-ng</a> which provides metric validation. See also <a href="https://github.com/graphite-project/carbon/issues/417">this issue</a> which aims to formalize what is, and isn't allowed.
 
-<span id="hostnames.ip.addresses"></span>
-25) <a href="#hostnames.ip.addresses" class="anchor-link">**Hostnames and ip addresses in metric keys.**</a>  
+### 25. Hostnames and ip addresses in metric keys  
 The last gotcha relates to the previous one but is so common it deserves its own spot. Hostnames, especially FQDN's, and IP addresses (due to their dots), when included in metric keys, will be interpreted by Graphite as separate pieces. Typically, people replace all dots in hostnames and IP addresses with hyphens or underscores to combat this.
 
-### Closing thoughts:
+### Closing thoughts
 Graphite, Grafana and statsd are great tools, but there's some things to watch out for. When setting them up, make sure you configure Graphite and statsd to play well together. Make sure to set your roll-up functions and data retentions properly, and  whichever statsd version you decide to use, make sure it flushes at the same  interval as your Graphite schema configuration. <a  href="https://github.com/etsy/statsd/blob/master/docs/graphite.md">More tips if you use the nodejs version</a>. Furthermore, I hope this is an extensive list of gotchas and will serve to improve our practices at first, and our tools themselves, down to road. We are definitely working on making things better and have some announcements coming up...

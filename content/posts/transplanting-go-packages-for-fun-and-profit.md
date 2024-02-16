@@ -29,7 +29,8 @@ This is such a common problem that applies to all metrics agents, relays, etc th
 
 [NSQ](http://nsq.io/) is a messaging platform from bitly, and it has [diskqueue code](https://github.com/bitly/nsq/blob/master/nsqd/diskqueue.go) that does exactly that. And it does so oh so elegantly.
 I had previously found a beautiful pattern in bitly's go code that I [blogged about](http://dieter.plaetinck.be/post/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/) and again I found a nice and elegant design that builds further on this pattern, with concurrent access to data protected via a single instance of a for loop running a select block which assures only one piece of code can make changes to data at the same time (see bottom of the file), not unlike ioloops in other languages.  And method calls such as [Put()](https://github.com/bitly/nsq/blob/fe4198b648499375651b7fece0b8489ea07d029f/nsqd/diskqueue.go#L120-L130) provide a clean external interface, though their implementation simply hooks into the internal select loop that runs the code that does the bulk of the work.  Genius.
-```
+
+``` go
 func (d *diskQueue) Put(data []byte) error {
   // some details
   d.writeChan <- data

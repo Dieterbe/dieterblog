@@ -18,27 +18,5 @@
       
     </item>
     
-    <item>
-      <title>Moving to New York City</title>
-      <link>http://localhost:1313/posts/moving-to-nyc/</link>
-      <pubDate>Sun, 19 Aug 2012 16:50:11 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/moving-to-nyc/</guid>
-      
-      <description>I have a one-way ticket to NYC on Sept. 21st. Vimeo HQ is in Manhattan, and practically the whole team works in the building so it makes sense for me to relocate and join them locally. I&#39;m looking forward to working with the colleagues face to face, but mainly I&#39;m looking forward to the experience of living in such a different place, and exploring the US. In fact, I already have some small trips planned (Hamptons NY, camping in Pennsylvania, skiing in New York this winter) with some friends I met last year in NY.</description>
-      
-    </item>
-    
-    <item>
-      <title>Joining Vimeo</title>
-      <link>http://localhost:1313/posts/joining_vimeo/</link>
-      <pubDate>Tue, 27 Mar 2012 11:50:36 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/joining_vimeo/</guid>
-      
-      <description>Working on scalable information retrieval systems at the university of Ghent has been very fun: interesting and challenging work, smart team, and an environment that fosters growth and innovation. I could definitely see myself continuing there... However, Vimeo got in touch and told me about their plans... specifically what&#39;s going into the new version and what other stuff they have on their roadmap. I can honestly say vimeo is the most beautiful web property I&#39;ve ever seen [*], not just that, they also provide a top product/service, and host a great community of passionate people who create some of the most beautiful online videos I&#39;ve ever seen.</description>
-      
-    </item>
-    
   </channel>
 </rss>

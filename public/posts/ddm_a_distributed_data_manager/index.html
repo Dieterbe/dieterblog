@@ -54,7 +54,7 @@
         },
         "datePublished": "2008-03-29",
         "description": "",
-        "wordCount":  988 ,
+        "wordCount":  1204 ,
         "mainEntityOfPage": "True",
         "dateModified": "2008-03-29",
         "image": {
@@ -182,7 +182,11 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                </p>
+                <p><b>UPDATE: this information is outdated.  See <a href="http://github.com/Dieterbe/ddm/tree/master" title="http://github.com/Dieterbe/ddm/tree/master">http://github.com/Dieterbe/ddm/tree/master</a> for latest information.</b></p>
+<h3>Introduction</h3>
+<p>If you have multiple sets of data (e.g.: music, images, documents, movies, ...) and you use these on more then one system ( e.g. a laptop and a file server) then you probably also have some 'rules' on how you use these on your systems.  For example after capturing new images you maybe put them on your laptop first but you like to sync them to your file server frequently.  On the other hand you also want all your high-res images (stored on the server) available for editing on the laptop, and to make it more complicated you might have the same images in a smaller format on your server (for gallery programs etc.) and want these (or a select few albums of them) available on the road. </p>
+<p>The more different types of data you have and the more you have specific work flows the harder it becomes to keep your data as up to date as possible and consistent on your boxes.  You could manually rsync/(s)cp your data but you end up in having a mess (at least that's how it turned out on my boxes). Putting everything under version control is great for text files and such, but it's not an option for bigger (binary) files.</p>
+<p>I wanted to keep all my stuff neatly organised in my home directories and I want to create good work flows with as minimum hassle as possible, so I decided to write DDM: the Distributed Data Manager.</p>
 <h3>Disclaimer</h3>
 <p>The code is far from finished.  Some features are still missing and there will be bugs in it.  I'm even still thinking about the concepts themselves.   Don't blame me if ddm deletes the wrong files or causes your computer to blow up.</p>
 <h3>Concepts</h3>
@@ -218,56 +222,48 @@ Keep in mind though that everything can be overridden through .ddm files in data
 </ul>
 <p>To specify the dataset type, the easiest way is to add suffixes to your directories. eg video-selection.  This is not a must and can be specified in the .ddm file in the dataset directory. For the 'copy' dataset type you don't need to specify anything (it's default)<br />
 Unless overridden, ddm will construct the repo path as follows:  </p>
-{{< highlight "bash" "style=default" >}}
-$TYPE_BASE/$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX
-{{< /highlight >}}<p>(if unclear, read on)</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$TYPE_BASE/$TYPE_PREFIX$DATASET_NAME$TYPE_SUFFIX</span></span></code></pre></div><p>(if unclear, read on)</p>
 <p>In the .ddm file in your dataset directory you can override defaults.</p>
 <h5>~/.ddm</h5>
 <p>This is how my file looks like.</p>
-{{< highlight "bash" "style=default" >}}
-ALLOWED_REPO_TYPES='svn vfs'
-DEFAULT_REPO_TYPE='vfs'
-
-SVN_BASE='https://server/svn/repos/'
-SVN_PREFIX='ddm-'
-VFS_BASE='/net/server/home/dieter/ddm-repo'
-{{< /highlight >}}<p>These are all the options you can specify:</p>
-{{< highlight "bash" "style=default" >}}
-SVN_BASE=''
-SVN_PREFIX=''
-SVN_SUFFIX=''
-VFS_BASE=''  
-VFS_PREFIX=''
-VFS_SUFFIX=''
-
-DEFAULT_REPO_TYPE='vfs'
-ALLOWED_REPO_TYPES='vfs'
-IGNORE_DATASET_REMOTE_SVN=0 #nag if the repo url figured out is not the same as the one in 'svn info'. you should leave this 0
-{{< /highlight >}}<h5>dataset/.ddm</h5>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ALLOWED_REPO_TYPES=<span style="color:#0ff;font-weight:bold">&#39;svn vfs&#39;</span>
+</span></span><span style="display:flex;"><span>DEFAULT_REPO_TYPE=<span style="color:#0ff;font-weight:bold">&#39;vfs&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SVN_BASE=<span style="color:#0ff;font-weight:bold">&#39;https://server/svn/repos/&#39;</span>
+</span></span><span style="display:flex;"><span>SVN_PREFIX=<span style="color:#0ff;font-weight:bold">&#39;ddm-&#39;</span>
+</span></span><span style="display:flex;"><span>VFS_BASE=<span style="color:#0ff;font-weight:bold">&#39;/net/server/home/dieter/ddm-repo&#39;</span></span></span></code></pre></div><p>These are all the options you can specify:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>SVN_BASE=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>SVN_PREFIX=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>SVN_SUFFIX=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>VFS_BASE=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>  
+</span></span><span style="display:flex;"><span>VFS_PREFIX=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>VFS_SUFFIX=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DEFAULT_REPO_TYPE=<span style="color:#0ff;font-weight:bold">&#39;vfs&#39;</span>
+</span></span><span style="display:flex;"><span>ALLOWED_REPO_TYPES=<span style="color:#0ff;font-weight:bold">&#39;vfs&#39;</span>
+</span></span><span style="display:flex;"><span>IGNORE_DATASET_REMOTE_SVN=<span style="color:#ff0;font-weight:bold">0</span> <span style="color:#007f7f">#nag if the repo url figured out is not the same as the one in &#39;svn info&#39;. you should leave this 0</span></span></span></code></pre></div><h5>dataset/.ddm</h5>
 <p>For an example see below.  Possible options are these:</p>
-{{< highlight "bash" "style=default" >}}
-DATASET_LOCAL='' #path to dataset locally (including type suffix if any)
-DATASET_REMOTE='' #path to dataset remotely (or locally if network mount)
-DATASET_PATH='' #just the path (until parent directory of dataset)
-DATASET_DIR_NAME='' #like $DATASET_LOCAL but no path 
-DATASET_DIR_NAME_REL  # identifier to dataset, taken against pwd ( could be '.','..', nothing at all, dirname, full path, ..)
-DATASET_NAME='' #like $DATASET_DIR_NAME but no type suffix
-DATASET_TYPE=''
-REPO_TYPE=''
-
-#you can override the following callbacks (example see below)
-precheckout
-docheckout
-postcheckout
-
-precommit
-docommit
-postcommit
-
-preupdate
-doupdate
-postupdate
-{{< /highlight >}}<h4>Invocation</h4>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>DATASET_LOCAL=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span> <span style="color:#007f7f">#path to dataset locally (including type suffix if any)</span>
+</span></span><span style="display:flex;"><span>DATASET_REMOTE=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span> <span style="color:#007f7f">#path to dataset remotely (or locally if network mount)</span>
+</span></span><span style="display:flex;"><span>DATASET_PATH=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span> <span style="color:#007f7f">#just the path (until parent directory of dataset)</span>
+</span></span><span style="display:flex;"><span>DATASET_DIR_NAME=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span> <span style="color:#007f7f">#like $DATASET_LOCAL but no path </span>
+</span></span><span style="display:flex;"><span>DATASET_DIR_NAME_REL  <span style="color:#007f7f"># identifier to dataset, taken against pwd ( could be &#39;.&#39;,&#39;..&#39;, nothing at all, dirname, full path, ..)</span>
+</span></span><span style="display:flex;"><span>DATASET_NAME=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span> <span style="color:#007f7f">#like $DATASET_DIR_NAME but no type suffix</span>
+</span></span><span style="display:flex;"><span>DATASET_TYPE=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>REPO_TYPE=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">#you can override the following callbacks (example see below)</span>
+</span></span><span style="display:flex;"><span>precheckout
+</span></span><span style="display:flex;"><span>docheckout
+</span></span><span style="display:flex;"><span>postcheckout
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>precommit
+</span></span><span style="display:flex;"><span>docommit
+</span></span><span style="display:flex;"><span>postcommit
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>preupdate
+</span></span><span style="display:flex;"><span>doupdate
+</span></span><span style="display:flex;"><span>postupdate</span></span></code></pre></div><h4>Invocation</h4>
 <pre>
 dieter@dieter-mbp:~$ ddm -h
 usage: ddm options
@@ -286,12 +282,10 @@ OPTIONS:
 <h5>Update my video-selection.</h5>
 <p>The directory is ~/video-selection.  It contains episodes that I'm watching<br />
 The .ddm file looks like this</p>
-{{< highlight "bash" "style=default" >}}
-doupdate()
-{
-	slidewindow mplayer 10 1
-}
-{{< /highlight >}}<p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>doupdate()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	slidewindow mplayer <span style="color:#ff0;font-weight:bold">10</span> <span style="color:#ff0;font-weight:bold">1</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><p>This means that ddm will look in my bash history and look for the movie files in this directory I have played (using "mplayer video-selection/*somefile*).<br />
 It will then delete all the ones I've already seen, except the latest one (parameter 3). It will also fetch the next 10 episodes (parameter 2)</p>
 <pre>
 dieter@dieter-mbp:~$ ddm -u -v -d video-selection/

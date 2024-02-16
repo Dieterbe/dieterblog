@@ -54,7 +54,7 @@
         },
         "datePublished": "2008-03-03",
         "description": "",
-        "wordCount":  506 ,
+        "wordCount":  606 ,
         "mainEntityOfPage": "True",
         "dateModified": "2008-03-03",
         "image": {
@@ -182,167 +182,166 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <br/>
+                <p>If you serve lots of (small) files with Lighttpd you might notice you're not getting the throughput you would expect.  Other factors (such as latencies because of the random read patterns ) aside, a real show stopper is the stat() system call, which is a blocking system call ( no parallelism ).  Some clever guys thought of a way to solve this : a fastcgi program that does a stat(), so when it returns Lighty doesn't have to wait because the stat information will be in the Linux cache.  And in the meanwhile your Lighty thread can do other stuff.  
+<br/>
 (in Lighty 1.5 there will be a native way for asynchronous stat() calls but for 1.4 this hack works pretty damn well)</p>
 <p>This is explained on the <a href="http://trac.lighttpd.net/trac/wiki/HowtoSpeedUpStatWithFastcgi"> HowtoSpeedUpStatWithFastcgi</a> page on the <a href="http://trac.lighttpd.net/trac/"> Lighty wiki</a>.</p>
 <p>Now, for <a href="http://www.netlog.com">Netlog</a> we needed to add some http headers ( Cache-Control: max-age, ETag, Expires and Last-Modified ) so we patched up the code a bit to do that, and a bit of other stuff.</p>
 <p>Ofcourse this is documented on <a href="http://trac.lighttpd.net/trac/wiki/FcgiStatAccelWithMoreHttpHeaders">the FcgiStatAccelWithMoreHttpHeaders page on the Lighty wiki</a></p>
 <p>Have fun !</p>
-{{< highlight "c" "style=default" >}}
-/*
-  Originally written by Fobax.
-  Edited by darix to support controlling thread count at runtime. 
-  Edited by poison and Dieter_be to support some http headers derived from the files.
-
-  Please do not remove any of the above.
-  
-  compile with: 
-
-  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel
-
-  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.
-
-  The default value, if spawned from lighttpd, is 20.
-*/
-
-#include "fcgi_config.h"
-
-#include <pthread.h>
-#include <sys/types.h>
-#include <unistd.h>   
-#include "fcgiapp.h"  
-#include <string.h>   
-#include <sys/types.h>
-#include <sys/stat.h> 
-
-#include <stdlib.h>
-#include <stdio.h> 
-
-#include "etag.h"
-#include "buffer.h"
-
-
-#define THREAD_COUNT 20
-
-
-#define FORBIDDEN(stream) \
-        FCGX_FPrintF(stream, "Status: 403 Forbidden\r\nContent-Type: text/html\r\n\r\n<h1>403 Forbidden</h1>\n");
-#define NOTFOUND(stream, filename) \
-        FCGX_FPrintF(stream, "Status: 404 Not Found\r\nContent-Type: text/html\r\n\r\n<h1>404 Not Found</h1>\r\n%s", filename);
-#define SENDFILE(stream, filename, headers) \
-        FCGX_FPrintF(stream, "%sX-LIGHTTPD-send-file: %s\r\n\r\n", headers, filename);
-
-#define EXPIRATION_TIME (int) 60*60*24*30
-
-
-int genheaders (char* mybuffer, size_t bufferlen, const char* file)
-{
-        char timebuf[32]; //possibly unsafe   
-        char lastmodbuf[32]; //possibly unsafe
-        char etag[128]; //possibly unsafe
-        struct stat statbuf;
-        time_t exp;
-        time_t lastmod;  
-        buffer *etag_raw;
-        buffer *etag_ok ;
- 
-        //create buffers for Etag
-        etag_raw = buffer_init();
-        etag_ok = buffer_init();
-                
-        // Stat the file
-        if (stat (file, &statbuf) != 0)
-        {
-                return -1;
-        }
-
-        // Clear the buffer
-        memset (mybuffer, 0, bufferlen);
-
-        // Get the local time
-        exp = time (NULL) + EXPIRATION_TIME;
-        lastmod = statbuf.st_mtime;
-
-        strftime (timebuf, (sizeof (timebuf) / sizeof (char)) - 1, "%a, %d %b %Y %H:%M:%S GMT", gmtime (&(exp)));
-        strftime (lastmodbuf, (sizeof (lastmodbuf) / sizeof (char)) - 1, "%a, %d %b %Y %H:%M:%S GMT", gmtime (&(lastmod)));
-
-        etag_create(etag_raw, &statbuf, ETAG_USE_SIZE);
-        etag_mutate(etag_ok, etag_raw);
-
-        buffer_free(etag_raw);
-
-        snprintf (mybuffer, bufferlen, "Cache-Control: max-age=%d\r\nETag: \%s\r\nExpires: %s\r\nLast-Modified: %s\r\n", EXPIRATION_TIME, etag_ok->ptr, timebuf , lastmodbuf);
-
-        buffer_free(etag_ok);
-
-        return 0;
-}
- 
-static void *doit(void *a){
-        FCGX_Request request;
-        int rc;
-        char *filename;
-        char extraheaders[192];
-        int r;
-
-        FCGX_InitRequest(&request, 0, FCGI_FAIL_ACCEPT_ON_INTR);
-
-        while(1){
-                //Some platforms require accept() serialization, some don't. The documentation claims it to be thread safe
-//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;
-//              pthread_mutex_lock(&accept_mutex);
-                rc = FCGX_Accept_r(&request);
-//              pthread_mutex_unlock(&accept_mutex);
-
-                if(rc < 0)
-                        break;
-
-        //get the filename
-                if((filename = FCGX_GetParam("SCRIPT_FILENAME", request.envp)) == NULL){
-                        FORBIDDEN(request.out);
-        //don't try to open directories
-                }else if(filename[strlen(filename)-1] == '/'){
-                        FORBIDDEN(request.out);
-        //open the file
-                }else if((r = genheaders (extraheaders, 191, filename)) != 0){
-                        NOTFOUND(request.out, filename);
-        //no error, serve it
-                }else{
-                        SENDFILE(request.out, filename, extraheaders);
-                }
-
-                FCGX_Finish_r(&request);
-        }
-        return NULL;
-}
-
-int main(void){
-        int i,j,thread_count;
-        pthread_t* id;
-        char* env_val;
-
-        FCGX_Init();
-
-        thread_count = THREAD_COUNT;
-        env_val = getenv("PHP_FCGI_CHILDREN");
-        if (env_val != NULL) {
-                j = atoi(env_val);
-                if (j != 0) {
-                        thread_count = j;
-                };
-        };
-
-        id = malloc(sizeof(*id) * thread_count);
-
-        for (i = 0; i < thread_count; i++) {
-                pthread_create(&id[i], NULL, doit, NULL);
-        }
-
-        doit(NULL);
-        free(id);  
-        return 0;  
-}
-{{< /highlight >}}
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#007f7f">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  Originally written by Fobax.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  Edited by darix to support controlling thread count at runtime. 
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  Edited by poison and Dieter_be to support some http headers derived from the files.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  Please do not remove any of the above.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  compile with: 
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  $ gcc -lfcgi -lpthread fcgi-stat-accel.c -o fcgi-stat-accel
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  fcgi-stat-accel will use the PHP_FCGI_CHILDREN environment variable to set the thread count.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">  The default value, if spawned from lighttpd, is 20.
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&#34;fcgi_config.h&#34;</span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;pthread.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;sys/types.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;unistd.h&gt;   </span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&#34;fcgiapp.h&#34;  </span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;string.h&gt;   </span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;sys/types.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;sys/stat.h&gt; </span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stdlib.h&gt;</span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&lt;stdio.h&gt; </span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&#34;etag.h&#34;</span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#include</span> <span style="color:#0f0;font-weight:bold">&#34;buffer.h&#34;</span><span style="color:#0f0;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#define THREAD_COUNT 20
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#define FORBIDDEN(stream) \
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">        FCGX_FPrintF(stream, &#34;Status: 403 Forbidden\r\nContent-Type: text/html\r\n\r\n&lt;h1&gt;403 Forbidden&lt;/h1&gt;\n&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#define NOTFOUND(stream, filename) \
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">        FCGX_FPrintF(stream, &#34;Status: 404 Not Found\r\nContent-Type: text/html\r\n\r\n&lt;h1&gt;404 Not Found&lt;/h1&gt;\r\n%s&#34;, filename);
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#define SENDFILE(stream, filename, headers) \
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">        FCGX_FPrintF(stream, &#34;%sX-LIGHTTPD-send-file: %s\r\n\r\n&#34;, headers, filename);
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#define EXPIRATION_TIME (int) 60*60*24*30
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">int</span> genheaders (<span style="color:#fff;font-weight:bold">char</span>* mybuffer, <span style="color:#fff;font-weight:bold">size_t</span> bufferlen, <span style="color:#fff;font-weight:bold">const</span> <span style="color:#fff;font-weight:bold">char</span>* file)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">char</span> timebuf[<span style="color:#ff0;font-weight:bold">32</span>]; <span style="color:#007f7f">//possibly unsafe   
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">char</span> lastmodbuf[<span style="color:#ff0;font-weight:bold">32</span>]; <span style="color:#007f7f">//possibly unsafe
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">char</span> etag[<span style="color:#ff0;font-weight:bold">128</span>]; <span style="color:#007f7f">//possibly unsafe
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">struct</span> stat statbuf;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">time_t</span> exp;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">time_t</span> lastmod;  
+</span></span><span style="display:flex;"><span>        buffer *etag_raw;
+</span></span><span style="display:flex;"><span>        buffer *etag_ok ;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">//create buffers for Etag
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        etag_raw = buffer_init();
+</span></span><span style="display:flex;"><span>        etag_ok = buffer_init();
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// Stat the file
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">if</span> (stat (file, &amp;statbuf) != <span style="color:#ff0;font-weight:bold">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>                <span style="color:#fff;font-weight:bold">return</span> -<span style="color:#ff0;font-weight:bold">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// Clear the buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        memset (mybuffer, <span style="color:#ff0;font-weight:bold">0</span>, bufferlen);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// Get the local time
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        exp = time (<span style="color:#fff;font-weight:bold">NULL</span>) + EXPIRATION_TIME;
+</span></span><span style="display:flex;"><span>        lastmod = statbuf.st_mtime;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        strftime (timebuf, (<span style="color:#fff;font-weight:bold">sizeof</span> (timebuf) / <span style="color:#fff;font-weight:bold">sizeof</span> (<span style="color:#fff;font-weight:bold">char</span>)) - <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;%a, %d %b %Y %H:%M:%S GMT&#34;</span>, gmtime (&amp;(exp)));
+</span></span><span style="display:flex;"><span>        strftime (lastmodbuf, (<span style="color:#fff;font-weight:bold">sizeof</span> (lastmodbuf) / <span style="color:#fff;font-weight:bold">sizeof</span> (<span style="color:#fff;font-weight:bold">char</span>)) - <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;%a, %d %b %Y %H:%M:%S GMT&#34;</span>, gmtime (&amp;(lastmod)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        etag_create(etag_raw, &amp;statbuf, ETAG_USE_SIZE);
+</span></span><span style="display:flex;"><span>        etag_mutate(etag_ok, etag_raw);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        buffer_free(etag_raw);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        snprintf (mybuffer, bufferlen, <span style="color:#0ff;font-weight:bold">&#34;Cache-Control: max-age=%d</span><span style="color:#0ff;font-weight:bold">\r\n</span><span style="color:#0ff;font-weight:bold">ETag: \%s</span><span style="color:#0ff;font-weight:bold">\r\n</span><span style="color:#0ff;font-weight:bold">Expires: %s</span><span style="color:#0ff;font-weight:bold">\r\n</span><span style="color:#0ff;font-weight:bold">Last-Modified: %s</span><span style="color:#0ff;font-weight:bold">\r\n</span><span style="color:#0ff;font-weight:bold">&#34;</span>, EXPIRATION_TIME, etag_ok-&gt;ptr, timebuf , lastmodbuf);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        buffer_free(etag_ok);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">static</span> <span style="color:#fff;font-weight:bold">void</span> *doit(<span style="color:#fff;font-weight:bold">void</span> *a){
+</span></span><span style="display:flex;"><span>        FCGX_Request request;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">int</span> rc;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">char</span> *filename;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">char</span> extraheaders[<span style="color:#ff0;font-weight:bold">192</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">int</span> r;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        FCGX_InitRequest(&amp;request, <span style="color:#ff0;font-weight:bold">0</span>, FCGI_FAIL_ACCEPT_ON_INTR);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">while</span>(<span style="color:#ff0;font-weight:bold">1</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#007f7f">//Some platforms require accept() serialization, some don&#39;t. The documentation claims it to be thread safe
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//              static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//              pthread_mutex_lock(&amp;accept_mutex);
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>                rc = FCGX_Accept_r(&amp;request);
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">//              pthread_mutex_unlock(&amp;accept_mutex);
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>
+</span></span><span style="display:flex;"><span>                <span style="color:#fff;font-weight:bold">if</span>(rc &lt; <span style="color:#ff0;font-weight:bold">0</span>)
+</span></span><span style="display:flex;"><span>                        <span style="color:#fff;font-weight:bold">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">//get the filename
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>                <span style="color:#fff;font-weight:bold">if</span>((filename = FCGX_GetParam(<span style="color:#0ff;font-weight:bold">&#34;SCRIPT_FILENAME&#34;</span>, request.envp)) == <span style="color:#fff;font-weight:bold">NULL</span>){
+</span></span><span style="display:flex;"><span>                        FORBIDDEN(request.out);
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">//don&#39;t try to open directories
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>                }<span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span>(filename[strlen(filename)-<span style="color:#ff0;font-weight:bold">1</span>] == <span style="color:#0ff;font-weight:bold">&#39;/&#39;</span>){
+</span></span><span style="display:flex;"><span>                        FORBIDDEN(request.out);
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">//open the file
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>                }<span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span>((r = genheaders (extraheaders, <span style="color:#ff0;font-weight:bold">191</span>, filename)) != <span style="color:#ff0;font-weight:bold">0</span>){
+</span></span><span style="display:flex;"><span>                        NOTFOUND(request.out, filename);
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">//no error, serve it
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>                }<span style="color:#fff;font-weight:bold">else</span>{
+</span></span><span style="display:flex;"><span>                        SENDFILE(request.out, filename, extraheaders);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                FCGX_Finish_r(&amp;request);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">NULL</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">int</span> main(<span style="color:#fff;font-weight:bold">void</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">int</span> i,j,thread_count;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">pthread_t</span>* id;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">char</span>* env_val;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        FCGX_Init();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        thread_count = THREAD_COUNT;
+</span></span><span style="display:flex;"><span>        env_val = getenv(<span style="color:#0ff;font-weight:bold">&#34;PHP_FCGI_CHILDREN&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (env_val != <span style="color:#fff;font-weight:bold">NULL</span>) {
+</span></span><span style="display:flex;"><span>                j = atoi(env_val);
+</span></span><span style="display:flex;"><span>                <span style="color:#fff;font-weight:bold">if</span> (j != <span style="color:#ff0;font-weight:bold">0</span>) {
+</span></span><span style="display:flex;"><span>                        thread_count = j;
+</span></span><span style="display:flex;"><span>                };
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        id = malloc(<span style="color:#fff;font-weight:bold">sizeof</span>(*id) * thread_count);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">for</span> (i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; thread_count; i++) {
+</span></span><span style="display:flex;"><span>                pthread_create(&amp;id[i], <span style="color:#fff;font-weight:bold">NULL</span>, doit, <span style="color:#fff;font-weight:bold">NULL</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        doit(<span style="color:#fff;font-weight:bold">NULL</span>);
+</span></span><span style="display:flex;"><span>        free(id);  
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#ff0;font-weight:bold">0</span>;  
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
 
             </div>
         </article></main>

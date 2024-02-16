@@ -54,7 +54,7 @@
         },
         "datePublished": "2013-09-14",
         "description": "",
-        "wordCount":  1417 ,
+        "wordCount":  1485 ,
         "mainEntityOfPage": "True",
         "dateModified": "2013-09-14",
         "image": {
@@ -182,7 +182,21 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <ul>
+                <p>
+<ul>
+<li>
+Graphite's metrics are strings comprised of dot-separated nodes which, due to their ordering, can be represented as a tree.
+Many other places use a similar format (stats in /proc etc).
+</li>
+<li>
+OpenTSDB's metrics are shorter, because they move some of the dimensions (server, etc) into key-value tags.
+</li>
+</ul>
+<b>I think we can do better...</b>
+<br/>
+I think our metrics format is restrictive and we do our self a disservice using it:
+
+<ul>
 <li>the metrics are not fully self-describing (they need additional information to become useful for interpretation, e.g. a unit, and information about what they mean)</li>
 <li>they impose needless limitations (no dots allowed, strict ordering)</li>
 <li>aggregators have no way to systematically and consistently express the operation they performed</li>

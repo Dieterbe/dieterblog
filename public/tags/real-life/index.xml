@@ -21,17 +21,5 @@ The mic setup had to be close enough to sound direct and focused without too muc
       
     </item>
     
-    <item>
-      <title>Masterproef</title>
-      <link>http://localhost:1313/masterproef/</link>
-      <pubDate>Tue, 17 Apr 2007 16:01:07 -0400</pubDate>
-      
-      <guid>http://localhost:1313/masterproef/</guid>
-      
-      <description> Op deze pagina verschijnen enkele gegevens, documenten en toevoegingen in het algemeen in het kader van mijn masterproef. (ook wel bekend als eindwerk of thesis).
-Titel (nl): Geautomatiseerde webwinkel en orderverwerking Title (en): Automated webstore and order processing School: Katholieke Hogeschool Sint - Lieven Abstract (nl + en) Poster (en) Paper (en, 5 blz) Scriptie (nl, 79 blz) Presentatie proefverdediging (niet de echte verdediging) (nl, 23 slides) Presentatie verdediging (nl, 25 slides) </description>
-      
-    </item>
-    
   </channel>
 </rss>

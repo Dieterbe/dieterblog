@@ -54,7 +54,7 @@
         },
         "datePublished": "2012-11-07",
         "description": "",
-        "wordCount":  875 ,
+        "wordCount":  956 ,
         "mainEntityOfPage": "True",
         "dateModified": "2012-11-07",
         "image": {
@@ -183,6 +183,25 @@ stroke-linejoin="round" class="feather feather-home">
             
             <div class="page-content">
                 <p>
+I submitted a pull request to statsd which adds <a href="https://github.com/etsy/statsd/pull/162">histogram support</a>.
+<img style="float:left;margin:0 5px 0 0;" src="/files/Black_cherry_tree_histogram.svg.png" alt="Example histogram, from Wikipedia"/>
+<br/>(refresher: a histogram is [a visualization of] a frequency distribution of data,
+paraphrasing your data by keeping frequencies for entire classes (ranges of data).
+<a href="http://en.wikipedia.org/wiki/Histogram">histograms - Wikipedia</a>)
+<br/>It's commonly documented how to plot single histograms, that is a 2D diagram consisting of rectangles whose
+<ul>
+<li>area is proportional to the frequency of a variable</li>
+<li>whose width is equal to the class interval</li>
+</ul>
+Class intervals go on x-axis, frequencies on y-axis.
+<br/>
+<br/>
+Note: histogram class intervals are supposed to have the same width.
+<br/>My implementation allows arbitrary class intervals with potentially different widths,
+as well as an upper boundary of infinite.
+</p>
+<h4>Plotting histograms.. over time</h4>
+<p>
 We want to plot histograms over time, and not just for a few select points in time (in which case you can just make several histograms),
 but a contiguous range of time, preferably through graphite's 2D graphs cause graphite is neat and common enough.
 <br/>Time goes on x-axis, that's pretty much a given.  So I'm trying to explore ways to visualize both class intervals as well as frequencies on the y-axis.
@@ -193,9 +212,7 @@ Tips and notes:
 <ul>
 <li>
 the histogram implementation stores absolute frequencies, but it's easy to get relative frequencies in percent, like so:
-{{< highlight "javascript" "style=default" >}}
-target=scale(divideSeries(stats.timers.<your_metric>.bin_*,stats.timers.render_time.count),100)
-{{< /highlight >}}
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>target=scale(divideSeries(stats.timers.&lt;your_metric&gt;.bin_*,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>)</span></span></code></pre></div>
 </li>
 <li>I'll be using relative frequencies here because it normalizes the scale of the y-axis</li>
 <li>In this use case each class has a notion of desirability (<i>low render time good, high render time bad</i>),
@@ -215,21 +232,19 @@ a misleading name but <a href="https://github.com/etsy/statsd/issues/98">we're w
 
 
 <h4>First version</h4>
-{{< highlight "javascript" "style=default" >}}
-http://localhost:9000/render/?height=300&
-width=740&from=-24h&title=Render time histogram&
-vtitle=relative frequency in %&yMax=100&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_01,stats.timers.render_time.count),100),'2FFF00'),'0.01')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),100),'64DD0E'),'0.05')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),100),'9CDD0E'),'0.1')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),100),'DDCC0E'),'0.5')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),100),'DDB70E'),'1')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),100),'FF6200'),'5')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),100),'FF3C00'),'10')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),100),'FF1E00'),'50')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),100),'FF0000'),'inf')&
-lineMode=slope&areaMode=stacked&drawNullAsZero=false&hideLegend=false
-{{< /highlight >}}
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>http:<span style="color:#007f7f">//localhost:9000/render/?height=300&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>width=<span style="color:#ff0;font-weight:bold">740</span>&amp;from=-<span style="color:#ff0;font-weight:bold">24</span>h&amp;title=Render time histogram&amp;
+</span></span><span style="display:flex;"><span>vtitle=relative frequency <span style="color:#fff;font-weight:bold">in</span> %&amp;yMax=<span style="color:#ff0;font-weight:bold">100</span>&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_01,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;2FFF00&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.01&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;64DD0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.05&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;9CDD0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.1&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;DDCC0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.5&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;DDB70E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;1&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;FF6200&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;5&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;FF3C00&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;10&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;FF1E00&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;50&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;FF0000&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;inf&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>lineMode=slope&amp;areaMode=stacked&amp;drawNullAsZero=<span style="color:#fff;font-weight:bold">false</span>&amp;hideLegend=<span style="color:#fff;font-weight:bold">false</span></span></span></code></pre></div>
 <img src="/files/rendertime-histogram.png" width="740" height="300" alt="rendertime histogram" />
 <br/>Turns out we mainly see the vast majority that performs well, simply because with this way of rendering,
 the higher the frequency of a class, the more prominent.  Bad values are hard to see because there's not many of them,
@@ -245,40 +260,36 @@ So, let's see what <i>can</i> be done right now.
 <h4>Leaving out the smallest class</h4>
 This adaption is basically the same as before, but leaves out the smallest class (which took most space), this way
 the other bands are a bit more visible but the effect isn't as clear as we want.
-{{< highlight "javascript" "style=default" >}}
-http://localhost:9000/render/?height=300&
-width=740&from=-24h&title=Render time histogram&
-vtitle=relative frequency in %, leaving out first class&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),100),'64DD0E'),'0.05')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),100),'9CDD0E'),'0.1')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),100),'DDCC0E'),'0.5')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),100),'DDB70E'),'1')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),100),'FF6200'),'5')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),100),'FF3C00'),'10')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),100),'FF1E00'),'50')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),100),'FF0000'),'inf')&
-lineMode=slope&areaMode=stacked&drawNullAsZero=false&hideLegend=false
-{{< /highlight >}}
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>http:<span style="color:#007f7f">//localhost:9000/render/?height=300&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>width=<span style="color:#ff0;font-weight:bold">740</span>&amp;from=-<span style="color:#ff0;font-weight:bold">24</span>h&amp;title=Render time histogram&amp;
+</span></span><span style="display:flex;"><span>vtitle=relative frequency <span style="color:#fff;font-weight:bold">in</span> %, leaving out first <span style="color:#fff;font-weight:bold">class</span>&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;64DD0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.05&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;9CDD0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.1&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;DDCC0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.5&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;DDB70E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;1&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;FF6200&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;5&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;FF3C00&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;10&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;FF1E00&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;50&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">100</span>),<span style="color:#0ff;font-weight:bold">&#39;FF0000&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;inf&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>lineMode=slope&amp;areaMode=stacked&amp;drawNullAsZero=<span style="color:#fff;font-weight:bold">false</span>&amp;hideLegend=<span style="color:#fff;font-weight:bold">false</span></span></span></code></pre></div>
 <img src="/files/rendertime-histogram-leaving-out-first-class.png" width="740" height="300" alt="rendertime histogram leaving out first class" />
 
 <h4>Per-band scaling</h4>
 Finally, the bigger the values represented by each class the more we inflate the band,
 so the more problematic cases become more visible, despite having a lower frequency.
-{{< highlight "javascript" "style=default" >}}
-http://localhost:9000/render/?height=300&
-width=740&from=-24h&title=Render time histogram&
-vtitle=rel. freq with scale adjustment per band&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_01,stats.timers.render_time.count),0.01),'2FFF00'),'0.01')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),0.04),'64DD0E'),'0.05')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),0.05),'9CDD0E'),'0.1')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),0.4),'DDCC0E'),'0.5')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),0.5),'DDB70E'),'1')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),4),'FF6200'),'5')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),5),'FF3C00'),'10')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),40),'FF1E00'),'50')&
-target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),60),'FF0000'),'inf')&
-lineMode=slope&areaMode=stacked&drawNullAsZero=false&hideLegend=false
-{{< /highlight >}}
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>http:<span style="color:#007f7f">//localhost:9000/render/?height=300&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>width=<span style="color:#ff0;font-weight:bold">740</span>&amp;from=-<span style="color:#ff0;font-weight:bold">24</span>h&amp;title=Render time histogram&amp;
+</span></span><span style="display:flex;"><span>vtitle=rel. freq <span style="color:#fff;font-weight:bold">with</span> scale adjustment per band&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_01,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">0.01</span>),<span style="color:#0ff;font-weight:bold">&#39;2FFF00&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.01&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_05,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">0.04</span>),<span style="color:#0ff;font-weight:bold">&#39;64DD0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.05&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_1,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">0.05</span>),<span style="color:#0ff;font-weight:bold">&#39;9CDD0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.1&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_0_5,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">0.4</span>),<span style="color:#0ff;font-weight:bold">&#39;DDCC0E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;0.5&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_1,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">0.5</span>),<span style="color:#0ff;font-weight:bold">&#39;DDB70E&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;1&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_5,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">4</span>),<span style="color:#0ff;font-weight:bold">&#39;FF6200&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;5&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_10,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">5</span>),<span style="color:#0ff;font-weight:bold">&#39;FF3C00&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;10&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_50,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">40</span>),<span style="color:#0ff;font-weight:bold">&#39;FF1E00&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;50&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>target=alias(color(scale(divideSeries(stats.timers.render_time.bin_inf,stats.timers.render_time.count),<span style="color:#ff0;font-weight:bold">60</span>),<span style="color:#0ff;font-weight:bold">&#39;FF0000&#39;</span>),<span style="color:#0ff;font-weight:bold">&#39;inf&#39;</span>)&amp;
+</span></span><span style="display:flex;"><span>lineMode=slope&amp;areaMode=stacked&amp;drawNullAsZero=<span style="color:#fff;font-weight:bold">false</span>&amp;hideLegend=<span style="color:#fff;font-weight:bold">false</span></span></span></code></pre></div>
 <img src="/files/rendertime-histogram-higher-focus-for-higher-class-interval.png" width="740" height="300" alt="rendertime histogram with higher focus for higher class interval" />
 <br/>I started off by scaling each band by the width of the class interval.  This is actually more arbitrary than it may seem.
 <br/>The point is that now it's easier to spot acute as well as long-standing problems, but note you can't really read statistics from this graph because of the per-band scaling.

@@ -54,7 +54,7 @@
         },
         "datePublished": "2014-09-24",
         "description": "",
-        "wordCount":  2751 ,
+        "wordCount":  3021 ,
         "mainEntityOfPage": "True",
         "dateModified": "2014-09-24",
         "image": {
@@ -182,7 +182,23 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <h4>Progress made</h4>
+                <br>
+<br/>Updated oct 1, 2014 with a new <i>Disk space efficiency</i> section which fixes some mistakes and adds more clarity.
+<br/>
+
+<p>
+The <i>Graphite + InfluxDB</i> series continues.
+<ul>
+<li>In part 1, <a href="/on-graphite-whisper-and-influxdb.html">"On Graphite, Whisper and InfluxDB"</a> I described the problems of Graphite's whisper and ceres, why I disagree with common graphite clustering advice as being the right path forward, what a great timeseries storage system would mean to me, why InfluxDB - despite being the youngest project - is my main interest right now, and introduced my approach for combining both and leveraging their respective strengths: InfluxDB as an ingestion and storage backend (and at some point, realtime processing and pub-sub) and graphite for its renown data processing-on-retrieval functionality.
+Furthermore, I introduced some tooling: <a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a> to easily route streams of carbon data (metrics datapoints) to storage backends, allowing me to send production data to Carbon+whisper as well as InfluxDB in parallel, <a href="https://github.com/brutasse/graphite-api">graphite-api</a>, the simpler Graphite API server, with <a href="https://github.com/vimeo/graphite-influxdb">graphite-influxdb</a> to fetch data from InfluxDB.
+</li>
+<li>Not Graphite related, but I wrote <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a> which I introduced <a href="/influx-cli_a_commandline_interface_to_influxdb.html">here</a>.  It allows to easily interface with InfluxDB and measure the duration of operations, which will become useful for this article.</li>
+<li>In the <a href="graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay.html">Graphite &amp; Influxdb intermezzo</a> I shared a script to import whisper data into InfluxDB and noted some write performance issues I was seeing, but the better part of the article described the various improvements done to <a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a>, which is becoming an increasingly versatile and useful tool.</li>
+<li>In <a href="/using-influxdb-as-graphite-backend-part2.html">part 2</a>, which you are reading now, I'm going to describe recent progress, share more info about my setup, testing results, state of affairs, and ideas for future work</li>
+</ul>
+
+
+<h4>Progress made</h4>
 <ul>
 <li>InfluxDB saw two major releases:
 <ul>

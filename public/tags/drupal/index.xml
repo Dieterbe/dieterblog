@@ -14,62 +14,9 @@
       
       <guid>http://localhost:1313/posts/migrating_blogs_from_drupal_to_pyblosxom/</guid>
       
-      <description>&lt;p&gt;&lt;a href=&#34;http://pyblosxom.bluesock.org/&#34;&gt;pyblosxom&lt;/a&gt; is a pretty cool blogging platform written in python.&lt;br /&gt;
-Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.&lt;br /&gt;
-The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn&#39;t just rely on an external service like disqus, but stores comments as plaintext files as well.&lt;br /&gt;
-Some features seem a bit overengineered (like, multiple possible locations to store themes (known as &#34;flavours&#34;) and templates; I&#39;m a fan of convention over configuration and keeping things simple), but discussing this with the maintainer revealed this is because pyblosxom is meant as a reimplementation of the original perl-based bloxsom project.  Over time features could be simplified and/or redesigned.&lt;br /&gt;
-So I plan to migrate this blog from drupal to pyblosxom.&lt;br /&gt;
-To do this, I&#39;m building the tool &lt;a href=&#34;https://github.com/Dieterbe/drupal-to-pyblosxom&#34;&gt;drupal-to-pyblosxom&lt;/a&gt;.&lt;br /&gt;
-The goal is to convert posts, associated metadata (publish time, tags) and comments from the drupal database to pyblosxom files.  Source code display should be converted too (merely a matter of converting between different plugin conventions), and images shown should be downloaded.  Currently I&#39;m about halfway, if there&#39;s anyone out there with a similar use case, help is welcome ;)</description>
-      
-    </item>
-    
-    <item>
-      <title>Upgrading Drupal the easy way</title>
-      <link>http://localhost:1313/posts/upgrading_drupal_the_easy_way/</link>
-      <pubDate>Sun, 29 Jul 2007 15:57:23 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/upgrading_drupal_the_easy_way/</guid>
-      
-      <description>&lt;p&gt;I just upgraded this site to &lt;a href=&#34;http://drupal.org/drupal-5.2&#34;&gt;Drupal 5.2&lt;/a&gt;.  The package came with upgrading instructions consisting of 11 steps to complete the upgrade proces, but after reading it a few times I realized it could be done easier.</description>
-      
-    </item>
-    
-    <item>
-      <title>Bye CakePHP, bye dAuth... Hello Drupal!</title>
-      <link>http://localhost:1313/posts/bye_cakephp_bye_dauth_hello_drupal/</link>
-      <pubDate>Thu, 19 Jul 2007 00:34:51 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/bye_cakephp_bye_dauth_hello_drupal/</guid>
-      
-      <description>&lt;p&gt;I&#39;m afraid the time has come to say goodbye to CakePHP, and to the projects I&#39;ve been working on for it.&lt;br /&gt;
-I still like Cake ... In fact, the further development of 1.2 goes the more I like it (well, generally spoken that is ... because there are some minor things I don&#39;t like but that&#39;s not important now).  The truth of the matter is I like to develop, I like the php language and I enjoy working with Cake.&lt;br /&gt;
-But .. all the sites I currently work on are all community sites or blogs</description>
-      
-    </item>
-    
-    <item>
-      <title>Getting statistics about events that don&#39;t trigger page requests with Google Analytics</title>
-      <link>http://localhost:1313/posts/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/</link>
-      <pubDate>Sun, 24 Jun 2007 19:27:42 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/getting_statistics_about_events_that_dont_trigger_page_requests_with_google_analytics/</guid>
-      
-      <description>&lt;p&gt;You probably already heard of &lt;a href=&#34;www.google.com/analytics&#34;&gt;Google Analytics&lt;/a&gt;.  It&#39;s a pretty nice program that (&lt;em&gt;basically&lt;/em&gt;) gathers data about visits of your site and creates reports of it.  It works by including some JavaScript code on your page, so that each page request triggers a call to the Analytics tracker sending along some data such as which page is requested and which resolution was used. (no personal or other privacy-sensitive data is sent).  But here is the deal!  I just discovered that you can also track &lt;a href=&#34;http://www.google.com/support/googleanalytics/bin/answer.py?answer=55597&amp;amp;topic=11012&#34;&gt;events that don&#39;t require page requests!&lt;/a&gt;&lt;br /&gt;
-Think of links to files or to external locations, JavaScript events (Ajax anyone?) or even Flash events (but who is crazy enough to use Flash anyway?).</description>
-      
-    </item>
-    
-    <item>
-      <title>Hello world!</title>
-      <link>http://localhost:1313/posts/blogpost1_hello_world/</link>
-      <pubDate>Sun, 04 Mar 2007 14:45:36 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/blogpost1_hello_world/</guid>
-      
-      <description>Finally, my own website...
-I already wanted to get this up for a long time. My initial idea was writing (and styling) it all from scratch using the marvelous CakePHP framework along with an authentication system i wrote, dAuth.
-However, due to my lack of time I decided to use the excellent drupal platform, of which I&#39;m quite sure will get the job done equally well, while drastically liberating my time, so I can invest it in other projects :-)</description>
+      <description>pyblosxom is a pretty cool blogging platform written in python.
+Like many of the modern minimal blog engines it works with plaintext files only (no database), has a relatively small codebase, supports many plugins (like markdown support), is written in a proper scripting language, has a simple and clean file structure, is seo-friendly, and so on.
+The one feature that sets it apart from other minimal blog engines is that it supports comments, and doesn&#39;t just rely on an external service like disqus, but stores comments as plaintext files as well.</description>
       
     </item>
     

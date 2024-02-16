@@ -14,34 +14,7 @@
       
       <guid>http://localhost:1313/posts/darktable_magnificent_photo_manager_editor/</guid>
       
-      <description>A post about the magnificent &lt;a href=&#34;http://darktable.org/&#34;&gt;darktable&lt;/a&gt; photo manager/editor and why I&#39;m abandoning &lt;a href=&#34;http://localhost:1313/pixie.html&#34;&gt;pixie&lt;/a&gt;
-
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Pixie: simple photo management using directory layouts and tags.</title>
-      <link>http://localhost:1313/posts/pixie/</link>
-      <pubDate>Mon, 30 Dec 2013 14:46:32 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/pixie/</guid>
-      
-      <description>So you have a few devices with pictures, and maybe some additional pictures your friends sent you.  You have a lot of pictures of the same thing and probably too high of a resolution.  Some may require some editing.  How do you easily create photo albums out of this mess?  And how do you do it in a way
-that keeps a simple and elegant, yet flexible file/directory layout for portability and simplicity?
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Thailand, Berlin Velocity EU, NYC, Ghent and more metal</title>
-      <link>http://localhost:1313/posts/thailand_berlin_velocity_nyc_ghent_metal/</link>
-      <pubDate>Sun, 08 Jan 2012 18:10:36 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/thailand_berlin_velocity_nyc_ghent_metal/</guid>
-      
-      <description>&lt;p&gt;I&#39;ve been meaning to write about a lot of stuff in separate posts, but they kept getting delayed, so I&#39;ll just briefly share everything in one post.
-</description>
+      <description>A post about the magnificent darktable photo manager/editor and why I&#39;m abandoning pixie When I wrote pixie, I was aware of darktable. It looked like a neat application with potential to be pretty much what I was looking for, although it also looked complicated, mainly due to terminology like &#34;darkroom&#34; and &#34;lighttable&#34;, which was a bit off-putting to me and made me feel like the application was meant for photo professionals and probably wouldn&#39;t work well with the ideals of a techie with some purist views on how to manage files and keep my filesystems clean.</description>
       
     </item>
     

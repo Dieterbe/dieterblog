@@ -53,9 +53,6 @@
     <loc>http://localhost:1313/posts/moved-blog-to-hugo-fastly-comma/</loc>
     <lastmod>2015-07-02T16:35:02-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/talks/</loc>
-    <lastmod>2015-05-03T23:01:07-04:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/practical-fault-detection-on-timeseries-part-2/</loc>
     <lastmod>2015-04-27T09:05:02-04:00</lastmod>
   </url><url>
@@ -542,5 +539,9 @@
     <loc>http://localhost:1313/about/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/huh/</loc>
+  </url><url>
+    <loc>http://localhost:1313/talks/</loc>
   </url>
 </urlset>

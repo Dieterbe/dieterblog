@@ -54,7 +54,7 @@
         },
         "datePublished": "2011-10-02",
         "description": "",
-        "wordCount":  1373 ,
+        "wordCount":  1480 ,
         "mainEntityOfPage": "True",
         "dateModified": "2011-10-02",
         "image": {
@@ -182,7 +182,12 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                Basically the story is pretty much the same as it was with uzbl.  There are no mail clients which offer a high level of customization and interfacing possibilities.  There are some mail clients aimed at "power users" and "lightweight mail clients" like mutt/alpine/nmh etc but those are also restricted in extensibility and often crippled in terms of features.  Currently I'm using Claws-mail, which is the least sucky client I found, but it's also nowhere near what I want.
+                <p>Similarly to how back in 2009 there was no browser that works in a way I find sane, and I started solving that with <a href="/uzbl_a_browser_that_adheres_to_the_unix_philosophy">uzbl</a>,
+now I'm fed up with the lack of an email client that works in a way I find sane.  Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic <a href="http://luakit.org">luakit</a> browser,
+which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API's.
+Now I want to build the "luakit of email clients".  Let me explain what's that all about...</p>
+
+Basically the story is pretty much the same as it was with uzbl.  There are no mail clients which offer a high level of customization and interfacing possibilities.  There are some mail clients aimed at "power users" and "lightweight mail clients" like mutt/alpine/nmh etc but those are also restricted in extensibility and often crippled in terms of features.  Currently I'm using Claws-mail, which is the least sucky client I found, but it's also nowhere near what I want.
 
 <h3>So, what do I want in a mail client?</h3>
 <ul>

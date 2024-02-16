@@ -14,81 +14,8 @@
       
       <guid>http://localhost:1313/posts/handing_off_uzbl_to_a_new_project_leader/</guid>
       
-      <description>&lt;p&gt;As of yesterday, &lt;a href=&#34;http://necronomicorp.com/lab/&#34;&gt;Brendan &#39;bct&#39; Taylor&lt;/a&gt; is the new Uzbl project leader / maintainer.&lt;br /&gt;
-Yesterday I did the &lt;a href=&#34;http://www.uzbl.org/news.php?id=30&#34;&gt;newspost on uzbl.org&lt;/a&gt; which explains the reasoning.  I can add it feels pretty weird &#34;giving away&#34; and &#34;leaving behind&#34; a project you spent so much time on and which grew a large (well, for a FOSS side project with a hacker audience) base of users and contributors, and which served as inspiration for various other projects.</description>
-      
-    </item>
-    
-    <item>
-      <title>Uzbl, monitoring, AIF talks</title>
-      <link>http://localhost:1313/posts/uzbl_monitoring_aif_talks/</link>
-      <pubDate>Sun, 07 Mar 2010 12:06:18 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/uzbl_monitoring_aif_talks/</guid>
-      
-      <description>&lt;p&gt;I recently did two talks, for which the videos are now online.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.uzbl.org/news.php?id=25&#34;&gt;Uzbl lightningtalk @ fosdem 2010&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Open Source Monitoring tools lightning talk @ &lt;a href=&#34;http://www.kangaroot-showcase.be/&#34;&gt;Kangaroot showcase&lt;/a&gt; 2009.  This one is password protected.  If you were a participant, you should have received the pass&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If all goes well, I&#39;ll be at &lt;a href=&#34;http://www.archlinux.ca/archcon2010/&#34;&gt;ArchCon&lt;/a&gt; this summer, where I&#39;ll be doing these talks:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=67&#34;&gt;AIF: The Arch Installation Framework&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.archlinux.ca/archcon2010/?p=73&#34;&gt;Uzbl &amp; web interface tools which adhere to the unix philosophy&lt;/a&gt;. Whereas in the fosdem talk I had to focus a lot of information into a short timeslot, here I&#39;ll elaborate a bit more&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We&#39;re not sure yet if those talks will get videotaped.&lt;br /&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>Fosdem 2010</title>
-      <link>http://localhost:1313/posts/fosdem_2010/</link>
-      <pubDate>Sun, 24 Jan 2010 17:10:16 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/fosdem_2010/</guid>
-      
-      <description>&lt;p&gt;I&#39;ll be at fosdem - 10th edition - again this year.&lt;br /&gt;
-&lt;a href=&#34;http://www.fosdem.org&#34;&gt;&lt;img src=&#34;http://localhost:1313/files/blog/fosdem/going-to-2010.jpg&#34; alt=&#34;I&#39;m going to FOSDEM, the Free and Open Source Software Developers&#39; European Meeting&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I&#39;ll be presenting a &lt;a href=&#34;http://fosdem.org/2010/schedule/events/uzbl&#34;&gt;lightning talk&lt;/a&gt; about &lt;a href=&#34;http://www.uzbl.org/&#34;&gt;uzbl&lt;/a&gt;.&lt;br /&gt;
-Also, &lt;a href=&#34;http://www.archlinux.org/&#34;&gt;Arch Linux&lt;/a&gt; guys Roman, JGC, Thomas and me will hang out at the &lt;a href=&#34;http://fosdem.org/2010/schedule/devrooms/distributions&#34;&gt;distro miniconf&lt;/a&gt;.  We might join the &lt;a href=&#34;http://fosdem.org/2010/schedule/events/dist_infrastructure&#34;&gt;infrastructure round-table&lt;/a&gt; panel, but there is no concrete information yet.&lt;/p&gt;
-&lt;p&gt;More stuff I&#39;m looking forward to:</description>
-      
-    </item>
-    
-    <item>
-      <title>Arch Linux interview and Uzbl article</title>
-      <link>http://localhost:1313/posts/arch_linux_interview_and_uzbl_article/</link>
-      <pubDate>Mon, 11 Jan 2010 21:30:50 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/arch_linux_interview_and_uzbl_article/</guid>
-      
-      <description>Arch Linux team interview @ OSNews Uzbl @ LWN.net Apologies for only informing you about the second article now. I assumed most of you follow LWN (you probably should) or found the article anyway.
-Of all the articles written about uzbl, no one came close to the quality of Koens work. So even though it&#39;s a bit dated it&#39;s still worth a read.</description>
-      
-    </item>
-    
-    <item>
-      <title>Froscon 2009 afterthoughts</title>
-      <link>http://localhost:1313/posts/froscon_2009_afterthoughts/</link>
-      <pubDate>Fri, 28 Aug 2009 19:00:02 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/froscon_2009_afterthoughts/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Uzbl.  A browser that adheres to the unix philosophy.</title>
-      <link>http://localhost:1313/posts/uzbl_a_browser_that_adheres_to_the_unix_philosophy/</link>
-      <pubDate>Mon, 27 Apr 2009 23:02:37 -0400</pubDate>
-      
-      <guid>http://localhost:1313/posts/uzbl_a_browser_that_adheres_to_the_unix_philosophy/</guid>
-      
-      <description>&lt;p&gt;I need a browser that is fast, not bloated, stores my data (bookmarks, history, account settings, preferences, ...) in simple text files that I can keep under version control, something that does not reinvent the wheel, something that I can control.&lt;/p&gt;
-&lt;p&gt;Well, I could not find it.&lt;br /&gt;
-So I started the &lt;a href=&#34;http://bbs.archlinux.org/viewtopic.php?id=70700&amp;amp;p=1&#34;&gt;uzbl browser&lt;/a&gt; project.</description>
+      <description>As of yesterday, Brendan &#39;bct&#39; Taylor is the new Uzbl project leader / maintainer.
+Yesterday I did the newspost on uzbl.org which explains the reasoning. I can add it feels pretty weird &#34;giving away&#34; and &#34;leaving behind&#34; a project you spent so much time on and which grew a large (well, for a FOSS side project with a hacker audience) base of users and contributors, and which served as inspiration for various other projects.</description>
       
     </item>
     

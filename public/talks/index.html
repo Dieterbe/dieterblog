@@ -136,17 +136,36 @@ stroke-linejoin="round" class="feather feather-home">
             <header class="header">
                 <h1 class="header-title">Talks</h1>
                 
-                
-                <div class="post-meta">
-                    <time datetime="2015-05-03T23:01:07-04:00" itemprop="datePublished"> 3 May 2015 </time>
-                </div>
-                
             </header>
             
             <div class="page-content">
-                
-<h2>Talks</h2>
+                {{ $gents := slice "John" "Paul" }}
 
+{{ range $gents }}
+  I love {{ . }}
+{{ end }}
+
+{{ . }}
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#007f7f">#!/bin/bash</span></span></span></code></pre></div>
+
+
+<h2>Talks</h2>
+{{ $m := slice
+    (dict "name" "John" "age" 30)
+    (dict "name" "Will" "age" 28)
+    (dict "name" "Joey" "age" 24)
+  }}
+  {{ range $m }}
+    <p>{{ .name }} is {{ .age }}</p>
+  {{ end }}
+<article class="post-item">
+    <h4 class="post-item-title">
+        <a href="/posts/restoring-accidental-git-force-push-overwrite-on-github-if-dont-have-needed-commits-locally/">Restoring accidental git force push overwrite on GitHub if you don't have the needed commits locally</a>
+    </h4>
+    <time class="post-item-meta" datetime="2016-11-14T11:33:03+0200">
+        14 Nov 2016
+    </time>
+</article>
 <table>
 <tbody>
 <tr>

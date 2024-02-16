@@ -54,7 +54,7 @@
         },
         "datePublished": "2013-09-07",
         "description": "",
-        "wordCount":  553 ,
+        "wordCount":  658 ,
         "mainEntityOfPage": "True",
         "dateModified": "2013-09-07",
         "image": {
@@ -183,6 +183,17 @@ stroke-linejoin="round" class="feather feather-home">
             
             <div class="page-content">
                 <p>
+I've been a <a href="https://github.com/graphite-project/">graphite</a> contributor for a while (and still am).  It's a <i>great</i> tool for timeseries metrics.
+Two weeks ago I started working on <a href="https://github.com/graphite-ng/graphite-ng">Graphite-ng</a>:
+it's somewhere between an early clone/rewrite, a redesign, and an experiment playground, written in <a href="http://golang.org">Golang</a>.
+The focus of my work so far is the API web server, which is a functioning prototype, it answers requests like</p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">/render/</span>?target=sum(scale(stats.web2,<span style="color:#ff0;font-weight:bold">5.12</span>),derivative(stats.web2))</span></span></code></pre></div>
+<p>
+I.e. it lets you retrieve your timeseries, processed by function pipelines which are setup on the fly based on a spec in your http/rest arguments.
+Currently it only fetches metrics from text files but I'm working on decent metrics storage as well.
+</p>
+
+<p>
 There's a few reasons why I decided to start a new project from scratch:
 <ul>
 <li>With graphite, it's a whole ordeal to get all components properly installed.  Deploying in production environments is annoying and even more so

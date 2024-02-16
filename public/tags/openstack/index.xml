@@ -14,8 +14,7 @@
       
       <guid>http://localhost:1313/posts/dell_crowbar_openstack_swift/</guid>
       
-      <description>Learned about &lt;a href=&#34;https://github.com/dellcloudedge/crowbar&#34;&gt;Dell Crowbar&lt;/a&gt; the other day.  It seems to be (becoming) a tool I&#39;ve wanted for quite a while, because it takes automating physical infrastructure to a new level, and is also convenient on virtual.
-</description>
+      <description>Learned about Dell Crowbar the other day. It seems to be (becoming) a tool I&#39;ve wanted for quite a while, because it takes automating physical infrastructure to a new level, and is also convenient on virtual. It provides a central management interface which leverages chef, but extends it to a broader scope: it takes care of configuring the bios and raid firmware, BMC/IPMI, doing a PXE autoinstall and setting up chef, which of course does everything else you might need.</description>
       
     </item>
     

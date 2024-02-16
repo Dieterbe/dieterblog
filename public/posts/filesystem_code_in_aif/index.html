@@ -54,7 +54,7 @@
         },
         "datePublished": "2010-12-08",
         "description": "",
-        "wordCount":  1617 ,
+        "wordCount":  1794 ,
         "mainEntityOfPage": "True",
         "dateModified": "2010-12-08",
         "image": {
@@ -182,7 +182,19 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <br />
+                <p>In light of the work and discussions around supporting Nilfs2 and Btrfs on Arch Linux and its installer AIF,<br />
+I've shared some <a href="http://mailman.archlinux.org/pipermail/arch-releng/2010-December/001310.html">AIF filesystem code design insights and experiences</a> on the arch-releng mailing list.<br />
+This is some hard to understand code.  Partly because it's in bash (and I've needed to work around some limitations in bash),<br />
+partly because there is some complex logic going on.</p>
+<p>I think it's very useful material for those who are interested (it can also help understanding the user aspect),<br />
+so I wanted to share an improved version here.<br />
+On a related topic: I proposed to do a session at <a href="http://www.fosdem.org">Fosdem 2011/"distro miniconf"</a> about simple (console based) installers for Linux,<br />
+and how multiple distributions could share efforts maintaining installation tools, because there are a lot of cross-distribution concerns<br />
+which are not trivial to get right (mostly filesystems, but I also think about clock adjustments, bootloaders, etc).<br />
+Already several distro's use the (or a fork of) the Arch installer, for example <a href="http://pentoo.blogspot.com/2010/10/pentoo-installation-made-easy.html">Pentoo</a>,<br />
+but I think cooperation could be much better and more efficient.</p>
+<p>Anyway:<br />
+<br />
 my acronyms for this text:</p>
 <ul>
 <li>LV = lvm2 Logical Volume</li>

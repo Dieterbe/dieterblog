@@ -54,7 +54,7 @@
         },
         "datePublished": "2009-09-14",
         "description": "",
-        "wordCount":  202 ,
+        "wordCount":  236 ,
         "mainEntityOfPage": "True",
         "dateModified": "2009-09-14",
         "image": {
@@ -182,7 +182,9 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <br />
+                <p>Inspired by <a href="http://bbs.archlinux.org/viewtopic.php?id=71938">Snippy</a> and <a href="http://lifehacker.com/351285/automate-repetitive-typing-with-snippits">snippits</a>, I wrote a simple tool called <a href="http://github.com/Dieterbe/snip">snip</a>.<br />
+It helps you to automatically fill in text for you (which can be dynamically created) and/or to perform custom keypresses and operations.<br />
+<br />
 It works like this: you bind a key (in your WM or with <a href="http://freshmeat.net/projects/xbindkeys/">xbindkeys</a>) to launch `snip` with the `load` or `save` argument.</p>
 <ul>
 <li>`load` will look in a folder in your $HOME for snips (small text files) and present them through <a href="http://tools.suckless.org/dmenu">dmenu</a>.  If your snip has the executable flag it will be executed, otherwise the literal contents of the file are taken.  <a href="http://www.semicomplete.com/projects/xdotool/">xdotool</a> is used to type the output (which gets entered where your cursor is).  </li>

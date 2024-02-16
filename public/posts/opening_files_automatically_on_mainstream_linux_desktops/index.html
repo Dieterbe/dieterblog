@@ -54,7 +54,7 @@
         },
         "datePublished": "2009-09-22",
         "description": "",
-        "wordCount":  157 ,
+        "wordCount":  295 ,
         "mainEntityOfPage": "True",
         "dateModified": "2009-09-22",
         "image": {
@@ -182,7 +182,13 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <br />
+                <p>Xfce/Gnu/Linux works amazingly well on my moms workstation, with one exception: opening files automatically with the correct program.</p>
+<p>The two biggest culprits are:</p>
+<ul>
+<li>Gtk's "open file with" dialog: if any Gtk program doesn't know how to open a file it brings up this dialog that is horrible to use.  You can search through your entire VFS for the right executable.  No thumbnails, no usage of .desktop files, $PATH, autocompletion and not even limiting the scope to directories such as /usr/bin</li>
+<li>Mozilla software such as Firefox and Thunderbird: they only seem to differentiate files by their mimetype, not by extension.  There are add-ons to make it easier to edit these preferences, but eventually you're in a dead end because you get files with correct extensions but unuseful mimetimes (application/octet-stream)</li>
+</ul>
+<p>Luckily the fd.o guys have come up with <a href="http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html">.desktop files</a>.<br />
 In $XDG_DATA_HOME/applications/defaults.list you can define which applications to use for which mime type.<br />
 So the only thing you need to do is call <a href="http://portland.freedesktop.org/xdg-utils-1.0/xdg-open.html">xdg-open</a> to open a file with the application you want.<br />
 And that's exactly what I did. For now I just configure everything to use xdg-open and that seems to work just fine.  Oddly enough, even though the defaults.list is also based on mimetypes, files that are marked as octet-stream in Thunderbird seem to be properly recognized by xdg-open and opened with the correct program.  Or maybe this is because at the time of testing I only had octet-stream .doc files.  Anyway, we'll see.  But for now it's looking pretty good. </p>

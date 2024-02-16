@@ -54,7 +54,7 @@
         },
         "datePublished": "2009-01-19",
         "description": "",
-        "wordCount":  545 ,
+        "wordCount":  850 ,
         "mainEntityOfPage": "True",
         "dateModified": "2009-01-19",
         "image": {
@@ -182,7 +182,19 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                </p>
+                <p>At my <a href="/jobhunt_over">new job</a>, I'm writing a quite full-featured web application.<br />
+I've choosen to use CakePHP.<br />
+Why? Well, it may be 2 years since I last used it, but I've followed the project and it's planet, and it seems to have matured and gained even more monumentum.<br />
+I want to use something that is widely used so there is plenty of stuff available for it, it's RAD, it's flexible and powerful.<br />
+I noticed things such as CLI support and documentation have improved tremendously too.</p>
+<p>However, I find that still, the recommended (or at least "most commonly used") practices are not as efficient as they could be, and that emphasis is placed on the wrong aspects.<br />
+See, even though the <a href="http://book.cakephp.org/view/113/Code-Generation-with-Bake">bake</a> tool has come a long way since I last used it, it's still used to "generate some standard models/controllers/views" and the developer can take it from there [further editing the resulting files himself].<br />
+Finetuning generated code by editing the templates (in fact, only views have templates; the php code of models and controllers is hardcoded in the scripts that generate them), is still an obscure practice...<br />
+Also, there are very few commandline switches (Right now you can choose your app dir, whether you want to bake a model,controller or view, and it's name.)<br />
+All other things (validation rules, associatons, index/view/edit/add actions/views, which components, overwrite yes/no etc) are all handled interactively.<br />
+There are also some smaller enoyances such as when you specify one option like the name of the model, it assumes you don't want interactivity and produces a model containing nothing more then the class definition and the membervariable $name, which is usually worthless.<br />
+One thing that is pretty neat though, If you update $this->recursive in a model, the baked views will contain stuff for the associated things.  But so much more could be done...<br />
+</p>
 <p>Ideallistically speaking, the bake tool (and it libraries) should imho become much more advanced:</p>
 <ul>
 <li>templates for views, models and controllers.</li>

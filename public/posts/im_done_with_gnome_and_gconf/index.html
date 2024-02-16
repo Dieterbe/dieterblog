@@ -54,7 +54,7 @@
         },
         "datePublished": "2008-09-29",
         "description": "",
-        "wordCount":  567 ,
+        "wordCount":  689 ,
         "mainEntityOfPage": "True",
         "dateModified": "2008-09-29",
         "image": {
@@ -182,7 +182,10 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                </p>
+                <p>I'm managing my ~ in svn but using gnome &amp; gconf makes this rather hard.<br />
+They mangle cache data together with user data and user preferences and spread that mix over several directories in your home  (.gconf, .gnome2 etc).<br />
+The .gconf directory is the worst.  This is where many applications store all their stuff.   User preferences but also various %gconf.xml files, which seem to be updated automatically everytime 'something' happens:  They keep track of timestamps for various events such as when you press numlock or become available on pidgin.<br />
+I'm fine with the fact they do that.  I'm sure it enables them to provide some additional functionality.  But they need to do it in clearly separated places (such as <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">xdg's</a> $XDG_CACHE_HOME directory)</p>
 <p>While trying to apply version control to my $HOME I need to spend way too much time scripting various <i>svn reverts</i> of many of those changes (in .gnome2, .gconf/apps/*, and .gconf/desktop), and also updating many <i>svn:ignore</i> properties (although gnome/gconf are definitely not the only culprits for that.)</p>
 <p>The Gnome guys make some nice stuff, that's for sure.  But what is crucially important to me seems to be a low-prio thing for them (and let's face it, many users don't care about this...).<br />
 They do have a <a href="http://live.gnome.org/GnomeGoals/XDGConfigFolders">Gnome Goal</a> to adress this problem but it clearly states it's only a proposal at this time, so it can take a long time before everything gets cleaned up.  There are also some other <a href="http://brainstorm.ubuntu.com/idea/6557/">ubuntu</a> <a href="http://brainstorm.ubuntu.com/idea/1210">ideas</a>, <a href="https://blueprints.launchpad.net/ubuntu/+spec/correct-home-dir-clutter">Launchpad Blueprints</a> and <a href="http://ploum.frimouvy.org/?184-cleaning-user-preferences-keeping-user-data">blog posts</a> along these lines, so I guess there is some public interest in this.</p>

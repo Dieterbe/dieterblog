@@ -54,7 +54,7 @@
         },
         "datePublished": "2011-03-26",
         "description": "",
-        "wordCount":  189 ,
+        "wordCount":  281 ,
         "mainEntityOfPage": "True",
         "dateModified": "2011-03-26",
         "image": {
@@ -182,7 +182,21 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <ul>
+                I found the Dvcs-autosync project on the <a href="http://lists.madduck.net/listinfo/vcs-home">vcs-home</a> mailing list,
+which btw is a great list for folks who are doing stuff like maintaining their home directory in a vcs.
+<br/>In short:
+<ul>
+<li>simple python tool (600 sloc), works with your dvcs of choice (mainly tested/used with git)</li>
+<li>watches for inotify events, performs commits on changes (coalesces some changes together)</li>
+<li>synchronizes with other clones (remotes), uses xmpp for push notifications</li>
+<li>let's you know what's going on through libnotify popups or whatever</li>
+<li><a href="http://mayrhofer.eu.org/dvcs-autosync">home page: http://mayrhofer.eu.org/dvcs-autosync</a></li>
+<li><a href="http://gitorious.org/dvcs-autosync/dvcs-autosync">dvcs-autosync gitorious repo</a></li>
+<li><a href="http://lists.madduck.net/pipermail/vcs-home/2011-March/000314.html">initial announcement on vcs-home</a></li>
+</ul>
+Use cases:
+
+<ul>
 <li>you have one or more trees you want to maintain under a VCS (because you want vcs advantages like history and whatnot) but it's not worth to spend time comitting manually</li>
 <li>you want to backup some files transparently</li>
 <li>you want to share / work with others easily</li>

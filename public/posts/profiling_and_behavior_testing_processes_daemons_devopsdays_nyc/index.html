@@ -54,7 +54,7 @@
         },
         "datePublished": "2013-01-21",
         "description": "",
-        "wordCount":  616 ,
+        "wordCount":  785 ,
         "mainEntityOfPage": "True",
         "dateModified": "2013-01-21",
         "image": {
@@ -182,7 +182,33 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <h3>Simple-black-box talk @ Devopsdays NYC</h3>
+                <h3>Profiling a process run</h3>
+<a href="https://github.com/Dieterbe/profile-process">
+<img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/profile_io.png" width="100px" height="100px"/>
+</a>
+I wanted the ability to run a given process and get
+<br/>a plot of key metrics (cpu usage, memory usage, disk i/o) throughout the duration of the process run.
+<br/>Something light-weight with minimal dependencies so I can easily install it on a server for a one-time need.
+<br/>Couldn't find a tool for it, so I wrote <a href="https://github.com/Dieterbe/profile-process">profile-process</a>
+<br/>which does exactly that in <100 lines of python.
+<br/>
+<br/>
+
+<h3>black-box behavior testing processes/daemons</h3>
+<a href="https://github.com/vimeo/simple-black-box">
+<img style="float:left;margin:0 5px 0 0;" src="/files/presentation-simple-black-box/images/screenshot-no-pause.png" width="150px" height="100px"/>
+</a>
+I wrote <a href="https://github.com/vimeo/simple-black-box">simple-black-box</a> to do this.
+<br/>It runs the subject(s) in a crafted sandbox, sends input (http requests, commands, ...)
+<br/>and allows to make assertions on http/statsd requests/responses, network listening state, processes running, log entries,
+<br/>file existence/checksums in the VFS/swift clusters, etc.
+<br/>Each test-case is a scenario.
+<br/>It also can use <a href="http://logstash.net/">logstash</a> to give a centralized "distributed stack trace" when you need to debug a failure after
+multiple processes interacting and acting upon received messages; or to compare behavior across different scenario runs.
+<br/>You can integrate this with profile-process to compare runtime behaviors across testcases/scenarios.
+
+
+<h3>Simple-black-box talk @ Devopsdays NYC</h3>
 I did a quick <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">5min talk</a>, despite some display/timing issues it was well received.
 (in particular I got some really positive feedback from one person and still wonder if that was a recruiter attempting to
 hire me -but being shy about it...- it was quite awkward)

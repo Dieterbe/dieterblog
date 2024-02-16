@@ -14,11 +14,7 @@
       
       <guid>http://localhost:1313/posts/luamail_a_mail_client_built_into_luakit/</guid>
       
-      <description>&lt;p&gt;Similarly to how back in 2009 there was no browser that works in a way I find sane, and I started solving that with &lt;a href=&#34;http://localhost:1313/uzbl_a_browser_that_adheres_to_the_unix_philosophy&#34;&gt;uzbl&lt;/a&gt;,
-now I&#39;m fed up with the lack of an email client that works in a way I find sane.  Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic &lt;a href=&#34;http://luakit.org&#34;&gt;luakit&lt;/a&gt; browser,
-which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API&#39;s.
-Now I want to build the &#34;luakit of email clients&#34;.  Let me explain what&#39;s that all about...&lt;/p&gt;
-</description>
+      <description>Similarly to how back in 2009 there was no browser that works in a way I find sane, and I started solving that with uzbl, now I&#39;m fed up with the lack of an email client that works in a way I find sane. Uzbl turned out to be a bit cumbersome for my taste, so I switched to the uzbl-inspired but more pragmatic luakit browser, which is much in the same vein, except that all configuration, extensions, event handling, programmatic input etc are done by interfacing with lua API&#39;s.</description>
       
     </item>
     

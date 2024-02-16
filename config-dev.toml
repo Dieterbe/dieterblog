@@ -18,7 +18,7 @@ uglyUrls = false
 [[menu.main]]
     pageRef="posts"
     name = 'Posts'
-    url = '/post/'
+    url = '/posts/'
     weight = 20
 [[menu.main]]
     pageRef="about"

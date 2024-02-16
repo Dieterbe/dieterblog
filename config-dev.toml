@@ -1,7 +1,7 @@
 baseURL = "http://localhost:1313"
 languageCode = 'en-us'
 title = "Dieter's blog"
-theme = "dieter"
+theme = "hugo-blog-awesome"
 buildDrafts = false
 buildFuture = false
 uglyUrls = false
@@ -10,26 +10,45 @@ uglyUrls = false
   commentServer = "http://localhost:5888/comments"
 
 [[menu.main]]
-    name = "blog"
-    url = "/"
-    weight = 9
-[[menu.main]]
-    name = "about"
-    url = "/about"
+    # The page reference (pageRef) is useful for menu highlighting
+    # When pageRef is set, setting `url` is optional; it will be used as a fallback if the page is not found.
+    pageRef="/"
+    name = 'Home'
     weight = 10
-
 [[menu.main]]
-    name = "talks"
-    url = "/talks"
+    pageRef="posts"
+    name = 'Posts'
+    url = '/post/'
     weight = 20
-
 [[menu.main]]
-    name = "Github"
-    pre = "<i class='fa fa-heart'></i>"
-    weight = 40
-    url = "https://github.com/Dieterbe"
-[[menu.main]]
-    name = "tweets"
-    pre = "<i class='fa fa-road'></i>"
+    pageRef="about"
+    name = 'About'
     weight = 30
-    url = "https://twitter.com/Dieter_be"
+[[menu.main]]
+    pageRef="talks"
+    name = "Talks"
+    weight = 40
+
+[params.author]
+  avatar = "grafana_dieter_plaetinck.jpg" # put the file in assets folder; also ensure that image has same height and width
+  # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
+  intro = "Dieter's blog"
+  name = "Dieter Plaetinck"
+  description = "Dieter's on website eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee sssssssssssssssssssssssssssssssssssssssssssssss"
+
+[[params.profiles]]
+name = "GitHub"
+url = "https://github.com/ba11b0y"
+
+[[params.profiles]]
+name = "Twitter"
+url = "https://twitter.com/ba11b0y"
+
+[[params.profiles]]
+name = "Goodreads"
+url = "https://www.goodreads.com/user/show/91520565-rahul-tiwari"
+
+[[params.profiles]]
+name = "LinkedIn"
+url = ""
+

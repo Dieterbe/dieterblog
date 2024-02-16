@@ -1,7 +1,7 @@
 baseURL = "http://dieter.plaetinck.be"
 languageCode = 'en-us'
 title = "Dieter's blog"
-theme = "dieter"
+theme = "hugo-blog-awesome"
 buildDrafts = false
 buildFuture = false
 uglyUrls = false

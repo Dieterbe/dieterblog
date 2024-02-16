@@ -199,7 +199,7 @@ Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graph
       
       <guid>http://localhost:1313/posts/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</guid>
       
-      <description></description>
+      <description>Migrating data from whisper into InfluxDB &#34;How do i migrate whisper data to influxdb&#34; is a question that comes up regularly, and I&#39;ve always replied it should be easy to write a tool to do this. I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script: #!</description>
       
     </item>
     
@@ -243,12 +243,9 @@ the mysql, pgsql, vsql, etc tools before.
       
       <guid>http://localhost:1313/posts/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</guid>
       
-      <description>&lt;p&gt;
-It&#39;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
+      <description>&lt;p&gt;It&amp;rsquo;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
 and needing a response that tells them whether the operation succeeded and/or other auxiliary information.
-Something centralized manages the shared state, the changes to it and the responses.
-&lt;/p&gt;
-</description>
+Something centralized manages the shared state, the changes to it and the responses.&lt;/p&gt;</description>
       
     </item>
     
@@ -259,14 +256,7 @@ Something centralized manages the shared state, the changes to it and the respon
       
       <guid>http://localhost:1313/posts/monitorama-pdx-metrics20/</guid>
       
-      <description>&lt;p&gt;
-Earlier this month we had another iteration of the &lt;a href=&#34;http://monitorama.com/&#34;&gt;Monitorama&lt;/a&gt; conference, this time in Portland, Oregon.
-&lt;/p&gt;
-&lt;p&gt;
-&lt;img src=&#34;http://localhost:1313/files/blog/monitorama-audience.jpg&#34; width=&#34;800&#34; /&gt;
-&lt;br/&gt;(photo by &lt;a href=&#34;https://www.flickr.com/photos/78527903@N00/sets/72157644593947233/&#34;&gt;obfuscurity&lt;/a&gt;)
-&lt;/p&gt;
-</description>
+      <description>Earlier this month we had another iteration of the Monitorama conference, this time in Portland, Oregon. (photo by obfuscurity) I think the conference was better than the first one in Boston, much more to learn. Also this one was quite focused on telemetry (timeseries metrics processing), lots of talks on timeseries analytics, not so much about things like sensu or nagios. Adrian Cockroft&#39;s keynote brought some interesting ideas to the table, like building a feedback loop into the telemetry to drive infrastructure changes (something we do at Vimeo, I briefly give an example in the intro of my talk) or shortening the time from fault to alert (which I&#39;m excited to start working on soon) My other favorite was Noah Kantrowitz&#39;s talk about applying audio DSP techniques to timeseries, I always loved audio processing and production.</description>
       
     </item>
     
@@ -331,13 +321,7 @@ that keeps a simple and elegant, yet flexible file/directory layout for portabil
       
       <guid>http://localhost:1313/posts/vimeo_holiday_special_and_other_great_videos/</guid>
       
-      <description>&lt;p&gt;
-We (the &lt;a href=&#34;http://vimeo.com/staff&#34;&gt;Vimeo Staff&lt;/a&gt;) just &lt;a href=&#34;https://vimeo.com/blog/post:602&#34;&gt;released&lt;/a&gt; the &lt;a href=&#34;http://vimeo.com/82236972&#34;&gt;2013 Vimeo Holiday Special&lt;/a&gt;, embedded below.
-&lt;br/&gt;(and I have a line in it! &#34;Who&#39;s behind this?&#34;)
-&lt;/p&gt;
-&lt;p&gt;
-&lt;iframe src=&#34;//player.vimeo.com/video/82236972?title=0&amp;amp;byline=0&amp;amp;portrait=0&amp;amp;color=33a352&#34; width=&#34;500&#34; height=&#34;211&#34; frameborder=&#34;0&#34; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
-</description>
+      <description>We (the Vimeo Staff) just released the 2013 Vimeo Holiday Special, embedded below. (and I have a line in it! &#34;Who&#39;s behind this?&#34;) Here&#39;s last year&#39;s Holiday video which is just as cool. Not a lot of people know this but we actually produce a bunch of our own videos. Some of my favorites include Auto-tuning, Idea, Vimeo goes bowling, Vimeo production reel 2012, Open your eyes to the new vimeo and Brad!</description>
       
     </item>
     

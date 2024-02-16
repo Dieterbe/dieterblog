@@ -54,7 +54,7 @@
         },
         "datePublished": "2014-09-20",
         "description": "",
-        "wordCount":  661 ,
+        "wordCount":  653 ,
         "mainEntityOfPage": "True",
         "dateModified": "2014-09-20",
         "image": {
@@ -182,30 +182,29 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <h4>Migrating data from whisper into InfluxDB</h4>
+                
+<h4>Migrating data from whisper into InfluxDB</h4>
 
 <i>"How do i migrate whisper data to influxdb"</i> is a question that comes up regularly, and I've always replied it should be easy to write a tool
 to do this.  I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script:
 
-{{< highlight "bash" "style=default" >}}
-#!/bin/bash
-# whisper dir without trailing slash.
-wsp_dir=/opt/graphite/storage/whisper
-start=$(date -d 'sep 17 6am' +%s)
-end=$(date -d 'sep 17 12pm' +%s)
-db=graphite
-pipe_path=$(mktemp -u)
-mkfifo $pipe_path
-function influx_updater() {
-    influx-cli -db $db -async < $pipe_path
-}
-influx_updater &
-while read wsp; do
-  series=$(basename ${wsp//\//.} .wsp)
-  echo "updating $series ..."
-  whisper-fetch.py --from=$start --until=$end $wsp_dir/$wsp.wsp | grep -v 'None$' | awk '{print "insert into \"'$series'\" values ("$1"000,1,"$2")"}' > $pipe_path
-done < <(find $wsp_dir -name '*.wsp' | sed -e "s#$wsp_dir/##" -e "s/.wsp$//")
-{{< /highlight >}}<p>
+<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#0f0;font-weight:bold"></span><span style="color:#007f7f"># whisper dir without trailing slash.</span>
+</span></span><span style="display:flex;"><span>wsp_dir=/opt/graphite/storage/whisper
+</span></span><span style="display:flex;"><span>start=<span style="color:#fff;font-weight:bold">$(</span>date -d <span style="color:#0ff;font-weight:bold">&#39;sep 17 6am&#39;</span> +%s<span style="color:#fff;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>end=<span style="color:#fff;font-weight:bold">$(</span>date -d <span style="color:#0ff;font-weight:bold">&#39;sep 17 12pm&#39;</span> +%s<span style="color:#fff;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>db=graphite
+</span></span><span style="display:flex;"><span>pipe_path=<span style="color:#fff;font-weight:bold">$(</span>mktemp -u<span style="color:#fff;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>mkfifo $pipe_path
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> influx_updater() {
+</span></span><span style="display:flex;"><span>    influx-cli -db $db -async &lt; $pipe_path
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>influx_updater &amp;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">while</span> <span style="color:#fff;font-weight:bold">read</span> wsp; <span style="color:#fff;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span>  series=<span style="color:#fff;font-weight:bold">$(</span>basename <span style="color:#0ff;font-weight:bold">${</span>wsp//<span style="color:#0ff;font-weight:bold">\/</span>/.<span style="color:#0ff;font-weight:bold">}</span> .wsp<span style="color:#fff;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">echo</span> <span style="color:#0ff;font-weight:bold">&#34;updating </span>$series<span style="color:#0ff;font-weight:bold"> ...&#34;</span>
+</span></span><span style="display:flex;"><span>  whisper-fetch.py --from=$start --until=$end $wsp_dir/$wsp.wsp | grep -v <span style="color:#0ff;font-weight:bold">&#39;None$&#39;</span> | awk <span style="color:#0ff;font-weight:bold">&#39;{print &#34;insert into \&#34;&#39;</span>$series<span style="color:#0ff;font-weight:bold">&#39;\&#34; values (&#34;$1&#34;000,1,&#34;$2&#34;)&#34;}&#39;</span> &gt; $pipe_path
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">done</span> &lt; &lt;(find $wsp_dir -name <span style="color:#0ff;font-weight:bold">&#39;*.wsp&#39;</span> | sed -e <span style="color:#0ff;font-weight:bold">&#34;s#</span>$wsp_dir<span style="color:#0ff;font-weight:bold">/##&#34;</span> -e <span style="color:#0ff;font-weight:bold">&#34;s/.wsp</span>$<span style="color:#0ff;font-weight:bold">//&#34;</span>)</span></span></code></pre></div><p>
 
 
 It relies on the recently introduced asynchronous inserts feature of <a href="https://github.com/Dieterbe/influx-cli">influx-cli</a> - which commits inserts in batches to improve the speed - and the whisper-fetch tool.

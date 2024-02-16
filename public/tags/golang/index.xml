@@ -89,7 +89,7 @@ Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graph
       
       <guid>http://localhost:1313/posts/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</guid>
       
-      <description></description>
+      <description>Migrating data from whisper into InfluxDB &#34;How do i migrate whisper data to influxdb&#34; is a question that comes up regularly, and I&#39;ve always replied it should be easy to write a tool to do this. I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script: #!</description>
       
     </item>
     
@@ -120,12 +120,9 @@ the mysql, pgsql, vsql, etc tools before.
       
       <guid>http://localhost:1313/posts/beautiful_go_patterns_for_concurrent_access_to_shared_resources_and_coordinating_responses/</guid>
       
-      <description>&lt;p&gt;
-It&#39;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
+      <description>&lt;p&gt;It&amp;rsquo;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
 and needing a response that tells them whether the operation succeeded and/or other auxiliary information.
-Something centralized manages the shared state, the changes to it and the responses.
-&lt;/p&gt;
-</description>
+Something centralized manages the shared state, the changes to it and the responses.&lt;/p&gt;</description>
       
     </item>
     

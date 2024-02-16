@@ -54,7 +54,7 @@
         },
         "datePublished": "2014-07-26",
         "description": "",
-        "wordCount":  758 ,
+        "wordCount":  798 ,
         "mainEntityOfPage": "True",
         "dateModified": "2014-07-26",
         "image": {
@@ -182,99 +182,77 @@ stroke-linejoin="round" class="feather feather-home">
             </header>
             
             <div class="page-content">
-                <p>
-This is effectively two things.
-</p>
-
-<h2>Pattern one: making access to thread-unsafe data structures thread safe</h2>
-<p>
-Making modifications to thread-unsafe data (remember, maps for example are not thread safe in go) in a thread safe way, you can use a select loop that reads
+                <p>It&rsquo;s a pretty common thing in backend go programs to have multiple coroutines concurrently needing to modify a shared resource,
+and needing a response that tells them whether the operation succeeded and/or other auxiliary information.
+Something centralized manages the shared state, the changes to it and the responses.</p>
+<p>This is effectively two things.</p>
+<h3 id="pattern-one-making-access-to-thread-unsafe-data-structures-thread-safe">Pattern one: making access to thread-unsafe data structures thread safe</h3>
+<p>Making modifications to thread-unsafe data (remember, maps for example are not thread safe in go) in a thread safe way, you can use a select loop that reads
 from various channels and enforces that all operations are executed serially, because only one select case can happen at the same time.
-I saw this first in <a href="https://github.com/bitly/statsdaemon/blob/master/statsdaemon.go#L90">bitly's statsdaemon</a> and have since used this in various places, including <a href="https://github.com/vimeo/statsdaemon">vimeo/statsdaemon</a> and <a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a>, for example to route metrics (which needs read access to the routes map) while allowing changes to the routes (coming from the telnet admin interface), by having those as two cases in a select statement.  This was my first "aha!" moment.
-</p>
-
-<h2>pattern two: coordinating flow of responses</h2>
-<p>
-For the second, after (potentially time consuming) work, returning a response to the invoker, (let's say in the carbon-relay-ng case where you want to notify whether the route change succeeded) I have so far just passed on references to the admin interface session along with the request, and after completion of the work it would spawn a new goroutine that resumes the session with the given response.  Not the most elegant, but it works.
-</p>
-
-<p>
-The other day though, I saw a very interesting pattern for this case. I don't remember where (probably one of the gophercon presentations)
-or what it's called. 
+I saw this first in <a href="https://github.com/bitly/statsdaemon/blob/master/statsdaemon.go#L90">bitly&rsquo;s statsdaemon</a> and have since used this in various places, including <a href="https://github.com/vimeo/statsdaemon">vimeo/statsdaemon</a> and <a href="https://github.com/graphite-ng/carbon-relay-ng">carbon-relay-ng</a>, for example to route metrics (which needs read access to the routes map) while allowing changes to the routes (coming from the telnet admin interface), by having those as two cases in a select statement.  This was my first &ldquo;aha!&rdquo; moment.</p>
+<h3 id="pattern-two-coordinating-flow-of-responses">pattern two: coordinating flow of responses</h3>
+<p>For the second, after (potentially time consuming) work, returning a response to the invoker, (let&rsquo;s say in the carbon-relay-ng case where you want to notify whether the route change succeeded) I have so far just passed on references to the admin interface session along with the request, and after completion of the work it would spawn a new goroutine that resumes the session with the given response.  Not the most elegant, but it works.</p>
+<p>The other day though, I saw a very interesting pattern for this case. I don&rsquo;t remember where (probably one of the gophercon presentations)
+or what it&rsquo;s called.
 But the idea is you can simply use one shared channel for all requests, and one shared channel for all responses.
-As long as the requesters write a request to the requests channel and then read a response from the other channel, and the coordinator first reads a request and then writes the response, no further synchronization is needed.  Here's a demo program:
-</p>
-
-{{< highlight "go" "style=default" >}}
-package main
-
-// demo the fact that we can just use one shared req and one resp channel.
-// as long as they are unbuffered, the synchronization works just fine.
-
-import "fmt"
-import "sync"
-import "math/rand"
-import "time"
-
-var requests = make(chan int)
-var responses = make(chan string)
-
-func routine(num int, wg *sync.WaitGroup) {
-    // pretend this is a routine that's doing something, like serving a user session
-    // but then we need to modify some shared state
-    time.Sleep(time.Duration(rand.Intn(100)) * time.Millisecond)
-    requests <- num
-    resp := <-responses
-    fmt.Printf("routine %d gets response: %s\n", num, resp)
-    wg.Done()
-}
-
-func coordinator() {
-    for {
-        req := <-requests
-        // in here, you can do whatever modifications to shared state you need.
-        time.Sleep(time.Duration(rand.Intn(100)) * time.Millisecond) // simulate some heavy lifting
-        responses <- fmt.Sprintf("this return value is meant for routine %d", req)
-    }
-}
-
-func main() {
-    go coordinator()
-
-    var wg sync.WaitGroup
-    for i := 0; i < 10; i++ {
-        wg.Add(1)
-        go routine(i, &wg)
-    }
-    wg.Wait()
-    close(requests)
-}
-{{< /highlight >}}
-
-<a href="http://play.golang.org/p/32BSXT0xhN">code on Go playground</a>
-
-<p>
-At first glance, it looked as if the seemingly arbitrary reading and writing from/to channels without explicit synchronization would introduce race conditions, with routines getting
-the response meant for other routines.  But after some reasoning, it becomes apparent that 
-the "channel operation as synchronization" keeps everything under control, in a pretty elegant way.
-<b>There is nothing explicit to assure the routines get their response, and not the response meant for another routine.
-Instead, it just flows naturally and implicitly from the ordering of the blocked channel operations.</b>.
-Another "aha!" moment for me.  I've heard "use channel operations for synchronization" often enough, and this is the most
-beautiful example of it I've come across so far.  The routines are blocked on channel reads and writes, but when a channel operation occurs, that's where the respective goroutines unblock, and everything just works the way it's supposed to.  How elegant!
-</p>
-
-<h2>Conclusion</h2>
-<p>
-Maybe these patterns are obvious to you, maybe they are widely known patterns.
+As long as the requesters write a request to the requests channel and then read a response from the other channel, and the coordinator first reads a request and then writes the response, no further synchronization is needed.  Here&rsquo;s a demo program:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// demo the fact that we can just use one shared req and one resp channel.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// as long as they are unbuffered, the synchronization works just fine.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;sync&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;math/rand&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;time&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">requests</span> = make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">responses</span> = make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">string</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">routine</span>(<span style="color:#a6e22e">num</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">wg</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// pretend this is a routine that&#39;s doing something, like serving a user session
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// but then we need to modify some shared state
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Duration</span>(<span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#ae81ff">100</span>)) <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">requests</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">num</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">responses</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;routine %d gets response: %s\n&#34;</span>, <span style="color:#a6e22e">num</span>, <span style="color:#a6e22e">resp</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">coordinator</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">req</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">requests</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// in here, you can do whatever modifications to shared state you need.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Duration</span>(<span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#ae81ff">100</span>)) <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>) <span style="color:#75715e">// simulate some heavy lifting
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">responses</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;this return value is meant for routine %d&#34;</span>, <span style="color:#a6e22e">req</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">coordinator</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">routine</span>(<span style="color:#a6e22e">i</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">wg</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+</span></span><span style="display:flex;"><span>    close(<span style="color:#a6e22e">requests</span>)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p><a href="http://play.golang.org/p/32BSXT0xhN">code on Go playground</a></p>
+<p>At first glance, it looked as if the seemingly arbitrary reading and writing from/to channels without explicit synchronization would introduce race conditions, with routines getting
+the response meant for other routines.  But after some reasoning, it becomes apparent that
+the &ldquo;channel operation as synchronization&rdquo; keeps everything under control, in a pretty elegant way.
+<strong>There is nothing explicit to assure the routines get their response, and not the response meant for another routine.
+Instead, it just flows naturally and implicitly from the ordering of the blocked channel operations.</strong>
+Another &ldquo;aha!&rdquo; moment for me.  I&rsquo;ve heard &ldquo;use channel operations for synchronization&rdquo; often enough, and this is the most
+beautiful example of it I&rsquo;ve come across so far.  The routines are blocked on channel reads and writes, but when a channel operation occurs, that&rsquo;s where the respective goroutines unblock, and everything just works the way it&rsquo;s supposed to.  How elegant!</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Maybe these patterns are obvious to you, maybe they are widely known patterns.
 But I think as you evolve from go rookie to experienced developer (and often need to wrap your head around new concepts and approaches)
-you will encounter some interesting patterns and also have your "aha!" moments, so I hope this will help someone.
-</p>
-
-<p>
-I've been using the first pattern in a few places, I haven't used the second one yet, but I know some places where I can apply it and simplify some code.
-Take for example this <a href="https://github.com/graphite-ng/carbon-relay-ng/pull/7">pull request to add a web UI to carbon-relay-ng</a>, now the metrics-router, the admin telnet interface, <b>and</b> the new http interface will all need access to the routes map.  I'm looking forward to implement the second pattern, simplifying the code while making it more generic at the same time.
-</p>
-
+you will encounter some interesting patterns and also have your &ldquo;aha!&rdquo; moments, so I hope this will help someone.</p>
+<p>I&rsquo;ve been using the first pattern in a few places, I haven&rsquo;t used the second one yet, but I know some places where I can apply it and simplify some code.
+Take for example this <a href="https://github.com/graphite-ng/carbon-relay-ng/pull/7">pull request to add a web UI to carbon-relay-ng</a>, now the metrics-router, the admin telnet interface, <strong>and</strong> the new http interface will all need access to the routes map.  I&rsquo;m looking forward to implement the second pattern, simplifying the code while making it more generic at the same time.</p>
             </div>
         </article></main>
 </div>

@@ -124,7 +124,7 @@ Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graph
       
       <guid>http://localhost:1313/posts/graphite-influxdb-intermezzo-migrating-old-data-and-a-more-powerful-carbon-relay/</guid>
       
-      <description></description>
+      <description>Migrating data from whisper into InfluxDB &#34;How do i migrate whisper data to influxdb&#34; is a question that comes up regularly, and I&#39;ve always replied it should be easy to write a tool to do this. I personally had no need for this, until a recent small influxdb outage where I wanted to sync data from our backup server (running graphite + whisper) to influxdb, so I wrote a script: #!</description>
       
     </item>
     
@@ -135,14 +135,7 @@ Furthermore, I introduced some tooling: &lt;a href=&#34;https://github.com/graph
       
       <guid>http://localhost:1313/posts/monitorama-pdx-metrics20/</guid>
       
-      <description>&lt;p&gt;
-Earlier this month we had another iteration of the &lt;a href=&#34;http://monitorama.com/&#34;&gt;Monitorama&lt;/a&gt; conference, this time in Portland, Oregon.
-&lt;/p&gt;
-&lt;p&gt;
-&lt;img src=&#34;http://localhost:1313/files/blog/monitorama-audience.jpg&#34; width=&#34;800&#34; /&gt;
-&lt;br/&gt;(photo by &lt;a href=&#34;https://www.flickr.com/photos/78527903@N00/sets/72157644593947233/&#34;&gt;obfuscurity&lt;/a&gt;)
-&lt;/p&gt;
-</description>
+      <description>Earlier this month we had another iteration of the Monitorama conference, this time in Portland, Oregon. (photo by obfuscurity) I think the conference was better than the first one in Boston, much more to learn. Also this one was quite focused on telemetry (timeseries metrics processing), lots of talks on timeseries analytics, not so much about things like sensu or nagios. Adrian Cockroft&#39;s keynote brought some interesting ideas to the table, like building a feedback loop into the telemetry to drive infrastructure changes (something we do at Vimeo, I briefly give an example in the intro of my talk) or shortening the time from fault to alert (which I&#39;m excited to start working on soon) My other favorite was Noah Kantrowitz&#39;s talk about applying audio DSP techniques to timeseries, I always loved audio processing and production.</description>
       
     </item>
     

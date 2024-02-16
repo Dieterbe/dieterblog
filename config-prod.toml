@@ -1,5 +1,5 @@
-baseurl = "http://dieter.plaetinck.be"
-languageCode = "en-us"
+baseURL = "http://dieter.plaetinck.be"
+languageCode = 'en-us'
 title = "Dieter's blog"
 theme = "dieter"
 buildDrafts = false

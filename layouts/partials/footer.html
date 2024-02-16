@@ -1,0 +1,19 @@
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+        {{- partial "socialIcons.html" site.Params.socialIcons -}}
+    </div>
+    <small class="footer_copyright">
+        All content © {{ .Site.Params.author.name }}, available under
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer noopener">CC BY 4.0</a>
+    </small>
+
+</footer>
+
+{{- if .Site.Params.goToTop -}}
+<a href="#" title="{{ T "footer.go_to_top" }}" id="totop">
+    {{ partial "svgs/arrowUp.svg" (dict "height" 48 "width" 48) . }}
+</a>
+{{- end -}}

@@ -5,6 +5,7 @@ theme = "hugo-blog-awesome"
 buildDrafts = false
 buildFuture = false
 uglyUrls = false
+defaultContentLanguage = "en-gb"
 
 [params]
   commentServer = "http://localhost:5888/comments"

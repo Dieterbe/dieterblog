@@ -13,7 +13,6 @@ Graphite is meant for time series (metrics over time), Anthracite aims to be the
 More precisely, <strong>Anthracite aims to be a database of "relevant events"</strong> (see further down), <strong>for the purpose of enriching monitoring dashboards,
 as well as allowing visual and numerical analysis of events that have a business impact</strong> (for the latter, see "<i>Thoughts on incident nomenclature, severity levels and incident analysis</i>" below)<br>
 It has a TCP receiver, a database (sqlite3), a http interface to deliver event data in many formats and a simple web frontend for humans.</p>
-<!--more-->
 
 <p>design goals:</p>
 
@@ -45,9 +44,7 @@ I have a working prototype on <a href="https://github.com/Dieterbe/anthracite">g
 <h4>Formats and conventions</h4>
 <p>The TCP receiver listens for lines in this format:</p>
 
-<pre>
-<unix_timestamp> <type> <description>
-</pre>
+<pre>unix_timestamp type description</pre>
 
 <p>There are no restrictions for type and description, other than that they must be non-empty strings.
 <br/>I do have some suggestions which I'll demonstrate through fictive examples;

@@ -53,3 +53,7 @@ url = "https://www.goodreads.com/user/show/91520565-rahul-tiwari"
 name = "LinkedIn"
 url = ""
 
+ [markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

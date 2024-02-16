@@ -52,7 +52,7 @@ I accidentally ran git push origin -f instead of my usual git push origin -f bra
       
       <guid>http://localhost:1313/posts/25-graphite-grafana-statsd-gotchas/</guid>
       
-      <description>This is a crosspost of an article I wrote on the raintank.io blog
+      <description>Introduction This is a crosspost of an article I wrote on the raintank.io blog
 For several years I&amp;rsquo;ve worked with Graphite, Grafana and statsd on a daily basis and have been participating in the community. All three are fantastic tools and solve very real problems. Hence my continued use and recommendation. However, between colleagues, random folks on irc, and personal experience, I&amp;rsquo;ve seen a plethora of often subtle issues, gotchas and insights, which today I&amp;rsquo;d like to share.</description>
       
     </item>

@@ -47,7 +47,7 @@ Graphite could be changed to strictly follow the rules of logic, meaning as soon
 
 It would be nice if these on-demand math requests would take an xFilesFactor argument to do the same thing. But for now, just be aware of it, not using the last point is usually all you need if you're only looking at the most recent data. Or get the timing of your agents tighter and only request data from Graphite until now=-5s or so.
 
-<div class="intermezzo">
+<div class="chroma">
 <strong>INTERMEZZO:</strong>
 At this point we should describe the many forms of consolidation; a good understanding of this is required for the next points.
 <br/><br/>
@@ -217,7 +217,7 @@ There's two things to be done here:
 
 *Note also that the larger of a buffer you need, the more delay between receiving a metric and including it in the output data, possibly skewing data into the future.*
 
-<div class="intermezzo">
+<div class="chroma">
 <strong>INTERMEZZO:</strong>
 There's a lot of good statsd servers out there with various feature  sets. Most of them provide improved performance (upstream statsd is single threaded JavaScript), but some come with additional interesting features. My favorites include <a href="https://github.com/armon/statsite">statsite</a>, <a href="http://githubengineering.com/brubeck/">brubeck</a> and of course <a href="https://github.com/vimeo/statsdaemon">vimeo's statsdaemon version</a>
 </div>

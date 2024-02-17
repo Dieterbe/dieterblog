@@ -2,13 +2,12 @@ baseURL = "http://localhost:1313"
 languageCode = 'en-us'
 title = "Dieter's blog"
 theme = "hugo-blog-awesome"
-buildDrafts = false
-buildFuture = false
-uglyUrls = false
 defaultContentLanguage = "en-gb"
+enableEmoji = true
+staticDir = "static"
 
 [params]
-  commentServer = "http://localhost:5888/comments"
+commentServer = "http://localhost:5888/comments"
 
 [[menu.main]]
     # The page reference (pageRef) is useful for menu highlighting
@@ -35,25 +34,37 @@ defaultContentLanguage = "en-gb"
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
   intro = "Dieter's blog"
   name = "Dieter Plaetinck"
-  description = "Dieter's on website eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee sssssssssssssssssssssssssssssssssssssssssssssss"
+  description = "Open Source is life. Ex-Grafana Labs founding engineer. Loves mountain sports. Trying to be helpful to startups"
 
 [[params.profiles]]
 name = "GitHub"
-url = "https://github.com/ba11b0y"
+url = "https://github.com/Dieterbe"
 
 [[params.profiles]]
 name = "Twitter"
-url = "https://twitter.com/ba11b0y"
-
-[[params.profiles]]
-name = "Goodreads"
-url = "https://www.goodreads.com/user/show/91520565-rahul-tiwari"
+url = "https://twitter.com/Dieter_be"
 
 [[params.profiles]]
 name = "LinkedIn"
-url = ""
+url = "https://www.linkedin.com/in/dieterplaetinck/"
 
- [markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/Dieterbe"
+
+[[params.socialIcons]]
+name = "twitter"
+url = "https://twitter.com/Dieter_be"
+
+[[params.socialIcons]]
+name = "Rss"
+url = "index.xml"
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
+[services]
+[services.rss]
+limit = 1

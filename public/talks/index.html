@@ -130,309 +130,333 @@ stroke-linejoin="round" class="feather feather-home">
     </nav>
 </div>
 
-<div class="wrapper post">
+<div class="wrapper list-page">
+    <header class="header">
+        <h1 class="header-title center">Talks</h1>
+    </header>
     <main class="page-content" aria-label="Content">
-        <article>
-            <header class="header">
-                <h1 class="header-title">Talks</h1>
-                
-            </header>
-            
-            <div class="page-content">
-                {{ $gents := slice "John" "Paul" }}
-
-{{ range $gents }}
-  I love {{ . }}
-{{ end }}
-
-{{ . }}
-<div class="highlight"><pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#007f7f">#!/bin/bash</span></span></span></code></pre></div>
-
-
-<h2>Talks</h2>
-{{ $m := slice
-    (dict "name" "John" "age" 30)
-    (dict "name" "Will" "age" 28)
-    (dict "name" "Joey" "age" 24)
-  }}
-  {{ range $m }}
-    <p>{{ .name }} is {{ .age }}</p>
-  {{ end }}
-<article class="post-item">
+        
+            <article class="post-item">
     <h4 class="post-item-title">
-        <a href="/posts/restoring-accidental-git-force-push-overwrite-on-github-if-dont-have-needed-commits-locally/">Restoring accidental git force push overwrite on GitHub if you don't have the needed commits locally</a>
+        Sparse High-resolution Histograms in the Prometheus TSDB
+        <br>Ganesh Vernekar &amp; Dieter Plaetinck, Grafana Labs
+        <br>PromCon NA - Online / Los Angeles, CA
+        <br><a href="https://static.sched.com/hosted_files/promconna21/2a/Sparse%20High-resolution%20Histograms%20in%20the%20Prometheus%20TSDB.pdf">slides</a> <a href="https://promconna21.sched.com/event/mGK9?iframe=no">details</a> 
     </h4>
-    <time class="post-item-meta" datetime="2016-11-14T11:33:03+0200">
-        14 Nov 2016
+    
+    
+    
+    <time class="post-item-meta" datetime="2021-10-11T00:00:00Z">
+        11 Oct 2021
     </time>
 </article>
-<table>
-<tbody>
-<tr>
-    <td>March 1, 2018</td>
-    <td>Anthony Woods on Grafanacloud, Misha Brukman on Bigtable, myself on Metrictank, and Anko Duizer on CosmosDB</td>
-    <td>Grafanacon</td>
-    <td>Amsterdam</td>
-    <td>
-	<a href="https://www.youtube.com/watch?v=jy4ZWyxkdw0">video</a>
-    </td>
-</tr>
-<tr>
 
-    <td>Nov 30, 2016</td>
-    <td>Panel: The future of metrics (with Brian Brazil, Paul Dix, Jason Dixon. moderated by Raj Dutt)</td>
-    <td>Grafanacon</td>
-    <td>NYC</td>
-    <td>
-	<a href="https://www.youtube.com/watch?v=HOSPqjYd7AU">video</a>
-    </td>
-</tr>
-
-<tr>
-
-    <td>July 12, 2016</td>
-    <td>Next-generation alerting and fault detection</td>
-    <td>SRECon Europe</td>
-    <td>Dublin</td>
-    <td>
-	<a href="https://www.usenix.org/conference/srecon16europe/program/presentation/plaetinck">details and video</a>
-	<a href="http://www.slideshare.net/Dieterbe/next-generation-alerting-and-fault-detection-srecon-europe-2016">slides</a>
-    </td>
-</tr>
-
-<tr>
-
-    <td>June 6, 2016</td>
-    <td>Next-generation alerting and fault detection</td>
-    <td>Velocity</td>
-    <td>Santa Clara</td>
-    <td>
-	<a href="http://conferences.oreilly.com/velocity/vl-ca-2016/public/schedule/detail/49335">details</a>
-	See talk above for updated version
-    </td>
-</tr>
-
-<tr>
-
-    <td>Oct 15, 2015</td>
-    <td>Alerting in Grafana</td>
-    <td>GrafanaCon 2015</td>
-		<td>NYC</td>
-    <td>
-	<a href="https://www.youtube.com/watch?v=C_H2ew8e5OM">video (with embedded slides)</a>
-	<a href="http://www.slideshare.net/Dieterbe/alerting-in-grafana-grafanacon-2015">slides</a>
-    </td>
-</tr>
-
-<tr>
-
-    <td>Nov 12, 2014</td>
-
-    <td>Rethinking Metrics: Metrics 2.0</td>
-
-    <td>LISA 2014</td>
-
-    <td>Seattle, Washington</td>
-
-    <td>
-
-        <a href="https://www.usenix.org/conference/lisa14/conference-program/presentation/plaetinck">slides, audio, video</a>
-
-    </td>
-
-</tr>
-
-<tr>
-
-    <td>Nov 04, 2014</td>
-
-    <td>Rethinking Metrics: Metrics 2.0</td>
-
-    <td>Monitoring NYC</td>
-
-    <td>NYC</td>
-
-    <td>
-
-        <a href="http://www.meetup.com/Monitoring-NYC/events/214589632/">details</a>
-        <a href="http://www.slideshare.net/Dieterbe/rethinking-metrics-metrics-20">slides</a>
-
-    </td>
-
-</tr>
-
-<tr>
-
-    <td>May 5, 2014</td>
-
-    <td>Metrics 2.0</td>
-
-    <td>Monitorama</td>
-
-    <td>Portland, Oregon</td>
-
-    <td>
-
-        <a href="http://metrics20.org/media/">slides, video</a>,
-
-        <a href="http://dietertest.plaetinck.be/monitorama-pdx-metrics20.html">blogpost</a>
-
-    </td>
-
-</tr>
-
-<tr>
-
-    <td>Apr 3, 2014</td>
-
-    <td>Metrics stack 2.0</td>
-
-    <td>nycdevops meetup</td>
-
-    <td>NYC</td>
-
-    <td><a href="http://metrics20.org/media/">slides</a></td>
-
-</tr>
-
-<tr>
-
-    <td>Feb 18, 2014</td>
-
-    <td>Metrics 2.0 & Graph-Explorer</td>
-
-    <td>FullStack engineering meetup</td>
-
-    <td>NYC</td>
-
-    <td><a href="http://metrics20.org/media/">slides, video</a></td>
-
-</tr>
-
-<tr>
-
-    <td>Jan 18, 2013</td>
-
-    <td>Simple Black Box</td>
-
-    <td>Devopsdays</td>
-
-    <td>NYC</td>
-
-    <td>
-
-        <a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">devopsdays page</a>,
-
-        <a href="/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc.html">blog</a>,
-
-        <a href="https://twitter.com/Dieter_be/status/293377294679027713">slides</a></td>
-
-</tr>
-
-<tr>
-
-    <td>Feb 6, 2011</td>
-
-    <td>Can we build a simple, cross-distribution installation framework?</td>
-
-    <td>Fosdem</td>
-
-    <td>Brussels, Belgium</td>
-
-    <td>
-
-        <a href="https://archive.fosdem.org/2011/schedule/event/distro_crossinstall">fosdem page</a>,
-
-        <a href="/can_we_build_a_simple_cross-distribution_installation_framework.html">blog, slides, video</a>
-
-    </td>
-
-</tr>
-
-<tr>
-
-    <td>Jul 23, 2010</td>
-
-    <td>Uzbl - web interface tools which adhere to the unix philosophy</td>
-
-    <td>Archcon</td>
-
-    <td>Toronto, Canada</td>
-
-    <td><a href="http://dieter.plaetinck.be/back_from_canada_archcon.html">archcon blogpost, slides, video</a></td>
-
-</tr>
-
-<tr>
-
-    <td>Jul 22, 2010</td>
-
-    <td>AIF: The Arch Installation Framework</td>
-
-    <td>Archcon</td>
-
-    <td>Toronto, Canada</td>
-
-    <td><a href="http://dieter.plaetinck.be/back_from_canada_archcon.html">archcon blogpost, slides, video</a></td>
-
-</tr>
-
-<tr>
-
-    <td>Feb 6, 2010</td>
-
-    <td>Uzbl lightning talk</td>
-
-    <td>Fosdem</td>
-
-    <td>Brussels, Belgium</td>
-
-    <td>
-
-        <a href="https://archive.fosdem.org/2010/schedule/events/uzbl">fosdem page</a>,
-
-        <a href="http://dieter.plaetinck.be/uzbl_monitoring_aif_talks.html">blog post</a>
-
-    </td>
-
-</tr>
-
-<tr>
-
-    <td>???, 2009</td>
-
-    <td>Overview of monitoring software</td>
-
-    <td>Kangaroot showcase</td>
-
-    <td>Vilvoorde, Belgium</td>
-
-    <td><a href="http://dieter.plaetinck.be/uzbl_monitoring_aif_talks.html">blog post</a>. video/slides unavailable</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-
-
-<h2>Other fun public performances</h2>
-
-<ul>
-
-<li><a href="/vimeo_holiday_special_and_other_great_videos.html">Vimeo holiday special 2013</a></li>
-
-<li><a href="https://vimeo.com/59629623">trailer</a> and <a href="https://vimeo.com/59740798">full version</a> of a live metal show with me on drums.  Summer of 2012</li>
-
-<li><a href="https://vimeo.com/89865779">another metal music video</a></li>
-
-<li><a href="http://www.osnews.com/story/22692/Arch_Linux_Team">Arch Linux team interview</a>. Jan 11, 2010</li>
-
-</ul>
-
-            </div>
-        </article></main>
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        What&#39;s new on Grafana Cloud Graphite and Metrictank
+        
+        <br>GrafanaCONline - Online
+        <br><a href="https://www.youtube.com/watch?v=V6uG6BqIhFw">video</a> <a href="https://grafana.com/go/grafanaconline/2020/whats-new-with-graphite-and-metrictank">details</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2020-05-28T00:00:00Z">
+        28 May 2020
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Grafana 7.0 preview
+        
+        <br>Tel Aviv Grafana Meetup - Yafo, Tel Aviv, Israel
+        <br><a href="https://www.youtube.com/watch?v=d69RBwNaZCY">video (start around 1:38:55)</a> <a href="https://grafana.com/blog/2020/03/16/watch-talks-on-cortex-vs.-thanos-metrictank-past-and-present-and-a-preview-of-grafana-7-from-our-recent-meetup/">details</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2020-03-04T00:00:00Z">
+        4 Mar 2020
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Graphite &amp; Metrictank
+        
+        <br>Tel Aviv Grafana Meetup - Yafo, Tel Aviv, Israel
+        <br><a href="https://www.youtube.com/watch?v=d69RBwNaZCY">video (start around 1:04)</a> <a href="https://www.slideshare.net/Dieterbe/graphite-metrictank-meetup-tel-aviv-yafo">slides</a> <a href="https://grafana.com/blog/2020/03/16/watch-talks-on-cortex-vs.-thanos-metrictank-past-and-present-and-a-preview-of-grafana-7-from-our-recent-meetup/">details</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2020-03-04T00:00:00Z">
+        4 Mar 2020
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Introduction to Grafanacloud (Anthony Woods and guests)
+        <br>Bigtable (Misha Brukman) - Metrictank (yours truly) - CosmosDB (Anko Duizer)
+        <br>Grafanacon - Amsterdam
+        <br><a href="https://www.youtube.com/watch?v=jy4ZWyxkdw0">video</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2018-03-01T00:00:00Z">
+        1 Mar 2018
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Panel: The future of metrics
+        <br>Brian Brazil, Paul Dix, Jason Dixon and Dieter Plaetinck. moderator: Raj Dutt
+        <br>Grafanacon - NYC
+        <br><a href="https://www.youtube.com/watch?v=HOSPqjYd7AU">video</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2016-11-30T00:00:00Z">
+        30 Nov 2016
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Next-generation alerting and fault detection
+        
+        <br>SRECon Europe - Dublin
+        <br><a href="https://www.usenix.org/conference/srecon16europe/program/presentation/plaetinck">video</a> <a href="http://www.slideshare.net/Dieterbe/next-generation-alerting-and-fault-detection-srecon-europe-2016">slides</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2016-07-12T00:00:00Z">
+        12 Jul 2016
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Next-generation alerting and fault detection
+        
+        <br>Velocity - Santa Clara
+        <br><a href="http://conferences.oreilly.com/velocity/vl-ca-2016/public/schedule/detail/49335">details</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2016-06-06T00:00:00Z">
+        6 Jun 2016
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Alerting in Grafana
+        
+        <br>GrafanaCon - NYC
+        <br><a href="https://www.youtube.com/watch?v=C_H2ew8e5OM">video</a> <a href="http://www.slideshare.net/Dieterbe/alerting-in-grafana-grafanacon-2015">slides</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2015-10-15T00:00:00Z">
+        15 Oct 2015
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Rethinking Metrics: Metrics 2.0
+        
+        <br>LISA - Seattle, Washington
+        <br><a href="https://www.usenix.org/conference/lisa14/conference-program/presentation/plaetinck">slides, audio, video</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2014-11-12T00:00:00Z">
+        12 Nov 2014
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Rethinking Metrics: Metrics 2.0
+        
+        <br>Monitoring NYC - NYC
+        <br><a href="http://www.meetup.com/Monitoring-NYC/events/214589632/">details</a> <a href="http://www.slideshare.net/Dieterbe/rethinking-metrics-metrics-20">slides</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2014-11-04T00:00:00Z">
+        4 Nov 2014
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Metrics 2.0
+        
+        <br>Monitorama - Portland, Oregon
+        <br><a href="http://metrics20.org/media/">slides, video</a> <a href="/posts/monitorama-pdx-metrics20">blogpost</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2014-05-05T00:00:00Z">
+        5 May 2014
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Metrics stack 2.0
+        
+        <br>nycdevops meetup - NYC
+        <br><a href="http://metrics20.org/media/">slides</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2014-04-03T00:00:00Z">
+        3 Apr 2014
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Metrics 2.0 &amp; Graph-Explorer
+        
+        <br>FullStack engineering meetup - NYC
+        <br><a href="http://metrics20.org/media/">slides, video</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2014-02-18T00:00:00Z">
+        18 Feb 2014
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Simple Black Box
+        
+        <br>Devopsdays - NYC
+        <br><a href="http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/">devopsdays page</a> <a href="/posts/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc">blog</a> <a href="https://twitter.com/Dieter_be/status/293377294679027713">slides</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2013-01-18T00:00:00Z">
+        18 Jan 2013
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Can we build a simple, cross-distribution installation framework?
+        
+        <br>Fosdem - Brussels, Belgium
+        <br><a href="https://archive.fosdem.org/2011/schedule/event/distro_crossinstall">fosdem page</a> <a href="/posts/can_we_build_a_simple_cross-distribution_installation_framework">blog, slides, video</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2011-02-06T00:00:00Z">
+        6 Feb 2011
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Uzbl - web interface tools which adhere to the unix philosophy
+        
+        <br>Archcon - Toronto, Canada
+        <br><a href="/posts/back_from_canada_archcon">archcon blogpost, slides, video</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2010-07-23T00:00:00Z">
+        23 Jul 2010
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        AIF: The Arch Installation Framework
+        
+        <br>Archcon - Toronto, Canada
+        <br><a href="/posts/back_from_canada_archcon">archcon blogpost, slides, video</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2010-07-22T00:00:00Z">
+        22 Jul 2010
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Uzbl lightning talk
+        
+        <br>Fosdem - Brussels, Belgium
+        <br><a href="https://archive.fosdem.org/2010/schedule/events/uzbl">fosdem page</a> <a href="/posts/uzbl_monitoring_aif_talks">blog</a> 
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2010-02-06T00:00:00Z">
+        6 Feb 2010
+    </time>
+</article>
+
+        
+            <article class="post-item">
+    <h4 class="post-item-title">
+        Overview of monitoring software
+        
+        <br>Kangaroot showcase - Vilvoorde, Belgium
+        
+    </h4>
+    
+    
+    
+    <time class="post-item-meta" datetime="2009-06-06T00:00:00Z">
+        6 Jun 2009
+    </time>
+</article>
+
+        
+    </main>
 </div>
 <footer class="footer">
     <span class="footer_item"> </span>

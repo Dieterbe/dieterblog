@@ -1,0 +1,135 @@
+- title: Sparse High-resolution Histograms in the Prometheus TSDB
+  note: Ganesh Vernekar & Dieter Plaetinck, Grafana Labs
+  date: 2021-10-11
+  event: PromCon NA
+  location: Online / Los Angeles, CA
+  links:
+    - ['slides', 'https://static.sched.com/hosted_files/promconna21/2a/Sparse%20High-resolution%20Histograms%20in%20the%20Prometheus%20TSDB.pdf']
+    - ['details', 'https://promconna21.sched.com/event/mGK9?iframe=no']
+- title: "What's new on Grafana Cloud Graphite and Metrictank"
+  date: 2020-05-28
+  event: GrafanaCONline
+  location: Online
+  links:
+    - ['video', 'https://www.youtube.com/watch?v=V6uG6BqIhFw']
+    - ['details', 'https://grafana.com/go/grafanaconline/2020/whats-new-with-graphite-and-metrictank']
+- title: 'Grafana 7.0 preview'
+  date: 2020-03-04
+  event: Tel Aviv Grafana Meetup
+  location: Yafo, Tel Aviv, Israel
+  links: 
+    - ['video (start around 1:38:55)', 'https://www.youtube.com/watch?v=d69RBwNaZCY']
+    - ['details', 'https://grafana.com/blog/2020/03/16/watch-talks-on-cortex-vs.-thanos-metrictank-past-and-present-and-a-preview-of-grafana-7-from-our-recent-meetup/']
+- title: Graphite & Metrictank
+  date: 2020-03-04
+  event: Tel Aviv Grafana Meetup
+  location: Yafo, Tel Aviv, Israel
+  links: 
+    - ['video (start around 1:04)', 'https://www.youtube.com/watch?v=d69RBwNaZCY']
+    - ['slides', 'https://www.slideshare.net/Dieterbe/graphite-metrictank-meetup-tel-aviv-yafo']
+    - ['details', 'https://grafana.com/blog/2020/03/16/watch-talks-on-cortex-vs.-thanos-metrictank-past-and-present-and-a-preview-of-grafana-7-from-our-recent-meetup/']
+- title: Introduction to Grafanacloud (Anthony Woods and guests)
+  note: Bigtable (Misha Brukman) - Metrictank (yours truly) - CosmosDB (Anko Duizer)
+  date: 2018-03-01
+  event: Grafanacon
+  location: Amsterdam
+  links:
+    - ['video', 'https://www.youtube.com/watch?v=jy4ZWyxkdw0']
+- title: 'Panel: The future of metrics'
+  note: 'Brian Brazil, Paul Dix, Jason Dixon and Dieter Plaetinck. moderator: Raj Dutt'
+  date: 2016-11-30
+  event: Grafanacon
+  location: NYC
+  links:
+    - ['video', 'https://www.youtube.com/watch?v=HOSPqjYd7AU']
+- title: Next-generation alerting and fault detection
+  date: 2016-07-12
+  event: SRECon Europe
+  location: Dublin
+  links:
+    - ['video', 'https://www.usenix.org/conference/srecon16europe/program/presentation/plaetinck']
+    - ['slides', 'http://www.slideshare.net/Dieterbe/next-generation-alerting-and-fault-detection-srecon-europe-2016']
+- title: Next-generation alerting and fault detection
+  date: 2016-06-06
+  event: Velocity
+  location: Santa Clara
+  links:
+    - ['details', 'http://conferences.oreilly.com/velocity/vl-ca-2016/public/schedule/detail/49335']
+- title: Alerting in Grafana
+  date: 2015-10-15
+  event: GrafanaCon
+  location: NYC
+  links:
+    - ['video', 'https://www.youtube.com/watch?v=C_H2ew8e5OM']
+    - ['slides', 'http://www.slideshare.net/Dieterbe/alerting-in-grafana-grafanacon-2015']
+- title: 'Rethinking Metrics: Metrics 2.0'
+  date: 2014-11-12
+  event: LISA
+  location: Seattle, Washington
+  links:
+    - ['slides, audio, video', 'https://www.usenix.org/conference/lisa14/conference-program/presentation/plaetinck']
+- title: 'Rethinking Metrics: Metrics 2.0'
+  date: 2014-11-04
+  event: Monitoring NYC
+  location: NYC
+  links:
+    - ['details', 'http://www.meetup.com/Monitoring-NYC/events/214589632/']
+    - ['slides', 'http://www.slideshare.net/Dieterbe/rethinking-metrics-metrics-20']
+- title: Metrics 2.0
+  date: 2014-05-05
+  event: Monitorama
+  location: Portland, Oregon
+  links:
+    - ['slides, video', 'http://metrics20.org/media/']
+    - ['blogpost', '/posts/monitorama-pdx-metrics20']
+- title: Metrics stack 2.0
+  date: 2014-04-03
+  event: nycdevops meetup
+  location: NYC
+  links:
+    - ['slides', 'http://metrics20.org/media/']
+- title: Metrics 2.0 & Graph-Explorer
+  date: 2014-02-18
+  event: FullStack engineering meetup
+  location: NYC
+  links:
+    - ['slides, video', 'http://metrics20.org/media/']
+- title: Simple Black Box
+  date: 2013-01-18
+  event: Devopsdays
+  location: NYC
+  links:
+    - ['devopsdays page', 'http://devopsdays.org/events/2012-newyork/proposals/SimpleBlackBox/']
+    - ['blog', '/posts/profiling_and_behavior_testing_processes_daemons_devopsdays_nyc']
+    - ['slides', 'https://twitter.com/Dieter_be/status/293377294679027713']
+- title: Can we build a simple, cross-distribution installation framework?
+  date: 2011-02-06
+  event: Fosdem
+  location: Brussels, Belgium
+  links:
+    - ['fosdem page', 'https://archive.fosdem.org/2011/schedule/event/distro_crossinstall']
+    - ['blog, slides, video', '/posts/can_we_build_a_simple_cross-distribution_installation_framework']
+- title: Uzbl - web interface tools which adhere to the unix philosophy
+  date: 2010-07-23
+  event: Archcon
+  location: Toronto, Canada
+  links:
+    - ['archcon blogpost, slides, video', '/posts/back_from_canada_archcon']
+- title: 'AIF: The Arch Installation Framework'
+  date: 2010-07-22
+  event: Archcon
+  location: Toronto, Canada
+  links:
+    - ['archcon blogpost, slides, video', '/posts/back_from_canada_archcon']
+- title: Uzbl lightning talk
+  date: 2010-02-06
+  event: Fosdem
+  location: Brussels, Belgium
+  links:
+    - ['fosdem page', 'https://archive.fosdem.org/2010/schedule/events/uzbl']
+    - ['blog', '/posts/uzbl_monitoring_aif_talks']
+- title: Overview of monitoring software
+  date: 2009-06-06
+  event: Kangaroot showcase
+  location: Vilvoorde, Belgium
+

@@ -1,0 +1,14 @@
+<article class="post-item">
+    <h4 class="post-item-title">
+        {{ .title }}
+        {{ with .note}}<br>{{.}}{{end}}
+        <br>{{.event}} - {{.location}}
+        {{ with .links}}<br>{{ range . }}<a href="{{ (index . 1 )}}">{{ (index . 0)}}</a> {{ end }}{{ end }}
+    </h4>
+    {{/* format date string to create an ISO 8601 string */}}
+    {{ $ISO_date := "2006-01-02T15:04:05Z0700" }}
+    {{ $configDateFormat := .Site.Params.dateFormat | default "2 Jan 2006" }}
+    <time class="post-item-meta" datetime="{{ dateFormat $ISO_date .date }}">
+        {{ time.Format $configDateFormat .date }}
+    </time>
+</article>

@@ -3,7 +3,12 @@
     &nbsp;
 
     <div class="footer_social-icons">
-        {{- partial "socialIcons.html" site.Params.socialIcons -}}
+        {{- if .Page.IsPage -}}
+            <!-- Remove RSS feed icon for pages. See https://github.com/hugo-sid/hugo-blog-awesome/issues/160 -->
+            {{- partial "socialIcons.html" (where site.Params.socialIcons "name" "!=" "Rss") -}}
+        {{- else -}}
+            {{- partial  "socialIcons.html" site.Params.socialIcons -}}
+        {{- end -}}
     </div>
     <small class="footer_copyright">
         All content © {{ .Site.Params.author.name }}, available under

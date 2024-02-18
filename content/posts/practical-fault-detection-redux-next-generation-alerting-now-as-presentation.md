@@ -4,11 +4,11 @@ date = "2016-12-10T19:13:03+00:00"
 tags = ["monitoring", "devops"]
 +++
 
-This summer I had the opportunity to present my [practical fault detection](/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/) concepts and [hands-on approach](http://dieter.plaetinck.be/post/practical-fault-detection-on-timeseries-part-2/) as conference presentations.
+This summer I had the opportunity to present my [practical fault detection](/post/practical-fault-detection-alerting-dont-need-to-be-data-scientist/) concepts and [hands-on approach](/posts/practical-fault-detection-on-timeseries-part-2/) as conference presentations.
 
 First at [Velocity](http://conferences.oreilly.com/velocity/vl-ca-2016/public/schedule/detail/49335) and then at [SRECon16 Europe](https://www.usenix.org/conference/srecon16europe/program/presentation/plaetinck).  The latter page also contains the recorded video. 
 
-![image](http://dieter.plaetinck.be/files/poor-mans-fault-detection.png)
+![image](/files/poor-mans-fault-detection.png)
 
 If you're interested at all in tackling non-trivial timeseries alerting use cases (e.g. working with seasonal or trending data) this video should be useful to you.
 

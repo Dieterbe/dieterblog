@@ -4,7 +4,7 @@ date = "2016-11-14T11:33:03+02:00"
 tags = ["git"]
 +++
 
-I [like cleaning git history](http://dieter.plaetinck.be/post/why-rewriting-git-history-and-why-commits-imperative-present-tense/), in feature branches, at least.
+I [like cleaning git history](/posts/why-rewriting-git-history-and-why-commits-imperative-present-tense/), in feature branches, at least.
 The goal is a set of logical commits without other cruft, that can be cleanly merged into master.  This can be easily achieved with git rebase and force pushing to the feature branch on GitHub.
 
 Today I had a little accident and found myself in this situation:

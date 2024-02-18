@@ -540,6 +540,8 @@
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
+    <loc>http://localhost:1313/projects/</loc>
+  </url><url>
     <loc>http://localhost:1313/talks/</loc>
   </url>
 </urlset>

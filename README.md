@@ -10,19 +10,24 @@ Lots of legacy html content (originally migrated from drupal, pyblosxom). It use
 
 This version of the blog doesn't use summaries anyway.
 
-TODO: static files were introduced in bulk, may want to optimize this..
- 
- blog checklist:
-	web and rss only new posts
-	rss works, shows full articles, and we advertise in the source code
-	comments still load
-	post -> posts redirect
-	make profiles work like in lekh
-	check pagespeed errors https://github.com/hugo-sid/hugo-blog-awesome
-	for now, just copied all files to static dir.. think about this
-	update talks
-new bio
-lucky enough that i was able to hire many smart engineers that could take on or rewrite my code before i got too burnt-out
+release checklist:
+* static files were introduced in bulk, may want to optimize this..
+* web and rss only new posts / confirm GUID's. try on planet grep with 1.
+* rss works, shows full articles
+* post -> posts redirect
 
-grep dietertest
-posthog integration
+before advertising twitter and pushing new blog post:
+* posthog integration
+* comma integration
+
+post release checklist:
+* 404 links
+* advertise RSS in the source code
+* check pagespeed errors https://github.com/hugo-sid/hugo-blog-awesome
+* CDATA rendering
+
+
+note: i have 2 (identical?) rss feeds (just title/url different)
+http://localhost:1313/posts/index.xml
+http://localhost:1313/index.xml
+

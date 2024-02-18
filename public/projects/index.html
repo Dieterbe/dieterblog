@@ -4,12 +4,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title itemprop="name">huh | Dieter&#39;s blog</title>
+<title itemprop="name">Projects | Dieter&#39;s blog</title>
 
-<meta property="og:title" content="huh | Dieter&#39;s blog" />
-<meta name="twitter:title" content="huh | Dieter&#39;s blog" />
-<meta itemprop="name" content="huh | Dieter&#39;s blog" />
-<meta name="application-name" content="huh | Dieter&#39;s blog" />
+<meta property="og:title" content="Projects | Dieter&#39;s blog" />
+<meta name="twitter:title" content="Projects | Dieter&#39;s blog" />
+<meta itemprop="name" content="Projects | Dieter&#39;s blog" />
+<meta name="application-name" content="Projects | Dieter&#39;s blog" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -35,7 +35,7 @@
 
     
 
-    <link rel="canonical" href="http://localhost:1313/huh/">
+    <link rel="canonical" href="http://localhost:1313/projects/">
     <link href="/style.min.18927ce2d0dc33c991e188f9b4efd25929b9589151125f809e2b3f45e447e971.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -101,6 +101,13 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
+                    <a class="menu-link active" href="/projects/">
+                        Projects
+                    </a>
+                    
+                </li>
+                
+                <li>
                     <a class="menu-link " href="/about/">
                         About
                     </a>
@@ -134,15 +141,24 @@ stroke-linejoin="round" class="feather feather-home">
     <main class="page-content" aria-label="Content">
         <article>
             <header class="header">
-                <h1 class="header-title">huh</h1>
+                <h1 class="header-title">Projects</h1>
                 
             </header>
             
             <div class="page-content">
-                <p>{{ $gents := slice &ldquo;John&rdquo; &ldquo;Paul&rdquo; }}</p>
-<p>{{ range $gents }}
-I love {{ . }}
-{{ end }}</p>
+                <p>Some interesting projects I&rsquo;ve worked on, roughly in order from more recent (top) to old (bottom)</p>
+<ul>
+<li><a href="https://tapas.fit">Tapas</a>: an open source self-improvement app, written in Flutter and dart.</li>
+<li><a href="https://grafana.com/blog/2023/06/12/on-call-management-on-the-go-introducing-the-grafana-oncall-mobile-app/">Grafana OnCall Mobile app</a> my first time building mobile apps, using Flutter and dart.</li>
+<li><a href="https://prometheus.io/">Prometheus</a> and <a href="https://github.com/grafana/mimir">Mimir</a>. If you like high performance data systems, both are fascinating, albeit complex Golang codebases.  I only contributed to the new sparse histograms, and support for out of order ingestion.</li>
+<li><a href="https://github.com/grafana/metrictank">Metrictank</a>: Grafana&rsquo;s first metrics database.  Interesting Go distributed system, but eventually replaced by Mimir.</li>
+<li><a href="https://github.com/grafana/carbon-relay-ng/">Carbon-relay-NG</a>: Golang data pipeline tool. Always wanted to rewrite it to be more performant, but never got around to it.</li>
+<li><a href="https://vimeo.github.io/graph-explorer/">Graph-Explorer</a> Dynamic Graphite dashboarding tool with query input. People liked the power, hated the UX - rightfully so. Grafana has a 100x better UX.</li>
+<li><a href="http://metrics20.org">metrics2.0</a>: a loose set of ideas to enrich and standardize metrics. Did not go so well.</li>
+<li><a href="/tags/uzbl">Uzbl</a> minimalist browser inspired by vi and the unix philosophy.</li>
+<li>I worked on the <a href="/tags/arch">AIF Arch Linux installer and release images</a> for a few years.</li>
+<li><a href="http://stopabusingsiprefixes.org/">Stop abusing SI prefixes website</a>. Because 1024 just ain&rsquo;t 1000.</li>
+</ul>
 
             </div>
         </article></main>
@@ -152,7 +168,7 @@ I love {{ . }}
     &nbsp;
 
     <div class="footer_social-icons">
-<a href="https://github.com/hugo-sid" target="_blank" rel="noopener noreferrer me"
+<a href="https://github.com/Dieterbe" target="_blank" rel="noopener noreferrer me"
     title="Github">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
@@ -161,7 +177,7 @@ I love {{ . }}
     </path>
 </svg>
 </a>
-<a href="https://twitter.com" target="_blank" rel="noopener noreferrer me"
+<a href="https://twitter.com/Dieter_be" target="_blank" rel="noopener noreferrer me"
     title="Twitter">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
@@ -170,13 +186,13 @@ I love {{ . }}
     </path>
 </svg>
 </a>
-<a href="index.xml" target="_blank" rel="noopener noreferrer me"
-    title="Rss">
+<a href="https://linkedin.com/in/dieterplaetinck" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round">
-    <path d="M4 11a9 9 0 0 1 9 9" />
-    <path d="M4 4a16 16 0 0 1 16 16" />
-    <circle cx="5" cy="19" r="1" />
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
 </svg>
 </a>
 </div>

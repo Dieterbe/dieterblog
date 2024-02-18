@@ -18,16 +18,19 @@ commentServer = "http://localhost:5888/comments"
 [[menu.main]]
     pageRef="posts"
     name = 'Posts'
-    url = '/posts/'
     weight = 20
+[[menu.main]]
+    pageRef="projects"
+    name = 'Projects'
+    weight = 30
 [[menu.main]]
     pageRef="about"
     name = 'About'
-    weight = 30
+    weight = 40
 [[menu.main]]
     pageRef="talks"
     name = "Talks"
-    weight = 40
+    weight = 50
 
 [params.author]
   avatar = "grafana_dieter_plaetinck.jpg" # put the file in assets folder; also ensure that image has same height and width
@@ -46,7 +49,7 @@ url = "https://twitter.com/Dieter_be"
 
 [[params.profiles]]
 name = "LinkedIn"
-url = "https://www.linkedin.com/in/dieterplaetinck/"
+url = "https://www.linkedin.com/in/dieterplaetinck"
 
 [[params.socialIcons]]
 name = "github"
@@ -55,6 +58,10 @@ url = "https://github.com/Dieterbe"
 [[params.socialIcons]]
 name = "twitter"
 url = "https://twitter.com/Dieter_be"
+
+[[params.socialIcons]]
+name = "linkedIn"
+url = "https://linkedin.com/in/dieterplaetinck"
 
 [[params.socialIcons]]
 name = "Rss"

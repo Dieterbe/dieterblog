@@ -14,7 +14,7 @@ In 2012 I seized the opportunity to leave Belgium and move to New York City to w
 
 I joined [Grafana Labs](https://grafana.com) as founding engineer.  Built a [metrics system](https://grafana.com/oss/metrictank/), a team to build the metrics system, and then worked on 2 more metrics systems to replace the first one.  Tried to get information to flow a little better, did some marketing, some sales, some support.  Learned that it's all rewarding if you can work with the right people and have good executive leadership (or possibly the best, in this case).  Suffered through many hiring decisions, but in the end it was all worth it because they've done amazing things, not in the least, replacing everything I've built.
 
-Grafana is a fantastic company that has opened many new doors for me.  empowering, transparant, work-from-anywhere, open source, supportive & great people.
+Grafana is a fantastic company that has opened many new doors for me.  Empowering, transparant, work-from-anywhere, open source, supportive & great people.
 After 8 years, I took a sabbatical, realized I wanted to do something completely new, and rejoined to help incubate and build the [Oncall mobile app](https://grafana.com/blog/2023/06/12/on-call-management-on-the-go-introducing-the-grafana-oncall-mobile-app/)
 
 

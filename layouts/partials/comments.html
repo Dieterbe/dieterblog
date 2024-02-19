@@ -1,0 +1,83 @@
+<style>
+    .honey {
+    display: none;
+    }
+    </style>
+    
+    <form id="comments-form" class="comments__new" action="{{.Site.Params.commentServer}}">
+        <input type="hidden" name="post" value="{{ .File.BaseFileName }}">
+        <input type="text" name="company" class="honey">
+        <br/><input type="text" name="name" placeholder="Name" required/>
+        <br/><input type="email" name="email" placeholder="Email address (will not be public)" required/>
+        <br/><input type="url" name="url" placeholder="Website (optional)"/>
+        <textarea rows="10" name="message" placeholder="Comment" required></textarea>
+        <input type="submit" value="Send" />
+    </form>
+    
+    <script type="text/template" id="template--new-comment">
+        <article id="comment" class="comment">
+            <img class="commentAvatar" src="https://www.gravatar.com/avatar/@hash?d=mm&s=80">
+            <div class="commentRight">
+                <p class="commentAuthor"><a href="@url" class="commentAuthor">@name</a></p>
+                <time class="entry-date" datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">@date</time>
+                <div class="commentMessage">@message</div>
+            </div>
+        </article>
+    </script>
+    
+    <script language="javascript">
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    
+    var addComment = function (data) {
+         var template = document.getElementById('template--new-comment').innerHTML;
+         var d = new Date(data.Ts);
+         var date = d.getDate() + " " + monthNames[d.getMonth()] + ", " + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+         template = template.replace('@hash', data.Hash)
+                            .replace('@date', date)
+                            .replace('@name', data.Author)
+                            .replace('@message', data.Message)
+                            .replace('@url', data.Link)
+         $(template).insertBefore('.comments__new');
+    };
+    
+    var addComments = function(data) {
+        $.each(data, function(i, c) {
+            addComment(c);
+        });
+    };
+    
+    $( document ).ready(function() {
+         $.ajax({
+             method: "GET",
+             url: "{{.Site.Params.commentServer}}/{{ .File.BaseFileName }}",
+             success: addComments,
+                    error: function(jqXHR, status, err) {
+                        e = "<div><b>Could not load comments</b></br>" + status + " " + err +
+                            "<br/>Disabling commenting feature.<br/>Pretty sure Dieter monitors his site using <a href='https://grafana.net/plugins/raintank-worldping-app'>WorldPing</a> but maybe this is a transient error.</div>";
+                        $(e).insertBefore('.comments__new');
+                        $("#comments-form").hide();
+                    }
+         });
+                $('#comments-form').submit(function (event) {
+                        var url = $(this).attr('action');
+                        var data = $(this).serialize();
+                        var formName = $(this).find('[name="name"]').val().trim();
+                        var formUrl = $(this).find('[name="url"]').val().trim();
+                        var formEmail = $(this).find('[name="email"]').val().trim();
+    
+                        $.ajax({
+                                method: "POST",
+                                url: url,
+                                data: data,
+                                success: addComment,
+                                error: function(jqXHR, status, err) {
+                                    alert("sorry: "+ status + " " + err +", would you be so kind to let me know about this error?")
+                                }
+                        });
+                        return false;
+                });
+    });
+    
+    </script>

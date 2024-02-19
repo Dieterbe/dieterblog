@@ -25,6 +25,7 @@ post release checklist:
 * check pagespeed errors https://github.com/hugo-sid/hugo-blog-awesome
 * CDATA rendering
 * re-introduce tags showing on individual posts, maybe on titles too. and better showing on /tags ?
+* re-add link to website on social profiles
 
 
 note: i have 2 (identical?) rss feeds (just title/url different)

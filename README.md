@@ -16,14 +16,15 @@ release checklist:
 before advertising twitter:
 * favicon
 * push new blog post
-* posthog integration
 * comma integration
+* 404 monitoring?
+* set up google cloud CDN
 
 post release checklist:
 * 404 links
-* advertise RSS in the source code // something like old site ?     <link href="http://dieter.plaetinck.be/index.xml" rel="alternate" type="application/rss+xml" title="Dieter&#39;s blog" />
 * check pagespeed errors https://github.com/hugo-sid/hugo-blog-awesome
 * CDATA rendering
+* re-introduce tags showing on individual posts, maybe on titles too. and better showing on /tags ?
 
 
 note: i have 2 (identical?) rss feeds (just title/url different)

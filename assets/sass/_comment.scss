@@ -1,0 +1,33 @@
+.comment {
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  border-left: 0;
+  padding-left: 0;
+ // border-top: 1px solid $light;
+//  border-bottom: 1px solid $light;
+  line-height: 1.4;
+
+
+  @include media-query($on-mobile) {
+    display: block;
+    font-size: $small-font-size;
+
+    .foo {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+input {
+  background-color: $light;
+}
+textarea {
+  background-color: $light;
+}
+
+.commentAuthor { font-weight: bold; margin-bottom: 18px;}
+.commentAvatar { float: left; width: 100px; }
+.commentRight { margin-left: 110px; text-transform: none;}
+.commentMessage {margin-top: 18px;}
+

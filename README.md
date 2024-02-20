@@ -41,3 +41,16 @@ old site used these URL's:
 3. http://dieter.plaetinck.be/index.xml # alternate link in html source
 
 1 and 2 were identical. the 3rd one practically identical, just advertised a different alternate url, and had different title.
+improve loading time: fix DNS and CDN TTL.
+https://pagespeed.web.dev/analysis/https-dieter-plaetinck-be/w8rtxmnjst?form_factor=mobile
+
+
+fix intermezzo style.
+with previous theme, it was this:
+/* from previous twentyfourteen theme. not used anymore */
+.intermezzo {
+	background-color:#e6f7ff;
+	color:#00344d;
+	padding:20px;
+	border-radius:8px;
+}

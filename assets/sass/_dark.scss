@@ -288,6 +288,14 @@
     background-color: $dark-white;
     color: $dark-light;
   }
+
+  .btn-ok {
+    background-color: #4CAF50;
+  }
+  
+  .btn-err {
+    background-color: #f44336;
+  }
 }
 
 // support JS disabled environment with media query

@@ -50,7 +50,7 @@
                   .replace('@message', data.Message)
                   .replace('@url', data.Link);
         let temp = document.createElement('template');
-        temp.innerHTML = text;
+        temp.innerHTML = txt;
         container.appendChild(temp.content.firstElementChild);
     };
 
@@ -90,13 +90,11 @@
                     addComment(comment);
                 } else {
                     button.className = 'btn-err';
-                    if (response.status == 401) {
-                        button.textContent = 'Failed. Looks like you are a bot. If this is incorrect, please let me know';
-                    } else {
-                        button.textContent = 'Failed due to an error. Did you submit already? Please try again and let me know';
-                    }
+                    const message = await response.text();
+                    button.textContent = 'failed with status ' + response.status + ' ' + message;
                 }
             } catch (e) {
+                button.textcontent = 'failed with error ' + e;
                 console.error(e);
             }
         }

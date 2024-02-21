@@ -273,12 +273,21 @@
   }
 
   input {
-    background-color: $dark-gray;
+    background-color: $dark-black;
+    border: 2px solid $dark-light;
+    color: $dark-text-base-color;
   }
+
   textarea {
-    background-color: $dark-gray;
+    background-color: $dark-black;
+    border: 2px solid $dark-light;
+    color: $dark-text-base-color;
   }
-  
+
+  button {
+    background-color: $dark-white;
+    color: $dark-light;
+  }
 }
 
 // support JS disabled environment with media query

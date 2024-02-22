@@ -1,6 +1,6 @@
 ## Dieterblog
 
-public directory = live on https://dieter.plaetinck.be
+This is live on https://dieter.plaetinck.be
 
 Lots of legacy html content (originally migrated from drupal, pyblosxom). It used to have manually declared summaries, but I took those out (from the html) because:
 
@@ -10,20 +10,13 @@ Lots of legacy html content (originally migrated from drupal, pyblosxom). It use
 
 This version of the blog doesn't use summaries anyway.
 
-release checklist:
-* web and rss only new posts / confirm GUID's. try on planet grep with 1.
-
 before advertising twitter:
 * favicon
-* push new blog post
-* comma integration
-* 404 monitoring?
-* set up google cloud CDN
 
 post release checklist:
 * 404 links
+* 404 monitoring?
 * check pagespeed errors https://github.com/hugo-sid/hugo-blog-awesome
-* CDATA rendering
 * re-introduce tags showing on individual posts, maybe on titles too. and better showing on /tags ?
 * re-add link to website on social profiles
 

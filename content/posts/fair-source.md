@@ -81,7 +81,7 @@ Note that you can also devise hybrid approaches, and turn some of these assymetr
 
 * a Fair Source core and Closed Source shell. (more defensive than Open Core or Fair Source seperately). (e.g. [PowerSync does this](https://www.powersync.com/legal/overview)) 
 * an Open Source core, with Fair Source shell. (more open than Open Core or Fair Source seperately).
-* Open Core, with Source Available shell (users can view, modify and distribute the code but not commercialize it). I would like to see this. This would be the "true" symmetrical counterpart to Fair Source. It would also allow to put all code in the same repository.
+* Open Core, with Source Available shell (users can view, modify and distribute the code but not commercialize it). I would like to see this. This would be the "true" symmetrical counterpart to Fair Source. It would also allow to put all code in the same repository.  Although this benefit works better with Fair Source because any contributed code will definitely become open source, thus incentivizing the community more.
 * etc.
 
 
@@ -159,7 +159,9 @@ The [FSL website](https://fsl.software/) states:
 
 > AGPLv3 is not permissive enough. As a highly viral copyleft license, it exposes users to serious risk of having to divulge their proprietary source code.
 
-Just when I thought the industry had moved beyond this fear mongering, it appears again on the FSL website. Complying with AGPL is rather easy, as long as you know when you are redistributing software, which is really not hard.  Even Heather Meeker, the lawyer consulted to draft up the FCL has spoken out against both the [virality] discourse (https://heathermeeker.com/2019/03/05/open-source-and-the-eradication-of-viruses/) and [AGPL FUD](https://heathermeeker.com/2023/10/13/agpl-in-the-light-of-day/)
+Just when I thought the industry had moved beyond this fear mongering, it appears again on the FSL website. Complying with AGPL is rather easy, my rule of thumb is to say you trigger copyleft when you "ship".  Most engineers have an intuitive understanding of what it means to "ship" a feature, whether that's on cloud, or on-prem.  In my experience, people struggle more with patent clauses or the relation between trademarks and software licensing.   
+
+Even Heather Meeker, the lawyer consulted to draft up the FCL has spoken out against both the [virality] discourse (https://heathermeeker.com/2019/03/05/open-source-and-the-eradication-of-viruses/) and [AGPL FUD](https://heathermeeker.com/2023/10/13/agpl-in-the-light-of-day/)
 
 Furthermore, it seems a bit strange to say FSL is more permissive than AGPL, when FSL has a clear non-compete clause, and the AGPL allows any and all forms of competition.
 

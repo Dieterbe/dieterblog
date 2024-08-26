@@ -5,6 +5,7 @@ theme = "hugo-blog-awesome"
 defaultContentLanguage = "en-gb"
 enableEmoji = true
 staticDir = "static"
+ignoreLogs = ['warning-frontmatter-params-overrides'] # to define images in posts. i don't think i define them in site config
 
 [params]
 commentServer = "https://dieter-dev.plaetinck.be/comments"

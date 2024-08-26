@@ -1,7 +1,8 @@
 +++
 title = 'Fair Source: the next best model for commercial open source?'
 date = 2024-08-26T11:12:13+03:00
-draft = false
+[params]
+  images = ['/files/fair-source-open-core-and-hybrids.png']
 +++
 
 Building businesses based on an Open Source project is like balancing a solar system.
@@ -78,7 +79,7 @@ As a customer, which is more tolerable? proprietary features or a proprietary 2-
 
 Technically, Open Core is more of a business architecture, where you still have to figure out which licenses you want to use for the core and shell, whereas Fair Source is more of a prepackaged solution which defines the business architecture as well as the 2 licenses to use.
 
-![image](/files/fair-source-open-core-and-hybdrids.png)
+![image](/files/fair-source-open-core-and-hybrids.png)
 
 Note that you can also devise hybrid approaches. Here are some ideas:
 

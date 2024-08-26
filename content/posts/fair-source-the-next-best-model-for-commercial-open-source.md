@@ -1,6 +1,6 @@
 +++
-title = 'Fair Source'
-date = 2024-08-16T09:57:53+02:00
+title = 'Fair Source: the next best model for commercial open source?'
+date = 2024-08-26T10:00:43+03:00
 draft = true
 +++
 
@@ -9,21 +9,21 @@ Like the sun is the center of our own little universe, powering life on the plan
 
 Source-available & Non-Compete licensing have existed in various forms, and have been tweaked and refined for decades, in an attempt to combine just enough proprietary conditions with just enough of Open Source flavor, to find that perfect tradeoff.   [Fair Source](https://fair.io/) is the latest refinement for software projects driven by a single vendor wanting to combine monetization, a high rate of contributions to the project (supported by said monetization), community collaboration and direct association with said software project.
 
-Succintly, Fair Source licenses provide much of the same benefits to users as Open Source licenses, although outsiders are not allowed to build their own competing service based on the software, however after 2 years, the software automatically becomes MIT or Apache2 licensed, and at that point you can pretty much do whatever you want.
+Succintly, Fair Source licenses provide much of the same benefits to users as Open Source licenses, although outsiders are not allowed to build their own competing service based on the software; however after 2 years the software automatically becomes MIT or Apache2 licensed, and at that point you can pretty much do whatever you want with the older code.
 
-Earlier projects such as - not to be confused - [Fair Code](https://faircode.io/) and [Commons Clause](https://commonsclause.com/) are similar, except they don't have the delayed open source publication.
+This is in contrast with other modern Source-Available projects such as - not to be confused - [Fair Code](https://faircode.io/) and [Commons Clause](https://commonsclause.com/) which also use non-compete clauses but don't use the delayed open source publication.
 
 It seems we have reached an important milestone in 2024: on the surface, "Fair Source" is yet another new initiative that positions itself as a more business friendly alternative to "Open Source", but the delayed open source publication (DSOP) model has been refined to the point where the licenses are succint, clear, easy to work with and should hold up well in court.
 Several technology companies are choosing this software licensing strategy (Sentry being the most famous one, you can see the others on [their website](https://fair.io/)).
 
 My 2 predictions:
-* a governance legal entity will appear soon, and a trademark will follow after.
 * we will see 50-100 more companies in the next couple of years.
+* a governance legal entity will appear soon, and a trademark will follow after.
 
 In this article, I'ld like to share my perspective and address some - what I believe to be - misunderstandings in current discourse.
 
 
-### The licenses
+## The licenses
 
 At this time, the Fair Source ideology is implemented by the following licenses:
 
@@ -44,14 +44,12 @@ diff FSL-1.1-MIT.template.md FCL-1.0-MIT.md
 
 I will focus on FSL and FCL and FSL, the Fair Source "flagship licenses".
 
-### Is it "open source, fixed", or an alternative to open source? Neither.
+## Is it "open source, fixed", or an alternative to open source? Neither.
 
-I've seen people refer to Fair Source as "an alternative" to Open Source, as "an improved Open Source", and to FSL as if it is Open Source.  
-I don't think it's any of these.  Let me explain.
+<!--which I cover in my other article, [So, what does Open Source mean exactly?](/posts/so-what-does-open-source-mean-again-exactly)-->
 
-First, we'll need to agree on what the term "Open Source" means. This itself has been a battle for decades, which I cover in my other article, [So, what does Open Source mean exactly?](/posts/so-what-does-open-source-mean-again-exactly)
-
-Here we'll go with the [OSI definition](https://opensource.org/osd), which is also what the folks behind FSL/Fair Source seem to agree with: after some initial conversations about FSL using the "Open Source" term, they've defined their own new term and I've seen a lot of meticulous work (e.g. [fsl#2](https://github.com/getsentry/fsl.software/issues/2) and [fsl#10](https://github.com/getsentry/fsl.software/issues/10) on how they articulate what they stand for.   (the [Open Source Definition debate](/posts/so-what-does-open-source-mean-again-exactly) is why I hope the Fair Source folks will file a trademark if this projects gains more traction).
+First, we'll need to agree on what the term "Open Source" means. This itself has been a battle for decades, with non-competes (commercial restrictions) being especially contentious and in use even before OSI came along, so I'm working on an article which challenges OSI's [Open Source Definition](https://opensource.org/osd) which I will publish soon.
+However, the OSD is probably the most common understanding in the industry today - so we'll use that here - and it seems that folks behind FSL/Fair Source made the wise decision to distance themselves from these contentious debates: after some initial conversations about FSL using the "Open Source" term, they've defined their own new term and I've seen a lot of meticulous work (e.g. [fsl#2](https://github.com/getsentry/fsl.software/issues/2) and [fsl#10](https://github.com/getsentry/fsl.software/issues/10) on how they articulate what they stand for.   (the Open Source Definition debate is why I hope the Fair Source folks will file a trademark if this projects gains more traction.
 
 Importantly, **OSI's definition of "Open Source" includes non-discrimination and free redistribution**.
 
@@ -60,7 +58,7 @@ When you check out code that is FSL licensed, and the code was authored:
 1) less than 2 years ago: it's available to you under terms similar to MIT, except you cannot compete with the author by making a similar service using the same software
 2) more than 2 years ago: it is now MIT licensed. (or Apache2, when applicable)
 
-While after 2 years, it is clearly open source, the non-compete clause in option 1 is not compatible with the set of terms set forth by Open Source.  (or freedom 0 from the 4 freedoms of Free Software).
+While after 2 years, it is clearly open source, the non-compete clause in option 1 is not compatible with the set of terms set forth by the OSI Open Source Definition.  (or freedom 0 from the 4 freedoms of Free Software).
 Such a license is often referred to as "Source Available".
 
 So, Fair Source is a system to combine 2 licenses (an Open Source one and a Source Available one with proprietary conditions) in one.
@@ -78,17 +76,19 @@ As a customer, which is more tolerable? proprietary features or a proprietary 2-
 - Users can view, modify and distribute (but not commercialize) the proprietary code. (with Open Core, you only get the binaries)
 - It follows then, that the project can use a single repository and single license (with Open Core, there are multiple repositories and licenses involved)
 
-And finally, Open Core is more of a business architecture, where you still have to figure out which licenses you want to use for the core and shell, whereas Fair Source is more of a prepackaged solution which defines the business architecture as well as the 2 licenses to use.
+Technically, Open Core is more of a business architecture, where you still have to figure out which licenses you want to use for the core and shell, whereas Fair Source is more of a prepackaged solution which defines the business architecture as well as the 2 licenses to use.
+
+![image](/files/fair-source-open-core-and-hybdrids.png)
 
 Note that you can also devise hybrid approaches. Here are some ideas:
 
 * a Fair Source core and Closed Source shell. (more defensive than Open Core or Fair Source seperately). (e.g. [PowerSync does this](https://www.powersync.com/legal/overview)) 
 * an Open Source core, with Fair Source shell. (more open than Open Core or Fair Source seperately).
-* Open Source Core, with Source Available shell (users can view, modify and distribute the code but not commercialize it, and without the delayed open source publication). This would be the "true" symmetrical counterpart to Fair Source. It is essentially Open Core where the community also has access to the proprietary features (but can't commercialize those).  It would also allow to put all code in the same repository.  (although this benefit works better with Fair Source because any contributed code will definitely become open source, thus incentivizing the community more).  It's something for Open Core vendors to consider.
+* Open Source Core, with Source Available shell (users can view, modify and distribute the code but not commercialize it, and without the delayed open source publication). This would be the "true" symmetrical counterpart to Fair Source. It is essentially Open Core where the community also has access to the proprietary features (but can't commercialize those).  It would also allow to put all code in the same repository.  (although this benefit works better with Fair Source because any contributed code will definitely become open source, thus incentivizing the community more).  I find this a very interesting option that I hope Open Core vendors will start considering. (although it has little to do with Fair Source).
 * etc.
 
 
-### Non-Competition
+## Non-Competition
 
 The [FSL introduction post](https://blog.sentry.io/introducing-the-functional-source-license-freedom-without-free-riding/) states:
 
@@ -99,10 +99,10 @@ The issue of large cloud vendors selling your software as a service, making mone
 
 (Personally, I find discussions around whether this is "fair" not very useful.  Businesses will act in their best interest, you can't change the rules of the game, you only have control over how you play the game, i.o.w. your own licensing and strategy)
 
-Here, we'll just refer use the same terminology that the FSL does, the "harmful free-rider" problem
+Here, we'll just use the same terminology that the FSL does, the "harmful free-rider" problem
 
 
-However, the statement above is *factually incorrect*.  Something like this would be more correct:
+However, the statement above is **incorrect**.  Something like this would be more correct:
 
 > In plain language, you can do anything with FSL software except offer a similar paid service based on the software when it's less than 2 years old.
 
@@ -122,7 +122,7 @@ Zeke Gabrielse, one of the shepherds of Fair Source, [said it well here](https:/
 > Being 2 years old also puts any SaaS competition far enough back to not be a concern
 
 Therefore, you may as well say **no competition is allowed**. Although, in Zeke's post, I presume he was writing from the position of an actively developing software project.
-If it becomes abandoned, the 2 years countdown is an obstacle, an overcomable one, that eventually does let you compete, but in this case, the copyright holder probably went bust, so you aren't really competing with them either.  The 2 year window is not designed to enable competition, instead it is a contigency plan.  The wait can be needlessly painful for folks in such a situation.  If a company is about to go bust, they could immediately release their Fair Source code as Open Source, but I wonder if this can be automated via the actual license text.
+If it becomes abandoned, the 2 years countdown is an obstacle, an overcomable one, that eventually does let you compete, but in this case, the copyright holder probably went bust, so you aren't really competing with them either.  The 2 year window is not designed to enable competition, instead it is a contingency plan for when the company goes bankrupt.  The wait can be needlessly painful for the community in such a situation.  If a company is about to go bust, they could immediately release their Fair Source code as Open Source, but I wonder if this can be automated via the actual license text.
 
 
 (I had found some ambiguous use of the term "direct" competition which I've [reported and has since been resolved](https://github.com/keygen-sh/fcl.dev/issues/2))
@@ -133,9 +133,11 @@ Humans are notoriously bad about predicting 2nd order effects.   So I like to tr
 
 * can companies first grow on top of their Fair Source codebase, take community contributions, and then switch to more restrictive, or completely closed licensing, shutting out the community? Yes if a CLA is in place (or using the 2 year old code). (this isn't any different from any other CLA using Open Source or Open Core project.  Though with Open Core, you can't take in external contributions on proprietary parts to begin with)
 * if you enjoy a privileged position where others can't meaningfully compete with you based on the same source code, that can affect how the company treats its community and its customers. It can push through undesireable changes, it can price more aggressively, etc. (these issues are the same with Open Core)
-* With Open Source & Open Core, the company is incentivized to make the code well understood by the community. Under Fair Source it would still be sensible (in order to get free contributions), but at the same time, by hiding design documents, subtly obfuscating the code and witholding information it can also give itself the edge for when the code does become Open Source.
+* With Open Source & Open Core, the company is incentivized to make the code well understood by the community. Under Fair Source it would still be sensible (in order to get free contributions), but at the same time, by hiding design documents, subtly obfuscating the code and witholding information it can also give itself the edge for when the code does become Open Source, although as we've seen, the 2 year delay makes competition unrealistic anyway.
 
-### Developer sustainability
+All in all, nothing particularly worse than Open Core, here.
+
+## Developer sustainability
 
 The [FSL introduction post](https://blog.sentry.io/introducing-the-functional-source-license-freedom-without-free-riding/) says:
 
@@ -157,14 +159,14 @@ Do we reach developer sustainability by preventing developers from making money 
 
 (Open Core shuts out people similarly, but many of the models above, don't. Note, Fair Source *does* allow to make money via consulting and auxiliary services *related* to the software)
 
-### CLA needed?
+## CLA needed?
 
 When a project uses an Open Source license with some restrictions (e.g. GPL with its copyleft) it is common to use a CLA such that the company backing it can use more restrictive or commercial licenses (either as a license change later on, or as dual licensing).  With Fair Source (and indeed all Source Available licenses), this is also the the case.
 
 However, unlike Open Source licenses, with Fair Source / Source Available licenses, a CLA becomes much more of a *necessity*, because such a license without CLA isn't compatible with anything else, and the commercial FSL restriction may not always apply to outside contributions (it depends on e.g. whether it can be offered stand-alone).  I'm not a lawyer, for more clarity you should consult with one.  I think the Fair Source website, at least their [adoption guide](https://fair.io/join/) should mention something about CLA's, because it's an important step beyond simply choosing a license and publishing, so I've [raised this with them](https://github.com/fairsource/fair.io/issues/47).
 
 
-### AGPL
+## AGPL
 
 The [FSL website](https://fsl.software/) states:
 
@@ -178,7 +180,7 @@ This looks like fear mongering.
 Heather Meeker, the lawyer consulted to draft up the FSL has spoken out [against the virality discourse](https://heathermeeker.com/2019/03/05/open-source-and-the-eradication-of-viruses/) and [tempering the FUD around AGPL](https://heathermeeker.com/2023/10/13/agpl-in-the-light-of-day/)
 
 
-### Conclusion
+## Conclusion
 
 I think Fair Source (and FSL) has a lot to offer.  It's a very compelling alternative to Open Core. As it stands today it's more generous towards the community than Open Core is. Despite my minor objections, I find it well executed.
 It ties up a lot of loose ends from previous initiatives (Source Available, BSL and other custom licenses) into a neat package.  Despite the need for a CLA it's still quite easy to implement and is arguably more viable than Open Core is, in its current state today.
@@ -195,7 +197,7 @@ I certainly would prefer to see companies and projects appear:
 * as Fair Source rather than not at all
 * as Open Core, rather than not at all
 * as Fair Source, rather than Open Core
-* with more commercial restrictions from the get-go, instead of starting more permissive and relicensing later. just kidding, but that's a topic for another day.
+* with more commercial restrictions from the get-go, instead of starting more permissively and relicensing later. just kidding, but that's a topic for another day.
 
 For vendors, I think there are some options left to explore, such as the Open Core with an source available (instead of closed) shell.  Something to consider for any company doing Open Core today.
 For end-users / customers, "Open Source" vendors are not the only ones to be taken with a grain of salt, it's the same with Fair Source, since they may have a more complicated arrangement rather than just using a Fair Source license.

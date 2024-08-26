@@ -4,22 +4,16 @@ date = 2024-08-18T09:57:53+02:00
 draft = true
 +++
 
-TODO integrate these
-
-* https://opensource.com/article/18/2/coining-term-open-source-software
-* https://web.archive.org/web/20180205140347/http://hyperlogos.org/article/Who-Invented-Term-Open-Source
-* https://web.archive.org/web/20220810223503/https://slashdot.org/comments.pl?sid=239319&cid=19593809
-
 > Computer science, too, must exist in an uneasy alliance with industry
 
 From the book [Open Sources: Voices from the Open Source Revolution](https://www.oreilly.com/openbook/opensources/book/)
 
 Who gets to say exactly what a term means, or doesn't mean?  Today, the word "literally" means its opposite, and what is DevOps anyway?
-This was originally supposed to be a post confirming OSI's authority, but as I did my homework, I developed a more nuanced view...
 
-Cantrill says it's a social contract
-Heather says it's development model AND ...
-Those are all true, but for the purpose of this post, let's drill down and figure out what the essential legal meaning is.
+Open Source is both a development model and a licensing model, says Heather Meeker in her book [Open Source For Business](https://www.amazon.com/Open-Source-Business-Practical-Licensing/dp/1544737645).
+In Bryan Cantrill's [talk on Corporate Open Source Anti-Patterns](https://youtu.be/um5bC20NTQ0?si=BLIfobkPDWtTN3Do) he describes Open Source as an incredible catalyst of human innovation and highlights its aspect of being a social contract.
+
+Open Source indeed represents many things in many different contexts, but in this article I want to dig into what "Open Source" means in terms of software licensing and corporate communications specifically.It seems as if every single year, the same pot gets stirred: a vendor publicizes source code under a license that allows viewing, modifying and reuse (but with a commercial restriction) and makes an announcement about "open source", and the community is up in arms because "that's not what open source means".  So what does "open source" mean, exactly?
 
 When communities form and evolve along with the world around them, inevetably incompatible viewpoints emerge and can cause fractures. This was as true in the 1990's as it is in the 2020's.
 
@@ -43,14 +37,19 @@ Furthermore, from Bruce Perens' own account:
 
 source: [On Usage of The Phrase “Open Source”](http://perens.com/2017/09/26/on-usage-of-the-phrase-open-source/)
 
-So they were the first to introduce the term "Open Source" to the world and published the [Open Source Definition](https://opensource.org/osd) online. But hold on, does that mean anyone who wants to use the term "Open Source" needs to abide by this?   You cannot legally stop someone from using or misusing a word.  However, if you have a trademark, you can seek legal repercussions, which is a strong incentive for others not to misuse your mark.  US trademark law recognizes the first user when you file an application.  
-Luckily, the OSI filed for a trademark right away! But what happened? [It was rejected](https://opensource.org/pressreleases/certified-open-source.php) the term was too widely adopted even already in 1999, rendering OSI (or anyone else) unable to claim ownership of it. 🤔🤔🤔
+(According to Christine Peterson, [she coined the term a few days prior](https://opensource.com/article/18/2/coining-term-open-source-software) but for the purpose of this article, this isn't very relevant, as there was no particular meaning to the term, that was handed over to Eric whom she was meeting with - and Bruce)
 
-# 🤔
+So they were the first to introduce the term "Open Source" to the world and published the [Open Source Definition](https://opensource.org/osd) online. But hold on, does that mean anyone who wants to use the term "Open Source" needs to abide by this?   You cannot legally stop someone from using or misusing a word.  However, if you have a trademark, you can seek legal repercussions, which is a strong incentive for others not to misuse your mark.  Luckily for OSI, US trademark law recognizes the first user when you file an application, so they filed for a trademark right away! But what happened? [It was rejected!?](https://opensource.org/pressreleases/certified-open-source.php)
 
-Most online articles simply repeat the idea that OSI cointed and defined the term, but I had nothing better to do, so I decided to spend a few days and see if I could dig up any references to "Open Source" predating OSI's definition in 1998.
+🚩 However, the OSI was unable to claim ownership. 🚩  
+🚩 Nobody has since been able to file the trademark [tip: TM search](https://tmsearch.uspto.gov/). 🚩  
+Could it be that the term predates OSI and/or had been used with a different meaning? 🤔
 
-Turns out, the "Open Source" term had been used already for years.
+Many articles simply repeat the idea that OSI coined the term and call it a day.   I, however, had nothing better to do, so I decided to spend a few days and see if I could dig up any references to "Open Source" predating OSI's definition in 1998, especially ones with different meanings or definitions.
+
+**Of course, it's totally possible that multiple people come up with the same term independently and I don't actually care so much about "who was first", I'm more interested in figuring out what different meanings have been assigned to the term and how widespread those are.**
+
+Turns out, the "Open Source" term had been used already for years, prior to the OSI founding.
 For example a company called Caldera had "open sourced" a DOS operating system called OpenDos, and their announcement is accessible on [google groups](https://groups.google.com/g/no.linux/c/1UZo-3iv0tM) and [a mailing list archive](https://web.archive.org/web/20020910071813/http://www.xent.com/FoRK-archive/fall96/0269.html).
 
 Their announcement mentions:
@@ -59,24 +58,28 @@ Their announcement mentions:
 > Individuals and organizations desiring to commercially redistribute  
 > Caldera OpenDOS must acquire a license with an associated small fee.
 
-Today we would refer to it as dual-licensing, using Source Available due to the non-compete clause. But in 1996, actual practiotioners referred to it as "Open Source"!
+Today we would refer to it as dual-licensing, using Source Available due to the non-compete clause. But in 1996, actual practitioners referred to it as "Open Source"!
 
 You can download the OpenDos package from [ArchiveOS](https://archiveos.org/drdos/) and have a look at the license file, which includes even more restrictions such as "single computer". (like I said, I had nothing better to do).
 
-in 1990, a magazine editor by name of Tony Patti not only refers to Open Source software [but mentions that this was an Open Source policy at NSA in 1987](https://groups.google.com/g/sci.crypt/c/_696x9zT8MI#0243ee9294bdc300)
+Martin Espinoza
+  https://web.archive.org/web/20180205140347/http://hyperlogos.org/article/Who-Invented-Term-Open-Source similar breakdown to me
+  https://web.archive.org/web/20180315075903/http://hyperlogos.org/blog/drink/term-Open-Source followup with Caldera response, "open source" was widespread!
 
-Also in 1996, the OpenBSD project [had this to say](https://web.archive.org/web/20220818022950/https://en.wikipedia.org/wiki/OpenBSD):
 
-> The word "open" in the name OpenBSD refers to the availability of the operating system source code on the Internet, although the word "open" in the name OpenSSH means "OpenBSD". It also refers to the wide range of hardware platforms the system supports.
+in 1990, a magazine editor by name of Tony Patti not only refers to Open Source software [but mentions that NSA in 1987 referred to "software was developed from open source material"](https://groups.google.com/g/sci.crypt/c/_696x9zT8MI#0243ee9294bdc300)
 
-There's also [OpenVMS](https://en.wikipedia.org/wiki/OpenVMS), and [OpenStep](https://en.wikipedia.org/wiki/OpenStep) where "open" was used in ways other than open source.
 
-Seems an individual by the name of Bryan Lunduke has done similar research and found a couple more USENET posts. He breaks it down [on his substack](https://lunduke.substack.com/p/who-really-coined-the-term-open-source) and concludes, that without doing further digging, we can conclude that the first usages of the term "Open Source" go back at least as early as as:
+
+Seems an individual by the name of Bryan Lunduke has done similar research and found several more USENET posts about "open source", clearly in the context of opet source software, predating OSI by many years. He breaks it down [on his substack](https://lunduke.substack.com/p/who-really-coined-the-term-open-source) and concludes, that without doing further digging, we can conclude that the first usages of the term "Open Source" go back at least as early as as:
 
 * commercially, by Caldera in 1996.
 * by an invidiual, May of 1990 by Tony Patti.
 * potentially by a government agency, the NSA in 1987.
 
+Sidenote, the word "open" was also used in software, e.g. [OpenVMS](https://en.wikipedia.org/wiki/OpenVMS) since 1977, [OpenStep](https://en.wikipedia.org/wiki/OpenStep) since 1994 and of course in 1996, the OpenBSD project started.  [about their name:](https://web.archive.org/web/20220818022950/https://en.wikipedia.org/wiki/OpenBSD):
+
+> The word "open" in the name OpenBSD refers to the **availability of the operating system source code on the Internet**, although the word "open" in the name OpenSSH means "OpenBSD". It also refers to the wide range of hardware platforms the system supports.
 
 
 
@@ -89,6 +92,8 @@ But we have more good datapoints:
 * Linux Distributions: Debian, while affiliated with OSI, maintains its own license review process, though it is similar to OSI's ([source](https://www.debian.org/News/2012/20120330.en.html), Red Hat [stands with OSI](https://www.redhat.com/en/topics/open-source/what-is-open-source) and [so does Ubuntu](https://ubuntu.com/community/ethos/mission). (though both seem to present an inaccurate view on how the term came to be)
 
 
+  1998 https://web.archive.org/web/19981212031620/http://www.opensource.com/ "OpenSource, Inc"
+  [Sometime during the year 2000](https://web.archive.org/web/20000601000000*/opensource.com), it became a RedHat property.
 
 The [Open Source Definition](https://opensource.org/osd) has been on the OSI website for 25 years.
 During this time, it has regularly been contested.
@@ -105,48 +110,36 @@ I think redefining "Open Source" today would be tremendously impractical.  It is
 It's much easier to just coin a new term and promote that instead, which is this case is what happened with Fair Source.
 
 
-I wish I could have concluded by confirming OSI's authority and confirming we should all just go with that. But the fact of the matter is, they were not the first to coin the term, they don't have a trademark, and it has been consistly contested despite their garguantuan efforts to get the whole world aligned (with good results in the programming community, in goverments, and the industry)
+But the fact of the matter is, they were not the first to coin the term, they don't have a trademark, and it has been consistly contested despite their garguantuan efforts to get the whole world aligned (with good results in the programming community, in goverments, and the industry)
 
-Open Source is not the only model, there are plenty of others to choose from, such as Source Available or [Fair Source](/posts/fair-source).  And if those don't fit your need, you can always create a new one.   Even Bruce Perens himself is working [on an "Open Source" reimagined](https://www.theregister.com/2023/12/27/bruce_perens_post_open/) which will be a distinct initiative as well.
+### In conclusion
+
+In a world that can't agree on anything, the amount of alignment that OSI has been able to create is remarkable.
+But there is plenty of evidence that the word "open source" has been used in ways incompatible with the OSD, both before, and after OSI's creation. 
+One meaning of open source comes up over and over again: publishing source code for anyone to use, except to compete with the author.
+OSI's attempts to control usage of the term - for which they have no legal grounds - have been proven mostly pointless, and I don't see this conflict ever being truly resolved.
+
+My suggestion therefore, is a pragmatic one:
+* as a vendor, communicate in more detail (but not too verbosely) what your terms are.  Customers and prospects appreciate clarity and dislike being misguided.
+* as a consumer/customer, always look beyond the buzz-words and build a good understanding of the licensing terms you are about to use.
+* if as a vendor, you find it important to use a OSI compliant license, simply mention "OSI certified", which is trademarked, and has a precise meaning.
+* as a consumer/customer, look beyond the "OSI certified" (or "Open Source") label.  It may only cover a part of the whole offering (e.g. any Open core product), you may need to sign a customer agreement undermining the OSI license (e.g. RedHat), and something non-OSI compliant may actually serve you better (e.g. Source-Available or [Fair Source](/posts/fair-source)).
+
+As far as "Open Source" terminology goes, arguing about whether that means OSI compliant or not, is pretty useless.  I would try to sidestep it al together. Except if you're a company who believes "any press is good press", than use the term "open source" as you wish, especially for non-OSI compliant licenses.  You're free to do so, and you'll have guaranteed buzz.
 
 
-my suggestion therefore, is a pragmatic one:
-- the term "Open Source" is irreconsibly ambiguous. Always clarify beyond it, and seek the truth behind it
-
-- Be pragmatic just say OSI values. see grafana announcement. No holy war. Just try to avoid saying open source when clearly not osi. But OSI not end all be all. Fair source makes sense. Red hat tricks. Open core despite agpl. Just be clear
--
-- Don't try to actively mislead
-
-
-* if you are proud to be OSI compliant, advertise as such
-* if you have OSD-incompatible restrictions and want to do the honorable thing, try to pick a more appropriate term such as Source Available.  Simple clarity will be appreciated by your customers and prospects.
-* if you have OSD-incompatible restrictions such as non-compete, but believe "any press is good press", claim you are open source, make vague statements and let the internet go nuts.
+Source Available or [Fair Source](/posts/fair-source).  And if those don't fit your need, you can always create a new one.   Even Bruce Perens himself is working [on an "Open Source" reimagined](https://www.theregister.com/2023/12/27/bruce_perens_post_open/) which will be a distinct initiative as well.
 
 
 
 
 $$$$ IGNORE THIS DRAFT TEXT BELOW
 
-Cygnus software used sourceware / free software, prior to 1998, I believe
-
-> the more development we did on GNU software, the less we got back from the Net, until we were doing over 50% of all GNU toolchain development
-
-
-
-> In fact, GNUPro has become so dominant that several of our competitors have announced their intention to sell commercial support for GNU software to compete with us! Fortunately, the Open Source model comes to the rescue again. Unless and until a competitor can match the 100+ engineers we have on staff today, most of whom are primary authors or maintainers of the software we support, they cannot displace us from our position as the "true GNU" source (we supply over 80% of all changes made to GCC, GDB, and related utilities). The best they can hope to do is add incremental features that their customers might pay them to add. But because the software is Open Source, whatever value they add comes back to Cygnus as open-source software, for us to integrate if it's good, or ignore if it's not. Unlike proprietary software in which competitors fight in a two-sided win/lose contest, with Open Source it's more like fighting on a Moebius strip, and everything flows to the side of the primary maintainer. So, while our competitors may get some tactical advantage in the "me-too" GNU space, Cygnus benefits in the long run. Founded in 1989, our first-mover advantage is ten years ahead of the competition.
-
-
-https://dl.acm.org/doi/10.1145/164399.164402 lynx used 'free software' term
-
-
 https://lists.nongnu.org/archive/html/discuss-gnustep/2013-09/msg00113.html another example of commercial clause making non-osi compliant
-
 
 There is something to be said about the work of taking a word that is colloquially used, and formally defining it.
 
-
 TODO: simon phipps open source definition hot debate. 5-10 years ago
-
 
 You can meet the OSI definition, not be OSD compliant
 
@@ -162,9 +155,6 @@ If I can find formal uses from 4 decades ago, when the world communication was m
 in a world that can't agree on anything..
 
 
-
-
--
 - https://opensource.org/licenses/review-process new developments. "Software freedom"
 - https://opensource.org/licenses/review-process
 -
@@ -177,10 +167,5 @@ in a world that can't agree on anything..
   controversy but was made especially public as a result of it
 
 
-
-  TODO: comparison to 4 freedoms? 4F is easier. why need to make own OSD?
-
-
-
-  https://www.youtube.com/watch?v=um5bC20NTQ0
-  5:20 -> power oss. enable further innovation, 8:20 kindof equating oss to making source available, but also incorporating into larger project and driving further innovation
+https://web.archive.org/web/20070627154037/https://opensource.org/node/163 2007 enforcing by OSI with huge backlash and some good quotes re TMp
+https://slashdot.org/story/07/06/21/1146259/osi-to-crack-down-on-open-source-abusers same

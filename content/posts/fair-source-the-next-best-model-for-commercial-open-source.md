@@ -1,26 +1,26 @@
 +++
 title = 'Fair Source: the next best model for commercial open source?'
-date = 2024-08-26T10:00:43+03:00
-draft = true
+date = 2024-08-26T11:12:13+03:00
+draft = false
 +++
 
 Building businesses based on an Open Source project is like balancing a solar system.
 Like the sun is the center of our own little universe, powering life on the planets which revolve around it in a brittle, yet tremendously powerful astrophysical equilibrium; so is the relationship between a thriving open source project, with a community, one or more vendors and their commercially supported customers revolving around it, driven by astronomical aspirations.
 
-Source-available & Non-Compete licensing have existed in various forms, and have been tweaked and refined for decades, in an attempt to combine just enough proprietary conditions with just enough of Open Source flavor, to find that perfect tradeoff.   [Fair Source](https://fair.io/) is the latest refinement for software projects driven by a single vendor wanting to combine monetization, a high rate of contributions to the project (supported by said monetization), community collaboration and direct association with said software project.
+Source-available & Non-Compete licensing have existed in various forms, and have been tweaked and refined for decades, in an attempt to combine just enough proprietary conditions with just enough of Open Source flavor, to find that perfect trade-off.   [Fair Source](https://fair.io/) is the latest refinement for software projects driven by a single vendor wanting to combine monetization, a high rate of contributions to the project (supported by said monetization), community collaboration and direct association with said software project.
 
-Succintly, Fair Source licenses provide much of the same benefits to users as Open Source licenses, although outsiders are not allowed to build their own competing service based on the software; however after 2 years the software automatically becomes MIT or Apache2 licensed, and at that point you can pretty much do whatever you want with the older code.
+Succinctly, Fair Source licenses provide much of the same benefits to users as Open Source licenses, although outsiders are not allowed to build their own competing service based on the software; however after 2 years the software automatically becomes MIT or Apache2 licensed, and at that point you can pretty much do whatever you want with the older code.
 
 This is in contrast with other modern Source-Available projects such as - not to be confused - [Fair Code](https://faircode.io/) and [Commons Clause](https://commonsclause.com/) which also use non-compete clauses but don't use the delayed open source publication.
 
-It seems we have reached an important milestone in 2024: on the surface, "Fair Source" is yet another new initiative that positions itself as a more business friendly alternative to "Open Source", but the delayed open source publication (DSOP) model has been refined to the point where the licenses are succint, clear, easy to work with and should hold up well in court.
+It seems we have reached an important milestone in 2024: on the surface, "Fair Source" is yet another new initiative that positions itself as a more business friendly alternative to "Open Source", but the delayed open source publication (DSOP) model has been refined to the point where the licenses are succinct, clear, easy to work with and should hold up well in court.
 Several technology companies are choosing this software licensing strategy (Sentry being the most famous one, you can see the others on [their website](https://fair.io/)).
 
 My 2 predictions:
 * we will see 50-100 more companies in the next couple of years.
 * a governance legal entity will appear soon, and a trademark will follow after.
 
-In this article, I'ld like to share my perspective and address some - what I believe to be - misunderstandings in current discourse.
+In this article, I'd like to share my perspective and address some - what I believe to be - misunderstandings in current discourse.
 
 
 ## The licenses
@@ -34,7 +34,7 @@ At this time, the Fair Source ideology is implemented by the following licenses:
 BSL/BUSL are more tricky to understand can have different implementations.
 FCL and FSL are nearly identical. They are clearly and concisely written and embody the Fair Source spirit in the most pure form.
 
-Seriously, try running the following in your terminal. Sometimes as an engineer you have to appreciate legal text when it's this concise, easy to understand, and diffable!
+Seriously, try running the following in your terminal. Sometimes as an engineer you have to appreciate legal text when it's this concise, easy to understand, and diff-able!
 
 ```
 wget https://raw.githubusercontent.com/keygen-sh/fcl.dev/master/FCL-1.0-MIT.md
@@ -82,8 +82,8 @@ Technically, Open Core is more of a business architecture, where you still have 
 
 Note that you can also devise hybrid approaches. Here are some ideas:
 
-* a Fair Source core and Closed Source shell. (more defensive than Open Core or Fair Source seperately). (e.g. [PowerSync does this](https://www.powersync.com/legal/overview)) 
-* an Open Source core, with Fair Source shell. (more open than Open Core or Fair Source seperately).
+* a Fair Source core and Closed Source shell. (more defensive than Open Core or Fair Source separately). (e.g. [PowerSync does this](https://www.powersync.com/legal/overview)) 
+* an Open Source core, with Fair Source shell. (more open than Open Core or Fair Source separately).
 * Open Source Core, with Source Available shell (users can view, modify and distribute the code but not commercialize it, and without the delayed open source publication). This would be the "true" symmetrical counterpart to Fair Source. It is essentially Open Core where the community also has access to the proprietary features (but can't commercialize those).  It would also allow to put all code in the same repository.  (although this benefit works better with Fair Source because any contributed code will definitely become open source, thus incentivizing the community more).  I find this a very interesting option that I hope Open Core vendors will start considering. (although it has little to do with Fair Source).
 * etc.
 
@@ -122,7 +122,7 @@ Zeke Gabrielse, one of the shepherds of Fair Source, [said it well here](https:/
 > Being 2 years old also puts any SaaS competition far enough back to not be a concern
 
 Therefore, you may as well say **no competition is allowed**. Although, in Zeke's post, I presume he was writing from the position of an actively developing software project.
-If it becomes abandoned, the 2 years countdown is an obstacle, an overcomable one, that eventually does let you compete, but in this case, the copyright holder probably went bust, so you aren't really competing with them either.  The 2 year window is not designed to enable competition, instead it is a contingency plan for when the company goes bankrupt.  The wait can be needlessly painful for the community in such a situation.  If a company is about to go bust, they could immediately release their Fair Source code as Open Source, but I wonder if this can be automated via the actual license text.
+If it becomes abandoned, the 2 years countdown is an obstacle, an overcomeable one, that eventually does let you compete, but in this case, the copyright holder probably went bust, so you aren't really competing with them either.  The 2 year window is not designed to enable competition, instead it is a contingency plan for when the company goes bankrupt.  The wait can be needlessly painful for the community in such a situation.  If a company is about to go bust, they could immediately release their Fair Source code as Open Source, but I wonder if this can be automated via the actual license text.
 
 
 (I had found some ambiguous use of the term "direct" competition which I've [reported and has since been resolved](https://github.com/keygen-sh/fcl.dev/issues/2))
@@ -132,8 +132,8 @@ If it becomes abandoned, the 2 years countdown is an obstacle, an overcomable on
 Humans are notoriously bad about predicting 2nd order effects.   So I like to try to. What could be some second order effects of Fair Source projects? And how do they compare to Open Core?
 
 * can companies first grow on top of their Fair Source codebase, take community contributions, and then switch to more restrictive, or completely closed licensing, shutting out the community? Yes if a CLA is in place (or using the 2 year old code). (this isn't any different from any other CLA using Open Source or Open Core project.  Though with Open Core, you can't take in external contributions on proprietary parts to begin with)
-* if you enjoy a privileged position where others can't meaningfully compete with you based on the same source code, that can affect how the company treats its community and its customers. It can push through undesireable changes, it can price more aggressively, etc. (these issues are the same with Open Core)
-* With Open Source & Open Core, the company is incentivized to make the code well understood by the community. Under Fair Source it would still be sensible (in order to get free contributions), but at the same time, by hiding design documents, subtly obfuscating the code and witholding information it can also give itself the edge for when the code does become Open Source, although as we've seen, the 2 year delay makes competition unrealistic anyway.
+* if you enjoy a privileged position where others can't meaningfully compete with you based on the same source code, that can affect how the company treats its community and its customers. It can push through undesirable changes, it can price more aggressively, etc. (these issues are the same with Open Core)
+* With Open Source & Open Core, the company is incentivized to make the code well understood by the community. Under Fair Source it would still be sensible (in order to get free contributions), but at the same time, by hiding design documents, subtly obfuscating the code and withholding information it can also give itself the edge for when the code does become Open Source, although as we've seen, the 2 year delay makes competition unrealistic anyway.
 
 All in all, nothing particularly worse than Open Core, here.
 
@@ -148,16 +148,18 @@ As stated above, it makes more sense to compare to Open Core.
 
 It's like saying asphalt paving machinery doesn't care about funding and is therefore to blame when roads don't get built. Therefore we need tolls. But it would be more useful to compare tolls to road taxes and vignettes.
 
-Of course it happens that people dedicate themselves to writing open source projects, usually driven by their interests, don't get paid, get volumes of support requests (incl. from commercial entities), which can become suffering, and can also lead to codebases becoming critically important, yet critically misunderstood and fragile. This is clearly a situation to avoid, and there are many ways to solve the problem ranging from sponsorships (e.g. [GitHub](https://github.com/sponsors), [tidelift](https://tidelift.com)), bounty programs (e.g. [Algora](http://algora.io)), direct funding (e.g. [Sentry's 500k donation](https://blog.sentry.io/we-just-gave-500-000-dollars-to-open-source-maintainers/)) and many more initiatives that have launched in the last few years. Certainly a positive development.  Sometimes formally abandoning a project is also a clear sign that puts the burden of responsibility onto whoever consumes it and can be a relief to the original author.  If anything, it can trigger alarm bells within corporations and be a fast path to properly engaging and compensating the author.  There is no way around the fact that developers (and people in general) are generally responsible for their own wellbeing and sometimes need to put their foot down, or put on their business hat (which many developers don't like to do) if their decision to open source project is resulting in problems.  No amount of licensing can change this hard truth.
+Of course it happens that people dedicate themselves to writing open source projects, usually driven by their interests, don't get paid, get volumes of support requests (incl. from commercial entities), which can become suffering, and can also lead to codebases becoming critically important, yet critically misunderstood and fragile. This is clearly a situation to avoid, and there are many ways to solve the problem ranging from sponsorships (e.g. [GitHub](https://github.com/sponsors), [tidelift](https://tidelift.com)), bounty programs (e.g. [Algora](http://algora.io)), direct funding (e.g. [Sentry's 500k donation](https://blog.sentry.io/we-just-gave-500-000-dollars-to-open-source-maintainers/)) and many more initiatives that have launched in the last few years. Certainly a positive development.  Sometimes formally abandoning a project is also a clear sign that puts the burden of responsibility onto whoever consumes it and can be a relief to the original author.  If anything, it can trigger alarm bells within corporations and be a fast path to properly engaging and compensating the author.  There is no way around the fact that developers (and people in general) are generally responsible for their own well being and sometimes need to put their foot down, or put on their business hat (which many developers don't like to do) if their decision to open source project is resulting in problems.  No amount of licensing can change this hard truth.
 
-Furthermore, you can make money via Open Core around OSI approved open source projects (e.g. [Grafana](https://grafana.com)), consulting/support, and many companies that pay developers to work on (pure) Open Source code (Meta, Microsft, Google, etc are the most famous ones, but there are many more).  Companies that try to achieve sustainability (and even thriving) on pure open source software for which they are the main/single driving force, are extremely rare. ([Chef](https://chef.io) tried, and now [System Initiative](https://www.systeminit.com/about-us/) is trying to do it better. I remain skeptical but am hopeful and am rooting for them to prove the model)
+Furthermore, you can make money via Open Core around OSI approved open source projects (e.g. [Grafana](https://grafana.com)), consulting/support, and many companies that pay developers to work on (pure) Open Source code (Meta, Microsft, Google, etc are the most famous ones, but there are many smaller ones).  Companies that try to achieve sustainability (and even thriving) on pure open source software for which they are the main/single driving force, are extremely rare. ([Chef](https://chef.io) tried, and now [System Initiative](https://www.systeminit.com/about-us/) is trying to do it better. I remain skeptical but am hopeful and am rooting for them to prove the model)
 
 
 Doesn't it sound a bit ironic that the path to getting developers paid is releasing your software via a non-compete license?
 
 Do we reach developer sustainability by preventing developers from making money on top of projects they want to - or already have - contribute(d) to?
 
-(Open Core shuts out people similarly, but many of the models above, don't. Note, Fair Source *does* allow to make money via consulting and auxiliary services *related* to the software)
+Important caveats:
+* Fair Source *does* allow to make money via consulting and auxiliary services *related* to the software.
+* Open Core shuts out people similarly, but many of the business models above, don't.
 
 ## CLA needed?
 
@@ -175,29 +177,29 @@ The [FSL website](https://fsl.software/) states:
 This looks like fear mongering.
 
 * AGPL is not categorically less permissive than FSL. It is less permissive when the code is 2 years old or older (and the FSL has turned into MIT/Apache2).  For current and recent code, AGPL permits competition; FSL does not.
-* The world "viral" is more divisive than accurate.  In my mind, complying with AGPL is rather easy, my rule of thumb is to say you trigger copyleft when you "ship".  Most engineers have an intuitive understanding of what it means to "ship" a feature, whether that's on cloud, or on-prem.  In my experience, people struggle more with patent clauses or even the relation between trademarks and software licensing than they do with copyleft.  There's still some level of uncertainty and caution around AGPL, mainly due to its complexity.  (sidenote: Google and CNCF doesn't allow copyleft licenses, and their [portfolio](https://github.com/cncf/foundation/blob/main/allowed-third-party-license-policy.md) doesn't have a whole lot of commercial success to show for it, I see mainly projects that can easily be picked up by Google)
+* The world "viral" is more divisive than accurate.  In my mind, complying with AGPL is rather easy, my rule of thumb is to say you trigger copyleft when you "ship".  Most engineers have an intuitive understanding of what it means to "ship" a feature, whether that's on cloud, or on-prem.  In my experience, people struggle more with patent clauses or even the relation between trademarks and software licensing than they do with copyleft.  There's still some level of uncertainty and caution around AGPL, mainly due to its complexity.  (side note: Google and CNCF doesn't allow copyleft licenses, and their [portfolio](https://github.com/cncf/foundation/blob/main/allowed-third-party-license-policy.md) doesn't have a whole lot of commercial success to show for it, I see mainly projects that can easily be picked up by Google)
 
 Heather Meeker, the lawyer consulted to draft up the FSL has spoken out [against the virality discourse](https://heathermeeker.com/2019/03/05/open-source-and-the-eradication-of-viruses/) and [tempering the FUD around AGPL](https://heathermeeker.com/2023/10/13/agpl-in-the-light-of-day/)
 
 
 ## Conclusion
 
-I think Fair Source (and FSL) has a lot to offer.  It's a very compelling alternative to Open Core. As it stands today it's more generous towards the community than Open Core is. Despite my minor objections, I find it well executed.
+I think Fair Source, the FSL and FCL have a lot to offer.  Throughout my analysis I may have raised some criticisms, but if anything, it reminds me of how much Open Core can suck (though it depends on the relative size of core vs shell).  So I find it a very compelling alternative to Open Core. Despite some poor choices of wording, I find it well executed:
 It ties up a lot of loose ends from previous initiatives (Source Available, BSL and other custom licenses) into a neat package.  Despite the need for a CLA it's still quite easy to implement and is arguably more viable than Open Core is, in its current state today.
 When comparing to Open Source, the main question is: **which is worse, the "harmful free-rider problem", or the non-compete?** (Anecdotally, my gut feeling says the former, but I'm on the look out for data driven evidence).
 When comparing to Open Core, the main question is: **is a business more viable keeping proprietary features closed, or making them source-available (non-compete)?**.
 
 As mentioned, there are many more hybrid approaches possible.  For a business thinking about their licensing strategy, it may make sense to think of these questions separately:
 
-* should our proprietary shell be time based or feature scoped?
+* should our proprietary shell be time based or feature scoped? Does it matter?
 * should our proprietary shell be closed, or source-available?
 
 I certainly would prefer to see companies and projects appear:
 
-* as Fair Source rather than not at all
+* as Fair Source, rather than not at all
 * as Open Core, rather than not at all
-* as Fair Source, rather than Open Core
-* with more commercial restrictions from the get-go, instead of starting more permissively and relicensing later. just kidding, but that's a topic for another day.
+* as Fair Source, rather than Open Core (depending on "shell thickness").
+* with more commercial restrictions from the get-go, instead of starting more permissively and re-licensing later. Just kidding, but that's a topic for another day.
 
 For vendors, I think there are some options left to explore, such as the Open Core with an source available (instead of closed) shell.  Something to consider for any company doing Open Core today.
 For end-users / customers, "Open Source" vendors are not the only ones to be taken with a grain of salt, it's the same with Fair Source, since they may have a more complicated arrangement rather than just using a Fair Source license.

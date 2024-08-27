@@ -12,7 +12,9 @@ Source-available & Non-Compete licensing have existed in various forms, and have
 
 Succinctly, Fair Source licenses provide much of the same benefits to users as Open Source licenses, although outsiders are not allowed to build their own competing service based on the software; however after 2 years the software automatically becomes MIT or Apache2 licensed, and at that point you can pretty much do whatever you want with the older code.
 
-This is in contrast with other modern Source-Available projects such as - not to be confused - [Fair Code](https://faircode.io/) and [Commons Clause](https://commonsclause.com/) which also use non-compete clauses but don't use the delayed open source publication.
+To avoid confusion, this project is different from:
+* a <a href="http://web.archive.org/web/20160325031558/https://fair.io/">previous "Fair Source" initiative</a> that worked quite differently and has been <a href="https://github.com/fairsource/fair.io/pull/49/files">abandoned</a>.
+* other modern Source-Available projects such as [Fair Code](https://faircode.io/) and [Commons Clause](https://commonsclause.com/) which also use non-compete clauses but don't use the delayed open source publication.
 
 It seems we have reached an important milestone in 2024: on the surface, "Fair Source" is yet another new initiative that positions itself as a more business friendly alternative to "Open Source", but the delayed open source publication (DSOP) model has been refined to the point where the licenses are succinct, clear, easy to work with and should hold up well in court.
 Several technology companies are choosing this software licensing strategy (Sentry being the most famous one, you can see the others on [their website](https://fair.io/)).
@@ -50,7 +52,7 @@ I will focus on FSL and FCL and FSL, the Fair Source "flagship licenses".
 <!--which I cover in my other article, [So, what does Open Source mean exactly?](/posts/so-what-does-open-source-mean-again-exactly)-->
 
 First, we'll need to agree on what the term "Open Source" means. This itself has been a battle for decades, with non-competes (commercial restrictions) being especially contentious and in use even before OSI came along, so I'm working on an article which challenges OSI's [Open Source Definition](https://opensource.org/osd) which I will publish soon.
-However, the OSD is probably the most common understanding in the industry today - so we'll use that here - and it seems that folks behind FSL/Fair Source made the wise decision to distance themselves from these contentious debates: after some initial conversations about FSL using the "Open Source" term, they've defined their own new term and I've seen a lot of meticulous work (e.g. [fsl#2](https://github.com/getsentry/fsl.software/issues/2) and [fsl#10](https://github.com/getsentry/fsl.software/issues/10) on how they articulate what they stand for.   (the Open Source Definition debate is why I hope the Fair Source folks will file a trademark if this projects gains more traction.
+However, the OSD is probably the most common understanding in the industry today - so we'll use that here - and it seems that folks behind FSL/Fair Source made the wise decision to distance themselves from these contentious debates: after some initial conversations about FSL using the "Open Source" term, they've adopted the less common term of "Fair Source" and I've seen a lot of meticulous work (e.g. [fsl#2](https://github.com/getsentry/fsl.software/issues/2) and [fsl#10](https://github.com/getsentry/fsl.software/issues/10) on how they articulate what they stand for.   (the Open Source Definition debate is why I hope the Fair Source folks will file a trademark if this projects gains more traction.
 
 Importantly, **OSI's definition of "Open Source" includes non-discrimination and free redistribution**.
 

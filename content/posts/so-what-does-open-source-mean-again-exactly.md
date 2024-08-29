@@ -65,6 +65,53 @@ You can download the OpenDos package from [ArchiveOS](https://archiveos.org/drdo
 Martin Espinoza
   https://web.archive.org/web/20180205140347/http://hyperlogos.org/article/Who-Invented-Term-Open-Source similar breakdown to me
   https://web.archive.org/web/20180315075903/http://hyperlogos.org/blog/drink/term-Open-Source followup with Caldera response, "open source" was widespread!
+couldn't find a mention in the Linux Kernel Mailing List archives prior to the OSD day, though they only start March 1996 https://lkml.org/lkml/1996
+
+I couldn't quite figure out where people used to discuss Linux kernel development prior to that, so I asked ChatGPT.
+It suggested I check out the following 5 usenet groups:
+
+but no https://groups.google.com/g/comp.os.minix/search?q=%22open%20source%22
+and not on https://groups.google.com/g/alt.os.linux/search?q=%22open%20source%22%20after%3A1964-07-02%20before%3A1999-08-01
+
+
+comp.os.linux
+discussion about supporting binary-only software on Linux
+https://groups.google.com/g/comp.os.linux/c/06y4cr6wr7o/m/fZPOOaIMCCYJ
+> The GPL and
+the open source code have made Linux the success that it is.
+Cygnus and other commercial interests are quite comfortable
+with this open paradigm, and in fact prosper. One need only
+pull the source code to GCC and read the list of many
+commercial contributors to realize this.
+
+
+https://groups.google.com/g/comp.os.linux.announce/c/9iyffmTxjxU/m/N1jX-Jclx6UJ
+nov 1996 Caldera again
+Channel Partners can utilize Caldera's Linux-based, open-source
+environment to remotely manage Windows 3.1 applications at home, in
+the office or on the road. By using Caldera's OpenLinux (COL) and Wabi
+solution, resellers can increase sales and service revenues by leveraging
+the rapidly expanding telecommuter/home office market. Channel Partners
+who create customized turn-key solutions based on environments like SCO
+OpenServer 5 or Windows NT,
+
+
+17 Oct 1996
+https://groups.google.com/g/comp.os.linux.announce/c/tthtKrsFT24/m/7r8kLqxDy5gJ
+
+> There will be a Open Systems World/FedUnix conference/trade show in
+Washington DC on November 4-8. It is a traditional event devoted to
+open computing (read: Unix), attended mostly by government and
+commercial Information Systems types.
+
+** Schedule of Linux talks, OSW/FedUnix'96, Thursday, November 7, 1996 ***
+> 11:45 Alexander O. Yuriev, "Security in an open source system: Linux study"
+
+
+
+REDO everything with open-source
+https://groups.google.com/g/comp.os.linux.development/search?q=%22open-source%22&sortBy=DATE no hits
+
 
 
 in 1990, a magazine editor by name of Tony Patti not only refers to Open Source software [but mentions that NSA in 1987 referred to "software was developed from open source material"](https://groups.google.com/g/sci.crypt/c/_696x9zT8MI#0243ee9294bdc300)

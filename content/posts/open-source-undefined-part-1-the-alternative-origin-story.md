@@ -4,13 +4,15 @@ date = 2024-09-05T17:38:53+03:00
 summary = """
 What is the definition of "Open Source"?
 In future posts, we'll discuss harmonious paths forward, but for now we have to dig into why OSI's Open Source Definition created division from the start"""
+[params]
+  images = ['/files/open-source-undefined-computer-chronicles-bill-joy.png']
 +++
 
 What is the definition of "Open Source"?
 
 There's been no shortage of contention on what "Open Source software" means.  Two instances that stand out to me personally are [ElasticSearch's "Doubling down on Open"](https://www.elastic.co/blog/doubling-down-on-open) and [Scott Chacon's "public on GitHub"](https://x.com/chacon/status/1754883687668232334).
 
-I've been active in Open Source for 20 years and could use a refresher on its origins and officialisms.  The plan was simple:  write a blog post about why the [OSI (Open Source Initiative)](https://opensource.org/) and its [OSD (Open Source Definition)](https://opensource.org/osd) are authorative, collect evidence in its support (confirmation that they invented the term, of widespread acceptance with little dissent, and of the OSD being a practical, well functioning tool).  That's what I keep hearing, I just wanted to back it up.  Since contention always seems to be around commercial re-distribution restrictions (which are forbidden by the OSD), I wanted to particularly confirm that there hasn't been all that many commercial vendors who've used, or wanted, to use the term "open source" to mean "you can view/modify/use the source, but you are limited in your ability to re-sell, or need to buy additional licenses for use in a business"
+I've been active in Open Source for 20 years and could use a refresher on its origins and officialisms.  The plan was simple:  write a blog post about why the [OSI (Open Source Initiative)](https://opensource.org/) and its [OSD (Open Source Definition)](https://opensource.org/osd) are authoritative, collect evidence in its support (confirmation that they invented the term, of widespread acceptance with little dissent, and of the OSD being a practical, well functioning tool).  That's what I keep hearing, I just wanted to back it up.  Since contention always seems to be around commercial re-distribution restrictions (which are forbidden by the OSD), I wanted to particularly confirm that there hasn't been all that many commercial vendors who've used, or wanted, to use the term "open source" to mean "you can view/modify/use the source, but you are limited in your ability to re-sell, or need to buy additional licenses for use in a business"
 
 However, the further I looked, the more I found evidence of the opposite of all of the above. I've spent a few weeks now digging and some of my long standing beliefs are shattered.  I can't believe some of the things I found out.  Clearly I was too emotionally invested, but after a few weeks of thinking, I think I can put things in perspective.   So this will become not one, but multiple posts.
 
@@ -20,11 +22,11 @@ Without further ado, let's get into the beginnings of Open Source.
 
 ## The "official" OSI story.
 
-Let's first get the official story out the way, the one you see repeated over and over on [websites](https://www.redhat.com/en/topics/open-source/what-is-open-source), [on WikiPedia](https://en.wikipedia.org/wiki/Open-source-software_movement) and probably in most computing history books.
+Let's first get the official story out the way, the one you see repeated over and over on [websites](https://www.redhat.com/en/topics/open-source/what-is-open-source), [on Wikipedia](https://en.wikipedia.org/wiki/Open-source-software_movement) and probably in most computing history books.
 
 Back in 1998, there was a [small group of folks who felt that the verbiage at the time (Free Software) had become too politicized](https://web.archive.org/web/20021001164015/http://www.opensource.org/docs/history.php). (note: the Free Software Foundation was founded 13 years prior, in 1985, and informal use of "free software" had around since the 1970's).  They felt they needed a new word "to market the free software concept to people who wore ties". ([source](https://www.oreilly.com/openbook/opensources/book/perens.html))  (somewhat ironic since today many of us like to say "Open Source is not a business model")
 
-Bruce Perens - an early Debian project leader and hacker on free software projects such as [busybox](https://www.busybox.net/) - had authored the first [Debian Free Software Free Guidelines](https://en.wikipedia.org/wiki/Debian_Free_Software_Guidelines) in 1997 which was turned into the first [Open Source Definition](https://en.wikipedia.org/wiki/The_Open_Source_Definition) when he founded the [OSI](https://opensource.org) (Open Source Initiative) with Eric Raymond in 1998.
+Bruce Perens - an early Debian project leader and hacker on free software projects such as [busybox](https://www.busybox.net/) - had authored the first [Debian Free Software Guidelines](https://en.wikipedia.org/wiki/Debian_Free_Software_Guidelines) in 1997 which was turned into the first [Open Source Definition](https://en.wikipedia.org/wiki/The_Open_Source_Definition) when he founded the [OSI](https://opensource.org) (Open Source Initiative) with Eric Raymond in 1998.
 As you continue reading, keep in mind that from the get-go, OSI's mission was supporting the industry.  Not the community of hobbyists.
 
 Eric Raymond is of course known for his seminal 1999 essay on development models ["The cathedral and the bazaar"](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar), but he also worked on [fetchmail](https://en.wikipedia.org/wiki/Fetchmail) among others.
@@ -43,7 +45,7 @@ source: [On Usage of The Phrase “Open Source”](http://perens.com/2017/09/26/
 
 Occasionally it comes up that it may have been Christine Peterson [who coined the term earlier that week in February](https://opensource.com/article/18/2/coining-term-open-source-software) but didn't give it a precise meaning. That was a task for Eric and Bruce in followup meetings over the next few days.
 
-Even when you're the first to use or define a term, you can't legally control how others use it, until you obtain a TradeMark.  Luckily for OSI, US trademark law recognizes the first user when you file an application, so they filed for a trademark right away. But what happened? It was rejected!  [The OSI's official explanation reads:](https://opensource.org/pressreleases/certified-open-source.php)
+Even when you're the first to use or define a term, you can't legally control how others use it, until you obtain a Trademark.  Luckily for OSI, US trademark law recognizes the first user when you file an application, so they filed for a trademark right away. But what happened? It was rejected!  [The OSI's official explanation reads:](https://opensource.org/pressreleases/certified-open-source.php)
 
 > We have discovered that there is virtually no chance
 that the U.S. Patent and Trademark Office would register the mark
@@ -52,7 +54,7 @@ partly a victim of our own success in bringing the “open source”
 concept into the mainstream
 
 This is our first 🚩 red flag and it lies at the basis of some of the conflicts which we will explore in this, and future posts.
-(tip: I found this handy [TradeMark search](https://tmsearch.uspto.gov/) website in the process)
+(tip: I found this handy [Trademark search](https://tmsearch.uspto.gov/) website in the process)
 
 Regardless, since 1998, the OSI has vastly grown its scope of influence (more on that in future posts), with the [Open Source Definition](https://opensource.org/osd) mostly unaltered for 25 years, and having been widely used in the industry.
 
@@ -94,7 +96,7 @@ Today we would refer to it as dual-licensing, using Source Available due to the 
 
 You can download the OpenDos package from [ArchiveOS](https://archiveos.org/drdos/) and have a look at the license file, which includes even more restrictions such as "single computer". (like I said, I had nothing better to do).
 
-### investigations by Martin Espinoza re: Caldera
+### Investigations by Martin Espinoza re: Caldera
 
 On his blog, Martin has an article [making a similar observation about Caldera's prior use of "open source"](https://web.archive.org/web/20180205140347/http://hyperlogos.org/article/Who-Invented-Term-Open-Source), following up with another [article](https://web.archive.org/web/20180315075903/http://hyperlogos.org/blog/drink/term-Open-Source) which includes a response from Lyle Ball, who headed the PR department of Caldera 
 
@@ -113,10 +115,10 @@ He mentions plenty of avenues for further research, I pursued one of them below.
 
 ### Linux Kernel discussions
 
-Mr. Ball's mentions of Linus and Linux pique'd my interest, so I started digging.
+Mr. Ball's mentions of Linus and Linux piqued my interest, so I started digging.
 
 I couldn't find a mention of "open source" in the Linux Kernel Mailing List archives prior to the OSD day (Feb 1998), though the archives [only start as of March 1996](https://lkml.org/lkml/1996).
-I asked ChatGPT where people used to discuss Linux kernel development prior to that, and it suggested 5 usenet groups, which google still lets you search through:
+I asked ChatGPT where people used to discuss Linux kernel development prior to that, and it suggested 5 Usenet groups, which google still lets you search through:
 
 * alt.os.linux ([no hits](https://groups.google.com/g/alt.os.linux/search?q=%22open%20source%22%20after%3A1960-01-01%20before%3A1998-03-01))
 * comp.os.minix ([no hits](https://groups.google.com/g/comp.os.minix/search?q=%22open%20source%22%20after%3A1960-01-01%20before%3A1998-03-01))
@@ -218,7 +220,7 @@ At 13:50 min, the interviewer quotes Bill:
 
 "Open Source" on national TV. 13 years before the founding of OSI.
 
-![image](/files/open-source-undefined-computer-chronicles.png)
+![image](/files/open-source-undefined-computer-chronicles-bill-joy.png)
 
 ## Uses of the word "open"
 
@@ -260,22 +262,22 @@ developers.
 
 In December 1998 the [SPI made its position clear](https://www.spi-inc.org/corporate/resolutions/1998/1998-12-01.iwj.1/):
 
-> Bruce Perens, Ian Murdock and Timothy Sailer ('the Former Board Members') have not been authorised, and remain not authorised, to carry out any assignment of the 'Open Source' trademark.
+> Bruce Perens, Ian Murdock and Timothy Sailer ('the Former Board Members') have not been authorized, and remain not authorized, to carry out any assignment of the 'Open Source' trademark.
 
 According to [this article](https://www.techmonitor.ai/technology/open_source_initiative_gives_up_on_trademark/) it was Bruce who himself paid for, and carried out the registration of the mark, but as a representative of SPI, in SPI's name.
 
 FWIW, [here's](https://techrights.org/n/2024/04/23/Ean_Schuessler_Debian_SPI_OSI_trademark_disputes.shtml) the perspective of Debian developer Ean Schuessler's at the time.
 A few years later, it seems wounds were healing, with [Bruce re-applying to SPI, Ean making amends](https://www.theregister.com/2003/02/06/perens_throws_hat_into_spi/), and [Bruce taking the blame](https://web.archive.org/web/20140716055445/https://lists.debian.org/debian-devel/1999/02/msg01641.html)
 
-All the bickering over the TradeMark was ultimately pointless, since it didn't go through.
+All the bickering over the Trademark was ultimately pointless, since it didn't go through.
 
-When you [search for SPI on the OSI website](https://www.google.com/search?q=spi+site%3Aopensource.org) you don't find any acknowledgement of SPI's role in the story.  You only find mentions in board meeting notes (ironically, they're all requests to SPI [to hand over domains](https://opensource.org/meeting-minutes/minutes20121003) or [to share some software](https://opensource.org/meeting-minutes/minutes20080709)).  
+When you [search for SPI on the OSI website](https://www.google.com/search?q=spi+site%3Aopensource.org) you don't find any acknowledgment of SPI's role in the story.  You only find mentions in board meeting notes (ironically, they're all requests to SPI [to hand over domains](https://opensource.org/meeting-minutes/minutes20121003) or [to share some software](https://opensource.org/meeting-minutes/minutes20080709)).  
 
 By the way, in November 1998, this is what SPI's [open source web page](https://web.archive.org/web/19990128074835/http://www.spi-inc.org/projects/opensource) had to say:
 
 > Open Source software is software whose source code is freely available
 
-## A TradeMark that was never meant to be.
+## A Trademark that was never meant to be.
 
 Lawyer Kyle E. Mitchell knows how to write engaging blog posts.  [Here is one](https://writing.kemitchell.com/2020/05/11/Open-Source-Property) where he digs further into the topic of trademarking and why "open source" is one of the worst possible terms to try to trademark (in comparison to, say, Apple computers).
 
@@ -289,7 +291,7 @@ He writes:
 > (...)  
 > no person and no organization owns the phrase "open source" as we know it. No such legal shadow hangs over its use. It remains a meme, and maybe a movement, or many movements. Our right to speak the term freely, and to argue for our own meanings, understandings, and aspirations, isn't impinged by anyone’s private property.
 
-So, we have here a great example of the TradeMark system working exactly as intended, doing the right thing in the service of the people: not giving away unique rights to common words, rights that were demonstrably never OSI's to have.
+So, we have here a great example of the Trademark system working exactly as intended, doing the right thing in the service of the people: not giving away unique rights to common words, rights that were demonstrably never OSI's to have.
 
 I can't decide which is more wild: OSI's audacious outcries for the whole world to forget about the trademark failure and trust their "pinky promise" right to authority over a common term, or the fact that so much of the global community actually fell for it and repeated a misguided narrative without much further thought. (myself included)
 
@@ -300,9 +302,9 @@ I think many of us, through our desire to be part of a movement with a positive,
 
 > OSI was never relevant as an organization and hijacked a movement that was well underway without them.
 
-(source: a harsh but astute [slashdot comment](https://news.slashdot.org/comments.pl?sid=11985077&cid=56437741))
+(source: a harsh but astute [Slashdot comment](https://news.slashdot.org/comments.pl?sid=11985077&cid=56437741))
 
-We have plentiful evidence that "Open Source" was used for at least a decade prior to OSI existing, in the industry, in the community, and possibly in government. You saw it at tradeshows, in various newsgroups around Linux and Windows programming, and on national TV in the United States.  The word was often uttered without any further explanation, implying it was a known term.  For a movement that happened largely offline in the eighties and nineties, it seems likely there were many more examples that we can't access today.
+We have plentiful evidence that "Open Source" was used for at least a decade prior to OSI existing, in the industry, in the community, and possibly in government. You saw it at trade shows, in various newsgroups around Linux and Windows programming, and on national TV in the United States.  The word was often uttered without any further explanation, implying it was a known term.  For a movement that happened largely offline in the eighties and nineties, it seems likely there were many more examples that we can't access today.
 
 "Who was first?" is interesting, but more relevant is "what did it mean?".  Many of these uses were fairly informal and/or didn't consider re-distribution.  We saw these meanings:
 
@@ -336,10 +338,10 @@ I think any of these would land well in the community.  Instead, they are strang
 
 > Trust takes years to build, seconds to break, and forever to repair
 
-I'm quite an agreeable person, and until recently happily defended the Open Source Definition.  Now, my trust has been tainted, but at the same time, there is beauty in knowing that [healthy debate has existed since the day OSI was announced](https://news.slashdot.org/story/99/06/14/2133232/open-source-not-trademarked-after-all).  It's just a matter of making sense of it all, and finding healthy ways forward.
+I'm quite an agreeable person, and until recently happily defended the Open Source Definition.  Now, my trust has been tainted, but at the same time, there is beauty in knowing that [healthy debate has existed since the day OSI was announced](https://news.slashdot.org/comments.pl?sid=91&cid=1851199).  It's just a matter of making sense of it all, and finding healthy ways forward.
 
 Most of the events covered here are from 25 years ago, so let's not linger too much on it. There is still a lot to be said about adoption of Open Source in the industry (and the community), tension (and agreements!) over the definition, OSI's campaigns around awareness and standardization and its track record of license approvals and disapprovals, challenges that have arisen (e.g. ethics, hyper clouds, and many more), some of which have resulted in alternative efforts and terms.  I have some ideas for productive ways forward.
 
 Stay tuned for more, [sign up for the RSS feed](/index.xml) and let me know what you think!  
-Comment below or [share your thoughts on X](https://x.com/Dieter_be/status/1831708659149152535)
+Comment below, [on X](https://x.com/Dieter_be/status/1831708659149152535) or [on HackerNews](https://news.ycombinator.com/item?id=41457490)
 

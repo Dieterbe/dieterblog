@@ -238,40 +238,14 @@ The proof of any hardware platform is always whether it can run Doom.  Since the
 
 ## The origins of the famous "Open Source" trademark application: SPI, not OSI
 
-This is not directly relevant, but may provide useful context:  In June 1997 the [SPI ("Software In the Public Interest")](https://en.wikipedia.org/wiki/Software_in_the_Public_Interest) organization was born to support the Debian project, and funded by the Debian community, although it grew in scope to help many more free software / open source projects.  It started proceedings for the "Open Source" trademark.
-But then something happened, and 3/4 of the SPI board left (including Bruce) and founded the OSI, along with a few other individuals, and Bruce tried to migrate over the trademark application into the OSI, [while it was in SPI's name and the Debian leader disapproved](https://disguised.work/debian/bruce-perens-debian-swiping-the-open-source-trademark/):
+This is not directly relevant, but may provide useful context:  In June 1997 the [SPI ("Software In the Public Interest")](https://en.wikipedia.org/wiki/Software_in_the_Public_Interest) organization was born to support the Debian project, funded by its community, although it grew in scope to help many more free software / open source projects.  It looks like Bruce, as as representative of SPI, started the "Open Source" trademark proceedings. (and may have [paid for it himself](https://www.techmonitor.ai/technology/open_source_initiative_gives_up_on_trademark/)).
+But then something happened, 3/4 of the SPI board (including Bruce) left and founded the OSI, which Bruce [announced along with a note that the trademark would move from SPI to OSI as well](https://www.tech-insider.org/open-source-software/research/1998/0810-a.html). Ian Jackson - Debian Project Leader and SPI president - [expressed his "grave doubts" and lack of trust](https://disguised.work/debian/bruce-perens-debian-swiping-the-open-source-trademark/).  SPI later confirmed [they owned the trademark (application) and would not let any OSI members take it](https://www.spi-inc.org/corporate/resolutions/1998/1998-12-01.iwj.1/).  [The perspective of Debian developer Ean Schuessler](https://techrights.org/n/2024/04/23/Ean_Schuessler_Debian_SPI_OSI_trademark_disputes.shtml) provides more context.
 
-> I have grave doubts regarding this situation; Bruce appears to be
-bringing a piece of IPR which is very important to the free software
-community much more closely under his control (and under the control
-of Eric Raymond, whom I don't necessarily trust either).  There seem
-to be no effective checks and/or balances.
-
-In August (or October, I'm not sure) 1998 Bruce [published the following](https://www.tech-insider.org/open-source-software/research/1998/0810-a.html):
-
-> Thus, the board of Software in the
-Public Interest decided to spin off a new organization for Open Source
-early last week. Three of the four SPI directors elected to move to
-the new organization, because they are no longer involved in Debian.
-This left Ian Jackson, who is the current Debian Project Leader, on the
-SPI board to appoint new directors from the ranks of the Debian
-developers.  
-> (...)  
-> The Open Source trademark attribution will now change to:  
->    "Open Source is a Certification Mark of The Open Source Initiative".
-
-In December 1998 the [SPI made its position clear](https://www.spi-inc.org/corporate/resolutions/1998/1998-12-01.iwj.1/):
-
-> Bruce Perens, Ian Murdock and Timothy Sailer ('the Former Board Members') have not been authorized, and remain not authorized, to carry out any assignment of the 'Open Source' trademark.
-
-According to [this article](https://www.techmonitor.ai/technology/open_source_initiative_gives_up_on_trademark/) it was Bruce who himself paid for, and carried out the registration of the mark, but as a representative of SPI, in SPI's name.
-
-FWIW, [here's](https://techrights.org/n/2024/04/23/Ean_Schuessler_Debian_SPI_OSI_trademark_disputes.shtml) the perspective of Debian developer Ean Schuessler's at the time.
-A few years later, it seems wounds were healing, with [Bruce re-applying to SPI, Ean making amends](https://www.theregister.com/2003/02/06/perens_throws_hat_into_spi/), and [Bruce taking the blame](https://web.archive.org/web/20140716055445/https://lists.debian.org/debian-devel/1999/02/msg01641.html)
+A few years later, it seems wounds were healing, with [Bruce re-applying to SPI, Ean making amends](https://www.theregister.com/2003/02/06/perens_throws_hat_into_spi/), and [Bruce taking the blame](https://web.archive.org/web/20140716055445/https://lists.debian.org/debian-devel/1999/02/msg01641.html).
 
 All the bickering over the Trademark was ultimately pointless, since it didn't go through.
 
-When you [search for SPI on the OSI website](https://www.google.com/search?q=spi+site%3Aopensource.org) you don't find any acknowledgment of SPI's role in the story.  You only find mentions in board meeting notes (ironically, they're all requests to SPI [to hand over domains](https://opensource.org/meeting-minutes/minutes20121003) or [to share some software](https://opensource.org/meeting-minutes/minutes20080709)).  
+[Searching for SPI on the OSI website](https://www.google.com/search?q=spi+site%3Aopensource.org) reveals no acknowledgment of SPI's role in the story.  You only find mentions in board meeting notes (ironically, they're all requests to SPI [to hand over domains](https://opensource.org/meeting-minutes/minutes20121003) or [to share some software](https://opensource.org/meeting-minutes/minutes20080709)).  
 
 By the way, in November 1998, this is what SPI's [open source web page](https://web.archive.org/web/19990128074835/http://www.spi-inc.org/projects/opensource) had to say:
 

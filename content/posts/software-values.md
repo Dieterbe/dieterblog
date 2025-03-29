@@ -45,7 +45,7 @@ Let's dig into all of these separately
 
 > The freedom to run the program as you wish...
 
-In practice, people and organisations have certain desires (e.g. cloud based, self-hosting, available on mobile, etc), which can be met regardless of any source code access.
+In practice, people and organizations have certain desires (e.g. cloud based, self-hosting, available on mobile, etc), which can be met regardless of any source code access.
 Typically the "run as you wish" is constrained within the boundaries of what is made possible through ardent effort.  you can't easily take a cloud based tool and turn it into a mobile app, for example. it would mean rewriting the whole thing and basically ending up with a different product.
 Therefore:
 - it is a function of the software, not a "freedom" you can slap on top of it.
@@ -75,7 +75,7 @@ The more practical way of phrasing this would be "software should be available t
 This falls back again to people need software that meets their needs.  I don't think anyone sees it as a benefit when functionality you need was written by a 3rd party or volunteer rather than by the main author or than the vendor you're working with.  In fact, if it was the main vendor that did it, you can reasonably expect it to be better understood by the vendor and therefore better supported.  Although, sometimes innovations come from 3rd parties.  (I've seen this firsthand, where some of the best aspects of the database I worked on were contributed by a customer)
 
 In summary, the most appealing aspect of of open/free software is that it may function somewhat as an insurance policy if you're an SME or individual.
-Sometimes OSS leads to better quality software, but it's also common for OSS to undermine the economical feasability of software and completely undermine the projects development or even cause premature death.
+Sometimes OSS leads to better quality software, but it's also common for OSS to undermine the economical feasibility of software and completely undermine the projects development or even cause premature death.
 
 
 # Actually relevant software values
@@ -86,8 +86,8 @@ In my experience, the free software values don't correspond well to what users a
 1) Software should be fit for use
 2) Longevity: software should either stay around (and receive improvements), or it should be relatively seamless to migrate to alternatives.
 3) Secure, stable. Supported. For enterprise usage, you need certain compliance and certification marks.
-4) Hassfle-free trial and adoption.
-5) Limitations on "bad-actor vendor" lockin.
+4) Hassle-free trial and adoption.
+5) Limitations on "bad-actor vendor" lock-in.
 6) Cost effective to produce and consume
 7) Compensation for those who do the work
 
@@ -125,10 +125,10 @@ To summarize:
 
 How to determine whether software is fit for use, stable and well supported?
 
-Typically, individuals (even within an organisation) start small POC's to validate software, which can then grow to become more critical over time.
+Typically, individuals (even within an organization) start small POC's to validate software, which can then grow to become more critical over time.
 The choice between on-prem or cloud is largely dependent on context - e.g. is it technical infrastructure or does it support a non-engineering department? - and also somewhat up to personal preference.
 The fewer hurdles in this process, the better.  Software is preferred if it requires no signup, payments, paperwork or legal red tape.
-Closed source on-prem products and non-OSI-compliant "open source" products require more legal caution, even when they claim they can safely be used.  Sometimes the OSI compliant AGPL license is problematic and is out-right banned or requires legal legwork. In heavily regulated organisations there is so much red tape that open source adds no benefits, or even complicates adoption (due to concerns about IP, supply chain, license compliance, etc), but such organisations tend to be well equipped to deal with that.
+Closed source on-prem products and non-OSI-compliant "open source" products require more legal caution, even when they claim they can safely be used.  Sometimes the OSI compliant AGPL license is problematic and is out-right banned or requires legal legwork. In heavily regulated organizations there is so much red tape that open source adds no benefits, or even complicates adoption (due to concerns about IP, supply chain, license compliance, etc), but such organizations tend to be well equipped to deal with that.
 
 In case of on-prem, software is also better if it is:
 * easily deployed
@@ -141,7 +141,7 @@ A community seems to grow a bit better around OSI compliant licensed projects ra
 To summarize, when it needs to be on-prem and bleeding edge, OSS often has a leg up, especially if it has a community, with generally OSI-approved licenses being a smoother experience, except sometimes AGPL.  For heavily regulated enterprises, OSS may not add benefits or be counter-productive.
 
 
-> Limitations on "bad-actor vendor" lockin.
+> Limitations on "bad-actor vendor" lock-in.
 
 Being locked in to a vendor is not a problem as long as they treat customers right.  But many vendors will treat customers poorly if they can get away with it.
 We already covered why OSS is not a good insurance policy (for enterprises), and conversely just because an enterprise vendor has open source as part of their strategy, that should give little confidence  that they will treat their customers well.  I furthermore believe it's naive to jump to a conclusion such as "Users need open standards and data freedom", "there always needs to be a migration path" etc.
@@ -170,7 +170,7 @@ To summarize: cost effectiveness is sometimes enabled by OSS, and sometimes unde
 Regardless of which company they work for, if any.  If you do something valuable, it deserves compensation.
 This can be achieved by having code be written by software vendors and them monetizing it (what a concept!), by users contributing to a shared OSS project in their own best interest, or of course, the various compensation schemes that are starting to spring up (sponsoring, tip jars, bounties, etc) but need to mature.
 
-Situations where a developer's hobby projects gets commercially adopted, and then said developer is burdended with the support load and responsibilities without compensation, is a situation to avoid. But there are various solutions to this.
+Situations where a developer's hobby projects gets commercially adopted, and then said developer is burdened with the support load and responsibilities without compensation, is a situation to avoid. But there are various solutions to this.
 
 To summarize: Proprietary software has a more predictable compensation (for now).  Currently, OSS has a "lack of compensation" problem for some cases/projects, but I think we'll overcome that.
 
@@ -203,7 +203,7 @@ Still it feels like a net positive.  An extra means of being able to collaborate
 
 # conclusion
 
-I don't think free software's "4 freedom's", nor's OSI's "open source definition" capture particularly well what software users primarily care about. And I see many make the mistake of following these ideas, perhaps bit too blindly.  Perhaps because they are the most well known "selection criteria" that are written down so explicitly.
+I don't think free software's "4 freedom's", nor OSI's "open source definition" capture particularly well what software users primarily care about. And I see many make the mistake of following these ideas, perhaps bit too blindly.  Perhaps because they are the most well known "selection criteria" that are written down so explicitly.
 
 I have written down what I believe to be more relevant criteria / considerations, and tried to reason through how those relate to Open Source.
 
@@ -217,7 +217,7 @@ I seem to arrive at:
 * it will take time but I expect/hope that OSS users will be more accepting of non-OSI-compatible licenses (such as [fair source](/posts/fair-source-the-next-best-model-for-commercial-open-source/) - this will take time, but such projects deserve the same type of community benefits)
 * All things equal, I would lean towards open source rather than not, but things are rarely equal :-]
 
-For certain businesses and industries (e.g. on-prem), going to market using a strategy involving "open source" (or any of its other forms, open core, source available, fair source, etc) can be a fantastic way to do it.  A win-win for producers, and consumers.  Especially early on in the lifecycle of bleeding edge projects where the community plays a large role.
+For certain businesses and industries (e.g. on-prem), going to market using a strategy involving "open source" (or any of its other forms, open core, source available, fair source, etc) can be a fantastic way to do it.  A win-win for producers, and consumers.  Especially early on in the life-cycle of bleeding edge projects where the community plays a large role.
 But just as often, a poorly thought-out open source strategy will undermine the project and impede both the product and its customers, often resulting in failure.  
 
 For customers, whether software is open source or not seems to matter less than us OSS advocates like to believe. Indirectly, it is relevant when it allows a business and its project to be more healthy (and get higher quality, better supported software for less money).  But directly, as such, it doesn't seem to matter.  

@@ -23,7 +23,9 @@ Open Source software is sometimes viewed as an insurance: if your SaaS vendor go
 * it is unlikely that a vendor will attempt a business model that has demonstrably failed, or create a new business on software they don't understand as well.
 * Offering indemnification and standards compliance is also risky if you don't know the software well. So for enterprise software, this doesn't really happen.
 * for SaaS, this requires a data migration, which is usually a painful process requiring lots of ad-hoc improvisation to compensate for missing support, if it's even possible to access your data to begin with.
-* you might be able to run it yourself.  This can work well, sometimes for years. Sometimes this strains your own resources and therefore doesn't last long.  The primary factor is the quality of the software.  Open vs closed source by itself is usually not a big factor (though in some cases, it correlates to quality).  The ability to inspect code (as allowed in open source, source available, fair source, etc paradigms) provides some assurance in theory (e.g. to build trust that you're executing something more likely to be "safe"), but in practice what I've seen is: you're either a serious enterprise who needs more than just being able to read the code before running it (you need a trusted partner, indemnification, SLA's, standards compliance guarantees, etc), or you're not, in which case code access is not practically beneficial (too time consuming to really go through it.  Although perhaps AI tools may help here soon?)
+* you might be able to run it yourself.  This can work well, sometimes for years. Sometimes this strains your own resources and therefore doesn't last long.  The primary factor is how "fit for use" the software is for your needs.  Open vs closed source by itself is usually not a big factor (though in some cases, it correlates to software quality).  The ability to inspect code (as allowed in open source, source available, fair source, etc paradigms) provides some assurance in theory (e.g. to build trust that you're executing something more likely to be "safe"), but in practice what I've seen is: you're either a serious enterprise who needs more than just being able to read the code before running it (you need a trusted partner, indemnification, SLA's, standards compliance guarantees, etc), or you're not, in which case code access is not practically beneficial (too time consuming to really go through it.  Although perhaps AI tools may help here soon?)
+
+TODO clarify here: inspect code for security vs ability to patch for your own needs
 
 All the above boils down to: source code access is rarely a meaningful form of "insurance". Certainly not for SaaS and enterprise use cases. But possibly for SME's and individuals.
 
@@ -51,28 +53,29 @@ Therefore:
 
 > ...for any purpose
 
-First of all: the "run for any purpose" has received a lot of scrutinity in the OSS community, where people often advocate for the exact opposite (ethical concerns, "do not use this software for 'evil', etc").  But that would land us in dictatorial/non-free waters, and has not been included as a concept in either free software, or OSI's definition, so we can mostly ignore that here.
+First of all: the "run for any purpose" receives a lot of scrutiny in the OSS community, where ethical concerns lead to folks advocating for the exact opposite (essentially "do not use this software for 'evil'").  But that would land us in dictatorial/non-free waters, and has not been included as a concept in either free software, or OSI's definition.
 
 software users indeed don't want to be at the mercy of a single vendor as far as when and what for they can use the software. Especially not when this gets tightened up down the road.
 Unfortunately, Open source as an insurance policy, as we saw above, is mostly a theoretical idea, and not very practical, except maybe for SME's/individuals.
 
 > The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.  
 
-Freedom to study how the program works, purely for the sake of it, is for curious geeks who want to learn specific programming techniques and when the software implements something novel which isn't easily learned through more actual learning resources (which are otherwise much more effective ways to learn), this is an edge case IMHO.
+Freedom to study how the program works, purely for the sake of it, is for curious geeks who want to learn specific programming techniques and when the software implements something novel which isn't easily learned through more appropriate learning resources (courses, tutorials, etc), this is an edge case IMHO. Personally I've learned a lot from studying various OSS projects such as NSQ and Prometheus, but this has little to do with procuring software.
 
-The most important value here is that you want software that does what you need it to.   But if any time software didn't do what we need, we'd have to study the project, make our own changes and rebuild it, (and sometimes host it yourself if upstream doesn't like your changes) our lives and economy would slow to a halt.   It's extremely impractical.   It reeks more of an anti-pattern.  Except for indivuals with a lot of time on their hands.
+The most important value here is that you want software that does what you need it to.   But if any time software didn't do what we need, we'd have to study the project, make our own changes and rebuild it, (and sometimes host it yourself if upstream doesn't like your changes) our lives and economy would slow to a halt.   It's extremely impractical.   It reeks more of an anti-pattern.
 
 
 > The freedom to redistribute copies so you can help others (freedom 2).  
 
-The more practical way of phrasing this would be "software should be available to those who need it".  Has little or nothing to do with source code access.
+The more practical way of phrasing this would be "software should be available to those who need it".  Has nothing to do with source code access.
 
 > The freedom to distribute copies of your modified versions to others (freedom 3).  By doing this you can give the whole  
 > community a chance to benefit from your changes.  Access to the source code is a precondition for this.  
 
-This falls back again to people need software that meets their needs.  I don't think anyone sees it as a benefit when functionality you need was written by a 3rd party or volunteer rather than by the main author or than the vendor you're working with.  In fact, if it was the main vendor that did it, you can reasonably expect it to be better understood by the vendor and therefore better supported.
+This falls back again to people need software that meets their needs.  I don't think anyone sees it as a benefit when functionality you need was written by a 3rd party or volunteer rather than by the main author or than the vendor you're working with.  In fact, if it was the main vendor that did it, you can reasonably expect it to be better understood by the vendor and therefore better supported.  Although, sometimes innovations come from 3rd parties.  (I've seen this firsthand, where some of the best aspects of the database I worked on were contributed by a customer)
 
 In summary, the most appealing aspect of of open/free software is that it may function somewhat as an insurance policy if you're an SME or individual.
+Sometimes OSS leads to better quality software, but it's also common for OSS to undermine the economical feasability of software and completely undermine the projects development or even cause premature death.
 
 
 # Actually relevant software values
@@ -81,7 +84,7 @@ What do users **really** care about?
 In my experience, the free software values don't correspond well to what users actually want.  I think what people actually want is this:
 
 1) Software should be fit for use
-2) Longevity: software should either stay around (and receive improvements), or it should be relatively seamless to migrate to alternatives.aaaa
+2) Longevity: software should either stay around (and receive improvements), or it should be relatively seamless to migrate to alternatives.
 3) Secure, stable. Supported. For enterprise usage, you need certain compliance and certification marks.
 4) Limitations on "bad-actor vendor" lockin.
 5) Cost effective to produce and consume
@@ -100,20 +103,22 @@ The first three values are closely related and can be covered at once:
 > Longevity: software should either stay around (and receive improvements), or it should be relatively seamless to migrate to alternatives.  
 > Secure, stable. Supported. For enterprise usage, you need certain compliance and certification marks.
 
+There is a certain irony that open source licenses usually explicitly disavow fitness for any particular use, even if that's the most important factor when procuring software, and despite the software fitting the intended purpose well, clauses around this are often left for commercial agreements, for commercial open source software anyway)
+
 * For applications with a specific, common, non-critical need (e.g. media players) community/voluntary OSS projects are a great solution to achieve these goals (e.g. VLC media player). There is so much drive among volunteers to build a high quality, secure and lasting piece of software that it wouldn't even make sense to compete with commercially directly and pay to do the work, unless it can be done better (e.g. streaming services).
 * foundation/platform stuff by nature often makes sense to be open source because this is a case where source code access is actually highly relevant.  Sometimes commercial players are involved, and when they're not, it's usually at the peril of some voluntary developers. (see compensation below)
 * For more niche (e.g. enterprise), critical (e.g. medical/military) and/or large, complicated applications (e.g. operating systems), the best way to achieve this is with one or more profitable business pushing the software forward.  (e.g. Grafana, Sentry, Android).  They may or may not include open source, open core, fair source, etc in their strategy.  I'm not so familiar with military/medical equipment but pretty sure that's closed off.
 Expecting random strangers to meaningfully push such complicated projects forward at a high level is delusional - although sidenote: for commercial open source software projects, the community contributions can be significant, which allows for both more value creation and capture and in the end, everyone is usually better off - so the main point is you need a commercial entity driving it, even if that entity may employ an open source (or similar) concept as part of their business strategy.
 Sometimes multiple vendors collaborate and jointly drive projects forward (see all the companies around Linux, and Cloudera/Hortonworks around hadoop), which necessitates some sort of open source licensing.  Whereas open source works well to gain reliability/security for software that is not overly complex and is inspected by many, it becomes less relevant for large scale projects with fewer eyeballs on them.  For those, you need to incentivize, e.g. Hacker bounty programs work great (open source or not).
 
-If it's closed source *and* run by a single company there is a risk of the vendor mistreating clients and/or going bankrupt.  We've already seen that OSS is not a good insurance policy (for enterprises)
+If it's closed source *and* run by a single company there is a risk of the vendor mistreating clients and/or going bankrupt.  We've already seen that OSS is not a good insurance policy (for enterprises).
 Having a reasonable migration path to an alternative vendor that offers a similar product can be a good solution here. Let's explore this more in the vendor lock-in section below.
 
 What I see all too commonly is that Open Source software gets created, and sure, it may be OSI compliant, but it's missing various needed features, runs out of steam because it's not funded well, or misses the oh-so important marketing to actually make you aware that it even exists in the first place.  Yes, open source can be a great mechanism, but it shouldn't be the primary consideration. It should be part of a larger set of tradeoffs within a strategy. Which in a case like this, should be a business strategy.  Vendors will spring up to address your needs.
 
 To summarize:
 * OSS is best for specific, common, non-critical needs and foundational platform code. Commercialization is optional.
-* Commercialization is needed for enterprise/critical/large needs. OSS is optional. (though it can be a good part of business strategy)
+* Commercialization is needed for enterprise/critical/large needs. OSS is optional. (though it can be a good part of a business strategy)
 
 > Limitations on "bad-actor vendor" lockin.
 
@@ -125,7 +130,7 @@ You can also get yourself "locked in" with open source code that is *not* driven
 
 I believe that the market can handle these concerns by itself, without trying to interfere with procurement selection criteria or "certifying" vendors via OSI compliant licenses (which in practice lose some significance in the context of open core, additional contracts, etc).  Open Source, migration tools, open standards, etc are all tools that change the dynamics, but none of them is a necessity.  Finally, the market works such that when a vendor starts showing abusive tendencies towards its clients, competitors will spring up to do it better.  As a user, this is just as good as an insurance policy as "open source" is.
 
-Of course, vendor lock-in is sometimes unavoidable, especially for mission-critical, entrenched and heavily regulated systems (e.g. finance, military, medical). But especially here, open source won't save you, since the product is not the code.  And as we've seen, disruption is always possible (e.g. spaceX)
+Of course, vendor lock-in is sometimes unavoidable, especially for mission-critical, entrenched and heavily regulated systems (e.g. finance, military, medical). But especially here, open source won't save you, since the product is not the code (the "insurance policy" idea definitely doesn't work here).  And as we've seen, disruption is always possible (e.g. spaceX)
 
 In summary: ultimately, competitive forces in the market will result in an equilibrium where users are ultimately treated with whatever freedoms they deserve.
 
@@ -156,16 +161,16 @@ Generally speaking, if technology is more generative, it is objectively better. 
 
 But the boundary keeps creeping up: we built on top of transistors, then on top of operating systems, on top of the internet, on top of GPS, etc.  There's always reasons why it makes sense for some applications to become platforms and to build more stuff on top / around them.  Think workflow automation, integrations, etc.  I see no reason why even the new layers would need to be open source in order to be highly generative (e.g. both Grafana and Zapier integrate with other systems using their own, almost opposite, strategies). 
 
-In summary: there seems to be no correlation between generativity and open source.
+In summary: there seems to be no correlation between generativity and open source. (this one actually surprised me)
 
 
 > Fringe: Optional charitability.
 
 I think part of what's attractive to building "open source" is that it feels good to give away a certain (base) level of service for free.
-But it's not about the source code. You can give a great free cloud plan, software discounts for students, a public good service such as wikiPedia, discounts based on local market conditions, etc.
+But it doesn't have to be about giving away source code only. You can give a great free cloud plan, software discounts for students, a public good service such as wikiPedia, discounts based on local market conditions, etc.
 I think this boils back down to what we said about what's the best way to build software that is "fit for use" and has longevity.  Whoever can do this best (a community, a company, or a well funded non-profit such as WikiPedia) is best equipped to create a lot of value, and then to decide to not capture some of it.
-
-Note this can be done in a deceitful way to try to lock in users and try to force expensive conversions/upgrades later, but I think everything we said about market dynamics applies here too.
+While this is sometimes done in a genuine way, often giving away code is seen as the start of a relationship which may turn into business relationship, and similarly the free base plans, discounts etc often have the same purpose and serve to not capture value when there isn't much to capture, but there may be more to capture later - e.g. when the student has become a professional.
+This can be done in a deceitful way to try to lock in users and try to force expensive conversions/upgrades later, but I think everything we said about market dynamics applies here too.
 
 
 

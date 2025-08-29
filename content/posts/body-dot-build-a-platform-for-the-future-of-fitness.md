@@ -1,6 +1,8 @@
 +++
 title = 'Body.build: a platform for the future of fitness'
 date = 2025-08-28T17:21:29+02:00
+[params]
+  images = ['/files/dieter-menno.jpg']
 +++
 
 TLDR: A software engineer with a dream, undertook the world's most advanced personal trainer course. Despite being the odd duck amongst professional athletes, coaches, and body builders, graduated top of class, and is now starting a mission to build a free and open source fitness platform to power next-gen fitness apps and a wikiPedia-style public service.  But he needs your help!
@@ -40,7 +42,7 @@ We've seen how this plays out in devtools, enterprise, in cloud.  According to m
 I'm an experienced software engineer. I have experience building teams and companies.  I'm lucky enough to have a window of time and some budget, but I need to make it count.
 First thing I did is to educate myself properly on fitness.  In 2024-2025 I participated in the [Menno Henselmans Personal Trainer course](https://mennohenselmans.com/online-pt-course/). This is the most in-depth, highly accredited, science based course program for personal trainers that I could find.  It was an interesting experience being the lone software developer amongst a group of athletes, coaches and body builders.  Earlier this year I graduated Magna Cum Laude, top of class.
 
-![Right: one of the best coaches in the world. Left: this guy](https://body.build/docs/assets/images/dieter-menno-f89418d879626e6792eaf76e6f73d166.jpg)
+![Right: one of the best coaches in the world. Left: this guy](/files/dieter-menno.jpg)
 
 Now I am a certified coach, who learned from one of the top coaches worldwide with decades of experience.  I can train and coach individuals.  But as a software engineer I know that even a small software project can grow to change the world.
 What Wikipedia did for articles, is what I aspire to make for fitness: a free public service comprising information, but more so hands-on tools applications to put information into action.

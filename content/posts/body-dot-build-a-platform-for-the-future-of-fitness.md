@@ -1,6 +1,7 @@
 +++
 title = 'Body.build: a platform for the future of fitness'
 date = 2025-08-28T17:21:29+02:00
+description = "A software engineer with a dream, undertook the world's most advanced personal trainer course. Despite being the odd duck amongst professional athletes, coaches, and body builders, graduated top of class, and is now starting a mission to build a free and open source fitness platform to power next-gen fitness apps and a wikiPedia-style public service.  But he needs your help!"
 [params]
   images = ['/files/dieter-menno.jpg']
 +++

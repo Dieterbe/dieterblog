@@ -23,6 +23,10 @@ rssFeedDescription = "full" # available options: 1) summary 2) full
     name = 'Posts'
     weight = 20
 [[menu.main]]
+    pageRef="consulting-advisory"
+    name = 'Consulting'
+    weight = 25
+[[menu.main]]
     pageRef="projects"
     name = 'Projects'
     weight = 30
@@ -40,7 +44,7 @@ rssFeedDescription = "full" # available options: 1) summary 2) full
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
   intro = "Dieter's blog"
   name = "Dieter Plaetinck"
-  description = "Open Source is life. Ex-Grafana Labs founding engineer. Loves mountain sports. Trying to be helpful to startups"
+  description = "Open Source is life. Ex-Grafana Labs founding engineer. Fitness, Open source consulting & advisory"
 
 [[params.profiles]]
 name = "GitHub"

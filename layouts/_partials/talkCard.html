@@ -7,8 +7,9 @@
     </h4>
     {{/* format date string to create an ISO 8601 string */}}
     {{ $ISO_date := "2006-01-02T15:04:05Z0700" }}
-    {{ $configDateFormat := site.Params.dateFormat | default "2 Jan 2006" }}
-    <time class="post-item-meta" datetime="{{ dateFormat $ISO_date .date }}">
-        {{ dateFormat $configDateFormat .date }}
+    {{ $talkDate := time.AsTime (printf "%sT00:00:00Z" .date) }}
+    {{ $configDateFormat := .Site.Params.dateFormat | default "2 Jan 2006" }}
+    <time class="post-item-meta" datetime="{{ $talkDate.Format $ISO_date }}">
+        {{ $talkDate.Format $configDateFormat }}
     </time>
 </article>

@@ -27,8 +27,9 @@ I can help with:
 Reach out on LinkedIn or by email (first name + last name at gmail) if you're working through one of these challenges.
 I’m happy to start with an initial conversation, and if useful, we can discuss a formal advisory or consulting engagement.
 
-
-> "Dieter helped us stabilize the commercial open-source foundation at Naftiko by asking the hard questions around why we are doing open-source in the first place, and what truly differentiates our open-source offerings from our commercial offerings, bringing his experience to the table when our company needed it the most."
-
-Kin Lane
-Chief Community Officer & Co-Founder, [Naftiko](https://naftiko.io/).
+<blockquote class="testimonial-quote">
+  <p>“Dieter helped us stabilize the commercial open-source foundation at Naftiko by asking the hard questions around why we are doing open-source in the first place, and what truly differentiates our open-source offerings from our commercial offerings, bringing his experience to the table when our company needed it the most.”</p>
+  <footer>
+    &mdash; <cite>Kin Lane</cite>, Chief Community Officer &amp; Co-Founder, <a href="https://naftiko.io/">Naftiko</a>.
+  </footer>
+</blockquote>

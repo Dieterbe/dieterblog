@@ -137,6 +137,28 @@
     border-color: $dark-bloquote-border;
   }
 
+  .testimonial-quote {
+    border-left-color: #7ea3ff;
+    background: linear-gradient(180deg, #1b2234 0%, #181f2f 100%);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+
+    &::before {
+      color: #7ea3ff;
+    }
+
+    p {
+      color: #d6d9e0;
+    }
+
+    footer {
+      color: #aeb5c3;
+    }
+
+    cite {
+      color: #eef1f6;
+    }
+  }
+
   // Strong, Bold
   strong,
   b {
